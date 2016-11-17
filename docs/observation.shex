@@ -94,6 +94,25 @@ start=@<Observation> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
+# Resource related to this observation
+<Observation.related> CLOSED {
+    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
+    fhir:extension @<Extension>*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
+    fhir:Observation.related.type @<code> AND
+    	{fhir:value @fhirvs:observation-relationshiptypes}?;  # has-member | derived-from | 
+                                            # sequel-to | replaces | 
+                                            # qualified-by | interfered-by 
+    fhir:Observation.related.target         # Resource that is related to this 
+                                            # one 
+    (   @<ObservationReference> OR
+        @<QuestionnaireResponseReference> OR
+        @<SequenceReference>
+    );
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
 # Component results
 <Observation.component> CLOSED {
     fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
@@ -118,25 +137,6 @@ start=@<Observation> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:Observation.component.interpretation @<CodeableConcept>?;  # High, low, normal, etc.
     fhir:Observation.component.referenceRange @<Observation.referenceRange>*;  # Provides guide for interpretation 
                                             # of component result 
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
-# Resource related to this observation
-<Observation.related> CLOSED {
-    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
-    fhir:extension @<Extension>*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    fhir:Observation.related.type @<code> AND
-    	{fhir:value @fhirvs:observation-relationshiptypes}?;  # has-member | derived-from | 
-                                            # sequel-to | replaces | 
-                                            # qualified-by | interfered-by 
-    fhir:Observation.related.target         # Resource that is related to this 
-                                            # one 
-    (   @<ObservationReference> OR
-        @<QuestionnaireResponseReference> OR
-        @<SequenceReference>
-    );
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -608,17 +608,17 @@ start=@<Observation> AND {fhir:nodeRole [fhir:treeRoot]}
 
 #---------------------- Value Sets ------------------------
 
+# The status of a resource narrative
+fhirvs:narrative-status ["generated" "extensions" "additional" "empty"]
+
 # Codes providing the status of an observation.
 fhirvs:observation-status ["registered" "preliminary" "final" "amended" "cancelled" "entered-in-error" "unknown"]
 
 # How the Quantity should be understood and represented.
 fhirvs:quantity-comparator ["<" "<=" ">=" ">"]
 
-# Identifies the purpose for this identifier, if known .
-fhirvs:identifier-use ["usual" "official" "temp" "secondary"]
-
-# The status of a resource narrative
-fhirvs:narrative-status ["generated" "extensions" "additional" "empty"]
-
 # Codes specifying how two observations are related.
 fhirvs:observation-relationshiptypes ["has-member" "derived-from" "sequel-to" "replaces" "qualified-by" "interfered-by"]
+
+# Identifies the purpose for this identifier, if known .
+fhirvs:identifier-use ["usual" "official" "temp" "secondary"]

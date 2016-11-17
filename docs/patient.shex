@@ -64,6 +64,24 @@ start=@<Patient> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
+# Link to another patient resource that concerns the same actual person
+<Patient.link> CLOSED {
+    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
+    fhir:extension @<Extension>*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
+    fhir:Patient.link.other                 # The other patient or related 
+                                            # person resource that the link 
+                                            # refers to 
+    (   @<PatientReference> OR
+        @<RelatedPersonReference>
+    );
+    fhir:Patient.link.type @<code> AND
+    	{fhir:value @fhirvs:link-type};  # replace | refer | seealso - type 
+                                            # of link 
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
 # A contact party (e.g. guardian, partner, friend) for the patient
 <Patient.contact> CLOSED {
     fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
@@ -108,24 +126,6 @@ start=@<Patient> AND {fhir:nodeRole [fhir:treeRoot]}
                                             # communicate with the patient about 
                                             # his or her health 
     fhir:Patient.communication.preferred @<boolean>?;  # Language preference indicator
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
-# Link to another patient resource that concerns the same actual person
-<Patient.link> CLOSED {
-    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
-    fhir:extension @<Extension>*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    fhir:Patient.link.other                 # The other patient or related 
-                                            # person resource that the link 
-                                            # refers to 
-    (   @<PatientReference> OR
-        @<RelatedPersonReference>
-    );
-    fhir:Patient.link.type @<code> AND
-    	{fhir:value @fhirvs:link-type};  # replace | refer | seealso - type 
-                                            # of link 
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -494,32 +494,32 @@ start=@<Patient> AND {fhir:nodeRole [fhir:treeRoot]}
 
 #---------------------- Value Sets ------------------------
 
-# The type of an address (physical / postal)
-fhirvs:address-type ["postal" "physical" "both"]
+# Telecommunications form for contact point
+fhirvs:contact-point-system ["phone" "fax" "email" "pager" "other"]
+
+# The status of a resource narrative
+fhirvs:narrative-status ["generated" "extensions" "additional" "empty"]
 
 # The type of link between this patient resource and another patient resource.
 fhirvs:link-type ["replace" "refer" "seealso"]
 
-# The use of a human name
-fhirvs:name-use ["usual" "official" "temp" "nickname" "anonymous" "old" "maiden"]
+# The gender of a person used for administrative purposes.
+fhirvs:administrative-gender ["male" "female" "other" "unknown"]
 
-# Telecommunications form for contact point
-fhirvs:contact-point-system ["phone" "fax" "email" "pager" "other"]
-
-# This value set defines the set of codes that can be used to indicate the marital status of a person.
-fhirvs:marital-status ["A" "D" "I" "L" "M" "P" "S" "T" "U" "W" "UNK"]
+# The type of an address (physical / postal)
+fhirvs:address-type ["postal" "physical" "both"]
 
 # The use of an address
 fhirvs:address-use ["home" "work" "temp" "old"]
 
-# The gender of a person used for administrative purposes.
-fhirvs:administrative-gender ["male" "female" "other" "unknown"]
+# The use of a human name
+fhirvs:name-use ["usual" "official" "temp" "nickname" "anonymous" "old" "maiden"]
+
+# This value set defines the set of codes that can be used to indicate the marital status of a person.
+fhirvs:marital-status ["A" "D" "I" "L" "M" "P" "S" "T" "U" "W" "UNK"]
 
 # Use of contact point
 fhirvs:contact-point-use ["home" "work" "temp" "old" "mobile"]
 
 # Identifies the purpose for this identifier, if known .
 fhirvs:identifier-use ["usual" "official" "temp" "secondary"]
-
-# The status of a resource narrative
-fhirvs:narrative-status ["generated" "extensions" "additional" "empty"]

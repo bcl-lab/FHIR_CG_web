@@ -51,6 +51,25 @@ start=@<Sequence> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
+# External repository which contains detailed report of observedSeq in this resource
+<Sequence.repository> CLOSED {
+    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
+    fhir:extension @<Extension>*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
+    fhir:Sequence.repository.type @<code> AND
+    	{fhir:value @fhirvs:repository-type};  # directlink | openapi | login | 
+                                            # oauth | other 
+    fhir:Sequence.repository.url @<uri>?;   # URI of the repository
+    fhir:Sequence.repository.name @<string>?;  # Name of the repository
+    fhir:Sequence.repository.datasetId @<string>?;  # Id of the dataset that used to 
+                                            # call for dataset in repository 
+    fhir:Sequence.repository.variantsetId @<string>?;  # Id of the variantset that used to 
+                                            # call for variantset in repository 
+    fhir:Sequence.repository.readsetId @<string>?;  # Id of the read
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
 # Sequence Structural Variant
 <Sequence.structureVariant> CLOSED {
     fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
@@ -65,34 +84,6 @@ start=@<Sequence> AND {fhir:nodeRole [fhir:treeRoot]}
                                             # Position 
     fhir:Sequence.structureVariant.inner @<Sequence.structureVariant.inner>?;  # Sequence Structural Variant Inner 
                                             # Position 
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
-# Sequence quality
-<Sequence.quality> CLOSED {
-    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
-    fhir:extension @<Extension>*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    fhir:Sequence.quality.type @<code> AND
-    	{fhir:value @fhirvs:quality-type};  # INDEL | SNP | UNKNOWN
-    fhir:Sequence.quality.standardSequence @<CodeableConcept>?;  # Standard sequence for comparison
-    fhir:Sequence.quality.start @<integer>?;  # Start position of the sequence
-    fhir:Sequence.quality.end @<integer>?;  # End position of the sequence
-    fhir:Sequence.quality.score @<Quantity>?;  # Quality score
-    fhir:Sequence.quality.method @<CodeableConcept>?;  # Method for quality
-    fhir:Sequence.quality.truthTP @<decimal>?;  # True positives from the 
-                                            # perspective of the truth data 
-    fhir:Sequence.quality.queryTP @<decimal>?;  # True positives from the 
-                                            # perspective of the query data 
-    fhir:Sequence.quality.truthFN @<decimal>?;  # False negatives
-    fhir:Sequence.quality.queryFP @<decimal>?;  # False positives
-    fhir:Sequence.quality.gtFP @<decimal>?;  # False positives where the non-REF 
-                                            # alleles in the Truth and Query 
-                                            # Call Sets match 
-    fhir:Sequence.quality.precision @<decimal>?;  # Precision
-    fhir:Sequence.quality.recall @<decimal>?;  # Recall
-    fhir:Sequence.quality.fScore @<decimal>?;  # F-score
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -139,22 +130,31 @@ start=@<Sequence> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
-# External repository which contains detailed report of observedSeq in this resource
-<Sequence.repository> CLOSED {
+# Sequence quality
+<Sequence.quality> CLOSED {
     fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
     fhir:extension @<Extension>*;           # Additional Content defined by 
                                             # implementations 
     fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    fhir:Sequence.repository.type @<code> AND
-    	{fhir:value @fhirvs:repository-type};  # directlink | openapi | login | 
-                                            # oauth | other 
-    fhir:Sequence.repository.url @<uri>?;   # URI of the repository
-    fhir:Sequence.repository.name @<string>?;  # Name of the repository
-    fhir:Sequence.repository.datasetId @<string>?;  # Id of the dataset that used to 
-                                            # call for dataset in repository 
-    fhir:Sequence.repository.variantsetId @<string>?;  # Id of the variantset that used to 
-                                            # call for variantset in repository 
-    fhir:Sequence.repository.readsetId @<string>?;  # Id of the read
+    fhir:Sequence.quality.type @<code> AND
+    	{fhir:value @fhirvs:quality-type};  # INDEL | SNP | UNKNOWN
+    fhir:Sequence.quality.standardSequence @<CodeableConcept>?;  # Standard sequence for comparison
+    fhir:Sequence.quality.start @<integer>?;  # Start position of the sequence
+    fhir:Sequence.quality.end @<integer>?;  # End position of the sequence
+    fhir:Sequence.quality.score @<Quantity>?;  # Quality score
+    fhir:Sequence.quality.method @<CodeableConcept>?;  # Method for quality
+    fhir:Sequence.quality.truthTP @<decimal>?;  # True positives from the 
+                                            # perspective of the truth data 
+    fhir:Sequence.quality.queryTP @<decimal>?;  # True positives from the 
+                                            # perspective of the query data 
+    fhir:Sequence.quality.truthFN @<decimal>?;  # False negatives
+    fhir:Sequence.quality.queryFP @<decimal>?;  # False positives
+    fhir:Sequence.quality.gtFP @<decimal>?;  # False positives where the non-REF 
+                                            # alleles in the Truth and Query 
+                                            # Call Sets match 
+    fhir:Sequence.quality.precision @<decimal>?;  # Precision
+    fhir:Sequence.quality.recall @<decimal>?;  # Recall
+    fhir:Sequence.quality.fScore @<decimal>?;  # F-score
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -397,17 +397,17 @@ start=@<Sequence> AND {fhir:nodeRole [fhir:treeRoot]}
 
 #---------------------- Value Sets ------------------------
 
-# How the Quantity should be understood and represented.
-fhirvs:quantity-comparator ["<" "<=" ">=" ">"]
+# The status of a resource narrative
+fhirvs:narrative-status ["generated" "extensions" "additional" "empty"]
 
 # Type for access of external uri
 fhirvs:repository-type ["directlink" "openapi" "login" "oauth" "other"]
+
+# How the Quantity should be understood and represented.
+fhirvs:quantity-comparator ["<" "<=" ">=" ">"]
 
 # Type for quality report
 fhirvs:quality-type ["INDEL" "SNP" "UNKNOWN"]
 
 # Identifies the purpose for this identifier, if known .
 fhirvs:identifier-use ["usual" "official" "temp" "secondary"]
-
-# The status of a resource narrative
-fhirvs:narrative-status ["generated" "extensions" "additional" "empty"]

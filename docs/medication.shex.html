@@ -169,20 +169,6 @@ start=@&lt;Medication&gt; AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
-# What is  in the package
-&lt;Medication.package.content&gt; CLOSED {
-    fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
-    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @&lt;Extension&gt;*;   # Extensions that cannot be ignored
-    (                                       # The item in the package
-        fhir:Medication.package.content.itemCodeableConcept @&lt;CodeableConcept&gt;  |
-        fhir:Medication.package.content.itemReference @&lt;Reference&gt; 
-    );
-    fhir:Medication.package.content.amount @&lt;SimpleQuantity&gt;?;  # Quantity present in the package
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
 # Identifies a single production run
 &lt;Medication.product.batch&gt; CLOSED {
     fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
@@ -206,6 +192,20 @@ start=@&lt;Medication&gt; AND {fhir:nodeRole [fhir:treeRoot]}
         fhir:Medication.product.ingredient.itemReference @&lt;Reference&gt; 
     );
     fhir:Medication.product.ingredient.amount @&lt;Ratio&gt;?;  # Quantity of ingredient present
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
+# What is  in the package
+&lt;Medication.package.content&gt; CLOSED {
+    fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
+    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @&lt;Extension&gt;*;   # Extensions that cannot be ignored
+    (                                       # The item in the package
+        fhir:Medication.package.content.itemCodeableConcept @&lt;CodeableConcept&gt;  |
+        fhir:Medication.package.content.itemReference @&lt;Reference&gt; 
+    );
+    fhir:Medication.package.content.amount @&lt;SimpleQuantity&gt;?;  # Quantity present in the package
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -440,14 +440,14 @@ start=@&lt;Medication&gt; AND {fhir:nodeRole [fhir:treeRoot]}
 
 #---------------------- Value Sets ------------------------
 
+# The status of a resource narrative
+fhirvs:narrative-status [&quot;generated&quot; &quot;extensions&quot; &quot;additional&quot; &quot;empty&quot;]
+
 # How the Quantity should be understood and represented.
 fhirvs:quantity-comparator [&quot;&lt;&quot; &quot;&lt;=&quot; &quot;&gt;=&quot; &quot;&gt;&quot;]
 
 # Identifies the purpose for this identifier, if known .
 fhirvs:identifier-use [&quot;usual&quot; &quot;official&quot; &quot;temp&quot; &quot;secondary&quot;]
-
-# The status of a resource narrative
-fhirvs:narrative-status [&quot;generated&quot; &quot;extensions&quot; &quot;additional&quot; &quot;empty&quot;]
 
 </pre>
 </div>
@@ -473,7 +473,7 @@ of the specification.
 		<div class="container"><!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Wed, Nov 16, 2016 21:15-0500. <a href="qa.html">QA Page</a>
+        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Wed, Nov 16, 2016 22:04-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search</a> | 

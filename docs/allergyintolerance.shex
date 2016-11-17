@@ -382,17 +382,14 @@ start=@<AllergyIntolerance> AND {fhir:nodeRole [fhir:treeRoot]}
 
 #---------------------- Value Sets ------------------------
 
-# Identification of the underlying physiological mechanism for a Reaction Risk.
-fhirvs:allergy-intolerance-type ["allergy" "intolerance"]
-
-# Category of an identified substance.
-fhirvs:allergy-intolerance-category ["food" "medication" "biologic" "environment"]
+# The clinical status of the allergy or intolerance.
+fhirvs:allergy-clinical-status ["active" "inactive" "resolved"]
 
 # Statement about the degree of clinical certainty that a specific substance was the cause of the manifestation in an reaction event.
 fhirvs:reaction-event-certainty ["unlikely" "likely" "confirmed" "unknown"]
 
-# How the Quantity should be understood and represented.
-fhirvs:quantity-comparator ["<" "<=" ">=" ">"]
+# The status of a resource narrative
+fhirvs:narrative-status ["generated" "extensions" "additional" "empty"]
 
 # Clinical assessment of the severity of a reaction event as a whole, potentially considering multiple different manifestations.
 fhirvs:reaction-event-severity ["mild" "moderate" "severe"]
@@ -400,14 +397,17 @@ fhirvs:reaction-event-severity ["mild" "moderate" "severe"]
 # Estimate of the potential clinical harm, or seriousness, of a reaction to an identified substance.
 fhirvs:allergy-intolerance-criticality ["low" "high" "unable-to-assess"]
 
+# Category of an identified substance.
+fhirvs:allergy-intolerance-category ["food" "medication" "biologic" "environment"]
+
+# How the Quantity should be understood and represented.
+fhirvs:quantity-comparator ["<" "<=" ">=" ">"]
+
+# Identification of the underlying physiological mechanism for a Reaction Risk.
+fhirvs:allergy-intolerance-type ["allergy" "intolerance"]
+
 # Assertion about certainty associated with a propensity, or potential risk, of a reaction to the identified substance.
 fhirvs:allergy-verification-status ["unconfirmed" "confirmed" "refuted" "entered-in-error"]
 
 # Identifies the purpose for this identifier, if known .
 fhirvs:identifier-use ["usual" "official" "temp" "secondary"]
-
-# The clinical status of the allergy or intolerance.
-fhirvs:allergy-clinical-status ["active" "inactive" "resolved"]
-
-# The status of a resource narrative
-fhirvs:narrative-status ["generated" "extensions" "additional" "empty"]

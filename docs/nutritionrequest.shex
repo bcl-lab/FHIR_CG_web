@@ -68,26 +68,6 @@ start=@<NutritionRequest> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
-# Oral diet components
-<NutritionRequest.oralDiet> CLOSED {
-    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
-    fhir:extension @<Extension>*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    fhir:NutritionRequest.oralDiet.type @<CodeableConcept>*;  # Type of oral diet or diet 
-                                            # restrictions that describe what 
-                                            # can be consumed orally 
-    fhir:NutritionRequest.oralDiet.schedule @<Timing>*;  # Scheduled frequency of diet
-    fhir:NutritionRequest.oralDiet.nutrient @<NutritionRequest.oralDiet.nutrient>*;  # Required  nutrient modifications
-    fhir:NutritionRequest.oralDiet.texture @<NutritionRequest.oralDiet.texture>*;  # Required  texture modifications
-    fhir:NutritionRequest.oralDiet.fluidConsistencyType @<CodeableConcept>*;  # The required consistency of fluids 
-                                            # and liquids provided to the 
-                                            # patient 
-    fhir:NutritionRequest.oralDiet.instruction @<string>?;  # Instructions or additional 
-                                            # information about the oral diet 
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
 # Enteral formula components
 <NutritionRequest.enteralFormula> CLOSED {
     fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
@@ -111,6 +91,26 @@ start=@<NutritionRequest> AND {fhir:nodeRole [fhir:treeRoot]}
                                             # unit of time 
     fhir:NutritionRequest.enteralFormula.administrationInstruction @<string>?;  # Formula feeding instructions 
                                             # expressed as text 
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
+# Oral diet components
+<NutritionRequest.oralDiet> CLOSED {
+    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
+    fhir:extension @<Extension>*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
+    fhir:NutritionRequest.oralDiet.type @<CodeableConcept>*;  # Type of oral diet or diet 
+                                            # restrictions that describe what 
+                                            # can be consumed orally 
+    fhir:NutritionRequest.oralDiet.schedule @<Timing>*;  # Scheduled frequency of diet
+    fhir:NutritionRequest.oralDiet.nutrient @<NutritionRequest.oralDiet.nutrient>*;  # Required  nutrient modifications
+    fhir:NutritionRequest.oralDiet.texture @<NutritionRequest.oralDiet.texture>*;  # Required  texture modifications
+    fhir:NutritionRequest.oralDiet.fluidConsistencyType @<CodeableConcept>*;  # The required consistency of fluids 
+                                            # and liquids provided to the 
+                                            # patient 
+    fhir:NutritionRequest.oralDiet.instruction @<string>?;  # Instructions or additional 
+                                            # information about the oral diet 
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -479,20 +479,20 @@ start=@<NutritionRequest> AND {fhir:nodeRole [fhir:treeRoot]}
 
 #---------------------- Value Sets ------------------------
 
-# Codes specifying the state of the request. Describes the lifecycle of the nutrition order.
-fhirvs:nutrition-request-status ["proposed" "draft" "planned" "requested" "active" "on-hold" "completed" "cancelled" "entered-in-error"]
-
-# How the Quantity should be understood and represented.
-fhirvs:quantity-comparator ["<" "<=" ">=" ">"]
+# The status of a resource narrative
+fhirvs:narrative-status ["generated" "extensions" "additional" "empty"]
 
 # Real world event that the relating to the schedule.
 fhirvs:event-timing ["HS" "WAKE" "C" "CM" "CD" "CV" "AC" "ACM" "ACD" "ACV" "PC" "PCM" "PCD" "PCV"]
 
-# Identifies the purpose for this identifier, if known .
-fhirvs:identifier-use ["usual" "official" "temp" "secondary"]
-
 # A unit of time (units from UCUM).
 fhirvs:units-of-time ["s" "min" "h" "d" "wk" "mo" "a"]
 
-# The status of a resource narrative
-fhirvs:narrative-status ["generated" "extensions" "additional" "empty"]
+# How the Quantity should be understood and represented.
+fhirvs:quantity-comparator ["<" "<=" ">=" ">"]
+
+# Codes specifying the state of the request. Describes the lifecycle of the nutrition order.
+fhirvs:nutrition-request-status ["proposed" "draft" "planned" "requested" "active" "on-hold" "completed" "cancelled" "entered-in-error"]
+
+# Identifies the purpose for this identifier, if known .
+fhirvs:identifier-use ["usual" "official" "temp" "secondary"]

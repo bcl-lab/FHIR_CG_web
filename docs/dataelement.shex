@@ -877,58 +877,22 @@ start=@<DataElement> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
-# This element is sliced - slices follow
-<ElementDefinition.slicing> CLOSED {
+# Data type and Profile for this element
+<ElementDefinition.type> CLOSED {
     fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
     fhir:extension @<Extension>*;           # Additional Content defined by 
                                             # implementations 
-    fhir:ElementDefinition.slicing.discriminator @<string>*;  # Element values that are used to 
-                                            # distinguish the slices 
-    fhir:ElementDefinition.slicing.description @<string>?;  # Text description of how slicing 
-                                            # works (or not) 
-    fhir:ElementDefinition.slicing.ordered @<boolean>?;  # If elements must be in same order 
-                                            # as slices 
-    fhir:ElementDefinition.slicing.rules @<code> AND
-    	{fhir:value @fhirvs:resource-slicing-rules};  # closed | open | openAtEnd
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
-# Map element to another set of definitions
-<ElementDefinition.mapping> CLOSED {
-    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
-    fhir:extension @<Extension>*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:ElementDefinition.mapping.identity @<id>;  # Reference to mapping declaration
-    fhir:ElementDefinition.mapping.language @<code>?;  # Computable language of mapping
-    fhir:ElementDefinition.mapping.map @<string>;  # Details of the mapping
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
-# ValueSet details if this is coded
-<ElementDefinition.binding> CLOSED {
-    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
-    fhir:extension @<Extension>*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:ElementDefinition.binding.strength @<code> AND
-    	{fhir:value @fhirvs:binding-strength};  # required | extensible | preferred 
-                                            # | example 
-    fhir:ElementDefinition.binding.description @<string>?;  # Human explanation of the value set
-    (                                       # Source of value set
-        fhir:ElementDefinition.binding.valueSetUri @<uri>  |
-        fhir:ElementDefinition.binding.valueSetReference @<Reference> 
-    )?;
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
-# Base definition information for tools
-<ElementDefinition.base> CLOSED {
-    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
-    fhir:extension @<Extension>*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:ElementDefinition.base.path @<string>;  # Path that identifies the base 
-                                            # element 
-    fhir:ElementDefinition.base.min @<integer>;  # Min cardinality of the base element
-    fhir:ElementDefinition.base.max @<string>;  # Max cardinality of the base element
+    fhir:ElementDefinition.type.code @<uri>;  # Data type or Resource (reference 
+                                            # to definition) 
+    fhir:ElementDefinition.type.profile @<uri>?;  # Profile (StructureDefinition) to 
+                                            # apply (or IG) 
+    fhir:ElementDefinition.type.targetProfile @<uri>?;  # Profile (StructureDefinition) to 
+                                            # apply to reference target (or IG) 
+    fhir:ElementDefinition.type.aggregation @<code> AND
+    	{fhir:value @fhirvs:resource-aggregation-mode}*;  # contained | referenced | bundled - 
+                                            # how aggregated 
+    fhir:ElementDefinition.type.versioning @<code> AND
+    	{fhir:value @fhirvs:reference-version-rules}?;  # either | independent | specific
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -968,25 +932,6 @@ start=@<DataElement> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
-# Data type and Profile for this element
-<ElementDefinition.type> CLOSED {
-    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
-    fhir:extension @<Extension>*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:ElementDefinition.type.code @<uri>;  # Data type or Resource (reference 
-                                            # to definition) 
-    fhir:ElementDefinition.type.profile @<uri>?;  # Profile (StructureDefinition) to 
-                                            # apply (or IG) 
-    fhir:ElementDefinition.type.targetProfile @<uri>?;  # Profile (StructureDefinition) to 
-                                            # apply to reference target (or IG) 
-    fhir:ElementDefinition.type.aggregation @<code> AND
-    	{fhir:value @fhirvs:resource-aggregation-mode}*;  # contained | referenced | bundled - 
-                                            # how aggregated 
-    fhir:ElementDefinition.type.versioning @<code> AND
-    	{fhir:value @fhirvs:reference-version-rules}?;  # either | independent | specific
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
 # Condition that must evaluate to true
 <ElementDefinition.constraint> CLOSED {
     fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
@@ -1006,39 +951,64 @@ start=@<DataElement> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
+# This element is sliced - slices follow
+<ElementDefinition.slicing> CLOSED {
+    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
+    fhir:extension @<Extension>*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:ElementDefinition.slicing.discriminator @<string>*;  # Element values that are used to 
+                                            # distinguish the slices 
+    fhir:ElementDefinition.slicing.description @<string>?;  # Text description of how slicing 
+                                            # works (or not) 
+    fhir:ElementDefinition.slicing.ordered @<boolean>?;  # If elements must be in same order 
+                                            # as slices 
+    fhir:ElementDefinition.slicing.rules @<code> AND
+    	{fhir:value @fhirvs:resource-slicing-rules};  # closed | open | openAtEnd
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
+# ValueSet details if this is coded
+<ElementDefinition.binding> CLOSED {
+    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
+    fhir:extension @<Extension>*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:ElementDefinition.binding.strength @<code> AND
+    	{fhir:value @fhirvs:binding-strength};  # required | extensible | preferred 
+                                            # | example 
+    fhir:ElementDefinition.binding.description @<string>?;  # Human explanation of the value set
+    (                                       # Source of value set
+        fhir:ElementDefinition.binding.valueSetUri @<uri>  |
+        fhir:ElementDefinition.binding.valueSetReference @<Reference> 
+    )?;
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
+# Map element to another set of definitions
+<ElementDefinition.mapping> CLOSED {
+    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
+    fhir:extension @<Extension>*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:ElementDefinition.mapping.identity @<id>;  # Reference to mapping declaration
+    fhir:ElementDefinition.mapping.language @<code>?;  # Computable language of mapping
+    fhir:ElementDefinition.mapping.map @<string>;  # Details of the mapping
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
+# Base definition information for tools
+<ElementDefinition.base> CLOSED {
+    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
+    fhir:extension @<Extension>*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:ElementDefinition.base.path @<string>;  # Path that identifies the base 
+                                            # element 
+    fhir:ElementDefinition.base.min @<integer>;  # Min cardinality of the base element
+    fhir:ElementDefinition.base.max @<string>;  # Max cardinality of the base element
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
 #---------------------- Reference Types -------------------
 
 #---------------------- Value Sets ------------------------
-
-# The type of an address (physical / postal)
-fhirvs:address-type ["postal" "physical" "both"]
-
-# How the Quantity should be understood and represented.
-fhirvs:quantity-comparator ["<" "<=" ">=" ">"]
-
-# How resource references can be aggregated.
-fhirvs:resource-aggregation-mode ["contained" "referenced" "bundled"]
-
-# Whether a reference needs to be version specific or version independent, or whetehr either can be used
-fhirvs:reference-version-rules ["either" "independent" "specific"]
-
-# Telecommunications form for contact point
-fhirvs:contact-point-system ["phone" "fax" "email" "pager" "other"]
-
-# The use of a human name
-fhirvs:name-use ["usual" "official" "temp" "nickname" "anonymous" "old" "maiden"]
-
-# Indication of the degree of conformance expectations associated with a binding.
-fhirvs:binding-strength ["required" "extensible" "preferred" "example"]
-
-# Real world event that the relating to the schedule.
-fhirvs:event-timing ["HS" "WAKE" "C" "CM" "CD" "CV" "AC" "ACM" "ACD" "ACV" "PC" "PCM" "PCD" "PCV"]
-
-# A unit of time (units from UCUM).
-fhirvs:units-of-time ["s" "min" "h" "d" "wk" "mo" "a"]
-
-# The status of a resource narrative
-fhirvs:narrative-status ["generated" "extensions" "additional" "empty"]
 
 # How slices are interpreted when evaluating an instance.
 fhirvs:resource-slicing-rules ["closed" "open" "openAtEnd"]
@@ -1046,20 +1016,50 @@ fhirvs:resource-slicing-rules ["closed" "open" "openAtEnd"]
 # How a property is represented on the wire.
 fhirvs:property-representation ["xmlAttr" "xmlText" "typeAttr" "cdaText" "xhtml"]
 
-# The use of an address
-fhirvs:address-use ["home" "work" "temp" "old"]
+# Real world event that the relating to the schedule.
+fhirvs:event-timing ["HS" "WAKE" "C" "CM" "CD" "CV" "AC" "ACM" "ACD" "ACV" "PC" "PCM" "PCD" "PCV"]
+
+# A unit of time (units from UCUM).
+fhirvs:units-of-time ["s" "min" "h" "d" "wk" "mo" "a"]
+
+# How the Quantity should be understood and represented.
+fhirvs:quantity-comparator ["<" "<=" ">=" ">"]
+
+# Indication of the degree of conformance expectations associated with a binding.
+fhirvs:binding-strength ["required" "extensible" "preferred" "example"]
 
 # The lifecycle status of a Value Set or Concept Map.
 fhirvs:publication-status ["draft" "active" "retired"]
 
-# Identifies the purpose for this identifier, if known .
-fhirvs:identifier-use ["usual" "official" "temp" "secondary"]
+# Telecommunications form for contact point
+fhirvs:contact-point-system ["phone" "fax" "email" "pager" "other"]
 
-# Use of contact point
-fhirvs:contact-point-use ["home" "work" "temp" "old" "mobile"]
+# The status of a resource narrative
+fhirvs:narrative-status ["generated" "extensions" "additional" "empty"]
+
+# How resource references can be aggregated.
+fhirvs:resource-aggregation-mode ["contained" "referenced" "bundled"]
+
+# The type of an address (physical / postal)
+fhirvs:address-type ["postal" "physical" "both"]
 
 # SHALL applications comply with this constraint?
 fhirvs:constraint-severity ["error" "warning"]
 
 # Indicates the degree of precision of the data element definition.
 fhirvs:dataelement-stringency ["comparable" "fully-specified" "equivalent" "convertable" "scaleable" "flexible"]
+
+# The use of an address
+fhirvs:address-use ["home" "work" "temp" "old"]
+
+# The use of a human name
+fhirvs:name-use ["usual" "official" "temp" "nickname" "anonymous" "old" "maiden"]
+
+# Whether a reference needs to be version specific or version independent, or whetehr either can be used
+fhirvs:reference-version-rules ["either" "independent" "specific"]
+
+# Use of contact point
+fhirvs:contact-point-use ["home" "work" "temp" "old" "mobile"]
+
+# Identifies the purpose for this identifier, if known .
+fhirvs:identifier-use ["usual" "official" "temp" "secondary"]

@@ -170,6 +170,27 @@ start=@&lt;Specimen&gt; AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
+# Direct container of specimen (tube/slide, etc.)
+&lt;Specimen.container&gt; CLOSED {
+    fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
+    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @&lt;Extension&gt;*;   # Extensions that cannot be ignored
+    fhir:Specimen.container.identifier @&lt;Identifier&gt;*;  # Id for the container
+    fhir:Specimen.container.description @&lt;string&gt;?;  # Textual description of the 
+                                            # container 
+    fhir:Specimen.container.type @&lt;CodeableConcept&gt;?;  # Kind of container directly 
+                                            # associated with specimen 
+    fhir:Specimen.container.capacity @&lt;SimpleQuantity&gt;?;  # Container volume or size
+    fhir:Specimen.container.specimenQuantity @&lt;SimpleQuantity&gt;?;  # Quantity of specimen within 
+                                            # container 
+    (                                       # Additive associated with container
+        fhir:Specimen.container.additiveCodeableConcept @&lt;CodeableConcept&gt;  |
+        fhir:Specimen.container.additiveReference @&lt;Reference&gt; 
+    )?;
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
 # Treatment and processing step details
 &lt;Specimen.treatment&gt; CLOSED {
     fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
@@ -204,27 +225,6 @@ start=@&lt;Specimen&gt; AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:Specimen.collection.method @&lt;CodeableConcept&gt;?;  # Technique used to perform 
                                             # collection 
     fhir:Specimen.collection.bodySite @&lt;CodeableConcept&gt;?;  # Anatomical collection site
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
-# Direct container of specimen (tube/slide, etc.)
-&lt;Specimen.container&gt; CLOSED {
-    fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
-    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @&lt;Extension&gt;*;   # Extensions that cannot be ignored
-    fhir:Specimen.container.identifier @&lt;Identifier&gt;*;  # Id for the container
-    fhir:Specimen.container.description @&lt;string&gt;?;  # Textual description of the 
-                                            # container 
-    fhir:Specimen.container.type @&lt;CodeableConcept&gt;?;  # Kind of container directly 
-                                            # associated with specimen 
-    fhir:Specimen.container.capacity @&lt;SimpleQuantity&gt;?;  # Container volume or size
-    fhir:Specimen.container.specimenQuantity @&lt;SimpleQuantity&gt;?;  # Quantity of specimen within 
-                                            # container 
-    (                                       # Additive associated with container
-        fhir:Specimen.container.additiveCodeableConcept @&lt;CodeableConcept&gt;  |
-        fhir:Specimen.container.additiveReference @&lt;Reference&gt; 
-    )?;
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -534,14 +534,14 @@ start=@&lt;Specimen&gt; AND {fhir:nodeRole [fhir:treeRoot]}
 
 #---------------------- Value Sets ------------------------
 
+# The status of a resource narrative
+fhirvs:narrative-status [&quot;generated&quot; &quot;extensions&quot; &quot;additional&quot; &quot;empty&quot;]
+
 # Codes providing the status/availability of a specimen.
 fhirvs:specimen-status [&quot;available&quot; &quot;unavailable&quot; &quot;unsatisfactory&quot; &quot;entered-in-error&quot;]
 
 # Identifies the purpose for this identifier, if known .
 fhirvs:identifier-use [&quot;usual&quot; &quot;official&quot; &quot;temp&quot; &quot;secondary&quot;]
-
-# The status of a resource narrative
-fhirvs:narrative-status [&quot;generated&quot; &quot;extensions&quot; &quot;additional&quot; &quot;empty&quot;]
 
 </pre>
 </div>
@@ -567,7 +567,7 @@ of the specification.
 		<div class="container"><!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Wed, Nov 16, 2016 21:15-0500. <a href="qa.html">QA Page</a>
+        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Wed, Nov 16, 2016 22:05-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search</a> | 

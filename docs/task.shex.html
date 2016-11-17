@@ -188,56 +188,6 @@ start=@&lt;Task&gt; AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
-# Supporting information
-&lt;Task.input&gt; CLOSED {
-    fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
-    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @&lt;Extension&gt;*;   # Extensions that cannot be ignored
-    fhir:Task.input.type @&lt;CodeableConcept&gt;;  # Label for the input
-    (                                       # Input Value
-        fhir:Task.input.valueBase64Binary @&lt;base64Binary&gt;  |
-        fhir:Task.input.valueBoolean @&lt;boolean&gt;  |
-        fhir:Task.input.valueCode @&lt;code&gt;  |
-        fhir:Task.input.valueDate @&lt;date&gt;  |
-        fhir:Task.input.valueDateTime @&lt;dateTime&gt;  |
-        fhir:Task.input.valueDecimal @&lt;decimal&gt;  |
-        fhir:Task.input.valueId @&lt;id&gt;  |
-        fhir:Task.input.valueInstant @&lt;instant&gt;  |
-        fhir:Task.input.valueInteger @&lt;integer&gt;  |
-        fhir:Task.input.valueMarkdown @&lt;markdown&gt;  |
-        fhir:Task.input.valueOid @&lt;oid&gt;  |
-        fhir:Task.input.valuePositiveInt @&lt;positiveInt&gt;  |
-        fhir:Task.input.valueString @&lt;string&gt;  |
-        fhir:Task.input.valueTime @&lt;time&gt;  |
-        fhir:Task.input.valueUnsignedInt @&lt;unsignedInt&gt;  |
-        fhir:Task.input.valueUri @&lt;uri&gt;  |
-        fhir:Task.input.valueAddress @&lt;Address&gt;  |
-        fhir:Task.input.valueAge @&lt;Age&gt;  |
-        fhir:Task.input.valueAnnotation @&lt;Annotation&gt;  |
-        fhir:Task.input.valueAttachment @&lt;Attachment&gt;  |
-        fhir:Task.input.valueCodeableConcept @&lt;CodeableConcept&gt;  |
-        fhir:Task.input.valueCoding @&lt;Coding&gt;  |
-        fhir:Task.input.valueContactPoint @&lt;ContactPoint&gt;  |
-        fhir:Task.input.valueCount @&lt;Count&gt;  |
-        fhir:Task.input.valueDistance @&lt;Distance&gt;  |
-        fhir:Task.input.valueDuration @&lt;Duration&gt;  |
-        fhir:Task.input.valueHumanName @&lt;HumanName&gt;  |
-        fhir:Task.input.valueIdentifier @&lt;Identifier&gt;  |
-        fhir:Task.input.valueMoney @&lt;Money&gt;  |
-        fhir:Task.input.valuePeriod @&lt;Period&gt;  |
-        fhir:Task.input.valueQuantity @&lt;Quantity&gt;  |
-        fhir:Task.input.valueRange @&lt;Range&gt;  |
-        fhir:Task.input.valueRatio @&lt;Ratio&gt;  |
-        fhir:Task.input.valueReference @&lt;Reference&gt;  |
-        fhir:Task.input.valueSampledData @&lt;SampledData&gt;  |
-        fhir:Task.input.valueSignature @&lt;Signature&gt;  |
-        fhir:Task.input.valueTiming @&lt;Timing&gt;  |
-        fhir:Task.input.valueMeta @&lt;Meta&gt; 
-    );
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
 # Constraints on fulfillment tasks
 &lt;Task.fulfillment&gt; CLOSED {
     fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
@@ -303,6 +253,56 @@ start=@&lt;Task&gt; AND {fhir:nodeRole [fhir:treeRoot]}
         fhir:Task.output.valueSignature @&lt;Signature&gt;  |
         fhir:Task.output.valueTiming @&lt;Timing&gt;  |
         fhir:Task.output.valueMeta @&lt;Meta&gt; 
+    );
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
+# Supporting information
+&lt;Task.input&gt; CLOSED {
+    fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
+    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @&lt;Extension&gt;*;   # Extensions that cannot be ignored
+    fhir:Task.input.type @&lt;CodeableConcept&gt;;  # Label for the input
+    (                                       # Input Value
+        fhir:Task.input.valueBase64Binary @&lt;base64Binary&gt;  |
+        fhir:Task.input.valueBoolean @&lt;boolean&gt;  |
+        fhir:Task.input.valueCode @&lt;code&gt;  |
+        fhir:Task.input.valueDate @&lt;date&gt;  |
+        fhir:Task.input.valueDateTime @&lt;dateTime&gt;  |
+        fhir:Task.input.valueDecimal @&lt;decimal&gt;  |
+        fhir:Task.input.valueId @&lt;id&gt;  |
+        fhir:Task.input.valueInstant @&lt;instant&gt;  |
+        fhir:Task.input.valueInteger @&lt;integer&gt;  |
+        fhir:Task.input.valueMarkdown @&lt;markdown&gt;  |
+        fhir:Task.input.valueOid @&lt;oid&gt;  |
+        fhir:Task.input.valuePositiveInt @&lt;positiveInt&gt;  |
+        fhir:Task.input.valueString @&lt;string&gt;  |
+        fhir:Task.input.valueTime @&lt;time&gt;  |
+        fhir:Task.input.valueUnsignedInt @&lt;unsignedInt&gt;  |
+        fhir:Task.input.valueUri @&lt;uri&gt;  |
+        fhir:Task.input.valueAddress @&lt;Address&gt;  |
+        fhir:Task.input.valueAge @&lt;Age&gt;  |
+        fhir:Task.input.valueAnnotation @&lt;Annotation&gt;  |
+        fhir:Task.input.valueAttachment @&lt;Attachment&gt;  |
+        fhir:Task.input.valueCodeableConcept @&lt;CodeableConcept&gt;  |
+        fhir:Task.input.valueCoding @&lt;Coding&gt;  |
+        fhir:Task.input.valueContactPoint @&lt;ContactPoint&gt;  |
+        fhir:Task.input.valueCount @&lt;Count&gt;  |
+        fhir:Task.input.valueDistance @&lt;Distance&gt;  |
+        fhir:Task.input.valueDuration @&lt;Duration&gt;  |
+        fhir:Task.input.valueHumanName @&lt;HumanName&gt;  |
+        fhir:Task.input.valueIdentifier @&lt;Identifier&gt;  |
+        fhir:Task.input.valueMoney @&lt;Money&gt;  |
+        fhir:Task.input.valuePeriod @&lt;Period&gt;  |
+        fhir:Task.input.valueQuantity @&lt;Quantity&gt;  |
+        fhir:Task.input.valueRange @&lt;Range&gt;  |
+        fhir:Task.input.valueRatio @&lt;Ratio&gt;  |
+        fhir:Task.input.valueReference @&lt;Reference&gt;  |
+        fhir:Task.input.valueSampledData @&lt;SampledData&gt;  |
+        fhir:Task.input.valueSignature @&lt;Signature&gt;  |
+        fhir:Task.input.valueTiming @&lt;Timing&gt;  |
+        fhir:Task.input.valueMeta @&lt;Meta&gt; 
     );
     fhir:index xsd:integer?                 # Relative position in a list
 }
@@ -1006,41 +1006,41 @@ start=@&lt;Task&gt; AND {fhir:nodeRole [fhir:treeRoot]}
 
 #---------------------- Value Sets ------------------------
 
+# Telecommunications form for contact point
+fhirvs:contact-point-system [&quot;phone&quot; &quot;fax&quot; &quot;email&quot; &quot;pager&quot; &quot;other&quot;]
+
+# The current status of the task.
+fhirvs:task-status [&quot;draft&quot; &quot;requested&quot; &quot;received&quot; &quot;accepted&quot; &quot;rejected&quot; &quot;ready&quot; &quot;in-progress&quot; &quot;on-hold&quot; &quot;failed&quot; &quot;completed&quot;]
+
+# The status of a resource narrative
+fhirvs:narrative-status [&quot;generated&quot; &quot;extensions&quot; &quot;additional&quot; &quot;empty&quot;]
+
 # The type of an address (physical / postal)
 fhirvs:address-type [&quot;postal&quot; &quot;physical&quot; &quot;both&quot;]
 
 # The task's priority
 fhirvs:task-priority [&quot;low&quot; &quot;normal&quot; &quot;high&quot;]
 
-# How the Quantity should be understood and represented.
-fhirvs:quantity-comparator [&quot;&lt;&quot; &quot;&lt;=&quot; &quot;&gt;=&quot; &quot;&gt;&quot;]
-
-# Telecommunications form for contact point
-fhirvs:contact-point-system [&quot;phone&quot; &quot;fax&quot; &quot;email&quot; &quot;pager&quot; &quot;other&quot;]
-
-# The use of a human name
-fhirvs:name-use [&quot;usual&quot; &quot;official&quot; &quot;temp&quot; &quot;nickname&quot; &quot;anonymous&quot; &quot;old&quot; &quot;maiden&quot;]
+# Real world event that the relating to the schedule.
+fhirvs:event-timing [&quot;HS&quot; &quot;WAKE&quot; &quot;C&quot; &quot;CM&quot; &quot;CD&quot; &quot;CV&quot; &quot;AC&quot; &quot;ACM&quot; &quot;ACD&quot; &quot;ACV&quot; &quot;PC&quot; &quot;PCM&quot; &quot;PCD&quot; &quot;PCV&quot;]
 
 # The use of an address
 fhirvs:address-use [&quot;home&quot; &quot;work&quot; &quot;temp&quot; &quot;old&quot;]
 
-# Real world event that the relating to the schedule.
-fhirvs:event-timing [&quot;HS&quot; &quot;WAKE&quot; &quot;C&quot; &quot;CM&quot; &quot;CD&quot; &quot;CV&quot; &quot;AC&quot; &quot;ACM&quot; &quot;ACD&quot; &quot;ACV&quot; &quot;PC&quot; &quot;PCM&quot; &quot;PCD&quot; &quot;PCV&quot;]
+# The use of a human name
+fhirvs:name-use [&quot;usual&quot; &quot;official&quot; &quot;temp&quot; &quot;nickname&quot; &quot;anonymous&quot; &quot;old&quot; &quot;maiden&quot;]
 
-# The current status of the task.
-fhirvs:task-status [&quot;draft&quot; &quot;requested&quot; &quot;received&quot; &quot;accepted&quot; &quot;rejected&quot; &quot;ready&quot; &quot;in-progress&quot; &quot;on-hold&quot; &quot;failed&quot; &quot;completed&quot;]
+# A unit of time (units from UCUM).
+fhirvs:units-of-time [&quot;s&quot; &quot;min&quot; &quot;h&quot; &quot;d&quot; &quot;wk&quot; &quot;mo&quot; &quot;a&quot;]
+
+# How the Quantity should be understood and represented.
+fhirvs:quantity-comparator [&quot;&lt;&quot; &quot;&lt;=&quot; &quot;&gt;=&quot; &quot;&gt;&quot;]
 
 # Use of contact point
 fhirvs:contact-point-use [&quot;home&quot; &quot;work&quot; &quot;temp&quot; &quot;old&quot; &quot;mobile&quot;]
 
 # Identifies the purpose for this identifier, if known .
 fhirvs:identifier-use [&quot;usual&quot; &quot;official&quot; &quot;temp&quot; &quot;secondary&quot;]
-
-# A unit of time (units from UCUM).
-fhirvs:units-of-time [&quot;s&quot; &quot;min&quot; &quot;h&quot; &quot;d&quot; &quot;wk&quot; &quot;mo&quot; &quot;a&quot;]
-
-# The status of a resource narrative
-fhirvs:narrative-status [&quot;generated&quot; &quot;extensions&quot; &quot;additional&quot; &quot;empty&quot;]
 
 </pre>
 </div>
@@ -1066,7 +1066,7 @@ of the specification.
 		<div class="container"><!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Wed, Nov 16, 2016 21:15-0500. <a href="qa.html">QA Page</a>
+        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Wed, Nov 16, 2016 22:05-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search</a> | 

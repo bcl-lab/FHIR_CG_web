@@ -85,6 +85,23 @@ start=@<CodeSystem> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
+# Concepts in the code system
+<CodeSystem.concept> CLOSED {
+    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
+    fhir:extension @<Extension>*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
+    fhir:CodeSystem.concept.code @<code>;   # Code that identifies concept
+    fhir:CodeSystem.concept.display @<string>?;  # Text to display to the user
+    fhir:CodeSystem.concept.definition @<string>?;  # Formal definition
+    fhir:CodeSystem.concept.designation @<CodeSystem.concept.designation>*;  # Additional representations for the 
+                                            # concept 
+    fhir:CodeSystem.concept.property @<CodeSystem.concept.property>*;  # Property value for the concept
+    fhir:CodeSystem.concept.concept @<CodeSystem.concept>*;  # Child Concepts 
+                                            # (is-a/contains/categorizes) 
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
 # Additional information supplied about each concept
 <CodeSystem.property> CLOSED {
     fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
@@ -100,23 +117,6 @@ start=@<CodeSystem> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:CodeSystem.property.type @<code> AND
     	{fhir:value @fhirvs:concept-property-type};  # code | Coding | string | integer | 
                                             # boolean | dateTime 
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
-# Concepts in the code system
-<CodeSystem.concept> CLOSED {
-    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
-    fhir:extension @<Extension>*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    fhir:CodeSystem.concept.code @<code>;   # Code that identifies concept
-    fhir:CodeSystem.concept.display @<string>?;  # Text to display to the user
-    fhir:CodeSystem.concept.definition @<string>?;  # Formal definition
-    fhir:CodeSystem.concept.designation @<CodeSystem.concept.designation>*;  # Additional representations for the 
-                                            # concept 
-    fhir:CodeSystem.concept.property @<CodeSystem.concept.property>*;  # Property value for the concept
-    fhir:CodeSystem.concept.concept @<CodeSystem.concept>*;  # Child Concepts 
-                                            # (is-a/contains/categorizes) 
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -460,32 +460,32 @@ start=@<CodeSystem> AND {fhir:nodeRole [fhir:treeRoot]}
 
 #---------------------- Value Sets ------------------------
 
-# How the Quantity should be understood and represented.
-fhirvs:quantity-comparator ["<" "<=" ">=" ">"]
-
-# How much of the content of the code system - the concepts and codes it defines - are represented in a code system resource
-fhirvs:codesystem-content-mode ["not-present" "examplar" "fragment" "complete"]
+# The lifecycle status of a Value Set or Concept Map.
+fhirvs:publication-status ["draft" "active" "retired"]
 
 # Telecommunications form for contact point
 fhirvs:contact-point-system ["phone" "fax" "email" "pager" "other"]
 
-# The lifecycle status of a Value Set or Concept Map.
-fhirvs:publication-status ["draft" "active" "retired"]
+# How much of the content of the code system - the concepts and codes it defines - are represented in a code system resource
+fhirvs:codesystem-content-mode ["not-present" "examplar" "fragment" "complete"]
+
+# The status of a resource narrative
+fhirvs:narrative-status ["generated" "extensions" "additional" "empty"]
 
 # The kind of operation to perform as a part of a property based filter.
 fhirvs:filter-operator ["=" "is-a" "descendent-of" "is-not-a" "regex" "in" "not-in" "generalizes"]
 
+# The meaning of the hierarchy of concepts in a code system
+fhirvs:codesystem-hierarchy-meaning ["grouped-by" "subsumes" "part-of" "classified-with"]
+
+# How the Quantity should be understood and represented.
+fhirvs:quantity-comparator ["<" "<=" ">=" ">"]
+
 # The type of a property value
 fhirvs:concept-property-type ["code" "Coding" "string" "integer" "boolean" "dateTime"]
-
-# Identifies the purpose for this identifier, if known .
-fhirvs:identifier-use ["usual" "official" "temp" "secondary"]
 
 # Use of contact point
 fhirvs:contact-point-use ["home" "work" "temp" "old" "mobile"]
 
-# The meaning of the hierarchy of concepts in a code system
-fhirvs:codesystem-hierarchy-meaning ["grouped-by" "subsumes" "part-of" "classified-with"]
-
-# The status of a resource narrative
-fhirvs:narrative-status ["generated" "extensions" "additional" "empty"]
+# Identifies the purpose for this identifier, if known .
+fhirvs:identifier-use ["usual" "official" "temp" "secondary"]

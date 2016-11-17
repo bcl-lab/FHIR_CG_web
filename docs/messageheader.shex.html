@@ -174,6 +174,19 @@ start=@&lt;MessageHeader&gt; AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
+# Message Destination Application(s)
+&lt;MessageHeader.destination&gt; CLOSED {
+    fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
+    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @&lt;Extension&gt;*;   # Extensions that cannot be ignored
+    fhir:MessageHeader.destination.name @&lt;string&gt;?;  # Name of system
+    fhir:MessageHeader.destination.target @&lt;Reference&gt;?;  # Particular delivery destination 
+                                            # within the destination 
+    fhir:MessageHeader.destination.endpoint @&lt;uri&gt;;  # Actual destination address or id
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
 # Message Source Application
 &lt;MessageHeader.source&gt; CLOSED {
     fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
@@ -185,19 +198,6 @@ start=@&lt;MessageHeader&gt; AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:MessageHeader.source.version @&lt;string&gt;?;  # Version of software running
     fhir:MessageHeader.source.contact @&lt;ContactPoint&gt;?;  # Human contact for problems
     fhir:MessageHeader.source.endpoint @&lt;uri&gt;;  # Actual message source address or id
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
-# Message Destination Application(s)
-&lt;MessageHeader.destination&gt; CLOSED {
-    fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
-    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @&lt;Extension&gt;*;   # Extensions that cannot be ignored
-    fhir:MessageHeader.destination.name @&lt;string&gt;?;  # Name of system
-    fhir:MessageHeader.destination.target @&lt;Reference&gt;?;  # Particular delivery destination 
-                                            # within the destination 
-    fhir:MessageHeader.destination.endpoint @&lt;uri&gt;;  # Actual destination address or id
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -438,20 +438,20 @@ start=@&lt;MessageHeader&gt; AND {fhir:nodeRole [fhir:treeRoot]}
 
 #---------------------- Value Sets ------------------------
 
-# The kind of response to a message
-fhirvs:response-code [&quot;ok&quot; &quot;transient-error&quot; &quot;fatal-error&quot;]
-
 # Telecommunications form for contact point
 fhirvs:contact-point-system [&quot;phone&quot; &quot;fax&quot; &quot;email&quot; &quot;pager&quot; &quot;other&quot;]
+
+# The status of a resource narrative
+fhirvs:narrative-status [&quot;generated&quot; &quot;extensions&quot; &quot;additional&quot; &quot;empty&quot;]
+
+# The kind of response to a message
+fhirvs:response-code [&quot;ok&quot; &quot;transient-error&quot; &quot;fatal-error&quot;]
 
 # Use of contact point
 fhirvs:contact-point-use [&quot;home&quot; &quot;work&quot; &quot;temp&quot; &quot;old&quot; &quot;mobile&quot;]
 
 # Identifies the purpose for this identifier, if known .
 fhirvs:identifier-use [&quot;usual&quot; &quot;official&quot; &quot;temp&quot; &quot;secondary&quot;]
-
-# The status of a resource narrative
-fhirvs:narrative-status [&quot;generated&quot; &quot;extensions&quot; &quot;additional&quot; &quot;empty&quot;]
 
 </pre>
 </div>
@@ -477,7 +477,7 @@ of the specification.
 		<div class="container"><!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Wed, Nov 16, 2016 21:15-0500. <a href="qa.html">QA Page</a>
+        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Wed, Nov 16, 2016 22:04-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search</a> | 

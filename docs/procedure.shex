@@ -79,6 +79,18 @@ start=@<Procedure> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
+# Device changed in procedure
+<Procedure.focalDevice> CLOSED {
+    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
+    fhir:extension @<Extension>*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
+    fhir:Procedure.focalDevice.action @<CodeableConcept> AND
+    	{fhir:value @fhirvs:device-action}?;  # Kind of change to device
+    fhir:Procedure.focalDevice.manipulated @<Reference>;  # Device that was changed
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
 # The people who performed the procedure
 <Procedure.performer> CLOSED {
     fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
@@ -92,18 +104,6 @@ start=@<Procedure> AND {fhir:nodeRole [fhir:treeRoot]}
         @<RelatedPersonReference>
     )?;
     fhir:Procedure.performer.role @<CodeableConcept>?;  # The role the actor was in
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
-# Device changed in procedure
-<Procedure.focalDevice> CLOSED {
-    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
-    fhir:extension @<Extension>*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    fhir:Procedure.focalDevice.action @<CodeableConcept> AND
-    	{fhir:value @fhirvs:device-action}?;  # Kind of change to device
-    fhir:Procedure.focalDevice.manipulated @<Reference>;  # Device that was changed
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -517,14 +517,14 @@ start=@<Procedure> AND {fhir:nodeRole [fhir:treeRoot]}
 
 #---------------------- Value Sets ------------------------
 
-# Example value set for Procedure Device Action code (what happened to a device during a procedure.
-fhirvs:device-action ["implanted" "explanted" "manipulated"]
+# The status of a resource narrative
+fhirvs:narrative-status ["generated" "extensions" "additional" "empty"]
 
 # A code specifying the state of the procedure.
 fhirvs:procedure-status ["in-progress" "aborted" "completed" "entered-in-error" "unknown"]
 
+# Example value set for Procedure Device Action code (what happened to a device during a procedure.
+fhirvs:device-action ["implanted" "explanted" "manipulated"]
+
 # Identifies the purpose for this identifier, if known .
 fhirvs:identifier-use ["usual" "official" "temp" "secondary"]
-
-# The status of a resource narrative
-fhirvs:narrative-status ["generated" "extensions" "additional" "empty"]

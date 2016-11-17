@@ -93,24 +93,6 @@ start=@<ValueSet> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
-# Parameter that controlled the expansion process
-<ValueSet.expansion.parameter> CLOSED {
-    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
-    fhir:extension @<Extension>*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    fhir:ValueSet.expansion.parameter.name @<string>;  # Name as assigned by the server
-    (                                       # Value of the named parameter
-        fhir:ValueSet.expansion.parameter.valueString @<string>  |
-        fhir:ValueSet.expansion.parameter.valueBoolean @<boolean>  |
-        fhir:ValueSet.expansion.parameter.valueInteger @<integer>  |
-        fhir:ValueSet.expansion.parameter.valueDecimal @<decimal>  |
-        fhir:ValueSet.expansion.parameter.valueUri @<uri>  |
-        fhir:ValueSet.expansion.parameter.valueCode @<code> 
-    )?;
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
 # Include one or more codes from a code system or other value set(s)
 <ValueSet.compose.include> CLOSED {
     fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
@@ -126,6 +108,24 @@ start=@<ValueSet> AND {fhir:nodeRole [fhir:treeRoot]}
                                             # relationships) 
     fhir:ValueSet.compose.include.valueSet @<uri>*;  # Select only contents included in 
                                             # this value set 
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
+# Parameter that controlled the expansion process
+<ValueSet.expansion.parameter> CLOSED {
+    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
+    fhir:extension @<Extension>*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
+    fhir:ValueSet.expansion.parameter.name @<string>;  # Name as assigned by the server
+    (                                       # Value of the named parameter
+        fhir:ValueSet.expansion.parameter.valueString @<string>  |
+        fhir:ValueSet.expansion.parameter.valueBoolean @<boolean>  |
+        fhir:ValueSet.expansion.parameter.valueInteger @<integer>  |
+        fhir:ValueSet.expansion.parameter.valueDecimal @<decimal>  |
+        fhir:ValueSet.expansion.parameter.valueUri @<uri>  |
+        fhir:ValueSet.expansion.parameter.valueCode @<code> 
+    )?;
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -150,20 +150,6 @@ start=@<ValueSet> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
-# A concept defined in the system
-<ValueSet.compose.include.concept> CLOSED {
-    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
-    fhir:extension @<Extension>*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    fhir:ValueSet.compose.include.concept.code @<code>;  # Code or expression from system
-    fhir:ValueSet.compose.include.concept.display @<string>?;  # Text to display for this code for 
-                                            # this value set 
-    fhir:ValueSet.compose.include.concept.designation @<ValueSet.compose.include.concept.designation>*;  # Additional representations for 
-                                            # this concept 
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
 # Select codes/concepts by their properties (including relationships)
 <ValueSet.compose.include.filter> CLOSED {
     fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
@@ -178,6 +164,20 @@ start=@<ValueSet> AND {fhir:nodeRole [fhir:treeRoot]}
                                             # generalizes 
     fhir:ValueSet.compose.include.filter.value @<code>;  # Code from the system, or regex 
                                             # criteria 
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
+# A concept defined in the system
+<ValueSet.compose.include.concept> CLOSED {
+    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
+    fhir:extension @<Extension>*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
+    fhir:ValueSet.compose.include.concept.code @<code>;  # Code or expression from system
+    fhir:ValueSet.compose.include.concept.display @<string>?;  # Text to display for this code for 
+                                            # this value set 
+    fhir:ValueSet.compose.include.concept.designation @<ValueSet.compose.include.concept.designation>*;  # Additional representations for 
+                                            # this concept 
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -502,23 +502,23 @@ start=@<ValueSet> AND {fhir:nodeRole [fhir:treeRoot]}
 
 #---------------------- Value Sets ------------------------
 
-# How the Quantity should be understood and represented.
-fhirvs:quantity-comparator ["<" "<=" ">=" ">"]
+# The lifecycle status of a Value Set or Concept Map.
+fhirvs:publication-status ["draft" "active" "retired"]
 
 # Telecommunications form for contact point
 fhirvs:contact-point-system ["phone" "fax" "email" "pager" "other"]
 
-# The lifecycle status of a Value Set or Concept Map.
-fhirvs:publication-status ["draft" "active" "retired"]
+# The status of a resource narrative
+fhirvs:narrative-status ["generated" "extensions" "additional" "empty"]
 
 # The kind of operation to perform as a part of a property based filter.
 fhirvs:filter-operator ["=" "is-a" "descendent-of" "is-not-a" "regex" "in" "not-in" "generalizes"]
 
-# Identifies the purpose for this identifier, if known .
-fhirvs:identifier-use ["usual" "official" "temp" "secondary"]
+# How the Quantity should be understood and represented.
+fhirvs:quantity-comparator ["<" "<=" ">=" ">"]
 
 # Use of contact point
 fhirvs:contact-point-use ["home" "work" "temp" "old" "mobile"]
 
-# The status of a resource narrative
-fhirvs:narrative-status ["generated" "extensions" "additional" "empty"]
+# Identifies the purpose for this identifier, if known .
+fhirvs:identifier-use ["usual" "official" "temp" "secondary"]

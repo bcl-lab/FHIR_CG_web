@@ -1,0 +1,33 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+<http://hl7.org/fhir/Sequence/graphic-example-4> a fhir:Sequence;
+  fhir:nodeRole fhir:treeRoot;
+  fhir:Resource.id [ fhir:value "graphic-example-4"];
+  fhir:DomainResource.text [
+     fhir:Narrative.status [ fhir:value "generated" ];
+     fhir:Narrative.div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative with Details</b></p><p><b>id</b>: graphic-example-4</p><p><b>type</b>: DNA</p><p><b>coordinateSystem</b>: 0</p><h3>ReferenceSeqs</h3><table><tr><td>-</td><td><b>Chromosome</b></td><td><b>GenomeBuild</b></td><td><b>Strand</b></td><td><b>WindowStart</b></td><td><b>WindowEnd</b></td></tr><tr><td>*</td><td>2 <span>(Details : {http://hl7.org/fhir/ValueSet/chromosome-human code '2' = '2)</span></td><td>GRCh 38</td><td>1</td><td>128273736</td><td>128273740</td></tr></table></div>"
+  ];
+  fhir:Sequence.type [ fhir:value "DNA"];
+  fhir:Sequence.coordinateSystem [ fhir:value "0"^^xsd:int];
+  fhir:Sequence.referenceSeq [
+     fhir:Sequence.referenceSeq.genomeBuild [ fhir:value "GRCh 38" ];
+     fhir:Sequence.referenceSeq.chromosome [
+       fhir:CodeableConcept.coding [
+         fhir:index 0;
+         fhir:Coding.system [ fhir:value "http://hl7.org/fhir/ValueSet/chromosome-human" ];
+         fhir:Coding.code [ fhir:value "2" ];
+         fhir:Coding.display [ ]
+       ]
+     ];
+     fhir:Sequence.referenceSeq.strand [ fhir:value "1"^^xsd:int ];
+     fhir:Sequence.referenceSeq.windowStart [ fhir:value "128273736"^^xsd:int ];
+     fhir:Sequence.referenceSeq.windowEnd [ fhir:value "128273740"^^xsd:int ]
+  ] .
+
+# -------------------------------------------------------------------------------------
+

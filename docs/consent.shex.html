@@ -212,18 +212,6 @@ start=@&lt;Consent&gt; AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
-# Data controlled by this exception
-&lt;Consent.except.data&gt; CLOSED {
-    fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
-    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @&lt;Extension&gt;*;   # Extensions that cannot be ignored
-    fhir:Consent.except.data.meaning @&lt;code&gt; AND
-    	{fhir:value @fhirvs:consent-data-meaning};  # instance | related | dependents
-    fhir:Consent.except.data.reference @&lt;Reference&gt;;  # The actual data reference
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
 # Who|what controlled by this exception (or group, by role)
 &lt;Consent.except.actor&gt; CLOSED {
     fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
@@ -241,6 +229,18 @@ start=@&lt;Consent&gt; AND {fhir:nodeRole [fhir:treeRoot]}
         @&lt;PractitionerReference&gt; OR
         @&lt;RelatedPersonReference&gt;
     );
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
+# Data controlled by this exception
+&lt;Consent.except.data&gt; CLOSED {
+    fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
+    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @&lt;Extension&gt;*;   # Extensions that cannot be ignored
+    fhir:Consent.except.data.meaning @&lt;code&gt; AND
+    	{fhir:value @fhirvs:consent-data-meaning};  # instance | related | dependents
+    fhir:Consent.except.data.reference @&lt;Reference&gt;;  # The actual data reference
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -562,20 +562,20 @@ start=@&lt;Consent&gt; AND {fhir:nodeRole [fhir:treeRoot]}
 
 #---------------------- Value Sets ------------------------
 
-# How an exception is statement is applied, as adding additional consent, or removing consent
-fhirvs:consent-except-type [&quot;deny&quot; &quot;permit&quot;]
-
 # How a resource reference is interpreted when testing consent restrictions
 fhirvs:consent-data-meaning [&quot;instance&quot; &quot;related&quot; &quot;dependents&quot;]
-
-# Identifies the purpose for this identifier, if known .
-fhirvs:identifier-use [&quot;usual&quot; &quot;official&quot; &quot;temp&quot; &quot;secondary&quot;]
 
 # The status of a resource narrative
 fhirvs:narrative-status [&quot;generated&quot; &quot;extensions&quot; &quot;additional&quot; &quot;empty&quot;]
 
 # Indicates the status of the consent
 fhirvs:consent-status [&quot;draft&quot; &quot;proposed&quot; &quot;active&quot; &quot;rejected&quot; &quot;inactive&quot; &quot;entered-in-error&quot;]
+
+# How an exception is statement is applied, as adding additional consent, or removing consent
+fhirvs:consent-except-type [&quot;deny&quot; &quot;permit&quot;]
+
+# Identifies the purpose for this identifier, if known .
+fhirvs:identifier-use [&quot;usual&quot; &quot;official&quot; &quot;temp&quot; &quot;secondary&quot;]
 
 </pre>
 </div>
@@ -601,7 +601,7 @@ of the specification.
 		<div class="container"><!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Wed, Nov 16, 2016 21:15-0500. <a href="qa.html">QA Page</a>
+        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Wed, Nov 16, 2016 22:04-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search</a> | 

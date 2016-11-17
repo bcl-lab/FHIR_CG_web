@@ -56,17 +56,6 @@ start=@<ImagingStudy> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
-# Study access service endpoint
-<ImagingStudy.baseLocation> CLOSED {
-    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
-    fhir:extension @<Extension>*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    fhir:ImagingStudy.baseLocation.type @<Coding>;  # WADO-RS | WADO-URI | IID
-    fhir:ImagingStudy.baseLocation.url @<uri>;  # Study access URL
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
 # Each study has one or more series of instances
 <ImagingStudy.series> CLOSED {
     fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
@@ -93,6 +82,28 @@ start=@<ImagingStudy> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
+# Study access service endpoint
+<ImagingStudy.baseLocation> CLOSED {
+    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
+    fhir:extension @<Extension>*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
+    fhir:ImagingStudy.baseLocation.type @<Coding>;  # WADO-RS | WADO-URI | IID
+    fhir:ImagingStudy.baseLocation.url @<uri>;  # Study access URL
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
+# Series access endpoint
+<ImagingStudy.series.baseLocation> CLOSED {
+    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
+    fhir:extension @<Extension>*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
+    fhir:ImagingStudy.series.baseLocation.type @<Coding>;  # WADO-RS | WADO-URI | IID
+    fhir:ImagingStudy.series.baseLocation.url @<uri>;  # Series access URL
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
 # A single SOP instance from the series
 <ImagingStudy.series.instance> CLOSED {
     fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
@@ -105,17 +116,6 @@ start=@<ImagingStudy> AND {fhir:nodeRole [fhir:treeRoot]}
                                             # series 
     fhir:ImagingStudy.series.instance.sopClass @<oid>;  # DICOM class type
     fhir:ImagingStudy.series.instance.title @<string>?;  # Description of instance
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
-# Series access endpoint
-<ImagingStudy.series.baseLocation> CLOSED {
-    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
-    fhir:extension @<Extension>*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    fhir:ImagingStudy.series.baseLocation.type @<Coding>;  # WADO-RS | WADO-URI | IID
-    fhir:ImagingStudy.series.baseLocation.url @<uri>;  # Series access URL
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -402,11 +402,11 @@ start=@<ImagingStudy> AND {fhir:nodeRole [fhir:treeRoot]}
 
 #---------------------- Value Sets ------------------------
 
-# Identifies the purpose for this identifier, if known .
-fhirvs:identifier-use ["usual" "official" "temp" "secondary"]
-
 # The status of a resource narrative
 fhirvs:narrative-status ["generated" "extensions" "additional" "empty"]
 
 # Availability of the resource
 fhirvs:instance-availability ["ONLINE" "OFFLINE" "NEARLINE" "UNAVAILABLE"]
+
+# Identifies the purpose for this identifier, if known .
+fhirvs:identifier-use ["usual" "official" "temp" "secondary"]

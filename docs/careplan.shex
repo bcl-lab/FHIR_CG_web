@@ -61,6 +61,18 @@ start=@<CarePlan> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
+# Plans related to this one
+<CarePlan.relatedPlan> CLOSED {
+    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
+    fhir:extension @<Extension>*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
+    fhir:CarePlan.relatedPlan.code @<code> AND
+    	{fhir:value @fhirvs:care-plan-relationship}?;  # includes | replaces | fulfills
+    fhir:CarePlan.relatedPlan.plan @<Reference>;  # Plan relationship exists with
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
 # Action to occur as part of plan
 <CarePlan.activity> CLOSED {
     fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
@@ -85,18 +97,6 @@ start=@<CarePlan> AND {fhir:nodeRole [fhir:treeRoot]}
         @<VisionPrescriptionReference>
     )?;
     fhir:CarePlan.activity.detail @<CarePlan.activity.detail>?;  # In-line definition of activity
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
-# Plans related to this one
-<CarePlan.relatedPlan> CLOSED {
-    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
-    fhir:extension @<Extension>*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    fhir:CarePlan.relatedPlan.code @<code> AND
-    	{fhir:value @fhirvs:care-plan-relationship}?;  # includes | replaces | fulfills
-    fhir:CarePlan.relatedPlan.plan @<Reference>;  # Plan relationship exists with
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -729,11 +729,8 @@ start=@<CarePlan> AND {fhir:nodeRole [fhir:treeRoot]}
 
 #---------------------- Value Sets ------------------------
 
-# Indicates where the activity is at in its overall life cycle.
-fhirvs:care-plan-activity-status ["not-started" "scheduled" "in-progress" "on-hold" "completed" "cancelled" "unknown"]
-
-# How the Quantity should be understood and represented.
-fhirvs:quantity-comparator ["<" "<=" ">=" ">"]
+# The status of a resource narrative
+fhirvs:narrative-status ["generated" "extensions" "additional" "empty"]
 
 # Indicates whether the plan is currently being acted upon, represents future intentions or is now a historical record.
 fhirvs:care-plan-status ["proposed" "draft" "active" "suspended" "completed" "entered-in-error" "cancelled" "unknown"]
@@ -744,11 +741,14 @@ fhirvs:care-plan-relationship ["includes" "replaces" "fulfills"]
 # Real world event that the relating to the schedule.
 fhirvs:event-timing ["HS" "WAKE" "C" "CM" "CD" "CV" "AC" "ACM" "ACD" "ACV" "PC" "PCM" "PCD" "PCV"]
 
-# Identifies the purpose for this identifier, if known .
-fhirvs:identifier-use ["usual" "official" "temp" "secondary"]
-
 # A unit of time (units from UCUM).
 fhirvs:units-of-time ["s" "min" "h" "d" "wk" "mo" "a"]
 
-# The status of a resource narrative
-fhirvs:narrative-status ["generated" "extensions" "additional" "empty"]
+# Indicates where the activity is at in its overall life cycle.
+fhirvs:care-plan-activity-status ["not-started" "scheduled" "in-progress" "on-hold" "completed" "cancelled" "unknown"]
+
+# How the Quantity should be understood and represented.
+fhirvs:quantity-comparator ["<" "<=" ">=" ">"]
+
+# Identifies the purpose for this identifier, if known .
+fhirvs:identifier-use ["usual" "official" "temp" "secondary"]

@@ -54,26 +54,6 @@ start=@<AuditEvent> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
-# Data or objects used
-<AuditEvent.entity> CLOSED {
-    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
-    fhir:extension @<Extension>*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    fhir:AuditEvent.entity.identifier @<Identifier>?;  # Specific instance of object
-    fhir:AuditEvent.entity.reference @<Reference>?;  # Specific instance of resource
-    fhir:AuditEvent.entity.type @<Coding>?;  # Type of entity involved
-    fhir:AuditEvent.entity.role @<Coding>?;  # What role the entity played
-    fhir:AuditEvent.entity.lifecycle @<Coding>?;  # Life-cycle stage for the entity
-    fhir:AuditEvent.entity.securityLabel @<Coding>*;  # Security labels on the entity
-    fhir:AuditEvent.entity.name @<string>?;  # Descriptor for entity
-    fhir:AuditEvent.entity.description @<string>?;  # Descriptive text
-    fhir:AuditEvent.entity.query @<base64Binary>?;  # Query parameters
-    fhir:AuditEvent.entity.detail @<AuditEvent.entity.detail>*;  # Additional Information about the 
-                                            # entity 
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
 # Actor involved in the event
 <AuditEvent.agent> CLOSED {
     fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
@@ -99,6 +79,26 @@ start=@<AuditEvent> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:AuditEvent.agent.network @<AuditEvent.agent.network>?;  # Logical network location for 
                                             # application activity 
     fhir:AuditEvent.agent.purposeOfUse @<CodeableConcept>*;  # Reason given for this user
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
+# Data or objects used
+<AuditEvent.entity> CLOSED {
+    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
+    fhir:extension @<Extension>*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
+    fhir:AuditEvent.entity.identifier @<Identifier>?;  # Specific instance of object
+    fhir:AuditEvent.entity.reference @<Reference>?;  # Specific instance of resource
+    fhir:AuditEvent.entity.type @<Coding>?;  # Type of entity involved
+    fhir:AuditEvent.entity.role @<Coding>?;  # What role the entity played
+    fhir:AuditEvent.entity.lifecycle @<Coding>?;  # Life-cycle stage for the entity
+    fhir:AuditEvent.entity.securityLabel @<Coding>*;  # Security labels on the entity
+    fhir:AuditEvent.entity.name @<string>?;  # Descriptor for entity
+    fhir:AuditEvent.entity.description @<string>?;  # Descriptive text
+    fhir:AuditEvent.entity.query @<base64Binary>?;  # Query parameters
+    fhir:AuditEvent.entity.detail @<AuditEvent.entity.detail>*;  # Additional Information about the 
+                                            # entity 
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -388,11 +388,8 @@ start=@<AuditEvent> AND {fhir:nodeRole [fhir:treeRoot]}
 
 #---------------------- Value Sets ------------------------
 
-# Indicator for type of action performed during the event that generated the audit.
-fhirvs:audit-event-action ["C" "R" "U" "D" "E"]
-
-# Identifies the purpose for this identifier, if known .
-fhirvs:identifier-use ["usual" "official" "temp" "secondary"]
+# The status of a resource narrative
+fhirvs:narrative-status ["generated" "extensions" "additional" "empty"]
 
 # Indicates whether the event succeeded or failed
 fhirvs:audit-event-outcome ["0" "4" "8" "12"]
@@ -400,5 +397,8 @@ fhirvs:audit-event-outcome ["0" "4" "8" "12"]
 # The type of network access point of this agent in the audit event
 fhirvs:network-type ["1" "2" "3" "4" "5"]
 
-# The status of a resource narrative
-fhirvs:narrative-status ["generated" "extensions" "additional" "empty"]
+# Indicator for type of action performed during the event that generated the audit.
+fhirvs:audit-event-action ["C" "R" "U" "D" "E"]
+
+# Identifies the purpose for this identifier, if known .
+fhirvs:identifier-use ["usual" "official" "temp" "secondary"]

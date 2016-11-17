@@ -211,6 +211,25 @@ start=@&lt;Observation&gt; AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
+# Resource related to this observation
+&lt;Observation.related&gt; CLOSED {
+    fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
+    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @&lt;Extension&gt;*;   # Extensions that cannot be ignored
+    fhir:Observation.related.type @&lt;code&gt; AND
+    	{fhir:value @fhirvs:observation-relationshiptypes}?;  # has-member | derived-from | 
+                                            # sequel-to | replaces | 
+                                            # qualified-by | interfered-by 
+    fhir:Observation.related.target         # Resource that is related to this 
+                                            # one 
+    (   @&lt;ObservationReference&gt; OR
+        @&lt;QuestionnaireResponseReference&gt; OR
+        @&lt;SequenceReference&gt;
+    );
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
 # Component results
 &lt;Observation.component&gt; CLOSED {
     fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
@@ -235,25 +254,6 @@ start=@&lt;Observation&gt; AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:Observation.component.interpretation @&lt;CodeableConcept&gt;?;  # High, low, normal, etc.
     fhir:Observation.component.referenceRange @&lt;Observation.referenceRange&gt;*;  # Provides guide for interpretation 
                                             # of component result 
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
-# Resource related to this observation
-&lt;Observation.related&gt; CLOSED {
-    fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
-    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @&lt;Extension&gt;*;   # Extensions that cannot be ignored
-    fhir:Observation.related.type @&lt;code&gt; AND
-    	{fhir:value @fhirvs:observation-relationshiptypes}?;  # has-member | derived-from | 
-                                            # sequel-to | replaces | 
-                                            # qualified-by | interfered-by 
-    fhir:Observation.related.target         # Resource that is related to this 
-                                            # one 
-    (   @&lt;ObservationReference&gt; OR
-        @&lt;QuestionnaireResponseReference&gt; OR
-        @&lt;SequenceReference&gt;
-    );
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -725,20 +725,20 @@ start=@&lt;Observation&gt; AND {fhir:nodeRole [fhir:treeRoot]}
 
 #---------------------- Value Sets ------------------------
 
+# The status of a resource narrative
+fhirvs:narrative-status [&quot;generated&quot; &quot;extensions&quot; &quot;additional&quot; &quot;empty&quot;]
+
 # Codes providing the status of an observation.
 fhirvs:observation-status [&quot;registered&quot; &quot;preliminary&quot; &quot;final&quot; &quot;amended&quot; &quot;cancelled&quot; &quot;entered-in-error&quot; &quot;unknown&quot;]
 
 # How the Quantity should be understood and represented.
 fhirvs:quantity-comparator [&quot;&lt;&quot; &quot;&lt;=&quot; &quot;&gt;=&quot; &quot;&gt;&quot;]
 
-# Identifies the purpose for this identifier, if known .
-fhirvs:identifier-use [&quot;usual&quot; &quot;official&quot; &quot;temp&quot; &quot;secondary&quot;]
-
-# The status of a resource narrative
-fhirvs:narrative-status [&quot;generated&quot; &quot;extensions&quot; &quot;additional&quot; &quot;empty&quot;]
-
 # Codes specifying how two observations are related.
 fhirvs:observation-relationshiptypes [&quot;has-member&quot; &quot;derived-from&quot; &quot;sequel-to&quot; &quot;replaces&quot; &quot;qualified-by&quot; &quot;interfered-by&quot;]
+
+# Identifies the purpose for this identifier, if known .
+fhirvs:identifier-use [&quot;usual&quot; &quot;official&quot; &quot;temp&quot; &quot;secondary&quot;]
 
 </pre>
 </div>
@@ -764,7 +764,7 @@ of the specification.
 		<div class="container"><!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Wed, Nov 16, 2016 21:15-0500. <a href="qa.html">QA Page</a>
+        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Wed, Nov 16, 2016 22:04-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search</a> | 

@@ -51,6 +51,17 @@ start=@<ImmunizationRecommendation> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
+# Dates governing proposed immunization
+<ImmunizationRecommendation.recommendation.dateCriterion> CLOSED {
+    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
+    fhir:extension @<Extension>*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
+    fhir:ImmunizationRecommendation.recommendation.dateCriterion.code @<CodeableConcept>;  # Type of date
+    fhir:ImmunizationRecommendation.recommendation.dateCriterion.value @<dateTime>;  # Recommended date
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
 # Protocol used by recommendation
 <ImmunizationRecommendation.recommendation.protocol> CLOSED {
     fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
@@ -61,17 +72,6 @@ start=@<ImmunizationRecommendation> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:ImmunizationRecommendation.recommendation.protocol.description @<string>?;  # Protocol details
     fhir:ImmunizationRecommendation.recommendation.protocol.authority @<Reference>?;  # Who is responsible for protocol
     fhir:ImmunizationRecommendation.recommendation.protocol.series @<string>?;  # Name of vaccination series
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
-# Dates governing proposed immunization
-<ImmunizationRecommendation.recommendation.dateCriterion> CLOSED {
-    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
-    fhir:extension @<Extension>*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    fhir:ImmunizationRecommendation.recommendation.dateCriterion.code @<CodeableConcept>;  # Type of date
-    fhir:ImmunizationRecommendation.recommendation.dateCriterion.value @<dateTime>;  # Recommended date
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -294,8 +294,8 @@ start=@<ImmunizationRecommendation> AND {fhir:nodeRole [fhir:treeRoot]}
 
 #---------------------- Value Sets ------------------------
 
-# Identifies the purpose for this identifier, if known .
-fhirvs:identifier-use ["usual" "official" "temp" "secondary"]
-
 # The status of a resource narrative
 fhirvs:narrative-status ["generated" "extensions" "additional" "empty"]
+
+# Identifies the purpose for this identifier, if known .
+fhirvs:identifier-use ["usual" "official" "temp" "secondary"]

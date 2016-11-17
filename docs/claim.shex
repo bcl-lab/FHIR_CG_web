@@ -71,81 +71,16 @@ start=@<Claim> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
-# Related Claims which may be revelant to processing this claimn
-<Claim.related> CLOSED {
+# Only if type = oral
+<Claim.missingTeeth> CLOSED {
     fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
     fhir:extension @<Extension>*;           # Additional Content defined by 
                                             # implementations 
     fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    fhir:Claim.related.claim @<Reference>?;  # Reference to the related claim
-    fhir:Claim.related.relationship @<Coding>?;  # How the reference claim is related
-    fhir:Claim.related.reference @<Identifier>?;  # Related file or case reference
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
-# Diagnosis
-<Claim.diagnosis> CLOSED {
-    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
-    fhir:extension @<Extension>*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    fhir:Claim.diagnosis.sequence @<positiveInt>;  # Number to covey order of diagnosis
-    fhir:Claim.diagnosis.diagnosis @<Coding>;  # Patient's diagnosis
-    fhir:Claim.diagnosis.type @<Coding>*;   # Type of Diagnosis
-    fhir:Claim.diagnosis.drg @<Coding>?;    # Diagnosis Related Group
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
-# Procedures performed
-<Claim.procedure> CLOSED {
-    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
-    fhir:extension @<Extension>*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    fhir:Claim.procedure.sequence @<positiveInt>;  # Procedure sequence for reference
-    fhir:Claim.procedure.date @<dateTime>?;  # When the procedure was performed
-    (                                       # Patient's list of procedures 
-                                            # performed 
-        fhir:Claim.procedure.procedureCoding @<Coding>  |
-        fhir:Claim.procedure.procedureReference @<Reference> 
-    );
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
-# Details about an accident
-<Claim.accident> CLOSED {
-    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
-    fhir:extension @<Extension>*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    fhir:Claim.accident.date @<date>;       # When the accident occurred see 
-                                            # information codes see information 
-                                            # codes 
-    fhir:Claim.accident.type @<Coding> AND
-    	{fhir:value @fhirvs:v3-ActIncidentCode}?;  # The nature of the accident
-    (                                       # Accident Place
-        fhir:Claim.accident.locationAddress @<Address>  |
-        fhir:Claim.accident.locationReference @<Reference> 
-    )?;
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
-# Party to be paid any benefits payable
-<Claim.payee> CLOSED {
-    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
-    fhir:extension @<Extension>*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    fhir:Claim.payee.type @<Coding>;        # Type of party: Subscriber, 
-                                            # Provider, other 
-    fhir:Claim.payee.resourceType @<Coding>?;  # organization | patient | 
-                                            # practitioner | relatedperson 
-    fhir:Claim.payee.party                  # Party to receive the payable
-    (   @<PractitionerReference> OR
-        @<OrganizationReference> OR
-        @<PatientReference> OR
-        @<RelatedPersonReference>
-    )?;
+    fhir:Claim.missingTeeth.tooth @<Coding>;  # Tooth Code
+    fhir:Claim.missingTeeth.reason @<Coding>?;  # Indicates whether it was extracted 
+                                            # or other reason 
+    fhir:Claim.missingTeeth.extractionDate @<date>?;  # Date tooth was extracted if known
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -186,33 +121,49 @@ start=@<Claim> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
-# Insurance or medical plan
-<Claim.coverage> CLOSED {
+# Procedures performed
+<Claim.procedure> CLOSED {
     fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
     fhir:extension @<Extension>*;           # Additional Content defined by 
                                             # implementations 
     fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    fhir:Claim.coverage.sequence @<positiveInt>;  # Service instance identifier
-    fhir:Claim.coverage.focal @<boolean>;   # Is the focal Coverage
-    fhir:Claim.coverage.coverage @<Reference>;  # Insurance information
-    fhir:Claim.coverage.businessArrangement @<string>?;  # Business agreement
-    fhir:Claim.coverage.preAuthRef @<string>*;  # Pre-Authorization/Determination 
-                                            # Reference 
-    fhir:Claim.coverage.claimResponse @<Reference>?;  # Adjudication results
-    fhir:Claim.coverage.originalRuleset @<Coding>?;  # Original version
+    fhir:Claim.procedure.sequence @<positiveInt>;  # Procedure sequence for reference
+    fhir:Claim.procedure.date @<dateTime>?;  # When the procedure was performed
+    (                                       # Patient's list of procedures 
+                                            # performed 
+        fhir:Claim.procedure.procedureCoding @<Coding>  |
+        fhir:Claim.procedure.procedureReference @<Reference> 
+    );
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
-# Only if type = oral
-<Claim.missingTeeth> CLOSED {
+# Related Claims which may be revelant to processing this claimn
+<Claim.related> CLOSED {
     fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
     fhir:extension @<Extension>*;           # Additional Content defined by 
                                             # implementations 
     fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    fhir:Claim.missingTeeth.tooth @<Coding>;  # Tooth Code
-    fhir:Claim.missingTeeth.reason @<Coding>?;  # Indicates whether it was extracted 
-                                            # or other reason 
-    fhir:Claim.missingTeeth.extractionDate @<date>?;  # Date tooth was extracted if known
+    fhir:Claim.related.claim @<Reference>?;  # Reference to the related claim
+    fhir:Claim.related.relationship @<Coding>?;  # How the reference claim is related
+    fhir:Claim.related.reference @<Identifier>?;  # Related file or case reference
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
+# Details about an accident
+<Claim.accident> CLOSED {
+    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
+    fhir:extension @<Extension>*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
+    fhir:Claim.accident.date @<date>;       # When the accident occurred see 
+                                            # information codes see information 
+                                            # codes 
+    fhir:Claim.accident.type @<Coding> AND
+    	{fhir:value @fhirvs:v3-ActIncidentCode}?;  # The nature of the accident
+    (                                       # Accident Place
+        fhir:Claim.accident.locationAddress @<Address>  |
+        fhir:Claim.accident.locationReference @<Reference> 
+    )?;
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -232,6 +183,55 @@ start=@<Claim> AND {fhir:nodeRole [fhir:treeRoot]}
         fhir:Claim.information.valueString @<string>  |
         fhir:Claim.information.valueQuantity @<Quantity> 
     )?;
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
+# Diagnosis
+<Claim.diagnosis> CLOSED {
+    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
+    fhir:extension @<Extension>*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
+    fhir:Claim.diagnosis.sequence @<positiveInt>;  # Number to covey order of diagnosis
+    fhir:Claim.diagnosis.diagnosis @<Coding>;  # Patient's diagnosis
+    fhir:Claim.diagnosis.type @<Coding>*;   # Type of Diagnosis
+    fhir:Claim.diagnosis.drg @<Coding>?;    # Diagnosis Related Group
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
+# Party to be paid any benefits payable
+<Claim.payee> CLOSED {
+    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
+    fhir:extension @<Extension>*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
+    fhir:Claim.payee.type @<Coding>;        # Type of party: Subscriber, 
+                                            # Provider, other 
+    fhir:Claim.payee.resourceType @<Coding>?;  # organization | patient | 
+                                            # practitioner | relatedperson 
+    fhir:Claim.payee.party                  # Party to receive the payable
+    (   @<PractitionerReference> OR
+        @<OrganizationReference> OR
+        @<PatientReference> OR
+        @<RelatedPersonReference>
+    )?;
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
+# Insurance or medical plan
+<Claim.coverage> CLOSED {
+    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
+    fhir:extension @<Extension>*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
+    fhir:Claim.coverage.sequence @<positiveInt>;  # Service instance identifier
+    fhir:Claim.coverage.focal @<boolean>;   # Is the focal Coverage
+    fhir:Claim.coverage.coverage @<Reference>;  # Insurance information
+    fhir:Claim.coverage.businessArrangement @<string>?;  # Business agreement
+    fhir:Claim.coverage.preAuthRef @<string>*;  # Pre-Authorization/Determination 
+                                            # Reference 
+    fhir:Claim.coverage.claimResponse @<Reference>?;  # Adjudication results
+    fhir:Claim.coverage.originalRuleset @<Coding>?;  # Original version
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -672,23 +672,11 @@ start=@<Claim> AND {fhir:nodeRole [fhir:treeRoot]}
 
 #---------------------- Value Sets ------------------------
 
+# The status of a resource narrative
+fhirvs:narrative-status ["generated" "extensions" "additional" "empty"]
+
 # The type of an address (physical / postal)
 fhirvs:address-type ["postal" "physical" "both"]
-
-# How the Quantity should be understood and represented.
-fhirvs:quantity-comparator ["<" "<=" ">=" ">"]
-
-#  Set of codes indicating the type of incident or accident.
-fhirvs:v3-ActIncidentCode ["MVA" "SCHOOL" "SPT" "WPA"]
-
-# The use of an address
-fhirvs:address-use ["home" "work" "temp" "old"]
-
-# Identifies the purpose for this identifier, if known .
-fhirvs:identifier-use ["usual" "official" "temp" "secondary"]
-
-# Complete, proposed, exploratory, other
-fhirvs:claim-use ["complete" "proposed" "exploratory" "other"]
 
 # A code specifying the state of the resource instance.
 fhirvs:claim-status ["active" "cancelled" "draft" "entered-in-error"]
@@ -696,5 +684,17 @@ fhirvs:claim-status ["active" "cancelled" "draft" "entered-in-error"]
 # This value set includes sample Claim Type codes.
 fhirvs:claim-type ["institutional" "oral" "pharmacy" "professional" "vision"]
 
-# The status of a resource narrative
-fhirvs:narrative-status ["generated" "extensions" "additional" "empty"]
+# The use of an address
+fhirvs:address-use ["home" "work" "temp" "old"]
+
+# Complete, proposed, exploratory, other
+fhirvs:claim-use ["complete" "proposed" "exploratory" "other"]
+
+# How the Quantity should be understood and represented.
+fhirvs:quantity-comparator ["<" "<=" ">=" ">"]
+
+#  Set of codes indicating the type of incident or accident.
+fhirvs:v3-ActIncidentCode ["MVA" "SCHOOL" "SPT" "WPA"]
+
+# Identifies the purpose for this identifier, if known .
+fhirvs:identifier-use ["usual" "official" "temp" "secondary"]

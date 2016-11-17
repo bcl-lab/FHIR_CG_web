@@ -81,46 +81,6 @@ start=@<CapabilityStatement> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
-# If messaging is supported
-<CapabilityStatement.messaging> CLOSED {
-    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
-    fhir:extension @<Extension>*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    fhir:CapabilityStatement.messaging.endpoint @<CapabilityStatement.messaging.endpoint>*;  # Where messages should be sent
-    fhir:CapabilityStatement.messaging.reliableCache @<unsignedInt>?;  # Reliable Message Cache Length (min)
-    fhir:CapabilityStatement.messaging.documentation @<string>?;  # Messaging interface behavior 
-                                            # details 
-    fhir:CapabilityStatement.messaging.event @<CapabilityStatement.messaging.event>+;  # Declare support for this event
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
-# Software that is covered by this capability statement
-<CapabilityStatement.software> CLOSED {
-    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
-    fhir:extension @<Extension>*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    fhir:CapabilityStatement.software.name @<string>;  # A name the software is known by
-    fhir:CapabilityStatement.software.version @<string>?;  # Version covered by this statement
-    fhir:CapabilityStatement.software.releaseDate @<dateTime>?;  # Date this version released
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
-# Document definition
-<CapabilityStatement.document> CLOSED {
-    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
-    fhir:extension @<Extension>*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    fhir:CapabilityStatement.document.mode @<code> AND
-    	{fhir:value @fhirvs:document-mode};  # producer | consumer
-    fhir:CapabilityStatement.document.documentation @<string>?;  # Description of document support
-    fhir:CapabilityStatement.document.profile @<Reference>;  # Constraint on a resource used in 
-                                            # the document 
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
 # If the endpoint is a RESTful one
 <CapabilityStatement.rest> CLOSED {
     fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
@@ -144,6 +104,46 @@ start=@<CapabilityStatement> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
+# Document definition
+<CapabilityStatement.document> CLOSED {
+    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
+    fhir:extension @<Extension>*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
+    fhir:CapabilityStatement.document.mode @<code> AND
+    	{fhir:value @fhirvs:document-mode};  # producer | consumer
+    fhir:CapabilityStatement.document.documentation @<string>?;  # Description of document support
+    fhir:CapabilityStatement.document.profile @<Reference>;  # Constraint on a resource used in 
+                                            # the document 
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
+# Software that is covered by this capability statement
+<CapabilityStatement.software> CLOSED {
+    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
+    fhir:extension @<Extension>*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
+    fhir:CapabilityStatement.software.name @<string>;  # A name the software is known by
+    fhir:CapabilityStatement.software.version @<string>?;  # Version covered by this statement
+    fhir:CapabilityStatement.software.releaseDate @<dateTime>?;  # Date this version released
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
+# If messaging is supported
+<CapabilityStatement.messaging> CLOSED {
+    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
+    fhir:extension @<Extension>*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
+    fhir:CapabilityStatement.messaging.endpoint @<CapabilityStatement.messaging.endpoint>*;  # Where messages should be sent
+    fhir:CapabilityStatement.messaging.reliableCache @<unsignedInt>?;  # Reliable Message Cache Length (min)
+    fhir:CapabilityStatement.messaging.documentation @<string>?;  # Messaging interface behavior 
+                                            # details 
+    fhir:CapabilityStatement.messaging.event @<CapabilityStatement.messaging.event>+;  # Declare support for this event
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
 # What operations are supported?
 <CapabilityStatement.rest.interaction> CLOSED {
     fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
@@ -155,46 +155,6 @@ start=@<CapabilityStatement> AND {fhir:nodeRole [fhir:treeRoot]}
                                             # search-system | history-system 
     fhir:CapabilityStatement.rest.interaction.documentation @<string>?;  # Anything special about operation 
                                             # behavior 
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
-# Information about security of implementation
-<CapabilityStatement.rest.security> CLOSED {
-    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
-    fhir:extension @<Extension>*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    fhir:CapabilityStatement.rest.security.cors @<boolean>?;  # Adds CORS Headers 
-                                            # (http://enable-cors.org/) 
-    fhir:CapabilityStatement.rest.security.service @<CodeableConcept>*;  # OAuth | SMART-on-FHIR | NTLM | 
-                                            # Basic | Kerberos | Certificates 
-    fhir:CapabilityStatement.rest.security.description @<string>?;  # General description of how 
-                                            # security works 
-    fhir:CapabilityStatement.rest.security.certificate @<CapabilityStatement.rest.security.certificate>*;  # Certificates associated with 
-                                            # security profiles 
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
-# Where messages should be sent
-<CapabilityStatement.messaging.endpoint> CLOSED {
-    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
-    fhir:extension @<Extension>*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    fhir:CapabilityStatement.messaging.endpoint.protocol @<Coding>;  # http | ftp | mllp +
-    fhir:CapabilityStatement.messaging.endpoint.address @<uri>;  # Address of end-point
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
-# Definition of an operation or a custom query
-<CapabilityStatement.rest.operation> CLOSED {
-    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
-    fhir:extension @<Extension>*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    fhir:CapabilityStatement.rest.operation.name @<string>;  # Name by which the operation/query 
-                                            # is invoked 
-    fhir:CapabilityStatement.rest.operation.definition @<Reference>;  # The defined operation/query
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -260,14 +220,43 @@ start=@<CapabilityStatement> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
-# Certificates associated with security profiles
-<CapabilityStatement.rest.security.certificate> CLOSED {
+# Where messages should be sent
+<CapabilityStatement.messaging.endpoint> CLOSED {
     fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
     fhir:extension @<Extension>*;           # Additional Content defined by 
                                             # implementations 
     fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    fhir:CapabilityStatement.rest.security.certificate.type @<code>?;  # Mime type for certificate
-    fhir:CapabilityStatement.rest.security.certificate.blob @<base64Binary>?;  # Actual certificate
+    fhir:CapabilityStatement.messaging.endpoint.protocol @<Coding>;  # http | ftp | mllp +
+    fhir:CapabilityStatement.messaging.endpoint.address @<uri>;  # Address of end-point
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
+# Information about security of implementation
+<CapabilityStatement.rest.security> CLOSED {
+    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
+    fhir:extension @<Extension>*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
+    fhir:CapabilityStatement.rest.security.cors @<boolean>?;  # Adds CORS Headers 
+                                            # (http://enable-cors.org/) 
+    fhir:CapabilityStatement.rest.security.service @<CodeableConcept>*;  # OAuth | SMART-on-FHIR | NTLM | 
+                                            # Basic | Kerberos | Certificates 
+    fhir:CapabilityStatement.rest.security.description @<string>?;  # General description of how 
+                                            # security works 
+    fhir:CapabilityStatement.rest.security.certificate @<CapabilityStatement.rest.security.certificate>*;  # Certificates associated with 
+                                            # security profiles 
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
+# Definition of an operation or a custom query
+<CapabilityStatement.rest.operation> CLOSED {
+    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
+    fhir:extension @<Extension>*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
+    fhir:CapabilityStatement.rest.operation.name @<string>;  # Name by which the operation/query 
+                                            # is invoked 
+    fhir:CapabilityStatement.rest.operation.definition @<Reference>;  # The defined operation/query
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -308,6 +297,17 @@ start=@<CapabilityStatement> AND {fhir:nodeRole [fhir:treeRoot]}
                                             # search-type 
     fhir:CapabilityStatement.rest.resource.interaction.documentation @<string>?;  # Anything special about operation 
                                             # behavior 
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
+# Certificates associated with security profiles
+<CapabilityStatement.rest.security.certificate> CLOSED {
+    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
+    fhir:extension @<Extension>*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
+    fhir:CapabilityStatement.rest.security.certificate.type @<code>?;  # Mime type for certificate
+    fhir:CapabilityStatement.rest.security.certificate.blob @<base64Binary>?;  # Actual certificate
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -618,26 +618,23 @@ start=@<CapabilityStatement> AND {fhir:nodeRole [fhir:treeRoot]}
 
 #---------------------- Value Sets ------------------------
 
-# The mode of a RESTful capability statement.
-fhirvs:restful-capability-mode ["client" "server"]
-
-# A code that indicates how the server supports conditional delete.
-fhirvs:conditional-delete-status ["not-supported" "single" "multiple"]
-
-# How the Quantity should be understood and represented.
-fhirvs:quantity-comparator ["<" "<=" ">=" ">"]
-
-# Operations supported by REST at the system level.
-fhirvs:system-restful-interaction ["transaction" "batch" "search-system" "history-system"]
-
-# How a capability statement is intended to be used.
-fhirvs:capability-statement-kind ["instance" "capability" "requirements"]
-
 # How the system supports versioning for a resource.
 fhirvs:versioning-policy ["no-version" "versioned" "versioned-update"]
 
-# Telecommunications form for contact point
-fhirvs:contact-point-system ["phone" "fax" "email" "pager" "other"]
+# The mode of a message capability statement.
+fhirvs:event-capability-mode ["sender" "receiver"]
+
+# A code that indicates how the server supports conditional read.
+fhirvs:conditional-read-status ["not-supported" "modified-since" "not-match" "full-support"]
+
+# A set of flags that defines how references are supported
+fhirvs:reference-handling-policy ["literal" "logical" "resolves" "enforced" "local"]
+
+# A supported modifier for a search parameter.
+fhirvs:search-modifier-code ["missing" "exact" "contains" "not" "text" "in" "not-in" "below" "above" "type"]
+
+# Operations supported by REST at the type or instance level.
+fhirvs:type-restful-interaction ["read" "vread" "update" "patch" "delete" "history-instance" "history-type" "create" "search-type"]
 
 # One of the resource types defined as part of FHIR.
 fhirvs:resource-types ["Account" "ActivityDefinition" "AllergyIntolerance" "Appointment" "AppointmentResponse" "AuditEvent" "Basic" "Binary" "BodySite" "Bundle" "CapabilityStatement" "CarePlan" "CareTeam" "Claim" "ClaimResponse" "ClinicalImpression" "CodeSystem" "Communication" "CommunicationRequest" "CompartmentDefinition" "Composition" "ConceptMap" "Condition" "Consent" "Contract" "Coverage" "DataElement" "DetectedIssue" "Device" "DeviceComponent" "DeviceMetric" "DeviceUseRequest" "DeviceUseStatement" "DiagnosticReport" "DiagnosticRequest" "DocumentManifest" "DocumentReference" "DomainResource" "EligibilityRequest" "EligibilityResponse" "Encounter" "Endpoint" "EnrollmentRequest" "EnrollmentResponse" "EpisodeOfCare" "ExpansionProfile" "ExplanationOfBenefit" "FamilyMemberHistory" "Flag" "Goal" "Group" "GuidanceResponse" "HealthcareService" "ImagingManifest" "ImagingStudy" "Immunization" "ImmunizationRecommendation" "ImplementationGuide" "Library" "Linkage" "List" "Location" "Measure" "MeasureReport" "Media" "Medication" "MedicationAdministration" "MedicationDispense" "MedicationRequest" "MedicationStatement" "MessageDefinition" "MessageHeader" "NamingSystem" "NutritionRequest" "Observation" "OperationDefinition" "OperationOutcome" "Organization" "Parameters" "Patient" "PaymentNotice" "PaymentReconciliation" "Person" "PlanDefinition" "Practitioner" "PractitionerRole" "Procedure" "ProcedureRequest" "ProcessRequest" "ProcessResponse" "Provenance" "Questionnaire" "QuestionnaireResponse" "ReferralRequest" "RelatedPerson" "RequestGroup" "ResearchStudy" "ResearchSubject" "Resource" "RiskAssessment" "Schedule" "SearchParameter" "Sequence" "ServiceDefinition" "Slot" "Specimen" "StructureDefinition" "StructureMap" "Subscription" "Substance" "SupplyDelivery" "SupplyRequest" "Task" "TestReport" "TestScript" "ValueSet" "VisionPrescription"]
@@ -645,38 +642,41 @@ fhirvs:resource-types ["Account" "ActivityDefinition" "AllergyIntolerance" "Appo
 # Data types allowed to be used for search parameters.
 fhirvs:search-param-type ["number" "date" "string" "token" "reference" "composite" "quantity" "uri"]
 
-# A set of flags that defines how references are supported
-fhirvs:reference-handling-policy ["literal" "logical" "resolves" "enforced" "local"]
+# How the Quantity should be understood and represented.
+fhirvs:quantity-comparator ["<" "<=" ">=" ">"]
 
-# A code that indicates whether an application accepts unknown elements or extensions when reading resources.
-fhirvs:unknown-content-code ["no" "extensions" "elements" "both"]
-
-# The status of a resource narrative
-fhirvs:narrative-status ["generated" "extensions" "additional" "empty"]
-
-# Operations supported by REST at the type or instance level.
-fhirvs:type-restful-interaction ["read" "vread" "update" "patch" "delete" "history-instance" "history-type" "create" "search-type"]
-
-# A supported modifier for a search parameter.
-fhirvs:search-modifier-code ["missing" "exact" "contains" "not" "text" "in" "not-in" "below" "above" "type"]
-
-# The mode of a message capability statement.
-fhirvs:event-capability-mode ["sender" "receiver"]
-
-# Whether the application produces or consumes documents.
-fhirvs:document-mode ["producer" "consumer"]
+# Operations supported by REST at the system level.
+fhirvs:system-restful-interaction ["transaction" "batch" "search-system" "history-system"]
 
 # The lifecycle status of a Value Set or Concept Map.
 fhirvs:publication-status ["draft" "active" "retired"]
 
-# Use of contact point
-fhirvs:contact-point-use ["home" "work" "temp" "old" "mobile"]
+# Telecommunications form for contact point
+fhirvs:contact-point-system ["phone" "fax" "email" "pager" "other"]
 
-# Identifies the purpose for this identifier, if known .
-fhirvs:identifier-use ["usual" "official" "temp" "secondary"]
+# The status of a resource narrative
+fhirvs:narrative-status ["generated" "extensions" "additional" "empty"]
+
+# The mode of a RESTful capability statement.
+fhirvs:restful-capability-mode ["client" "server"]
+
+# Whether the application produces or consumes documents.
+fhirvs:document-mode ["producer" "consumer"]
+
+# A code that indicates how the server supports conditional delete.
+fhirvs:conditional-delete-status ["not-supported" "single" "multiple"]
+
+# How a capability statement is intended to be used.
+fhirvs:capability-statement-kind ["instance" "capability" "requirements"]
 
 # The impact of the content of a message.
 fhirvs:message-significance-category ["Consequence" "Currency" "Notification"]
 
-# A code that indicates how the server supports conditional read.
-fhirvs:conditional-read-status ["not-supported" "modified-since" "not-match" "full-support"]
+# Use of contact point
+fhirvs:contact-point-use ["home" "work" "temp" "old" "mobile"]
+
+# A code that indicates whether an application accepts unknown elements or extensions when reading resources.
+fhirvs:unknown-content-code ["no" "extensions" "elements" "both"]
+
+# Identifies the purpose for this identifier, if known .
+fhirvs:identifier-use ["usual" "official" "temp" "secondary"]

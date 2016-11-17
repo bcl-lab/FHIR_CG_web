@@ -1,0 +1,345 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix loinc: <http://loinc.org/owl#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sct: <http://snomed.info/id/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+<http://hl7.org/fhir/List/example-double-cousin-relationship> a fhir:List;
+  fhir:nodeRole fhir:treeRoot;
+  fhir:Resource.id [ fhir:value "example-double-cousin-relationship"];
+  fhir:DomainResource.contained [
+     a fhir:FamilyMemberHistory;
+     fhir:index 0;
+     fhir:Resource.id [ fhir:value "1" ];
+     fhir:Resource.meta [
+       fhir:Meta.versionId [ fhir:value "7" ];
+       fhir:Meta.lastUpdated [ fhir:value "2016-09-23T10:55:14.739-04:00"^^xsd:dateTime ];
+       fhir:Meta.profile [
+         fhir:value "http://hl7.org/fhir/StructureDefinition/familymemberhistory-genetic";
+         fhir:index 0
+       ]
+     ];
+     fhir:DomainResource.text [
+       fhir:Narrative.status [ fhir:value "additional" ];
+       fhir:Narrative.div "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n          <div>Natural mother who suffered Diabetes mellitus begin at the age 45</div>\n        </div>"
+     ];
+     fhir:FamilyMemberHistory.patient [
+       fhir:link <http://hl7.org/fhir/Patient/147051>;
+       fhir:Reference.reference [ fhir:value "Patient/147051" ];
+       fhir:Reference.display [ fhir:value "Pam Taylor" ]
+     ];
+     fhir:FamilyMemberHistory.status [ fhir:value "completed" ];
+     fhir:FamilyMemberHistory.name [ fhir:value "Mary" ];
+     fhir:FamilyMemberHistory.relationship [
+       fhir:CodeableConcept.coding [
+         fhir:index 0;
+         fhir:Coding.system [ fhir:value "http://hl7.org/fhir/v3/RoleCode" ];
+         fhir:Coding.code [ fhir:value "NMTH" ];
+         fhir:Coding.display [ fhir:value "natural mother" ]
+       ];
+       fhir:CodeableConcept.text [ fhir:value "natural mother" ]
+     ];
+     fhir:FamilyMemberHistory.deceasedBoolean [ fhir:value "true"^^xsd:boolean ];
+     fhir:FamilyMemberHistory.condition [
+       fhir:index 0;
+       fhir:FamilyMemberHistory.condition.code [
+         fhir:CodeableConcept.coding [
+           fhir:index 0;
+           fhir:concept sct:73211009;
+           fhir:Coding.system [ fhir:value "http://snomed.info/sct" ];
+           fhir:Coding.code [ fhir:value "73211009" ];
+           fhir:Coding.display [ fhir:value "Diabetes mellitus" ]
+         ];
+         fhir:CodeableConcept.text [ fhir:value "Diabetes mellitus" ]
+       ];
+       fhir:FamilyMemberHistory.condition.onsetAge [
+         fhir:Quantity.value [ fhir:value "45"^^xsd:decimal ];
+         fhir:Quantity.unit [ fhir:value "yr" ];
+         fhir:Quantity.system [ fhir:value "http://unitsofmeasure.org" ];
+         fhir:Quantity.code [ fhir:value "a" ]
+       ]
+     ]
+  ], [
+     a fhir:FamilyMemberHistory;
+     fhir:index 1;
+     fhir:Resource.id [ fhir:value "2" ];
+     fhir:Resource.meta [
+       fhir:Meta.versionId [ fhir:value "4" ];
+       fhir:Meta.lastUpdated [ fhir:value "2016-09-23T08:06:14.691-04:00"^^xsd:dateTime ];
+       fhir:Meta.profile [
+         fhir:value "http://hl7.org/fhir/StructureDefinition/familymemberhistory-genetic";
+         fhir:index 0
+       ]
+     ];
+     fhir:DomainResource.text [
+       fhir:Narrative.status [ fhir:value "additional" ];
+       fhir:Narrative.div "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n          <div>paternal uncle with Diabetes mellitus type 2 without retinopathy onset at age 35</div>\n        </div>"
+     ];
+     fhir:FamilyMemberHistory.patient [
+       fhir:link <http://hl7.org/fhir/Patient/147051>;
+       fhir:Reference.reference [ fhir:value "Patient/147051" ];
+       fhir:Reference.display [ fhir:value "Pam Taylor" ]
+     ];
+     fhir:FamilyMemberHistory.status [ fhir:value "completed" ];
+     fhir:FamilyMemberHistory.name [ fhir:value "Bob" ];
+     fhir:FamilyMemberHistory.relationship [
+       fhir:CodeableConcept.coding [
+         fhir:index 0;
+         fhir:Coding.system [ fhir:value "http://hl7.org/fhir/v3/RoleCode" ];
+         fhir:Coding.code [ fhir:value "PUNCLE" ];
+         fhir:Coding.display [ fhir:value "paternal uncle" ]
+       ];
+       fhir:CodeableConcept.text [ fhir:value "paternal uncle" ]
+     ];
+     fhir:FamilyMemberHistory.condition [
+       fhir:index 0;
+       fhir:FamilyMemberHistory.condition.code [
+         fhir:CodeableConcept.coding [
+           fhir:index 0;
+           fhir:concept sct:1481000119100;
+           fhir:Coding.system [ fhir:value "http://snomed.info/sct" ];
+           fhir:Coding.code [ fhir:value "1481000119100" ];
+           fhir:Coding.display [ fhir:value "Diabetes mellitus type 2 without retinopathy" ]
+         ];
+         fhir:CodeableConcept.text [ fhir:value "Diabetes mellitus type 2 without retinopathy" ]
+       ];
+       fhir:FamilyMemberHistory.condition.onsetAge [
+         fhir:Quantity.value [ fhir:value "35"^^xsd:decimal ];
+         fhir:Quantity.unit [ fhir:value "yr" ];
+         fhir:Quantity.system [ fhir:value "http://unitsofmeasure.org" ];
+         fhir:Quantity.code [ fhir:value "a" ]
+       ]
+     ]
+  ], [
+     a fhir:FamilyMemberHistory;
+     fhir:index 2;
+     fhir:Resource.id [ fhir:value "3" ];
+     fhir:Resource.meta [
+       fhir:Meta.versionId [ fhir:value "4" ];
+       fhir:Meta.lastUpdated [ fhir:value "2016-09-21T20:32:50.318-04:00"^^xsd:dateTime ];
+       fhir:Meta.profile [
+         fhir:value "http://hl7.org/fhir/StructureDefinition/familymemberhistory-genetic";
+         fhir:index 0
+       ]
+     ];
+     fhir:DomainResource.text [
+       fhir:Narrative.status [ fhir:value "generated" ];
+       fhir:Narrative.div "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n          <div>maternal uncle</div>\n        </div>"
+     ];
+     fhir:FamilyMemberHistory.patient [
+       fhir:link <http://hl7.org/fhir/Patient/147051>;
+       fhir:Reference.reference [ fhir:value "Patient/147051" ];
+       fhir:Reference.display [ fhir:value "Pam Taylor" ]
+     ];
+     fhir:FamilyMemberHistory.status [ fhir:value "completed" ];
+     fhir:FamilyMemberHistory.name [ fhir:value "Jon" ];
+     fhir:FamilyMemberHistory.relationship [
+       fhir:CodeableConcept.coding [
+         fhir:index 0;
+         fhir:Coding.system [ fhir:value "http://hl7.org/fhir/v3/RoleCode" ];
+         fhir:Coding.code [ fhir:value "MUNCLE" ];
+         fhir:Coding.display [ fhir:value "maternal uncle" ]
+       ];
+       fhir:CodeableConcept.text [ fhir:value "maternal uncle" ]
+     ]
+  ], [
+     a fhir:FamilyMemberHistory;
+     fhir:index 3;
+     fhir:Resource.id [ fhir:value "4" ];
+     fhir:Resource.meta [
+       fhir:Meta.versionId [ fhir:value "4" ];
+       fhir:Meta.lastUpdated [ fhir:value "2016-09-21T20:30:46.027-04:00"^^xsd:dateTime ];
+       fhir:Meta.profile [
+         fhir:value "http://hl7.org/fhir/StructureDefinition/familymemberhistory-genetic";
+         fhir:index 0
+       ]
+     ];
+     fhir:DomainResource.text [
+       fhir:Narrative.status [ fhir:value "additional" ];
+       fhir:Narrative.div "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n          <div>Maternal grandmother who is paternal grandmonther's sibling at the age 70</div>\n        </div>"
+     ];
+     fhir:FamilyMemberHistory.patient [
+       fhir:link <http://hl7.org/fhir/Patient/147051>;
+       fhir:Reference.reference [ fhir:value "Patient/147051" ];
+       fhir:Reference.display [ fhir:value "Pam Taylor" ]
+     ];
+     fhir:FamilyMemberHistory.status [ fhir:value "completed" ];
+     fhir:FamilyMemberHistory.name [ fhir:value "Alica" ];
+     fhir:FamilyMemberHistory.relationship [
+       fhir:CodeableConcept.coding [
+         fhir:index 0;
+         fhir:Coding.system [ fhir:value "http://hl7.org/fhir/v3/RoleCode" ];
+         fhir:Coding.code [ fhir:value "MSMGRMTH" ];
+         fhir:Coding.display [ fhir:value "maternal grandmother who is paternal grandmother's sibling" ]
+       ];
+       fhir:CodeableConcept.text [ fhir:value "maternal grandmother who is paternal grandmother's sibling" ]
+     ];
+     fhir:FamilyMemberHistory.ageAge [
+       fhir:Quantity.value [ fhir:value "70"^^xsd:decimal ];
+       fhir:Quantity.unit [ fhir:value "yr" ];
+       fhir:Quantity.system [ fhir:value "http://unitsofmeasure.org" ];
+       fhir:Quantity.code [ fhir:value "a" ]
+     ]
+  ], [
+     a fhir:FamilyMemberHistory;
+     fhir:index 4;
+     fhir:Resource.id [ fhir:value "5" ];
+     fhir:Resource.meta [
+       fhir:Meta.versionId [ fhir:value "1" ];
+       fhir:Meta.lastUpdated [ fhir:value "2016-09-23T08:37:26.453-04:00"^^xsd:dateTime ];
+       fhir:Meta.profile [
+         fhir:value "http://hl7.org/fhir/StructureDefinition/familymemberhistory-genetic";
+         fhir:index 0
+       ]
+     ];
+     fhir:DomainResource.text [
+       fhir:Narrative.status [ fhir:value "generated" ];
+       fhir:Narrative.div "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n          <div>maternal aunt</div>\n        </div>"
+     ];
+     fhir:extension [
+       fhir:index 0;
+       fhir:Extension.url [ fhir:value "http://hl7.org/fhir/StructureDefinition/family-member-history-genetics-parent" ];
+       fhir:extension [
+         fhir:index 0;
+         fhir:Extension.url [ fhir:value "type" ];
+         fhir:Extension.valueCodeableConcept [
+           fhir:CodeableConcept.text [ fhir:value "mother" ]
+         ]
+       ], [
+         fhir:index 1;
+         fhir:Extension.url [ fhir:value "identifier" ];
+         fhir:Extension.valueReference [
+           fhir:link <http://hl7.org/fhir/FamilyMemberHistory/147146>;
+           fhir:Reference.reference [ fhir:value "FamilyMemberHistory/147146" ];
+           fhir:Reference.display [ fhir:value "maternal grandmother who is paternal grandmonther's sibling" ]
+         ]
+       ]
+     ];
+     fhir:FamilyMemberHistory.patient [
+       fhir:link <http://hl7.org/fhir/Patient/147051>;
+       fhir:Reference.reference [ fhir:value "Patient/147051" ];
+       fhir:Reference.display [ fhir:value "Pam Taylor" ]
+     ];
+     fhir:FamilyMemberHistory.status [ fhir:value "completed" ];
+     fhir:FamilyMemberHistory.name [ fhir:value "Aunt with Parent ID" ];
+     fhir:FamilyMemberHistory.relationship [
+       fhir:CodeableConcept.coding [
+         fhir:index 0;
+         fhir:Coding.system [ fhir:value "http://hl7.org/fhir/v3/RoleCode" ];
+         fhir:Coding.code [ fhir:value "MAUNT" ];
+         fhir:Coding.display [ fhir:value "maternal aunt" ]
+       ];
+       fhir:CodeableConcept.text [ fhir:value "maternal aunt" ]
+     ];
+     fhir:FamilyMemberHistory.gender [ fhir:value "female" ];
+     fhir:FamilyMemberHistory.ageAge [
+       fhir:Quantity.value [ fhir:value "55"^^xsd:decimal ];
+       fhir:Quantity.unit [ fhir:value "yr" ];
+       fhir:Quantity.system [ fhir:value "http://unitsofmeasure.org" ];
+       fhir:Quantity.code [ fhir:value "a" ]
+     ]
+  ], [
+     a fhir:FamilyMemberHistory;
+     fhir:index 5;
+     fhir:Resource.id [ fhir:value "6" ];
+     fhir:Resource.meta [
+       fhir:Meta.versionId [ fhir:value "4" ];
+       fhir:Meta.lastUpdated [ fhir:value "2016-09-21T20:30:46.027-04:00"^^xsd:dateTime ];
+       fhir:Meta.profile [
+         fhir:value "http://hl7.org/fhir/StructureDefinition/familymemberhistory-genetic";
+         fhir:index 0
+       ]
+     ];
+     fhir:DomainResource.text [
+       fhir:Narrative.status [ fhir:value "additional" ];
+       fhir:Narrative.div "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n          <div>Paternal grandfather who is maternal grandfather's sibling at the age 70</div>\n        </div>"
+     ];
+     fhir:FamilyMemberHistory.patient [
+       fhir:link <http://hl7.org/fhir/Patient/147051>;
+       fhir:Reference.reference [ fhir:value "Patient/147051" ];
+       fhir:Reference.display [ fhir:value "Pam Taylor" ]
+     ];
+     fhir:FamilyMemberHistory.status [ fhir:value "completed" ];
+     fhir:FamilyMemberHistory.name [ fhir:value "Paul" ];
+     fhir:FamilyMemberHistory.relationship [
+       fhir:CodeableConcept.coding [
+         fhir:index 0;
+         fhir:Coding.system [ fhir:value "http://hl7.org/fhir/v3/RoleCode" ];
+         fhir:Coding.code [ fhir:value "FSPGRFTH" ];
+         fhir:Coding.display [ fhir:value "Paternal grandfather who is maternal grandfather's sibling" ]
+       ];
+       fhir:CodeableConcept.text [ fhir:value "Paternal grandfather who is maternal grandfather's sibling" ]
+     ];
+     fhir:FamilyMemberHistory.ageAge [
+       fhir:Quantity.value [ fhir:value "74"^^xsd:decimal ];
+       fhir:Quantity.unit [ fhir:value "yr" ];
+       fhir:Quantity.system [ fhir:value "http://unitsofmeasure.org" ];
+       fhir:Quantity.code [ fhir:value "b" ]
+     ]
+  ];
+  fhir:Resource.meta [
+     fhir:Meta.versionId [ fhir:value "1" ];
+     fhir:Meta.lastUpdated [ fhir:value "2016-09-21T18:55:36.552-04:00"^^xsd:dateTime ]
+  ];
+  fhir:DomainResource.text [
+     fhir:Narrative.status [ fhir:value "generated" ];
+     fhir:Narrative.div "<div xmlns=\"http://www.w3.org/1999/xhtml\">Pam Taylor</div>"
+  ];
+  fhir:List.status [ fhir:value "current"];
+  fhir:List.mode [ fhir:value "snapshot"];
+  fhir:List.code [
+     fhir:CodeableConcept.coding [
+       fhir:index 0;
+       fhir:concept loinc:80738-8;
+       fhir:Coding.system [ fhir:value "http://loinc.org" ];
+       fhir:Coding.code [ fhir:value "80738-8" ];
+       fhir:Coding.display [ fhir:value "TPMT gene mutations found [Identifier] in Blood or Tissue by Sequencing Nominal" ]
+     ];
+     fhir:CodeableConcept.text [ fhir:value "TPMT gene mutations found [Identifier] in Blood or Tissue by Sequencing Nominal" ]
+  ];
+  fhir:List.subject [
+     fhir:link <http://hl7.org/fhir/Patient/147051>;
+     fhir:Reference.reference [ fhir:value "Patient/147051" ];
+     fhir:Reference.display [ fhir:value "Pam Taylor" ]
+  ];
+  fhir:List.entry [
+     fhir:index 0;
+     fhir:List.entry.item [
+       fhir:Reference.reference [ fhir:value "#1" ]
+     ]
+  ], [
+     fhir:index 1;
+     fhir:List.entry.item [
+       fhir:Reference.reference [ fhir:value "#2" ]
+     ]
+  ], [
+     fhir:index 2;
+     fhir:List.entry.item [
+       fhir:Reference.reference [ fhir:value "#3" ]
+     ]
+  ], [
+     fhir:index 3;
+     fhir:List.entry.item [
+       fhir:Reference.reference [ fhir:value "#4" ]
+     ]
+  ], [
+     fhir:index 4;
+     fhir:List.entry.item [
+       fhir:Reference.reference [ fhir:value "#5" ]
+     ]
+  ], [
+     fhir:index 5;
+     fhir:List.entry.item [
+       fhir:Reference.reference [ fhir:value "#6" ]
+     ]
+  ] .
+
+<http://hl7.org/fhir/Patient/147051> a fhir:Patient, fhir:Patient, fhir:Patient, fhir:Patient, fhir:Patient, fhir:Patient, fhir:Patient .
+
+<http://hl7.org/fhir/FamilyMemberHistory/147146> a fhir:FamilyMemberHistory .
+
+# -------------------------------------------------------------------------------------
+

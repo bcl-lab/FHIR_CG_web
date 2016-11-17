@@ -1,0 +1,95 @@
+{
+  "@context": "http://build.fhir.org/FamilyMemberHistory.jsonld",
+  "@context": "http://hl7.org/fhir/FamilyMemberHistory/147144",
+  "Resource.id": {
+    "id.value": "147144"
+  },
+  "Resource.meta": {
+    "Meta.versionId": {
+      "id.value": "4"
+    },
+    "Meta.lastUpdated": {
+      "instant.value": "2016-09-23T08:06:14.691-04:00"
+    },
+    "Meta.profile": [
+      {
+        "uri.value": "http://hl7.org/fhir/StructureDefinition/familymemberhistory-genetic"
+      }
+    ]
+  },
+  "DomainResource.text": {
+    "Narrative.status": {
+      "code.value": "additional"
+    },
+    "Narrative.div": {
+      "xhtml.value": "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n         <div>paternal uncle with Diabetes mellitus type 2 without retinopathy onset at age 35</div>\n      </div>"
+    }
+  },
+  "FamilyMemberHistory.patient": {
+    "Reference.reference": {
+      "string.value": "Patient/147051"
+    },
+    "Reference.display": {
+      "string.value": "Pam Taylor"
+    },
+    "Resource.reference": "http://hl7.org/fhir//Patient/147051"
+  },
+  "FamilyMemberHistory.status": {
+    "code.value": "completed"
+  },
+  "FamilyMemberHistory.relationship": {
+    "CodeableConcept.coding": [
+      {
+        "Coding.system": {
+          "uri.value": "http://hl7.org/fhir/v3/RoleCode"
+        },
+        "Coding.code": {
+          "code.value": "PUNCLE"
+        },
+        "Coding.display": {
+          "string.value": "paternal uncle"
+        }
+      }
+    ],
+    "CodeableConcept.text": {
+      "string.value": "paternal uncle"
+    }
+  },
+  "FamilyMemberHistory.condition": [
+    {
+      "FamilyMemberHistory.condition.code": {
+        "CodeableConcept.coding": [
+          {
+            "Coding.system": {
+              "uri.value": "http://snomed.info/sct"
+            },
+            "Coding.code": {
+              "code.value": "1481000119100"
+            },
+            "Coding.display": {
+              "string.value": "Diabetes mellitus type 2 without retinopathy"
+            }
+          }
+        ],
+        "CodeableConcept.text": {
+          "string.value": "Diabetes mellitus type 2 without retinopathy"
+        },
+        "Resource.concept": "http://snomed.info/sct#1481000119100"
+      },
+      "FamilyMemberHistory.condition.onsetAge": {
+        "Quantity.value": {
+          "decimal.value": 35
+        },
+        "Quantity.unit": {
+          "string.value": "yr"
+        },
+        "Quantity.system": {
+          "uri.value": "http://unitsofmeasure.org"
+        },
+        "Quantity.code": {
+          "code.value": "a"
+        }
+      }
+    }
+  ]
+}

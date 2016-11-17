@@ -1,0 +1,124 @@
+{
+  "@context": "http://build.fhir.org/Observation.jsonld",
+  "@context": "http://hl7.org/fhir/Observation/vitals-panel",
+  "Resource.id": {
+    "id.value": "vitals-panel"
+  },
+  "DomainResource.text": {
+    "Narrative.status": {
+      "code.value": "generated"
+    },
+    "Narrative.div": {
+      "xhtml.value": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative with Details</b></p><p><b>id</b>: vitals-panel</p><p><b>status</b>: final</p><p><b>category</b>: Vital Signs <span>(Details : {http://hl7.org/fhir/observation-category code 'vital-signs' = 'Vital Signs', given as 'Vital Signs'})</span></p><p><b>code</b>: Vital signs <span>(Details : {LOINC code '8716-3' = 'Vital signs', given as 'Vital signs'})</span></p><p><b>subject</b>: <a>Patient/example</a></p><p><b>effective</b>: 1999-7-2</p><blockquote><p><b>related</b></p><p><b>type</b>: has-member</p><p><b>target</b>: <a>Respiratory Rate</a></p></blockquote><blockquote><p><b>related</b></p><p><b>type</b>: has-member</p><p><b>target</b>: <a>Heart Rate</a></p></blockquote><blockquote><p><b>related</b></p><p><b>type</b>: has-member</p><p><b>target</b>: <a>Blood Pressure</a></p></blockquote><blockquote><p><b>related</b></p><p><b>type</b>: has-member</p><p><b>target</b>: <a>Body Temperature</a></p></blockquote></div>"
+    }
+  },
+  "Observation.status": {
+    "code.value": "final"
+  },
+  "Observation.category": [
+    {
+      "CodeableConcept.coding": [
+        {
+          "Coding.system": {
+            "uri.value": "http://hl7.org/fhir/observation-category"
+          },
+          "Coding.code": {
+            "code.value": "vital-signs"
+          },
+          "Coding.display": {
+            "string.value": "Vital Signs"
+          }
+        }
+      ],
+      "CodeableConcept.text": {
+        "string.value": "Vital Signs"
+      }
+    }
+  ],
+  "Observation.code": {
+    "CodeableConcept.coding": [
+      {
+        "Coding.system": {
+          "uri.value": "http://loinc.org"
+        },
+        "Coding.code": {
+          "code.value": "8716-3"
+        },
+        "Coding.display": {
+          "string.value": "Vital signs"
+        }
+      }
+    ],
+    "CodeableConcept.text": {
+      "string.value": "Vital signs"
+    },
+    "Resource.concept": "http://loinc.org/owl#8716-3"
+  },
+  "Observation.subject": {
+    "Reference.reference": {
+      "string.value": "Patient/example"
+    },
+    "Resource.reference": "http://hl7.org/fhir//Patient/example"
+  },
+  "Observation.effectiveDateTime": {
+    "dateTime.value": "1999-07-02"
+  },
+  "Observation.related": [
+    {
+      "Observation.related.type": {
+        "code.value": "has-member"
+      },
+      "Observation.related.target": {
+        "Reference.reference": {
+          "string.value": "Observation/respiratory-rate"
+        },
+        "Reference.display": {
+          "string.value": "Respiratory Rate"
+        },
+        "Resource.reference": "http://hl7.org/fhir//Observation/respiratory-rate"
+      }
+    },
+    {
+      "Observation.related.type": {
+        "code.value": "has-member"
+      },
+      "Observation.related.target": {
+        "Reference.reference": {
+          "string.value": "Observation/heart-rate"
+        },
+        "Reference.display": {
+          "string.value": "Heart Rate"
+        },
+        "Resource.reference": "http://hl7.org/fhir//Observation/heart-rate"
+      }
+    },
+    {
+      "Observation.related.type": {
+        "code.value": "has-member"
+      },
+      "Observation.related.target": {
+        "Reference.reference": {
+          "string.value": "Observation/blood-pressure"
+        },
+        "Reference.display": {
+          "string.value": "Blood Pressure"
+        },
+        "Resource.reference": "http://hl7.org/fhir//Observation/blood-pressure"
+      }
+    },
+    {
+      "Observation.related.type": {
+        "code.value": "has-member"
+      },
+      "Observation.related.target": {
+        "Reference.reference": {
+          "string.value": "Observation/body-temperature"
+        },
+        "Reference.display": {
+          "string.value": "Body Temperature"
+        },
+        "Resource.reference": "http://hl7.org/fhir//Observation/body-temperature"
+      }
+    }
+  ]
+}

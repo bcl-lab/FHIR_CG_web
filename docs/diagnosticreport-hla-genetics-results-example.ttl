@@ -1,0 +1,118 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix loinc: <http://loinc.org/owl#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+<http://hl7.org/fhir/DiagnosticReport/hla-1> a fhir:DiagnosticReport;
+  fhir:nodeRole fhir:treeRoot;
+  fhir:Resource.id [ fhir:value "hla-1"];
+  fhir:DomainResource.text [ fhir:Narrative.div "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n        <h3>HLA-A,-B,-C Genotyping Report for Marry Chalmers (MRN: 12345) </h3>\n        <pre>\n        Gene      Allele 1          Allele 2\n        HLA-A     HLA-A*01:01:01:01     HLA-A*01:02\n        HLA-B     HLA-B*15:01:01:01     HLA-B*57:01:01\n        HLA-C     HLA-C*01:02:01        HLA-C*03:04:01:01\n        </pre>\n        <p>Allele assignments based on IMGT/HLA 3.23</p>\n        <p>Issued: 2015-05-26T15:30:10+01:00</p>\n        <p>Method: Next-Generation Sequencing of exons 2 and 3 of HLA Class I genes</p>\n        <p>Lab: ACME labs, Inc</p>\n        <p>Please refer the <a href=\"genomics.html#hla\">implementation guide </a> for this usage example.</p>\n      </div>"];
+  fhir:DiagnosticReport.code [
+     fhir:CodeableConcept.coding [
+       fhir:index 0;
+       fhir:concept loinc:53767-0;
+       fhir:Coding.system [ fhir:value "http://loinc.org" ];
+       fhir:Coding.code [ fhir:value "53767-0" ];
+       fhir:Coding.display [ fhir:value "HLA-A+B+C SBT [Interpretation] by High resolution" ]
+     ]
+  ];
+  fhir:DiagnosticReport.category [
+     fhir:CodeableConcept.coding [
+       fhir:index 0;
+       fhir:Coding.system [ fhir:value "http://hl7.org/fhir/ValueSet/diagnostic-service-sections" ];
+       fhir:Coding.code [ fhir:value "GE" ];
+       fhir:Coding.display [ fhir:value "Genetics" ]
+     ]
+  ];
+  fhir:DiagnosticReport.subject [
+     fhir:link <http://hl7.org/fhir/Patient/123>;
+     fhir:Reference.reference [ fhir:value "Patient/123" ];
+     fhir:Reference.display [ fhir:value "Mary Chalmers" ]
+  ];
+  fhir:DiagnosticReport.specimen [
+     fhir:index 0;
+     fhir:link <http://hl7.org/fhir/Specimen/456>;
+     fhir:Reference.reference [ fhir:value "Specimen/456" ];
+     fhir:Reference.display [ fhir:value "buccal swab" ]
+  ];
+  fhir:DiagnosticReport.request [
+     fhir:index 0;
+     fhir:link <http://hl7.org/fhir/DiagnosticRequest/789>;
+     fhir:Reference.reference [ fhir:value "DiagnosticRequest/789" ];
+     fhir:Reference.display [ fhir:value "Order for HLA-A,-B,-C genotyping" ]
+  ];
+  fhir:DiagnosticReport.effectiveDateTime [ fhir:value "2015-05-26T15:30:10+01:00"^^xsd:dateTime];
+  fhir:DiagnosticReport.issued [ fhir:value "2014-05-16T10:28:00+01:00"^^xsd:dateTime];
+  fhir:extension [
+     fhir:index 0;
+     fhir:Extension.url [ fhir:value "http://hl7.org/fhir/StructureDefinition/hla-genotyping-resultsAlleleAsignmentDate" ];
+     fhir:Extension.valueDate [ fhir:value "2014-05-16T10:28:00+01:00"^^xsd:dateTime ]
+  ], [
+     fhir:index 1;
+     fhir:Extension.url [ fhir:value "http://hl7.org/fhir/StructureDefinition/hla-genotyping-resultsAlleleDatabase" ];
+     fhir:Extension.valueCodeableConcept [
+       fhir:CodeableConcept.coding [
+         fhir:index 0;
+         fhir:Coding.system [ fhir:value "http://www.ebi.ac.uk/ipd/imgt/hla/" ];
+         fhir:Coding.version [ fhir:value "3.23" ]
+       ];
+       fhir:CodeableConcept.text [ fhir:value "IMGT/HLA 3.23" ]
+     ]
+  ], [
+     fhir:index 2;
+     fhir:Extension.url [ fhir:value "http://hl7.org/fhir/StructureDefinition/hla-genotyping-resultsGlstring" ];
+     fhir:extension [
+       fhir:index 0;
+       fhir:Extension.url [ fhir:value "text" ];
+       fhir:Extension.valueString [ fhir:value "HLA-A*01:01:01:01+HLA-A*01:02^HLA-B*15:01:01:01+HLA-B*57:01:01^HLA-C*01:02:01+HLA-C*03:04:01:01" ]
+     ], [
+       fhir:index 1;
+       fhir:Extension.url [ fhir:value "uri" ];
+       fhir:Extension.valueUri [ fhir:value "https://gl.nmdp.org/imgt-hla/3.23.0/multilocus-unphased-genotype/i" ]
+     ]
+  ], [
+     fhir:index 3;
+     fhir:Extension.url [ fhir:value "http://hl7.org/fhir/StructureDefinition/hla-genotyping-resultsMethod" ];
+     fhir:Extension.valueCodeableConcept [
+       fhir:CodeableConcept.coding [
+         fhir:index 0;
+         fhir:Coding.system [ fhir:value "http://www.ncbi.nlm.nih.gov/gtr/" ];
+         fhir:Coding.code [ fhir:value "GTR000000000.0" ]
+       ];
+       fhir:CodeableConcept.text [ fhir:value "Next Generation Sequencing of exons 2 and 3 of HLA Class I genes" ]
+     ]
+  ];
+  fhir:DiagnosticReport.result [
+     fhir:index 0;
+     fhir:link <http://hl7.org/fhir/Observation/111>;
+     fhir:Reference.reference [ fhir:value "Observation/111" ];
+     fhir:Reference.display [ fhir:value "Genotype Observation for for HLA-A" ]
+  ], [
+     fhir:index 1;
+     fhir:link <http://hl7.org/fhir/Observation/222>;
+     fhir:Reference.reference [ fhir:value "Observation/222" ];
+     fhir:Reference.display [ fhir:value "Genotype Observation for for HLA-B" ]
+  ], [
+     fhir:index 2;
+     fhir:link <http://hl7.org/fhir/Observation/333>;
+     fhir:Reference.reference [ fhir:value "Observation/333" ];
+     fhir:Reference.display [ fhir:value "Genotype Observation for for HLA-C" ]
+  ] .
+
+<http://hl7.org/fhir/Patient/123> a fhir:Patient .
+
+<http://hl7.org/fhir/Specimen/456> a fhir:Specimen .
+
+<http://hl7.org/fhir/DiagnosticRequest/789> a fhir:DiagnosticRequest .
+
+<http://hl7.org/fhir/Observation/111> a fhir:Observation .
+
+<http://hl7.org/fhir/Observation/222> a fhir:Observation .
+
+<http://hl7.org/fhir/Observation/333> a fhir:Observation .
+
+# -------------------------------------------------------------------------------------
+

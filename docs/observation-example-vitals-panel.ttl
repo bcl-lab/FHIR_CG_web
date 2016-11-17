@@ -1,0 +1,87 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix loinc: <http://loinc.org/owl#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+<http://hl7.org/fhir/Observation/vitals-panel> a fhir:Observation;
+  fhir:nodeRole fhir:treeRoot;
+  fhir:Resource.id [ fhir:value "vitals-panel"];
+  fhir:DomainResource.text [
+     fhir:Narrative.status [ fhir:value "generated" ];
+     fhir:Narrative.div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative with Details</b></p><p><b>id</b>: vitals-panel</p><p><b>status</b>: final</p><p><b>category</b>: Vital Signs <span>(Details : {http://hl7.org/fhir/observation-category code 'vital-signs' = 'Vital Signs', given as 'Vital Signs'})</span></p><p><b>code</b>: Vital signs <span>(Details : {LOINC code '8716-3' = 'Vital signs', given as 'Vital signs'})</span></p><p><b>subject</b>: <a>Patient/example</a></p><p><b>effective</b>: 1999-7-2</p><blockquote><p><b>related</b></p><p><b>type</b>: has-member</p><p><b>target</b>: <a>Respiratory Rate</a></p></blockquote><blockquote><p><b>related</b></p><p><b>type</b>: has-member</p><p><b>target</b>: <a>Heart Rate</a></p></blockquote><blockquote><p><b>related</b></p><p><b>type</b>: has-member</p><p><b>target</b>: <a>Blood Pressure</a></p></blockquote><blockquote><p><b>related</b></p><p><b>type</b>: has-member</p><p><b>target</b>: <a>Body Temperature</a></p></blockquote></div>"
+  ];
+  fhir:Observation.status [ fhir:value "final"];
+  fhir:Observation.category [
+     fhir:index 0;
+     fhir:CodeableConcept.coding [
+       fhir:index 0;
+       fhir:Coding.system [ fhir:value "http://hl7.org/fhir/observation-category" ];
+       fhir:Coding.code [ fhir:value "vital-signs" ];
+       fhir:Coding.display [ fhir:value "Vital Signs" ]
+     ];
+     fhir:CodeableConcept.text [ fhir:value "Vital Signs" ]
+  ];
+  fhir:Observation.code [
+     fhir:CodeableConcept.coding [
+       fhir:index 0;
+       fhir:concept loinc:8716-3;
+       fhir:Coding.system [ fhir:value "http://loinc.org" ];
+       fhir:Coding.code [ fhir:value "8716-3" ];
+       fhir:Coding.display [ fhir:value "Vital signs" ]
+     ];
+     fhir:CodeableConcept.text [ fhir:value "Vital signs" ]
+  ];
+  fhir:Observation.subject [
+     fhir:link <http://hl7.org/fhir/Patient/example>;
+     fhir:Reference.reference [ fhir:value "Patient/example" ]
+  ];
+  fhir:Observation.effectiveDateTime [ fhir:value "1999-07-02"^^xsd:date];
+  fhir:Observation.related [
+     fhir:index 0;
+     fhir:Observation.related.type [ fhir:value "has-member" ];
+     fhir:Observation.related.target [
+       fhir:link <http://hl7.org/fhir/Observation/respiratory-rate>;
+       fhir:Reference.reference [ fhir:value "Observation/respiratory-rate" ];
+       fhir:Reference.display [ fhir:value "Respiratory Rate" ]
+     ]
+  ], [
+     fhir:index 1;
+     fhir:Observation.related.type [ fhir:value "has-member" ];
+     fhir:Observation.related.target [
+       fhir:link <http://hl7.org/fhir/Observation/heart-rate>;
+       fhir:Reference.reference [ fhir:value "Observation/heart-rate" ];
+       fhir:Reference.display [ fhir:value "Heart Rate" ]
+     ]
+  ], [
+     fhir:index 2;
+     fhir:Observation.related.type [ fhir:value "has-member" ];
+     fhir:Observation.related.target [
+       fhir:link <http://hl7.org/fhir/Observation/blood-pressure>;
+       fhir:Reference.reference [ fhir:value "Observation/blood-pressure" ];
+       fhir:Reference.display [ fhir:value "Blood Pressure" ]
+     ]
+  ], [
+     fhir:index 3;
+     fhir:Observation.related.type [ fhir:value "has-member" ];
+     fhir:Observation.related.target [
+       fhir:link <http://hl7.org/fhir/Observation/body-temperature>;
+       fhir:Reference.reference [ fhir:value "Observation/body-temperature" ];
+       fhir:Reference.display [ fhir:value "Body Temperature" ]
+     ]
+  ] .
+
+<http://hl7.org/fhir/Patient/example> a fhir:Patient .
+
+<http://hl7.org/fhir/Observation/respiratory-rate> a fhir:Observation .
+
+<http://hl7.org/fhir/Observation/heart-rate> a fhir:Observation .
+
+<http://hl7.org/fhir/Observation/blood-pressure> a fhir:Observation .
+
+<http://hl7.org/fhir/Observation/body-temperature> a fhir:Observation .
+
+# -------------------------------------------------------------------------------------
+

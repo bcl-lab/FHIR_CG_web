@@ -1,0 +1,122 @@
+{
+  "@context": "http://build.fhir.org/Observation.jsonld",
+  "@context": "http://hl7.org/fhir/Observation/example-haplotype2",
+  "Resource.id": {
+    "id.value": "example-haplotype2"
+  },
+  "DomainResource.text": {
+    "Narrative.status": {
+      "code.value": "generated"
+    },
+    "Narrative.div": {
+      "xhtml.value": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative with Details</b></p><p><b>id</b>: example-haplotype2</p><p><b>status</b>: unknown</p><p><b>subject</b>: <a>J*********** C***********</a></p><p><b>issued</b>: 2013-4-3 15:30:10</p><p><b>value</b>: *4 <span>(Details : {http://pharmakb.org code 'PA16581679' = 'PA16581679', given as '*4'})</span></p><p><b>specimen</b>: <a>Molecular Specimen ID: MLD45-Z4-1234</a></p><blockquote><p><b>related</b></p><p><b>type</b>: derived-from</p><p><b>target</b>: <a>Sequence/example-pgx-1</a></p></blockquote><blockquote><p><b>related</b></p><p><b>type</b>: derived-from</p><p><b>target</b>: <a>Sequence/example-pgx-2</a></p></blockquote></div>"
+    }
+  },
+  "Observation.status": {
+    "code.value": "unknown"
+  },
+  "DomainResource.extension": [
+    {
+      "Extension.url": {
+        "uri.value": "http://hl7.org/fhir/StructureDefinition/observation-geneticsGene"
+      },
+      "Extension.valueCodeableConcept": {
+        "CodeableConcept.coding": [
+          {
+            "Coding.system": {
+              "uri.value": "http://www.genenames.org"
+            },
+            "Coding.code": {
+              "code.value": "2623"
+            },
+            "Coding.display": {
+              "string.value": "CYP2C9"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "Extension.url": {
+        "uri.value": "http://hl7.org/fhir/StructureDefinition/observation-geneticsSequence"
+      },
+      "Extension.valueReference": {
+        "Reference.reference": {
+          "string.value": "Sequence/example-sequence1"
+        },
+        "Resource.reference": "http://hl7.org/fhir//Sequence/example-sequence1"
+      }
+    },
+    {
+      "Extension.url": {
+        "uri.value": "http://hl7.org/fhir/StructureDefinition/observation-geneticsSequence"
+      },
+      "Extension.valueReference": {
+        "Reference.reference": {
+          "string.value": "Sequence/example-sequence2"
+        },
+        "Resource.reference": "http://hl7.org/fhir//Sequence/example-sequence2"
+      }
+    }
+  ],
+  "Observation.subject": {
+    "Reference.reference": {
+      "string.value": "Patient/727127"
+    },
+    "Reference.display": {
+      "string.value": "J*********** C***********"
+    },
+    "Resource.reference": "http://hl7.org/fhir//Patient/727127"
+  },
+  "Observation.issued": {
+    "instant.value": "2013-04-03T15:30:10+01:00"
+  },
+  "Observation.valueCodeableConcept": {
+    "CodeableConcept.coding": [
+      {
+        "Coding.system": {
+          "uri.value": "http://pharmakb.org"
+        },
+        "Coding.code": {
+          "code.value": "PA16581679"
+        },
+        "Coding.display": {
+          "string.value": "*4"
+        }
+      }
+    ]
+  },
+  "Observation.specimen": {
+    "Reference.reference": {
+      "string.value": "Specimen/genetics-example1-somatic"
+    },
+    "Reference.display": {
+      "string.value": "Molecular Specimen ID: MLD45-Z4-1234"
+    },
+    "Resource.reference": "http://hl7.org/fhir//Specimen/genetics-example1-somatic"
+  },
+  "Observation.related": [
+    {
+      "Observation.related.type": {
+        "code.value": "derived-from"
+      },
+      "Observation.related.target": {
+        "Reference.reference": {
+          "string.value": "Sequence/example-pgx-1"
+        },
+        "Resource.reference": "http://hl7.org/fhir//Sequence/example-pgx-1"
+      }
+    },
+    {
+      "Observation.related.type": {
+        "code.value": "derived-from"
+      },
+      "Observation.related.target": {
+        "Reference.reference": {
+          "string.value": "Sequence/example-pgx-2"
+        },
+        "Resource.reference": "http://hl7.org/fhir//Sequence/example-pgx-2"
+      }
+    }
+  ]
+}

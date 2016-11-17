@@ -1,0 +1,40 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix loinc: <http://loinc.org/owl#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+<http://hl7.org/fhir/DiagnosticRequest/example-pgx> a fhir:DiagnosticRequest;
+  fhir:nodeRole fhir:treeRoot;
+  fhir:Resource.id [ fhir:value "example-pgx"];
+  fhir:DomainResource.text [
+     fhir:Narrative.status [ fhir:value "generated" ];
+     fhir:Narrative.div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative with Details</b></p><p><b>id</b>: example-pgx</p><p><b>code</b>: CYP2D6 gene targeted mutation analysis <span>(Details : {LOINC code '47403-1' = 'CYP2D6 gene mutation analysis in Blood or Tissue by Molecular genetics method Narrative', given as 'CYP2D6 gene targeted mutation analysis'})</span></p><p><b>subject</b>: <a>Patient/899962</a></p><p><b>authored</b>: 2016-10-10 15:00:00</p><p><b>requester</b>: <a>Practitioner/12345</a></p></div>"
+  ];
+  fhir:DiagnosticRequest.code [
+     fhir:CodeableConcept.coding [
+       fhir:index 0;
+       fhir:concept loinc:47403-1;
+       fhir:Coding.system [ fhir:value "http://loinc.org" ];
+       fhir:Coding.code [ fhir:value "47403-1" ];
+       fhir:Coding.display [ fhir:value "CYP2D6 gene targeted mutation analysis" ]
+     ]
+  ];
+  fhir:DiagnosticRequest.subject [
+     fhir:link <http://hl7.org/fhir/Patient/899962>;
+     fhir:Reference.reference [ fhir:value "Patient/899962" ]
+  ];
+  fhir:DiagnosticRequest.authored [ fhir:value "2016-10-10T15:00:00-07:00"^^xsd:dateTime];
+  fhir:DiagnosticRequest.requester [
+     fhir:link <http://hl7.org/fhir/Practitioner/12345>;
+     fhir:Reference.reference [ fhir:value "Practitioner/12345" ]
+  ] .
+
+<http://hl7.org/fhir/Patient/899962> a fhir:Patient .
+
+<http://hl7.org/fhir/Practitioner/12345> a fhir:Practitioner .
+
+# -------------------------------------------------------------------------------------
+

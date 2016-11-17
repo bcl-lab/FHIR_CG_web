@@ -1,0 +1,62 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sct: <http://snomed.info/id/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+<http://hl7.org/fhir/FamilyMemberHistory/147144> a fhir:FamilyMemberHistory;
+  fhir:nodeRole fhir:treeRoot;
+  fhir:Resource.id [ fhir:value "147144"];
+  fhir:Resource.meta [
+     fhir:Meta.versionId [ fhir:value "4" ];
+     fhir:Meta.lastUpdated [ fhir:value "2016-09-23T08:06:14.691-04:00"^^xsd:dateTime ];
+     fhir:Meta.profile [
+       fhir:value "http://hl7.org/fhir/StructureDefinition/familymemberhistory-genetic";
+       fhir:index 0
+     ]
+  ];
+  fhir:DomainResource.text [
+     fhir:Narrative.status [ fhir:value "additional" ];
+     fhir:Narrative.div "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n         <div>paternal uncle with Diabetes mellitus type 2 without retinopathy onset at age 35</div>\n      </div>"
+  ];
+  fhir:FamilyMemberHistory.patient [
+     fhir:link <http://hl7.org/fhir/Patient/147051>;
+     fhir:Reference.reference [ fhir:value "Patient/147051" ];
+     fhir:Reference.display [ fhir:value "Pam Taylor" ]
+  ];
+  fhir:FamilyMemberHistory.status [ fhir:value "completed"];
+  fhir:FamilyMemberHistory.relationship [
+     fhir:CodeableConcept.coding [
+       fhir:index 0;
+       fhir:Coding.system [ fhir:value "http://hl7.org/fhir/v3/RoleCode" ];
+       fhir:Coding.code [ fhir:value "PUNCLE" ];
+       fhir:Coding.display [ fhir:value "paternal uncle" ]
+     ];
+     fhir:CodeableConcept.text [ fhir:value "paternal uncle" ]
+  ];
+  fhir:FamilyMemberHistory.condition [
+     fhir:index 0;
+     fhir:FamilyMemberHistory.condition.code [
+       fhir:CodeableConcept.coding [
+         fhir:index 0;
+         fhir:concept sct:1481000119100;
+         fhir:Coding.system [ fhir:value "http://snomed.info/sct" ];
+         fhir:Coding.code [ fhir:value "1481000119100" ];
+         fhir:Coding.display [ fhir:value "Diabetes mellitus type 2 without retinopathy" ]
+       ];
+       fhir:CodeableConcept.text [ fhir:value "Diabetes mellitus type 2 without retinopathy" ]
+     ];
+     fhir:FamilyMemberHistory.condition.onsetAge [
+       fhir:Quantity.value [ fhir:value "35"^^xsd:decimal ];
+       fhir:Quantity.unit [ fhir:value "yr" ];
+       fhir:Quantity.system [ fhir:value "http://unitsofmeasure.org" ];
+       fhir:Quantity.code [ fhir:value "a" ]
+     ]
+  ] .
+
+<http://hl7.org/fhir/Patient/147051> a fhir:Patient .
+
+# -------------------------------------------------------------------------------------
+

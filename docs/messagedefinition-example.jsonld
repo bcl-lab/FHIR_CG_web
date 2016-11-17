@@ -1,0 +1,80 @@
+{
+  "@context": "http://build.fhir.org/MessageDefinition.jsonld",
+  "@context": "http://hl7.org/fhir/MessageDefinition/example",
+  "Resource.id": {
+    "id.value": "example"
+  },
+  "DomainResource.text": {
+    "Narrative.status": {
+      "code.value": "generated"
+    },
+    "Narrative.div": {
+      "xhtml.value": "<div xmlns=\"http://www.w3.org/1999/xhtml\">[Put rendering here]</div>"
+    }
+  },
+  "MessageDefinition.url": {
+    "uri.value": "http://hl7.org/fhir/MessageDefinition/example"
+  },
+  "MessageDefinition.name": {
+    "string.value": "A24"
+  },
+  "MessageDefinition.title": {
+    "string.value": "Link patients notification"
+  },
+  "MessageDefinition.status": {
+    "code.value": "draft"
+  },
+  "MessageDefinition.experimental": {
+    "boolean.value": true
+  },
+  "MessageDefinition.date": {
+    "dateTime.value": "2016-11-09"
+  },
+  "MessageDefinition.publisher": {
+    "string.value": "Health Level Seven, Int'l"
+  },
+  "MessageDefinition.contact": [
+    {
+      "ContactDetail.telecom": [
+        {
+          "ContactPoint.system": {
+            "code.value": "other"
+          },
+          "ContactPoint.value": {
+            "string.value": "http://hl7.org"
+          }
+        }
+      ]
+    }
+  ],
+  "MessageDefinition.purpose": {
+    "markdown.value": "Notifies recipient systems that two patients have been 'linked' - meaning they represent the same individual"
+  },
+  "MessageDefinition.event": {
+    "Coding.system": {
+      "uri.value": "http://hl7.org/fhir/message-events"
+    },
+    "Coding.code": {
+      "code.value": "patient-link"
+    }
+  },
+  "MessageDefinition.category": {
+    "code.value": "Notification"
+  },
+  "MessageDefinition.focus": [
+    {
+      "MessageDefinition.focus.code": {
+        "code.value": "Patient"
+      },
+      "MessageDefinition.focus.min": {
+        "unsignedInt.value": 2
+      },
+      "MessageDefinition.focus.max": {
+        "string.value": "2"
+      }
+    }
+  ],
+  "MessageDefinition.responseRequired": {
+    "boolean.value": false
+  }
+}

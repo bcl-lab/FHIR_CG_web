@@ -34,6 +34,18 @@ start=@<Substance> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
+# If this describes a specific package/container of the substance
+<Substance.instance> CLOSED {
+    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
+    fhir:extension @<Extension>*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
+    fhir:Substance.instance.identifier @<Identifier>?;  # Identifier of the package/container
+    fhir:Substance.instance.expiry @<dateTime>?;  # When no longer valid to use
+    fhir:Substance.instance.quantity @<SimpleQuantity>?;  # Amount of substance in the package
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
 # Composition information about the substance
 <Substance.ingredient> CLOSED {
     fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
@@ -45,18 +57,6 @@ start=@<Substance> AND {fhir:nodeRole [fhir:treeRoot]}
         fhir:Substance.ingredient.substanceCodeableConcept @<CodeableConcept>  |
         fhir:Substance.ingredient.substanceReference @<Reference> 
     );
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
-# If this describes a specific package/container of the substance
-<Substance.instance> CLOSED {
-    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
-    fhir:extension @<Extension>*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    fhir:Substance.instance.identifier @<Identifier>?;  # Identifier of the package/container
-    fhir:Substance.instance.expiry @<dateTime>?;  # When no longer valid to use
-    fhir:Substance.instance.quantity @<SimpleQuantity>?;  # Amount of substance in the package
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -291,11 +291,11 @@ start=@<Substance> AND {fhir:nodeRole [fhir:treeRoot]}
 
 #---------------------- Value Sets ------------------------
 
-# The status of a resource narrative
-fhirvs:narrative-status ["generated" "extensions" "additional" "empty"]
-
 # How the Quantity should be understood and represented.
 fhirvs:quantity-comparator ["<" "<=" ">=" ">"]
+
+# The status of a resource narrative
+fhirvs:narrative-status ["generated" "extensions" "additional" "empty"]
 
 # Identifies the purpose for this identifier, if known .
 fhirvs:identifier-use ["usual" "official" "temp" "secondary"]

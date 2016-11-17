@@ -610,23 +610,14 @@ start=@<RequestGroup> AND {fhir:nodeRole [fhir:treeRoot]}
 
 #---------------------- Value Sets ------------------------
 
-# Defines the kinds of conditions that can appear on actions
-fhirvs:action-condition-kind ["applicability" "start" "stop"]
+# The type of relationship to the related artifact
+fhirvs:related-artifact-type ["documentation" "justification" "citation" "predecessor" "successor" "derived-from" "depends-on" "composed-of"]
 
 # Real world event that the relating to the schedule.
 fhirvs:event-timing ["HS" "WAKE" "C" "CM" "CD" "CV" "AC" "ACM" "ACD" "ACV" "PC" "PCM" "PCD" "PCV"]
 
-# The type of relationship to the related artifact
-fhirvs:related-artifact-type ["documentation" "justification" "citation" "predecessor" "successor" "derived-from" "depends-on" "composed-of"]
-
-# A unit of time (units from UCUM).
-fhirvs:units-of-time ["s" "min" "h" "d" "wk" "mo" "a"]
-
-# Defines requiredness behavior for selecting an action or an action group
-fhirvs:action-required-behavior ["must" "could" "must-unless-documented"]
-
-# How the Quantity should be understood and represented.
-fhirvs:quantity-comparator ["<" "<=" ">=" ">"]
+# Identifies the purpose for this identifier, if known .
+fhirvs:identifier-use ["usual" "official" "temp" "secondary"]
 
 # Defines selection behavior of a group
 fhirvs:action-selection-behavior ["any" "all" "all-or-none" "exactly-one" "at-most-one" "one-or-more"]
@@ -634,17 +625,26 @@ fhirvs:action-selection-behavior ["any" "all" "all-or-none" "exactly-one" "at-mo
 # Defines selection frequency behavior for an action or group
 fhirvs:action-precheck-behavior ["yes" "no"]
 
-# Defines behavior for an action or a group for how many times that item may be repeated
-fhirvs:action-cardinality-behavior ["single" "multiple"]
-
-# The status of a resource narrative
-fhirvs:narrative-status ["generated" "extensions" "additional" "empty"]
+# Defines requiredness behavior for selecting an action or an action group
+fhirvs:action-required-behavior ["must" "could" "must-unless-documented"]
 
 # Defines organization behavior of a group
 fhirvs:action-grouping-behavior ["visual-group" "logical-group" "sentence-group"]
 
+# How the Quantity should be understood and represented.
+fhirvs:quantity-comparator ["<" "<=" ">=" ">"]
+
+# The status of a resource narrative
+fhirvs:narrative-status ["generated" "extensions" "additional" "empty"]
+
+# A unit of time (units from UCUM).
+fhirvs:units-of-time ["s" "min" "h" "d" "wk" "mo" "a"]
+
+# Defines behavior for an action or a group for how many times that item may be repeated
+fhirvs:action-cardinality-behavior ["single" "multiple"]
+
+# Defines the kinds of conditions that can appear on actions
+fhirvs:action-condition-kind ["applicability" "start" "stop"]
+
 # Defines the types of relationships between actions
 fhirvs:action-relationship-type ["before-start" "before" "before-end" "concurrent-with-start" "concurrent" "concurrent-with-end" "after-start" "after" "after-end"]
-
-# Identifies the purpose for this identifier, if known .
-fhirvs:identifier-use ["usual" "official" "temp" "secondary"]

@@ -73,18 +73,6 @@ start=@<HealthcareService> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
-# Not available during this time due to provided reason
-<HealthcareService.notAvailable> CLOSED {
-    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
-    fhir:extension @<Extension>*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    fhir:HealthcareService.notAvailable.description @<string>;  # Reason presented to the user 
-                                            # explaining why time not available 
-    fhir:HealthcareService.notAvailable.during @<Period>?;  # Service not availablefrom this date
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
 # Times the Service Site is available
 <HealthcareService.availableTime> CLOSED {
     fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
@@ -100,6 +88,18 @@ start=@<HealthcareService> AND {fhir:nodeRole [fhir:treeRoot]}
                                             # allDay = true) 
     fhir:HealthcareService.availableTime.availableEndTime @<time>?;  # Closing time of day (ignored if 
                                             # allDay = true) 
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
+# Not available during this time due to provided reason
+<HealthcareService.notAvailable> CLOSED {
+    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
+    fhir:extension @<Extension>*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
+    fhir:HealthcareService.notAvailable.description @<string>;  # Reason presented to the user 
+                                            # explaining why time not available 
+    fhir:HealthcareService.notAvailable.during @<Period>?;  # Service not availablefrom this date
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -361,11 +361,11 @@ start=@<HealthcareService> AND {fhir:nodeRole [fhir:treeRoot]}
 # Telecommunications form for contact point
 fhirvs:contact-point-system ["phone" "fax" "email" "pager" "other"]
 
-# The status of a resource narrative
-fhirvs:narrative-status ["generated" "extensions" "additional" "empty"]
-
 # Use of contact point
 fhirvs:contact-point-use ["home" "work" "temp" "old" "mobile"]
+
+# The status of a resource narrative
+fhirvs:narrative-status ["generated" "extensions" "additional" "empty"]
 
 # The days of the week.
 fhirvs:days-of-week ["mon" "tue" "wed" "thu" "fri" "sat" "sun"]

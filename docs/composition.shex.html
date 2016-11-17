@@ -169,24 +169,6 @@ start=@&lt;Composition&gt; AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
-# Attests to accuracy of composition
-&lt;Composition.attester&gt; CLOSED {
-    fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
-    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @&lt;Extension&gt;*;   # Extensions that cannot be ignored
-    fhir:Composition.attester.mode @&lt;code&gt; AND
-    	{fhir:value @fhirvs:composition-attestation-mode}+;  # personal | professional | legal | 
-                                            # official 
-    fhir:Composition.attester.time @&lt;dateTime&gt;?;  # When composition attested
-    fhir:Composition.attester.party         # Who attested the composition
-    (   @&lt;PatientReference&gt; OR
-        @&lt;PractitionerReference&gt; OR
-        @&lt;OrganizationReference&gt;
-    )?;
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
 # The clinical service(s) being documented
 &lt;Composition.event&gt; CLOSED {
     fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
@@ -219,6 +201,24 @@ start=@&lt;Composition&gt; AND {fhir:nodeRole [fhir:treeRoot]}
                                             # this section 
     fhir:Composition.section.emptyReason @&lt;CodeableConcept&gt;?;  # Why the section is empty
     fhir:Composition.section.section @&lt;Composition.section&gt;*;  # Nested Section
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
+# Attests to accuracy of composition
+&lt;Composition.attester&gt; CLOSED {
+    fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
+    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @&lt;Extension&gt;*;   # Extensions that cannot be ignored
+    fhir:Composition.attester.mode @&lt;code&gt; AND
+    	{fhir:value @fhirvs:composition-attestation-mode}+;  # personal | professional | legal | 
+                                            # official 
+    fhir:Composition.attester.time @&lt;dateTime&gt;?;  # When composition attested
+    fhir:Composition.attester.party         # Who attested the composition
+    (   @&lt;PatientReference&gt; OR
+        @&lt;PractitionerReference&gt; OR
+        @&lt;OrganizationReference&gt;
+    )?;
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -475,11 +475,8 @@ start=@&lt;Composition&gt; AND {fhir:nodeRole [fhir:treeRoot]}
 
 #---------------------- Value Sets ------------------------
 
-# The workflow/clinical status of the composition.
-fhirvs:composition-status [&quot;preliminary&quot; &quot;final&quot; &quot;amended&quot; &quot;entered-in-error&quot;]
-
-# The way in which a person authenticated a composition.
-fhirvs:composition-attestation-mode [&quot;personal&quot; &quot;professional&quot; &quot;legal&quot; &quot;official&quot;]
+#  Set of codes used to value Act.Confidentiality and Role.Confidentiality attribute in accordance with the definition for concept domain &quot;Confidentiality&quot;.
+fhirvs:v3-ConfidentialityClassification [&quot;U&quot; &quot;L&quot; &quot;M&quot; &quot;N&quot; &quot;R&quot; &quot;V&quot;]
 
 # The status of a resource narrative
 fhirvs:narrative-status [&quot;generated&quot; &quot;extensions&quot; &quot;additional&quot; &quot;empty&quot;]
@@ -487,11 +484,14 @@ fhirvs:narrative-status [&quot;generated&quot; &quot;extensions&quot; &quot;addi
 # The processing mode that applies to this list
 fhirvs:list-mode [&quot;working&quot; &quot;snapshot&quot; &quot;changes&quot;]
 
-#  Set of codes used to value Act.Confidentiality and Role.Confidentiality attribute in accordance with the definition for concept domain &quot;Confidentiality&quot;.
-fhirvs:v3-ConfidentialityClassification [&quot;U&quot; &quot;L&quot; &quot;M&quot; &quot;N&quot; &quot;R&quot; &quot;V&quot;]
+# The way in which a person authenticated a composition.
+fhirvs:composition-attestation-mode [&quot;personal&quot; &quot;professional&quot; &quot;legal&quot; &quot;official&quot;]
 
 # Identifies the purpose for this identifier, if known .
 fhirvs:identifier-use [&quot;usual&quot; &quot;official&quot; &quot;temp&quot; &quot;secondary&quot;]
+
+# The workflow/clinical status of the composition.
+fhirvs:composition-status [&quot;preliminary&quot; &quot;final&quot; &quot;amended&quot; &quot;entered-in-error&quot;]
 
 </pre>
 </div>
@@ -517,7 +517,7 @@ of the specification.
 		<div class="container"><!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Wed, Nov 16, 2016 22:04-0500. <a href="qa.html">QA Page</a>
+        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Wed, Nov 16, 2016 23:55-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search</a> | 

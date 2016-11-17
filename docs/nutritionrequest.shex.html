@@ -166,6 +166,26 @@ start=@&lt;NutritionRequest&gt; AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
+# Oral diet components
+&lt;NutritionRequest.oralDiet&gt; CLOSED {
+    fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
+    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @&lt;Extension&gt;*;   # Extensions that cannot be ignored
+    fhir:NutritionRequest.oralDiet.type @&lt;CodeableConcept&gt;*;  # Type of oral diet or diet 
+                                            # restrictions that describe what 
+                                            # can be consumed orally 
+    fhir:NutritionRequest.oralDiet.schedule @&lt;Timing&gt;*;  # Scheduled frequency of diet
+    fhir:NutritionRequest.oralDiet.nutrient @&lt;NutritionRequest.oralDiet.nutrient&gt;*;  # Required  nutrient modifications
+    fhir:NutritionRequest.oralDiet.texture @&lt;NutritionRequest.oralDiet.texture&gt;*;  # Required  texture modifications
+    fhir:NutritionRequest.oralDiet.fluidConsistencyType @&lt;CodeableConcept&gt;*;  # The required consistency of fluids 
+                                            # and liquids provided to the 
+                                            # patient 
+    fhir:NutritionRequest.oralDiet.instruction @&lt;string&gt;?;  # Instructions or additional 
+                                            # information about the oral diet 
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
 # Supplement components
 &lt;NutritionRequest.supplement&gt; CLOSED {
     fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
@@ -211,23 +231,29 @@ start=@&lt;NutritionRequest&gt; AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
-# Oral diet components
-&lt;NutritionRequest.oralDiet&gt; CLOSED {
+# Required  texture modifications
+&lt;NutritionRequest.oralDiet.texture&gt; CLOSED {
     fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
     fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
                                             # implementations 
     fhir:modifierExtension @&lt;Extension&gt;*;   # Extensions that cannot be ignored
-    fhir:NutritionRequest.oralDiet.type @&lt;CodeableConcept&gt;*;  # Type of oral diet or diet 
-                                            # restrictions that describe what 
-                                            # can be consumed orally 
-    fhir:NutritionRequest.oralDiet.schedule @&lt;Timing&gt;*;  # Scheduled frequency of diet
-    fhir:NutritionRequest.oralDiet.nutrient @&lt;NutritionRequest.oralDiet.nutrient&gt;*;  # Required  nutrient modifications
-    fhir:NutritionRequest.oralDiet.texture @&lt;NutritionRequest.oralDiet.texture&gt;*;  # Required  texture modifications
-    fhir:NutritionRequest.oralDiet.fluidConsistencyType @&lt;CodeableConcept&gt;*;  # The required consistency of fluids 
-                                            # and liquids provided to the 
-                                            # patient 
-    fhir:NutritionRequest.oralDiet.instruction @&lt;string&gt;?;  # Instructions or additional 
-                                            # information about the oral diet 
+    fhir:NutritionRequest.oralDiet.texture.modifier @&lt;CodeableConcept&gt;?;  # Code to indicate how to alter the 
+                                            # texture of the foods, e.g. pureed 
+    fhir:NutritionRequest.oralDiet.texture.foodType @&lt;CodeableConcept&gt;?;  # Concepts that are used to identify 
+                                            # an entity that is ingested for 
+                                            # nutritional purposes 
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
+# Required  nutrient modifications
+&lt;NutritionRequest.oralDiet.nutrient&gt; CLOSED {
+    fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
+    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @&lt;Extension&gt;*;   # Extensions that cannot be ignored
+    fhir:NutritionRequest.oralDiet.nutrient.modifier @&lt;CodeableConcept&gt;?;  # Type of nutrient that is being 
+                                            # modified 
+    fhir:NutritionRequest.oralDiet.nutrient.amount @&lt;SimpleQuantity&gt;?;  # Quantity of the specified nutrient
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -245,32 +271,6 @@ start=@&lt;NutritionRequest&gt; AND {fhir:nodeRole [fhir:treeRoot]}
         fhir:NutritionRequest.enteralFormula.administration.rateQuantity @&lt;SimpleQuantity&gt;  |
         fhir:NutritionRequest.enteralFormula.administration.rateRatio @&lt;Ratio&gt; 
     )?;
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
-# Required  nutrient modifications
-&lt;NutritionRequest.oralDiet.nutrient&gt; CLOSED {
-    fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
-    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @&lt;Extension&gt;*;   # Extensions that cannot be ignored
-    fhir:NutritionRequest.oralDiet.nutrient.modifier @&lt;CodeableConcept&gt;?;  # Type of nutrient that is being 
-                                            # modified 
-    fhir:NutritionRequest.oralDiet.nutrient.amount @&lt;SimpleQuantity&gt;?;  # Quantity of the specified nutrient
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
-# Required  texture modifications
-&lt;NutritionRequest.oralDiet.texture&gt; CLOSED {
-    fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
-    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @&lt;Extension&gt;*;   # Extensions that cannot be ignored
-    fhir:NutritionRequest.oralDiet.texture.modifier @&lt;CodeableConcept&gt;?;  # Code to indicate how to alter the 
-                                            # texture of the foods, e.g. pureed 
-    fhir:NutritionRequest.oralDiet.texture.foodType @&lt;CodeableConcept&gt;?;  # Concepts that are used to identify 
-                                            # an entity that is ingested for 
-                                            # nutritional purposes 
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -596,17 +596,17 @@ start=@&lt;NutritionRequest&gt; AND {fhir:nodeRole [fhir:treeRoot]}
 
 #---------------------- Value Sets ------------------------
 
-# The status of a resource narrative
-fhirvs:narrative-status [&quot;generated&quot; &quot;extensions&quot; &quot;additional&quot; &quot;empty&quot;]
-
 # Real world event that the relating to the schedule.
 fhirvs:event-timing [&quot;HS&quot; &quot;WAKE&quot; &quot;C&quot; &quot;CM&quot; &quot;CD&quot; &quot;CV&quot; &quot;AC&quot; &quot;ACM&quot; &quot;ACD&quot; &quot;ACV&quot; &quot;PC&quot; &quot;PCM&quot; &quot;PCD&quot; &quot;PCV&quot;]
 
-# A unit of time (units from UCUM).
-fhirvs:units-of-time [&quot;s&quot; &quot;min&quot; &quot;h&quot; &quot;d&quot; &quot;wk&quot; &quot;mo&quot; &quot;a&quot;]
-
 # How the Quantity should be understood and represented.
 fhirvs:quantity-comparator [&quot;&lt;&quot; &quot;&lt;=&quot; &quot;&gt;=&quot; &quot;&gt;&quot;]
+
+# The status of a resource narrative
+fhirvs:narrative-status [&quot;generated&quot; &quot;extensions&quot; &quot;additional&quot; &quot;empty&quot;]
+
+# A unit of time (units from UCUM).
+fhirvs:units-of-time [&quot;s&quot; &quot;min&quot; &quot;h&quot; &quot;d&quot; &quot;wk&quot; &quot;mo&quot; &quot;a&quot;]
 
 # Codes specifying the state of the request. Describes the lifecycle of the nutrition order.
 fhirvs:nutrition-request-status [&quot;proposed&quot; &quot;draft&quot; &quot;planned&quot; &quot;requested&quot; &quot;active&quot; &quot;on-hold&quot; &quot;completed&quot; &quot;cancelled&quot; &quot;entered-in-error&quot;]
@@ -638,7 +638,7 @@ of the specification.
 		<div class="container"><!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Wed, Nov 16, 2016 22:04-0500. <a href="qa.html">QA Page</a>
+        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Wed, Nov 16, 2016 23:55-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search</a> | 

@@ -71,25 +71,6 @@ start=@<Task> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
-# Constraints on fulfillment tasks
-<Task.fulfillment> CLOSED {
-    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
-    fhir:extension @<Extension>*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    fhir:Task.fulfillment.repetitions @<positiveInt>?;  # How many times to repeat
-    fhir:Task.fulfillment.period @<Period>?;  # Over what time-period is 
-                                            # fulfillment sought 
-    fhir:Task.fulfillment.recipients        # For whom is fulfillment sought?
-    (   @<PatientReference> OR
-        @<PractitionerReference> OR
-        @<RelatedPersonReference> OR
-        @<GroupReference> OR
-        @<OrganizationReference>
-    )*;
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
 # Task Output
 <Task.output> CLOSED {
     fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
@@ -187,6 +168,25 @@ start=@<Task> AND {fhir:nodeRole [fhir:treeRoot]}
         fhir:Task.input.valueTiming @<Timing>  |
         fhir:Task.input.valueMeta @<Meta> 
     );
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
+# Constraints on fulfillment tasks
+<Task.fulfillment> CLOSED {
+    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
+    fhir:extension @<Extension>*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
+    fhir:Task.fulfillment.repetitions @<positiveInt>?;  # How many times to repeat
+    fhir:Task.fulfillment.period @<Period>?;  # Over what time-period is 
+                                            # fulfillment sought 
+    fhir:Task.fulfillment.recipients        # For whom is fulfillment sought?
+    (   @<PatientReference> OR
+        @<PractitionerReference> OR
+        @<RelatedPersonReference> OR
+        @<GroupReference> OR
+        @<OrganizationReference>
+    )*;
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -889,32 +889,17 @@ start=@<Task> AND {fhir:nodeRole [fhir:treeRoot]}
 
 #---------------------- Value Sets ------------------------
 
-# Telecommunications form for contact point
-fhirvs:contact-point-system ["phone" "fax" "email" "pager" "other"]
-
 # The current status of the task.
 fhirvs:task-status ["draft" "requested" "received" "accepted" "rejected" "ready" "in-progress" "on-hold" "failed" "completed"]
 
-# The status of a resource narrative
-fhirvs:narrative-status ["generated" "extensions" "additional" "empty"]
-
-# The type of an address (physical / postal)
-fhirvs:address-type ["postal" "physical" "both"]
-
-# The task's priority
-fhirvs:task-priority ["low" "normal" "high"]
+# Telecommunications form for contact point
+fhirvs:contact-point-system ["phone" "fax" "email" "pager" "other"]
 
 # Real world event that the relating to the schedule.
 fhirvs:event-timing ["HS" "WAKE" "C" "CM" "CD" "CV" "AC" "ACM" "ACD" "ACV" "PC" "PCM" "PCD" "PCV"]
 
-# The use of an address
-fhirvs:address-use ["home" "work" "temp" "old"]
-
-# The use of a human name
-fhirvs:name-use ["usual" "official" "temp" "nickname" "anonymous" "old" "maiden"]
-
-# A unit of time (units from UCUM).
-fhirvs:units-of-time ["s" "min" "h" "d" "wk" "mo" "a"]
+# The task's priority
+fhirvs:task-priority ["low" "normal" "high"]
 
 # How the Quantity should be understood and represented.
 fhirvs:quantity-comparator ["<" "<=" ">=" ">"]
@@ -922,5 +907,20 @@ fhirvs:quantity-comparator ["<" "<=" ">=" ">"]
 # Use of contact point
 fhirvs:contact-point-use ["home" "work" "temp" "old" "mobile"]
 
+# The status of a resource narrative
+fhirvs:narrative-status ["generated" "extensions" "additional" "empty"]
+
+# A unit of time (units from UCUM).
+fhirvs:units-of-time ["s" "min" "h" "d" "wk" "mo" "a"]
+
+# The use of an address
+fhirvs:address-use ["home" "work" "temp" "old"]
+
 # Identifies the purpose for this identifier, if known .
 fhirvs:identifier-use ["usual" "official" "temp" "secondary"]
+
+# The type of an address (physical / postal)
+fhirvs:address-type ["postal" "physical" "both"]
+
+# The use of a human name
+fhirvs:name-use ["usual" "official" "temp" "nickname" "anonymous" "old" "maiden"]

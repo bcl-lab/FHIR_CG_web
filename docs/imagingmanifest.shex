@@ -54,6 +54,17 @@ start=@<ImagingManifest> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
+# Study access service endpoint
+<ImagingManifest.study.baseLocation> CLOSED {
+    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
+    fhir:extension @<Extension>*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
+    fhir:ImagingManifest.study.baseLocation.type @<Coding>;  # WADO-RS | WADO-URI | IID
+    fhir:ImagingManifest.study.baseLocation.url @<uri>;  # Study access URL
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
 # Series identity of the selected instances
 <ImagingManifest.study.series> CLOSED {
     fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
@@ -63,17 +74,6 @@ start=@<ImagingManifest> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:ImagingManifest.study.series.uid @<oid>;  # Series instance UID
     fhir:ImagingManifest.study.series.baseLocation @<ImagingManifest.study.series.baseLocation>*;  # Series access endpoint
     fhir:ImagingManifest.study.series.instance @<ImagingManifest.study.series.instance>+;  # The selected instance
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
-# Study access service endpoint
-<ImagingManifest.study.baseLocation> CLOSED {
-    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
-    fhir:extension @<Extension>*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    fhir:ImagingManifest.study.baseLocation.type @<Coding>;  # WADO-RS | WADO-URI | IID
-    fhir:ImagingManifest.study.baseLocation.url @<uri>;  # Study access URL
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -360,11 +360,11 @@ start=@<ImagingManifest> AND {fhir:nodeRole [fhir:treeRoot]}
 
 #---------------------- Value Sets ------------------------
 
-# The status of a resource narrative
-fhirvs:narrative-status ["generated" "extensions" "additional" "empty"]
-
 # The document title code of key object selection
 fhirvs:kos-title ["113000" "113002" "113003" "113004" "113005" "113006" "113007" "113008" "113009" "113013" "113018" "113020" "113021" "113030" "113031" "113032" "113033" "113034" "113035" "113036"]
+
+# The status of a resource narrative
+fhirvs:narrative-status ["generated" "extensions" "additional" "empty"]
 
 # Identifies the purpose for this identifier, if known .
 fhirvs:identifier-use ["usual" "official" "temp" "secondary"]

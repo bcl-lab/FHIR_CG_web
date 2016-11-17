@@ -73,6 +73,22 @@ start=@<ClinicalImpression> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
+# Possible or likely findings and diagnoses
+<ClinicalImpression.finding> CLOSED {
+    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
+    fhir:extension @<Extension>*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
+    (                                       # What was found
+        fhir:ClinicalImpression.finding.itemCodeableConcept @<CodeableConcept>  |
+        fhir:ClinicalImpression.finding.itemReference @<Reference>  |
+        fhir:ClinicalImpression.finding.itemReference @<Reference> 
+    );
+    fhir:ClinicalImpression.finding.basis @<string>?;  # Which investigations support 
+                                            # finding 
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
 # One or more sets of investigations (signs, symptions, etc.)
 <ClinicalImpression.investigation> CLOSED {
     fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
@@ -88,22 +104,6 @@ start=@<ClinicalImpression> AND {fhir:nodeRole [fhir:treeRoot]}
         @<RiskAssessmentReference> OR
         @<ImagingStudyReference>
     )*;
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
-# Possible or likely findings and diagnoses
-<ClinicalImpression.finding> CLOSED {
-    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
-    fhir:extension @<Extension>*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    (                                       # What was found
-        fhir:ClinicalImpression.finding.itemCodeableConcept @<CodeableConcept>  |
-        fhir:ClinicalImpression.finding.itemReference @<Reference>  |
-        fhir:ClinicalImpression.finding.itemReference @<Reference> 
-    );
-    fhir:ClinicalImpression.finding.basis @<string>?;  # Which investigations support 
-                                            # finding 
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -587,11 +587,11 @@ start=@<ClinicalImpression> AND {fhir:nodeRole [fhir:treeRoot]}
 
 #---------------------- Value Sets ------------------------
 
-# The workflow state of a clinical impression.
-fhirvs:clinical-impression-status ["draft" "completed" "entered-in-error"]
-
 # The status of a resource narrative
 fhirvs:narrative-status ["generated" "extensions" "additional" "empty"]
 
 # Identifies the purpose for this identifier, if known .
 fhirvs:identifier-use ["usual" "official" "temp" "secondary"]
+
+# The workflow state of a clinical impression.
+fhirvs:clinical-impression-status ["draft" "completed" "entered-in-error"]

@@ -52,24 +52,6 @@ start=@<Composition> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
-# Attests to accuracy of composition
-<Composition.attester> CLOSED {
-    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
-    fhir:extension @<Extension>*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    fhir:Composition.attester.mode @<code> AND
-    	{fhir:value @fhirvs:composition-attestation-mode}+;  # personal | professional | legal | 
-                                            # official 
-    fhir:Composition.attester.time @<dateTime>?;  # When composition attested
-    fhir:Composition.attester.party         # Who attested the composition
-    (   @<PatientReference> OR
-        @<PractitionerReference> OR
-        @<OrganizationReference>
-    )?;
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
 # The clinical service(s) being documented
 <Composition.event> CLOSED {
     fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
@@ -102,6 +84,24 @@ start=@<Composition> AND {fhir:nodeRole [fhir:treeRoot]}
                                             # this section 
     fhir:Composition.section.emptyReason @<CodeableConcept>?;  # Why the section is empty
     fhir:Composition.section.section @<Composition.section>*;  # Nested Section
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
+# Attests to accuracy of composition
+<Composition.attester> CLOSED {
+    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
+    fhir:extension @<Extension>*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
+    fhir:Composition.attester.mode @<code> AND
+    	{fhir:value @fhirvs:composition-attestation-mode}+;  # personal | professional | legal | 
+                                            # official 
+    fhir:Composition.attester.time @<dateTime>?;  # When composition attested
+    fhir:Composition.attester.party         # Who attested the composition
+    (   @<PatientReference> OR
+        @<PractitionerReference> OR
+        @<OrganizationReference>
+    )?;
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -358,11 +358,8 @@ start=@<Composition> AND {fhir:nodeRole [fhir:treeRoot]}
 
 #---------------------- Value Sets ------------------------
 
-# The workflow/clinical status of the composition.
-fhirvs:composition-status ["preliminary" "final" "amended" "entered-in-error"]
-
-# The way in which a person authenticated a composition.
-fhirvs:composition-attestation-mode ["personal" "professional" "legal" "official"]
+#  Set of codes used to value Act.Confidentiality and Role.Confidentiality attribute in accordance with the definition for concept domain "Confidentiality".
+fhirvs:v3-ConfidentialityClassification ["U" "L" "M" "N" "R" "V"]
 
 # The status of a resource narrative
 fhirvs:narrative-status ["generated" "extensions" "additional" "empty"]
@@ -370,8 +367,11 @@ fhirvs:narrative-status ["generated" "extensions" "additional" "empty"]
 # The processing mode that applies to this list
 fhirvs:list-mode ["working" "snapshot" "changes"]
 
-#  Set of codes used to value Act.Confidentiality and Role.Confidentiality attribute in accordance with the definition for concept domain "Confidentiality".
-fhirvs:v3-ConfidentialityClassification ["U" "L" "M" "N" "R" "V"]
+# The way in which a person authenticated a composition.
+fhirvs:composition-attestation-mode ["personal" "professional" "legal" "official"]
 
 # Identifies the purpose for this identifier, if known .
 fhirvs:identifier-use ["usual" "official" "temp" "secondary"]
+
+# The workflow/clinical status of the composition.
+fhirvs:composition-status ["preliminary" "final" "amended" "entered-in-error"]

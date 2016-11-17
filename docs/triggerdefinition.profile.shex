@@ -194,6 +194,23 @@ BASE <http://hl7.org/fhir/shape/>
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
+# Code filters for the data
+<DataRequirement.codeFilter> CLOSED {
+    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
+    fhir:extension @<Extension>*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:DataRequirement.codeFilter.path @<string>;  # The code-valued attribute of the 
+                                            # filter 
+    (                                       # Valueset for the filter
+        fhir:DataRequirement.codeFilter.valueSetString @<string>  |
+        fhir:DataRequirement.codeFilter.valueSetReference @<Reference> 
+    )?;
+    fhir:DataRequirement.codeFilter.valueCode @<code>*;  # Code value of the filter
+    fhir:DataRequirement.codeFilter.valueCoding @<Coding>*;  # Coding value of the filter
+    fhir:DataRequirement.codeFilter.valueCodeableConcept @<CodeableConcept>*;  # CodeableConcept value of the filter
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
 # When the event is to occur
 <Timing.repeat> CLOSED {
     fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
@@ -227,23 +244,6 @@ BASE <http://hl7.org/fhir/shape/>
                                             # tied to 
     fhir:Timing.repeat.offset @<unsignedInt>?;  # Minutes from event (before or 
                                             # after) 
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
-# Code filters for the data
-<DataRequirement.codeFilter> CLOSED {
-    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
-    fhir:extension @<Extension>*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:DataRequirement.codeFilter.path @<string>;  # The code-valued attribute of the 
-                                            # filter 
-    (                                       # Valueset for the filter
-        fhir:DataRequirement.codeFilter.valueSetString @<string>  |
-        fhir:DataRequirement.codeFilter.valueSetReference @<Reference> 
-    )?;
-    fhir:DataRequirement.codeFilter.valueCode @<code>*;  # Code value of the filter
-    fhir:DataRequirement.codeFilter.valueCoding @<Coding>*;  # Coding value of the filter
-    fhir:DataRequirement.codeFilter.valueCodeableConcept @<CodeableConcept>*;  # CodeableConcept value of the filter
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -333,20 +333,20 @@ BASE <http://hl7.org/fhir/shape/>
 
 #---------------------- Value Sets ------------------------
 
-# Either an abstract type, a resource or a data type.
-fhirvs:all-types ["Address" "Age" "Annotation" "Attachment" "BackboneElement" "CodeableConcept" "Coding" "ContactDetail" "ContactPoint" "Contributor" "Count" "DataRequirement" "Distance" "DosageInstruction" "Duration" "Element" "ElementDefinition" "Extension" "HumanName" "Identifier" "Meta" "Money" "Narrative" "ParameterDefinition" "Period" "Quantity" "Range" "Ratio" "Reference" "RelatedArtifact" "SampledData" "Signature" "SimpleQuantity" "Timing" "TriggerDefinition" "UsageContext" "base64Binary" "boolean" "code" "date" "dateTime" "decimal" "id" "instant" "integer" "markdown" "oid" "positiveInt" "string" "time" "unsignedInt" "uri" "uuid" "xhtml" "Account" "ActivityDefinition" "AllergyIntolerance" "Appointment" "AppointmentResponse" "AuditEvent" "Basic" "Binary" "BodySite" "Bundle" "CapabilityStatement" "CarePlan" "CareTeam" "Claim" "ClaimResponse" "ClinicalImpression" "CodeSystem" "Communication" "CommunicationRequest" "CompartmentDefinition" "Composition" "ConceptMap" "Condition" "Consent" "Contract" "Coverage" "DataElement" "DetectedIssue" "Device" "DeviceComponent" "DeviceMetric" "DeviceUseRequest" "DeviceUseStatement" "DiagnosticReport" "DiagnosticRequest" "DocumentManifest" "DocumentReference" "DomainResource" "EligibilityRequest" "EligibilityResponse" "Encounter" "Endpoint" "EnrollmentRequest" "EnrollmentResponse" "EpisodeOfCare" "ExpansionProfile" "ExplanationOfBenefit" "FamilyMemberHistory" "Flag" "Goal" "Group" "GuidanceResponse" "HealthcareService" "ImagingManifest" "ImagingStudy" "Immunization" "ImmunizationRecommendation" "ImplementationGuide" "Library" "Linkage" "List" "Location" "Measure" "MeasureReport" "Media" "Medication" "MedicationAdministration" "MedicationDispense" "MedicationRequest" "MedicationStatement" "MessageDefinition" "MessageHeader" "NamingSystem" "NutritionRequest" "Observation" "OperationDefinition" "OperationOutcome" "Organization" "Parameters" "Patient" "PaymentNotice" "PaymentReconciliation" "Person" "PlanDefinition" "Practitioner" "PractitionerRole" "Procedure" "ProcedureRequest" "ProcessRequest" "ProcessResponse" "Provenance" "Questionnaire" "QuestionnaireResponse" "ReferralRequest" "RelatedPerson" "RequestGroup" "ResearchStudy" "ResearchSubject" "Resource" "RiskAssessment" "Schedule" "SearchParameter" "Sequence" "ServiceDefinition" "Slot" "Specimen" "StructureDefinition" "StructureMap" "Subscription" "Substance" "SupplyDelivery" "SupplyRequest" "Task" "TestReport" "TestScript" "ValueSet" "VisionPrescription" "Type" "Any"]
-
 # Real world event that the relating to the schedule.
 fhirvs:event-timing ["HS" "WAKE" "C" "CM" "CD" "CV" "AC" "ACM" "ACD" "ACV" "PC" "PCM" "PCD" "PCV"]
-
-# A unit of time (units from UCUM).
-fhirvs:units-of-time ["s" "min" "h" "d" "wk" "mo" "a"]
-
-# The type of trigger
-fhirvs:trigger-type ["named-event" "periodic" "data-added" "data-modified" "data-removed" "data-accessed" "data-access-ended"]
 
 # How the Quantity should be understood and represented.
 fhirvs:quantity-comparator ["<" "<=" ">=" ">"]
 
+# A unit of time (units from UCUM).
+fhirvs:units-of-time ["s" "min" "h" "d" "wk" "mo" "a"]
+
+# Either an abstract type, a resource or a data type.
+fhirvs:all-types ["Address" "Age" "Annotation" "Attachment" "BackboneElement" "CodeableConcept" "Coding" "ContactDetail" "ContactPoint" "Contributor" "Count" "DataRequirement" "Distance" "DosageInstruction" "Duration" "Element" "ElementDefinition" "Extension" "HumanName" "Identifier" "Meta" "Money" "Narrative" "ParameterDefinition" "Period" "Quantity" "Range" "Ratio" "Reference" "RelatedArtifact" "SampledData" "Signature" "SimpleQuantity" "Timing" "TriggerDefinition" "UsageContext" "base64Binary" "boolean" "code" "date" "dateTime" "decimal" "id" "instant" "integer" "markdown" "oid" "positiveInt" "string" "time" "unsignedInt" "uri" "uuid" "xhtml" "Account" "ActivityDefinition" "AllergyIntolerance" "Appointment" "AppointmentResponse" "AuditEvent" "Basic" "Binary" "BodySite" "Bundle" "CapabilityStatement" "CarePlan" "CareTeam" "Claim" "ClaimResponse" "ClinicalImpression" "CodeSystem" "Communication" "CommunicationRequest" "CompartmentDefinition" "Composition" "ConceptMap" "Condition" "Consent" "Contract" "Coverage" "DataElement" "DetectedIssue" "Device" "DeviceComponent" "DeviceMetric" "DeviceUseRequest" "DeviceUseStatement" "DiagnosticReport" "DiagnosticRequest" "DocumentManifest" "DocumentReference" "DomainResource" "EligibilityRequest" "EligibilityResponse" "Encounter" "Endpoint" "EnrollmentRequest" "EnrollmentResponse" "EpisodeOfCare" "ExpansionProfile" "ExplanationOfBenefit" "FamilyMemberHistory" "Flag" "Goal" "Group" "GuidanceResponse" "HealthcareService" "ImagingManifest" "ImagingStudy" "Immunization" "ImmunizationRecommendation" "ImplementationGuide" "Library" "Linkage" "List" "Location" "Measure" "MeasureReport" "Media" "Medication" "MedicationAdministration" "MedicationDispense" "MedicationRequest" "MedicationStatement" "MessageDefinition" "MessageHeader" "NamingSystem" "NutritionRequest" "Observation" "OperationDefinition" "OperationOutcome" "Organization" "Parameters" "Patient" "PaymentNotice" "PaymentReconciliation" "Person" "PlanDefinition" "Practitioner" "PractitionerRole" "Procedure" "ProcedureRequest" "ProcessRequest" "ProcessResponse" "Provenance" "Questionnaire" "QuestionnaireResponse" "ReferralRequest" "RelatedPerson" "RequestGroup" "ResearchStudy" "ResearchSubject" "Resource" "RiskAssessment" "Schedule" "SearchParameter" "Sequence" "ServiceDefinition" "Slot" "Specimen" "StructureDefinition" "StructureMap" "Subscription" "Substance" "SupplyDelivery" "SupplyRequest" "Task" "TestReport" "TestScript" "ValueSet" "VisionPrescription" "Type" "Any"]
+
 # Identifies the purpose for this identifier, if known .
 fhirvs:identifier-use ["usual" "official" "temp" "secondary"]
+
+# The type of trigger
+fhirvs:trigger-type ["named-event" "periodic" "data-added" "data-modified" "data-removed" "data-accessed" "data-access-ended"]

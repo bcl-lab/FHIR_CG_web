@@ -175,18 +175,6 @@ start=@&lt;DocumentManifest&gt; AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
-# Related things
-&lt;DocumentManifest.related&gt; CLOSED {
-    fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
-    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @&lt;Extension&gt;*;   # Extensions that cannot be ignored
-    fhir:DocumentManifest.related.identifier @&lt;Identifier&gt;?;  # Identifiers of things that are 
-                                            # related 
-    fhir:DocumentManifest.related.ref @&lt;Reference&gt;?;  # Related Resource
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
 # The items included
 &lt;DocumentManifest.content&gt; CLOSED {
     fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
@@ -197,6 +185,18 @@ start=@&lt;DocumentManifest&gt; AND {fhir:nodeRole [fhir:treeRoot]}
         fhir:DocumentManifest.content.pAttachment @&lt;Attachment&gt;  |
         fhir:DocumentManifest.content.pReference @&lt;Reference&gt; 
     );
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
+# Related things
+&lt;DocumentManifest.related&gt; CLOSED {
+    fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
+    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @&lt;Extension&gt;*;   # Extensions that cannot be ignored
+    fhir:DocumentManifest.related.identifier @&lt;Identifier&gt;?;  # Identifiers of things that are 
+                                            # related 
+    fhir:DocumentManifest.related.ref @&lt;Reference&gt;?;  # Related Resource
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -504,14 +504,14 @@ start=@&lt;DocumentManifest&gt; AND {fhir:nodeRole [fhir:treeRoot]}
 
 #---------------------- Value Sets ------------------------
 
-# The status of the document reference.
-fhirvs:document-reference-status [&quot;current&quot; &quot;superseded&quot; &quot;entered-in-error&quot;]
-
 # The status of a resource narrative
 fhirvs:narrative-status [&quot;generated&quot; &quot;extensions&quot; &quot;additional&quot; &quot;empty&quot;]
 
 # Identifies the purpose for this identifier, if known .
 fhirvs:identifier-use [&quot;usual&quot; &quot;official&quot; &quot;temp&quot; &quot;secondary&quot;]
+
+# The status of the document reference.
+fhirvs:document-reference-status [&quot;current&quot; &quot;superseded&quot; &quot;entered-in-error&quot;]
 
 </pre>
 </div>
@@ -537,7 +537,7 @@ of the specification.
 		<div class="container"><!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Wed, Nov 16, 2016 22:04-0500. <a href="qa.html">QA Page</a>
+        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Wed, Nov 16, 2016 23:55-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search</a> | 

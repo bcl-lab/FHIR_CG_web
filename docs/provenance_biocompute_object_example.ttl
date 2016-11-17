@@ -1,0 +1,80 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+<http://hl7.org/fhir/Provenance/obj.1001> a fhir:Provenance;
+  fhir:nodeRole fhir:treeRoot;
+  fhir:Resource.id [ fhir:value "obj.1001"];
+  fhir:DomainResource.text [
+     fhir:Narrative.status [ fhir:value "generated" ];
+     fhir:Narrative.div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative with Details</b></p><p><b>id</b>: obj.1001</p><p><b>target</b>: <a>Procedure/example/_history/1.2</a></p><p><b>period</b>: 2017-6-6 --&gt; (ongoing)</p><p><b>recorded</b>: 2016-6-9 8:12:14</p><p><b>reason</b>: antiviral resistance detection (Details: [not stated] code null = 'null', stated as 'antiviral resistance detection')</p><p><b>policy</b>: <a>https://github.com/common-workflow-language/workflows/blob/master/workflows/lobSTR/lobSTR-workflow.cwl</a></p><blockquote><p><b>agent</b></p><p><b>role</b>: Author (Details: http://hl7.org/fhir/provenance-participant-role code author = 'Author', stated as 'null')</p><p><b>who</b>: <a>Practitioner/f204</a></p></blockquote><blockquote><p><b>agent</b></p><p><b>role</b>: Author (Details: http://hl7.org/fhir/provenance-participant-role code author = 'Author', stated as 'null')</p><p><b>who</b>: <a>Practitioner/f006</a></p></blockquote><blockquote><p><b>entity</b></p><p><b>role</b>: quotation</p><p><b>reference</b>: Identify baseline single nucleotide polymorphisms (SNPs[SO:0000694]), insertions[SO:0000667], and deletions[SO:0000045] that correlate with reduced ledipasvir[PubChem:67505836] antiviral drug efficacy in Hepatitis C virus subtype 1</p></blockquote><blockquote><p><b>entity</b></p><p><b>role</b>: quotation</p><p><b>reference</b>: Identify treatment emergent amino acid substitutions[SO:0000048] that correlate with antiviral drug treatment failure</p></blockquote><blockquote><p><b>entity</b></p><p><b>role</b>: quotation</p><p><b>reference</b>: Determine whether the treatment emergent amino acid    substitutions[SO:0000048] identified correlate with treatment failure    involving other drugs against the same virus</p></blockquote></div>"
+  ];
+  fhir:Provenance.target [
+     fhir:index 0;
+     fhir:link <http://hl7.org/fhir/Procedure/example/_history/1.2>;
+     fhir:Reference.reference [ fhir:value "Procedure/example/_history/1.2" ]
+  ];
+  fhir:Provenance.period [
+     fhir:Period.start [ fhir:value "2017-06-06"^^xsd:date ]
+  ];
+  fhir:Provenance.recorded [ fhir:value "2016-06-09T08:12:14+10:00"^^xsd:dateTime];
+  fhir:Provenance.reason [
+     fhir:index 0;
+     fhir:Coding.display [ fhir:value "antiviral resistance detection" ]
+  ];
+  fhir:Provenance.policy [
+     fhir:value "https://github.com/common-workflow-language/workflows/blob/master/workflows/lobSTR/lobSTR-workflow.cwl";
+     fhir:index 0
+  ];
+  fhir:Provenance.agent [
+     fhir:index 0;
+     fhir:Provenance.agent.role [
+       fhir:Coding.system [ fhir:value "http://hl7.org/fhir/provenance-participant-role" ];
+       fhir:Coding.code [ fhir:value "author" ]
+     ];
+     fhir:Provenance.agent.whoReference [
+       fhir:link <http://hl7.org/fhir/Practitioner/f204>;
+       fhir:Reference.reference [ fhir:value "Practitioner/f204" ]
+     ]
+  ], [
+     fhir:index 1;
+     fhir:Provenance.agent.role [
+       fhir:Coding.system [ fhir:value "http://hl7.org/fhir/provenance-participant-role" ];
+       fhir:Coding.code [ fhir:value "author" ]
+     ];
+     fhir:Provenance.agent.whoReference [
+       fhir:link <http://hl7.org/fhir/Practitioner/f006>;
+       fhir:Reference.reference [ fhir:value "Practitioner/f006" ]
+     ]
+  ];
+  fhir:Provenance.entity [
+     fhir:index 0;
+     fhir:Provenance.entity.role [ fhir:value "quotation" ];
+     fhir:Provenance.entity.reference [
+       fhir:Reference.display [ fhir:value "Identify baseline single nucleotide polymorphisms (SNPs[SO:0000694]), insertions[SO:0000667], and deletions[SO:0000045] that correlate with reduced ledipasvir[PubChem:67505836] antiviral drug efficacy in Hepatitis C virus subtype 1" ]
+     ]
+  ], [
+     fhir:index 1;
+     fhir:Provenance.entity.role [ fhir:value "quotation" ];
+     fhir:Provenance.entity.reference [
+       fhir:Reference.display [ fhir:value "Identify treatment emergent amino acid substitutions[SO:0000048] that correlate with antiviral drug treatment failure" ]
+     ]
+  ], [
+     fhir:index 2;
+     fhir:Provenance.entity.role [ fhir:value "quotation" ];
+     fhir:Provenance.entity.reference [
+       fhir:Reference.display [ fhir:value "Determine whether the treatment emergent amino acid    substitutions[SO:0000048] identified correlate with treatment failure    involving other drugs against the same virus" ]
+     ]
+  ] .
+
+<http://hl7.org/fhir/Procedure/example/_history/1.2> a fhir:Procedure .
+
+<http://hl7.org/fhir/Practitioner/f204> a fhir:Practitioner .
+
+<http://hl7.org/fhir/Practitioner/f006> a fhir:Practitioner .
+
+# -------------------------------------------------------------------------------------
+

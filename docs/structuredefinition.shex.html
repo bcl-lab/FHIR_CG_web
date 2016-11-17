@@ -194,6 +194,22 @@ start=@&lt;StructureDefinition&gt; AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
+# External specification that the content is mapped to
+&lt;StructureDefinition.mapping&gt; CLOSED {
+    fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
+    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @&lt;Extension&gt;*;   # Extensions that cannot be ignored
+    fhir:StructureDefinition.mapping.identity @&lt;id&gt;;  # Internal id when this mapping is 
+                                            # used 
+    fhir:StructureDefinition.mapping.uri @&lt;uri&gt;?;  # Identifies what this mapping 
+                                            # refers to 
+    fhir:StructureDefinition.mapping.name @&lt;string&gt;?;  # Names what this mapping refers to
+    fhir:StructureDefinition.mapping.comments @&lt;string&gt;?;  # Versions, Issues, Scope 
+                                            # limitations etc. 
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
 # Snapshot view of the structure
 &lt;StructureDefinition.snapshot&gt; CLOSED {
     fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
@@ -215,22 +231,6 @@ start=@&lt;StructureDefinition&gt; AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:StructureDefinition.differential.element @&lt;ElementDefinition&gt;+;  # Definition of elements in the 
                                             # resource (if no 
                                             # StructureDefinition) 
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
-# External specification that the content is mapped to
-&lt;StructureDefinition.mapping&gt; CLOSED {
-    fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
-    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @&lt;Extension&gt;*;   # Extensions that cannot be ignored
-    fhir:StructureDefinition.mapping.identity @&lt;id&gt;;  # Internal id when this mapping is 
-                                            # used 
-    fhir:StructureDefinition.mapping.uri @&lt;uri&gt;?;  # Identifies what this mapping 
-                                            # refers to 
-    fhir:StructureDefinition.mapping.name @&lt;string&gt;?;  # Names what this mapping refers to
-    fhir:StructureDefinition.mapping.comments @&lt;string&gt;?;  # Versions, Issues, Scope 
-                                            # limitations etc. 
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -1042,22 +1042,14 @@ start=@&lt;StructureDefinition&gt; AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
-# Data type and Profile for this element
-&lt;ElementDefinition.type&gt; CLOSED {
+# Map element to another set of definitions
+&lt;ElementDefinition.mapping&gt; CLOSED {
     fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
     fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
                                             # implementations 
-    fhir:ElementDefinition.type.code @&lt;uri&gt;;  # Data type or Resource (reference 
-                                            # to definition) 
-    fhir:ElementDefinition.type.profile @&lt;uri&gt;?;  # Profile (StructureDefinition) to 
-                                            # apply (or IG) 
-    fhir:ElementDefinition.type.targetProfile @&lt;uri&gt;?;  # Profile (StructureDefinition) to 
-                                            # apply to reference target (or IG) 
-    fhir:ElementDefinition.type.aggregation @&lt;code&gt; AND
-    	{fhir:value @fhirvs:resource-aggregation-mode}*;  # contained | referenced | bundled - 
-                                            # how aggregated 
-    fhir:ElementDefinition.type.versioning @&lt;code&gt; AND
-    	{fhir:value @fhirvs:reference-version-rules}?;  # either | independent | specific
+    fhir:ElementDefinition.mapping.identity @&lt;id&gt;;  # Reference to mapping declaration
+    fhir:ElementDefinition.mapping.language @&lt;code&gt;?;  # Computable language of mapping
+    fhir:ElementDefinition.mapping.map @&lt;string&gt;;  # Details of the mapping
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -1132,6 +1124,25 @@ start=@&lt;StructureDefinition&gt; AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
+# Data type and Profile for this element
+&lt;ElementDefinition.type&gt; CLOSED {
+    fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
+    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:ElementDefinition.type.code @&lt;uri&gt;;  # Data type or Resource (reference 
+                                            # to definition) 
+    fhir:ElementDefinition.type.profile @&lt;uri&gt;?;  # Profile (StructureDefinition) to 
+                                            # apply (or IG) 
+    fhir:ElementDefinition.type.targetProfile @&lt;uri&gt;?;  # Profile (StructureDefinition) to 
+                                            # apply to reference target (or IG) 
+    fhir:ElementDefinition.type.aggregation @&lt;code&gt; AND
+    	{fhir:value @fhirvs:resource-aggregation-mode}*;  # contained | referenced | bundled - 
+                                            # how aggregated 
+    fhir:ElementDefinition.type.versioning @&lt;code&gt; AND
+    	{fhir:value @fhirvs:reference-version-rules}?;  # either | independent | specific
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
 # ValueSet details if this is coded
 &lt;ElementDefinition.binding&gt; CLOSED {
     fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
@@ -1145,17 +1156,6 @@ start=@&lt;StructureDefinition&gt; AND {fhir:nodeRole [fhir:treeRoot]}
         fhir:ElementDefinition.binding.valueSetUri @&lt;uri&gt;  |
         fhir:ElementDefinition.binding.valueSetReference @&lt;Reference&gt; 
     )?;
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
-# Map element to another set of definitions
-&lt;ElementDefinition.mapping&gt; CLOSED {
-    fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
-    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:ElementDefinition.mapping.identity @&lt;id&gt;;  # Reference to mapping declaration
-    fhir:ElementDefinition.mapping.language @&lt;code&gt;?;  # Computable language of mapping
-    fhir:ElementDefinition.mapping.map @&lt;string&gt;;  # Details of the mapping
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -1175,50 +1175,26 @@ start=@&lt;StructureDefinition&gt; AND {fhir:nodeRole [fhir:treeRoot]}
 
 #---------------------- Value Sets ------------------------
 
-# How slices are interpreted when evaluating an instance.
-fhirvs:resource-slicing-rules [&quot;closed&quot; &quot;open&quot; &quot;openAtEnd&quot;]
-
-# Defines the type of structure that a definition is describing.
-fhirvs:structure-definition-kind [&quot;primitive-type&quot; &quot;complex-type&quot; &quot;resource&quot; &quot;logical&quot;]
-
-# How a property is represented on the wire.
-fhirvs:property-representation [&quot;xmlAttr&quot; &quot;xmlText&quot; &quot;typeAttr&quot; &quot;cdaText&quot; &quot;xhtml&quot;]
-
-# Real world event that the relating to the schedule.
-fhirvs:event-timing [&quot;HS&quot; &quot;WAKE&quot; &quot;C&quot; &quot;CM&quot; &quot;CD&quot; &quot;CV&quot; &quot;AC&quot; &quot;ACM&quot; &quot;ACD&quot; &quot;ACV&quot; &quot;PC&quot; &quot;PCM&quot; &quot;PCD&quot; &quot;PCV&quot;]
-
-# How an extension context is interpreted.
-fhirvs:extension-context [&quot;resource&quot; &quot;datatype&quot; &quot;extension&quot;]
-
-# A unit of time (units from UCUM).
-fhirvs:units-of-time [&quot;s&quot; &quot;min&quot; &quot;h&quot; &quot;d&quot; &quot;wk&quot; &quot;mo&quot; &quot;a&quot;]
-
-# How the Quantity should be understood and represented.
-fhirvs:quantity-comparator [&quot;&lt;&quot; &quot;&lt;=&quot; &quot;&gt;=&quot; &quot;&gt;&quot;]
-
-# Indication of the degree of conformance expectations associated with a binding.
-fhirvs:binding-strength [&quot;required&quot; &quot;extensible&quot; &quot;preferred&quot; &quot;example&quot;]
-
-# The lifecycle status of a Value Set or Concept Map.
-fhirvs:publication-status [&quot;draft&quot; &quot;active&quot; &quot;retired&quot;]
+# How a type relates to it's baseDefinition.
+fhirvs:type-derivation-rule [&quot;specialization&quot; &quot;constraint&quot;]
 
 # Telecommunications form for contact point
 fhirvs:contact-point-system [&quot;phone&quot; &quot;fax&quot; &quot;email&quot; &quot;pager&quot; &quot;other&quot;]
 
-# The status of a resource narrative
-fhirvs:narrative-status [&quot;generated&quot; &quot;extensions&quot; &quot;additional&quot; &quot;empty&quot;]
+# Real world event that the relating to the schedule.
+fhirvs:event-timing [&quot;HS&quot; &quot;WAKE&quot; &quot;C&quot; &quot;CM&quot; &quot;CD&quot; &quot;CV&quot; &quot;AC&quot; &quot;ACM&quot; &quot;ACD&quot; &quot;ACV&quot; &quot;PC&quot; &quot;PCM&quot; &quot;PCD&quot; &quot;PCV&quot;]
 
-# How resource references can be aggregated.
-fhirvs:resource-aggregation-mode [&quot;contained&quot; &quot;referenced&quot; &quot;bundled&quot;]
+# Identifies the purpose for this identifier, if known .
+fhirvs:identifier-use [&quot;usual&quot; &quot;official&quot; &quot;temp&quot; &quot;secondary&quot;]
+
+# How slices are interpreted when evaluating an instance.
+fhirvs:resource-slicing-rules [&quot;closed&quot; &quot;open&quot; &quot;openAtEnd&quot;]
+
+# How a property is represented on the wire.
+fhirvs:property-representation [&quot;xmlAttr&quot; &quot;xmlText&quot; &quot;typeAttr&quot; &quot;cdaText&quot; &quot;xhtml&quot;]
 
 # The type of an address (physical / postal)
 fhirvs:address-type [&quot;postal&quot; &quot;physical&quot; &quot;both&quot;]
-
-# SHALL applications comply with this constraint?
-fhirvs:constraint-severity [&quot;error&quot; &quot;warning&quot;]
-
-# The use of an address
-fhirvs:address-use [&quot;home&quot; &quot;work&quot; &quot;temp&quot; &quot;old&quot;]
 
 # The use of a human name
 fhirvs:name-use [&quot;usual&quot; &quot;official&quot; &quot;temp&quot; &quot;nickname&quot; &quot;anonymous&quot; &quot;old&quot; &quot;maiden&quot;]
@@ -1226,14 +1202,38 @@ fhirvs:name-use [&quot;usual&quot; &quot;official&quot; &quot;temp&quot; &quot;n
 # Whether a reference needs to be version specific or version independent, or whetehr either can be used
 fhirvs:reference-version-rules [&quot;either&quot; &quot;independent&quot; &quot;specific&quot;]
 
-# How a type relates to it's baseDefinition.
-fhirvs:type-derivation-rule [&quot;specialization&quot; &quot;constraint&quot;]
+# How the Quantity should be understood and represented.
+fhirvs:quantity-comparator [&quot;&lt;&quot; &quot;&lt;=&quot; &quot;&gt;=&quot; &quot;&gt;&quot;]
+
+# The status of a resource narrative
+fhirvs:narrative-status [&quot;generated&quot; &quot;extensions&quot; &quot;additional&quot; &quot;empty&quot;]
 
 # Use of contact point
 fhirvs:contact-point-use [&quot;home&quot; &quot;work&quot; &quot;temp&quot; &quot;old&quot; &quot;mobile&quot;]
 
-# Identifies the purpose for this identifier, if known .
-fhirvs:identifier-use [&quot;usual&quot; &quot;official&quot; &quot;temp&quot; &quot;secondary&quot;]
+# A unit of time (units from UCUM).
+fhirvs:units-of-time [&quot;s&quot; &quot;min&quot; &quot;h&quot; &quot;d&quot; &quot;wk&quot; &quot;mo&quot; &quot;a&quot;]
+
+# The lifecycle status of a Value Set or Concept Map.
+fhirvs:publication-status [&quot;draft&quot; &quot;active&quot; &quot;retired&quot;]
+
+# The use of an address
+fhirvs:address-use [&quot;home&quot; &quot;work&quot; &quot;temp&quot; &quot;old&quot;]
+
+# How an extension context is interpreted.
+fhirvs:extension-context [&quot;resource&quot; &quot;datatype&quot; &quot;extension&quot;]
+
+# Defines the type of structure that a definition is describing.
+fhirvs:structure-definition-kind [&quot;primitive-type&quot; &quot;complex-type&quot; &quot;resource&quot; &quot;logical&quot;]
+
+# Indication of the degree of conformance expectations associated with a binding.
+fhirvs:binding-strength [&quot;required&quot; &quot;extensible&quot; &quot;preferred&quot; &quot;example&quot;]
+
+# SHALL applications comply with this constraint?
+fhirvs:constraint-severity [&quot;error&quot; &quot;warning&quot;]
+
+# How resource references can be aggregated.
+fhirvs:resource-aggregation-mode [&quot;contained&quot; &quot;referenced&quot; &quot;bundled&quot;]
 
 </pre>
 </div>
@@ -1259,7 +1259,7 @@ of the specification.
 		<div class="container"><!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Wed, Nov 16, 2016 22:05-0500. <a href="qa.html">QA Page</a>
+        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Wed, Nov 16, 2016 23:55-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search</a> | 

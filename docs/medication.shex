@@ -52,14 +52,17 @@ start=@<Medication> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
-# Identifies a single production run
-<Medication.product.batch> CLOSED {
+# What is  in the package
+<Medication.package.content> CLOSED {
     fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
     fhir:extension @<Extension>*;           # Additional Content defined by 
                                             # implementations 
     fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    fhir:Medication.product.batch.lotNumber @<string>?;  # Identifier assigned to batch
-    fhir:Medication.product.batch.expirationDate @<dateTime>?;  # When batch will expire
+    (                                       # The item in the package
+        fhir:Medication.package.content.itemCodeableConcept @<CodeableConcept>  |
+        fhir:Medication.package.content.itemReference @<Reference> 
+    );
+    fhir:Medication.package.content.amount @<SimpleQuantity>?;  # Quantity present in the package
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -78,17 +81,14 @@ start=@<Medication> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
-# What is  in the package
-<Medication.package.content> CLOSED {
+# Identifies a single production run
+<Medication.product.batch> CLOSED {
     fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
     fhir:extension @<Extension>*;           # Additional Content defined by 
                                             # implementations 
     fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    (                                       # The item in the package
-        fhir:Medication.package.content.itemCodeableConcept @<CodeableConcept>  |
-        fhir:Medication.package.content.itemReference @<Reference> 
-    );
-    fhir:Medication.package.content.amount @<SimpleQuantity>?;  # Quantity present in the package
+    fhir:Medication.product.batch.lotNumber @<string>?;  # Identifier assigned to batch
+    fhir:Medication.product.batch.expirationDate @<dateTime>?;  # When batch will expire
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -323,11 +323,11 @@ start=@<Medication> AND {fhir:nodeRole [fhir:treeRoot]}
 
 #---------------------- Value Sets ------------------------
 
-# The status of a resource narrative
-fhirvs:narrative-status ["generated" "extensions" "additional" "empty"]
-
 # How the Quantity should be understood and represented.
 fhirvs:quantity-comparator ["<" "<=" ">=" ">"]
+
+# The status of a resource narrative
+fhirvs:narrative-status ["generated" "extensions" "additional" "empty"]
 
 # Identifies the purpose for this identifier, if known .
 fhirvs:identifier-use ["usual" "official" "temp" "secondary"]

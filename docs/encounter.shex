@@ -69,19 +69,21 @@ start=@<Encounter> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
-# List of locations where the patient has been
-<Encounter.location> CLOSED {
+# List of participants involved in the encounter
+<Encounter.participant> CLOSED {
     fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
     fhir:extension @<Extension>*;           # Additional Content defined by 
                                             # implementations 
     fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    fhir:Encounter.location.location @<Reference>;  # Location the encounter takes place
-    fhir:Encounter.location.status @<code> AND
-    	{fhir:value @fhirvs:encounter-location-status}?;  # planned | active | reserved | 
-                                            # completed 
-    fhir:Encounter.location.period @<Period>?;  # Time period during which the 
-                                            # patient was present at the 
-                                            # location 
+    fhir:Encounter.participant.type @<CodeableConcept>*;  # Role of participant in encounter
+    fhir:Encounter.participant.period @<Period>?;  # Period of time during the 
+                                            # encounter that the participant 
+                                            # participated 
+    fhir:Encounter.participant.individual   # Persons involved in the encounter 
+                                            # other than the patient 
+    (   @<PractitionerReference> OR
+        @<RelatedPersonReference>
+    )?;
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -119,24 +121,6 @@ start=@<Encounter> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
-# List of participants involved in the encounter
-<Encounter.participant> CLOSED {
-    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
-    fhir:extension @<Extension>*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    fhir:Encounter.participant.type @<CodeableConcept>*;  # Role of participant in encounter
-    fhir:Encounter.participant.period @<Period>?;  # Period of time during the 
-                                            # encounter that the participant 
-                                            # participated 
-    fhir:Encounter.participant.individual   # Persons involved in the encounter 
-                                            # other than the patient 
-    (   @<PractitionerReference> OR
-        @<RelatedPersonReference>
-    )?;
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
 # List of past encounter statuses
 <Encounter.statusHistory> CLOSED {
     fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
@@ -149,6 +133,22 @@ start=@<Encounter> AND {fhir:nodeRole [fhir:treeRoot]}
                                             # entered-in-error 
     fhir:Encounter.statusHistory.period @<Period>;  # The time that the episode was in 
                                             # the specified status 
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
+# List of locations where the patient has been
+<Encounter.location> CLOSED {
+    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
+    fhir:extension @<Extension>*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
+    fhir:Encounter.location.location @<Reference>;  # Location the encounter takes place
+    fhir:Encounter.location.status @<code> AND
+    	{fhir:value @fhirvs:encounter-location-status}?;  # planned | active | reserved | 
+                                            # completed 
+    fhir:Encounter.location.period @<Period>?;  # Time period during which the 
+                                            # patient was present at the 
+                                            # location 
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -416,17 +416,17 @@ start=@<Encounter> AND {fhir:nodeRole [fhir:treeRoot]}
 
 #---------------------- Value Sets ------------------------
 
+# How the Quantity should be understood and represented.
+fhirvs:quantity-comparator ["<" "<=" ">=" ">"]
+
 # The status of a resource narrative
 fhirvs:narrative-status ["generated" "extensions" "additional" "empty"]
 
 # The status of the location.
 fhirvs:encounter-location-status ["planned" "active" "reserved" "completed"]
 
-# How the Quantity should be understood and represented.
-fhirvs:quantity-comparator ["<" "<=" ">=" ">"]
+# Identifies the purpose for this identifier, if known .
+fhirvs:identifier-use ["usual" "official" "temp" "secondary"]
 
 # Current state of the encounter
 fhirvs:encounter-status ["planned" "arrived" "in-progress" "onleave" "finished" "cancelled" "entered-in-error"]
-
-# Identifies the purpose for this identifier, if known .
-fhirvs:identifier-use ["usual" "official" "temp" "secondary"]

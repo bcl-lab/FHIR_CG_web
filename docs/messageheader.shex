@@ -43,17 +43,17 @@ start=@<MessageHeader> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
-# If this is a reply to prior message
-<MessageHeader.response> CLOSED {
+# Message Source Application
+<MessageHeader.source> CLOSED {
     fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
     fhir:extension @<Extension>*;           # Additional Content defined by 
                                             # implementations 
     fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    fhir:MessageHeader.response.identifier @<id>;  # Id of original message
-    fhir:MessageHeader.response.code @<code> AND
-    	{fhir:value @fhirvs:response-code};  # ok | transient-error | fatal-error
-    fhir:MessageHeader.response.details @<Reference>?;  # Specific list of 
-                                            # hints/warnings/errors 
+    fhir:MessageHeader.source.name @<string>?;  # Name of system
+    fhir:MessageHeader.source.software @<string>?;  # Name of software running the system
+    fhir:MessageHeader.source.version @<string>?;  # Version of software running
+    fhir:MessageHeader.source.contact @<ContactPoint>?;  # Human contact for problems
+    fhir:MessageHeader.source.endpoint @<uri>;  # Actual message source address or id
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -70,17 +70,17 @@ start=@<MessageHeader> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
-# Message Source Application
-<MessageHeader.source> CLOSED {
+# If this is a reply to prior message
+<MessageHeader.response> CLOSED {
     fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
     fhir:extension @<Extension>*;           # Additional Content defined by 
                                             # implementations 
     fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    fhir:MessageHeader.source.name @<string>?;  # Name of system
-    fhir:MessageHeader.source.software @<string>?;  # Name of software running the system
-    fhir:MessageHeader.source.version @<string>?;  # Version of software running
-    fhir:MessageHeader.source.contact @<ContactPoint>?;  # Human contact for problems
-    fhir:MessageHeader.source.endpoint @<uri>;  # Actual message source address or id
+    fhir:MessageHeader.response.identifier @<id>;  # Id of original message
+    fhir:MessageHeader.response.code @<code> AND
+    	{fhir:value @fhirvs:response-code};  # ok | transient-error | fatal-error
+    fhir:MessageHeader.response.details @<Reference>?;  # Specific list of 
+                                            # hints/warnings/errors 
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -324,14 +324,14 @@ start=@<MessageHeader> AND {fhir:nodeRole [fhir:treeRoot]}
 # Telecommunications form for contact point
 fhirvs:contact-point-system ["phone" "fax" "email" "pager" "other"]
 
-# The status of a resource narrative
-fhirvs:narrative-status ["generated" "extensions" "additional" "empty"]
-
 # The kind of response to a message
 fhirvs:response-code ["ok" "transient-error" "fatal-error"]
 
 # Use of contact point
 fhirvs:contact-point-use ["home" "work" "temp" "old" "mobile"]
+
+# The status of a resource narrative
+fhirvs:narrative-status ["generated" "extensions" "additional" "empty"]
 
 # Identifies the purpose for this identifier, if known .
 fhirvs:identifier-use ["usual" "official" "temp" "secondary"]

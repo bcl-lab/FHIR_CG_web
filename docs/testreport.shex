@@ -50,17 +50,6 @@ start=@<TestReport> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
-# The results of running the series of required clean up steps
-<TestReport.teardown> CLOSED {
-    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
-    fhir:extension @<Extension>*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    fhir:TestReport.teardown.action @<TestReport.teardown.action>+;  # One or more teardown operations 
-                                            # performed 
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
 # A participant in the test execution, either the execution engine, a client, or a server
 <TestReport.participant> CLOSED {
     fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
@@ -72,6 +61,17 @@ start=@<TestReport> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:TestReport.participant.uri @<uri>;  # The uri of the participant. An 
                                             # absolute URL is preferred 
     fhir:TestReport.participant.display @<string>?;  # The display name of the participant
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
+# The results of running the series of required clean up steps
+<TestReport.teardown> CLOSED {
+    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
+    fhir:extension @<Extension>*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
+    fhir:TestReport.teardown.action @<TestReport.teardown.action>+;  # One or more teardown operations 
+                                            # performed 
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -100,16 +100,6 @@ start=@<TestReport> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
-# One or more teardown operations performed
-<TestReport.teardown.action> CLOSED {
-    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
-    fhir:extension @<Extension>*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    fhir:TestReport.teardown.action.operation @<TestReport.setup.action.operation>;  # The teardown operation performed
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
 # A test operation or assert that was performed
 <TestReport.test.action> CLOSED {
     fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
@@ -118,6 +108,16 @@ start=@<TestReport> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
     fhir:TestReport.test.action.operation @<TestReport.setup.action.operation>?;  # The operation performed
     fhir:TestReport.test.action.assert @<TestReport.setup.action.assert>?;  # The assertion performed
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
+# One or more teardown operations performed
+<TestReport.teardown.action> CLOSED {
+    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
+    fhir:extension @<Extension>*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
+    fhir:TestReport.teardown.action.operation @<TestReport.setup.action.operation>;  # The teardown operation performed
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -367,14 +367,14 @@ start=@<TestReport> AND {fhir:nodeRole [fhir:treeRoot]}
 # The status of a resource narrative
 fhirvs:narrative-status ["generated" "extensions" "additional" "empty"]
 
-# The results of executing an action.
-fhirvs:report-result-codes ["pass" "skip" "fail" "warning" "error"]
-
-# The type of participant.
-fhirvs:report-participant-type ["test-engine" "client" "server"]
-
 # The execution status of the TestReport.
 fhirvs:report-status-codes ["complete" "pending" "error"]
 
+# The results of executing an action.
+fhirvs:report-result-codes ["pass" "skip" "fail" "warning" "error"]
+
 # Identifies the purpose for this identifier, if known .
 fhirvs:identifier-use ["usual" "official" "temp" "secondary"]
+
+# The type of participant.
+fhirvs:report-participant-type ["test-engine" "client" "server"]

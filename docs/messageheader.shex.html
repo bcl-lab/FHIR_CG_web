@@ -160,17 +160,17 @@ start=@&lt;MessageHeader&gt; AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
-# If this is a reply to prior message
-&lt;MessageHeader.response&gt; CLOSED {
+# Message Source Application
+&lt;MessageHeader.source&gt; CLOSED {
     fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
     fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
                                             # implementations 
     fhir:modifierExtension @&lt;Extension&gt;*;   # Extensions that cannot be ignored
-    fhir:MessageHeader.response.identifier @&lt;id&gt;;  # Id of original message
-    fhir:MessageHeader.response.code @&lt;code&gt; AND
-    	{fhir:value @fhirvs:response-code};  # ok | transient-error | fatal-error
-    fhir:MessageHeader.response.details @&lt;Reference&gt;?;  # Specific list of 
-                                            # hints/warnings/errors 
+    fhir:MessageHeader.source.name @&lt;string&gt;?;  # Name of system
+    fhir:MessageHeader.source.software @&lt;string&gt;?;  # Name of software running the system
+    fhir:MessageHeader.source.version @&lt;string&gt;?;  # Version of software running
+    fhir:MessageHeader.source.contact @&lt;ContactPoint&gt;?;  # Human contact for problems
+    fhir:MessageHeader.source.endpoint @&lt;uri&gt;;  # Actual message source address or id
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -187,17 +187,17 @@ start=@&lt;MessageHeader&gt; AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
-# Message Source Application
-&lt;MessageHeader.source&gt; CLOSED {
+# If this is a reply to prior message
+&lt;MessageHeader.response&gt; CLOSED {
     fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
     fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
                                             # implementations 
     fhir:modifierExtension @&lt;Extension&gt;*;   # Extensions that cannot be ignored
-    fhir:MessageHeader.source.name @&lt;string&gt;?;  # Name of system
-    fhir:MessageHeader.source.software @&lt;string&gt;?;  # Name of software running the system
-    fhir:MessageHeader.source.version @&lt;string&gt;?;  # Version of software running
-    fhir:MessageHeader.source.contact @&lt;ContactPoint&gt;?;  # Human contact for problems
-    fhir:MessageHeader.source.endpoint @&lt;uri&gt;;  # Actual message source address or id
+    fhir:MessageHeader.response.identifier @&lt;id&gt;;  # Id of original message
+    fhir:MessageHeader.response.code @&lt;code&gt; AND
+    	{fhir:value @fhirvs:response-code};  # ok | transient-error | fatal-error
+    fhir:MessageHeader.response.details @&lt;Reference&gt;?;  # Specific list of 
+                                            # hints/warnings/errors 
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -441,14 +441,14 @@ start=@&lt;MessageHeader&gt; AND {fhir:nodeRole [fhir:treeRoot]}
 # Telecommunications form for contact point
 fhirvs:contact-point-system [&quot;phone&quot; &quot;fax&quot; &quot;email&quot; &quot;pager&quot; &quot;other&quot;]
 
-# The status of a resource narrative
-fhirvs:narrative-status [&quot;generated&quot; &quot;extensions&quot; &quot;additional&quot; &quot;empty&quot;]
-
 # The kind of response to a message
 fhirvs:response-code [&quot;ok&quot; &quot;transient-error&quot; &quot;fatal-error&quot;]
 
 # Use of contact point
 fhirvs:contact-point-use [&quot;home&quot; &quot;work&quot; &quot;temp&quot; &quot;old&quot; &quot;mobile&quot;]
+
+# The status of a resource narrative
+fhirvs:narrative-status [&quot;generated&quot; &quot;extensions&quot; &quot;additional&quot; &quot;empty&quot;]
 
 # Identifies the purpose for this identifier, if known .
 fhirvs:identifier-use [&quot;usual&quot; &quot;official&quot; &quot;temp&quot; &quot;secondary&quot;]
@@ -477,7 +477,7 @@ of the specification.
 		<div class="container"><!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Wed, Nov 16, 2016 22:04-0500. <a href="qa.html">QA Page</a>
+        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Wed, Nov 16, 2016 23:55-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search</a> | 

@@ -167,17 +167,6 @@ start=@&lt;TestReport&gt; AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
-# The results of running the series of required clean up steps
-&lt;TestReport.teardown&gt; CLOSED {
-    fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
-    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @&lt;Extension&gt;*;   # Extensions that cannot be ignored
-    fhir:TestReport.teardown.action @&lt;TestReport.teardown.action&gt;+;  # One or more teardown operations 
-                                            # performed 
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
 # A participant in the test execution, either the execution engine, a client, or a server
 &lt;TestReport.participant&gt; CLOSED {
     fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
@@ -189,6 +178,17 @@ start=@&lt;TestReport&gt; AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:TestReport.participant.uri @&lt;uri&gt;;  # The uri of the participant. An 
                                             # absolute URL is preferred 
     fhir:TestReport.participant.display @&lt;string&gt;?;  # The display name of the participant
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
+# The results of running the series of required clean up steps
+&lt;TestReport.teardown&gt; CLOSED {
+    fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
+    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @&lt;Extension&gt;*;   # Extensions that cannot be ignored
+    fhir:TestReport.teardown.action @&lt;TestReport.teardown.action&gt;+;  # One or more teardown operations 
+                                            # performed 
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -217,16 +217,6 @@ start=@&lt;TestReport&gt; AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
-# One or more teardown operations performed
-&lt;TestReport.teardown.action&gt; CLOSED {
-    fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
-    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @&lt;Extension&gt;*;   # Extensions that cannot be ignored
-    fhir:TestReport.teardown.action.operation @&lt;TestReport.setup.action.operation&gt;;  # The teardown operation performed
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
 # A test operation or assert that was performed
 &lt;TestReport.test.action&gt; CLOSED {
     fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
@@ -235,6 +225,16 @@ start=@&lt;TestReport&gt; AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:modifierExtension @&lt;Extension&gt;*;   # Extensions that cannot be ignored
     fhir:TestReport.test.action.operation @&lt;TestReport.setup.action.operation&gt;?;  # The operation performed
     fhir:TestReport.test.action.assert @&lt;TestReport.setup.action.assert&gt;?;  # The assertion performed
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
+# One or more teardown operations performed
+&lt;TestReport.teardown.action&gt; CLOSED {
+    fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
+    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @&lt;Extension&gt;*;   # Extensions that cannot be ignored
+    fhir:TestReport.teardown.action.operation @&lt;TestReport.setup.action.operation&gt;;  # The teardown operation performed
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -484,17 +484,17 @@ start=@&lt;TestReport&gt; AND {fhir:nodeRole [fhir:treeRoot]}
 # The status of a resource narrative
 fhirvs:narrative-status [&quot;generated&quot; &quot;extensions&quot; &quot;additional&quot; &quot;empty&quot;]
 
-# The results of executing an action.
-fhirvs:report-result-codes [&quot;pass&quot; &quot;skip&quot; &quot;fail&quot; &quot;warning&quot; &quot;error&quot;]
-
-# The type of participant.
-fhirvs:report-participant-type [&quot;test-engine&quot; &quot;client&quot; &quot;server&quot;]
-
 # The execution status of the TestReport.
 fhirvs:report-status-codes [&quot;complete&quot; &quot;pending&quot; &quot;error&quot;]
 
+# The results of executing an action.
+fhirvs:report-result-codes [&quot;pass&quot; &quot;skip&quot; &quot;fail&quot; &quot;warning&quot; &quot;error&quot;]
+
 # Identifies the purpose for this identifier, if known .
 fhirvs:identifier-use [&quot;usual&quot; &quot;official&quot; &quot;temp&quot; &quot;secondary&quot;]
+
+# The type of participant.
+fhirvs:report-participant-type [&quot;test-engine&quot; &quot;client&quot; &quot;server&quot;]
 
 </pre>
 </div>
@@ -520,7 +520,7 @@ of the specification.
 		<div class="container"><!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Wed, Nov 16, 2016 22:05-0500. <a href="qa.html">QA Page</a>
+        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Wed, Nov 16, 2016 23:55-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search</a> | 

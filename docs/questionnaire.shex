@@ -92,22 +92,6 @@ start=@<Questionnaire> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
-# Permitted answer
-<Questionnaire.item.option> CLOSED {
-    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
-    fhir:extension @<Extension>*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    (                                       # Answer value
-        fhir:Questionnaire.item.option.valueInteger @<integer>  |
-        fhir:Questionnaire.item.option.valueDate @<date>  |
-        fhir:Questionnaire.item.option.valueTime @<time>  |
-        fhir:Questionnaire.item.option.valueString @<string>  |
-        fhir:Questionnaire.item.option.valueCoding @<Coding> 
-    );
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
 # Only allow data when:
 <Questionnaire.item.enableWhen> CLOSED {
     fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
@@ -132,6 +116,22 @@ start=@<Questionnaire> AND {fhir:nodeRole [fhir:treeRoot]}
         fhir:Questionnaire.item.enableWhen.answerQuantity @<Quantity>  |
         fhir:Questionnaire.item.enableWhen.answerReference @<Reference> 
     )?;
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
+# Permitted answer
+<Questionnaire.item.option> CLOSED {
+    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
+    fhir:extension @<Extension>*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
+    (                                       # Answer value
+        fhir:Questionnaire.item.option.valueInteger @<integer>  |
+        fhir:Questionnaire.item.option.valueDate @<date>  |
+        fhir:Questionnaire.item.option.valueTime @<time>  |
+        fhir:Questionnaire.item.option.valueString @<string>  |
+        fhir:Questionnaire.item.option.valueCoding @<Coding> 
+    );
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -433,26 +433,26 @@ start=@<Questionnaire> AND {fhir:nodeRole [fhir:treeRoot]}
 
 #---------------------- Value Sets ------------------------
 
+# Lifecycle status of the questionnaire.
+fhirvs:questionnaire-status ["draft" "published" "retired"]
+
 # Telecommunications form for contact point
 fhirvs:contact-point-system ["phone" "fax" "email" "pager" "other"]
-
-# The status of a resource narrative
-fhirvs:narrative-status ["generated" "extensions" "additional" "empty"]
-
-# One of the resource types defined as part of FHIR.
-fhirvs:resource-types ["Account" "ActivityDefinition" "AllergyIntolerance" "Appointment" "AppointmentResponse" "AuditEvent" "Basic" "Binary" "BodySite" "Bundle" "CapabilityStatement" "CarePlan" "CareTeam" "Claim" "ClaimResponse" "ClinicalImpression" "CodeSystem" "Communication" "CommunicationRequest" "CompartmentDefinition" "Composition" "ConceptMap" "Condition" "Consent" "Contract" "Coverage" "DataElement" "DetectedIssue" "Device" "DeviceComponent" "DeviceMetric" "DeviceUseRequest" "DeviceUseStatement" "DiagnosticReport" "DiagnosticRequest" "DocumentManifest" "DocumentReference" "DomainResource" "EligibilityRequest" "EligibilityResponse" "Encounter" "Endpoint" "EnrollmentRequest" "EnrollmentResponse" "EpisodeOfCare" "ExpansionProfile" "ExplanationOfBenefit" "FamilyMemberHistory" "Flag" "Goal" "Group" "GuidanceResponse" "HealthcareService" "ImagingManifest" "ImagingStudy" "Immunization" "ImmunizationRecommendation" "ImplementationGuide" "Library" "Linkage" "List" "Location" "Measure" "MeasureReport" "Media" "Medication" "MedicationAdministration" "MedicationDispense" "MedicationRequest" "MedicationStatement" "MessageDefinition" "MessageHeader" "NamingSystem" "NutritionRequest" "Observation" "OperationDefinition" "OperationOutcome" "Organization" "Parameters" "Patient" "PaymentNotice" "PaymentReconciliation" "Person" "PlanDefinition" "Practitioner" "PractitionerRole" "Procedure" "ProcedureRequest" "ProcessRequest" "ProcessResponse" "Provenance" "Questionnaire" "QuestionnaireResponse" "ReferralRequest" "RelatedPerson" "RequestGroup" "ResearchStudy" "ResearchSubject" "Resource" "RiskAssessment" "Schedule" "SearchParameter" "Sequence" "ServiceDefinition" "Slot" "Specimen" "StructureDefinition" "StructureMap" "Subscription" "Substance" "SupplyDelivery" "SupplyRequest" "Task" "TestReport" "TestScript" "ValueSet" "VisionPrescription"]
 
 # How the Quantity should be understood and represented.
 fhirvs:quantity-comparator ["<" "<=" ">=" ">"]
 
-# Lifecycle status of the questionnaire.
-fhirvs:questionnaire-status ["draft" "published" "retired"]
-
 # Use of contact point
 fhirvs:contact-point-use ["home" "work" "temp" "old" "mobile"]
+
+# The status of a resource narrative
+fhirvs:narrative-status ["generated" "extensions" "additional" "empty"]
 
 # Distinguishes groups from questions and display text and indicates data type for questions
 fhirvs:item-type ["group" "display" "question" "boolean" "decimal" "integer" "date" "dateTime" "instant" "time" "string" "text" "url" "choice" "open-choice" "attachment" "reference" "quantity"]
 
 # Identifies the purpose for this identifier, if known .
 fhirvs:identifier-use ["usual" "official" "temp" "secondary"]
+
+# One of the resource types defined as part of FHIR.
+fhirvs:resource-types ["Account" "ActivityDefinition" "AllergyIntolerance" "Appointment" "AppointmentResponse" "AuditEvent" "Basic" "Binary" "BodySite" "Bundle" "CapabilityStatement" "CarePlan" "CareTeam" "Claim" "ClaimResponse" "ClinicalImpression" "CodeSystem" "Communication" "CommunicationRequest" "CompartmentDefinition" "Composition" "ConceptMap" "Condition" "Consent" "Contract" "Coverage" "DataElement" "DetectedIssue" "Device" "DeviceComponent" "DeviceMetric" "DeviceUseRequest" "DeviceUseStatement" "DiagnosticReport" "DiagnosticRequest" "DocumentManifest" "DocumentReference" "DomainResource" "EligibilityRequest" "EligibilityResponse" "Encounter" "Endpoint" "EnrollmentRequest" "EnrollmentResponse" "EpisodeOfCare" "ExpansionProfile" "ExplanationOfBenefit" "FamilyMemberHistory" "Flag" "Goal" "Group" "GuidanceResponse" "HealthcareService" "ImagingManifest" "ImagingStudy" "Immunization" "ImmunizationRecommendation" "ImplementationGuide" "Library" "Linkage" "List" "Location" "Measure" "MeasureReport" "Media" "Medication" "MedicationAdministration" "MedicationDispense" "MedicationRequest" "MedicationStatement" "MessageDefinition" "MessageHeader" "NamingSystem" "NutritionRequest" "Observation" "OperationDefinition" "OperationOutcome" "Organization" "Parameters" "Patient" "PaymentNotice" "PaymentReconciliation" "Person" "PlanDefinition" "Practitioner" "PractitionerRole" "Procedure" "ProcedureRequest" "ProcessRequest" "ProcessResponse" "Provenance" "Questionnaire" "QuestionnaireResponse" "ReferralRequest" "RelatedPerson" "RequestGroup" "ResearchStudy" "ResearchSubject" "Resource" "RiskAssessment" "Schedule" "SearchParameter" "Sequence" "ServiceDefinition" "Slot" "Specimen" "StructureDefinition" "StructureMap" "Subscription" "Substance" "SupplyDelivery" "SupplyRequest" "Task" "TestReport" "TestScript" "ValueSet" "VisionPrescription"]

@@ -56,45 +56,6 @@ start=@<ImplementationGuide> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
-# Profiles that apply globally
-<ImplementationGuide.global> CLOSED {
-    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
-    fhir:extension @<Extension>*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    fhir:ImplementationGuide.global.type @<code> AND
-    	{fhir:value @fhirvs:resource-types};  # Type this profiles applies to
-    fhir:ImplementationGuide.global.profile @<Reference>;  # Profile that all resources must 
-                                            # conform to 
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
-# Group of resources as used in .page.package
-<ImplementationGuide.package> CLOSED {
-    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
-    fhir:extension @<Extension>*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    fhir:ImplementationGuide.package.name @<string>;  # Name used .page.package
-    fhir:ImplementationGuide.package.description @<string>?;  # Human readable text describing the 
-                                            # package 
-    fhir:ImplementationGuide.package.resource @<ImplementationGuide.package.resource>+;  # Resource in the implementation 
-                                            # guide 
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
-# Another Implementation guide this depends on
-<ImplementationGuide.dependency> CLOSED {
-    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
-    fhir:extension @<Extension>*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    fhir:ImplementationGuide.dependency.type @<code> AND
-    	{fhir:value @fhirvs:guide-dependency-type};  # reference | inclusion
-    fhir:ImplementationGuide.dependency.uri @<uri>;  # Where to find dependency
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
 # Page/Section in the Guide
 <ImplementationGuide.page> CLOSED {
     fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
@@ -115,6 +76,45 @@ start=@<ImplementationGuide> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:ImplementationGuide.page.format @<code>?;  # Format of the page (e.g. html, 
                                             # markdown, etc.) 
     fhir:ImplementationGuide.page.page @<ImplementationGuide.page>*;  # Nested Pages / Sections
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
+# Group of resources as used in .page.package
+<ImplementationGuide.package> CLOSED {
+    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
+    fhir:extension @<Extension>*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
+    fhir:ImplementationGuide.package.name @<string>;  # Name used .page.package
+    fhir:ImplementationGuide.package.description @<string>?;  # Human readable text describing the 
+                                            # package 
+    fhir:ImplementationGuide.package.resource @<ImplementationGuide.package.resource>+;  # Resource in the implementation 
+                                            # guide 
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
+# Profiles that apply globally
+<ImplementationGuide.global> CLOSED {
+    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
+    fhir:extension @<Extension>*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
+    fhir:ImplementationGuide.global.type @<code> AND
+    	{fhir:value @fhirvs:resource-types};  # Type this profiles applies to
+    fhir:ImplementationGuide.global.profile @<Reference>;  # Profile that all resources must 
+                                            # conform to 
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
+# Another Implementation guide this depends on
+<ImplementationGuide.dependency> CLOSED {
+    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
+    fhir:extension @<Extension>*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
+    fhir:ImplementationGuide.dependency.type @<code> AND
+    	{fhir:value @fhirvs:guide-dependency-type};  # reference | inclusion
+    fhir:ImplementationGuide.dependency.uri @<uri>;  # Where to find dependency
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -428,29 +428,29 @@ start=@<ImplementationGuide> AND {fhir:nodeRole [fhir:treeRoot]}
 
 #---------------------- Value Sets ------------------------
 
-# The lifecycle status of a Value Set or Concept Map.
-fhirvs:publication-status ["draft" "active" "retired"]
-
 # Telecommunications form for contact point
 fhirvs:contact-point-system ["phone" "fax" "email" "pager" "other"]
-
-# The status of a resource narrative
-fhirvs:narrative-status ["generated" "extensions" "additional" "empty"]
-
-# The kind of an included page.
-fhirvs:guide-page-kind ["page" "example" "list" "include" "directory" "dictionary" "toc" "resource"]
 
 # How a dependency is represented when the guide is published.
 fhirvs:guide-dependency-type ["reference" "inclusion"]
 
-# One of the resource types defined as part of FHIR.
-fhirvs:resource-types ["Account" "ActivityDefinition" "AllergyIntolerance" "Appointment" "AppointmentResponse" "AuditEvent" "Basic" "Binary" "BodySite" "Bundle" "CapabilityStatement" "CarePlan" "CareTeam" "Claim" "ClaimResponse" "ClinicalImpression" "CodeSystem" "Communication" "CommunicationRequest" "CompartmentDefinition" "Composition" "ConceptMap" "Condition" "Consent" "Contract" "Coverage" "DataElement" "DetectedIssue" "Device" "DeviceComponent" "DeviceMetric" "DeviceUseRequest" "DeviceUseStatement" "DiagnosticReport" "DiagnosticRequest" "DocumentManifest" "DocumentReference" "DomainResource" "EligibilityRequest" "EligibilityResponse" "Encounter" "Endpoint" "EnrollmentRequest" "EnrollmentResponse" "EpisodeOfCare" "ExpansionProfile" "ExplanationOfBenefit" "FamilyMemberHistory" "Flag" "Goal" "Group" "GuidanceResponse" "HealthcareService" "ImagingManifest" "ImagingStudy" "Immunization" "ImmunizationRecommendation" "ImplementationGuide" "Library" "Linkage" "List" "Location" "Measure" "MeasureReport" "Media" "Medication" "MedicationAdministration" "MedicationDispense" "MedicationRequest" "MedicationStatement" "MessageDefinition" "MessageHeader" "NamingSystem" "NutritionRequest" "Observation" "OperationDefinition" "OperationOutcome" "Organization" "Parameters" "Patient" "PaymentNotice" "PaymentReconciliation" "Person" "PlanDefinition" "Practitioner" "PractitionerRole" "Procedure" "ProcedureRequest" "ProcessRequest" "ProcessResponse" "Provenance" "Questionnaire" "QuestionnaireResponse" "ReferralRequest" "RelatedPerson" "RequestGroup" "ResearchStudy" "ResearchSubject" "Resource" "RiskAssessment" "Schedule" "SearchParameter" "Sequence" "ServiceDefinition" "Slot" "Specimen" "StructureDefinition" "StructureMap" "Subscription" "Substance" "SupplyDelivery" "SupplyRequest" "Task" "TestReport" "TestScript" "ValueSet" "VisionPrescription"]
-
 # How the Quantity should be understood and represented.
 fhirvs:quantity-comparator ["<" "<=" ">=" ">"]
+
+# The status of a resource narrative
+fhirvs:narrative-status ["generated" "extensions" "additional" "empty"]
 
 # Use of contact point
 fhirvs:contact-point-use ["home" "work" "temp" "old" "mobile"]
 
+# The lifecycle status of a Value Set or Concept Map.
+fhirvs:publication-status ["draft" "active" "retired"]
+
+# The kind of an included page.
+fhirvs:guide-page-kind ["page" "example" "list" "include" "directory" "dictionary" "toc" "resource"]
+
 # Identifies the purpose for this identifier, if known .
 fhirvs:identifier-use ["usual" "official" "temp" "secondary"]
+
+# One of the resource types defined as part of FHIR.
+fhirvs:resource-types ["Account" "ActivityDefinition" "AllergyIntolerance" "Appointment" "AppointmentResponse" "AuditEvent" "Basic" "Binary" "BodySite" "Bundle" "CapabilityStatement" "CarePlan" "CareTeam" "Claim" "ClaimResponse" "ClinicalImpression" "CodeSystem" "Communication" "CommunicationRequest" "CompartmentDefinition" "Composition" "ConceptMap" "Condition" "Consent" "Contract" "Coverage" "DataElement" "DetectedIssue" "Device" "DeviceComponent" "DeviceMetric" "DeviceUseRequest" "DeviceUseStatement" "DiagnosticReport" "DiagnosticRequest" "DocumentManifest" "DocumentReference" "DomainResource" "EligibilityRequest" "EligibilityResponse" "Encounter" "Endpoint" "EnrollmentRequest" "EnrollmentResponse" "EpisodeOfCare" "ExpansionProfile" "ExplanationOfBenefit" "FamilyMemberHistory" "Flag" "Goal" "Group" "GuidanceResponse" "HealthcareService" "ImagingManifest" "ImagingStudy" "Immunization" "ImmunizationRecommendation" "ImplementationGuide" "Library" "Linkage" "List" "Location" "Measure" "MeasureReport" "Media" "Medication" "MedicationAdministration" "MedicationDispense" "MedicationRequest" "MedicationStatement" "MessageDefinition" "MessageHeader" "NamingSystem" "NutritionRequest" "Observation" "OperationDefinition" "OperationOutcome" "Organization" "Parameters" "Patient" "PaymentNotice" "PaymentReconciliation" "Person" "PlanDefinition" "Practitioner" "PractitionerRole" "Procedure" "ProcedureRequest" "ProcessRequest" "ProcessResponse" "Provenance" "Questionnaire" "QuestionnaireResponse" "ReferralRequest" "RelatedPerson" "RequestGroup" "ResearchStudy" "ResearchSubject" "Resource" "RiskAssessment" "Schedule" "SearchParameter" "Sequence" "ServiceDefinition" "Slot" "Specimen" "StructureDefinition" "StructureMap" "Subscription" "Substance" "SupplyDelivery" "SupplyRequest" "Task" "TestReport" "TestScript" "ValueSet" "VisionPrescription"]

@@ -71,6 +71,83 @@ start=@<TestScript> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
+# An abstract server representing a destination or receiver in a message exchange
+<TestScript.destination> CLOSED {
+    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
+    fhir:extension @<Extension>*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
+    fhir:TestScript.destination.index @<integer>;  # The index of the abstract 
+                                            # destination server starting at 1 
+    fhir:TestScript.destination.profile @<Coding>;  # FHIR-Server | FHIR-SDC-FormManager 
+                                            # | FHIR-SDC-FormReceiver | 
+                                            # FHIR-SDC-FormProcessor 
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
+# A series of required clean up steps
+<TestScript.teardown> CLOSED {
+    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
+    fhir:extension @<Extension>*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
+    fhir:TestScript.teardown.action @<TestScript.teardown.action>+;  # One or more teardown operations to 
+                                            # perform 
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
+# Assert rule used within the test script
+<TestScript.rule> CLOSED {
+    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
+    fhir:extension @<Extension>*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
+    fhir:TestScript.rule.resource @<Reference>;  # Assert rule resource reference
+    fhir:TestScript.rule.param @<TestScript.rule.param>*;  # Rule parameter template
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
+# A test in this script
+<TestScript.test> CLOSED {
+    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
+    fhir:extension @<Extension>*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
+    fhir:TestScript.test.name @<string>?;   # Tracking/logging name of this test
+    fhir:TestScript.test.description @<string>?;  # Tracking/reporting short 
+                                            # description of the test 
+    fhir:TestScript.test.action @<TestScript.test.action>+;  # A test operation or assert to 
+                                            # perform 
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
+# Fixture in the test script - by reference (uri)
+<TestScript.fixture> CLOSED {
+    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
+    fhir:extension @<Extension>*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
+    fhir:TestScript.fixture.autocreate @<boolean>?;  # Whether or not to implicitly 
+                                            # create the fixture during setup 
+    fhir:TestScript.fixture.autodelete @<boolean>?;  # Whether or not to implicitly 
+                                            # delete the fixture during teardown 
+    fhir:TestScript.fixture.resource @<Reference>?;  # Reference of the resource
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
+# Required capability that is assumed to function correctly on the FHIR server being tested
+<TestScript.metadata> CLOSED {
+    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
+    fhir:extension @<Extension>*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
+    fhir:TestScript.metadata.link @<TestScript.metadata.link>*;  # Links to the FHIR specification
+    fhir:TestScript.metadata.capability @<TestScript.metadata.capability>+;  # Capabilities  that are assumed to 
+                                            # function correctly on the FHIR 
+                                            # server being tested 
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
 # Placeholder for evaluated elements
 <TestScript.variable> CLOSED {
     fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
@@ -92,6 +169,17 @@ start=@<TestScript> AND {fhir:nodeRole [fhir:treeRoot]}
                                             # fixture body 
     fhir:TestScript.variable.sourceId @<id>?;  # Fixture Id of source expression or 
                                             # headerField within this variable 
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
+# A series of required setup operations before tests are executed
+<TestScript.setup> CLOSED {
+    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
+    fhir:extension @<Extension>*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
+    fhir:TestScript.setup.action @<TestScript.setup.action>+;  # A setup operation or assert to 
+                                            # perform 
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -119,91 +207,27 @@ start=@<TestScript> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
-# An abstract server representing a destination or receiver in a message exchange
-<TestScript.destination> CLOSED {
+# A test operation or assert to perform
+<TestScript.test.action> CLOSED {
     fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
     fhir:extension @<Extension>*;           # Additional Content defined by 
                                             # implementations 
     fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    fhir:TestScript.destination.index @<integer>;  # The index of the abstract 
-                                            # destination server starting at 1 
-    fhir:TestScript.destination.profile @<Coding>;  # FHIR-Server | FHIR-SDC-FormManager 
-                                            # | FHIR-SDC-FormReceiver | 
-                                            # FHIR-SDC-FormProcessor 
+    fhir:TestScript.test.action.operation @<TestScript.setup.action.operation>?;  # The setup operation to perform
+    fhir:TestScript.test.action.assert @<TestScript.setup.action.assert>?;  # The setup assertion to perform
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
-# A series of required clean up steps
-<TestScript.teardown> CLOSED {
+# Rule parameter template
+<TestScript.rule.param> CLOSED {
     fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
     fhir:extension @<Extension>*;           # Additional Content defined by 
                                             # implementations 
     fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    fhir:TestScript.teardown.action @<TestScript.teardown.action>+;  # One or more teardown operations to 
-                                            # perform 
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
-# A test in this script
-<TestScript.test> CLOSED {
-    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
-    fhir:extension @<Extension>*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    fhir:TestScript.test.name @<string>?;   # Tracking/logging name of this test
-    fhir:TestScript.test.description @<string>?;  # Tracking/reporting short 
-                                            # description of the test 
-    fhir:TestScript.test.action @<TestScript.test.action>+;  # A test operation or assert to 
-                                            # perform 
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
-# Required capability that is assumed to function correctly on the FHIR server being tested
-<TestScript.metadata> CLOSED {
-    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
-    fhir:extension @<Extension>*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    fhir:TestScript.metadata.link @<TestScript.metadata.link>*;  # Links to the FHIR specification
-    fhir:TestScript.metadata.capability @<TestScript.metadata.capability>+;  # Capabilities  that are assumed to 
-                                            # function correctly on the FHIR 
-                                            # server being tested 
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
-# Fixture in the test script - by reference (uri)
-<TestScript.fixture> CLOSED {
-    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
-    fhir:extension @<Extension>*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    fhir:TestScript.fixture.autocreate @<boolean>?;  # Whether or not to implicitly 
-                                            # create the fixture during setup 
-    fhir:TestScript.fixture.autodelete @<boolean>?;  # Whether or not to implicitly 
-                                            # delete the fixture during teardown 
-    fhir:TestScript.fixture.resource @<Reference>?;  # Reference of the resource
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
-# A series of required setup operations before tests are executed
-<TestScript.setup> CLOSED {
-    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
-    fhir:extension @<Extension>*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    fhir:TestScript.setup.action @<TestScript.setup.action>+;  # A setup operation or assert to 
-                                            # perform 
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
-# Assert rule used within the test script
-<TestScript.rule> CLOSED {
-    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
-    fhir:extension @<Extension>*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    fhir:TestScript.rule.resource @<Reference>;  # Assert rule resource reference
-    fhir:TestScript.rule.param @<TestScript.rule.param>*;  # Rule parameter template
+    fhir:TestScript.rule.param.name @<string>;  # Parameter name matching external 
+                                            # assert rule parameter 
+    fhir:TestScript.rule.param.value @<string>?;  # Parameter value defined either 
+                                            # explicitly or dynamically 
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -230,6 +254,16 @@ start=@<TestScript> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
+# One or more teardown operations to perform
+<TestScript.teardown.action> CLOSED {
+    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
+    fhir:extension @<Extension>*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
+    fhir:TestScript.teardown.action.operation @<TestScript.setup.action.operation>;  # The teardown operation to perform
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
 # Capabilities  that are assumed to function correctly on the FHIR server being tested
 <TestScript.metadata.capability> CLOSED {
     fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
@@ -249,40 +283,6 @@ start=@<TestScript> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
-# Rule parameter template
-<TestScript.rule.param> CLOSED {
-    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
-    fhir:extension @<Extension>*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    fhir:TestScript.rule.param.name @<string>;  # Parameter name matching external 
-                                            # assert rule parameter 
-    fhir:TestScript.rule.param.value @<string>?;  # Parameter value defined either 
-                                            # explicitly or dynamically 
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
-# A test operation or assert to perform
-<TestScript.test.action> CLOSED {
-    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
-    fhir:extension @<Extension>*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    fhir:TestScript.test.action.operation @<TestScript.setup.action.operation>?;  # The setup operation to perform
-    fhir:TestScript.test.action.assert @<TestScript.setup.action.assert>?;  # The setup assertion to perform
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
-# One or more teardown operations to perform
-<TestScript.teardown.action> CLOSED {
-    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
-    fhir:extension @<Extension>*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    fhir:TestScript.teardown.action.operation @<TestScript.setup.action.operation>;  # The teardown operation to perform
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
 # Links to the FHIR specification
 <TestScript.metadata.link> CLOSED {
     fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
@@ -291,6 +291,54 @@ start=@<TestScript> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
     fhir:TestScript.metadata.link.url @<uri>;  # URL to the specification
     fhir:TestScript.metadata.link.description @<string>?;  # Short description
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
+# Ruleset rule parameter template
+<TestScript.ruleset.rule.param> CLOSED {
+    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
+    fhir:extension @<Extension>*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
+    fhir:TestScript.ruleset.rule.param.name @<string>;  # Parameter name matching external 
+                                            # assert ruleset rule parameter 
+    fhir:TestScript.ruleset.rule.param.value @<string>?;  # Parameter value defined either 
+                                            # explicitly or dynamically 
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
+# The setup operation to perform
+<TestScript.setup.action.operation> CLOSED {
+    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
+    fhir:extension @<Extension>*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
+    fhir:TestScript.setup.action.operation.type @<Coding>?;  # The operation code type that will 
+                                            # be executed 
+    fhir:TestScript.setup.action.operation.resource @<code> AND
+    	{fhir:value @fhirvs:defined-types}?;  # Resource type
+    fhir:TestScript.setup.action.operation.label @<string>?;  # Tracking/logging operation label
+    fhir:TestScript.setup.action.operation.description @<string>?;  # Tracking/reporting operation 
+                                            # description 
+    fhir:TestScript.setup.action.operation.accept @<code> AND
+    	{fhir:value @fhirvs:content-type}?;  # xml | json | ttl | none
+    fhir:TestScript.setup.action.operation.contentType @<code> AND
+    	{fhir:value @fhirvs:content-type}?;  # xml | json | ttl | none
+    fhir:TestScript.setup.action.operation.destination @<integer>?;  # Server responding to the request
+    fhir:TestScript.setup.action.operation.encodeRequestUrl @<boolean>?;  # Whether or not to send the request 
+                                            # url in encoded format 
+    fhir:TestScript.setup.action.operation.origin @<integer>?;  # Server initiating the request
+    fhir:TestScript.setup.action.operation.params @<string>?;  # Explicitly defined path parameters
+    fhir:TestScript.setup.action.operation.requestHeader @<TestScript.setup.action.operation.requestHeader>*;  # Each operation can have one ore 
+                                            # more header elements 
+    fhir:TestScript.setup.action.operation.requestId @<id>?;  # Fixture Id of mapped request
+    fhir:TestScript.setup.action.operation.responseId @<id>?;  # Fixture Id of mapped response
+    fhir:TestScript.setup.action.operation.sourceId @<id>?;  # Fixture Id of body for PUT and 
+                                            # POST requests 
+    fhir:TestScript.setup.action.operation.targetId @<id>?;  # Id of fixture used for extracting 
+                                            # the [id],  [type], and [vid] for 
+                                            # GET requests 
+    fhir:TestScript.setup.action.operation.url @<string>?;  # Request URL
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -351,62 +399,15 @@ start=@<TestScript> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
-# The setup operation to perform
-<TestScript.setup.action.operation> CLOSED {
+# The reference to a TestScript.ruleset
+<TestScript.setup.action.assert.ruleset> CLOSED {
     fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
     fhir:extension @<Extension>*;           # Additional Content defined by 
                                             # implementations 
     fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    fhir:TestScript.setup.action.operation.type @<Coding>?;  # The operation code type that will 
-                                            # be executed 
-    fhir:TestScript.setup.action.operation.resource @<code> AND
-    	{fhir:value @fhirvs:defined-types}?;  # Resource type
-    fhir:TestScript.setup.action.operation.label @<string>?;  # Tracking/logging operation label
-    fhir:TestScript.setup.action.operation.description @<string>?;  # Tracking/reporting operation 
-                                            # description 
-    fhir:TestScript.setup.action.operation.accept @<code> AND
-    	{fhir:value @fhirvs:content-type}?;  # xml | json | ttl | none
-    fhir:TestScript.setup.action.operation.contentType @<code> AND
-    	{fhir:value @fhirvs:content-type}?;  # xml | json | ttl | none
-    fhir:TestScript.setup.action.operation.destination @<integer>?;  # Server responding to the request
-    fhir:TestScript.setup.action.operation.encodeRequestUrl @<boolean>?;  # Whether or not to send the request 
-                                            # url in encoded format 
-    fhir:TestScript.setup.action.operation.origin @<integer>?;  # Server initiating the request
-    fhir:TestScript.setup.action.operation.params @<string>?;  # Explicitly defined path parameters
-    fhir:TestScript.setup.action.operation.requestHeader @<TestScript.setup.action.operation.requestHeader>*;  # Each operation can have one ore 
-                                            # more header elements 
-    fhir:TestScript.setup.action.operation.requestId @<id>?;  # Fixture Id of mapped request
-    fhir:TestScript.setup.action.operation.responseId @<id>?;  # Fixture Id of mapped response
-    fhir:TestScript.setup.action.operation.sourceId @<id>?;  # Fixture Id of body for PUT and 
-                                            # POST requests 
-    fhir:TestScript.setup.action.operation.targetId @<id>?;  # Id of fixture used for extracting 
-                                            # the [id],  [type], and [vid] for 
-                                            # GET requests 
-    fhir:TestScript.setup.action.operation.url @<string>?;  # Request URL
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
-# Ruleset rule parameter template
-<TestScript.ruleset.rule.param> CLOSED {
-    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
-    fhir:extension @<Extension>*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    fhir:TestScript.ruleset.rule.param.name @<string>;  # Parameter name matching external 
-                                            # assert ruleset rule parameter 
-    fhir:TestScript.ruleset.rule.param.value @<string>?;  # Parameter value defined either 
-                                            # explicitly or dynamically 
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
-# The reference to a TestScript.rule
-<TestScript.setup.action.assert.rule> CLOSED {
-    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
-    fhir:extension @<Extension>*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    fhir:TestScript.setup.action.assert.rule.ruleId @<id>;  # Id of the TestScript.rule
-    fhir:TestScript.setup.action.assert.rule.param @<TestScript.setup.action.assert.rule.param>*;  # Rule parameter template
+    fhir:TestScript.setup.action.assert.ruleset.rulesetId @<id>;  # Id of the TestScript.ruleset
+    fhir:TestScript.setup.action.assert.ruleset.rule @<TestScript.setup.action.assert.ruleset.rule>*;  # The referenced rule within the 
+                                            # ruleset 
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -421,15 +422,14 @@ start=@<TestScript> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
-# The reference to a TestScript.ruleset
-<TestScript.setup.action.assert.ruleset> CLOSED {
+# The reference to a TestScript.rule
+<TestScript.setup.action.assert.rule> CLOSED {
     fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
     fhir:extension @<Extension>*;           # Additional Content defined by 
                                             # implementations 
     fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    fhir:TestScript.setup.action.assert.ruleset.rulesetId @<id>;  # Id of the TestScript.ruleset
-    fhir:TestScript.setup.action.assert.ruleset.rule @<TestScript.setup.action.assert.ruleset.rule>*;  # The referenced rule within the 
-                                            # ruleset 
+    fhir:TestScript.setup.action.assert.rule.ruleId @<id>;  # Id of the TestScript.rule
+    fhir:TestScript.setup.action.assert.rule.param @<TestScript.setup.action.assert.rule.param>*;  # Rule parameter template
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -770,11 +770,14 @@ start=@<TestScript> AND {fhir:nodeRole [fhir:treeRoot]}
 
 #---------------------- Value Sets ------------------------
 
-# The lifecycle status of a Value Set or Concept Map.
-fhirvs:publication-status ["draft" "active" "retired"]
-
 # Telecommunications form for contact point
 fhirvs:contact-point-system ["phone" "fax" "email" "pager" "other"]
+
+# The type of operator to use for assertion.
+fhirvs:assert-operator-codes ["equals" "notEquals" "in" "notIn" "greaterThan" "lessThan" "empty" "notEmpty" "contains" "notContains" "eval"]
+
+# How the Quantity should be understood and represented.
+fhirvs:quantity-comparator ["<" "<=" ">=" ">"]
 
 # The content or mime type.
 fhirvs:content-type ["xml" "json" "ttl" "none"]
@@ -782,23 +785,20 @@ fhirvs:content-type ["xml" "json" "ttl" "none"]
 # The status of a resource narrative
 fhirvs:narrative-status ["generated" "extensions" "additional" "empty"]
 
-# The type of direction to use for assertion.
-fhirvs:assert-direction-codes ["response" "request"]
+# Use of contact point
+fhirvs:contact-point-use ["home" "work" "temp" "old" "mobile"]
 
-# The type of operator to use for assertion.
-fhirvs:assert-operator-codes ["equals" "notEquals" "in" "notIn" "greaterThan" "lessThan" "empty" "notEmpty" "contains" "notContains" "eval"]
-
-# Either a resource or a data type.
-fhirvs:defined-types ["Address" "Age" "Annotation" "Attachment" "BackboneElement" "CodeableConcept" "Coding" "ContactDetail" "ContactPoint" "Contributor" "Count" "DataRequirement" "Distance" "DosageInstruction" "Duration" "Element" "ElementDefinition" "Extension" "HumanName" "Identifier" "Meta" "Money" "Narrative" "ParameterDefinition" "Period" "Quantity" "Range" "Ratio" "Reference" "RelatedArtifact" "SampledData" "Signature" "SimpleQuantity" "Timing" "TriggerDefinition" "UsageContext" "base64Binary" "boolean" "code" "date" "dateTime" "decimal" "id" "instant" "integer" "markdown" "oid" "positiveInt" "string" "time" "unsignedInt" "uri" "uuid" "xhtml" "Account" "ActivityDefinition" "AllergyIntolerance" "Appointment" "AppointmentResponse" "AuditEvent" "Basic" "Binary" "BodySite" "Bundle" "CapabilityStatement" "CarePlan" "CareTeam" "Claim" "ClaimResponse" "ClinicalImpression" "CodeSystem" "Communication" "CommunicationRequest" "CompartmentDefinition" "Composition" "ConceptMap" "Condition" "Consent" "Contract" "Coverage" "DataElement" "DetectedIssue" "Device" "DeviceComponent" "DeviceMetric" "DeviceUseRequest" "DeviceUseStatement" "DiagnosticReport" "DiagnosticRequest" "DocumentManifest" "DocumentReference" "DomainResource" "EligibilityRequest" "EligibilityResponse" "Encounter" "Endpoint" "EnrollmentRequest" "EnrollmentResponse" "EpisodeOfCare" "ExpansionProfile" "ExplanationOfBenefit" "FamilyMemberHistory" "Flag" "Goal" "Group" "GuidanceResponse" "HealthcareService" "ImagingManifest" "ImagingStudy" "Immunization" "ImmunizationRecommendation" "ImplementationGuide" "Library" "Linkage" "List" "Location" "Measure" "MeasureReport" "Media" "Medication" "MedicationAdministration" "MedicationDispense" "MedicationRequest" "MedicationStatement" "MessageDefinition" "MessageHeader" "NamingSystem" "NutritionRequest" "Observation" "OperationDefinition" "OperationOutcome" "Organization" "Parameters" "Patient" "PaymentNotice" "PaymentReconciliation" "Person" "PlanDefinition" "Practitioner" "PractitionerRole" "Procedure" "ProcedureRequest" "ProcessRequest" "ProcessResponse" "Provenance" "Questionnaire" "QuestionnaireResponse" "ReferralRequest" "RelatedPerson" "RequestGroup" "ResearchStudy" "ResearchSubject" "Resource" "RiskAssessment" "Schedule" "SearchParameter" "Sequence" "ServiceDefinition" "Slot" "Specimen" "StructureDefinition" "StructureMap" "Subscription" "Substance" "SupplyDelivery" "SupplyRequest" "Task" "TestReport" "TestScript" "ValueSet" "VisionPrescription"]
+# The lifecycle status of a Value Set or Concept Map.
+fhirvs:publication-status ["draft" "active" "retired"]
 
 # The type of response code to use for assertion.
 fhirvs:assert-response-code-types ["okay" "created" "noContent" "notModified" "bad" "forbidden" "notFound" "methodNotAllowed" "conflict" "gone" "preconditionFailed" "unprocessable"]
 
-# How the Quantity should be understood and represented.
-fhirvs:quantity-comparator ["<" "<=" ">=" ">"]
-
-# Use of contact point
-fhirvs:contact-point-use ["home" "work" "temp" "old" "mobile"]
+# The type of direction to use for assertion.
+fhirvs:assert-direction-codes ["response" "request"]
 
 # Identifies the purpose for this identifier, if known .
 fhirvs:identifier-use ["usual" "official" "temp" "secondary"]
+
+# Either a resource or a data type.
+fhirvs:defined-types ["Address" "Age" "Annotation" "Attachment" "BackboneElement" "CodeableConcept" "Coding" "ContactDetail" "ContactPoint" "Contributor" "Count" "DataRequirement" "Distance" "DosageInstruction" "Duration" "Element" "ElementDefinition" "Extension" "HumanName" "Identifier" "Meta" "Money" "Narrative" "ParameterDefinition" "Period" "Quantity" "Range" "Ratio" "Reference" "RelatedArtifact" "SampledData" "Signature" "SimpleQuantity" "Timing" "TriggerDefinition" "UsageContext" "base64Binary" "boolean" "code" "date" "dateTime" "decimal" "id" "instant" "integer" "markdown" "oid" "positiveInt" "string" "time" "unsignedInt" "uri" "uuid" "xhtml" "Account" "ActivityDefinition" "AllergyIntolerance" "Appointment" "AppointmentResponse" "AuditEvent" "Basic" "Binary" "BodySite" "Bundle" "CapabilityStatement" "CarePlan" "CareTeam" "Claim" "ClaimResponse" "ClinicalImpression" "CodeSystem" "Communication" "CommunicationRequest" "CompartmentDefinition" "Composition" "ConceptMap" "Condition" "Consent" "Contract" "Coverage" "DataElement" "DetectedIssue" "Device" "DeviceComponent" "DeviceMetric" "DeviceUseRequest" "DeviceUseStatement" "DiagnosticReport" "DiagnosticRequest" "DocumentManifest" "DocumentReference" "DomainResource" "EligibilityRequest" "EligibilityResponse" "Encounter" "Endpoint" "EnrollmentRequest" "EnrollmentResponse" "EpisodeOfCare" "ExpansionProfile" "ExplanationOfBenefit" "FamilyMemberHistory" "Flag" "Goal" "Group" "GuidanceResponse" "HealthcareService" "ImagingManifest" "ImagingStudy" "Immunization" "ImmunizationRecommendation" "ImplementationGuide" "Library" "Linkage" "List" "Location" "Measure" "MeasureReport" "Media" "Medication" "MedicationAdministration" "MedicationDispense" "MedicationRequest" "MedicationStatement" "MessageDefinition" "MessageHeader" "NamingSystem" "NutritionRequest" "Observation" "OperationDefinition" "OperationOutcome" "Organization" "Parameters" "Patient" "PaymentNotice" "PaymentReconciliation" "Person" "PlanDefinition" "Practitioner" "PractitionerRole" "Procedure" "ProcedureRequest" "ProcessRequest" "ProcessResponse" "Provenance" "Questionnaire" "QuestionnaireResponse" "ReferralRequest" "RelatedPerson" "RequestGroup" "ResearchStudy" "ResearchSubject" "Resource" "RiskAssessment" "Schedule" "SearchParameter" "Sequence" "ServiceDefinition" "Slot" "Specimen" "StructureDefinition" "StructureMap" "Subscription" "Substance" "SupplyDelivery" "SupplyRequest" "Task" "TestReport" "TestScript" "ValueSet" "VisionPrescription"]

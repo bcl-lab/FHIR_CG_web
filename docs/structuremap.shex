@@ -498,29 +498,20 @@ start=@<StructureMap> AND {fhir:nodeRole [fhir:treeRoot]}
 
 #---------------------- Value Sets ------------------------
 
-# The lifecycle status of a Value Set or Concept Map.
-fhirvs:publication-status ["draft" "active" "retired"]
+# If field is a list, how to manage the list
+fhirvs:map-list-mode ["first" "share" "last"]
 
 # Telecommunications form for contact point
 fhirvs:contact-point-system ["phone" "fax" "email" "pager" "other"]
 
-# If field is a list, how to manage the list
-fhirvs:map-list-mode ["first" "share" "last"]
-
-# The status of a resource narrative
-fhirvs:narrative-status ["generated" "extensions" "additional" "empty"]
-
-# How to interpret the context
-fhirvs:map-context-type ["type" "variable"]
-
-# How the referenced structure is used in this mapping
-fhirvs:map-model-mode ["source" "queried" "target" "produced"]
+# How data is copied / created
+fhirvs:map-transform ["create" "copy" "truncate" "escape" "cast" "append" "translate" "reference" "dateOp" "uuid" "pointer" "evaluate" "cc" "c" "qty" "id" "cp"]
 
 # How the Quantity should be understood and represented.
 fhirvs:quantity-comparator ["<" "<=" ">=" ">"]
 
-# How data is copied / created
-fhirvs:map-transform ["create" "copy" "truncate" "escape" "cast" "append" "translate" "reference" "dateOp" "uuid" "pointer" "evaluate" "cc" "c" "qty" "id" "cp"]
+# The status of a resource narrative
+fhirvs:narrative-status ["generated" "extensions" "additional" "empty"]
 
 # Use of contact point
 fhirvs:contact-point-use ["home" "work" "temp" "old" "mobile"]
@@ -528,5 +519,14 @@ fhirvs:contact-point-use ["home" "work" "temp" "old" "mobile"]
 # Mode for this instance of data
 fhirvs:map-input-mode ["source" "target"]
 
+# The lifecycle status of a Value Set or Concept Map.
+fhirvs:publication-status ["draft" "active" "retired"]
+
+# How the referenced structure is used in this mapping
+fhirvs:map-model-mode ["source" "queried" "target" "produced"]
+
 # Identifies the purpose for this identifier, if known .
 fhirvs:identifier-use ["usual" "official" "temp" "secondary"]
+
+# How to interpret the context
+fhirvs:map-context-type ["type" "variable"]

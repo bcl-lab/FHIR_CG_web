@@ -13,7 +13,7 @@
   fhir:CapabilityStatement.name [ fhir:value "Base FHIR Capability Statement (Full)"];
   fhir:CapabilityStatement.status [ fhir:value "draft"];
   fhir:CapabilityStatement.experimental [ fhir:value "true"];
-  fhir:CapabilityStatement.date [ fhir:value "2016-11-16T22:02:32-05:00"];
+  fhir:CapabilityStatement.date [ fhir:value "2016-11-17T00:08:25-05:00"];
   fhir:CapabilityStatement.publisher [ fhir:value "FHIR Project Team"];
   fhir:CapabilityStatement.contact [
      fhir:index 0;
@@ -350,13 +350,6 @@
          fhir:value "AllergyIntolerance.patient";
          fhir:index 2
        ];
-       fhir:CapabilityStatement.searchRevInclude [
-         fhir:value "ClinicalImpression.problem";
-         fhir:index 0
-       ], [
-         fhir:value "ImmunizationRecommendation.information";
-         fhir:index 1
-       ];
        fhir:CapabilityStatement.searchParam [
          fhir:index 0;
          fhir:CapabilityStatement.name [ fhir:value "severity" ];
@@ -514,19 +507,6 @@
          fhir:index 2
        ], [
          fhir:value "Appointment.location";
-         fhir:index 3
-       ];
-       fhir:CapabilityStatement.searchRevInclude [
-         fhir:value "AppointmentResponse.appointment";
-         fhir:index 0
-       ], [
-         fhir:value "CarePlan.activityreference";
-         fhir:index 1
-       ], [
-         fhir:value "ClinicalImpression.action";
-         fhir:index 2
-       ], [
-         fhir:value "Encounter.appointment";
          fhir:index 3
        ];
        fhir:CapabilityStatement.searchParam [
@@ -1410,19 +1390,6 @@
          fhir:value "CarePlan.patient";
          fhir:index 7
        ];
-       fhir:CapabilityStatement.searchRevInclude [
-         fhir:value "CarePlan.relatedplan";
-         fhir:index 0
-       ], [
-         fhir:value "ImagingStudy.basedon";
-         fhir:index 1
-       ], [
-         fhir:value "QuestionnaireResponse.based-on";
-         fhir:index 2
-       ], [
-         fhir:value "ReferralRequest.basedon";
-         fhir:index 3
-       ];
        fhir:CapabilityStatement.searchParam [
          fhir:index 0;
          fhir:CapabilityStatement.name [ fhir:value "date" ];
@@ -1573,19 +1540,6 @@
          fhir:value "CareTeam.participant";
          fhir:index 2
        ];
-       fhir:CapabilityStatement.searchRevInclude [
-         fhir:value "CarePlan.careteam";
-         fhir:index 0
-       ], [
-         fhir:value "CommunicationRequest.recipient";
-         fhir:index 1
-       ], [
-         fhir:value "Consent.actor";
-         fhir:index 2
-       ], [
-         fhir:value "Consent.recipient";
-         fhir:index 3
-       ];
        fhir:CapabilityStatement.searchParam [
          fhir:index 0;
          fhir:CapabilityStatement.name [ fhir:value "date" ];
@@ -1693,13 +1647,6 @@
        ], [
          fhir:value "Claim.facility";
          fhir:index 4
-       ];
-       fhir:CapabilityStatement.searchRevInclude [
-         fhir:value "ClaimResponse.request";
-         fhir:index 0
-       ], [
-         fhir:value "ExplanationOfBenefit.claim";
-         fhir:index 1
        ];
        fhir:CapabilityStatement.searchParam [
          fhir:index 0;
@@ -1931,10 +1878,6 @@
        ], [
          fhir:value "ClinicalImpression.finding-ref";
          fhir:index 8
-       ];
-       fhir:CapabilityStatement.searchRevInclude [
-         fhir:value "ClinicalImpression.previous";
-         fhir:index 0
        ];
        fhir:CapabilityStatement.searchParam [
          fhir:index 0;
@@ -2351,10 +2294,6 @@
        ], [
          fhir:value "CommunicationRequest.context";
          fhir:index 5
-       ];
-       fhir:CapabilityStatement.searchRevInclude [
-         fhir:value "CarePlan.activityreference";
-         fhir:index 0
        ];
        fhir:CapabilityStatement.searchParam [
          fhir:index 0;
@@ -2955,31 +2894,6 @@
          fhir:value "Condition.context";
          fhir:index 3
        ];
-       fhir:CapabilityStatement.searchRevInclude [
-         fhir:value "CarePlan.condition";
-         fhir:index 0
-       ], [
-         fhir:value "ClinicalImpression.problem";
-         fhir:index 1
-       ], [
-         fhir:value "ClinicalImpression.finding-ref";
-         fhir:index 2
-       ], [
-         fhir:value "Encounter.procedure";
-         fhir:index 3
-       ], [
-         fhir:value "Encounter.condition";
-         fhir:index 4
-       ], [
-         fhir:value "Encounter.indication";
-         fhir:index 5
-       ], [
-         fhir:value "EpisodeOfCare.condition";
-         fhir:index 6
-       ], [
-         fhir:value "RiskAssessment.condition";
-         fhir:index 7
-       ];
        fhir:CapabilityStatement.searchParam [
          fhir:index 0;
          fhir:CapabilityStatement.name [ fhir:value "severity" ];
@@ -3172,10 +3086,6 @@
          fhir:value "Consent.consentor";
          fhir:index 6
        ];
-       fhir:CapabilityStatement.searchRevInclude [
-         fhir:value "Consent.source";
-         fhir:index 0
-       ];
        fhir:CapabilityStatement.searchParam [
          fhir:index 0;
          fhir:CapabilityStatement.name [ fhir:value "date" ];
@@ -3340,13 +3250,6 @@
        ], [
          fhir:value "Contract.signer";
          fhir:index 7
-       ];
-       fhir:CapabilityStatement.searchRevInclude [
-         fhir:value "Consent.source";
-         fhir:index 0
-       ], [
-         fhir:value "Contract.agent";
-         fhir:index 1
        ];
        fhir:CapabilityStatement.searchParam [
          fhir:index 0;
@@ -3824,196 +3727,6 @@
          fhir:value "Device.location";
          fhir:index 2
        ];
-       fhir:CapabilityStatement.searchRevInclude [
-         fhir:value "Account.subject";
-         fhir:index 0
-       ], [
-         fhir:value "Account.patient";
-         fhir:index 1
-       ], [
-         fhir:value "Appointment.actor";
-         fhir:index 2
-       ], [
-         fhir:value "Appointment.practitioner";
-         fhir:index 3
-       ], [
-         fhir:value "Appointment.patient";
-         fhir:index 4
-       ], [
-         fhir:value "Appointment.location";
-         fhir:index 5
-       ], [
-         fhir:value "AppointmentResponse.actor";
-         fhir:index 6
-       ], [
-         fhir:value "AppointmentResponse.practitioner";
-         fhir:index 7
-       ], [
-         fhir:value "AppointmentResponse.patient";
-         fhir:index 8
-       ], [
-         fhir:value "AppointmentResponse.location";
-         fhir:index 9
-       ], [
-         fhir:value "AuditEvent.agent";
-         fhir:index 10
-       ], [
-         fhir:value "AuditEvent.patient";
-         fhir:index 11
-       ], [
-         fhir:value "Communication.sender";
-         fhir:index 12
-       ], [
-         fhir:value "Communication.recipient";
-         fhir:index 13
-       ], [
-         fhir:value "CommunicationRequest.sender";
-         fhir:index 14
-       ], [
-         fhir:value "CommunicationRequest.recipient";
-         fhir:index 15
-       ], [
-         fhir:value "Composition.author";
-         fhir:index 16
-       ], [
-         fhir:value "Consent.actor";
-         fhir:index 17
-       ], [
-         fhir:value "Consent.recipient";
-         fhir:index 18
-       ], [
-         fhir:value "Contract.agent";
-         fhir:index 19
-       ], [
-         fhir:value "DetectedIssue.author";
-         fhir:index 20
-       ], [
-         fhir:value "DeviceComponent.source";
-         fhir:index 21
-       ], [
-         fhir:value "DeviceMetric.source";
-         fhir:index 22
-       ], [
-         fhir:value "DeviceUseRequest.requester";
-         fhir:index 23
-       ], [
-         fhir:value "DeviceUseRequest.subject";
-         fhir:index 24
-       ], [
-         fhir:value "DeviceUseRequest.patient";
-         fhir:index 25
-       ], [
-         fhir:value "DeviceUseRequest.filler";
-         fhir:index 26
-       ], [
-         fhir:value "DeviceUseRequest.device";
-         fhir:index 27
-       ], [
-         fhir:value "DeviceUseStatement.device";
-         fhir:index 28
-       ], [
-         fhir:value "DiagnosticReport.subject";
-         fhir:index 29
-       ], [
-         fhir:value "DiagnosticReport.patient";
-         fhir:index 30
-       ], [
-         fhir:value "DiagnosticRequest.requester";
-         fhir:index 31
-       ], [
-         fhir:value "DiagnosticRequest.subject";
-         fhir:index 32
-       ], [
-         fhir:value "DiagnosticRequest.patient";
-         fhir:index 33
-       ], [
-         fhir:value "DiagnosticRequest.filler";
-         fhir:index 34
-       ], [
-         fhir:value "DocumentManifest.subject";
-         fhir:index 35
-       ], [
-         fhir:value "DocumentManifest.author";
-         fhir:index 36
-       ], [
-         fhir:value "DocumentManifest.patient";
-         fhir:index 37
-       ], [
-         fhir:value "DocumentReference.subject";
-         fhir:index 38
-       ], [
-         fhir:value "DocumentReference.patient";
-         fhir:index 39
-       ], [
-         fhir:value "DocumentReference.author";
-         fhir:index 40
-       ], [
-         fhir:value "Flag.author";
-         fhir:index 41
-       ], [
-         fhir:value "Group.member";
-         fhir:index 42
-       ], [
-         fhir:value "ImagingManifest.author";
-         fhir:index 43
-       ], [
-         fhir:value "List.subject";
-         fhir:index 44
-       ], [
-         fhir:value "List.patient";
-         fhir:index 45
-       ], [
-         fhir:value "List.source";
-         fhir:index 46
-       ], [
-         fhir:value "Media.subject";
-         fhir:index 47
-       ], [
-         fhir:value "Media.patient";
-         fhir:index 48
-       ], [
-         fhir:value "MedicationAdministration.device";
-         fhir:index 49
-       ], [
-         fhir:value "MessageHeader.target";
-         fhir:index 50
-       ], [
-         fhir:value "Observation.subject";
-         fhir:index 51
-       ], [
-         fhir:value "Observation.patient";
-         fhir:index 52
-       ], [
-         fhir:value "Observation.device";
-         fhir:index 53
-       ], [
-         fhir:value "ProcedureRequest.orderer";
-         fhir:index 54
-       ], [
-         fhir:value "QuestionnaireResponse.author";
-         fhir:index 55
-       ], [
-         fhir:value "RequestGroup.author";
-         fhir:index 56
-       ], [
-         fhir:value "RiskAssessment.performer";
-         fhir:index 57
-       ], [
-         fhir:value "Schedule.actor";
-         fhir:index 58
-       ], [
-         fhir:value "Specimen.subject";
-         fhir:index 59
-       ], [
-         fhir:value "Specimen.patient";
-         fhir:index 60
-       ], [
-         fhir:value "Task.owner";
-         fhir:index 61
-       ], [
-         fhir:value "Task.requester";
-         fhir:index 62
-       ];
        fhir:CapabilityStatement.searchParam [
          fhir:index 0;
          fhir:CapabilityStatement.name [ fhir:value "identifier" ];
@@ -4125,13 +3838,6 @@
          fhir:value "DeviceComponent.source";
          fhir:index 1
        ];
-       fhir:CapabilityStatement.searchRevInclude [
-         fhir:value "DeviceComponent.parent";
-         fhir:index 0
-       ], [
-         fhir:value "DeviceMetric.parent";
-         fhir:index 1
-       ];
        fhir:CapabilityStatement.searchParam [
          fhir:index 0;
          fhir:CapabilityStatement.name [ fhir:value "parent" ];
@@ -4206,10 +3912,6 @@
        ], [
          fhir:value "DeviceMetric.source";
          fhir:index 1
-       ];
-       fhir:CapabilityStatement.searchRevInclude [
-         fhir:value "Observation.device";
-         fhir:index 0
        ];
        fhir:CapabilityStatement.searchParam [
          fhir:index 0;
@@ -4318,13 +4020,6 @@
        ], [
          fhir:value "DeviceUseRequest.device";
          fhir:index 8
-       ];
-       fhir:CapabilityStatement.searchRevInclude [
-         fhir:value "CarePlan.activityreference";
-         fhir:index 0
-       ], [
-         fhir:value "ClinicalImpression.action";
-         fhir:index 1
        ];
        fhir:CapabilityStatement.searchParam [
          fhir:index 0;
@@ -4575,10 +4270,6 @@
          fhir:value "DiagnosticReport.specimen";
          fhir:index 7
        ];
-       fhir:CapabilityStatement.searchRevInclude [
-         fhir:value "ClinicalImpression.investigation";
-         fhir:index 0
-       ];
        fhir:CapabilityStatement.searchParam [
          fhir:index 0;
          fhir:CapabilityStatement.name [ fhir:value "date" ];
@@ -4743,25 +4434,6 @@
        ], [
          fhir:value "DiagnosticRequest.definition";
          fhir:index 7
-       ];
-       fhir:CapabilityStatement.searchRevInclude [
-         fhir:value "CarePlan.activityreference";
-         fhir:index 0
-       ], [
-         fhir:value "ClinicalImpression.action";
-         fhir:index 1
-       ], [
-         fhir:value "DiagnosticReport.request";
-         fhir:index 2
-       ], [
-         fhir:value "ImagingStudy.basedon";
-         fhir:index 3
-       ], [
-         fhir:value "QuestionnaireResponse.based-on";
-         fhir:index 4
-       ], [
-         fhir:value "ReferralRequest.basedon";
-         fhir:index 5
        ];
        fhir:CapabilityStatement.searchParam [
          fhir:index 0;
@@ -5075,13 +4747,6 @@
          fhir:value "DocumentReference.relatesto";
          fhir:index 7
        ];
-       fhir:CapabilityStatement.searchRevInclude [
-         fhir:value "Consent.source";
-         fhir:index 0
-       ], [
-         fhir:value "DocumentReference.relatesto";
-         fhir:index 1
-       ];
        fhir:CapabilityStatement.searchParam [
          fhir:index 0;
          fhir:CapabilityStatement.name [ fhir:value "securitylabel" ];
@@ -5300,10 +4965,6 @@
        ], [
          fhir:value "EligibilityRequest.facility";
          fhir:index 3
-       ];
-       fhir:CapabilityStatement.searchRevInclude [
-         fhir:value "EligibilityResponse.request";
-         fhir:index 0
        ];
        fhir:CapabilityStatement.searchParam [
          fhir:index 0;
@@ -5535,82 +5196,6 @@
        ], [
          fhir:value "Encounter.indication";
          fhir:index 10
-       ];
-       fhir:CapabilityStatement.searchRevInclude [
-         fhir:value "ClinicalImpression.context";
-         fhir:index 0
-       ], [
-         fhir:value "Communication.context";
-         fhir:index 1
-       ], [
-         fhir:value "CommunicationRequest.context";
-         fhir:index 2
-       ], [
-         fhir:value "Composition.encounter";
-         fhir:index 3
-       ], [
-         fhir:value "Condition.context";
-         fhir:index 4
-       ], [
-         fhir:value "DeviceUseRequest.encounter";
-         fhir:index 5
-       ], [
-         fhir:value "DiagnosticReport.encounter";
-         fhir:index 6
-       ], [
-         fhir:value "DiagnosticRequest.encounter";
-         fhir:index 7
-       ], [
-         fhir:value "DocumentReference.encounter";
-         fhir:index 8
-       ], [
-         fhir:value "Encounter.part-of";
-         fhir:index 9
-       ], [
-         fhir:value "Flag.encounter";
-         fhir:index 10
-       ], [
-         fhir:value "ImagingStudy.context";
-         fhir:index 11
-       ], [
-         fhir:value "List.encounter";
-         fhir:index 12
-       ], [
-         fhir:value "MedicationAdministration.encounter";
-         fhir:index 13
-       ], [
-         fhir:value "MedicationRequest.context";
-         fhir:index 14
-       ], [
-         fhir:value "NutritionRequest.encounter";
-         fhir:index 15
-       ], [
-         fhir:value "Observation.encounter";
-         fhir:index 16
-       ], [
-         fhir:value "Procedure.encounter";
-         fhir:index 17
-       ], [
-         fhir:value "ProcedureRequest.encounter";
-         fhir:index 18
-       ], [
-         fhir:value "QuestionnaireResponse.context";
-         fhir:index 19
-       ], [
-         fhir:value "ReferralRequest.context";
-         fhir:index 20
-       ], [
-         fhir:value "RequestGroup.context";
-         fhir:index 21
-       ], [
-         fhir:value "RequestGroup.encounter";
-         fhir:index 22
-       ], [
-         fhir:value "RiskAssessment.encounter";
-         fhir:index 23
-       ], [
-         fhir:value "VisionPrescription.encounter";
-         fhir:index 24
        ];
        fhir:CapabilityStatement.searchParam [
          fhir:index 0;
@@ -6037,49 +5622,6 @@
          fhir:value "EpisodeOfCare.care-manager";
          fhir:index 4
        ];
-       fhir:CapabilityStatement.searchRevInclude [
-         fhir:value "ClinicalImpression.context";
-         fhir:index 0
-       ], [
-         fhir:value "Communication.context";
-         fhir:index 1
-       ], [
-         fhir:value "CommunicationRequest.context";
-         fhir:index 2
-       ], [
-         fhir:value "Condition.context";
-         fhir:index 3
-       ], [
-         fhir:value "DeviceUseRequest.encounter";
-         fhir:index 4
-       ], [
-         fhir:value "DiagnosticRequest.encounter";
-         fhir:index 5
-       ], [
-         fhir:value "Encounter.episodeofcare";
-         fhir:index 6
-       ], [
-         fhir:value "ImagingStudy.context";
-         fhir:index 7
-       ], [
-         fhir:value "MedicationRequest.context";
-         fhir:index 8
-       ], [
-         fhir:value "QuestionnaireResponse.context";
-         fhir:index 9
-       ], [
-         fhir:value "ReferralRequest.context";
-         fhir:index 10
-       ], [
-         fhir:value "RequestGroup.context";
-         fhir:index 11
-       ], [
-         fhir:value "RequestGroup.encounter";
-         fhir:index 12
-       ], [
-         fhir:value "RiskAssessment.encounter";
-         fhir:index 13
-       ];
        fhir:CapabilityStatement.searchParam [
          fhir:index 0;
          fhir:CapabilityStatement.name [ fhir:value "date" ];
@@ -6406,10 +5948,6 @@
          fhir:value "FamilyMemberHistory.patient";
          fhir:index 0
        ];
-       fhir:CapabilityStatement.searchRevInclude [
-         fhir:value "ClinicalImpression.investigation";
-         fhir:index 0
-       ];
        fhir:CapabilityStatement.searchParam [
          fhir:index 0;
          fhir:CapabilityStatement.name [ fhir:value "date" ];
@@ -6596,10 +6134,6 @@
          fhir:value "Goal.subject";
          fhir:index 1
        ];
-       fhir:CapabilityStatement.searchRevInclude [
-         fhir:value "CarePlan.goal";
-         fhir:index 0
-       ];
        fhir:CapabilityStatement.searchParam [
          fhir:index 0;
          fhir:CapabilityStatement.name [ fhir:value "identifier" ];
@@ -6689,148 +6223,6 @@
        fhir:CapabilityStatement.searchInclude [
          fhir:value "Group.member";
          fhir:index 0
-       ];
-       fhir:CapabilityStatement.searchRevInclude [
-         fhir:value "CarePlan.subject";
-         fhir:index 0
-       ], [
-         fhir:value "CarePlan.patient";
-         fhir:index 1
-       ], [
-         fhir:value "CareTeam.patient";
-         fhir:index 2
-       ], [
-         fhir:value "CareTeam.subject";
-         fhir:index 3
-       ], [
-         fhir:value "ClinicalImpression.patient";
-         fhir:index 4
-       ], [
-         fhir:value "ClinicalImpression.subject";
-         fhir:index 5
-       ], [
-         fhir:value "Communication.subject";
-         fhir:index 6
-       ], [
-         fhir:value "Communication.patient";
-         fhir:index 7
-       ], [
-         fhir:value "Communication.recipient";
-         fhir:index 8
-       ], [
-         fhir:value "CommunicationRequest.recipient";
-         fhir:index 9
-       ], [
-         fhir:value "Condition.subject";
-         fhir:index 10
-       ], [
-         fhir:value "Condition.patient";
-         fhir:index 11
-       ], [
-         fhir:value "Consent.actor";
-         fhir:index 12
-       ], [
-         fhir:value "Consent.recipient";
-         fhir:index 13
-       ], [
-         fhir:value "Contract.agent";
-         fhir:index 14
-       ], [
-         fhir:value "DeviceUseRequest.subject";
-         fhir:index 15
-       ], [
-         fhir:value "DeviceUseRequest.patient";
-         fhir:index 16
-       ], [
-         fhir:value "DiagnosticReport.subject";
-         fhir:index 17
-       ], [
-         fhir:value "DiagnosticReport.patient";
-         fhir:index 18
-       ], [
-         fhir:value "DiagnosticRequest.subject";
-         fhir:index 19
-       ], [
-         fhir:value "DiagnosticRequest.patient";
-         fhir:index 20
-       ], [
-         fhir:value "DocumentManifest.subject";
-         fhir:index 21
-       ], [
-         fhir:value "DocumentManifest.patient";
-         fhir:index 22
-       ], [
-         fhir:value "DocumentReference.subject";
-         fhir:index 23
-       ], [
-         fhir:value "DocumentReference.patient";
-         fhir:index 24
-       ], [
-         fhir:value "Flag.subject";
-         fhir:index 25
-       ], [
-         fhir:value "Flag.patient";
-         fhir:index 26
-       ], [
-         fhir:value "Goal.patient";
-         fhir:index 27
-       ], [
-         fhir:value "Goal.subject";
-         fhir:index 28
-       ], [
-         fhir:value "GuidanceResponse.patient";
-         fhir:index 29
-       ], [
-         fhir:value "GuidanceResponse.subject";
-         fhir:index 30
-       ], [
-         fhir:value "List.subject";
-         fhir:index 31
-       ], [
-         fhir:value "List.patient";
-         fhir:index 32
-       ], [
-         fhir:value "Media.subject";
-         fhir:index 33
-       ], [
-         fhir:value "Media.patient";
-         fhir:index 34
-       ], [
-         fhir:value "Observation.subject";
-         fhir:index 35
-       ], [
-         fhir:value "Observation.patient";
-         fhir:index 36
-       ], [
-         fhir:value "Procedure.subject";
-         fhir:index 37
-       ], [
-         fhir:value "Procedure.patient";
-         fhir:index 38
-       ], [
-         fhir:value "ProcedureRequest.subject";
-         fhir:index 39
-       ], [
-         fhir:value "ProcedureRequest.patient";
-         fhir:index 40
-       ], [
-         fhir:value "RequestGroup.patient";
-         fhir:index 41
-       ], [
-         fhir:value "RequestGroup.subject";
-         fhir:index 42
-       ], [
-         fhir:value "RiskAssessment.subject";
-         fhir:index 43
-       ], [
-         fhir:value "RiskAssessment.patient";
-         fhir:index 44
-       ], [
-         fhir:value "Specimen.subject";
-         fhir:index 45
-       ], [
-         fhir:value "Specimen.patient";
-         fhir:index 46
        ];
        fhir:CapabilityStatement.searchParam [
          fhir:index 0;
@@ -7011,40 +6403,6 @@
        ], [
          fhir:value "HealthcareService.location";
          fhir:index 1
-       ];
-       fhir:CapabilityStatement.searchRevInclude [
-         fhir:value "Account.subject";
-         fhir:index 0
-       ], [
-         fhir:value "Account.patient";
-         fhir:index 1
-       ], [
-         fhir:value "Appointment.actor";
-         fhir:index 2
-       ], [
-         fhir:value "Appointment.practitioner";
-         fhir:index 3
-       ], [
-         fhir:value "Appointment.patient";
-         fhir:index 4
-       ], [
-         fhir:value "Appointment.location";
-         fhir:index 5
-       ], [
-         fhir:value "AppointmentResponse.actor";
-         fhir:index 6
-       ], [
-         fhir:value "AppointmentResponse.practitioner";
-         fhir:index 7
-       ], [
-         fhir:value "AppointmentResponse.patient";
-         fhir:index 8
-       ], [
-         fhir:value "AppointmentResponse.location";
-         fhir:index 9
-       ], [
-         fhir:value "Schedule.actor";
-         fhir:index 10
        ];
        fhir:CapabilityStatement.searchParam [
          fhir:index 0;
@@ -7253,10 +6611,6 @@
          fhir:value "ImagingStudy.basedon";
          fhir:index 2
        ];
-       fhir:CapabilityStatement.searchRevInclude [
-         fhir:value "ClinicalImpression.investigation";
-         fhir:index 0
-       ];
        fhir:CapabilityStatement.searchParam [
          fhir:index 0;
          fhir:CapabilityStatement.name [ fhir:value "identifier" ];
@@ -7403,10 +6757,6 @@
        ], [
          fhir:value "Immunization.location";
          fhir:index 5
-       ];
-       fhir:CapabilityStatement.searchRevInclude [
-         fhir:value "ImmunizationRecommendation.support";
-         fhir:index 0
        ];
        fhir:CapabilityStatement.searchParam [
          fhir:index 0;
@@ -8133,124 +7483,6 @@
          fhir:value "Location.organization";
          fhir:index 1
        ];
-       fhir:CapabilityStatement.searchRevInclude [
-         fhir:value "Account.subject";
-         fhir:index 0
-       ], [
-         fhir:value "Account.patient";
-         fhir:index 1
-       ], [
-         fhir:value "Appointment.actor";
-         fhir:index 2
-       ], [
-         fhir:value "Appointment.practitioner";
-         fhir:index 3
-       ], [
-         fhir:value "Appointment.patient";
-         fhir:index 4
-       ], [
-         fhir:value "Appointment.location";
-         fhir:index 5
-       ], [
-         fhir:value "AppointmentResponse.actor";
-         fhir:index 6
-       ], [
-         fhir:value "AppointmentResponse.practitioner";
-         fhir:index 7
-       ], [
-         fhir:value "AppointmentResponse.patient";
-         fhir:index 8
-       ], [
-         fhir:value "AppointmentResponse.location";
-         fhir:index 9
-       ], [
-         fhir:value "Claim.facility";
-         fhir:index 10
-       ], [
-         fhir:value "Contract.agent";
-         fhir:index 11
-       ], [
-         fhir:value "Contract.domain";
-         fhir:index 12
-       ], [
-         fhir:value "Device.location";
-         fhir:index 13
-       ], [
-         fhir:value "DeviceUseRequest.subject";
-         fhir:index 14
-       ], [
-         fhir:value "DeviceUseRequest.patient";
-         fhir:index 15
-       ], [
-         fhir:value "DiagnosticReport.subject";
-         fhir:index 16
-       ], [
-         fhir:value "DiagnosticReport.patient";
-         fhir:index 17
-       ], [
-         fhir:value "DiagnosticRequest.subject";
-         fhir:index 18
-       ], [
-         fhir:value "DiagnosticRequest.patient";
-         fhir:index 19
-       ], [
-         fhir:value "EligibilityRequest.facility";
-         fhir:index 20
-       ], [
-         fhir:value "Encounter.location";
-         fhir:index 21
-       ], [
-         fhir:value "ExplanationOfBenefit.facility";
-         fhir:index 22
-       ], [
-         fhir:value "Flag.subject";
-         fhir:index 23
-       ], [
-         fhir:value "Flag.patient";
-         fhir:index 24
-       ], [
-         fhir:value "HealthcareService.location";
-         fhir:index 25
-       ], [
-         fhir:value "Immunization.location";
-         fhir:index 26
-       ], [
-         fhir:value "List.subject";
-         fhir:index 27
-       ], [
-         fhir:value "List.patient";
-         fhir:index 28
-       ], [
-         fhir:value "Location.partof";
-         fhir:index 29
-       ], [
-         fhir:value "MedicationDispense.destination";
-         fhir:index 30
-       ], [
-         fhir:value "Observation.subject";
-         fhir:index 31
-       ], [
-         fhir:value "Observation.patient";
-         fhir:index 32
-       ], [
-         fhir:value "Practitioner.location";
-         fhir:index 33
-       ], [
-         fhir:value "PractitionerRole.location";
-         fhir:index 34
-       ], [
-         fhir:value "Procedure.location";
-         fhir:index 35
-       ], [
-         fhir:value "Provenance.location";
-         fhir:index 36
-       ], [
-         fhir:value "ResearchStudy.site";
-         fhir:index 37
-       ], [
-         fhir:value "Schedule.actor";
-         fhir:index 38
-       ];
        fhir:CapabilityStatement.searchParam [
          fhir:index 0;
          fhir:CapabilityStatement.name [ fhir:value "identifier" ];
@@ -8577,10 +7809,6 @@
          fhir:value "Media.operator";
          fhir:index 2
        ];
-       fhir:CapabilityStatement.searchRevInclude [
-         fhir:value "DiagnosticReport.image";
-         fhir:index 0
-       ];
        fhir:CapabilityStatement.searchParam [
          fhir:index 0;
          fhir:CapabilityStatement.name [ fhir:value "identifier" ];
@@ -8688,34 +7916,6 @@
        ], [
          fhir:value "Medication.manufacturer";
          fhir:index 2
-       ];
-       fhir:CapabilityStatement.searchRevInclude [
-         fhir:value "Flag.subject";
-         fhir:index 0
-       ], [
-         fhir:value "Flag.patient";
-         fhir:index 1
-       ], [
-         fhir:value "Group.member";
-         fhir:index 2
-       ], [
-         fhir:value "Medication.package-item";
-         fhir:index 3
-       ], [
-         fhir:value "Medication.ingredient";
-         fhir:index 4
-       ], [
-         fhir:value "MedicationAdministration.medication";
-         fhir:index 5
-       ], [
-         fhir:value "MedicationDispense.medication";
-         fhir:index 6
-       ], [
-         fhir:value "MedicationRequest.medication";
-         fhir:index 7
-       ], [
-         fhir:value "MedicationStatement.medication";
-         fhir:index 8
        ];
        fhir:CapabilityStatement.searchParam [
          fhir:index 0;
@@ -9127,19 +8327,6 @@
        ], [
          fhir:value "MedicationRequest.medication";
          fhir:index 4
-       ];
-       fhir:CapabilityStatement.searchRevInclude [
-         fhir:value "CarePlan.activityreference";
-         fhir:index 0
-       ], [
-         fhir:value "ClinicalImpression.action";
-         fhir:index 1
-       ], [
-         fhir:value "MedicationAdministration.prescription";
-         fhir:index 2
-       ], [
-         fhir:value "MedicationDispense.prescription";
-         fhir:index 3
        ];
        fhir:CapabilityStatement.searchParam [
          fhir:index 0;
@@ -9638,10 +8825,6 @@
          fhir:value "NamingSystem.replaced-by";
          fhir:index 0
        ];
-       fhir:CapabilityStatement.searchRevInclude [
-         fhir:value "NamingSystem.replaced-by";
-         fhir:index 0
-       ];
        fhir:CapabilityStatement.searchParam [
          fhir:index 0;
          fhir:CapabilityStatement.name [ fhir:value "date" ];
@@ -9792,13 +8975,6 @@
          fhir:value "NutritionRequest.encounter";
          fhir:index 2
        ];
-       fhir:CapabilityStatement.searchRevInclude [
-         fhir:value "CarePlan.activityreference";
-         fhir:index 0
-       ], [
-         fhir:value "ClinicalImpression.action";
-         fhir:index 1
-       ];
        fhir:CapabilityStatement.searchParam [
          fhir:index 0;
          fhir:CapabilityStatement.name [ fhir:value "identifier" ];
@@ -9929,28 +9105,6 @@
          fhir:index 5
        ], [
          fhir:value "Observation.device";
-         fhir:index 6
-       ];
-       fhir:CapabilityStatement.searchRevInclude [
-         fhir:value "ClinicalImpression.investigation";
-         fhir:index 0
-       ], [
-         fhir:value "ClinicalImpression.finding-ref";
-         fhir:index 1
-       ], [
-         fhir:value "DiagnosticReport.result";
-         fhir:index 2
-       ], [
-         fhir:value "Immunization.reaction";
-         fhir:index 3
-       ], [
-         fhir:value "ImmunizationRecommendation.information";
-         fhir:index 4
-       ], [
-         fhir:value "Observation.related-target";
-         fhir:index 5
-       ], [
-         fhir:value "QuestionnaireResponse.parent";
          fhir:index 6
        ];
        fhir:CapabilityStatement.searchParam [
@@ -10135,10 +9289,6 @@
        ], [
          fhir:value "OperationDefinition.base";
          fhir:index 1
-       ];
-       fhir:CapabilityStatement.searchRevInclude [
-         fhir:value "OperationDefinition.base";
-         fhir:index 0
        ];
        fhir:CapabilityStatement.searchParam [
          fhir:index 0;
@@ -10333,241 +9483,6 @@
          fhir:value "Organization.partof";
          fhir:index 0
        ];
-       fhir:CapabilityStatement.searchRevInclude [
-         fhir:value "Account.owner";
-         fhir:index 0
-       ], [
-         fhir:value "Account.subject";
-         fhir:index 1
-       ], [
-         fhir:value "Account.patient";
-         fhir:index 2
-       ], [
-         fhir:value "AuditEvent.agent";
-         fhir:index 3
-       ], [
-         fhir:value "AuditEvent.patient";
-         fhir:index 4
-       ], [
-         fhir:value "CarePlan.performer";
-         fhir:index 5
-       ], [
-         fhir:value "CareTeam.participant";
-         fhir:index 6
-       ], [
-         fhir:value "Claim.insurer";
-         fhir:index 7
-       ], [
-         fhir:value "Claim.organization";
-         fhir:index 8
-       ], [
-         fhir:value "ClaimResponse.organization";
-         fhir:index 9
-       ], [
-         fhir:value "Communication.sender";
-         fhir:index 10
-       ], [
-         fhir:value "Communication.recipient";
-         fhir:index 11
-       ], [
-         fhir:value "CommunicationRequest.sender";
-         fhir:index 12
-       ], [
-         fhir:value "CommunicationRequest.recipient";
-         fhir:index 13
-       ], [
-         fhir:value "Composition.attester";
-         fhir:index 14
-       ], [
-         fhir:value "Consent.actor";
-         fhir:index 15
-       ], [
-         fhir:value "Consent.organization";
-         fhir:index 16
-       ], [
-         fhir:value "Consent.recipient";
-         fhir:index 17
-       ], [
-         fhir:value "Consent.consentor";
-         fhir:index 18
-       ], [
-         fhir:value "Contract.agent";
-         fhir:index 19
-       ], [
-         fhir:value "Contract.authority";
-         fhir:index 20
-       ], [
-         fhir:value "Contract.signer";
-         fhir:index 21
-       ], [
-         fhir:value "Coverage.issuer";
-         fhir:index 22
-       ], [
-         fhir:value "Coverage.planholder";
-         fhir:index 23
-       ], [
-         fhir:value "Device.organization";
-         fhir:index 24
-       ], [
-         fhir:value "DeviceUseRequest.requester";
-         fhir:index 25
-       ], [
-         fhir:value "DeviceUseRequest.filler";
-         fhir:index 26
-       ], [
-         fhir:value "DiagnosticReport.performer";
-         fhir:index 27
-       ], [
-         fhir:value "DiagnosticRequest.requester";
-         fhir:index 28
-       ], [
-         fhir:value "DiagnosticRequest.filler";
-         fhir:index 29
-       ], [
-         fhir:value "DocumentManifest.author";
-         fhir:index 30
-       ], [
-         fhir:value "DocumentManifest.recipient";
-         fhir:index 31
-       ], [
-         fhir:value "DocumentReference.authenticator";
-         fhir:index 32
-       ], [
-         fhir:value "DocumentReference.custodian";
-         fhir:index 33
-       ], [
-         fhir:value "DocumentReference.author";
-         fhir:index 34
-       ], [
-         fhir:value "EligibilityRequest.organization";
-         fhir:index 35
-       ], [
-         fhir:value "EligibilityResponse.organization";
-         fhir:index 36
-       ], [
-         fhir:value "EligibilityResponse.request-organization";
-         fhir:index 37
-       ], [
-         fhir:value "Endpoint.organization";
-         fhir:index 38
-       ], [
-         fhir:value "EpisodeOfCare.organization";
-         fhir:index 39
-       ], [
-         fhir:value "ExplanationOfBenefit.organization";
-         fhir:index 40
-       ], [
-         fhir:value "Flag.subject";
-         fhir:index 41
-       ], [
-         fhir:value "Flag.patient";
-         fhir:index 42
-       ], [
-         fhir:value "Flag.author";
-         fhir:index 43
-       ], [
-         fhir:value "Goal.patient";
-         fhir:index 44
-       ], [
-         fhir:value "Goal.subject";
-         fhir:index 45
-       ], [
-         fhir:value "HealthcareService.organization";
-         fhir:index 46
-       ], [
-         fhir:value "ImagingManifest.author";
-         fhir:index 47
-       ], [
-         fhir:value "Immunization.manufacturer";
-         fhir:index 48
-       ], [
-         fhir:value "Linkage.author";
-         fhir:index 49
-       ], [
-         fhir:value "Location.organization";
-         fhir:index 50
-       ], [
-         fhir:value "Medication.manufacturer";
-         fhir:index 51
-       ], [
-         fhir:value "MedicationRequest.intended-dispenser";
-         fhir:index 52
-       ], [
-         fhir:value "MedicationStatement.source";
-         fhir:index 53
-       ], [
-         fhir:value "MessageHeader.receiver";
-         fhir:index 54
-       ], [
-         fhir:value "MessageHeader.responsible";
-         fhir:index 55
-       ], [
-         fhir:value "Observation.performer";
-         fhir:index 56
-       ], [
-         fhir:value "Organization.partof";
-         fhir:index 57
-       ], [
-         fhir:value "Patient.general-practitioner";
-         fhir:index 58
-       ], [
-         fhir:value "Patient.organization";
-         fhir:index 59
-       ], [
-         fhir:value "PaymentNotice.organization";
-         fhir:index 60
-       ], [
-         fhir:value "PaymentReconciliation.organization";
-         fhir:index 61
-       ], [
-         fhir:value "PaymentReconciliation.request-organization";
-         fhir:index 62
-       ], [
-         fhir:value "Person.organization";
-         fhir:index 63
-       ], [
-         fhir:value "Practitioner.organization";
-         fhir:index 64
-       ], [
-         fhir:value "PractitionerRole.organization";
-         fhir:index 65
-       ], [
-         fhir:value "Procedure.performer";
-         fhir:index 66
-       ], [
-         fhir:value "ProcedureRequest.performer";
-         fhir:index 67
-       ], [
-         fhir:value "ProcessRequest.organization";
-         fhir:index 68
-       ], [
-         fhir:value "ProcessResponse.organization";
-         fhir:index 69
-       ], [
-         fhir:value "ProcessResponse.request-organization";
-         fhir:index 70
-       ], [
-         fhir:value "ReferralRequest.requester";
-         fhir:index 71
-       ], [
-         fhir:value "ReferralRequest.recipient";
-         fhir:index 72
-       ], [
-         fhir:value "ResearchStudy.sponsor";
-         fhir:index 73
-       ], [
-         fhir:value "SupplyRequest.supplier";
-         fhir:index 74
-       ], [
-         fhir:value "SupplyRequest.source";
-         fhir:index 75
-       ], [
-         fhir:value "Task.owner";
-         fhir:index 76
-       ], [
-         fhir:value "Task.requester";
-         fhir:index 77
-       ];
        fhir:CapabilityStatement.searchParam [
          fhir:index 0;
          fhir:CapabilityStatement.name [ fhir:value "identifier" ];
@@ -10699,424 +9614,6 @@
        ], [
          fhir:value "Patient.organization";
          fhir:index 2
-       ];
-       fhir:CapabilityStatement.searchRevInclude [
-         fhir:value "Account.subject";
-         fhir:index 0
-       ], [
-         fhir:value "Account.patient";
-         fhir:index 1
-       ], [
-         fhir:value "AllergyIntolerance.recorder";
-         fhir:index 2
-       ], [
-         fhir:value "AllergyIntolerance.asserter";
-         fhir:index 3
-       ], [
-         fhir:value "AllergyIntolerance.patient";
-         fhir:index 4
-       ], [
-         fhir:value "Appointment.actor";
-         fhir:index 5
-       ], [
-         fhir:value "Appointment.practitioner";
-         fhir:index 6
-       ], [
-         fhir:value "Appointment.patient";
-         fhir:index 7
-       ], [
-         fhir:value "Appointment.location";
-         fhir:index 8
-       ], [
-         fhir:value "AppointmentResponse.actor";
-         fhir:index 9
-       ], [
-         fhir:value "AppointmentResponse.practitioner";
-         fhir:index 10
-       ], [
-         fhir:value "AppointmentResponse.patient";
-         fhir:index 11
-       ], [
-         fhir:value "AppointmentResponse.location";
-         fhir:index 12
-       ], [
-         fhir:value "AuditEvent.agent";
-         fhir:index 13
-       ], [
-         fhir:value "AuditEvent.patient";
-         fhir:index 14
-       ], [
-         fhir:value "Basic.author";
-         fhir:index 15
-       ], [
-         fhir:value "BodySite.patient";
-         fhir:index 16
-       ], [
-         fhir:value "CarePlan.performer";
-         fhir:index 17
-       ], [
-         fhir:value "CarePlan.subject";
-         fhir:index 18
-       ], [
-         fhir:value "CarePlan.patient";
-         fhir:index 19
-       ], [
-         fhir:value "CareTeam.patient";
-         fhir:index 20
-       ], [
-         fhir:value "CareTeam.subject";
-         fhir:index 21
-       ], [
-         fhir:value "CareTeam.participant";
-         fhir:index 22
-       ], [
-         fhir:value "Claim.patient";
-         fhir:index 23
-       ], [
-         fhir:value "ClinicalImpression.patient";
-         fhir:index 24
-       ], [
-         fhir:value "ClinicalImpression.subject";
-         fhir:index 25
-       ], [
-         fhir:value "Communication.sender";
-         fhir:index 26
-       ], [
-         fhir:value "Communication.subject";
-         fhir:index 27
-       ], [
-         fhir:value "Communication.patient";
-         fhir:index 28
-       ], [
-         fhir:value "Communication.recipient";
-         fhir:index 29
-       ], [
-         fhir:value "CommunicationRequest.requester";
-         fhir:index 30
-       ], [
-         fhir:value "CommunicationRequest.subject";
-         fhir:index 31
-       ], [
-         fhir:value "CommunicationRequest.sender";
-         fhir:index 32
-       ], [
-         fhir:value "CommunicationRequest.patient";
-         fhir:index 33
-       ], [
-         fhir:value "CommunicationRequest.recipient";
-         fhir:index 34
-       ], [
-         fhir:value "Composition.author";
-         fhir:index 35
-       ], [
-         fhir:value "Composition.attester";
-         fhir:index 36
-       ], [
-         fhir:value "Condition.subject";
-         fhir:index 37
-       ], [
-         fhir:value "Condition.asserter";
-         fhir:index 38
-       ], [
-         fhir:value "Condition.patient";
-         fhir:index 39
-       ], [
-         fhir:value "Consent.actor";
-         fhir:index 40
-       ], [
-         fhir:value "Consent.patient";
-         fhir:index 41
-       ], [
-         fhir:value "Consent.recipient";
-         fhir:index 42
-       ], [
-         fhir:value "Consent.consentor";
-         fhir:index 43
-       ], [
-         fhir:value "Contract.agent";
-         fhir:index 44
-       ], [
-         fhir:value "Contract.signer";
-         fhir:index 45
-       ], [
-         fhir:value "Coverage.issuer";
-         fhir:index 46
-       ], [
-         fhir:value "Coverage.planholder";
-         fhir:index 47
-       ], [
-         fhir:value "Coverage.beneficiary";
-         fhir:index 48
-       ], [
-         fhir:value "DetectedIssue.patient";
-         fhir:index 49
-       ], [
-         fhir:value "Device.patient";
-         fhir:index 50
-       ], [
-         fhir:value "DeviceUseRequest.subject";
-         fhir:index 51
-       ], [
-         fhir:value "DeviceUseRequest.patient";
-         fhir:index 52
-       ], [
-         fhir:value "DeviceUseRequest.filler";
-         fhir:index 53
-       ], [
-         fhir:value "DeviceUseStatement.subject";
-         fhir:index 54
-       ], [
-         fhir:value "DeviceUseStatement.patient";
-         fhir:index 55
-       ], [
-         fhir:value "DiagnosticReport.subject";
-         fhir:index 56
-       ], [
-         fhir:value "DiagnosticReport.patient";
-         fhir:index 57
-       ], [
-         fhir:value "DiagnosticRequest.subject";
-         fhir:index 58
-       ], [
-         fhir:value "DiagnosticRequest.patient";
-         fhir:index 59
-       ], [
-         fhir:value "DiagnosticRequest.filler";
-         fhir:index 60
-       ], [
-         fhir:value "DocumentManifest.subject";
-         fhir:index 61
-       ], [
-         fhir:value "DocumentManifest.author";
-         fhir:index 62
-       ], [
-         fhir:value "DocumentManifest.patient";
-         fhir:index 63
-       ], [
-         fhir:value "DocumentManifest.recipient";
-         fhir:index 64
-       ], [
-         fhir:value "DocumentReference.subject";
-         fhir:index 65
-       ], [
-         fhir:value "DocumentReference.patient";
-         fhir:index 66
-       ], [
-         fhir:value "DocumentReference.author";
-         fhir:index 67
-       ], [
-         fhir:value "EligibilityRequest.patient";
-         fhir:index 68
-       ], [
-         fhir:value "Encounter.patient";
-         fhir:index 69
-       ], [
-         fhir:value "EnrollmentRequest.patient-reference";
-         fhir:index 70
-       ], [
-         fhir:value "EnrollmentRequest.subject-reference";
-         fhir:index 71
-       ], [
-         fhir:value "EpisodeOfCare.patient";
-         fhir:index 72
-       ], [
-         fhir:value "ExplanationOfBenefit.patient";
-         fhir:index 73
-       ], [
-         fhir:value "FamilyMemberHistory.patient";
-         fhir:index 74
-       ], [
-         fhir:value "Flag.subject";
-         fhir:index 75
-       ], [
-         fhir:value "Flag.patient";
-         fhir:index 76
-       ], [
-         fhir:value "Flag.author";
-         fhir:index 77
-       ], [
-         fhir:value "Goal.patient";
-         fhir:index 78
-       ], [
-         fhir:value "Goal.subject";
-         fhir:index 79
-       ], [
-         fhir:value "Group.member";
-         fhir:index 80
-       ], [
-         fhir:value "GuidanceResponse.patient";
-         fhir:index 81
-       ], [
-         fhir:value "GuidanceResponse.subject";
-         fhir:index 82
-       ], [
-         fhir:value "ImagingManifest.author";
-         fhir:index 83
-       ], [
-         fhir:value "ImagingManifest.patient";
-         fhir:index 84
-       ], [
-         fhir:value "ImagingStudy.patient";
-         fhir:index 85
-       ], [
-         fhir:value "Immunization.patient";
-         fhir:index 86
-       ], [
-         fhir:value "ImmunizationRecommendation.patient";
-         fhir:index 87
-       ], [
-         fhir:value "List.subject";
-         fhir:index 88
-       ], [
-         fhir:value "List.patient";
-         fhir:index 89
-       ], [
-         fhir:value "List.source";
-         fhir:index 90
-       ], [
-         fhir:value "MeasureReport.patient";
-         fhir:index 91
-       ], [
-         fhir:value "Media.subject";
-         fhir:index 92
-       ], [
-         fhir:value "Media.patient";
-         fhir:index 93
-       ], [
-         fhir:value "MedicationAdministration.performer";
-         fhir:index 94
-       ], [
-         fhir:value "MedicationAdministration.patient";
-         fhir:index 95
-       ], [
-         fhir:value "MedicationDispense.receiver";
-         fhir:index 96
-       ], [
-         fhir:value "MedicationDispense.patient";
-         fhir:index 97
-       ], [
-         fhir:value "MedicationRequest.patient";
-         fhir:index 98
-       ], [
-         fhir:value "MedicationStatement.patient";
-         fhir:index 99
-       ], [
-         fhir:value "MedicationStatement.source";
-         fhir:index 100
-       ], [
-         fhir:value "NutritionRequest.patient";
-         fhir:index 101
-       ], [
-         fhir:value "Observation.performer";
-         fhir:index 102
-       ], [
-         fhir:value "Observation.subject";
-         fhir:index 103
-       ], [
-         fhir:value "Observation.patient";
-         fhir:index 104
-       ], [
-         fhir:value "Patient.link";
-         fhir:index 105
-       ], [
-         fhir:value "Person.practitioner";
-         fhir:index 106
-       ], [
-         fhir:value "Person.link";
-         fhir:index 107
-       ], [
-         fhir:value "Person.relatedperson";
-         fhir:index 108
-       ], [
-         fhir:value "Person.patient";
-         fhir:index 109
-       ], [
-         fhir:value "Procedure.performer";
-         fhir:index 110
-       ], [
-         fhir:value "Procedure.subject";
-         fhir:index 111
-       ], [
-         fhir:value "Procedure.patient";
-         fhir:index 112
-       ], [
-         fhir:value "ProcedureRequest.performer";
-         fhir:index 113
-       ], [
-         fhir:value "ProcedureRequest.subject";
-         fhir:index 114
-       ], [
-         fhir:value "ProcedureRequest.patient";
-         fhir:index 115
-       ], [
-         fhir:value "ProcedureRequest.orderer";
-         fhir:index 116
-       ], [
-         fhir:value "QuestionnaireResponse.author";
-         fhir:index 117
-       ], [
-         fhir:value "QuestionnaireResponse.source";
-         fhir:index 118
-       ], [
-         fhir:value "ReferralRequest.requester";
-         fhir:index 119
-       ], [
-         fhir:value "ReferralRequest.patient";
-         fhir:index 120
-       ], [
-         fhir:value "RelatedPerson.patient";
-         fhir:index 121
-       ], [
-         fhir:value "RequestGroup.patient";
-         fhir:index 122
-       ], [
-         fhir:value "RequestGroup.subject";
-         fhir:index 123
-       ], [
-         fhir:value "RequestGroup.participant";
-         fhir:index 124
-       ], [
-         fhir:value "ResearchSubject.individual";
-         fhir:index 125
-       ], [
-         fhir:value "ResearchSubject.patient";
-         fhir:index 126
-       ], [
-         fhir:value "RiskAssessment.subject";
-         fhir:index 127
-       ], [
-         fhir:value "RiskAssessment.patient";
-         fhir:index 128
-       ], [
-         fhir:value "Schedule.actor";
-         fhir:index 129
-       ], [
-         fhir:value "Sequence.patient";
-         fhir:index 130
-       ], [
-         fhir:value "Specimen.subject";
-         fhir:index 131
-       ], [
-         fhir:value "Specimen.patient";
-         fhir:index 132
-       ], [
-         fhir:value "SupplyDelivery.patient";
-         fhir:index 133
-       ], [
-         fhir:value "SupplyRequest.patient";
-         fhir:index 134
-       ], [
-         fhir:value "SupplyRequest.source";
-         fhir:index 135
-       ], [
-         fhir:value "Task.owner";
-         fhir:index 136
-       ], [
-         fhir:value "Task.requester";
-         fhir:index 137
-       ], [
-         fhir:value "VisionPrescription.patient";
-         fhir:index 138
        ];
        fhir:CapabilityStatement.searchParam [
          fhir:index 0;
@@ -11556,22 +10053,6 @@
          fhir:value "Person.organization";
          fhir:index 4
        ];
-       fhir:CapabilityStatement.searchRevInclude [
-         fhir:value "Person.practitioner";
-         fhir:index 0
-       ], [
-         fhir:value "Person.link";
-         fhir:index 1
-       ], [
-         fhir:value "Person.relatedperson";
-         fhir:index 2
-       ], [
-         fhir:value "Person.patient";
-         fhir:index 3
-       ], [
-         fhir:value "RequestGroup.participant";
-         fhir:index 4
-       ];
        fhir:CapabilityStatement.searchParam [
          fhir:index 0;
          fhir:CapabilityStatement.name [ fhir:value "identifier" ];
@@ -11736,16 +10217,6 @@
          fhir:value "logical";
          fhir:index 1
        ];
-       fhir:CapabilityStatement.searchRevInclude [
-         fhir:value "Flag.subject";
-         fhir:index 0
-       ], [
-         fhir:value "Flag.patient";
-         fhir:index 1
-       ], [
-         fhir:value "ResearchStudy.protocol";
-         fhir:index 2
-       ];
        fhir:CapabilityStatement.searchParam [
          fhir:index 0;
          fhir:CapabilityStatement.name [ fhir:value "date" ];
@@ -11874,322 +10345,6 @@
        ], [
          fhir:value "Practitioner.location";
          fhir:index 1
-       ];
-       fhir:CapabilityStatement.searchRevInclude [
-         fhir:value "Account.subject";
-         fhir:index 0
-       ], [
-         fhir:value "Account.patient";
-         fhir:index 1
-       ], [
-         fhir:value "AllergyIntolerance.recorder";
-         fhir:index 2
-       ], [
-         fhir:value "AllergyIntolerance.asserter";
-         fhir:index 3
-       ], [
-         fhir:value "Appointment.actor";
-         fhir:index 4
-       ], [
-         fhir:value "Appointment.practitioner";
-         fhir:index 5
-       ], [
-         fhir:value "Appointment.patient";
-         fhir:index 6
-       ], [
-         fhir:value "Appointment.location";
-         fhir:index 7
-       ], [
-         fhir:value "AppointmentResponse.actor";
-         fhir:index 8
-       ], [
-         fhir:value "AppointmentResponse.practitioner";
-         fhir:index 9
-       ], [
-         fhir:value "AppointmentResponse.patient";
-         fhir:index 10
-       ], [
-         fhir:value "AppointmentResponse.location";
-         fhir:index 11
-       ], [
-         fhir:value "AuditEvent.agent";
-         fhir:index 12
-       ], [
-         fhir:value "AuditEvent.patient";
-         fhir:index 13
-       ], [
-         fhir:value "Basic.author";
-         fhir:index 14
-       ], [
-         fhir:value "CarePlan.performer";
-         fhir:index 15
-       ], [
-         fhir:value "CareTeam.participant";
-         fhir:index 16
-       ], [
-         fhir:value "Claim.provider";
-         fhir:index 17
-       ], [
-         fhir:value "ClinicalImpression.assessor";
-         fhir:index 18
-       ], [
-         fhir:value "Communication.sender";
-         fhir:index 19
-       ], [
-         fhir:value "Communication.recipient";
-         fhir:index 20
-       ], [
-         fhir:value "CommunicationRequest.requester";
-         fhir:index 21
-       ], [
-         fhir:value "CommunicationRequest.sender";
-         fhir:index 22
-       ], [
-         fhir:value "CommunicationRequest.recipient";
-         fhir:index 23
-       ], [
-         fhir:value "Composition.author";
-         fhir:index 24
-       ], [
-         fhir:value "Composition.attester";
-         fhir:index 25
-       ], [
-         fhir:value "Condition.asserter";
-         fhir:index 26
-       ], [
-         fhir:value "Consent.actor";
-         fhir:index 27
-       ], [
-         fhir:value "Consent.recipient";
-         fhir:index 28
-       ], [
-         fhir:value "Consent.consentor";
-         fhir:index 29
-       ], [
-         fhir:value "Contract.agent";
-         fhir:index 30
-       ], [
-         fhir:value "Contract.signer";
-         fhir:index 31
-       ], [
-         fhir:value "DetectedIssue.author";
-         fhir:index 32
-       ], [
-         fhir:value "DeviceUseRequest.requester";
-         fhir:index 33
-       ], [
-         fhir:value "DeviceUseRequest.filler";
-         fhir:index 34
-       ], [
-         fhir:value "DiagnosticReport.performer";
-         fhir:index 35
-       ], [
-         fhir:value "DiagnosticRequest.requester";
-         fhir:index 36
-       ], [
-         fhir:value "DiagnosticRequest.filler";
-         fhir:index 37
-       ], [
-         fhir:value "DocumentManifest.subject";
-         fhir:index 38
-       ], [
-         fhir:value "DocumentManifest.author";
-         fhir:index 39
-       ], [
-         fhir:value "DocumentManifest.patient";
-         fhir:index 40
-       ], [
-         fhir:value "DocumentManifest.recipient";
-         fhir:index 41
-       ], [
-         fhir:value "DocumentReference.subject";
-         fhir:index 42
-       ], [
-         fhir:value "DocumentReference.patient";
-         fhir:index 43
-       ], [
-         fhir:value "DocumentReference.authenticator";
-         fhir:index 44
-       ], [
-         fhir:value "DocumentReference.author";
-         fhir:index 45
-       ], [
-         fhir:value "EligibilityRequest.provider";
-         fhir:index 46
-       ], [
-         fhir:value "EligibilityResponse.request-provider";
-         fhir:index 47
-       ], [
-         fhir:value "Encounter.practitioner";
-         fhir:index 48
-       ], [
-         fhir:value "Encounter.participant";
-         fhir:index 49
-       ], [
-         fhir:value "EpisodeOfCare.care-manager";
-         fhir:index 50
-       ], [
-         fhir:value "ExplanationOfBenefit.provider";
-         fhir:index 51
-       ], [
-         fhir:value "Flag.subject";
-         fhir:index 52
-       ], [
-         fhir:value "Flag.patient";
-         fhir:index 53
-       ], [
-         fhir:value "Flag.author";
-         fhir:index 54
-       ], [
-         fhir:value "Group.member";
-         fhir:index 55
-       ], [
-         fhir:value "ImagingManifest.author";
-         fhir:index 56
-       ], [
-         fhir:value "Immunization.requester";
-         fhir:index 57
-       ], [
-         fhir:value "Immunization.performer";
-         fhir:index 58
-       ], [
-         fhir:value "Linkage.author";
-         fhir:index 59
-       ], [
-         fhir:value "List.source";
-         fhir:index 60
-       ], [
-         fhir:value "Media.subject";
-         fhir:index 61
-       ], [
-         fhir:value "Media.patient";
-         fhir:index 62
-       ], [
-         fhir:value "Media.operator";
-         fhir:index 63
-       ], [
-         fhir:value "MedicationAdministration.performer";
-         fhir:index 64
-       ], [
-         fhir:value "MedicationDispense.receiver";
-         fhir:index 65
-       ], [
-         fhir:value "MedicationDispense.responsibleparty";
-         fhir:index 66
-       ], [
-         fhir:value "MedicationDispense.dispenser";
-         fhir:index 67
-       ], [
-         fhir:value "MedicationRequest.prescriber";
-         fhir:index 68
-       ], [
-         fhir:value "MedicationStatement.source";
-         fhir:index 69
-       ], [
-         fhir:value "MessageHeader.receiver";
-         fhir:index 70
-       ], [
-         fhir:value "MessageHeader.author";
-         fhir:index 71
-       ], [
-         fhir:value "MessageHeader.responsible";
-         fhir:index 72
-       ], [
-         fhir:value "MessageHeader.enterer";
-         fhir:index 73
-       ], [
-         fhir:value "NutritionRequest.provider";
-         fhir:index 74
-       ], [
-         fhir:value "Observation.performer";
-         fhir:index 75
-       ], [
-         fhir:value "Patient.general-practitioner";
-         fhir:index 76
-       ], [
-         fhir:value "PaymentNotice.provider";
-         fhir:index 77
-       ], [
-         fhir:value "PaymentReconciliation.request-provider";
-         fhir:index 78
-       ], [
-         fhir:value "Person.practitioner";
-         fhir:index 79
-       ], [
-         fhir:value "Person.link";
-         fhir:index 80
-       ], [
-         fhir:value "Person.relatedperson";
-         fhir:index 81
-       ], [
-         fhir:value "Person.patient";
-         fhir:index 82
-       ], [
-         fhir:value "PractitionerRole.practitioner";
-         fhir:index 83
-       ], [
-         fhir:value "Procedure.performer";
-         fhir:index 84
-       ], [
-         fhir:value "ProcedureRequest.performer";
-         fhir:index 85
-       ], [
-         fhir:value "ProcedureRequest.orderer";
-         fhir:index 86
-       ], [
-         fhir:value "ProcessRequest.provider";
-         fhir:index 87
-       ], [
-         fhir:value "ProcessResponse.request-provider";
-         fhir:index 88
-       ], [
-         fhir:value "QuestionnaireResponse.author";
-         fhir:index 89
-       ], [
-         fhir:value "QuestionnaireResponse.source";
-         fhir:index 90
-       ], [
-         fhir:value "ReferralRequest.requester";
-         fhir:index 91
-       ], [
-         fhir:value "ReferralRequest.recipient";
-         fhir:index 92
-       ], [
-         fhir:value "RequestGroup.author";
-         fhir:index 93
-       ], [
-         fhir:value "RequestGroup.participant";
-         fhir:index 94
-       ], [
-         fhir:value "ResearchStudy.principleinvestigator";
-         fhir:index 95
-       ], [
-         fhir:value "RiskAssessment.performer";
-         fhir:index 96
-       ], [
-         fhir:value "Schedule.actor";
-         fhir:index 97
-       ], [
-         fhir:value "Specimen.collector";
-         fhir:index 98
-       ], [
-         fhir:value "SupplyDelivery.receiver";
-         fhir:index 99
-       ], [
-         fhir:value "SupplyDelivery.supplier";
-         fhir:index 100
-       ], [
-         fhir:value "SupplyRequest.source";
-         fhir:index 101
-       ], [
-         fhir:value "Task.owner";
-         fhir:index 102
-       ], [
-         fhir:value "Task.requester";
-         fhir:index 103
-       ], [
-         fhir:value "VisionPrescription.prescriber";
-         fhir:index 104
        ];
        fhir:CapabilityStatement.searchParam [
          fhir:index 0;
@@ -12497,28 +10652,6 @@
          fhir:value "Procedure.encounter";
          fhir:index 4
        ];
-       fhir:CapabilityStatement.searchRevInclude [
-         fhir:value "ClinicalImpression.action";
-         fhir:index 0
-       ], [
-         fhir:value "Encounter.procedure";
-         fhir:index 1
-       ], [
-         fhir:value "Encounter.condition";
-         fhir:index 2
-       ], [
-         fhir:value "Encounter.indication";
-         fhir:index 3
-       ], [
-         fhir:value "Flag.subject";
-         fhir:index 4
-       ], [
-         fhir:value "Flag.patient";
-         fhir:index 5
-       ], [
-         fhir:value "QuestionnaireResponse.parent";
-         fhir:index 6
-       ];
        fhir:CapabilityStatement.searchParam [
          fhir:index 0;
          fhir:CapabilityStatement.name [ fhir:value "date" ];
@@ -12639,22 +10772,6 @@
          fhir:value "ProcedureRequest.encounter";
          fhir:index 4
        ];
-       fhir:CapabilityStatement.searchRevInclude [
-         fhir:value "CarePlan.activityreference";
-         fhir:index 0
-       ], [
-         fhir:value "ClinicalImpression.action";
-         fhir:index 1
-       ], [
-         fhir:value "DiagnosticReport.request";
-         fhir:index 2
-       ], [
-         fhir:value "ImagingStudy.basedon";
-         fhir:index 3
-       ], [
-         fhir:value "ReferralRequest.basedon";
-         fhir:index 4
-       ];
        fhir:CapabilityStatement.searchParam [
          fhir:index 0;
          fhir:CapabilityStatement.name [ fhir:value "identifier" ];
@@ -12764,13 +10881,6 @@
          fhir:index 0
        ], [
          fhir:value "ProcessRequest.organization";
-         fhir:index 1
-       ];
-       fhir:CapabilityStatement.searchRevInclude [
-         fhir:value "CarePlan.activityreference";
-         fhir:index 0
-       ], [
-         fhir:value "PaymentReconciliation.request";
          fhir:index 1
        ];
        fhir:CapabilityStatement.searchParam [
@@ -13051,10 +11161,6 @@
          fhir:value "logical";
          fhir:index 1
        ];
-       fhir:CapabilityStatement.searchRevInclude [
-         fhir:value "QuestionnaireResponse.questionnaire";
-         fhir:index 0
-       ];
        fhir:CapabilityStatement.searchParam [
          fhir:index 0;
          fhir:CapabilityStatement.name [ fhir:value "date" ];
@@ -13177,16 +11283,6 @@
        ], [
          fhir:value "QuestionnaireResponse.source";
          fhir:index 7
-       ];
-       fhir:CapabilityStatement.searchRevInclude [
-         fhir:value "ClinicalImpression.investigation";
-         fhir:index 0
-       ], [
-         fhir:value "Consent.source";
-         fhir:index 1
-       ], [
-         fhir:value "Observation.related-target";
-         fhir:index 2
        ];
        fhir:CapabilityStatement.searchParam [
          fhir:index 0;
@@ -13320,31 +11416,6 @@
          fhir:value "ReferralRequest.basedon";
          fhir:index 4
        ];
-       fhir:CapabilityStatement.searchRevInclude [
-         fhir:value "CarePlan.activityreference";
-         fhir:index 0
-       ], [
-         fhir:value "ClinicalImpression.action";
-         fhir:index 1
-       ], [
-         fhir:value "DiagnosticReport.request";
-         fhir:index 2
-       ], [
-         fhir:value "Encounter.incomingreferral";
-         fhir:index 3
-       ], [
-         fhir:value "EpisodeOfCare.incomingreferral";
-         fhir:index 4
-       ], [
-         fhir:value "ImagingStudy.basedon";
-         fhir:index 5
-       ], [
-         fhir:value "QuestionnaireResponse.based-on";
-         fhir:index 6
-       ], [
-         fhir:value "ReferralRequest.basedon";
-         fhir:index 7
-       ];
        fhir:CapabilityStatement.searchParam [
          fhir:index 0;
          fhir:CapabilityStatement.name [ fhir:value "date" ];
@@ -13470,166 +11541,6 @@
        fhir:CapabilityStatement.searchInclude [
          fhir:value "RelatedPerson.patient";
          fhir:index 0
-       ];
-       fhir:CapabilityStatement.searchRevInclude [
-         fhir:value "AllergyIntolerance.asserter";
-         fhir:index 0
-       ], [
-         fhir:value "Appointment.actor";
-         fhir:index 1
-       ], [
-         fhir:value "Appointment.practitioner";
-         fhir:index 2
-       ], [
-         fhir:value "Appointment.patient";
-         fhir:index 3
-       ], [
-         fhir:value "Appointment.location";
-         fhir:index 4
-       ], [
-         fhir:value "AppointmentResponse.actor";
-         fhir:index 5
-       ], [
-         fhir:value "AppointmentResponse.practitioner";
-         fhir:index 6
-       ], [
-         fhir:value "AppointmentResponse.patient";
-         fhir:index 7
-       ], [
-         fhir:value "AppointmentResponse.location";
-         fhir:index 8
-       ], [
-         fhir:value "AuditEvent.agent";
-         fhir:index 9
-       ], [
-         fhir:value "AuditEvent.patient";
-         fhir:index 10
-       ], [
-         fhir:value "Basic.author";
-         fhir:index 11
-       ], [
-         fhir:value "CarePlan.performer";
-         fhir:index 12
-       ], [
-         fhir:value "CareTeam.participant";
-         fhir:index 13
-       ], [
-         fhir:value "Communication.sender";
-         fhir:index 14
-       ], [
-         fhir:value "Communication.recipient";
-         fhir:index 15
-       ], [
-         fhir:value "CommunicationRequest.requester";
-         fhir:index 16
-       ], [
-         fhir:value "CommunicationRequest.sender";
-         fhir:index 17
-       ], [
-         fhir:value "CommunicationRequest.recipient";
-         fhir:index 18
-       ], [
-         fhir:value "Composition.author";
-         fhir:index 19
-       ], [
-         fhir:value "Condition.asserter";
-         fhir:index 20
-       ], [
-         fhir:value "Consent.actor";
-         fhir:index 21
-       ], [
-         fhir:value "Consent.recipient";
-         fhir:index 22
-       ], [
-         fhir:value "Consent.consentor";
-         fhir:index 23
-       ], [
-         fhir:value "Contract.agent";
-         fhir:index 24
-       ], [
-         fhir:value "Contract.signer";
-         fhir:index 25
-       ], [
-         fhir:value "Coverage.issuer";
-         fhir:index 26
-       ], [
-         fhir:value "Coverage.planholder";
-         fhir:index 27
-       ], [
-         fhir:value "DeviceUseRequest.filler";
-         fhir:index 28
-       ], [
-         fhir:value "DiagnosticRequest.filler";
-         fhir:index 29
-       ], [
-         fhir:value "DocumentManifest.author";
-         fhir:index 30
-       ], [
-         fhir:value "DocumentManifest.recipient";
-         fhir:index 31
-       ], [
-         fhir:value "DocumentReference.author";
-         fhir:index 32
-       ], [
-         fhir:value "Encounter.practitioner";
-         fhir:index 33
-       ], [
-         fhir:value "Encounter.participant";
-         fhir:index 34
-       ], [
-         fhir:value "ImagingManifest.author";
-         fhir:index 35
-       ], [
-         fhir:value "MedicationAdministration.performer";
-         fhir:index 36
-       ], [
-         fhir:value "MedicationStatement.source";
-         fhir:index 37
-       ], [
-         fhir:value "Observation.performer";
-         fhir:index 38
-       ], [
-         fhir:value "Patient.link";
-         fhir:index 39
-       ], [
-         fhir:value "Person.practitioner";
-         fhir:index 40
-       ], [
-         fhir:value "Person.link";
-         fhir:index 41
-       ], [
-         fhir:value "Person.relatedperson";
-         fhir:index 42
-       ], [
-         fhir:value "Person.patient";
-         fhir:index 43
-       ], [
-         fhir:value "Procedure.performer";
-         fhir:index 44
-       ], [
-         fhir:value "ProcedureRequest.performer";
-         fhir:index 45
-       ], [
-         fhir:value "ProcedureRequest.orderer";
-         fhir:index 46
-       ], [
-         fhir:value "QuestionnaireResponse.author";
-         fhir:index 47
-       ], [
-         fhir:value "QuestionnaireResponse.source";
-         fhir:index 48
-       ], [
-         fhir:value "RequestGroup.participant";
-         fhir:index 49
-       ], [
-         fhir:value "Schedule.actor";
-         fhir:index 50
-       ], [
-         fhir:value "Task.owner";
-         fhir:index 51
-       ], [
-         fhir:value "Task.requester";
-         fhir:index 52
        ];
        fhir:CapabilityStatement.searchParam [
          fhir:index 0;
@@ -13898,10 +11809,6 @@
          fhir:value "ResearchStudy.site";
          fhir:index 4
        ];
-       fhir:CapabilityStatement.searchRevInclude [
-         fhir:value "ResearchStudy.partof";
-         fhir:index 0
-       ];
        fhir:CapabilityStatement.searchParam [
          fhir:index 0;
          fhir:CapabilityStatement.name [ fhir:value "date" ];
@@ -14133,10 +12040,6 @@
          fhir:value "RiskAssessment.encounter";
          fhir:index 4
        ];
-       fhir:CapabilityStatement.searchRevInclude [
-         fhir:value "ClinicalImpression.investigation";
-         fhir:index 0
-       ];
        fhir:CapabilityStatement.searchParam [
          fhir:index 0;
          fhir:CapabilityStatement.name [ fhir:value "date" ];
@@ -14239,10 +12142,6 @@
          fhir:value "Schedule.actor";
          fhir:index 0
        ];
-       fhir:CapabilityStatement.searchRevInclude [
-         fhir:value "Slot.schedule";
-         fhir:index 0
-       ];
        fhir:CapabilityStatement.searchParam [
          fhir:index 0;
          fhir:CapabilityStatement.name [ fhir:value "actor" ];
@@ -14324,10 +12223,6 @@
          fhir:index 1
        ];
        fhir:CapabilityStatement.searchInclude [
-         fhir:value "SearchParameter.component";
-         fhir:index 0
-       ];
-       fhir:CapabilityStatement.searchRevInclude [
          fhir:value "SearchParameter.component";
          fhir:index 0
        ];
@@ -14461,10 +12356,6 @@
        ];
        fhir:CapabilityStatement.searchInclude [
          fhir:value "Sequence.patient";
-         fhir:index 0
-       ];
-       fhir:CapabilityStatement.searchRevInclude [
-         fhir:value "Observation.related-target";
          fhir:index 0
        ];
        fhir:CapabilityStatement.searchParam [
@@ -14778,22 +12669,6 @@
          fhir:value "Specimen.collector";
          fhir:index 3
        ];
-       fhir:CapabilityStatement.searchRevInclude [
-         fhir:value "DiagnosticReport.specimen";
-         fhir:index 0
-       ], [
-         fhir:value "Media.subject";
-         fhir:index 1
-       ], [
-         fhir:value "Media.patient";
-         fhir:index 2
-       ], [
-         fhir:value "Observation.specimen";
-         fhir:index 3
-       ], [
-         fhir:value "Specimen.parent";
-         fhir:index 4
-       ];
        fhir:CapabilityStatement.searchParam [
          fhir:index 0;
          fhir:CapabilityStatement.name [ fhir:value "container" ];
@@ -14913,16 +12788,6 @@
        fhir:CapabilityStatement.searchInclude [
          fhir:value "StructureDefinition.valueset";
          fhir:index 0
-       ];
-       fhir:CapabilityStatement.searchRevInclude [
-         fhir:value "CapabilityStatement.supported-profile";
-         fhir:index 0
-       ], [
-         fhir:value "CapabilityStatement.resourceprofile";
-         fhir:index 1
-       ], [
-         fhir:value "OperationDefinition.paramprofile";
-         fhir:index 2
        ];
        fhir:CapabilityStatement.searchParam [
          fhir:index 0;
@@ -15312,25 +13177,6 @@
          fhir:value "Substance.substance-reference";
          fhir:index 0
        ];
-       fhir:CapabilityStatement.searchRevInclude [
-         fhir:value "Contract.agent";
-         fhir:index 0
-       ], [
-         fhir:value "Group.member";
-         fhir:index 1
-       ], [
-         fhir:value "Medication.ingredient";
-         fhir:index 2
-       ], [
-         fhir:value "Specimen.subject";
-         fhir:index 3
-       ], [
-         fhir:value "Specimen.patient";
-         fhir:index 4
-       ], [
-         fhir:value "Substance.substance-reference";
-         fhir:index 5
-       ];
        fhir:CapabilityStatement.searchParam [
          fhir:index 0;
          fhir:CapabilityStatement.name [ fhir:value "identifier" ];
@@ -15631,10 +13477,6 @@
          fhir:value "Task.patient";
          fhir:index 4
        ];
-       fhir:CapabilityStatement.searchRevInclude [
-         fhir:value "Task.parent";
-         fhir:index 0
-       ];
        fhir:CapabilityStatement.searchParam [
          fhir:index 0;
          fhir:CapabilityStatement.name [ fhir:value "owner" ];
@@ -15865,10 +13707,6 @@
          fhir:value "logical";
          fhir:index 1
        ];
-       fhir:CapabilityStatement.searchRevInclude [
-         fhir:value "TestReport.testscript";
-         fhir:index 0
-       ];
        fhir:CapabilityStatement.searchParam [
          fhir:index 0;
          fhir:CapabilityStatement.name [ fhir:value "date" ];
@@ -15984,22 +13822,6 @@
        ], [
          fhir:value "logical";
          fhir:index 1
-       ];
-       fhir:CapabilityStatement.searchRevInclude [
-         fhir:value "ConceptMap.source";
-         fhir:index 0
-       ], [
-         fhir:value "ConceptMap.target";
-         fhir:index 1
-       ], [
-         fhir:value "ConceptMap.source-uri";
-         fhir:index 2
-       ], [
-         fhir:value "ConceptMap.target-uri";
-         fhir:index 3
-       ], [
-         fhir:value "StructureDefinition.valueset";
-         fhir:index 4
        ];
        fhir:CapabilityStatement.searchParam [
          fhir:index 0;
@@ -16132,10 +13954,6 @@
        ], [
          fhir:value "VisionPrescription.encounter";
          fhir:index 2
-       ];
-       fhir:CapabilityStatement.searchRevInclude [
-         fhir:value "CarePlan.activityreference";
-         fhir:index 0
        ];
        fhir:CapabilityStatement.searchParam [
          fhir:index 0;

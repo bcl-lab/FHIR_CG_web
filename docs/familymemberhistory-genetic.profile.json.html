@@ -407,7 +407,7 @@
         &quot;id&quot;: &quot;FamilyMemberHistory:familymemberhistory-genetic.extension&quot;,
         &quot;path&quot;: &quot;FamilyMemberHistory.extension&quot;,
         &quot;slicing&quot;: {
-          &quot;id&quot;: &quot;94&quot;,
+          &quot;id&quot;: &quot;97&quot;,
           &quot;discriminator&quot;: [
             &quot;url&quot;
           ],
@@ -446,6 +446,48 @@
           {
             &quot;code&quot;: &quot;Extension&quot;,
             &quot;profile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/family-member-history-genetics-parent&quot;
+          }
+        ],
+        &quot;condition&quot;: [
+          &quot;ele-1&quot;
+        ],
+        &quot;constraint&quot;: [
+          {
+            &quot;key&quot;: &quot;ele-1&quot;,
+            &quot;severity&quot;: &quot;error&quot;,
+            &quot;human&quot;: &quot;All FHIR elements must have a @value or children&quot;,
+            &quot;expression&quot;: &quot;children().count() &gt; id.count()&quot;,
+            &quot;xpath&quot;: &quot;@value|f:*|h:div&quot;,
+            &quot;source&quot;: &quot;Element&quot;
+          },
+          {
+            &quot;key&quot;: &quot;ext-1&quot;,
+            &quot;severity&quot;: &quot;error&quot;,
+            &quot;human&quot;: &quot;Must have either extensions or value[x], not both&quot;,
+            &quot;expression&quot;: &quot;extension.exists() != value.exists()&quot;,
+            &quot;xpath&quot;: &quot;exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])&quot;,
+            &quot;source&quot;: &quot;Extension&quot;
+          }
+        ],
+        &quot;mustSupport&quot;: true
+      },
+      {
+        &quot;id&quot;: &quot;FamilyMemberHistory:familymemberhistory-genetic.extension:sibling&quot;,
+        &quot;path&quot;: &quot;FamilyMemberHistory.extension&quot;,
+        &quot;sliceName&quot;: &quot;Sibling&quot;,
+        &quot;short&quot;: &quot;Extension&quot;,
+        &quot;definition&quot;: &quot;An Extension&quot;,
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;*&quot;,
+        &quot;base&quot;: {
+          &quot;path&quot;: &quot;DomainResource.extension&quot;,
+          &quot;min&quot;: 0,
+          &quot;max&quot;: &quot;*&quot;
+        },
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;Extension&quot;,
+            &quot;profile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/family-member-history-genetics-sibling&quot;
           }
         ],
         &quot;condition&quot;: [
@@ -795,8 +837,9 @@
         ]
       },
       {
-        &quot;id&quot;: &quot;FamilyMemberHistory:familymemberhistory-genetic.age[x]&quot;,
+        &quot;id&quot;: &quot;FamilyMemberHistory:familymemberhistory-genetic.age[x]:age&quot;,
         &quot;path&quot;: &quot;FamilyMemberHistory.age[x]&quot;,
+        &quot;sliceName&quot;: &quot;Age&quot;,
         &quot;short&quot;: &quot;(approximate) age&quot;,
         &quot;definition&quot;: &quot;The age of the relative at the time the family member history is recorded.&quot;,
         &quot;comments&quot;: &quot;use estimatedAge to indicate whether the age is actual or not.&quot;,
@@ -822,6 +865,7 @@
         &quot;condition&quot;: [
           &quot;fhs-1&quot;
         ],
+        &quot;mustSupport&quot;: true,
         &quot;isSummary&quot;: true,
         &quot;mapping&quot;: [
           {
@@ -1192,6 +1236,20 @@
         &quot;mustSupport&quot;: true
       },
       {
+        &quot;id&quot;: &quot;FamilyMemberHistory:familymemberhistory-genetic.extension:sibling&quot;,
+        &quot;path&quot;: &quot;FamilyMemberHistory.extension&quot;,
+        &quot;sliceName&quot;: &quot;Sibling&quot;,
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;*&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;Extension&quot;,
+            &quot;profile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/family-member-history-genetics-sibling&quot;
+          }
+        ],
+        &quot;mustSupport&quot;: true
+      },
+      {
         &quot;id&quot;: &quot;FamilyMemberHistory:familymemberhistory-genetic.extension:observation&quot;,
         &quot;path&quot;: &quot;FamilyMemberHistory.extension&quot;,
         &quot;sliceName&quot;: &quot;Observation&quot;,
@@ -1250,6 +1308,25 @@
           },
           {
             &quot;code&quot;: &quot;date&quot;
+          },
+          {
+            &quot;code&quot;: &quot;string&quot;
+          }
+        ],
+        &quot;mustSupport&quot;: true
+      },
+      {
+        &quot;id&quot;: &quot;FamilyMemberHistory:familymemberhistory-genetic.age[x]:age&quot;,
+        &quot;path&quot;: &quot;FamilyMemberHistory.age[x]&quot;,
+        &quot;sliceName&quot;: &quot;Age&quot;,
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;1&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;Age&quot;
+          },
+          {
+            &quot;code&quot;: &quot;Range&quot;
           },
           {
             &quot;code&quot;: &quot;string&quot;
@@ -1368,7 +1445,7 @@
 		<div class="container"><!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Thu, Nov 17, 2016 00:07-0500. <a href="qa.html">QA Page</a>
+        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Fri, Nov 18, 2016 17:54-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search</a> | 

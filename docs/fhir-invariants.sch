@@ -10991,6 +10991,13 @@
     </sch:rule>
   </sch:pattern>
   <sch:pattern>
+    <sch:title>Extension: natural brother(s) &amp; natural sister(s) - genetic &amp; other</sch:title>
+    <sch:rule context="//f:extension[@url='http://hl7.org/fhir/StructureDefinition/family-member-history-genetics-sibling']">
+      <sch:assert test="@value|f:*|h:div">ele-1: All FHIR elements must have a @value or children</sch:assert>
+      <sch:assert test="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])">ext-1: Must have either extensions or value[x], not both</sch:assert>
+    </sch:rule>
+  </sch:pattern>
+  <sch:pattern>
     <sch:title>Extension: Amino acid change</sch:title>
     <sch:rule context="//f:extension[@url='http://hl7.org/fhir/StructureDefinition/observation-geneticsAminoAcidChange']">
       <sch:assert test="@value|f:*|h:div">ele-1: All FHIR elements must have a @value or children</sch:assert>
@@ -11452,7 +11459,7 @@
     </sch:rule>
   </sch:pattern>
   <sch:pattern>
-    <sch:title>Extension: DNA sequence variant</sch:title>
+    <sch:title>Extension: Interpetation of DNA sequence variant</sch:title>
     <sch:rule context="//f:extension[@url='http://hl7.org/fhir/StructureDefinition/observation-geneticsDNASequenceVariant']">
       <sch:assert test="@value|f:*|h:div">ele-1: All FHIR elements must have a @value or children</sch:assert>
       <sch:assert test="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])">ext-1: Must have either extensions or value[x], not both</sch:assert>

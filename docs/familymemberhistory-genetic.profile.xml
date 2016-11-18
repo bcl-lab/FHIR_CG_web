@@ -246,7 +246,7 @@
     </element>
     <element id="FamilyMemberHistory:familymemberhistory-genetic.extension">
       <path value="FamilyMemberHistory.extension"/>
-      <slicing id="94">
+      <slicing id="97">
         <discriminator value="url"/>
         <ordered value="false"/>
         <rules value="open"/>
@@ -279,6 +279,41 @@
       <type>
         <code value="Extension"/>
         <profile value="http://hl7.org/fhir/StructureDefinition/family-member-history-genetics-parent"/>
+      </type>
+      <condition value="ele-1"/>
+      <constraint>
+        <key value="ele-1"/>
+        <severity value="error"/>
+        <human value="All FHIR elements must have a @value or children"/>
+        <expression value="children().count() &gt; id.count()"/>
+        <xpath value="@value|f:*|h:div"/>
+        <source value="Element"/>
+      </constraint>
+      <constraint>
+        <key value="ext-1"/>
+        <severity value="error"/>
+        <human value="Must have either extensions or value[x], not both"/>
+        <expression value="extension.exists() != value.exists()"/>
+        <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), &#39;value&#39;)])"/>
+        <source value="Extension"/>
+      </constraint>
+      <mustSupport value="true"/>
+    </element>
+    <element id="FamilyMemberHistory:familymemberhistory-genetic.extension:sibling">
+      <path value="FamilyMemberHistory.extension"/>
+      <sliceName value="Sibling"/>
+      <short value="Extension"/>
+      <definition value="An Extension"/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="DomainResource.extension"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Extension"/>
+        <profile value="http://hl7.org/fhir/StructureDefinition/family-member-history-genetics-sibling"/>
       </type>
       <condition value="ele-1"/>
       <constraint>
@@ -566,8 +601,9 @@
         <map value="player[classCode=LIV, determinerCode=INSTANCE]. birthDate (could be URG)"/>
       </mapping>
     </element>
-    <element id="FamilyMemberHistory:familymemberhistory-genetic.age[x]">
+    <element id="FamilyMemberHistory:familymemberhistory-genetic.age[x]:age">
       <path value="FamilyMemberHistory.age[x]"/>
+      <sliceName value="Age"/>
       <short value="(approximate) age"/>
       <definition value="The age of the relative at the time the family member history is recorded."/>
       <comments value="use estimatedAge to indicate whether the age is actual or not."/>
@@ -589,6 +625,7 @@
         <code value="string"/>
       </type>
       <condition value="fhs-1"/>
+      <mustSupport value="true"/>
       <isSummary value="true"/>
       <mapping>
         <identity value="rim"/>
@@ -887,6 +924,17 @@
       </type>
       <mustSupport value="true"/>
     </element>
+    <element id="FamilyMemberHistory:familymemberhistory-genetic.extension:sibling">
+      <path value="FamilyMemberHistory.extension"/>
+      <sliceName value="Sibling"/>
+      <min value="0"/>
+      <max value="*"/>
+      <type>
+        <code value="Extension"/>
+        <profile value="http://hl7.org/fhir/StructureDefinition/family-member-history-genetics-sibling"/>
+      </type>
+      <mustSupport value="true"/>
+    </element>
     <element id="FamilyMemberHistory:familymemberhistory-genetic.extension:observation">
       <path value="FamilyMemberHistory.extension"/>
       <sliceName value="Observation"/>
@@ -935,6 +983,22 @@
       </type>
       <type>
         <code value="date"/>
+      </type>
+      <type>
+        <code value="string"/>
+      </type>
+      <mustSupport value="true"/>
+    </element>
+    <element id="FamilyMemberHistory:familymemberhistory-genetic.age[x]:age">
+      <path value="FamilyMemberHistory.age[x]"/>
+      <sliceName value="Age"/>
+      <min value="0"/>
+      <max value="1"/>
+      <type>
+        <code value="Age"/>
+      </type>
+      <type>
+        <code value="Range"/>
       </type>
       <type>
         <code value="string"/>

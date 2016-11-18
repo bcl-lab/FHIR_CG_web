@@ -176,6 +176,15 @@
 </td></tr>
   <tr><td>Invariants</td><td><b>Defined on this element</b><br/>
 <b title="Formal Invariant Identifier">ele-1</b>: All FHIR elements must have a @value or children (xpath: @value|f:*|h:div)<br/><b title="Formal Invariant Identifier">ext-1</b>: Must have either extensions or value[x], not both (xpath: exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')]))</td></tr>
+  <tr><td colspan="2" class="structure"><a name="familymemberhistory-genetic.FamilyMemberHistory:familymemberhistory-genetic.extension:sibling"> </a><b>FamilyMemberHistory.extension (<a href="extension-family-member-history-genetics-sibling.html">http://hl7.org/fhir/StructureDefinition/family-member-history-genetics-sibling</a>)</b></td></tr>
+  <tr><td>Definition</td><td><p>Identifies a parent of the relative.</p>
+</td></tr>
+  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..* This element is affected by the following invariants: ele-1</td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td>  (Extension Type: Choice of: <a href="datatypes.html#base64Binary">base64Binary</a>, <a href="datatypes.html#boolean">boolean</a>, <a href="datatypes.html#code">code</a>, <a href="datatypes.html#date">date</a>, <a href="datatypes.html#dateTime">dateTime</a>, <a href="datatypes.html#decimal">decimal</a>, <a href="datatypes.html#id">id</a>, <a href="datatypes.html#instant">instant</a>, <a href="datatypes.html#integer">integer</a>, <a href="datatypes.html#markdown">markdown</a>, <a href="datatypes.html#oid">oid</a>, <a href="datatypes.html#positiveInt">positiveInt</a>, <a href="datatypes.html#string">string</a>, <a href="datatypes.html#time">time</a>, <a href="datatypes.html#unsignedInt">unsignedInt</a>, <a href="datatypes.html#uri">uri</a>, <a href="datatypes.html#Address">Address</a>, <a href="datatypes.html#Age">Age</a>, <a href="datatypes.html#Annotation">Annotation</a>, <a href="datatypes.html#Attachment">Attachment</a>, <a href="datatypes.html#CodeableConcept">CodeableConcept</a>, <a href="datatypes.html#Coding">Coding</a>, <a href="datatypes.html#ContactPoint">ContactPoint</a>, <a href="datatypes.html#Count">Count</a>, <a href="datatypes.html#Distance">Distance</a>, <a href="datatypes.html#Duration">Duration</a>, <a href="datatypes.html#HumanName">HumanName</a>, <a href="datatypes.html#Identifier">Identifier</a>, <a href="datatypes.html#Money">Money</a>, <a href="datatypes.html#Period">Period</a>, <a href="datatypes.html#Quantity">Quantity</a>, <a href="datatypes.html#Range">Range</a>, <a href="datatypes.html#Ratio">Ratio</a>, <a href="references.html#Reference">Reference</a>, <a href="datatypes.html#SampledData">SampledData</a>, <a href="datatypes.html#Signature">Signature</a>, <a href="datatypes.html#Timing">Timing</a>, <a href="resource.html#Meta">Meta</a>)</td></tr>
+  <tr><td>Comments</td><td><p>Some rare cases may have complex inner-pedigree-tree relationship. For instance, double cousin relationship need two extra link with In pedigree tree itself. This can't be revealed by relationship to subject.</p>
+</td></tr>
+  <tr><td>Invariants</td><td><b>Defined on this element</b><br/>
+<b title="Formal Invariant Identifier">ele-1</b>: All FHIR elements must have a @value or children (xpath: @value|f:*|h:div)<br/><b title="Formal Invariant Identifier">ext-1</b>: Must have either extensions or value[x], not both (xpath: exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')]))</td></tr>
   <tr><td colspan="2" class="structure"><a name="familymemberhistory-genetic.FamilyMemberHistory:familymemberhistory-genetic.extension:observation"> </a><b>FamilyMemberHistory.extension (<a href="extension-family-member-history-genetics-observation.html">http://hl7.org/fhir/StructureDefinition/family-member-history-genetics-observation</a>)</b></td></tr>
   <tr><td>Definition</td><td><p>Allows capturing risk-relevant observations about the relative that aren't themselves a specific health condition; e.g. Certain ethnic ancestries that are disease-relevant, presence of particular genetic markers, etc.</p>
 </td></tr>
@@ -255,12 +264,13 @@
   <tr><td><a href="conformance-rules.html#mustSupport">Must Support</a></td><td>true</td></tr>
   <tr><td>Requirements</td><td><p>Allows calculation of the relative's age.</p>
 </td></tr>
-  <tr><td colspan="2" class="structure"><a name="familymemberhistory-genetic.FamilyMemberHistory:familymemberhistory-genetic.age[x]"> </a><b>FamilyMemberHistory.age[x]</b></td></tr>
+  <tr><td colspan="2" class="structure"><a name="familymemberhistory-genetic.FamilyMemberHistory:familymemberhistory-genetic.age[x]:age"> </a><b>FamilyMemberHistory.age[x](Age)</b></td></tr>
   <tr><td>Definition</td><td><p>The age of the relative at the time the family member history is recorded.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1 This element is affected by the following invariants: fhs-1</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td>Choice of: <a href="datatypes.html#Age">Age</a>, <a href="datatypes.html#Range">Range</a>, <a href="datatypes.html#string">string</a></td></tr>
   <tr><td>[x] Note</td><td>See <a href="formats.html#choice">Choice of Data Types</a> for further information about how to use [x]</td></tr>
+  <tr><td><a href="conformance-rules.html#mustSupport">Must Support</a></td><td>true</td></tr>
   <tr><td>Requirements</td><td><p>While age can be calculated from date of birth, sometimes recording age directly is more natureal for clinicians.</p>
 </td></tr>
   <tr><td>Comments</td><td><p>use estimatedAge to indicate whether the age is actual or not.</p>
@@ -363,7 +373,7 @@
 		<div class="container">  <!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Thu, Nov 17, 2016 00:07-0500. <a href="qa.html">QA Page</a>
+        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Fri, Nov 18, 2016 17:54-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search <img src="external.png" style="text-align: baseline"/></a> | 

@@ -290,7 +290,7 @@
         "id": "FamilyMemberHistory:familymemberhistory-genetic.extension",
         "path": "FamilyMemberHistory.extension",
         "slicing": {
-          "id": "94",
+          "id": "97",
           "discriminator": [
             "url"
           ],
@@ -329,6 +329,48 @@
           {
             "code": "Extension",
             "profile": "http://hl7.org/fhir/StructureDefinition/family-member-history-genetics-parent"
+          }
+        ],
+        "condition": [
+          "ele-1"
+        ],
+        "constraint": [
+          {
+            "key": "ele-1",
+            "severity": "error",
+            "human": "All FHIR elements must have a @value or children",
+            "expression": "children().count() > id.count()",
+            "xpath": "@value|f:*|h:div",
+            "source": "Element"
+          },
+          {
+            "key": "ext-1",
+            "severity": "error",
+            "human": "Must have either extensions or value[x], not both",
+            "expression": "extension.exists() != value.exists()",
+            "xpath": "exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])",
+            "source": "Extension"
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "FamilyMemberHistory:familymemberhistory-genetic.extension:sibling",
+        "path": "FamilyMemberHistory.extension",
+        "sliceName": "Sibling",
+        "short": "Extension",
+        "definition": "An Extension",
+        "min": 0,
+        "max": "*",
+        "base": {
+          "path": "DomainResource.extension",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Extension",
+            "profile": "http://hl7.org/fhir/StructureDefinition/family-member-history-genetics-sibling"
           }
         ],
         "condition": [
@@ -678,8 +720,9 @@
         ]
       },
       {
-        "id": "FamilyMemberHistory:familymemberhistory-genetic.age[x]",
+        "id": "FamilyMemberHistory:familymemberhistory-genetic.age[x]:age",
         "path": "FamilyMemberHistory.age[x]",
+        "sliceName": "Age",
         "short": "(approximate) age",
         "definition": "The age of the relative at the time the family member history is recorded.",
         "comments": "use estimatedAge to indicate whether the age is actual or not.",
@@ -705,6 +748,7 @@
         "condition": [
           "fhs-1"
         ],
+        "mustSupport": true,
         "isSummary": true,
         "mapping": [
           {
@@ -1075,6 +1119,20 @@
         "mustSupport": true
       },
       {
+        "id": "FamilyMemberHistory:familymemberhistory-genetic.extension:sibling",
+        "path": "FamilyMemberHistory.extension",
+        "sliceName": "Sibling",
+        "min": 0,
+        "max": "*",
+        "type": [
+          {
+            "code": "Extension",
+            "profile": "http://hl7.org/fhir/StructureDefinition/family-member-history-genetics-sibling"
+          }
+        ],
+        "mustSupport": true
+      },
+      {
         "id": "FamilyMemberHistory:familymemberhistory-genetic.extension:observation",
         "path": "FamilyMemberHistory.extension",
         "sliceName": "Observation",
@@ -1133,6 +1191,25 @@
           },
           {
             "code": "date"
+          },
+          {
+            "code": "string"
+          }
+        ],
+        "mustSupport": true
+      },
+      {
+        "id": "FamilyMemberHistory:familymemberhistory-genetic.age[x]:age",
+        "path": "FamilyMemberHistory.age[x]",
+        "sliceName": "Age",
+        "min": 0,
+        "max": "1",
+        "type": [
+          {
+            "code": "Age"
+          },
+          {
+            "code": "Range"
           },
           {
             "code": "string"

@@ -53,20 +53,22 @@ start=@<Sequence> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
-# Sequence Structural Variant
-<Sequence.structureVariant> CLOSED {
+# Sequence variant
+<Sequence.variant> CLOSED {
     fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
     fhir:extension @<Extension>*;           # Additional Content defined by 
                                             # implementations 
     fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    fhir:Sequence.structureVariant.precisionOfBoundaries @<string>?;  # Precision of boundaries
-    fhir:Sequence.structureVariant.reportedaCGHRatio @<decimal>?;  # Structural Variant reported aCGH 
-                                            # ratio 
-    fhir:Sequence.structureVariant.length @<integer>?;  # Structural Variant Length
-    fhir:Sequence.structureVariant.outer @<Sequence.structureVariant.outer>?;  # Sequence Structural Variant Outer 
-                                            # Position 
-    fhir:Sequence.structureVariant.inner @<Sequence.structureVariant.inner>?;  # Sequence Structural Variant Inner 
-                                            # Position 
+    fhir:Sequence.variant.start @<integer>?;  # Start position of the variant on 
+                                            # the  reference sequence 
+    fhir:Sequence.variant.end @<integer>?;  # End position of the variant on the 
+                                            # reference sequence 
+    fhir:Sequence.variant.observedAllele @<string>?;  # Allele that was observed
+    fhir:Sequence.variant.referenceAllele @<string>?;  # Allele of reference sequence
+    fhir:Sequence.variant.cigar @<string>?;  # Extended CIGAR string for aligning 
+                                            # the sequence with reference bases 
+    fhir:Sequence.variant.variantPointer @<Reference>?;  # Pointer to observed variant 
+                                            # information 
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -89,22 +91,26 @@ start=@<Sequence> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
-# Sequence variant
-<Sequence.variant> CLOSED {
+# Reference sequence
+<Sequence.referenceSeq> CLOSED {
     fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
     fhir:extension @<Extension>*;           # Additional Content defined by 
                                             # implementations 
     fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    fhir:Sequence.variant.start @<integer>?;  # Start position of the variant on 
+    fhir:Sequence.referenceSeq.chromosome @<CodeableConcept>?;  # Chromosome containing genetic 
+                                            # finding 
+    fhir:Sequence.referenceSeq.genomeBuild @<string>?;  # The Genome Build used for 
+                                            # reference, following GRCh build 
+                                            # versions e.g. 'GRCh 37' 
+    fhir:Sequence.referenceSeq.referenceSeqId @<CodeableConcept>?;  # Reference identifier
+    fhir:Sequence.referenceSeq.referenceSeqPointer @<Reference>?;  # A Pointer to another Sequence 
+                                            # entity as refence sequence 
+    fhir:Sequence.referenceSeq.referenceSeqString @<string>?;  # A Reference Sequence string
+    fhir:Sequence.referenceSeq.strand @<integer>?;  # Directionality of DNA ( +1/-1)
+    fhir:Sequence.referenceSeq.windowStart @<integer>;  # Start position of the window on 
                                             # the  reference sequence 
-    fhir:Sequence.variant.end @<integer>?;  # End position of the variant on the 
+    fhir:Sequence.referenceSeq.windowEnd @<integer>;  # End position of the window on the 
                                             # reference sequence 
-    fhir:Sequence.variant.observedAllele @<string>?;  # Allele that was observed
-    fhir:Sequence.variant.referenceAllele @<string>?;  # Allele of reference sequence
-    fhir:Sequence.variant.cigar @<string>?;  # Extended CIGAR string for aligning 
-                                            # the sequence with reference bases 
-    fhir:Sequence.variant.variantPointer @<Reference>?;  # Pointer to observed variant 
-                                            # information 
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -136,38 +142,20 @@ start=@<Sequence> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
-# Reference sequence
-<Sequence.referenceSeq> CLOSED {
+# Sequence Structural Variant
+<Sequence.structureVariant> CLOSED {
     fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
     fhir:extension @<Extension>*;           # Additional Content defined by 
                                             # implementations 
     fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    fhir:Sequence.referenceSeq.chromosome @<CodeableConcept>?;  # Chromosome containing genetic 
-                                            # finding 
-    fhir:Sequence.referenceSeq.genomeBuild @<string>?;  # The Genome Build used for 
-                                            # reference, following GRCh build 
-                                            # versions e.g. 'GRCh 37' 
-    fhir:Sequence.referenceSeq.referenceSeqId @<CodeableConcept>?;  # Reference identifier
-    fhir:Sequence.referenceSeq.referenceSeqPointer @<Reference>?;  # A Pointer to another Sequence 
-                                            # entity as refence sequence 
-    fhir:Sequence.referenceSeq.referenceSeqString @<string>?;  # A Reference Sequence string
-    fhir:Sequence.referenceSeq.strand @<integer>?;  # Directionality of strand of DNA ( 
-                                            # +1/-1) 
-    fhir:Sequence.referenceSeq.windowStart @<integer>;  # Start position of the window on 
-                                            # the  reference sequence 
-    fhir:Sequence.referenceSeq.windowEnd @<integer>;  # End position of the window on the 
-                                            # reference sequence 
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
-# Sequence Structural Variant Inner Position
-<Sequence.structureVariant.inner> CLOSED {
-    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
-    fhir:extension @<Extension>*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    fhir:Sequence.structureVariant.inner.start @<integer>?;  # Structural Variant Inner Start-End
-    fhir:Sequence.structureVariant.inner.end @<integer>?;  # Structural Variant Inner Start-End
+    fhir:Sequence.structureVariant.precisionOfBoundaries @<string>?;  # Precision of boundaries
+    fhir:Sequence.structureVariant.reportedaCGHRatio @<decimal>?;  # Structural Variant reported aCGH 
+                                            # ratio 
+    fhir:Sequence.structureVariant.length @<integer>?;  # Structural Variant Length
+    fhir:Sequence.structureVariant.outer @<Sequence.structureVariant.outer>?;  # Sequence Structural Variant Outer 
+                                            # Position 
+    fhir:Sequence.structureVariant.inner @<Sequence.structureVariant.inner>?;  # Sequence Structural Variant Inner 
+                                            # Position 
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -179,6 +167,17 @@ start=@<Sequence> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
     fhir:Sequence.structureVariant.outer.start @<integer>?;  # Structural Variant Outer Start-End
     fhir:Sequence.structureVariant.outer.end @<integer>?;  # Structural Variant Outer Start-End
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
+# Sequence Structural Variant Inner Position
+<Sequence.structureVariant.inner> CLOSED {
+    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
+    fhir:extension @<Extension>*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
+    fhir:Sequence.structureVariant.inner.start @<integer>?;  # Structural Variant Inner Start-End
+    fhir:Sequence.structureVariant.inner.end @<integer>?;  # Structural Variant Inner Start-End
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -399,17 +398,17 @@ start=@<Sequence> AND {fhir:nodeRole [fhir:treeRoot]}
 
 #---------------------- Value Sets ------------------------
 
-# Type for access of external uri
-fhirvs:repository-type ["directlink" "openapi" "login" "oauth" "other"]
-
 # The status of a resource narrative
 fhirvs:narrative-status ["generated" "extensions" "additional" "empty"]
 
-# Identifies the purpose for this identifier, if known .
-fhirvs:identifier-use ["usual" "official" "temp" "secondary"]
+# Type for access of external uri
+fhirvs:repository-type ["directlink" "openapi" "login" "oauth" "other"]
 
 # How the Quantity should be understood and represented.
 fhirvs:quantity-comparator ["<" "<=" ">=" ">"]
+
+# Identifies the purpose for this identifier, if known .
+fhirvs:identifier-use ["usual" "official" "temp" "secondary"]
 
 # Type for quality report
 fhirvs:quality-type ["INDEL" "SNP" "UNKNOWN"]

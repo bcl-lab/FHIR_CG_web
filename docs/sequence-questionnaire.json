@@ -7,7 +7,7 @@
     }
   ],
   "status": "draft",
-  "date": "2016-11-16T23:52:25-05:00",
+  "date": "2016-11-28T17:29:55-05:00",
   "publisher": "Health Level Seven International (Clinical Genomics)",
   "item": [
     {
@@ -626,6 +626,59 @@
             },
             {
               "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType",
+              "valueString": "Reference"
+            }
+          ],
+          "linkId": "Sequence.peformer",
+          "type": "group",
+          "required": false,
+          "repeats": true,
+          "item": [
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://hl7.org/fhir/questionnaire-item-control",
+                        "code": "flyover",
+                        "display": "Fly-over"
+                      }
+                    ]
+                  }
+                }
+              ],
+              "text": "The organization or lab that should be responsible for this result.",
+              "type": "display"
+            },
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-allowedResource",
+                  "valueCode": "Organization"
+                },
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-referenceFilter",
+                  "valueString": "subject=$subj&patient=$subj&encounter=$encounter"
+                }
+              ],
+              "linkId": "Sequence.peformer.value",
+              "text": "Who should be responsible for test result",
+              "type": "reference",
+              "required": false,
+              "repeats": false
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs",
+              "valueInteger": 1
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType",
               "valueString": "Quantity"
             }
           ],
@@ -1090,12 +1143,12 @@
                       }
                     }
                   ],
-                  "text": "Directionality of strand of DNA. Available values are \"1\" for the plus strand (5' to 3')  and \"-1\" for the minus strand(3' to 5').",
+                  "text": "Directionality of DNA sequence. Available values are \"1\" for the plus strand (5' to 3')/Watson/Sense/positive  and \"-1\" for the minus strand(3' to 5')/Crick/Antisense/negative.",
                   "type": "display"
                 },
                 {
                   "linkId": "Sequence.referenceSeq.strand.value",
-                  "text": "Directionality of strand of DNA ( +1/-1)",
+                  "text": "Directionality of DNA ( +1/-1)",
                   "type": "integer",
                   "required": false,
                   "repeats": false
@@ -2453,7 +2506,7 @@
         },
         {
           "linkId": "Sequence.repository",
-          "text": "External repository which contains detailed report of observedSeq in this resource",
+          "text": "External repository which contains detailed report related with observedSeq in this resource",
           "type": "group",
           "required": false,
           "repeats": true,
@@ -2473,7 +2526,7 @@
                   }
                 }
               ],
-              "text": "Configurations of the external repository. The repository shall store target's observedSeq or records of target's observedSeq.",
+              "text": "Configurations of the external repository. The repository shall store target's observedSeq or records related with target's observedSeq.",
               "type": "display"
             },
             {

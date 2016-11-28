@@ -124,7 +124,7 @@
     }
   ],
   &quot;status&quot;: &quot;draft&quot;,
-  &quot;date&quot;: &quot;2016-11-16T23:52:25-05:00&quot;,
+  &quot;date&quot;: &quot;2016-11-28T17:29:55-05:00&quot;,
   &quot;publisher&quot;: &quot;Health Level Seven International (Clinical Genomics)&quot;,
   &quot;item&quot;: [
     {
@@ -743,6 +743,59 @@
             },
             {
               &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType&quot;,
+              &quot;valueString&quot;: &quot;Reference&quot;
+            }
+          ],
+          &quot;linkId&quot;: &quot;Sequence.peformer&quot;,
+          &quot;type&quot;: &quot;group&quot;,
+          &quot;required&quot;: false,
+          &quot;repeats&quot;: true,
+          &quot;item&quot;: [
+            {
+              &quot;extension&quot;: [
+                {
+                  &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl&quot;,
+                  &quot;valueCodeableConcept&quot;: {
+                    &quot;coding&quot;: [
+                      {
+                        &quot;system&quot;: &quot;http://hl7.org/fhir/questionnaire-item-control&quot;,
+                        &quot;code&quot;: &quot;flyover&quot;,
+                        &quot;display&quot;: &quot;Fly-over&quot;
+                      }
+                    ]
+                  }
+                }
+              ],
+              &quot;text&quot;: &quot;The organization or lab that should be responsible for this result.&quot;,
+              &quot;type&quot;: &quot;display&quot;
+            },
+            {
+              &quot;extension&quot;: [
+                {
+                  &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-allowedResource&quot;,
+                  &quot;valueCode&quot;: &quot;Organization&quot;
+                },
+                {
+                  &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-referenceFilter&quot;,
+                  &quot;valueString&quot;: &quot;subject=$subj&amp;patient=$subj&amp;encounter=$encounter&quot;
+                }
+              ],
+              &quot;linkId&quot;: &quot;Sequence.peformer.value&quot;,
+              &quot;text&quot;: &quot;Who should be responsible for test result&quot;,
+              &quot;type&quot;: &quot;reference&quot;,
+              &quot;required&quot;: false,
+              &quot;repeats&quot;: false
+            }
+          ]
+        },
+        {
+          &quot;extension&quot;: [
+            {
+              &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs&quot;,
+              &quot;valueInteger&quot;: 1
+            },
+            {
+              &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType&quot;,
               &quot;valueString&quot;: &quot;Quantity&quot;
             }
           ],
@@ -1207,12 +1260,12 @@
                       }
                     }
                   ],
-                  &quot;text&quot;: &quot;Directionality of strand of DNA. Available values are \&quot;1\&quot; for the plus strand (5' to 3')  and \&quot;-1\&quot; for the minus strand(3' to 5').&quot;,
+                  &quot;text&quot;: &quot;Directionality of DNA sequence. Available values are \&quot;1\&quot; for the plus strand (5' to 3')/Watson/Sense/positive  and \&quot;-1\&quot; for the minus strand(3' to 5')/Crick/Antisense/negative.&quot;,
                   &quot;type&quot;: &quot;display&quot;
                 },
                 {
                   &quot;linkId&quot;: &quot;Sequence.referenceSeq.strand.value&quot;,
-                  &quot;text&quot;: &quot;Directionality of strand of DNA ( +1/-1)&quot;,
+                  &quot;text&quot;: &quot;Directionality of DNA ( +1/-1)&quot;,
                   &quot;type&quot;: &quot;integer&quot;,
                   &quot;required&quot;: false,
                   &quot;repeats&quot;: false
@@ -2570,7 +2623,7 @@
         },
         {
           &quot;linkId&quot;: &quot;Sequence.repository&quot;,
-          &quot;text&quot;: &quot;External repository which contains detailed report of observedSeq in this resource&quot;,
+          &quot;text&quot;: &quot;External repository which contains detailed report related with observedSeq in this resource&quot;,
           &quot;type&quot;: &quot;group&quot;,
           &quot;required&quot;: false,
           &quot;repeats&quot;: true,
@@ -2590,7 +2643,7 @@
                   }
                 }
               ],
-              &quot;text&quot;: &quot;Configurations of the external repository. The repository shall store target's observedSeq or records of target's observedSeq.&quot;,
+              &quot;text&quot;: &quot;Configurations of the external repository. The repository shall store target's observedSeq or records related with target's observedSeq.&quot;,
               &quot;type&quot;: &quot;display&quot;
             },
             {
@@ -3716,7 +3769,7 @@ of the specification.
 		<div class="container"><!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Wed, Nov 16, 2016 23:55-0500. <a href="qa.html">QA Page</a>
+        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:33-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search</a> | 

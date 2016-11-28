@@ -368,25 +368,6 @@ BASE &lt;http://hl7.org/fhir/shape/&gt;
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
-# Condition that must evaluate to true
-&lt;ElementDefinition.constraint&gt; CLOSED {
-    fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
-    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:ElementDefinition.constraint.key @&lt;id&gt;;  # Target of 'condition' reference 
-                                            # above 
-    fhir:ElementDefinition.constraint.requirements @&lt;string&gt;?;  # Why this constraint is necessary 
-                                            # or appropriate 
-    fhir:ElementDefinition.constraint.severity @&lt;code&gt; AND
-    	{fhir:value @fhirvs:constraint-severity};  # error | warning
-    fhir:ElementDefinition.constraint.human @&lt;string&gt;;  # Human description of constraint
-    fhir:ElementDefinition.constraint.expression @&lt;string&gt;;  # FluentPath expression of constraint
-    fhir:ElementDefinition.constraint.xpath @&lt;string&gt;?;  # XPath expression of constraint
-    fhir:ElementDefinition.constraint.source @&lt;uri&gt;?;  # Reference to original source of 
-                                            # constraint 
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
 # This element is sliced - slices follow
 &lt;ElementDefinition.slicing&gt; CLOSED {
     fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
@@ -400,6 +381,18 @@ BASE &lt;http://hl7.org/fhir/shape/&gt;
                                             # as slices 
     fhir:ElementDefinition.slicing.rules @&lt;code&gt; AND
     	{fhir:value @fhirvs:resource-slicing-rules};  # closed | open | openAtEnd
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
+# Base definition information for tools
+&lt;ElementDefinition.base&gt; CLOSED {
+    fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
+    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:ElementDefinition.base.path @&lt;string&gt;;  # Path that identifies the base 
+                                            # element 
+    fhir:ElementDefinition.base.min @&lt;integer&gt;;  # Min cardinality of the base element
+    fhir:ElementDefinition.base.max @&lt;string&gt;;  # Max cardinality of the base element
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -422,6 +415,25 @@ BASE &lt;http://hl7.org/fhir/shape/&gt;
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
+# Condition that must evaluate to true
+&lt;ElementDefinition.constraint&gt; CLOSED {
+    fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
+    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:ElementDefinition.constraint.key @&lt;id&gt;;  # Target of 'condition' reference 
+                                            # above 
+    fhir:ElementDefinition.constraint.requirements @&lt;string&gt;?;  # Why this constraint is necessary 
+                                            # or appropriate 
+    fhir:ElementDefinition.constraint.severity @&lt;code&gt; AND
+    	{fhir:value @fhirvs:constraint-severity};  # error | warning
+    fhir:ElementDefinition.constraint.human @&lt;string&gt;;  # Human description of constraint
+    fhir:ElementDefinition.constraint.expression @&lt;string&gt;;  # FluentPath expression of constraint
+    fhir:ElementDefinition.constraint.xpath @&lt;string&gt;?;  # XPath expression of constraint
+    fhir:ElementDefinition.constraint.source @&lt;uri&gt;?;  # Reference to original source of 
+                                            # constraint 
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
 # ValueSet details if this is coded
 &lt;ElementDefinition.binding&gt; CLOSED {
     fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
@@ -435,18 +447,6 @@ BASE &lt;http://hl7.org/fhir/shape/&gt;
         fhir:ElementDefinition.binding.valueSetUri @&lt;uri&gt;  |
         fhir:ElementDefinition.binding.valueSetReference @&lt;Reference&gt; 
     )?;
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
-# Base definition information for tools
-&lt;ElementDefinition.base&gt; CLOSED {
-    fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
-    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:ElementDefinition.base.path @&lt;string&gt;;  # Path that identifies the base 
-                                            # element 
-    fhir:ElementDefinition.base.min @&lt;integer&gt;;  # Min cardinality of the base element
-    fhir:ElementDefinition.base.max @&lt;string&gt;;  # Max cardinality of the base element
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -1015,35 +1015,23 @@ BASE &lt;http://hl7.org/fhir/shape/&gt;
 
 #---------------------- Value Sets ------------------------
 
-# Telecommunications form for contact point
-fhirvs:contact-point-system [&quot;phone&quot; &quot;fax&quot; &quot;email&quot; &quot;pager&quot; &quot;other&quot;]
-
 # Real world event that the relating to the schedule.
 fhirvs:event-timing [&quot;HS&quot; &quot;WAKE&quot; &quot;C&quot; &quot;CM&quot; &quot;CD&quot; &quot;CV&quot; &quot;AC&quot; &quot;ACM&quot; &quot;ACD&quot; &quot;ACV&quot; &quot;PC&quot; &quot;PCM&quot; &quot;PCD&quot; &quot;PCV&quot;]
 
 # How slices are interpreted when evaluating an instance.
 fhirvs:resource-slicing-rules [&quot;closed&quot; &quot;open&quot; &quot;openAtEnd&quot;]
 
-# Identifies the purpose for this identifier, if known .
-fhirvs:identifier-use [&quot;usual&quot; &quot;official&quot; &quot;temp&quot; &quot;secondary&quot;]
-
 # How a property is represented on the wire.
 fhirvs:property-representation [&quot;xmlAttr&quot; &quot;xmlText&quot; &quot;typeAttr&quot; &quot;cdaText&quot; &quot;xhtml&quot;]
-
-# The type of an address (physical / postal)
-fhirvs:address-type [&quot;postal&quot; &quot;physical&quot; &quot;both&quot;]
-
-# The use of a human name
-fhirvs:name-use [&quot;usual&quot; &quot;official&quot; &quot;temp&quot; &quot;nickname&quot; &quot;anonymous&quot; &quot;old&quot; &quot;maiden&quot;]
 
 # Whether a reference needs to be version specific or version independent, or whetehr either can be used
 fhirvs:reference-version-rules [&quot;either&quot; &quot;independent&quot; &quot;specific&quot;]
 
+# The type of an address (physical / postal)
+fhirvs:address-type [&quot;postal&quot; &quot;physical&quot; &quot;both&quot;]
+
 # How the Quantity should be understood and represented.
 fhirvs:quantity-comparator [&quot;&lt;&quot; &quot;&lt;=&quot; &quot;&gt;=&quot; &quot;&gt;&quot;]
-
-# Use of contact point
-fhirvs:contact-point-use [&quot;home&quot; &quot;work&quot; &quot;temp&quot; &quot;old&quot; &quot;mobile&quot;]
 
 # A unit of time (units from UCUM).
 fhirvs:units-of-time [&quot;s&quot; &quot;min&quot; &quot;h&quot; &quot;d&quot; &quot;wk&quot; &quot;mo&quot; &quot;a&quot;]
@@ -1051,11 +1039,23 @@ fhirvs:units-of-time [&quot;s&quot; &quot;min&quot; &quot;h&quot; &quot;d&quot; 
 # The use of an address
 fhirvs:address-use [&quot;home&quot; &quot;work&quot; &quot;temp&quot; &quot;old&quot;]
 
+# SHALL applications comply with this constraint?
+fhirvs:constraint-severity [&quot;error&quot; &quot;warning&quot;]
+
 # Indication of the degree of conformance expectations associated with a binding.
 fhirvs:binding-strength [&quot;required&quot; &quot;extensible&quot; &quot;preferred&quot; &quot;example&quot;]
 
-# SHALL applications comply with this constraint?
-fhirvs:constraint-severity [&quot;error&quot; &quot;warning&quot;]
+# The use of a human name
+fhirvs:name-use [&quot;usual&quot; &quot;official&quot; &quot;temp&quot; &quot;nickname&quot; &quot;anonymous&quot; &quot;old&quot; &quot;maiden&quot;]
+
+# Telecommunications form for contact point
+fhirvs:contact-point-system [&quot;phone&quot; &quot;fax&quot; &quot;email&quot; &quot;pager&quot; &quot;other&quot;]
+
+# Use of contact point
+fhirvs:contact-point-use [&quot;home&quot; &quot;work&quot; &quot;temp&quot; &quot;old&quot; &quot;mobile&quot;]
+
+# Identifies the purpose for this identifier, if known .
+fhirvs:identifier-use [&quot;usual&quot; &quot;official&quot; &quot;temp&quot; &quot;secondary&quot;]
 
 # How resource references can be aggregated.
 fhirvs:resource-aggregation-mode [&quot;contained&quot; &quot;referenced&quot; &quot;bundled&quot;]
@@ -1084,7 +1084,7 @@ of the specification.
 		<div class="container"><!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Wed, Nov 16, 2016 23:54-0500. <a href="qa.html">QA Page</a>
+        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:32-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search</a> | 

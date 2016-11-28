@@ -165,23 +165,6 @@ start=@&lt;Practitioner&gt; AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
-# Qualifications obtained by training and certification
-&lt;Practitioner.qualification&gt; CLOSED {
-    fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
-    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @&lt;Extension&gt;*;   # Extensions that cannot be ignored
-    fhir:Practitioner.qualification.identifier @&lt;Identifier&gt;*;  # An identifier for this 
-                                            # qualification for the practitioner 
-    fhir:Practitioner.qualification.code @&lt;CodeableConcept&gt;;  # Coded representation of the 
-                                            # qualification 
-    fhir:Practitioner.qualification.period @&lt;Period&gt;?;  # Period during which the 
-                                            # qualification is valid 
-    fhir:Practitioner.qualification.issuer @&lt;Reference&gt;?;  # Organization that regulates and 
-                                            # issues the qualification 
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
 # Roles/organizations the practitioner is associated with
 &lt;Practitioner.role&gt; CLOSED {
     fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
@@ -209,6 +192,23 @@ start=@&lt;Practitioner&gt; AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:Practitioner.role.endpoint @&lt;Reference&gt;*;  # Technical endpoints providing 
                                             # access to services operated for 
                                             # the PractitonerRole 
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
+# Qualifications obtained by training and certification
+&lt;Practitioner.qualification&gt; CLOSED {
+    fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
+    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @&lt;Extension&gt;*;   # Extensions that cannot be ignored
+    fhir:Practitioner.qualification.identifier @&lt;Identifier&gt;*;  # An identifier for this 
+                                            # qualification for the practitioner 
+    fhir:Practitioner.qualification.code @&lt;CodeableConcept&gt;;  # Coded representation of the 
+                                            # qualification 
+    fhir:Practitioner.qualification.period @&lt;Period&gt;?;  # Period during which the 
+                                            # qualification is valid 
+    fhir:Practitioner.qualification.issuer @&lt;Reference&gt;?;  # Organization that regulates and 
+                                            # issues the qualification 
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -512,29 +512,29 @@ start=@&lt;Practitioner&gt; AND {fhir:nodeRole [fhir:treeRoot]}
 
 #---------------------- Value Sets ------------------------
 
-# Telecommunications form for contact point
-fhirvs:contact-point-system [&quot;phone&quot; &quot;fax&quot; &quot;email&quot; &quot;pager&quot; &quot;other&quot;]
-
-# Use of contact point
-fhirvs:contact-point-use [&quot;home&quot; &quot;work&quot; &quot;temp&quot; &quot;old&quot; &quot;mobile&quot;]
-
-# The status of a resource narrative
-fhirvs:narrative-status [&quot;generated&quot; &quot;extensions&quot; &quot;additional&quot; &quot;empty&quot;]
-
 # The use of an address
 fhirvs:address-use [&quot;home&quot; &quot;work&quot; &quot;temp&quot; &quot;old&quot;]
 
-# Identifies the purpose for this identifier, if known .
-fhirvs:identifier-use [&quot;usual&quot; &quot;official&quot; &quot;temp&quot; &quot;secondary&quot;]
+# The use of a human name
+fhirvs:name-use [&quot;usual&quot; &quot;official&quot; &quot;temp&quot; &quot;nickname&quot; &quot;anonymous&quot; &quot;old&quot; &quot;maiden&quot;]
+
+# Telecommunications form for contact point
+fhirvs:contact-point-system [&quot;phone&quot; &quot;fax&quot; &quot;email&quot; &quot;pager&quot; &quot;other&quot;]
 
 # The type of an address (physical / postal)
 fhirvs:address-type [&quot;postal&quot; &quot;physical&quot; &quot;both&quot;]
 
+# Use of contact point
+fhirvs:contact-point-use [&quot;home&quot; &quot;work&quot; &quot;temp&quot; &quot;old&quot; &quot;mobile&quot;]
+
+# Identifies the purpose for this identifier, if known .
+fhirvs:identifier-use [&quot;usual&quot; &quot;official&quot; &quot;temp&quot; &quot;secondary&quot;]
+
+# The status of a resource narrative
+fhirvs:narrative-status [&quot;generated&quot; &quot;extensions&quot; &quot;additional&quot; &quot;empty&quot;]
+
 # The gender of a person used for administrative purposes.
 fhirvs:administrative-gender [&quot;male&quot; &quot;female&quot; &quot;other&quot; &quot;unknown&quot;]
-
-# The use of a human name
-fhirvs:name-use [&quot;usual&quot; &quot;official&quot; &quot;temp&quot; &quot;nickname&quot; &quot;anonymous&quot; &quot;old&quot; &quot;maiden&quot;]
 
 </pre>
 </div>
@@ -560,7 +560,7 @@ of the specification.
 		<div class="container"><!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Wed, Nov 16, 2016 23:55-0500. <a href="qa.html">QA Page</a>
+        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:33-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search</a> | 

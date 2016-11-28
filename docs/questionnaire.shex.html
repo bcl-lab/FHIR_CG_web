@@ -550,11 +550,17 @@ start=@&lt;Questionnaire&gt; AND {fhir:nodeRole [fhir:treeRoot]}
 
 #---------------------- Value Sets ------------------------
 
+# Telecommunications form for contact point
+fhirvs:contact-point-system [&quot;phone&quot; &quot;fax&quot; &quot;email&quot; &quot;pager&quot; &quot;other&quot;]
+
 # Lifecycle status of the questionnaire.
 fhirvs:questionnaire-status [&quot;draft&quot; &quot;published&quot; &quot;retired&quot;]
 
-# Telecommunications form for contact point
-fhirvs:contact-point-system [&quot;phone&quot; &quot;fax&quot; &quot;email&quot; &quot;pager&quot; &quot;other&quot;]
+# Distinguishes groups from questions and display text and indicates data type for questions
+fhirvs:item-type [&quot;group&quot; &quot;display&quot; &quot;question&quot; &quot;boolean&quot; &quot;decimal&quot; &quot;integer&quot; &quot;date&quot; &quot;dateTime&quot; &quot;instant&quot; &quot;time&quot; &quot;string&quot; &quot;text&quot; &quot;url&quot; &quot;choice&quot; &quot;open-choice&quot; &quot;attachment&quot; &quot;reference&quot; &quot;quantity&quot;]
+
+# One of the resource types defined as part of FHIR.
+fhirvs:resource-types [&quot;Account&quot; &quot;ActivityDefinition&quot; &quot;AllergyIntolerance&quot; &quot;Appointment&quot; &quot;AppointmentResponse&quot; &quot;AuditEvent&quot; &quot;Basic&quot; &quot;Binary&quot; &quot;BodySite&quot; &quot;Bundle&quot; &quot;CapabilityStatement&quot; &quot;CarePlan&quot; &quot;CareTeam&quot; &quot;Claim&quot; &quot;ClaimResponse&quot; &quot;ClinicalImpression&quot; &quot;CodeSystem&quot; &quot;Communication&quot; &quot;CommunicationRequest&quot; &quot;CompartmentDefinition&quot; &quot;Composition&quot; &quot;ConceptMap&quot; &quot;Condition&quot; &quot;Consent&quot; &quot;Contract&quot; &quot;Coverage&quot; &quot;DataElement&quot; &quot;DetectedIssue&quot; &quot;Device&quot; &quot;DeviceComponent&quot; &quot;DeviceMetric&quot; &quot;DeviceUseRequest&quot; &quot;DeviceUseStatement&quot; &quot;DiagnosticReport&quot; &quot;DiagnosticRequest&quot; &quot;DocumentManifest&quot; &quot;DocumentReference&quot; &quot;DomainResource&quot; &quot;EligibilityRequest&quot; &quot;EligibilityResponse&quot; &quot;Encounter&quot; &quot;Endpoint&quot; &quot;EnrollmentRequest&quot; &quot;EnrollmentResponse&quot; &quot;EpisodeOfCare&quot; &quot;ExpansionProfile&quot; &quot;ExplanationOfBenefit&quot; &quot;FamilyMemberHistory&quot; &quot;Flag&quot; &quot;Goal&quot; &quot;Group&quot; &quot;GuidanceResponse&quot; &quot;HealthcareService&quot; &quot;ImagingManifest&quot; &quot;ImagingStudy&quot; &quot;Immunization&quot; &quot;ImmunizationRecommendation&quot; &quot;ImplementationGuide&quot; &quot;Library&quot; &quot;Linkage&quot; &quot;List&quot; &quot;Location&quot; &quot;Measure&quot; &quot;MeasureReport&quot; &quot;Media&quot; &quot;Medication&quot; &quot;MedicationAdministration&quot; &quot;MedicationDispense&quot; &quot;MedicationRequest&quot; &quot;MedicationStatement&quot; &quot;MessageDefinition&quot; &quot;MessageHeader&quot; &quot;NamingSystem&quot; &quot;NutritionRequest&quot; &quot;Observation&quot; &quot;OperationDefinition&quot; &quot;OperationOutcome&quot; &quot;Organization&quot; &quot;Parameters&quot; &quot;Patient&quot; &quot;PaymentNotice&quot; &quot;PaymentReconciliation&quot; &quot;Person&quot; &quot;PlanDefinition&quot; &quot;Practitioner&quot; &quot;PractitionerRole&quot; &quot;Procedure&quot; &quot;ProcedureRequest&quot; &quot;ProcessRequest&quot; &quot;ProcessResponse&quot; &quot;Provenance&quot; &quot;Questionnaire&quot; &quot;QuestionnaireResponse&quot; &quot;ReferralRequest&quot; &quot;RelatedPerson&quot; &quot;RequestGroup&quot; &quot;ResearchStudy&quot; &quot;ResearchSubject&quot; &quot;Resource&quot; &quot;RiskAssessment&quot; &quot;Schedule&quot; &quot;SearchParameter&quot; &quot;Sequence&quot; &quot;ServiceDefinition&quot; &quot;Slot&quot; &quot;Specimen&quot; &quot;StructureDefinition&quot; &quot;StructureMap&quot; &quot;Subscription&quot; &quot;Substance&quot; &quot;SupplyDelivery&quot; &quot;SupplyRequest&quot; &quot;Task&quot; &quot;TestReport&quot; &quot;TestScript&quot; &quot;ValueSet&quot; &quot;VisionPrescription&quot;]
 
 # How the Quantity should be understood and represented.
 fhirvs:quantity-comparator [&quot;&lt;&quot; &quot;&lt;=&quot; &quot;&gt;=&quot; &quot;&gt;&quot;]
@@ -562,17 +568,11 @@ fhirvs:quantity-comparator [&quot;&lt;&quot; &quot;&lt;=&quot; &quot;&gt;=&quot;
 # Use of contact point
 fhirvs:contact-point-use [&quot;home&quot; &quot;work&quot; &quot;temp&quot; &quot;old&quot; &quot;mobile&quot;]
 
-# The status of a resource narrative
-fhirvs:narrative-status [&quot;generated&quot; &quot;extensions&quot; &quot;additional&quot; &quot;empty&quot;]
-
-# Distinguishes groups from questions and display text and indicates data type for questions
-fhirvs:item-type [&quot;group&quot; &quot;display&quot; &quot;question&quot; &quot;boolean&quot; &quot;decimal&quot; &quot;integer&quot; &quot;date&quot; &quot;dateTime&quot; &quot;instant&quot; &quot;time&quot; &quot;string&quot; &quot;text&quot; &quot;url&quot; &quot;choice&quot; &quot;open-choice&quot; &quot;attachment&quot; &quot;reference&quot; &quot;quantity&quot;]
-
 # Identifies the purpose for this identifier, if known .
 fhirvs:identifier-use [&quot;usual&quot; &quot;official&quot; &quot;temp&quot; &quot;secondary&quot;]
 
-# One of the resource types defined as part of FHIR.
-fhirvs:resource-types [&quot;Account&quot; &quot;ActivityDefinition&quot; &quot;AllergyIntolerance&quot; &quot;Appointment&quot; &quot;AppointmentResponse&quot; &quot;AuditEvent&quot; &quot;Basic&quot; &quot;Binary&quot; &quot;BodySite&quot; &quot;Bundle&quot; &quot;CapabilityStatement&quot; &quot;CarePlan&quot; &quot;CareTeam&quot; &quot;Claim&quot; &quot;ClaimResponse&quot; &quot;ClinicalImpression&quot; &quot;CodeSystem&quot; &quot;Communication&quot; &quot;CommunicationRequest&quot; &quot;CompartmentDefinition&quot; &quot;Composition&quot; &quot;ConceptMap&quot; &quot;Condition&quot; &quot;Consent&quot; &quot;Contract&quot; &quot;Coverage&quot; &quot;DataElement&quot; &quot;DetectedIssue&quot; &quot;Device&quot; &quot;DeviceComponent&quot; &quot;DeviceMetric&quot; &quot;DeviceUseRequest&quot; &quot;DeviceUseStatement&quot; &quot;DiagnosticReport&quot; &quot;DiagnosticRequest&quot; &quot;DocumentManifest&quot; &quot;DocumentReference&quot; &quot;DomainResource&quot; &quot;EligibilityRequest&quot; &quot;EligibilityResponse&quot; &quot;Encounter&quot; &quot;Endpoint&quot; &quot;EnrollmentRequest&quot; &quot;EnrollmentResponse&quot; &quot;EpisodeOfCare&quot; &quot;ExpansionProfile&quot; &quot;ExplanationOfBenefit&quot; &quot;FamilyMemberHistory&quot; &quot;Flag&quot; &quot;Goal&quot; &quot;Group&quot; &quot;GuidanceResponse&quot; &quot;HealthcareService&quot; &quot;ImagingManifest&quot; &quot;ImagingStudy&quot; &quot;Immunization&quot; &quot;ImmunizationRecommendation&quot; &quot;ImplementationGuide&quot; &quot;Library&quot; &quot;Linkage&quot; &quot;List&quot; &quot;Location&quot; &quot;Measure&quot; &quot;MeasureReport&quot; &quot;Media&quot; &quot;Medication&quot; &quot;MedicationAdministration&quot; &quot;MedicationDispense&quot; &quot;MedicationRequest&quot; &quot;MedicationStatement&quot; &quot;MessageDefinition&quot; &quot;MessageHeader&quot; &quot;NamingSystem&quot; &quot;NutritionRequest&quot; &quot;Observation&quot; &quot;OperationDefinition&quot; &quot;OperationOutcome&quot; &quot;Organization&quot; &quot;Parameters&quot; &quot;Patient&quot; &quot;PaymentNotice&quot; &quot;PaymentReconciliation&quot; &quot;Person&quot; &quot;PlanDefinition&quot; &quot;Practitioner&quot; &quot;PractitionerRole&quot; &quot;Procedure&quot; &quot;ProcedureRequest&quot; &quot;ProcessRequest&quot; &quot;ProcessResponse&quot; &quot;Provenance&quot; &quot;Questionnaire&quot; &quot;QuestionnaireResponse&quot; &quot;ReferralRequest&quot; &quot;RelatedPerson&quot; &quot;RequestGroup&quot; &quot;ResearchStudy&quot; &quot;ResearchSubject&quot; &quot;Resource&quot; &quot;RiskAssessment&quot; &quot;Schedule&quot; &quot;SearchParameter&quot; &quot;Sequence&quot; &quot;ServiceDefinition&quot; &quot;Slot&quot; &quot;Specimen&quot; &quot;StructureDefinition&quot; &quot;StructureMap&quot; &quot;Subscription&quot; &quot;Substance&quot; &quot;SupplyDelivery&quot; &quot;SupplyRequest&quot; &quot;Task&quot; &quot;TestReport&quot; &quot;TestScript&quot; &quot;ValueSet&quot; &quot;VisionPrescription&quot;]
+# The status of a resource narrative
+fhirvs:narrative-status [&quot;generated&quot; &quot;extensions&quot; &quot;additional&quot; &quot;empty&quot;]
 
 </pre>
 </div>
@@ -598,7 +598,7 @@ of the specification.
 		<div class="container"><!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Wed, Nov 16, 2016 23:55-0500. <a href="qa.html">QA Page</a>
+        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:33-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search</a> | 

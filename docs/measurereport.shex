@@ -71,6 +71,18 @@ start=@<MeasureReport> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
+# Stratification results
+<MeasureReport.group.stratifier> CLOSED {
+    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
+    fhir:extension @<Extension>*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
+    fhir:MeasureReport.group.stratifier.identifier @<Identifier>;  # Identifier of the stratifier
+    fhir:MeasureReport.group.stratifier.group @<MeasureReport.group.stratifier.group>*;  # Stratum results, one for each 
+                                            # unique value in the stratifier 
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
 # Supplemental data elements for the measure
 <MeasureReport.group.supplementalData> CLOSED {
     fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
@@ -85,15 +97,15 @@ start=@<MeasureReport> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
-# Stratification results
-<MeasureReport.group.stratifier> CLOSED {
+# Stratum results, one for each unique value in the stratifier
+<MeasureReport.group.stratifier.group> CLOSED {
     fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
     fhir:extension @<Extension>*;           # Additional Content defined by 
                                             # implementations 
     fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    fhir:MeasureReport.group.stratifier.identifier @<Identifier>;  # Identifier of the stratifier
-    fhir:MeasureReport.group.stratifier.group @<MeasureReport.group.stratifier.group>*;  # Stratum results, one for each 
-                                            # unique value in the stratifier 
+    fhir:MeasureReport.group.stratifier.group.value @<string>;  # The stratum value, e.g. male
+    fhir:MeasureReport.group.stratifier.group.population @<MeasureReport.group.stratifier.group.population>*;  # Population results in this stratum
+    fhir:MeasureReport.group.stratifier.group.measureScore @<decimal>?;  # The measure score
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -107,18 +119,6 @@ start=@<MeasureReport> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:MeasureReport.group.supplementalData.group.count @<integer>?;  # Number of members in the group
     fhir:MeasureReport.group.supplementalData.group.patients @<Reference>?;  # For patient-list reports, the 
                                             # patients in this population 
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
-# Stratum results, one for each unique value in the stratifier
-<MeasureReport.group.stratifier.group> CLOSED {
-    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
-    fhir:extension @<Extension>*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    fhir:MeasureReport.group.stratifier.group.value @<string>;  # The stratum value, e.g. male
-    fhir:MeasureReport.group.stratifier.group.population @<MeasureReport.group.stratifier.group.population>*;  # Population results in this stratum
-    fhir:MeasureReport.group.stratifier.group.measureScore @<decimal>?;  # The measure score
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -343,12 +343,6 @@ start=@<MeasureReport> AND {fhir:nodeRole [fhir:treeRoot]}
 
 #---------------------- Value Sets ------------------------
 
-# The type of the measure report
-fhirvs:measure-report-type ["individual" "patient-list" "summary"]
-
-# The status of a resource narrative
-fhirvs:narrative-status ["generated" "extensions" "additional" "empty"]
-
 # The status of the measure report
 fhirvs:measure-report-status ["complete" "pending" "error"]
 
@@ -357,3 +351,9 @@ fhirvs:measure-population ["initial-population" "numerator" "numerator-exclusion
 
 # Identifies the purpose for this identifier, if known .
 fhirvs:identifier-use ["usual" "official" "temp" "secondary"]
+
+# The status of a resource narrative
+fhirvs:narrative-status ["generated" "extensions" "additional" "empty"]
+
+# The type of the measure report
+fhirvs:measure-report-type ["individual" "patient-list" "summary"]

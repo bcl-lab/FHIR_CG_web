@@ -38,6 +38,20 @@ start=@<Provenance> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
+# An entity used in this activity
+<Provenance.entity> CLOSED {
+    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
+    fhir:extension @<Extension>*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
+    fhir:Provenance.entity.role @<code> AND
+    	{fhir:value @fhirvs:provenance-entity-role};  # derivation | revision | quotation 
+                                            # | source | removal 
+    fhir:Provenance.entity.reference @<Reference>;  # Identity of entity
+    fhir:Provenance.entity.agent @<Provenance.agent>*;  # Entity is attributed to this agent
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
 # Actor involved
 <Provenance.agent> CLOSED {
     fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
@@ -62,20 +76,6 @@ start=@<Provenance> AND {fhir:nodeRole [fhir:treeRoot]}
         fhir:Provenance.agent.onBehalfOfReference @<Reference> 
     )?;
     fhir:Provenance.agent.relatedAgentType @<CodeableConcept>?;  # Type of relationship between agents
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
-# An entity used in this activity
-<Provenance.entity> CLOSED {
-    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
-    fhir:extension @<Extension>*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    fhir:Provenance.entity.role @<code> AND
-    	{fhir:value @fhirvs:provenance-entity-role};  # derivation | revision | quotation 
-                                            # | source | removal 
-    fhir:Provenance.entity.reference @<Reference>;  # Identity of entity
-    fhir:Provenance.entity.agent @<Provenance.agent>*;  # Entity is attributed to this agent
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -302,11 +302,11 @@ start=@<Provenance> AND {fhir:nodeRole [fhir:treeRoot]}
 
 #---------------------- Value Sets ------------------------
 
-# The status of a resource narrative
-fhirvs:narrative-status ["generated" "extensions" "additional" "empty"]
-
 # How an entity was used in an activity.
 fhirvs:provenance-entity-role ["derivation" "revision" "quotation" "source" "removal"]
+
+# The status of a resource narrative
+fhirvs:narrative-status ["generated" "extensions" "additional" "empty"]
 
 # Identifies the purpose for this identifier, if known .
 fhirvs:identifier-use ["usual" "official" "temp" "secondary"]

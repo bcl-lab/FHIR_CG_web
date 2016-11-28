@@ -58,6 +58,18 @@ start=@<DocumentManifest> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
+# Related things
+<DocumentManifest.related> CLOSED {
+    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
+    fhir:extension @<Extension>*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
+    fhir:DocumentManifest.related.identifier @<Identifier>?;  # Identifiers of things that are 
+                                            # related 
+    fhir:DocumentManifest.related.ref @<Reference>?;  # Related Resource
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
 # The items included
 <DocumentManifest.content> CLOSED {
     fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
@@ -68,18 +80,6 @@ start=@<DocumentManifest> AND {fhir:nodeRole [fhir:treeRoot]}
         fhir:DocumentManifest.content.pAttachment @<Attachment>  |
         fhir:DocumentManifest.content.pReference @<Reference> 
     );
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
-# Related things
-<DocumentManifest.related> CLOSED {
-    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
-    fhir:extension @<Extension>*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    fhir:DocumentManifest.related.identifier @<Identifier>?;  # Identifiers of things that are 
-                                            # related 
-    fhir:DocumentManifest.related.ref @<Reference>?;  # Related Resource
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -387,11 +387,11 @@ start=@<DocumentManifest> AND {fhir:nodeRole [fhir:treeRoot]}
 
 #---------------------- Value Sets ------------------------
 
-# The status of a resource narrative
-fhirvs:narrative-status ["generated" "extensions" "additional" "empty"]
+# The status of the document reference.
+fhirvs:document-reference-status ["current" "superseded" "entered-in-error"]
 
 # Identifies the purpose for this identifier, if known .
 fhirvs:identifier-use ["usual" "official" "temp" "secondary"]
 
-# The status of the document reference.
-fhirvs:document-reference-status ["current" "superseded" "entered-in-error"]
+# The status of a resource narrative
+fhirvs:narrative-status ["generated" "extensions" "additional" "empty"]

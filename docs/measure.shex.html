@@ -204,20 +204,6 @@ start=@&lt;Measure&gt; AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
-# Population criteria group
-&lt;Measure.group&gt; CLOSED {
-    fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
-    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @&lt;Extension&gt;*;   # Extensions that cannot be ignored
-    fhir:Measure.group.identifier @&lt;Identifier&gt;;  # Unique identifier
-    fhir:Measure.group.name @&lt;string&gt;?;     # Short name
-    fhir:Measure.group.description @&lt;string&gt;?;  # Summary description
-    fhir:Measure.group.population @&lt;Measure.group.population&gt;*;  # Population criteria
-    fhir:Measure.group.stratifier @&lt;Measure.group.stratifier&gt;*;  # Stratifier criteria for the measure
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
 # Supplemental data
 &lt;Measure.supplementalData&gt; CLOSED {
     fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
@@ -235,17 +221,17 @@ start=@&lt;Measure&gt; AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
-# Stratifier criteria for the measure
-&lt;Measure.group.stratifier&gt; CLOSED {
+# Population criteria group
+&lt;Measure.group&gt; CLOSED {
     fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
     fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
                                             # implementations 
     fhir:modifierExtension @&lt;Extension&gt;*;   # Extensions that cannot be ignored
-    fhir:Measure.group.stratifier.identifier @&lt;Identifier&gt;;  # The identifier for the stratifier 
-                                            # used to coordinate the reported 
-                                            # data back to this stratifier 
-    fhir:Measure.group.stratifier.criteria @&lt;string&gt;?;  # Stratifier criteria
-    fhir:Measure.group.stratifier.path @&lt;string&gt;?;  # Path to the stratifier
+    fhir:Measure.group.identifier @&lt;Identifier&gt;;  # Unique identifier
+    fhir:Measure.group.name @&lt;string&gt;?;     # Short name
+    fhir:Measure.group.description @&lt;string&gt;?;  # Summary description
+    fhir:Measure.group.population @&lt;Measure.group.population&gt;*;  # Population criteria
+    fhir:Measure.group.stratifier @&lt;Measure.group.stratifier&gt;*;  # Stratifier criteria for the measure
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -271,6 +257,20 @@ start=@&lt;Measure&gt; AND {fhir:nodeRole [fhir:treeRoot]}
                                             # expression (may be namespaced) 
                                             # that defines this population 
                                             # criteria 
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
+# Stratifier criteria for the measure
+&lt;Measure.group.stratifier&gt; CLOSED {
+    fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
+    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @&lt;Extension&gt;*;   # Extensions that cannot be ignored
+    fhir:Measure.group.stratifier.identifier @&lt;Identifier&gt;;  # The identifier for the stratifier 
+                                            # used to coordinate the reported 
+                                            # data back to this stratifier 
+    fhir:Measure.group.stratifier.criteria @&lt;string&gt;?;  # Stratifier criteria
+    fhir:Measure.group.stratifier.path @&lt;string&gt;?;  # Path to the stratifier
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -643,44 +643,44 @@ start=@&lt;Measure&gt; AND {fhir:nodeRole [fhir:treeRoot]}
 
 #---------------------- Value Sets ------------------------
 
-# The scoring type of the measure
-fhirvs:measure-scoring [&quot;proportion&quot; &quot;ratio&quot; &quot;continuous-variable&quot; &quot;cohort&quot;]
-
-# The type of relationship to the related artifact
-fhirvs:related-artifact-type [&quot;documentation&quot; &quot;justification&quot; &quot;citation&quot; &quot;predecessor&quot; &quot;successor&quot; &quot;derived-from&quot; &quot;depends-on&quot; &quot;composed-of&quot;]
-
-# Telecommunications form for contact point
-fhirvs:contact-point-system [&quot;phone&quot; &quot;fax&quot; &quot;email&quot; &quot;pager&quot; &quot;other&quot;]
+# The type of contributor
+fhirvs:contributor-type [&quot;author&quot; &quot;editor&quot; &quot;reviewer&quot; &quot;endorser&quot;]
 
 # The type of population
 fhirvs:measure-population [&quot;initial-population&quot; &quot;numerator&quot; &quot;numerator-exclusion&quot; &quot;denominator&quot; &quot;denominator-exclusion&quot; &quot;denominator-exception&quot; &quot;measure-population&quot; &quot;measure-population-exclusion&quot; &quot;measure-observation&quot;]
 
+# How the Quantity should be understood and represented.
+fhirvs:quantity-comparator [&quot;&lt;&quot; &quot;&lt;=&quot; &quot;&gt;=&quot; &quot;&gt;&quot;]
+
+# The scoring type of the measure
+fhirvs:measure-scoring [&quot;proportion&quot; &quot;ratio&quot; &quot;continuous-variable&quot; &quot;cohort&quot;]
+
+# The composite scoring method of the measure
+fhirvs:composite-measure-scoring [&quot;opportunity&quot; &quot;all-or-nothing&quot; &quot;linear&quot; &quot;weighted&quot;]
+
+# The type of relationship to the related artifact
+fhirvs:related-artifact-type [&quot;documentation&quot; &quot;justification&quot; &quot;citation&quot; &quot;predecessor&quot; &quot;successor&quot; &quot;derived-from&quot; &quot;depends-on&quot; &quot;composed-of&quot;]
+
+# The lifecycle status of a Value Set or Concept Map.
+fhirvs:publication-status [&quot;draft&quot; &quot;active&quot; &quot;retired&quot;]
+
 # The type of measure (includes codes from 2.16.840.1.113883.1.11.20368)
 fhirvs:measure-type [&quot;process&quot; &quot;outcome&quot; &quot;structure&quot; &quot;patient-reported-outcome&quot; &quot;composite&quot;]
 
-# Identifies the purpose for this identifier, if known .
-fhirvs:identifier-use [&quot;usual&quot; &quot;official&quot; &quot;temp&quot; &quot;secondary&quot;]
+# Telecommunications form for contact point
+fhirvs:contact-point-system [&quot;phone&quot; &quot;fax&quot; &quot;email&quot; &quot;pager&quot; &quot;other&quot;]
 
 # The intended usage for supplemental data elements in the measure
 fhirvs:measure-data-usage [&quot;supplemental-data&quot; &quot;risk-adjustment-factor&quot;]
 
-# The type of contributor
-fhirvs:contributor-type [&quot;author&quot; &quot;editor&quot; &quot;reviewer&quot; &quot;endorser&quot;]
-
-# How the Quantity should be understood and represented.
-fhirvs:quantity-comparator [&quot;&lt;&quot; &quot;&lt;=&quot; &quot;&gt;=&quot; &quot;&gt;&quot;]
+# Identifies the purpose for this identifier, if known .
+fhirvs:identifier-use [&quot;usual&quot; &quot;official&quot; &quot;temp&quot; &quot;secondary&quot;]
 
 # The status of a resource narrative
 fhirvs:narrative-status [&quot;generated&quot; &quot;extensions&quot; &quot;additional&quot; &quot;empty&quot;]
 
 # Use of contact point
 fhirvs:contact-point-use [&quot;home&quot; &quot;work&quot; &quot;temp&quot; &quot;old&quot; &quot;mobile&quot;]
-
-# The lifecycle status of a Value Set or Concept Map.
-fhirvs:publication-status [&quot;draft&quot; &quot;active&quot; &quot;retired&quot;]
-
-# The composite scoring method of the measure
-fhirvs:composite-measure-scoring [&quot;opportunity&quot; &quot;all-or-nothing&quot; &quot;linear&quot; &quot;weighted&quot;]
 
 </pre>
 </div>
@@ -706,7 +706,7 @@ of the specification.
 		<div class="container"><!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Wed, Nov 16, 2016 23:55-0500. <a href="qa.html">QA Page</a>
+        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:32-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search</a> | 

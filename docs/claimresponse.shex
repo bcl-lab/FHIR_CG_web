@@ -53,70 +53,6 @@ start=@<ClaimResponse> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
-# Insurance or medical plan
-<ClaimResponse.coverage> CLOSED {
-    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
-    fhir:extension @<Extension>*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    fhir:ClaimResponse.coverage.sequence @<positiveInt>;  # Service instance identifier
-    fhir:ClaimResponse.coverage.focal @<boolean>;  # Is the focal Coverage
-    fhir:ClaimResponse.coverage.coverage @<Reference>;  # Insurance information
-    fhir:ClaimResponse.coverage.businessArrangement @<string>?;  # Business agreement
-    fhir:ClaimResponse.coverage.preAuthRef @<string>*;  # Pre-Authorization/Determination 
-                                            # Reference 
-    fhir:ClaimResponse.coverage.claimResponse @<Reference>?;  # Adjudication results
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
-# Insurer added line items
-<ClaimResponse.addItem> CLOSED {
-    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
-    fhir:extension @<Extension>*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    fhir:ClaimResponse.addItem.sequenceLinkId @<positiveInt>*;  # Service instances
-    fhir:ClaimResponse.addItem.revenue @<Coding>?;  # Revenue or cost center code
-    fhir:ClaimResponse.addItem.category @<Coding>?;  # Type of service or product
-    fhir:ClaimResponse.addItem.service @<Coding>?;  # Group, Service or Product
-    fhir:ClaimResponse.addItem.modifier @<Coding>*;  # Service/Product billing modifiers
-    fhir:ClaimResponse.addItem.fee @<Money>?;  # Professional fee or Product charge
-    fhir:ClaimResponse.addItem.noteNumber @<positiveInt>*;  # List of note numbers which apply
-    fhir:ClaimResponse.addItem.adjudication @<ClaimResponse.item.adjudication>*;  # Added items adjudication
-    fhir:ClaimResponse.addItem.detail @<ClaimResponse.addItem.detail>*;  # Added items details
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
-# Payment details, if paid
-<ClaimResponse.payment> CLOSED {
-    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
-    fhir:extension @<Extension>*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    fhir:ClaimResponse.payment.type @<Coding>?;  # Partial or Complete
-    fhir:ClaimResponse.payment.adjustment @<Money>?;  # Payment adjustment for non-Claim 
-                                            # issues 
-    fhir:ClaimResponse.payment.adjustmentReason @<Coding>?;  # Reason for Payment adjustment
-    fhir:ClaimResponse.payment.date @<date>?;  # Expected data of Payment
-    fhir:ClaimResponse.payment.amount @<Money>?;  # Payment amount
-    fhir:ClaimResponse.payment.identifier @<Identifier>?;  # Payment identifier
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
-# Processing errors
-<ClaimResponse.error> CLOSED {
-    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
-    fhir:extension @<Extension>*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    fhir:ClaimResponse.error.sequenceLinkId @<positiveInt>?;  # Item sequence number
-    fhir:ClaimResponse.error.detailSequenceLinkId @<positiveInt>?;  # Detail sequence number
-    fhir:ClaimResponse.error.subdetailSequenceLinkId @<positiveInt>?;  # Subdetail sequence number
-    fhir:ClaimResponse.error.code @<Coding>;  # Error code detailing processing 
-                                            # issues 
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
 # Processing notes
 <ClaimResponse.note> CLOSED {
     fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
@@ -141,6 +77,70 @@ start=@<ClaimResponse> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:ClaimResponse.item.noteNumber @<positiveInt>*;  # List of note numbers which apply
     fhir:ClaimResponse.item.adjudication @<ClaimResponse.item.adjudication>*;  # Adjudication details
     fhir:ClaimResponse.item.detail @<ClaimResponse.item.detail>*;  # Detail line items
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
+# Insurer added line items
+<ClaimResponse.addItem> CLOSED {
+    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
+    fhir:extension @<Extension>*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
+    fhir:ClaimResponse.addItem.sequenceLinkId @<positiveInt>*;  # Service instances
+    fhir:ClaimResponse.addItem.revenue @<Coding>?;  # Revenue or cost center code
+    fhir:ClaimResponse.addItem.category @<Coding>?;  # Type of service or product
+    fhir:ClaimResponse.addItem.service @<Coding>?;  # Group, Service or Product
+    fhir:ClaimResponse.addItem.modifier @<Coding>*;  # Service/Product billing modifiers
+    fhir:ClaimResponse.addItem.fee @<Money>?;  # Professional fee or Product charge
+    fhir:ClaimResponse.addItem.noteNumber @<positiveInt>*;  # List of note numbers which apply
+    fhir:ClaimResponse.addItem.adjudication @<ClaimResponse.item.adjudication>*;  # Added items adjudication
+    fhir:ClaimResponse.addItem.detail @<ClaimResponse.addItem.detail>*;  # Added items details
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
+# Processing errors
+<ClaimResponse.error> CLOSED {
+    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
+    fhir:extension @<Extension>*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
+    fhir:ClaimResponse.error.sequenceLinkId @<positiveInt>?;  # Item sequence number
+    fhir:ClaimResponse.error.detailSequenceLinkId @<positiveInt>?;  # Detail sequence number
+    fhir:ClaimResponse.error.subdetailSequenceLinkId @<positiveInt>?;  # Subdetail sequence number
+    fhir:ClaimResponse.error.code @<Coding>;  # Error code detailing processing 
+                                            # issues 
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
+# Payment details, if paid
+<ClaimResponse.payment> CLOSED {
+    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
+    fhir:extension @<Extension>*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
+    fhir:ClaimResponse.payment.type @<Coding>?;  # Partial or Complete
+    fhir:ClaimResponse.payment.adjustment @<Money>?;  # Payment adjustment for non-Claim 
+                                            # issues 
+    fhir:ClaimResponse.payment.adjustmentReason @<Coding>?;  # Reason for Payment adjustment
+    fhir:ClaimResponse.payment.date @<date>?;  # Expected data of Payment
+    fhir:ClaimResponse.payment.amount @<Money>?;  # Payment amount
+    fhir:ClaimResponse.payment.identifier @<Identifier>?;  # Payment identifier
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
+# Insurance or medical plan
+<ClaimResponse.coverage> CLOSED {
+    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
+    fhir:extension @<Extension>*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
+    fhir:ClaimResponse.coverage.sequence @<positiveInt>;  # Service instance identifier
+    fhir:ClaimResponse.coverage.focal @<boolean>;  # Is the focal Coverage
+    fhir:ClaimResponse.coverage.coverage @<Reference>;  # Insurance information
+    fhir:ClaimResponse.coverage.businessArrangement @<string>?;  # Business agreement
+    fhir:ClaimResponse.coverage.preAuthRef @<string>*;  # Pre-Authorization/Determination 
+                                            # Reference 
+    fhir:ClaimResponse.coverage.claimResponse @<Reference>?;  # Adjudication results
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -427,17 +427,17 @@ start=@<ClaimResponse> AND {fhir:nodeRole [fhir:treeRoot]}
 # The presentation types of notes.
 fhirvs:note-type ["display" "print" "printoper"]
 
-# How the Quantity should be understood and represented.
-fhirvs:quantity-comparator ["<" "<=" ">=" ">"]
-
-# The status of a resource narrative
-fhirvs:narrative-status ["generated" "extensions" "additional" "empty"]
-
-# Identifies the purpose for this identifier, if known .
-fhirvs:identifier-use ["usual" "official" "temp" "secondary"]
+# This value set includes a sample set of Forms codes.
+fhirvs:forms ["1" "2"]
 
 # A code specifying the state of the resource instance.
 fhirvs:claimresponse-status ["active" "cancelled" "draft" "entered-in-error"]
 
-# This value set includes a sample set of Forms codes.
-fhirvs:forms ["1" "2"]
+# How the Quantity should be understood and represented.
+fhirvs:quantity-comparator ["<" "<=" ">=" ">"]
+
+# Identifies the purpose for this identifier, if known .
+fhirvs:identifier-use ["usual" "official" "temp" "secondary"]
+
+# The status of a resource narrative
+fhirvs:narrative-status ["generated" "extensions" "additional" "empty"]

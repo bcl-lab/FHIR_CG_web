@@ -35,7 +35,7 @@ start=@<Sequence> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:Sequence.specimen @<Reference>?;   # Specimen used for sequencing
     fhir:Sequence.device @<Reference>?;     # The method for sequencing
     fhir:Sequence.peformer @<Reference>?;   # Who should be responsible for test 
-                                            # result. 
+                                            # result 
     fhir:Sequence.quantity @<Quantity>?;    # The number of copies of the 
                                             # seqeunce of interest.  (RNASeq) 
     fhir:Sequence.referenceSeq @<Sequence.referenceSeq>?;  # Reference sequence
@@ -46,10 +46,29 @@ start=@<Sequence> AND {fhir:nodeRole [fhir:treeRoot]}
                                             # representing a given nucleotide in 
                                             # the reconstructed sequence 
     fhir:Sequence.repository @<Sequence.repository>*;  # External repository which contains 
-                                            # detailed report of observedSeq in 
-                                            # this resource 
+                                            # detailed report related with 
+                                            # observedSeq in this resource 
     fhir:Sequence.pointer @<Reference>*;    # Pointer to next atomic sequence
     fhir:Sequence.structureVariant @<Sequence.structureVariant>*;  # Sequence Structural Variant
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
+# External repository which contains detailed report related with observedSeq in this resource
+<Sequence.repository> CLOSED {
+    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
+    fhir:extension @<Extension>*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
+    fhir:Sequence.repository.type @<code> AND
+    	{fhir:value @fhirvs:repository-type};  # directlink | openapi | login | 
+                                            # oauth | other 
+    fhir:Sequence.repository.url @<uri>?;   # URI of the repository
+    fhir:Sequence.repository.name @<string>?;  # Name of the repository
+    fhir:Sequence.repository.datasetId @<string>?;  # Id of the dataset that used to 
+                                            # call for dataset in repository 
+    fhir:Sequence.repository.variantsetId @<string>?;  # Id of the variantset that used to 
+                                            # call for variantset in repository 
+    fhir:Sequence.repository.readsetId @<string>?;  # Id of the read
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -72,22 +91,20 @@ start=@<Sequence> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
-# External repository which contains detailed report of observedSeq in this resource
-<Sequence.repository> CLOSED {
+# Sequence Structural Variant
+<Sequence.structureVariant> CLOSED {
     fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
     fhir:extension @<Extension>*;           # Additional Content defined by 
                                             # implementations 
     fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    fhir:Sequence.repository.type @<code> AND
-    	{fhir:value @fhirvs:repository-type};  # directlink | openapi | login | 
-                                            # oauth | other 
-    fhir:Sequence.repository.url @<uri>?;   # URI of the repository
-    fhir:Sequence.repository.name @<string>?;  # Name of the repository
-    fhir:Sequence.repository.datasetId @<string>?;  # Id of the dataset that used to 
-                                            # call for dataset in repository 
-    fhir:Sequence.repository.variantsetId @<string>?;  # Id of the variantset that used to 
-                                            # call for variantset in repository 
-    fhir:Sequence.repository.readsetId @<string>?;  # Id of the read
+    fhir:Sequence.structureVariant.precisionOfBoundaries @<string>?;  # Precision of boundaries
+    fhir:Sequence.structureVariant.reportedaCGHRatio @<decimal>?;  # Structural Variant reported aCGH 
+                                            # ratio 
+    fhir:Sequence.structureVariant.length @<integer>?;  # Structural Variant Length
+    fhir:Sequence.structureVariant.outer @<Sequence.structureVariant.outer>?;  # Sequence Structural Variant Outer 
+                                            # Position 
+    fhir:Sequence.structureVariant.inner @<Sequence.structureVariant.inner>?;  # Sequence Structural Variant Inner 
+                                            # Position 
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -139,23 +156,6 @@ start=@<Sequence> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:Sequence.quality.precision @<decimal>?;  # Precision
     fhir:Sequence.quality.recall @<decimal>?;  # Recall
     fhir:Sequence.quality.fScore @<decimal>?;  # F-score
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
-# Sequence Structural Variant
-<Sequence.structureVariant> CLOSED {
-    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
-    fhir:extension @<Extension>*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    fhir:Sequence.structureVariant.precisionOfBoundaries @<string>?;  # Precision of boundaries
-    fhir:Sequence.structureVariant.reportedaCGHRatio @<decimal>?;  # Structural Variant reported aCGH 
-                                            # ratio 
-    fhir:Sequence.structureVariant.length @<integer>?;  # Structural Variant Length
-    fhir:Sequence.structureVariant.outer @<Sequence.structureVariant.outer>?;  # Sequence Structural Variant Outer 
-                                            # Position 
-    fhir:Sequence.structureVariant.inner @<Sequence.structureVariant.inner>?;  # Sequence Structural Variant Inner 
-                                            # Position 
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -398,17 +398,17 @@ start=@<Sequence> AND {fhir:nodeRole [fhir:treeRoot]}
 
 #---------------------- Value Sets ------------------------
 
-# The status of a resource narrative
-fhirvs:narrative-status ["generated" "extensions" "additional" "empty"]
-
-# Type for access of external uri
-fhirvs:repository-type ["directlink" "openapi" "login" "oauth" "other"]
-
 # How the Quantity should be understood and represented.
 fhirvs:quantity-comparator ["<" "<=" ">=" ">"]
 
 # Identifies the purpose for this identifier, if known .
 fhirvs:identifier-use ["usual" "official" "temp" "secondary"]
+
+# The status of a resource narrative
+fhirvs:narrative-status ["generated" "extensions" "additional" "empty"]
+
+# Type for access of external uri
+fhirvs:repository-type ["directlink" "openapi" "login" "oauth" "other"]
 
 # Type for quality report
 fhirvs:quality-type ["INDEL" "SNP" "UNKNOWN"]

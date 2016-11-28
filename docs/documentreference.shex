@@ -77,6 +77,18 @@ start=@<DocumentReference> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
+# Document referenced
+<DocumentReference.content> CLOSED {
+    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
+    fhir:extension @<Extension>*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
+    fhir:DocumentReference.content.attachment @<Attachment>;  # Where to access the document
+    fhir:DocumentReference.content.format @<Coding>*;  # Format/content rules for the 
+                                            # document 
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
 # Clinical context of document
 <DocumentReference.context> CLOSED {
     fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
@@ -94,18 +106,6 @@ start=@<DocumentReference> AND {fhir:nodeRole [fhir:treeRoot]}
                                             # specialty) 
     fhir:DocumentReference.context.sourcePatientInfo @<Reference>?;  # Patient demographics from source
     fhir:DocumentReference.context.related @<DocumentReference.context.related>*;  # Related identifiers or resources
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
-# Document referenced
-<DocumentReference.content> CLOSED {
-    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
-    fhir:extension @<Extension>*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    fhir:DocumentReference.content.attachment @<Attachment>;  # Where to access the document
-    fhir:DocumentReference.content.format @<Coding>*;  # Format/content rules for the 
-                                            # document 
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -425,8 +425,11 @@ start=@<DocumentReference> AND {fhir:nodeRole [fhir:treeRoot]}
 
 #---------------------- Value Sets ------------------------
 
-# The status of a resource narrative
-fhirvs:narrative-status ["generated" "extensions" "additional" "empty"]
+# The workflow/clinical status of the composition.
+fhirvs:composition-status ["preliminary" "final" "amended" "entered-in-error"]
+
+# The status of the document reference.
+fhirvs:document-reference-status ["current" "superseded" "entered-in-error"]
 
 # The type of relationship between documents.
 fhirvs:document-relationship-type ["replaces" "transforms" "signs" "appends"]
@@ -434,8 +437,5 @@ fhirvs:document-relationship-type ["replaces" "transforms" "signs" "appends"]
 # Identifies the purpose for this identifier, if known .
 fhirvs:identifier-use ["usual" "official" "temp" "secondary"]
 
-# The workflow/clinical status of the composition.
-fhirvs:composition-status ["preliminary" "final" "amended" "entered-in-error"]
-
-# The status of the document reference.
-fhirvs:document-reference-status ["current" "superseded" "entered-in-error"]
+# The status of a resource narrative
+fhirvs:narrative-status ["generated" "extensions" "additional" "empty"]

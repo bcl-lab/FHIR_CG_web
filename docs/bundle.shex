@@ -29,19 +29,6 @@ start=@<Bundle> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
-# Links related to this Bundle
-<Bundle.link> CLOSED {
-    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
-    fhir:extension @<Extension>*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    fhir:Bundle.link.relation @<string>;    # http://www.iana.org/assignments/-
-                                            # link-relations/link-relations.xh-
-                                            # tml 
-    fhir:Bundle.link.url @<uri>;            # Reference details for the link
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
 # Entry in the bundle - will have a resource, or information
 <Bundle.entry> CLOSED {
     fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
@@ -58,21 +45,16 @@ start=@<Bundle> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
-# Transaction Related Information
-<Bundle.entry.response> CLOSED {
+# Links related to this Bundle
+<Bundle.link> CLOSED {
     fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
     fhir:extension @<Extension>*;           # Additional Content defined by 
                                             # implementations 
     fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    fhir:Bundle.entry.response.status @<string>;  # Status response code (text 
-                                            # optional) 
-    fhir:Bundle.entry.response.location @<uri>?;  # The location, if the operation 
-                                            # returns a location 
-    fhir:Bundle.entry.response.etag @<string>?;  # The etag for the resource (if 
-                                            # relevant) 
-    fhir:Bundle.entry.response.lastModified @<instant>?;  # Server's date time modified
-    fhir:Bundle.entry.response.outcome @<Resource>?;  # OperationOutcome with hints and 
-                                            # warnings (for batch/transaction) 
+    fhir:Bundle.link.relation @<string>;    # http://www.iana.org/assignments/-
+                                            # link-relations/link-relations.xh-
+                                            # tml 
+    fhir:Bundle.link.url @<uri>;            # Reference details for the link
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -103,6 +85,24 @@ start=@<Bundle> AND {fhir:nodeRole [fhir:treeRoot]}
     	{fhir:value @fhirvs:search-entry-mode}?;  # match | include | outcome - why 
                                             # this is in the result set 
     fhir:Bundle.entry.search.score @<decimal>?;  # Search ranking (between 0 and 1)
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
+# Transaction Related Information
+<Bundle.entry.response> CLOSED {
+    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
+    fhir:extension @<Extension>*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
+    fhir:Bundle.entry.response.status @<string>;  # Status response code (text 
+                                            # optional) 
+    fhir:Bundle.entry.response.location @<uri>?;  # The location, if the operation 
+                                            # returns a location 
+    fhir:Bundle.entry.response.etag @<string>?;  # The etag for the resource (if 
+                                            # relevant) 
+    fhir:Bundle.entry.response.lastModified @<instant>?;  # Server's date time modified
+    fhir:Bundle.entry.response.outcome @<Resource>?;  # OperationOutcome with hints and 
+                                            # warnings (for batch/transaction) 
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -334,14 +334,14 @@ start=@<Bundle> AND {fhir:nodeRole [fhir:treeRoot]}
 
 #---------------------- Value Sets ------------------------
 
-# HTTP verbs (in the HTTP command line).
-fhirvs:http-verb ["GET" "POST" "PUT" "DELETE"]
-
 # Why an entry is in the result set - whether it's included as a match or because of an _include requirement.
 fhirvs:search-entry-mode ["match" "include" "outcome"]
 
-# Identifies the purpose for this identifier, if known .
-fhirvs:identifier-use ["usual" "official" "temp" "secondary"]
-
 # Indicates the purpose of a bundle - how it was intended to be used.
 fhirvs:bundle-type ["document" "message" "transaction" "transaction-response" "batch" "batch-response" "history" "searchset" "collection"]
+
+# HTTP verbs (in the HTTP command line).
+fhirvs:http-verb ["GET" "POST" "PUT" "DELETE"]
+
+# Identifies the purpose for this identifier, if known .
+fhirvs:identifier-use ["usual" "official" "temp" "secondary"]

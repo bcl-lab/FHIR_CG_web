@@ -196,33 +196,6 @@ start=@&lt;Observation&gt; AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
-# Component results
-&lt;Observation.component&gt; CLOSED {
-    fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
-    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @&lt;Extension&gt;*;   # Extensions that cannot be ignored
-    fhir:Observation.component.code @&lt;CodeableConcept&gt;;  # Type of component observation 
-                                            # (code / type) 
-    (                                       # Actual component result
-        fhir:Observation.component.valueQuantity @&lt;Quantity&gt;  |
-        fhir:Observation.component.valueCodeableConcept @&lt;CodeableConcept&gt;  |
-        fhir:Observation.component.valueString @&lt;string&gt;  |
-        fhir:Observation.component.valueRange @&lt;Range&gt;  |
-        fhir:Observation.component.valueRatio @&lt;Ratio&gt;  |
-        fhir:Observation.component.valueSampledData @&lt;SampledData&gt;  |
-        fhir:Observation.component.valueAttachment @&lt;Attachment&gt;  |
-        fhir:Observation.component.valueTime @&lt;time&gt;  |
-        fhir:Observation.component.valueDateTime @&lt;dateTime&gt;  |
-        fhir:Observation.component.valuePeriod @&lt;Period&gt; 
-    )?;
-    fhir:Observation.component.dataAbsentReason @&lt;CodeableConcept&gt;?;  # Why the component result is missing
-    fhir:Observation.component.interpretation @&lt;CodeableConcept&gt;?;  # High, low, normal, etc.
-    fhir:Observation.component.referenceRange @&lt;Observation.referenceRange&gt;*;  # Provides guide for interpretation 
-                                            # of component result 
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
 # Provides guide for interpretation
 &lt;Observation.referenceRange&gt; CLOSED {
     fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
@@ -254,6 +227,33 @@ start=@&lt;Observation&gt; AND {fhir:nodeRole [fhir:treeRoot]}
         @&lt;QuestionnaireResponseReference&gt; OR
         @&lt;SequenceReference&gt;
     );
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
+# Component results
+&lt;Observation.component&gt; CLOSED {
+    fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
+    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @&lt;Extension&gt;*;   # Extensions that cannot be ignored
+    fhir:Observation.component.code @&lt;CodeableConcept&gt;;  # Type of component observation 
+                                            # (code / type) 
+    (                                       # Actual component result
+        fhir:Observation.component.valueQuantity @&lt;Quantity&gt;  |
+        fhir:Observation.component.valueCodeableConcept @&lt;CodeableConcept&gt;  |
+        fhir:Observation.component.valueString @&lt;string&gt;  |
+        fhir:Observation.component.valueRange @&lt;Range&gt;  |
+        fhir:Observation.component.valueRatio @&lt;Ratio&gt;  |
+        fhir:Observation.component.valueSampledData @&lt;SampledData&gt;  |
+        fhir:Observation.component.valueAttachment @&lt;Attachment&gt;  |
+        fhir:Observation.component.valueTime @&lt;time&gt;  |
+        fhir:Observation.component.valueDateTime @&lt;dateTime&gt;  |
+        fhir:Observation.component.valuePeriod @&lt;Period&gt; 
+    )?;
+    fhir:Observation.component.dataAbsentReason @&lt;CodeableConcept&gt;?;  # Why the component result is missing
+    fhir:Observation.component.interpretation @&lt;CodeableConcept&gt;?;  # High, low, normal, etc.
+    fhir:Observation.component.referenceRange @&lt;Observation.referenceRange&gt;*;  # Provides guide for interpretation 
+                                            # of component result 
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -728,17 +728,17 @@ start=@&lt;Observation&gt; AND {fhir:nodeRole [fhir:treeRoot]}
 # Codes providing the status of an observation.
 fhirvs:observation-status [&quot;registered&quot; &quot;preliminary&quot; &quot;final&quot; &quot;amended&quot; &quot;cancelled&quot; &quot;entered-in-error&quot; &quot;unknown&quot;]
 
-# Codes specifying how two observations are related.
-fhirvs:observation-relationshiptypes [&quot;has-member&quot; &quot;derived-from&quot; &quot;sequel-to&quot; &quot;replaces&quot; &quot;qualified-by&quot; &quot;interfered-by&quot;]
-
-# The status of a resource narrative
-fhirvs:narrative-status [&quot;generated&quot; &quot;extensions&quot; &quot;additional&quot; &quot;empty&quot;]
+# How the Quantity should be understood and represented.
+fhirvs:quantity-comparator [&quot;&lt;&quot; &quot;&lt;=&quot; &quot;&gt;=&quot; &quot;&gt;&quot;]
 
 # Identifies the purpose for this identifier, if known .
 fhirvs:identifier-use [&quot;usual&quot; &quot;official&quot; &quot;temp&quot; &quot;secondary&quot;]
 
-# How the Quantity should be understood and represented.
-fhirvs:quantity-comparator [&quot;&lt;&quot; &quot;&lt;=&quot; &quot;&gt;=&quot; &quot;&gt;&quot;]
+# The status of a resource narrative
+fhirvs:narrative-status [&quot;generated&quot; &quot;extensions&quot; &quot;additional&quot; &quot;empty&quot;]
+
+# Codes specifying how two observations are related.
+fhirvs:observation-relationshiptypes [&quot;has-member&quot; &quot;derived-from&quot; &quot;sequel-to&quot; &quot;replaces&quot; &quot;qualified-by&quot; &quot;interfered-by&quot;]
 
 </pre>
 </div>
@@ -764,7 +764,7 @@ of the specification.
 		<div class="container"><!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Thu, Nov 17, 2016 15:45-0500. <a href="qa.html">QA Page</a>
+        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:32-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search</a> | 

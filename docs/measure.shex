@@ -87,20 +87,6 @@ start=@<Measure> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
-# Population criteria group
-<Measure.group> CLOSED {
-    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
-    fhir:extension @<Extension>*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    fhir:Measure.group.identifier @<Identifier>;  # Unique identifier
-    fhir:Measure.group.name @<string>?;     # Short name
-    fhir:Measure.group.description @<string>?;  # Summary description
-    fhir:Measure.group.population @<Measure.group.population>*;  # Population criteria
-    fhir:Measure.group.stratifier @<Measure.group.stratifier>*;  # Stratifier criteria for the measure
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
 # Supplemental data
 <Measure.supplementalData> CLOSED {
     fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
@@ -118,17 +104,17 @@ start=@<Measure> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
-# Stratifier criteria for the measure
-<Measure.group.stratifier> CLOSED {
+# Population criteria group
+<Measure.group> CLOSED {
     fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
     fhir:extension @<Extension>*;           # Additional Content defined by 
                                             # implementations 
     fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    fhir:Measure.group.stratifier.identifier @<Identifier>;  # The identifier for the stratifier 
-                                            # used to coordinate the reported 
-                                            # data back to this stratifier 
-    fhir:Measure.group.stratifier.criteria @<string>?;  # Stratifier criteria
-    fhir:Measure.group.stratifier.path @<string>?;  # Path to the stratifier
+    fhir:Measure.group.identifier @<Identifier>;  # Unique identifier
+    fhir:Measure.group.name @<string>?;     # Short name
+    fhir:Measure.group.description @<string>?;  # Summary description
+    fhir:Measure.group.population @<Measure.group.population>*;  # Population criteria
+    fhir:Measure.group.stratifier @<Measure.group.stratifier>*;  # Stratifier criteria for the measure
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -154,6 +140,20 @@ start=@<Measure> AND {fhir:nodeRole [fhir:treeRoot]}
                                             # expression (may be namespaced) 
                                             # that defines this population 
                                             # criteria 
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
+# Stratifier criteria for the measure
+<Measure.group.stratifier> CLOSED {
+    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
+    fhir:extension @<Extension>*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
+    fhir:Measure.group.stratifier.identifier @<Identifier>;  # The identifier for the stratifier 
+                                            # used to coordinate the reported 
+                                            # data back to this stratifier 
+    fhir:Measure.group.stratifier.criteria @<string>?;  # Stratifier criteria
+    fhir:Measure.group.stratifier.path @<string>?;  # Path to the stratifier
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -526,41 +526,41 @@ start=@<Measure> AND {fhir:nodeRole [fhir:treeRoot]}
 
 #---------------------- Value Sets ------------------------
 
-# The scoring type of the measure
-fhirvs:measure-scoring ["proportion" "ratio" "continuous-variable" "cohort"]
-
-# The type of relationship to the related artifact
-fhirvs:related-artifact-type ["documentation" "justification" "citation" "predecessor" "successor" "derived-from" "depends-on" "composed-of"]
-
-# Telecommunications form for contact point
-fhirvs:contact-point-system ["phone" "fax" "email" "pager" "other"]
+# The type of contributor
+fhirvs:contributor-type ["author" "editor" "reviewer" "endorser"]
 
 # The type of population
 fhirvs:measure-population ["initial-population" "numerator" "numerator-exclusion" "denominator" "denominator-exclusion" "denominator-exception" "measure-population" "measure-population-exclusion" "measure-observation"]
 
+# How the Quantity should be understood and represented.
+fhirvs:quantity-comparator ["<" "<=" ">=" ">"]
+
+# The scoring type of the measure
+fhirvs:measure-scoring ["proportion" "ratio" "continuous-variable" "cohort"]
+
+# The composite scoring method of the measure
+fhirvs:composite-measure-scoring ["opportunity" "all-or-nothing" "linear" "weighted"]
+
+# The type of relationship to the related artifact
+fhirvs:related-artifact-type ["documentation" "justification" "citation" "predecessor" "successor" "derived-from" "depends-on" "composed-of"]
+
+# The lifecycle status of a Value Set or Concept Map.
+fhirvs:publication-status ["draft" "active" "retired"]
+
 # The type of measure (includes codes from 2.16.840.1.113883.1.11.20368)
 fhirvs:measure-type ["process" "outcome" "structure" "patient-reported-outcome" "composite"]
 
-# Identifies the purpose for this identifier, if known .
-fhirvs:identifier-use ["usual" "official" "temp" "secondary"]
+# Telecommunications form for contact point
+fhirvs:contact-point-system ["phone" "fax" "email" "pager" "other"]
 
 # The intended usage for supplemental data elements in the measure
 fhirvs:measure-data-usage ["supplemental-data" "risk-adjustment-factor"]
 
-# The type of contributor
-fhirvs:contributor-type ["author" "editor" "reviewer" "endorser"]
-
-# How the Quantity should be understood and represented.
-fhirvs:quantity-comparator ["<" "<=" ">=" ">"]
+# Identifies the purpose for this identifier, if known .
+fhirvs:identifier-use ["usual" "official" "temp" "secondary"]
 
 # The status of a resource narrative
 fhirvs:narrative-status ["generated" "extensions" "additional" "empty"]
 
 # Use of contact point
 fhirvs:contact-point-use ["home" "work" "temp" "old" "mobile"]
-
-# The lifecycle status of a Value Set or Concept Map.
-fhirvs:publication-status ["draft" "active" "retired"]
-
-# The composite scoring method of the measure
-fhirvs:composite-measure-scoring ["opportunity" "all-or-nothing" "linear" "weighted"]

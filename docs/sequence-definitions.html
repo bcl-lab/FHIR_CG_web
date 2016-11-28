@@ -115,6 +115,7 @@
   <tr><td>Definition</td><td><p>Raw data describing a biological sequence.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>1..1</td></tr>
+  <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
   <tr><td colspan="2" class="structure"><a name="Sequence.identifier"> </a><b>Sequence.identifier</b></td></tr>
   <tr><td>Definition</td><td><p>A unique identifier for this particular sequence instance. This is a FHIR-defined id.</p>
 </td></tr>
@@ -123,294 +124,353 @@
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#Identifier">Identifier</a></td></tr>
   <tr><td>Requirements</td><td><p>Allows sequences to be distinguished and referenced.</p>
 </td></tr>
+  <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
   <tr><td colspan="2" class="structure"><a name="Sequence.type"> </a><b>Sequence.type</b></td></tr>
   <tr><td>Definition</td><td><p>Amino Acid Sequence/ DNA Sequence / RNA Sequence.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>1..1</td></tr>
   <tr><td><a href="terminologies.html">Binding</a></td><td>sequenceType: <a href="valueset-sequence-type.html">Type if a sequence -- DNA, RNA, or amino acid sequence</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#code">code</a></td></tr>
+  <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
   <tr><td colspan="2" class="structure"><a name="Sequence.coordinateSystem"> </a><b>Sequence.coordinateSystem</b></td></tr>
   <tr><td>Definition</td><td><p>Whether the sequence is numbered starting at 0 (0-based numbering or coordinates, inclusive start, exclusive end) or starting at 1 (1-based numbering, inclusive start and inclusive end).</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>1..1</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#integer">integer</a></td></tr>
+  <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
   <tr><td colspan="2" class="structure"><a name="Sequence.patient"> </a><b>Sequence.patient</b></td></tr>
   <tr><td>Definition</td><td><p>The patient whose sequencing results are described by this resource.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="references.html#Reference">Reference</a>(<a href="patient.html">Patient</a>)</td></tr>
+  <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
   <tr><td colspan="2" class="structure"><a name="Sequence.specimen"> </a><b>Sequence.specimen</b></td></tr>
   <tr><td>Definition</td><td><p>Specimen used for sequencing.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="references.html#Reference">Reference</a>(<a href="specimen.html">Specimen</a>)</td></tr>
+  <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
   <tr><td colspan="2" class="structure"><a name="Sequence.device"> </a><b>Sequence.device</b></td></tr>
   <tr><td>Definition</td><td><p>The method for sequencing, for example, chip information.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="references.html#Reference">Reference</a>(<a href="device.html">Device</a>)</td></tr>
+  <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
   <tr><td colspan="2" class="structure"><a name="Sequence.peformer"> </a><b>Sequence.peformer</b></td></tr>
   <tr><td>Definition</td><td><p>The organization or lab that should be responsible for this result.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="references.html#Reference">Reference</a>(<a href="organization.html">Organization</a>)</td></tr>
+  <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
   <tr><td colspan="2" class="structure"><a name="Sequence.quantity"> </a><b>Sequence.quantity</b></td></tr>
   <tr><td>Definition</td><td><p>The number of copies of the seqeunce of interest. (RNASeq).</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#Quantity">Quantity</a></td></tr>
+  <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
   <tr><td colspan="2" class="structure"><a name="Sequence.referenceSeq"> </a><b>Sequence.referenceSeq</b></td></tr>
   <tr><td>Definition</td><td><p>A sequence file that is used as a reference to describe variants that are present in a sequence analyzed.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
+  <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
   <tr><td colspan="2" class="structure"><a name="Sequence.referenceSeq.chromosome"> </a><b>Sequence.referenceSeq.chromosome</b></td></tr>
   <tr><td>Definition</td><td><p>Structural unit composed of a nucleic acid molecule which controls its own replication through the interaction of specific proteins at one or more origins of replication (<a href="http://www.sequenceontology.org/browser/current_svn/term/SO:0000340">SO:0000340 <img src="external.png" style="text-align: baseline"/></a>).</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
   <tr><td><a href="terminologies.html">Binding</a></td><td>chromosome-human: <a href="valueset-chromosome-human.html">Chromosome number for human</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
+  <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
   <tr><td colspan="2" class="structure"><a name="Sequence.referenceSeq.genomeBuild"> </a><b>Sequence.referenceSeq.genomeBuild</b></td></tr>
   <tr><td>Definition</td><td><p>The Genome Build used for reference, following GRCh build versions e.g. 'GRCh 37'.  Version number must be included if a versioned release of a primary build was used.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#string">string</a></td></tr>
+  <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
   <tr><td colspan="2" class="structure"><a name="Sequence.referenceSeq.referenceSeqId"> </a><b>Sequence.referenceSeq.referenceSeqId</b></td></tr>
   <tr><td>Definition</td><td><p>Reference identifier of reference sequence submitted to NCBI. It must match the type in the Sequence.type field. For example, the prefix, “NG<em>” identifies reference sequence for genes, “NM</em>” for messenger RNA transcripts, and “NP_” for amino acid sequences.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
   <tr><td><a href="terminologies.html">Binding</a></td><td>ENSEMBL: <a href="valueset-sequence-referenceSeq.html">Reference identifier</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
+  <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
   <tr><td colspan="2" class="structure"><a name="Sequence.referenceSeq.referenceSeqPointer"> </a><b>Sequence.referenceSeq.referenceSeqPointer</b></td></tr>
   <tr><td>Definition</td><td><p>A Pointer to another Sequence entity as refence sequence.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="references.html#Reference">Reference</a>(<a href="sequence.html">Sequence</a>)</td></tr>
+  <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
   <tr><td colspan="2" class="structure"><a name="Sequence.referenceSeq.referenceSeqString"> </a><b>Sequence.referenceSeq.referenceSeqString</b></td></tr>
   <tr><td>Definition</td><td><p>A Reference Sequence string.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#string">string</a></td></tr>
+  <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
   <tr><td colspan="2" class="structure"><a name="Sequence.referenceSeq.strand"> </a><b>Sequence.referenceSeq.strand</b></td></tr>
   <tr><td>Definition</td><td><p>Directionality of DNA sequence. Available values are &quot;1&quot; for the plus strand (5' to 3')/Watson/Sense/positive  and &quot;-1&quot; for the minus strand(3' to 5')/Crick/Antisense/negative.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#integer">integer</a></td></tr>
+  <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
   <tr><td colspan="2" class="structure"><a name="Sequence.referenceSeq.windowStart"> </a><b>Sequence.referenceSeq.windowStart</b></td></tr>
   <tr><td>Definition</td><td><p>Start position of the window on the reference sequence. If the coordinate system is either 0-based or 1-based, then start position is inclusive.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>1..1</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#integer">integer</a></td></tr>
+  <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
   <tr><td colspan="2" class="structure"><a name="Sequence.referenceSeq.windowEnd"> </a><b>Sequence.referenceSeq.windowEnd</b></td></tr>
   <tr><td>Definition</td><td><p>End position of the window on the reference sequence. If the coordinate system is 0-based then end is is exclusive and does not include the last position. If the coordinate system is 1-base, then end is inclusive and includes the last position.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>1..1</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#integer">integer</a></td></tr>
+  <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
   <tr><td colspan="2" class="structure"><a name="Sequence.variant"> </a><b>Sequence.variant</b></td></tr>
   <tr><td>Definition</td><td><p>A' is a variant (mutation) of A = definition every instance of A' is either an immediate mutation of some instance of A, or there is a chain of immediate mutation processes linking A' to some instance of A (<a href="http://www.sequenceontology.org/browser/current_svn/term/variant_of">variant_of <img src="external.png" style="text-align: baseline"/></a>).</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..*</td></tr>
+  <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
   <tr><td colspan="2" class="structure"><a name="Sequence.variant.start"> </a><b>Sequence.variant.start</b></td></tr>
   <tr><td>Definition</td><td><p>Start position of the variant on the  reference sequence.If the coordinate system is either 0-based or 1-based, then start position is inclusive.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#integer">integer</a></td></tr>
+  <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
   <tr><td colspan="2" class="structure"><a name="Sequence.variant.end"> </a><b>Sequence.variant.end</b></td></tr>
   <tr><td>Definition</td><td><p>End position of the variant on the reference sequence.If the coordinate system is 0-based then end is is exclusive and does not include the last position. If the coordinate system is 1-base, then end is inclusive and includes the last position.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#integer">integer</a></td></tr>
+  <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
   <tr><td colspan="2" class="structure"><a name="Sequence.variant.observedAllele"> </a><b>Sequence.variant.observedAllele</b></td></tr>
   <tr><td>Definition</td><td><p>An allele is one of a set of coexisting sequence variants of a gene (<a href="http://www.sequenceontology.org/browser/current_svn/term/SO:0001023">SO:0001023 <img src="external.png" style="text-align: baseline"/></a>). Nucleotide(s)/amino acids from start position of sequence to stop position of sequence on the positive (+) strand of the observed sequence. When the sequence  type is DNA, it should be the sequence on the positive (+) strand.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#string">string</a></td></tr>
+  <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
   <tr><td colspan="2" class="structure"><a name="Sequence.variant.referenceAllele"> </a><b>Sequence.variant.referenceAllele</b></td></tr>
   <tr><td>Definition</td><td><p>An allele is one of a set of coexisting sequence variants of a gene (<a href="http://www.sequenceontology.org/browser/current_svn/term/SO:0001023">SO:0001023 <img src="external.png" style="text-align: baseline"/></a>). Nucleotide(s)/amino acids from start position of sequence to stop position of sequence on the positive (+) strand of the reference sequence. When the sequence  type is DNA, it should be the sequence on the positive (+) strand.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#string">string</a></td></tr>
+  <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
   <tr><td colspan="2" class="structure"><a name="Sequence.variant.cigar"> </a><b>Sequence.variant.cigar</b></td></tr>
   <tr><td>Definition</td><td><p>Extended CIGAR string for aligning the sequence with reference bases. See detailed documentation <a href="http://support.illumina.com/help/SequencingAnalysisWorkflow/Content/Vault/Informatics/Sequencing_Analysis/CASAVA/swSEQ_mCA_ExtendedCIGARFormat.htm">here <img src="external.png" style="text-align: baseline"/></a>.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#string">string</a></td></tr>
+  <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
   <tr><td colspan="2" class="structure"><a name="Sequence.variant.variantPointer"> </a><b>Sequence.variant.variantPointer</b></td></tr>
   <tr><td>Definition</td><td><p>A pointer to an Observation containing variant information.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="references.html#Reference">Reference</a>(<a href="observation.html">Observation</a>)</td></tr>
+  <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
   <tr><td colspan="2" class="structure"><a name="Sequence.observedSeq"> </a><b>Sequence.observedSeq</b></td></tr>
   <tr><td>Definition</td><td><p>Sequence string that was observed.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#string">string</a></td></tr>
+  <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
   <tr><td colspan="2" class="structure"><a name="Sequence.quality"> </a><b>Sequence.quality</b></td></tr>
   <tr><td>Definition</td><td><p>An experimental feature attribute that defines the quality of the feature in a quantitative way, such as a phred quality score (<a href="http://www.sequenceontology.org/browser/current_svn/term/SO:0001686">SO:0001686 <img src="external.png" style="text-align: baseline"/></a>).</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..*</td></tr>
+  <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
   <tr><td colspan="2" class="structure"><a name="Sequence.quality.type"> </a><b>Sequence.quality.type</b></td></tr>
   <tr><td>Definition</td><td><p>INDEL / SNP / Undefined variant.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>1..1</td></tr>
   <tr><td><a href="terminologies.html">Binding</a></td><td>qualityType: <a href="valueset-quality-type.html">Type for quality report</a> (<a href="terminologies.html#required">Required</a>)</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#code">code</a></td></tr>
+  <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
   <tr><td colspan="2" class="structure"><a name="Sequence.quality.standardSequence"> </a><b>Sequence.quality.standardSequence</b></td></tr>
   <tr><td>Definition</td><td><p>Gold standard sequence used for comparing against.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
+  <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
   <tr><td colspan="2" class="structure"><a name="Sequence.quality.start"> </a><b>Sequence.quality.start</b></td></tr>
   <tr><td>Definition</td><td><p>Start position of the sequence. If the coordinate system is either 0-based or 1-based, then start position is inclusive.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#integer">integer</a></td></tr>
+  <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
   <tr><td colspan="2" class="structure"><a name="Sequence.quality.end"> </a><b>Sequence.quality.end</b></td></tr>
   <tr><td>Definition</td><td><p>End position of the sequence.If the coordinate system is 0-based then end is is exclusive and does not include the last position. If the coordinate system is 1-base, then end is inclusive and includes the last position.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#integer">integer</a></td></tr>
+  <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
   <tr><td colspan="2" class="structure"><a name="Sequence.quality.score"> </a><b>Sequence.quality.score</b></td></tr>
   <tr><td>Definition</td><td><p>The score of an experimentally derived feature such as a p-value (<a href="http://www.sequenceontology.org/browser/current_svn/term/SO:0001685">SO:0001685 <img src="external.png" style="text-align: baseline"/></a>).</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#Quantity">Quantity</a></td></tr>
+  <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
   <tr><td colspan="2" class="structure"><a name="Sequence.quality.method"> </a><b>Sequence.quality.method</b></td></tr>
   <tr><td>Definition</td><td><p>Method for quality.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
+  <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
   <tr><td colspan="2" class="structure"><a name="Sequence.quality.truthTP"> </a><b>Sequence.quality.truthTP</b></td></tr>
   <tr><td>Definition</td><td><p>True positives, from the perspective of the truth data, i.e. the number of sites in the Truth Call Set for which there are paths through the Query Call Set that are consistent with all of the alleles at this site, and for which there is an accurate genotype call for the event.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#decimal">decimal</a></td></tr>
+  <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
   <tr><td colspan="2" class="structure"><a name="Sequence.quality.queryTP"> </a><b>Sequence.quality.queryTP</b></td></tr>
   <tr><td>Definition</td><td><p>True positives, from the perspective of the query data, i.e. the number of sites in the Query Call Set for which there are paths through the Truth Call Set that are consistent with all of the alleles at this site, and for which there is an accurate genotype call for the event.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#decimal">decimal</a></td></tr>
+  <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
   <tr><td colspan="2" class="structure"><a name="Sequence.quality.truthFN"> </a><b>Sequence.quality.truthFN</b></td></tr>
   <tr><td>Definition</td><td><p>False negatives, i.e. the number of sites in the Truth Call Set for which there is no path through the Query Call Set that is consistent with all of the alleles at this site, or sites for which there is an inaccurate genotype call for the event. Sites with correct variant but incorrect genotype are counted here.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#decimal">decimal</a></td></tr>
+  <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
   <tr><td colspan="2" class="structure"><a name="Sequence.quality.queryFP"> </a><b>Sequence.quality.queryFP</b></td></tr>
   <tr><td>Definition</td><td><p>False positives, i.e. the number of sites in the Query Call Set for which there is no path through the Truth Call Set that is consistent with this site. Sites with correct variant but incorrect genotype are counted here.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#decimal">decimal</a></td></tr>
+  <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
   <tr><td colspan="2" class="structure"><a name="Sequence.quality.gtFP"> </a><b>Sequence.quality.gtFP</b></td></tr>
   <tr><td>Definition</td><td><p>The number of false positives where the non-REF alleles in the Truth and Query Call Sets match (i.e. cases where the truth is 1/1 and the query is 0/1 or similar).</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#decimal">decimal</a></td></tr>
+  <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
   <tr><td colspan="2" class="structure"><a name="Sequence.quality.precision"> </a><b>Sequence.quality.precision</b></td></tr>
   <tr><td>Definition</td><td><p>QUERY.TP / (QUERY.TP + QUERY.FP).</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#decimal">decimal</a></td></tr>
+  <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
   <tr><td colspan="2" class="structure"><a name="Sequence.quality.recall"> </a><b>Sequence.quality.recall</b></td></tr>
   <tr><td>Definition</td><td><p>TRUTH.TP / (TRUTH.TP + TRUTH.FN).</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#decimal">decimal</a></td></tr>
+  <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
   <tr><td colspan="2" class="structure"><a name="Sequence.quality.fScore"> </a><b>Sequence.quality.fScore</b></td></tr>
   <tr><td>Definition</td><td><p>Harmonic mean of Recall and Precision, computed as: 2 * precision * recall / (precision + recall).</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#decimal">decimal</a></td></tr>
+  <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
   <tr><td colspan="2" class="structure"><a name="Sequence.readCoverage"> </a><b>Sequence.readCoverage</b></td></tr>
   <tr><td>Definition</td><td><p>Coverage (read depth or depth) is the average number of reads representing a given nucleotide in the reconstructed sequence.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#integer">integer</a></td></tr>
+  <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
   <tr><td colspan="2" class="structure"><a name="Sequence.repository"> </a><b>Sequence.repository</b></td></tr>
-  <tr><td>Definition</td><td><p>Configurations of the external repository. The repository shall store target's observedSeq or records of target's observedSeq.</p>
+  <tr><td>Definition</td><td><p>Configurations of the external repository. The repository shall store target's observedSeq or records related with target's observedSeq.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..*</td></tr>
+  <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
   <tr><td colspan="2" class="structure"><a name="Sequence.repository.type"> </a><b>Sequence.repository.type</b></td></tr>
   <tr><td>Definition</td><td><p>Click and see / RESTful API / Need login to see / RESTful API with authentication / Other ways to see resource.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>1..1</td></tr>
   <tr><td><a href="terminologies.html">Binding</a></td><td>repositoryType: <a href="valueset-repository-type.html">Type for access of external uri</a> (<a href="terminologies.html#required">Required</a>)</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#code">code</a></td></tr>
+  <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
   <tr><td colspan="2" class="structure"><a name="Sequence.repository.url"> </a><b>Sequence.repository.url</b></td></tr>
   <tr><td>Definition</td><td><p>URI of an external repository which contains further details about the genetics data.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#uri">uri</a></td></tr>
+  <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
   <tr><td colspan="2" class="structure"><a name="Sequence.repository.name"> </a><b>Sequence.repository.name</b></td></tr>
   <tr><td>Definition</td><td><p>URI of an external repository which contains further details about the genetics data.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#string">string</a></td></tr>
+  <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
   <tr><td colspan="2" class="structure"><a name="Sequence.repository.datasetId"> </a><b>Sequence.repository.datasetId</b></td></tr>
   <tr><td>Definition</td><td><p>Id of the variant in this external repository. The server will understand how to use this id to call for more info about datasets in external repository.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#string">string</a></td></tr>
+  <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
   <tr><td colspan="2" class="structure"><a name="Sequence.repository.variantsetId"> </a><b>Sequence.repository.variantsetId</b></td></tr>
   <tr><td>Definition</td><td><p>Id of the variantset in this external repository. The server will understand how to use this id to call for more info about variantsets in external repository.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#string">string</a></td></tr>
+  <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
   <tr><td colspan="2" class="structure"><a name="Sequence.repository.readsetId"> </a><b>Sequence.repository.readsetId</b></td></tr>
   <tr><td>Definition</td><td><p>Id of the read in this external repository.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#string">string</a></td></tr>
+  <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
   <tr><td colspan="2" class="structure"><a name="Sequence.pointer"> </a><b>Sequence.pointer</b></td></tr>
   <tr><td>Definition</td><td><p>Pointer to next atomic sequence which at most contains one variant.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..*</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="references.html#Reference">Reference</a>(<a href="sequence.html">Sequence</a>)</td></tr>
+  <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
   <tr><td colspan="2" class="structure"><a name="Sequence.structureVariant"> </a><b>Sequence.structureVariant</b></td></tr>
   <tr><td>Definition</td><td><p>Structural variant.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..*</td></tr>
+  <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
   <tr><td colspan="2" class="structure"><a name="Sequence.structureVariant.precisionOfBoundaries"> </a><b>Sequence.structureVariant.precisionOfBoundaries</b></td></tr>
   <tr><td>Definition</td><td><p>Precision of boundaries.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#string">string</a></td></tr>
+  <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
   <tr><td colspan="2" class="structure"><a name="Sequence.structureVariant.reportedaCGHRatio"> </a><b>Sequence.structureVariant.reportedaCGHRatio</b></td></tr>
   <tr><td>Definition</td><td><p>Structural Variant reported aCGH ratio.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#decimal">decimal</a></td></tr>
+  <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
   <tr><td colspan="2" class="structure"><a name="Sequence.structureVariant.length"> </a><b>Sequence.structureVariant.length</b></td></tr>
   <tr><td>Definition</td><td><p>Structural Variant Length.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#integer">integer</a></td></tr>
+  <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
   <tr><td colspan="2" class="structure"><a name="Sequence.structureVariant.outer"> </a><b>Sequence.structureVariant.outer</b></td></tr>
   <tr><td>Definition</td><td><p>Structural variant outer.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
+  <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
   <tr><td colspan="2" class="structure"><a name="Sequence.structureVariant.outer.start"> </a><b>Sequence.structureVariant.outer.start</b></td></tr>
   <tr><td>Definition</td><td><p>Structural Variant Outer Start-End.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#integer">integer</a></td></tr>
+  <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
   <tr><td colspan="2" class="structure"><a name="Sequence.structureVariant.outer.end"> </a><b>Sequence.structureVariant.outer.end</b></td></tr>
   <tr><td>Definition</td><td><p>Structural Variant Outer Start-End.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#integer">integer</a></td></tr>
+  <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
   <tr><td colspan="2" class="structure"><a name="Sequence.structureVariant.inner"> </a><b>Sequence.structureVariant.inner</b></td></tr>
   <tr><td>Definition</td><td><p>Structural variant inner.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
+  <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
   <tr><td colspan="2" class="structure"><a name="Sequence.structureVariant.inner.start"> </a><b>Sequence.structureVariant.inner.start</b></td></tr>
   <tr><td>Definition</td><td><p>Structural Variant Inner Start-End.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#integer">integer</a></td></tr>
+  <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
   <tr><td colspan="2" class="structure"><a name="Sequence.structureVariant.inner.end"> </a><b>Sequence.structureVariant.inner.end</b></td></tr>
   <tr><td>Definition</td><td><p>Structural Variant Inner Start-End.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#integer">integer</a></td></tr>
+  <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
 </table>
 
 
@@ -429,7 +489,7 @@
 		<div class="container">  <!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Fri, Nov 18, 2016 17:45-0500. <a href="qa.html">QA Page</a>
+        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:33-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search <img src="external.png" style="text-align: baseline"/></a> | 

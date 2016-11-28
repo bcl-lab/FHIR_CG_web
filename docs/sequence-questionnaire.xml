@@ -6,7 +6,7 @@
     <system value="urn:ietf:rfc:3986"/>
   </identifier>
   <status value="draft"/>
-  <date value="2016-11-16T23:52:25-05:00"/>
+  <date value="2016-11-28T17:29:55-05:00"/>
   <publisher value="Health Level Seven International (Clinical Genomics)"/>
   <item>
     <linkId value="Sequence"/>
@@ -462,6 +462,44 @@
         <valueInteger value="1"/>
       </extension>
       <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
+        <valueString value="Reference"/>
+      </extension>
+      <linkId value="Sequence.peformer"/>
+      <type value="group"/>
+      <required value="false"/>
+      <repeats value="true"/>
+      <item>
+        <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl">
+          <valueCodeableConcept>
+            <coding>
+              <system value="http://hl7.org/fhir/questionnaire-item-control"/>
+              <code value="flyover"/>
+              <display value="Fly-over"/>
+            </coding>
+          </valueCodeableConcept>
+        </extension>
+        <text value="The organization or lab that should be responsible for this result."/>
+        <type value="display"/>
+      </item>
+      <item>
+        <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-allowedResource">
+          <valueCode value="Organization"/>
+        </extension>
+        <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-referenceFilter">
+          <valueString value="subject=$subj&amp;patient=$subj&amp;encounter=$encounter"/>
+        </extension>
+        <linkId value="Sequence.peformer.value"/>
+        <text value="Who should be responsible for test result"/>
+        <type value="reference"/>
+        <required value="false"/>
+        <repeats value="false"/>
+      </item>
+    </item>
+    <item>
+      <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs">
+        <valueInteger value="1"/>
+      </extension>
+      <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
         <valueString value="Quantity"/>
       </extension>
       <linkId value="Sequence.quantity"/>
@@ -815,12 +853,12 @@
               </coding>
             </valueCodeableConcept>
           </extension>
-          <text value="Directionality of strand of DNA. Available values are &quot;1&quot; for the plus strand (5&#39; to 3&#39;)  and &quot;-1&quot; for the minus strand(3&#39; to 5&#39;)."/>
+          <text value="Directionality of DNA sequence. Available values are &quot;1&quot; for the plus strand (5&#39; to 3&#39;)/Watson/Sense/positive  and &quot;-1&quot; for the minus strand(3&#39; to 5&#39;)/Crick/Antisense/negative."/>
           <type value="display"/>
         </item>
         <item>
           <linkId value="Sequence.referenceSeq.strand.value"/>
-          <text value="Directionality of strand of DNA ( +1/-1)"/>
+          <text value="Directionality of DNA ( +1/-1)"/>
           <type value="integer"/>
           <required value="false"/>
           <repeats value="false"/>
@@ -1841,7 +1879,7 @@
     </item>
     <item>
       <linkId value="Sequence.repository"/>
-      <text value="External repository which contains detailed report of observedSeq in this resource"/>
+      <text value="External repository which contains detailed report related with observedSeq in this resource"/>
       <type value="group"/>
       <required value="false"/>
       <repeats value="true"/>
@@ -1855,7 +1893,7 @@
             </coding>
           </valueCodeableConcept>
         </extension>
-        <text value="Configurations of the external repository. The repository shall store target&#39;s observedSeq or records of target&#39;s observedSeq."/>
+        <text value="Configurations of the external repository. The repository shall store target&#39;s observedSeq or records related with target&#39;s observedSeq."/>
         <type value="display"/>
       </item>
       <item>

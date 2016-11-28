@@ -2,7 +2,7 @@
   "resourceType": "Bundle",
   "id": "profiles-others",
   "meta": {
-    "lastUpdated": "2016-11-16T23:52:25.144-05:00"
+    "lastUpdated": "2016-11-28T17:29:55.664-05:00"
   },
   "type": "collection",
   "entry": [
@@ -3787,7 +3787,7 @@
               "id": "FamilyMemberHistory:familymemberhistory-genetic.extension",
               "path": "FamilyMemberHistory.extension",
               "slicing": {
-                "id": "94",
+                "id": "97",
                 "discriminator": [
                   "url"
                 ],
@@ -3826,6 +3826,48 @@
                 {
                   "code": "Extension",
                   "profile": "http://hl7.org/fhir/StructureDefinition/family-member-history-genetics-parent"
+                }
+              ],
+              "condition": [
+                "ele-1"
+              ],
+              "constraint": [
+                {
+                  "key": "ele-1",
+                  "severity": "error",
+                  "human": "All FHIR elements must have a @value or children",
+                  "expression": "children().count() > id.count()",
+                  "xpath": "@value|f:*|h:div",
+                  "source": "Element"
+                },
+                {
+                  "key": "ext-1",
+                  "severity": "error",
+                  "human": "Must have either extensions or value[x], not both",
+                  "expression": "extension.exists() != value.exists()",
+                  "xpath": "exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])",
+                  "source": "Extension"
+                }
+              ],
+              "mustSupport": true
+            },
+            {
+              "id": "FamilyMemberHistory:familymemberhistory-genetic.extension:sibling",
+              "path": "FamilyMemberHistory.extension",
+              "sliceName": "Sibling",
+              "short": "Extension",
+              "definition": "An Extension",
+              "min": 0,
+              "max": "*",
+              "base": {
+                "path": "DomainResource.extension",
+                "min": 0,
+                "max": "*"
+              },
+              "type": [
+                {
+                  "code": "Extension",
+                  "profile": "http://hl7.org/fhir/StructureDefinition/family-member-history-genetics-sibling"
                 }
               ],
               "condition": [
@@ -4175,8 +4217,9 @@
               ]
             },
             {
-              "id": "FamilyMemberHistory:familymemberhistory-genetic.age[x]",
+              "id": "FamilyMemberHistory:familymemberhistory-genetic.age[x]:age",
               "path": "FamilyMemberHistory.age[x]",
+              "sliceName": "Age",
               "short": "(approximate) age",
               "definition": "The age of the relative at the time the family member history is recorded.",
               "comments": "use estimatedAge to indicate whether the age is actual or not.",
@@ -4202,6 +4245,7 @@
               "condition": [
                 "fhs-1"
               ],
+              "mustSupport": true,
               "isSummary": true,
               "mapping": [
                 {
@@ -4572,6 +4616,20 @@
               "mustSupport": true
             },
             {
+              "id": "FamilyMemberHistory:familymemberhistory-genetic.extension:sibling",
+              "path": "FamilyMemberHistory.extension",
+              "sliceName": "Sibling",
+              "min": 0,
+              "max": "*",
+              "type": [
+                {
+                  "code": "Extension",
+                  "profile": "http://hl7.org/fhir/StructureDefinition/family-member-history-genetics-sibling"
+                }
+              ],
+              "mustSupport": true
+            },
+            {
               "id": "FamilyMemberHistory:familymemberhistory-genetic.extension:observation",
               "path": "FamilyMemberHistory.extension",
               "sliceName": "Observation",
@@ -4630,6 +4688,25 @@
                 },
                 {
                   "code": "date"
+                },
+                {
+                  "code": "string"
+                }
+              ],
+              "mustSupport": true
+            },
+            {
+              "id": "FamilyMemberHistory:familymemberhistory-genetic.age[x]:age",
+              "path": "FamilyMemberHistory.age[x]",
+              "sliceName": "Age",
+              "min": 0,
+              "max": "1",
+              "type": [
+                {
+                  "code": "Age"
+                },
+                {
+                  "code": "Range"
                 },
                 {
                   "code": "string"
@@ -4743,7 +4820,7 @@
         "name": "Shareable ValueSet",
         "status": "draft",
         "publisher": "HL7",
-        "date": "2016-11-16T23:52:25-05:00",
+        "date": "2016-11-28T17:29:55-05:00",
         "description": "Enforces the minimum information set for the value set metadata required by HL7 and other organisations that share and publish value sets",
         "fhirVersion": "1.7.0",
         "mapping": [
@@ -8282,7 +8359,7 @@
         "name": "Shareable CodeSystem",
         "status": "draft",
         "publisher": "HL7",
-        "date": "2016-11-16T23:52:25-05:00",
+        "date": "2016-11-28T17:29:55-05:00",
         "description": "Enforces the minimum information set for the value set metadata required by HL7 and other organisations that share and publish value sets",
         "fhirVersion": "1.7.0",
         "mapping": [
@@ -12697,7 +12774,7 @@
               "id": "Observation:observation-genetics.extension",
               "path": "Observation.extension",
               "slicing": {
-                "id": "95",
+                "id": "98",
                 "discriminator": [
                   "url"
                 ],
@@ -62812,7 +62889,7 @@
               "id": "DiagnosticReport:diagnosticreport-genetics.extension",
               "path": "DiagnosticReport.extension",
               "slicing": {
-                "id": "96",
+                "id": "99",
                 "discriminator": [
                   "url"
                 ],
@@ -64148,7 +64225,7 @@
               "id": "DiagnosticReport:hlaresult.extension",
               "path": "DiagnosticReport.extension",
               "slicing": {
-                "id": "97",
+                "id": "100",
                 "discriminator": [
                   "url"
                 ],
@@ -67162,7 +67239,7 @@
               "id": "ElementDefinition:elementdefinition-de.extension",
               "path": "ElementDefinition.extension",
               "slicing": {
-                "id": "98",
+                "id": "101",
                 "discriminator": [
                   "url"
                 ],
@@ -74675,7 +74752,7 @@
               "id": "Questionnaire:cqif-questionnaire.item.extension",
               "path": "Questionnaire.item.extension",
               "slicing": {
-                "id": "99",
+                "id": "102",
                 "discriminator": [
                   "url"
                 ],

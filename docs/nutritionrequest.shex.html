@@ -166,6 +166,32 @@ start=@&lt;NutritionRequest&gt; AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
+# Enteral formula components
+&lt;NutritionRequest.enteralFormula&gt; CLOSED {
+    fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
+    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @&lt;Extension&gt;*;   # Extensions that cannot be ignored
+    fhir:NutritionRequest.enteralFormula.baseFormulaType @&lt;CodeableConcept&gt;?;  # Type of enteral or infant formula
+    fhir:NutritionRequest.enteralFormula.baseFormulaProductName @&lt;string&gt;?;  # Product or brand name of the 
+                                            # enteral or infant formula 
+    fhir:NutritionRequest.enteralFormula.additiveType @&lt;CodeableConcept&gt;?;  # Type of modular component to add 
+                                            # to the feeding 
+    fhir:NutritionRequest.enteralFormula.additiveProductName @&lt;string&gt;?;  # Product or brand name of the 
+                                            # modular additive 
+    fhir:NutritionRequest.enteralFormula.caloricDensity @&lt;SimpleQuantity&gt;?;  # Amount of energy per specified 
+                                            # volume that is required 
+    fhir:NutritionRequest.enteralFormula.routeofAdministration @&lt;CodeableConcept&gt;?;  # How the formula should enter the 
+                                            # patient's gastrointestinal tract 
+    fhir:NutritionRequest.enteralFormula.administration @&lt;NutritionRequest.enteralFormula.administration&gt;*;  # Formula feeding instruction as 
+                                            # structured data 
+    fhir:NutritionRequest.enteralFormula.maxVolumeToDeliver @&lt;SimpleQuantity&gt;?;  # Upper limit on formula volume per 
+                                            # unit of time 
+    fhir:NutritionRequest.enteralFormula.administrationInstruction @&lt;string&gt;?;  # Formula feeding instructions 
+                                            # expressed as text 
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
 # Oral diet components
 &lt;NutritionRequest.oralDiet&gt; CLOSED {
     fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
@@ -205,29 +231,15 @@ start=@&lt;NutritionRequest&gt; AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
-# Enteral formula components
-&lt;NutritionRequest.enteralFormula&gt; CLOSED {
+# Required  nutrient modifications
+&lt;NutritionRequest.oralDiet.nutrient&gt; CLOSED {
     fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
     fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
                                             # implementations 
     fhir:modifierExtension @&lt;Extension&gt;*;   # Extensions that cannot be ignored
-    fhir:NutritionRequest.enteralFormula.baseFormulaType @&lt;CodeableConcept&gt;?;  # Type of enteral or infant formula
-    fhir:NutritionRequest.enteralFormula.baseFormulaProductName @&lt;string&gt;?;  # Product or brand name of the 
-                                            # enteral or infant formula 
-    fhir:NutritionRequest.enteralFormula.additiveType @&lt;CodeableConcept&gt;?;  # Type of modular component to add 
-                                            # to the feeding 
-    fhir:NutritionRequest.enteralFormula.additiveProductName @&lt;string&gt;?;  # Product or brand name of the 
-                                            # modular additive 
-    fhir:NutritionRequest.enteralFormula.caloricDensity @&lt;SimpleQuantity&gt;?;  # Amount of energy per specified 
-                                            # volume that is required 
-    fhir:NutritionRequest.enteralFormula.routeofAdministration @&lt;CodeableConcept&gt;?;  # How the formula should enter the 
-                                            # patient's gastrointestinal tract 
-    fhir:NutritionRequest.enteralFormula.administration @&lt;NutritionRequest.enteralFormula.administration&gt;*;  # Formula feeding instruction as 
-                                            # structured data 
-    fhir:NutritionRequest.enteralFormula.maxVolumeToDeliver @&lt;SimpleQuantity&gt;?;  # Upper limit on formula volume per 
-                                            # unit of time 
-    fhir:NutritionRequest.enteralFormula.administrationInstruction @&lt;string&gt;?;  # Formula feeding instructions 
-                                            # expressed as text 
+    fhir:NutritionRequest.oralDiet.nutrient.modifier @&lt;CodeableConcept&gt;?;  # Type of nutrient that is being 
+                                            # modified 
+    fhir:NutritionRequest.oralDiet.nutrient.amount @&lt;SimpleQuantity&gt;?;  # Quantity of the specified nutrient
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -242,18 +254,6 @@ start=@&lt;NutritionRequest&gt; AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:NutritionRequest.oralDiet.texture.foodType @&lt;CodeableConcept&gt;?;  # Concepts that are used to identify 
                                             # an entity that is ingested for 
                                             # nutritional purposes 
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
-# Required  nutrient modifications
-&lt;NutritionRequest.oralDiet.nutrient&gt; CLOSED {
-    fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
-    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @&lt;Extension&gt;*;   # Extensions that cannot be ignored
-    fhir:NutritionRequest.oralDiet.nutrient.modifier @&lt;CodeableConcept&gt;?;  # Type of nutrient that is being 
-                                            # modified 
-    fhir:NutritionRequest.oralDiet.nutrient.amount @&lt;SimpleQuantity&gt;?;  # Quantity of the specified nutrient
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -596,23 +596,23 @@ start=@&lt;NutritionRequest&gt; AND {fhir:nodeRole [fhir:treeRoot]}
 
 #---------------------- Value Sets ------------------------
 
+# Codes specifying the state of the request. Describes the lifecycle of the nutrition order.
+fhirvs:nutrition-request-status [&quot;proposed&quot; &quot;draft&quot; &quot;planned&quot; &quot;requested&quot; &quot;active&quot; &quot;on-hold&quot; &quot;completed&quot; &quot;cancelled&quot; &quot;entered-in-error&quot;]
+
 # Real world event that the relating to the schedule.
 fhirvs:event-timing [&quot;HS&quot; &quot;WAKE&quot; &quot;C&quot; &quot;CM&quot; &quot;CD&quot; &quot;CV&quot; &quot;AC&quot; &quot;ACM&quot; &quot;ACD&quot; &quot;ACV&quot; &quot;PC&quot; &quot;PCM&quot; &quot;PCD&quot; &quot;PCV&quot;]
 
-# How the Quantity should be understood and represented.
-fhirvs:quantity-comparator [&quot;&lt;&quot; &quot;&lt;=&quot; &quot;&gt;=&quot; &quot;&gt;&quot;]
+# Identifies the purpose for this identifier, if known .
+fhirvs:identifier-use [&quot;usual&quot; &quot;official&quot; &quot;temp&quot; &quot;secondary&quot;]
 
 # The status of a resource narrative
 fhirvs:narrative-status [&quot;generated&quot; &quot;extensions&quot; &quot;additional&quot; &quot;empty&quot;]
 
+# How the Quantity should be understood and represented.
+fhirvs:quantity-comparator [&quot;&lt;&quot; &quot;&lt;=&quot; &quot;&gt;=&quot; &quot;&gt;&quot;]
+
 # A unit of time (units from UCUM).
 fhirvs:units-of-time [&quot;s&quot; &quot;min&quot; &quot;h&quot; &quot;d&quot; &quot;wk&quot; &quot;mo&quot; &quot;a&quot;]
-
-# Codes specifying the state of the request. Describes the lifecycle of the nutrition order.
-fhirvs:nutrition-request-status [&quot;proposed&quot; &quot;draft&quot; &quot;planned&quot; &quot;requested&quot; &quot;active&quot; &quot;on-hold&quot; &quot;completed&quot; &quot;cancelled&quot; &quot;entered-in-error&quot;]
-
-# Identifies the purpose for this identifier, if known .
-fhirvs:identifier-use [&quot;usual&quot; &quot;official&quot; &quot;temp&quot; &quot;secondary&quot;]
 
 </pre>
 </div>
@@ -638,7 +638,7 @@ of the specification.
 		<div class="container"><!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Wed, Nov 16, 2016 23:55-0500. <a href="qa.html">QA Page</a>
+        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:32-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search</a> | 

@@ -181,6 +181,18 @@ start=@&lt;Patient&gt; AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
+# This patient is known to be an animal (non-human)
+&lt;Patient.animal&gt; CLOSED {
+    fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
+    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @&lt;Extension&gt;*;   # Extensions that cannot be ignored
+    fhir:Patient.animal.species @&lt;CodeableConcept&gt;;  # E.g. Dog, Cow
+    fhir:Patient.animal.breed @&lt;CodeableConcept&gt;?;  # E.g. Poodle, Angus
+    fhir:Patient.animal.genderStatus @&lt;CodeableConcept&gt;?;  # E.g. Neutered, Intact
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
 # A contact party (e.g. guardian, partner, friend) for the patient
 &lt;Patient.contact&gt; CLOSED {
     fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
@@ -203,6 +215,19 @@ start=@&lt;Patient&gt; AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
+# A list of Languages which may be used to communicate with the patient about his or her health
+&lt;Patient.communication&gt; CLOSED {
+    fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
+    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @&lt;Extension&gt;*;   # Extensions that cannot be ignored
+    fhir:Patient.communication.language @&lt;CodeableConcept&gt;;  # The language which can be used to 
+                                            # communicate with the patient about 
+                                            # his or her health 
+    fhir:Patient.communication.preferred @&lt;boolean&gt;?;  # Language preference indicator
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
 # Link to another patient resource that concerns the same actual person
 &lt;Patient.link&gt; CLOSED {
     fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
@@ -218,31 +243,6 @@ start=@&lt;Patient&gt; AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:Patient.link.type @&lt;code&gt; AND
     	{fhir:value @fhirvs:link-type};  # replace | refer | seealso - type 
                                             # of link 
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
-# This patient is known to be an animal (non-human)
-&lt;Patient.animal&gt; CLOSED {
-    fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
-    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @&lt;Extension&gt;*;   # Extensions that cannot be ignored
-    fhir:Patient.animal.species @&lt;CodeableConcept&gt;;  # E.g. Dog, Cow
-    fhir:Patient.animal.breed @&lt;CodeableConcept&gt;?;  # E.g. Poodle, Angus
-    fhir:Patient.animal.genderStatus @&lt;CodeableConcept&gt;?;  # E.g. Neutered, Intact
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
-# A list of Languages which may be used to communicate with the patient about his or her health
-&lt;Patient.communication&gt; CLOSED {
-    fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
-    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @&lt;Extension&gt;*;   # Extensions that cannot be ignored
-    fhir:Patient.communication.language @&lt;CodeableConcept&gt;;  # The language which can be used to 
-                                            # communicate with the patient about 
-                                            # his or her health 
-    fhir:Patient.communication.preferred @&lt;boolean&gt;?;  # Language preference indicator
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -611,23 +611,17 @@ start=@&lt;Patient&gt; AND {fhir:nodeRole [fhir:treeRoot]}
 
 #---------------------- Value Sets ------------------------
 
-# Telecommunications form for contact point
-fhirvs:contact-point-system [&quot;phone&quot; &quot;fax&quot; &quot;email&quot; &quot;pager&quot; &quot;other&quot;]
-
-# Use of contact point
-fhirvs:contact-point-use [&quot;home&quot; &quot;work&quot; &quot;temp&quot; &quot;old&quot; &quot;mobile&quot;]
-
-# The status of a resource narrative
-fhirvs:narrative-status [&quot;generated&quot; &quot;extensions&quot; &quot;additional&quot; &quot;empty&quot;]
+# The use of an address
+fhirvs:address-use [&quot;home&quot; &quot;work&quot; &quot;temp&quot; &quot;old&quot;]
 
 # This value set defines the set of codes that can be used to indicate the marital status of a person.
 fhirvs:marital-status [&quot;A&quot; &quot;D&quot; &quot;I&quot; &quot;L&quot; &quot;M&quot; &quot;P&quot; &quot;S&quot; &quot;T&quot; &quot;U&quot; &quot;W&quot; &quot;UNK&quot;]
 
-# The use of an address
-fhirvs:address-use [&quot;home&quot; &quot;work&quot; &quot;temp&quot; &quot;old&quot;]
+# The use of a human name
+fhirvs:name-use [&quot;usual&quot; &quot;official&quot; &quot;temp&quot; &quot;nickname&quot; &quot;anonymous&quot; &quot;old&quot; &quot;maiden&quot;]
 
-# Identifies the purpose for this identifier, if known .
-fhirvs:identifier-use [&quot;usual&quot; &quot;official&quot; &quot;temp&quot; &quot;secondary&quot;]
+# Telecommunications form for contact point
+fhirvs:contact-point-system [&quot;phone&quot; &quot;fax&quot; &quot;email&quot; &quot;pager&quot; &quot;other&quot;]
 
 # The type of link between this patient resource and another patient resource.
 fhirvs:link-type [&quot;replace&quot; &quot;refer&quot; &quot;seealso&quot;]
@@ -635,11 +629,17 @@ fhirvs:link-type [&quot;replace&quot; &quot;refer&quot; &quot;seealso&quot;]
 # The type of an address (physical / postal)
 fhirvs:address-type [&quot;postal&quot; &quot;physical&quot; &quot;both&quot;]
 
+# Use of contact point
+fhirvs:contact-point-use [&quot;home&quot; &quot;work&quot; &quot;temp&quot; &quot;old&quot; &quot;mobile&quot;]
+
+# Identifies the purpose for this identifier, if known .
+fhirvs:identifier-use [&quot;usual&quot; &quot;official&quot; &quot;temp&quot; &quot;secondary&quot;]
+
+# The status of a resource narrative
+fhirvs:narrative-status [&quot;generated&quot; &quot;extensions&quot; &quot;additional&quot; &quot;empty&quot;]
+
 # The gender of a person used for administrative purposes.
 fhirvs:administrative-gender [&quot;male&quot; &quot;female&quot; &quot;other&quot; &quot;unknown&quot;]
-
-# The use of a human name
-fhirvs:name-use [&quot;usual&quot; &quot;official&quot; &quot;temp&quot; &quot;nickname&quot; &quot;anonymous&quot; &quot;old&quot; &quot;maiden&quot;]
 
 </pre>
 </div>
@@ -665,7 +665,7 @@ of the specification.
 		<div class="container"><!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Wed, Nov 16, 2016 23:55-0500. <a href="qa.html">QA Page</a>
+        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:33-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search</a> | 

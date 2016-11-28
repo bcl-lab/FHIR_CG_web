@@ -43,6 +43,20 @@ start=@<MessageHeader> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
+# If this is a reply to prior message
+<MessageHeader.response> CLOSED {
+    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
+    fhir:extension @<Extension>*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
+    fhir:MessageHeader.response.identifier @<id>;  # Id of original message
+    fhir:MessageHeader.response.code @<code> AND
+    	{fhir:value @fhirvs:response-code};  # ok | transient-error | fatal-error
+    fhir:MessageHeader.response.details @<Reference>?;  # Specific list of 
+                                            # hints/warnings/errors 
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
 # Message Source Application
 <MessageHeader.source> CLOSED {
     fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
@@ -67,20 +81,6 @@ start=@<MessageHeader> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:MessageHeader.destination.target @<Reference>?;  # Particular delivery destination 
                                             # within the destination 
     fhir:MessageHeader.destination.endpoint @<uri>;  # Actual destination address or id
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
-# If this is a reply to prior message
-<MessageHeader.response> CLOSED {
-    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
-    fhir:extension @<Extension>*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    fhir:MessageHeader.response.identifier @<id>;  # Id of original message
-    fhir:MessageHeader.response.code @<code> AND
-    	{fhir:value @fhirvs:response-code};  # ok | transient-error | fatal-error
-    fhir:MessageHeader.response.details @<Reference>?;  # Specific list of 
-                                            # hints/warnings/errors 
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -321,11 +321,11 @@ start=@<MessageHeader> AND {fhir:nodeRole [fhir:treeRoot]}
 
 #---------------------- Value Sets ------------------------
 
-# Telecommunications form for contact point
-fhirvs:contact-point-system ["phone" "fax" "email" "pager" "other"]
-
 # The kind of response to a message
 fhirvs:response-code ["ok" "transient-error" "fatal-error"]
+
+# Telecommunications form for contact point
+fhirvs:contact-point-system ["phone" "fax" "email" "pager" "other"]
 
 # Use of contact point
 fhirvs:contact-point-use ["home" "work" "temp" "old" "mobile"]

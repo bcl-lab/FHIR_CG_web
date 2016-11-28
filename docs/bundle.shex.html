@@ -146,19 +146,6 @@ start=@&lt;Bundle&gt; AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
-# Links related to this Bundle
-&lt;Bundle.link&gt; CLOSED {
-    fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
-    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @&lt;Extension&gt;*;   # Extensions that cannot be ignored
-    fhir:Bundle.link.relation @&lt;string&gt;;    # http://www.iana.org/assignments/-
-                                            # link-relations/link-relations.xh-
-                                            # tml 
-    fhir:Bundle.link.url @&lt;uri&gt;;            # Reference details for the link
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
 # Entry in the bundle - will have a resource, or information
 &lt;Bundle.entry&gt; CLOSED {
     fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
@@ -175,21 +162,16 @@ start=@&lt;Bundle&gt; AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
-# Transaction Related Information
-&lt;Bundle.entry.response&gt; CLOSED {
+# Links related to this Bundle
+&lt;Bundle.link&gt; CLOSED {
     fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
     fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
                                             # implementations 
     fhir:modifierExtension @&lt;Extension&gt;*;   # Extensions that cannot be ignored
-    fhir:Bundle.entry.response.status @&lt;string&gt;;  # Status response code (text 
-                                            # optional) 
-    fhir:Bundle.entry.response.location @&lt;uri&gt;?;  # The location, if the operation 
-                                            # returns a location 
-    fhir:Bundle.entry.response.etag @&lt;string&gt;?;  # The etag for the resource (if 
-                                            # relevant) 
-    fhir:Bundle.entry.response.lastModified @&lt;instant&gt;?;  # Server's date time modified
-    fhir:Bundle.entry.response.outcome @&lt;Resource&gt;?;  # OperationOutcome with hints and 
-                                            # warnings (for batch/transaction) 
+    fhir:Bundle.link.relation @&lt;string&gt;;    # http://www.iana.org/assignments/-
+                                            # link-relations/link-relations.xh-
+                                            # tml 
+    fhir:Bundle.link.url @&lt;uri&gt;;            # Reference details for the link
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -220,6 +202,24 @@ start=@&lt;Bundle&gt; AND {fhir:nodeRole [fhir:treeRoot]}
     	{fhir:value @fhirvs:search-entry-mode}?;  # match | include | outcome - why 
                                             # this is in the result set 
     fhir:Bundle.entry.search.score @&lt;decimal&gt;?;  # Search ranking (between 0 and 1)
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
+# Transaction Related Information
+&lt;Bundle.entry.response&gt; CLOSED {
+    fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
+    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @&lt;Extension&gt;*;   # Extensions that cannot be ignored
+    fhir:Bundle.entry.response.status @&lt;string&gt;;  # Status response code (text 
+                                            # optional) 
+    fhir:Bundle.entry.response.location @&lt;uri&gt;?;  # The location, if the operation 
+                                            # returns a location 
+    fhir:Bundle.entry.response.etag @&lt;string&gt;?;  # The etag for the resource (if 
+                                            # relevant) 
+    fhir:Bundle.entry.response.lastModified @&lt;instant&gt;?;  # Server's date time modified
+    fhir:Bundle.entry.response.outcome @&lt;Resource&gt;?;  # OperationOutcome with hints and 
+                                            # warnings (for batch/transaction) 
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -451,17 +451,17 @@ start=@&lt;Bundle&gt; AND {fhir:nodeRole [fhir:treeRoot]}
 
 #---------------------- Value Sets ------------------------
 
-# HTTP verbs (in the HTTP command line).
-fhirvs:http-verb [&quot;GET&quot; &quot;POST&quot; &quot;PUT&quot; &quot;DELETE&quot;]
-
 # Why an entry is in the result set - whether it's included as a match or because of an _include requirement.
 fhirvs:search-entry-mode [&quot;match&quot; &quot;include&quot; &quot;outcome&quot;]
 
-# Identifies the purpose for this identifier, if known .
-fhirvs:identifier-use [&quot;usual&quot; &quot;official&quot; &quot;temp&quot; &quot;secondary&quot;]
-
 # Indicates the purpose of a bundle - how it was intended to be used.
 fhirvs:bundle-type [&quot;document&quot; &quot;message&quot; &quot;transaction&quot; &quot;transaction-response&quot; &quot;batch&quot; &quot;batch-response&quot; &quot;history&quot; &quot;searchset&quot; &quot;collection&quot;]
+
+# HTTP verbs (in the HTTP command line).
+fhirvs:http-verb [&quot;GET&quot; &quot;POST&quot; &quot;PUT&quot; &quot;DELETE&quot;]
+
+# Identifies the purpose for this identifier, if known .
+fhirvs:identifier-use [&quot;usual&quot; &quot;official&quot; &quot;temp&quot; &quot;secondary&quot;]
 
 </pre>
 </div>
@@ -487,7 +487,7 @@ of the specification.
 		<div class="container"><!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Wed, Nov 16, 2016 23:54-0500. <a href="qa.html">QA Page</a>
+        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:32-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search</a> | 

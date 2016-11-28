@@ -79,33 +79,6 @@ start=@<Observation> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
-# Component results
-<Observation.component> CLOSED {
-    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
-    fhir:extension @<Extension>*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    fhir:Observation.component.code @<CodeableConcept>;  # Type of component observation 
-                                            # (code / type) 
-    (                                       # Actual component result
-        fhir:Observation.component.valueQuantity @<Quantity>  |
-        fhir:Observation.component.valueCodeableConcept @<CodeableConcept>  |
-        fhir:Observation.component.valueString @<string>  |
-        fhir:Observation.component.valueRange @<Range>  |
-        fhir:Observation.component.valueRatio @<Ratio>  |
-        fhir:Observation.component.valueSampledData @<SampledData>  |
-        fhir:Observation.component.valueAttachment @<Attachment>  |
-        fhir:Observation.component.valueTime @<time>  |
-        fhir:Observation.component.valueDateTime @<dateTime>  |
-        fhir:Observation.component.valuePeriod @<Period> 
-    )?;
-    fhir:Observation.component.dataAbsentReason @<CodeableConcept>?;  # Why the component result is missing
-    fhir:Observation.component.interpretation @<CodeableConcept>?;  # High, low, normal, etc.
-    fhir:Observation.component.referenceRange @<Observation.referenceRange>*;  # Provides guide for interpretation 
-                                            # of component result 
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
 # Provides guide for interpretation
 <Observation.referenceRange> CLOSED {
     fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
@@ -137,6 +110,33 @@ start=@<Observation> AND {fhir:nodeRole [fhir:treeRoot]}
         @<QuestionnaireResponseReference> OR
         @<SequenceReference>
     );
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
+# Component results
+<Observation.component> CLOSED {
+    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
+    fhir:extension @<Extension>*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
+    fhir:Observation.component.code @<CodeableConcept>;  # Type of component observation 
+                                            # (code / type) 
+    (                                       # Actual component result
+        fhir:Observation.component.valueQuantity @<Quantity>  |
+        fhir:Observation.component.valueCodeableConcept @<CodeableConcept>  |
+        fhir:Observation.component.valueString @<string>  |
+        fhir:Observation.component.valueRange @<Range>  |
+        fhir:Observation.component.valueRatio @<Ratio>  |
+        fhir:Observation.component.valueSampledData @<SampledData>  |
+        fhir:Observation.component.valueAttachment @<Attachment>  |
+        fhir:Observation.component.valueTime @<time>  |
+        fhir:Observation.component.valueDateTime @<dateTime>  |
+        fhir:Observation.component.valuePeriod @<Period> 
+    )?;
+    fhir:Observation.component.dataAbsentReason @<CodeableConcept>?;  # Why the component result is missing
+    fhir:Observation.component.interpretation @<CodeableConcept>?;  # High, low, normal, etc.
+    fhir:Observation.component.referenceRange @<Observation.referenceRange>*;  # Provides guide for interpretation 
+                                            # of component result 
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -611,14 +611,14 @@ start=@<Observation> AND {fhir:nodeRole [fhir:treeRoot]}
 # Codes providing the status of an observation.
 fhirvs:observation-status ["registered" "preliminary" "final" "amended" "cancelled" "entered-in-error" "unknown"]
 
-# Codes specifying how two observations are related.
-fhirvs:observation-relationshiptypes ["has-member" "derived-from" "sequel-to" "replaces" "qualified-by" "interfered-by"]
-
-# The status of a resource narrative
-fhirvs:narrative-status ["generated" "extensions" "additional" "empty"]
+# How the Quantity should be understood and represented.
+fhirvs:quantity-comparator ["<" "<=" ">=" ">"]
 
 # Identifies the purpose for this identifier, if known .
 fhirvs:identifier-use ["usual" "official" "temp" "secondary"]
 
-# How the Quantity should be understood and represented.
-fhirvs:quantity-comparator ["<" "<=" ">=" ">"]
+# The status of a resource narrative
+fhirvs:narrative-status ["generated" "extensions" "additional" "empty"]
+
+# Codes specifying how two observations are related.
+fhirvs:observation-relationshiptypes ["has-member" "derived-from" "sequel-to" "replaces" "qualified-by" "interfered-by"]

@@ -123,7 +123,7 @@
     &lt;system value=&quot;urn:ietf:rfc:3986&quot;/&gt;
   &lt;/identifier&gt;
   &lt;status value=&quot;draft&quot;/&gt;
-  &lt;date value=&quot;2016-11-16T23:52:25-05:00&quot;/&gt;
+  &lt;date value=&quot;2016-11-28T17:29:55-05:00&quot;/&gt;
   &lt;publisher value=&quot;Health Level Seven International (Clinical Genomics)&quot;/&gt;
   &lt;item&gt;
     &lt;linkId value=&quot;Sequence&quot;/&gt;
@@ -579,6 +579,44 @@
         &lt;valueInteger value=&quot;1&quot;/&gt;
       &lt;/extension&gt;
       &lt;extension url=&quot;http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType&quot;&gt;
+        &lt;valueString value=&quot;Reference&quot;/&gt;
+      &lt;/extension&gt;
+      &lt;linkId value=&quot;Sequence.peformer&quot;/&gt;
+      &lt;type value=&quot;group&quot;/&gt;
+      &lt;required value=&quot;false&quot;/&gt;
+      &lt;repeats value=&quot;true&quot;/&gt;
+      &lt;item&gt;
+        &lt;extension url=&quot;http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl&quot;&gt;
+          &lt;valueCodeableConcept&gt;
+            &lt;coding&gt;
+              &lt;system value=&quot;http://hl7.org/fhir/questionnaire-item-control&quot;/&gt;
+              &lt;code value=&quot;flyover&quot;/&gt;
+              &lt;display value=&quot;Fly-over&quot;/&gt;
+            &lt;/coding&gt;
+          &lt;/valueCodeableConcept&gt;
+        &lt;/extension&gt;
+        &lt;text value=&quot;The organization or lab that should be responsible for this result.&quot;/&gt;
+        &lt;type value=&quot;display&quot;/&gt;
+      &lt;/item&gt;
+      &lt;item&gt;
+        &lt;extension url=&quot;http://hl7.org/fhir/StructureDefinition/questionnaire-allowedResource&quot;&gt;
+          &lt;valueCode value=&quot;Organization&quot;/&gt;
+        &lt;/extension&gt;
+        &lt;extension url=&quot;http://hl7.org/fhir/StructureDefinition/questionnaire-referenceFilter&quot;&gt;
+          &lt;valueString value=&quot;subject=$subj&amp;amp;patient=$subj&amp;amp;encounter=$encounter&quot;/&gt;
+        &lt;/extension&gt;
+        &lt;linkId value=&quot;Sequence.peformer.value&quot;/&gt;
+        &lt;text value=&quot;Who should be responsible for test result&quot;/&gt;
+        &lt;type value=&quot;reference&quot;/&gt;
+        &lt;required value=&quot;false&quot;/&gt;
+        &lt;repeats value=&quot;false&quot;/&gt;
+      &lt;/item&gt;
+    &lt;/item&gt;
+    &lt;item&gt;
+      &lt;extension url=&quot;http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs&quot;&gt;
+        &lt;valueInteger value=&quot;1&quot;/&gt;
+      &lt;/extension&gt;
+      &lt;extension url=&quot;http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType&quot;&gt;
         &lt;valueString value=&quot;Quantity&quot;/&gt;
       &lt;/extension&gt;
       &lt;linkId value=&quot;Sequence.quantity&quot;/&gt;
@@ -932,12 +970,12 @@
               &lt;/coding&gt;
             &lt;/valueCodeableConcept&gt;
           &lt;/extension&gt;
-          &lt;text value=&quot;Directionality of strand of DNA. Available values are &amp;quot;1&amp;quot; for the plus strand (5&amp;#39; to 3&amp;#39;)  and &amp;quot;-1&amp;quot; for the minus strand(3&amp;#39; to 5&amp;#39;).&quot;/&gt;
+          &lt;text value=&quot;Directionality of DNA sequence. Available values are &amp;quot;1&amp;quot; for the plus strand (5&amp;#39; to 3&amp;#39;)/Watson/Sense/positive  and &amp;quot;-1&amp;quot; for the minus strand(3&amp;#39; to 5&amp;#39;)/Crick/Antisense/negative.&quot;/&gt;
           &lt;type value=&quot;display&quot;/&gt;
         &lt;/item&gt;
         &lt;item&gt;
           &lt;linkId value=&quot;Sequence.referenceSeq.strand.value&quot;/&gt;
-          &lt;text value=&quot;Directionality of strand of DNA ( +1/-1)&quot;/&gt;
+          &lt;text value=&quot;Directionality of DNA ( +1/-1)&quot;/&gt;
           &lt;type value=&quot;integer&quot;/&gt;
           &lt;required value=&quot;false&quot;/&gt;
           &lt;repeats value=&quot;false&quot;/&gt;
@@ -1958,7 +1996,7 @@
     &lt;/item&gt;
     &lt;item&gt;
       &lt;linkId value=&quot;Sequence.repository&quot;/&gt;
-      &lt;text value=&quot;External repository which contains detailed report of observedSeq in this resource&quot;/&gt;
+      &lt;text value=&quot;External repository which contains detailed report related with observedSeq in this resource&quot;/&gt;
       &lt;type value=&quot;group&quot;/&gt;
       &lt;required value=&quot;false&quot;/&gt;
       &lt;repeats value=&quot;true&quot;/&gt;
@@ -1972,7 +2010,7 @@
             &lt;/coding&gt;
           &lt;/valueCodeableConcept&gt;
         &lt;/extension&gt;
-        &lt;text value=&quot;Configurations of the external repository. The repository shall store target&amp;#39;s observedSeq or records of target&amp;#39;s observedSeq.&quot;/&gt;
+        &lt;text value=&quot;Configurations of the external repository. The repository shall store target&amp;#39;s observedSeq or records related with target&amp;#39;s observedSeq.&quot;/&gt;
         &lt;type value=&quot;display&quot;/&gt;
       &lt;/item&gt;
       &lt;item&gt;
@@ -2810,7 +2848,7 @@ of the specification.
 		<div class="container"><!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Wed, Nov 16, 2016 23:55-0500. <a href="qa.html">QA Page</a>
+        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:33-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search</a> | 

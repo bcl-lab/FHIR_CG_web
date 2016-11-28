@@ -3,7 +3,7 @@
 <Bundle xmlns="http://hl7.org/fhir">
   <id value="extensions"/>
   <meta>
-    <lastUpdated value="2016-11-16T23:52:25.144-05:00"/>
+    <lastUpdated value="2016-11-28T17:29:55.664-05:00"/>
   </meta>
   <type value="collection"/>
   <entry>
@@ -15,7 +15,7 @@
         <name value="What has happened over time"/>
         <status value="draft"/>
         <publisher value="HL7"/>
-        <date value="2016-11-16T23:52:25-05:00"/>
+        <date value="2016-11-28T17:29:55-05:00"/>
         <description value="Information on changes made to the Value Set Definition over time, and also has a contained audit trail of all such changes."/>
         <fhirVersion value="1.7.0"/>
         <mapping>
@@ -83,7 +83,7 @@
           </element>
           <element id="Extension:whathashappenedovertime.extension">
             <path value="Extension.extension"/>
-            <slicing id="67">
+            <slicing id="69">
               <discriminator value="url"/>
               <ordered value="false"/>
               <rules value="open"/>
@@ -235,7 +235,7 @@
           </element>
           <element id="Extension:whathashappenedovertime.extension:revision.extension">
             <path value="Extension.extension.extension"/>
-            <slicing id="68">
+            <slicing id="70">
               <discriminator value="url"/>
               <ordered value="false"/>
               <rules value="open"/>
@@ -1317,7 +1317,7 @@
         <name value="A concept map relevant to interpret this value set"/>
         <status value="draft"/>
         <publisher value="HL7"/>
-        <date value="2016-11-16T23:52:25-05:00"/>
+        <date value="2016-11-28T17:29:55-05:00"/>
         <description value="A reference to a concept map that is relevant for the interpretation of this value set."/>
         <fhirVersion value="1.7.0"/>
         <mapping>
@@ -2020,7 +2020,7 @@
         <title value="cadavericDonor"/>
         <status value="draft"/>
         <publisher value="HL7"/>
-        <date value="2016-11-16T23:52:25-05:00"/>
+        <date value="2016-11-28T17:29:55-05:00"/>
         <description value="Flag indicating whether the patient authorized the donation of body parts after death."/>
         <fhirVersion value="1.7.0"/>
         <mapping>
@@ -2353,7 +2353,7 @@
         <title value="Definition"/>
         <status value="draft"/>
         <publisher value="HL7"/>
-        <date value="2016-11-16T23:52:25-05:00"/>
+        <date value="2016-11-28T17:29:55-05:00"/>
         <description value="A display name that describes the meaning of this code when used as part of this value set."/>
         <fhirVersion value="1.7.0"/>
         <mapping>
@@ -3241,7 +3241,7 @@
         <title value="congregation"/>
         <status value="draft"/>
         <publisher value="HL7"/>
-        <date value="2016-11-16T23:52:25-05:00"/>
+        <date value="2016-11-28T17:29:55-05:00"/>
         <description value="A group or place of religious practice that may provide services to the patient."/>
         <fhirVersion value="1.7.0"/>
         <mapping>
@@ -4106,7 +4106,7 @@
         <name value="Appearance order for user selection"/>
         <status value="draft"/>
         <publisher value="HL7"/>
-        <date value="2016-11-16T23:52:25-05:00"/>
+        <date value="2016-11-28T17:29:55-05:00"/>
         <description value="Identifies the relative order in which concepts within the value set should be presented to a user."/>
         <fhirVersion value="1.7.0"/>
         <mapping>
@@ -4641,6 +4641,553 @@
                 <reference value="http://hl7.org/fhir/ValueSet/questionnaire-display-category"/>
               </valueSetReference>
             </binding>
+          </element>
+        </differential>
+      </StructureDefinition>
+    </resource>
+  </entry>
+  <entry>
+    <fullUrl value="http://hl7.org/fhir/StructureDefinition/family-member-history-genetics-sibling"/>
+    <resource>
+      <StructureDefinition>
+        <id value="family-member-history-genetics-sibling"/>
+        <url value="http://hl7.org/fhir/StructureDefinition/family-member-history-genetics-sibling"/>
+        <name value="natural brother(s) &amp; natural sister(s) - genetic &amp; other"/>
+        <status value="draft"/>
+        <publisher value="Health Level Seven International (Clinical Genomics)"/>
+        <contact>
+          <telecom>
+            <system value="other"/>
+            <value value="http://www.hl7.org/Special/committees/clingenomics"/>
+          </telecom>
+        </contact>
+        <date value="2013-10-02"/>
+        <description value="Identifies a parent of the relative."/>
+        <fhirVersion value="1.7.0"/>
+        <mapping>
+          <identity value="rim"/>
+          <uri value="http://hl7.org/v3"/>
+          <name value="RIM Mapping"/>
+        </mapping>
+        <kind value="complex-type"/>
+        <abstract value="false"/>
+        <contextType value="resource"/>
+        <context value="FamilyMemberHistory"/>
+        <type value="Extension"/>
+        <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Extension"/>
+        <derivation value="constraint"/>
+        <snapshot>
+          <element id="Extension:naturalbrothersnaturalsisters-geneticother">
+            <path value="Extension"/>
+            <short value="natural brother(s) &amp; natural sister(s) - genetic &amp; other"/>
+            <definition value="Identifies a parent of the relative."/>
+            <comments value="Some rare cases may have complex inner-pedigree-tree relationship. For instance, double cousin relationship need two extra link with In pedigree tree itself. This can&#39;t be revealed by relationship to subject."/>
+            <min value="0"/>
+            <max value="*"/>
+            <base>
+              <path value="Extension"/>
+              <min value="0"/>
+              <max value="*"/>
+            </base>
+            <condition value="ele-1"/>
+            <constraint>
+              <key value="ele-1"/>
+              <severity value="error"/>
+              <human value="All FHIR elements must have a @value or children"/>
+              <expression value="children().count() &gt; id.count()"/>
+              <xpath value="@value|f:*|h:div"/>
+              <source value="Element"/>
+            </constraint>
+            <constraint>
+              <key value="ext-1"/>
+              <severity value="error"/>
+              <human value="Must have either extensions or value[x], not both"/>
+              <expression value="extension.exists() != value.exists()"/>
+              <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), &#39;value&#39;)])"/>
+              <source value="Extension"/>
+            </constraint>
+            <isModifier value="false"/>
+          </element>
+          <element id="Extension:naturalbrothersnaturalsisters-geneticother.id">
+            <path value="Extension.id"/>
+            <representation value="xmlAttr"/>
+            <short value="xml:id (or equivalent in JSON)"/>
+            <definition value="unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces."/>
+            <min value="0"/>
+            <max value="1"/>
+            <base>
+              <path value="Element.id"/>
+              <min value="0"/>
+              <max value="1"/>
+            </base>
+            <type>
+              <code value="string"/>
+            </type>
+            <mapping>
+              <identity value="rim"/>
+              <map value="n/a"/>
+            </mapping>
+          </element>
+          <element id="Extension:naturalbrothersnaturalsisters-geneticother.extension">
+            <path value="Extension.extension"/>
+            <slicing id="75">
+              <discriminator value="url"/>
+              <ordered value="false"/>
+              <rules value="open"/>
+            </slicing>
+            <short value="Extension"/>
+            <definition value="An Extension"/>
+            <min value="0"/>
+            <max value="*"/>
+            <base>
+              <path value="Element.extension"/>
+              <min value="0"/>
+              <max value="*"/>
+            </base>
+            <type>
+              <code value="Extension"/>
+            </type>
+          </element>
+          <element id="Extension:naturalbrothersnaturalsisters-geneticother.extension:type">
+            <path value="Extension.extension"/>
+            <sliceName value="type"/>
+            <short value="sibling | brother | sister | etc."/>
+            <definition value="Distinguishes between different types of sibling relationships with varying granularity to support capturing the relationship &quot;to the degree known&quot;."/>
+            <min value="1"/>
+            <max value="1"/>
+            <base>
+              <path value="Element.extension"/>
+              <min value="0"/>
+              <max value="*"/>
+            </base>
+            <type>
+              <code value="Extension"/>
+            </type>
+            <isModifier value="false"/>
+          </element>
+          <element id="Extension:naturalbrothersnaturalsisters-geneticother.extension:type.id">
+            <path value="Extension.extension.id"/>
+            <representation value="xmlAttr"/>
+            <short value="xml:id (or equivalent in JSON)"/>
+            <definition value="unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces."/>
+            <min value="0"/>
+            <max value="1"/>
+            <base>
+              <path value="Element.id"/>
+              <min value="0"/>
+              <max value="1"/>
+            </base>
+            <type>
+              <code value="string"/>
+            </type>
+            <mapping>
+              <identity value="rim"/>
+              <map value="n/a"/>
+            </mapping>
+          </element>
+          <element id="Extension:naturalbrothersnaturalsisters-geneticother.extension:type.extension:extension">
+            <path value="Extension.extension.extension"/>
+            <sliceName value="extension"/>
+            <short value="Extension"/>
+            <definition value="An Extension"/>
+            <min value="0"/>
+            <max value="0"/>
+            <base>
+              <path value="Element.extension"/>
+              <min value="0"/>
+              <max value="*"/>
+            </base>
+            <type>
+              <code value="Extension"/>
+            </type>
+          </element>
+          <element id="Extension:naturalbrothersnaturalsisters-geneticother.extension:type.url">
+            <path value="Extension.extension.url"/>
+            <representation value="xmlAttr"/>
+            <short value="identifies the meaning of the extension"/>
+            <definition value="Source of the definition for the extension code - a logical name or a URL."/>
+            <comments value="The definition may point directly to a computable or human-readable definition of the extensibility codes, or it may be a logical URI as declared in some other specification. The definition SHALL be a URI for the Structure Definition defining the extension."/>
+            <min value="1"/>
+            <max value="1"/>
+            <base>
+              <path value="Extension.url"/>
+              <min value="1"/>
+              <max value="1"/>
+            </base>
+            <type>
+              <code value="uri"/>
+            </type>
+            <fixedUri value="type"/>
+            <mapping>
+              <identity value="rim"/>
+              <map value="N/A"/>
+            </mapping>
+          </element>
+          <element id="Extension:naturalbrothersnaturalsisters-geneticother.extension:type.valueCodeableConcept">
+            <path value="Extension.extension.valueCodeableConcept"/>
+            <short value="Value of extension"/>
+            <definition value="Value of extension - may be a resource or one of a constrained set of the data types (see Extensibility in the spec for list)."/>
+            <min value="1"/>
+            <max value="1"/>
+            <base>
+              <path value="Extension.value[x]"/>
+              <min value="0"/>
+              <max value="1"/>
+            </base>
+            <type>
+              <code value="CodeableConcept"/>
+            </type>
+            <binding>
+              <strength value="example"/>
+              <description value="The nature of the relationship between the patient and the related person being described in the family member history."/>
+              <valueSetReference>
+                <reference value="http://hl7.org/fhir/ValueSet/v3-FamilyMember"/>
+              </valueSetReference>
+            </binding>
+            <mapping>
+              <identity value="rim"/>
+              <map value="N/A"/>
+            </mapping>
+          </element>
+          <element id="Extension:naturalbrothersnaturalsisters-geneticother.extension:identifier">
+            <path value="Extension.extension"/>
+            <sliceName value="identifier"/>
+            <short value="Link to sibling relative(s)"/>
+            <definition value="Identifies a sibling of the relative."/>
+            <min value="0"/>
+            <max value="1"/>
+            <base>
+              <path value="Element.extension"/>
+              <min value="0"/>
+              <max value="*"/>
+            </base>
+            <type>
+              <code value="Extension"/>
+            </type>
+            <isModifier value="false"/>
+          </element>
+          <element id="Extension:naturalbrothersnaturalsisters-geneticother.extension:identifier.id">
+            <path value="Extension.extension.id"/>
+            <representation value="xmlAttr"/>
+            <short value="xml:id (or equivalent in JSON)"/>
+            <definition value="unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces."/>
+            <min value="0"/>
+            <max value="1"/>
+            <base>
+              <path value="Element.id"/>
+              <min value="0"/>
+              <max value="1"/>
+            </base>
+            <type>
+              <code value="string"/>
+            </type>
+            <mapping>
+              <identity value="rim"/>
+              <map value="n/a"/>
+            </mapping>
+          </element>
+          <element id="Extension:naturalbrothersnaturalsisters-geneticother.extension:identifier.extension:extension">
+            <path value="Extension.extension.extension"/>
+            <sliceName value="extension"/>
+            <short value="Extension"/>
+            <definition value="An Extension"/>
+            <min value="0"/>
+            <max value="0"/>
+            <base>
+              <path value="Element.extension"/>
+              <min value="0"/>
+              <max value="*"/>
+            </base>
+            <type>
+              <code value="Extension"/>
+            </type>
+          </element>
+          <element id="Extension:naturalbrothersnaturalsisters-geneticother.extension:identifier.url">
+            <path value="Extension.extension.url"/>
+            <representation value="xmlAttr"/>
+            <short value="identifies the meaning of the extension"/>
+            <definition value="Source of the definition for the extension code - a logical name or a URL."/>
+            <comments value="The definition may point directly to a computable or human-readable definition of the extensibility codes, or it may be a logical URI as declared in some other specification. The definition SHALL be a URI for the Structure Definition defining the extension."/>
+            <min value="1"/>
+            <max value="1"/>
+            <base>
+              <path value="Extension.url"/>
+              <min value="1"/>
+              <max value="1"/>
+            </base>
+            <type>
+              <code value="uri"/>
+            </type>
+            <fixedUri value="identifier"/>
+            <mapping>
+              <identity value="rim"/>
+              <map value="N/A"/>
+            </mapping>
+          </element>
+          <element id="Extension:naturalbrothersnaturalsisters-geneticother.extension:identifier.valueReference">
+            <path value="Extension.extension.valueReference"/>
+            <short value="Value of extension"/>
+            <definition value="Value of extension - may be a resource or one of a constrained set of the data types (see Extensibility in the spec for list)."/>
+            <min value="1"/>
+            <max value="1"/>
+            <base>
+              <path value="Extension.value[x]"/>
+              <min value="0"/>
+              <max value="1"/>
+            </base>
+            <type>
+              <code value="Reference"/>
+              <targetProfile value="http://hl7.org/fhir/StructureDefinition/FamilyMemberHistory"/>
+            </type>
+            <mapping>
+              <identity value="rim"/>
+              <map value="N/A"/>
+            </mapping>
+          </element>
+          <element id="Extension:naturalbrothersnaturalsisters-geneticother.url">
+            <path value="Extension.url"/>
+            <representation value="xmlAttr"/>
+            <short value="identifies the meaning of the extension"/>
+            <definition value="Source of the definition for the extension code - a logical name or a URL."/>
+            <comments value="The definition may point directly to a computable or human-readable definition of the extensibility codes, or it may be a logical URI as declared in some other specification. The definition SHALL be a URI for the Structure Definition defining the extension."/>
+            <min value="1"/>
+            <max value="1"/>
+            <base>
+              <path value="Extension.url"/>
+              <min value="1"/>
+              <max value="1"/>
+            </base>
+            <type>
+              <code value="uri"/>
+            </type>
+            <fixedUri value="http://hl7.org/fhir/StructureDefinition/family-member-history-genetics-sibling"/>
+            <mapping>
+              <identity value="rim"/>
+              <map value="N/A"/>
+            </mapping>
+          </element>
+          <element id="Extension:naturalbrothersnaturalsisters-geneticother.value[x]">
+            <path value="Extension.value[x]"/>
+            <short value="Value of extension"/>
+            <definition value="Value of extension - may be a resource or one of a constrained set of the data types (see Extensibility in the spec for list)."/>
+            <min value="0"/>
+            <max value="0"/>
+            <base>
+              <path value="Extension.value[x]"/>
+              <min value="0"/>
+              <max value="1"/>
+            </base>
+            <type>
+              <code value="base64Binary"/>
+            </type>
+            <type>
+              <code value="boolean"/>
+            </type>
+            <type>
+              <code value="code"/>
+            </type>
+            <type>
+              <code value="date"/>
+            </type>
+            <type>
+              <code value="dateTime"/>
+            </type>
+            <type>
+              <code value="decimal"/>
+            </type>
+            <type>
+              <code value="id"/>
+            </type>
+            <type>
+              <code value="instant"/>
+            </type>
+            <type>
+              <code value="integer"/>
+            </type>
+            <type>
+              <code value="markdown"/>
+            </type>
+            <type>
+              <code value="oid"/>
+            </type>
+            <type>
+              <code value="positiveInt"/>
+            </type>
+            <type>
+              <code value="string"/>
+            </type>
+            <type>
+              <code value="time"/>
+            </type>
+            <type>
+              <code value="unsignedInt"/>
+            </type>
+            <type>
+              <code value="uri"/>
+            </type>
+            <type>
+              <code value="Address"/>
+            </type>
+            <type>
+              <code value="Age"/>
+            </type>
+            <type>
+              <code value="Annotation"/>
+            </type>
+            <type>
+              <code value="Attachment"/>
+            </type>
+            <type>
+              <code value="CodeableConcept"/>
+            </type>
+            <type>
+              <code value="Coding"/>
+            </type>
+            <type>
+              <code value="ContactPoint"/>
+            </type>
+            <type>
+              <code value="Count"/>
+            </type>
+            <type>
+              <code value="Distance"/>
+            </type>
+            <type>
+              <code value="Duration"/>
+            </type>
+            <type>
+              <code value="HumanName"/>
+            </type>
+            <type>
+              <code value="Identifier"/>
+            </type>
+            <type>
+              <code value="Money"/>
+            </type>
+            <type>
+              <code value="Period"/>
+            </type>
+            <type>
+              <code value="Quantity"/>
+            </type>
+            <type>
+              <code value="Range"/>
+            </type>
+            <type>
+              <code value="Ratio"/>
+            </type>
+            <type>
+              <code value="Reference"/>
+            </type>
+            <type>
+              <code value="SampledData"/>
+            </type>
+            <type>
+              <code value="Signature"/>
+            </type>
+            <type>
+              <code value="Timing"/>
+            </type>
+            <type>
+              <code value="Meta"/>
+            </type>
+            <mapping>
+              <identity value="rim"/>
+              <map value="N/A"/>
+            </mapping>
+          </element>
+        </snapshot>
+        <differential>
+          <element id="Extension:naturalbrothersnaturalsisters-geneticother">
+            <path value="Extension"/>
+            <short value="natural brother(s) &amp; natural sister(s) - genetic &amp; other"/>
+            <definition value="Identifies a parent of the relative."/>
+            <comments value="Some rare cases may have complex inner-pedigree-tree relationship. For instance, double cousin relationship need two extra link with In pedigree tree itself. This can&#39;t be revealed by relationship to subject."/>
+            <min value="0"/>
+            <max value="*"/>
+            <isModifier value="false"/>
+          </element>
+          <element id="Extension:naturalbrothersnaturalsisters-geneticother.extension:type">
+            <path value="Extension.extension"/>
+            <sliceName value="type"/>
+            <short value="sibling | brother | sister | etc."/>
+            <definition value="Distinguishes between different types of sibling relationships with varying granularity to support capturing the relationship &quot;to the degree known&quot;."/>
+            <min value="1"/>
+            <max value="1"/>
+            <type>
+              <code value="Extension"/>
+            </type>
+            <isModifier value="false"/>
+          </element>
+          <element id="Extension:naturalbrothersnaturalsisters-geneticother.extension:type.extension:extension">
+            <path value="Extension.extension.extension"/>
+            <sliceName value="extension"/>
+            <max value="0"/>
+          </element>
+          <element id="Extension:naturalbrothersnaturalsisters-geneticother.extension:type.url">
+            <path value="Extension.extension.url"/>
+            <type>
+              <code value="uri"/>
+            </type>
+            <fixedUri value="type"/>
+          </element>
+          <element id="Extension:naturalbrothersnaturalsisters-geneticother.extension:type.value[x]">
+            <path value="Extension.extension.value[x]"/>
+            <min value="1"/>
+            <type>
+              <code value="CodeableConcept"/>
+            </type>
+            <binding>
+              <strength value="example"/>
+              <description value="The nature of the relationship between the patient and the related person being described in the family member history."/>
+              <valueSetReference>
+                <reference value="http://hl7.org/fhir/ValueSet/v3-FamilyMember"/>
+              </valueSetReference>
+            </binding>
+          </element>
+          <element id="Extension:naturalbrothersnaturalsisters-geneticother.extension:identifier">
+            <path value="Extension.extension"/>
+            <sliceName value="identifier"/>
+            <short value="Link to sibling relative(s)"/>
+            <definition value="Identifies a sibling of the relative."/>
+            <min value="0"/>
+            <max value="1"/>
+            <type>
+              <code value="Extension"/>
+            </type>
+            <isModifier value="false"/>
+          </element>
+          <element id="Extension:naturalbrothersnaturalsisters-geneticother.extension:identifier.extension:extension">
+            <path value="Extension.extension.extension"/>
+            <sliceName value="extension"/>
+            <max value="0"/>
+          </element>
+          <element id="Extension:naturalbrothersnaturalsisters-geneticother.extension:identifier.url">
+            <path value="Extension.extension.url"/>
+            <type>
+              <code value="uri"/>
+            </type>
+            <fixedUri value="identifier"/>
+          </element>
+          <element id="Extension:naturalbrothersnaturalsisters-geneticother.extension:identifier.value[x]">
+            <path value="Extension.extension.value[x]"/>
+            <min value="1"/>
+            <type>
+              <code value="Reference"/>
+              <targetProfile value="http://hl7.org/fhir/StructureDefinition/FamilyMemberHistory"/>
+            </type>
+          </element>
+          <element id="Extension:naturalbrothersnaturalsisters-geneticother.url">
+            <path value="Extension.url"/>
+            <type>
+              <code value="uri"/>
+            </type>
+            <fixedUri value="http://hl7.org/fhir/StructureDefinition/family-member-history-genetics-sibling"/>
+          </element>
+          <element id="Extension:naturalbrothersnaturalsisters-geneticother.value[x]">
+            <path value="Extension.value[x]"/>
+            <min value="0"/>
+            <max value="0"/>
           </element>
         </differential>
       </StructureDefinition>
@@ -6714,7 +7261,7 @@ There can be multiple contacts on an Organizations record with this value set to
           </element>
           <element id="Extension:anadditionalexamplevalue.extension">
             <path value="Extension.extension"/>
-            <slicing id="84">
+            <slicing id="87">
               <discriminator value="url"/>
               <ordered value="false"/>
               <rules value="open"/>
@@ -7276,7 +7823,7 @@ There can be multiple contacts on an Organizations record with this value set to
         <name value="Where did this content come from"/>
         <status value="draft"/>
         <publisher value="HL7"/>
-        <date value="2016-11-16T23:52:25-05:00"/>
+        <date value="2016-11-28T17:29:55-05:00"/>
         <description value="This text is intended to act as a citation to work done elsewhere that is not part of the current stewarding process where the referenced source is in some way a basis of the current value set definition."/>
         <fhirVersion value="1.7.0"/>
         <mapping>
@@ -7663,7 +8210,7 @@ There can be multiple contacts on an Organizations record with this value set to
         <name value="Reference to a trusted expansion"/>
         <status value="draft"/>
         <publisher value="HL7"/>
-        <date value="2016-11-16T23:52:25-05:00"/>
+        <date value="2016-11-28T17:29:55-05:00"/>
         <description value="Indicates an authoritative source for performing value set expansions."/>
         <fhirVersion value="1.7.0"/>
         <mapping>
@@ -8873,7 +9420,7 @@ There can be multiple contacts on an Organizations record with this value set to
         <title value="Context Group"/>
         <status value="draft"/>
         <publisher value="HL7"/>
-        <date value="2016-11-16T23:52:25-05:00"/>
+        <date value="2016-11-28T17:29:55-05:00"/>
         <description value="Defines the group in which this usage context is a member. Multiple groups are &quot;OR&#39;ed&quot;, contexts within a group are &quot;AND&#39;ed&quot;."/>
         <fhirVersion value="1.7.0"/>
         <mapping>
@@ -10654,7 +11201,7 @@ There can be multiple contacts on an Organizations record with this value set to
         <title value="Deprecated"/>
         <status value="draft"/>
         <publisher value="HL7"/>
-        <date value="2016-11-16T23:52:25-05:00"/>
+        <date value="2016-11-28T17:29:55-05:00"/>
         <description value="Set to true of the concept has been deprecated (still can be used, but soon to be withdrawn)."/>
         <fhirVersion value="1.7.0"/>
         <mapping>
@@ -11765,7 +12312,7 @@ There can be multiple contacts on an Organizations record with this value set to
             <value value="http://www.hl7.org/Special/committees/security/index.cfm"/>
           </telecom>
         </contact>
-        <date value="2016-11-16T23:52:25-05:00"/>
+        <date value="2016-11-28T17:29:55-05:00"/>
         <description value="An MPPS Instance UID associated with this entity."/>
         <fhirVersion value="1.7.0"/>
         <mapping>
@@ -12113,7 +12660,7 @@ There can be multiple contacts on an Organizations record with this value set to
         <title value="interpreterRequired"/>
         <status value="draft"/>
         <publisher value="HL7"/>
-        <date value="2016-11-16T23:52:25-05:00"/>
+        <date value="2016-11-28T17:29:55-05:00"/>
         <description value="This Patient requires an interpreter to communicate healthcare information to the practitioner."/>
         <fhirVersion value="1.7.0"/>
         <mapping>
@@ -12617,7 +13164,7 @@ There can be multiple contacts on an Organizations record with this value set to
         <name value="Comparison value for ordinal codes"/>
         <status value="draft"/>
         <publisher value="HL7"/>
-        <date value="2016-11-16T23:52:25-05:00"/>
+        <date value="2016-11-28T17:29:55-05:00"/>
         <description value="A numeric value that allows the comparison (less than, greater than) or other numerical manipulation of a concept (e.g. Adding up components of a score)."/>
         <fhirVersion value="1.7.0"/>
         <mapping>
@@ -12960,7 +13507,7 @@ There can be multiple contacts on an Organizations record with this value set to
         <title value="Last Review Date"/>
         <status value="draft"/>
         <publisher value="HL7"/>
-        <date value="2016-11-16T23:52:25-05:00"/>
+        <date value="2016-11-28T17:29:55-05:00"/>
         <description value="The date on which the asset content was last reviewed. Review happens periodically after that, but doesn&#39;t change the original approval date."/>
         <fhirVersion value="1.7.0"/>
         <mapping>
@@ -14589,7 +15136,7 @@ There can be multiple contacts on an Organizations record with this value set to
         <name value="Extra warning about the correct use of the value set"/>
         <status value="draft"/>
         <publisher value="HL7"/>
-        <date value="2016-11-16T23:52:25-05:00"/>
+        <date value="2016-11-28T17:29:55-05:00"/>
         <description value="An extra warning about the correct use of the value set."/>
         <fhirVersion value="1.7.0"/>
         <mapping>
@@ -15801,7 +16348,7 @@ There can be multiple contacts on an Organizations record with this value set to
         <title value="Mother&#39;s Maiden Name"/>
         <status value="draft"/>
         <publisher value="HL7"/>
-        <date value="2016-11-16T23:52:25-05:00"/>
+        <date value="2016-11-28T17:29:55-05:00"/>
         <description value="Mother&#39;s maiden (unmarried) name, commonly collected to help verify patient identity."/>
         <fhirVersion value="1.7.0"/>
         <mapping>
@@ -16344,7 +16891,7 @@ There can be multiple contacts on an Organizations record with this value set to
       <StructureDefinition>
         <id value="observation-geneticsDNASequenceVariant"/>
         <url value="http://hl7.org/fhir/StructureDefinition/observation-geneticsDNASequenceVariant"/>
-        <name value="DNA sequence variant"/>
+        <name value="Interpetation of DNA sequence variant"/>
         <status value="draft"/>
         <publisher value="Health Level Seven International (Clinical Genomics)"/>
         <contact>
@@ -16369,9 +16916,9 @@ There can be multiple contacts on an Organizations record with this value set to
         <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Extension"/>
         <derivation value="constraint"/>
         <snapshot>
-          <element id="Extension:dnasequencevariant">
+          <element id="Extension:interpetationofdnasequencevariant">
             <path value="Extension"/>
-            <short value="DNA sequence variant"/>
+            <short value="Interpetation of DNA sequence variant"/>
             <definition value="A&#39; is a variant (mutation) of A = definition every instance of A&#39; is either an immediate mutation of some instance of A, or there is a chain of immediate mutation processes linking A&#39; to some instance of A ([variant_of](http://www.sequenceontology.org/browser/current_svn/term/variant_of)). This element is the Human Genome Variation Society (HGVS) nomenclature for a single or set of DNA sequence variant(s) identified in testing. Reference sequence ID used for HGVS naming must be anotated. LONIC Code: ([48004-6](http://loinc.org/48004-6))."/>
             <min value="0"/>
             <max value="1"/>
@@ -16398,7 +16945,7 @@ There can be multiple contacts on an Organizations record with this value set to
               <source value="Extension"/>
             </constraint>
           </element>
-          <element id="Extension:dnasequencevariant.id">
+          <element id="Extension:interpetationofdnasequencevariant.id">
             <path value="Extension.id"/>
             <representation value="xmlAttr"/>
             <short value="xml:id (or equivalent in JSON)"/>
@@ -16418,7 +16965,7 @@ There can be multiple contacts on an Organizations record with this value set to
               <map value="n/a"/>
             </mapping>
           </element>
-          <element id="Extension:dnasequencevariant.extension:extension">
+          <element id="Extension:interpetationofdnasequencevariant.extension:extension">
             <path value="Extension.extension"/>
             <sliceName value="extension"/>
             <short value="Extension"/>
@@ -16434,7 +16981,7 @@ There can be multiple contacts on an Organizations record with this value set to
               <code value="Extension"/>
             </type>
           </element>
-          <element id="Extension:dnasequencevariant.url">
+          <element id="Extension:interpetationofdnasequencevariant.url">
             <path value="Extension.url"/>
             <representation value="xmlAttr"/>
             <short value="identifies the meaning of the extension"/>
@@ -16456,7 +17003,7 @@ There can be multiple contacts on an Organizations record with this value set to
               <map value="N/A"/>
             </mapping>
           </element>
-          <element id="Extension:dnasequencevariant.valueString">
+          <element id="Extension:interpetationofdnasequencevariant.valueString">
             <path value="Extension.valueString"/>
             <short value="Value of extension"/>
             <definition value="Value of extension - may be a resource or one of a constrained set of the data types (see Extensibility in the spec for list)."/>
@@ -16482,26 +17029,26 @@ There can be multiple contacts on an Organizations record with this value set to
           </element>
         </snapshot>
         <differential>
-          <element id="Extension:dnasequencevariant">
+          <element id="Extension:interpetationofdnasequencevariant">
             <path value="Extension"/>
-            <short value="DNA sequence variant"/>
+            <short value="Interpetation of DNA sequence variant"/>
             <definition value="A&#39; is a variant (mutation) of A = definition every instance of A&#39; is either an immediate mutation of some instance of A, or there is a chain of immediate mutation processes linking A&#39; to some instance of A ([variant_of](http://www.sequenceontology.org/browser/current_svn/term/variant_of)). This element is the Human Genome Variation Society (HGVS) nomenclature for a single or set of DNA sequence variant(s) identified in testing. Reference sequence ID used for HGVS naming must be anotated. LONIC Code: ([48004-6](http://loinc.org/48004-6))."/>
             <min value="0"/>
             <max value="1"/>
           </element>
-          <element id="Extension:dnasequencevariant.extension:extension">
+          <element id="Extension:interpetationofdnasequencevariant.extension:extension">
             <path value="Extension.extension"/>
             <sliceName value="extension"/>
             <max value="0"/>
           </element>
-          <element id="Extension:dnasequencevariant.url">
+          <element id="Extension:interpetationofdnasequencevariant.url">
             <path value="Extension.url"/>
             <type>
               <code value="uri"/>
             </type>
             <fixedUri value="http://hl7.org/fhir/StructureDefinition/observation-geneticsDNASequenceVariant"/>
           </element>
-          <element id="Extension:dnasequencevariant.value[x]">
+          <element id="Extension:interpetationofdnasequencevariant.value[x]">
             <path value="Extension.value[x]"/>
             <min value="1"/>
             <type>
@@ -16704,7 +17251,7 @@ There can be multiple contacts on an Organizations record with this value set to
         <title value="primaryInd"/>
         <status value="draft"/>
         <publisher value="HL7"/>
-        <date value="2016-11-16T23:52:25-05:00"/>
+        <date value="2016-11-28T17:29:55-05:00"/>
         <description value="Flag indicating if the specialty is the primary specialty of the provider. Normally, a practitioner will have one primary specialty, but in some cases more than one can be primary."/>
         <fhirVersion value="1.7.0"/>
         <mapping>
@@ -17251,7 +17798,7 @@ There can be multiple contacts on an Organizations record with this value set to
         <name value="Who has used and how?"/>
         <status value="draft"/>
         <publisher value="HL7"/>
-        <date value="2016-11-16T23:52:25-05:00"/>
+        <date value="2016-11-28T17:29:55-05:00"/>
         <description value="Consumers of the value set and the implementations, projects or standards that the author has utilized the value set in."/>
         <fhirVersion value="1.7.0"/>
         <mapping>
@@ -17320,7 +17867,7 @@ There can be multiple contacts on an Organizations record with this value set to
           </element>
           <element id="Extension:whohasusedandhow?.extension">
             <path value="Extension.extension"/>
-            <slicing id="86">
+            <slicing id="89">
               <discriminator value="url"/>
               <ordered value="false"/>
               <rules value="open"/>
@@ -19364,7 +19911,7 @@ There can be multiple contacts on an Organizations record with this value set to
         <name value="E.g. &quot;(a)&quot;, &quot;1.&quot;, etc."/>
         <status value="draft"/>
         <publisher value="HL7"/>
-        <date value="2016-11-16T23:52:25-05:00"/>
+        <date value="2016-11-28T17:29:55-05:00"/>
         <description value="The label to list in front of a code when presenting a list of possible values in a questionnaire-like fashion."/>
         <fhirVersion value="1.7.0"/>
         <mapping>
@@ -19700,7 +20247,7 @@ There can be multiple contacts on an Organizations record with this value set to
         <name value="Alternative names"/>
         <status value="draft"/>
         <publisher value="HL7"/>
-        <date value="2016-11-16T23:52:25-05:00"/>
+        <date value="2016-11-28T17:29:55-05:00"/>
         <description value="Human readable names for the codesystem."/>
         <fhirVersion value="1.7.0"/>
         <mapping>
@@ -19768,7 +20315,7 @@ There can be multiple contacts on an Organizations record with this value set to
           </element>
           <element id="Extension:alternativenames.extension">
             <path value="Extension.extension"/>
-            <slicing id="91">
+            <slicing id="94">
               <discriminator value="url"/>
               <ordered value="false"/>
               <rules value="open"/>
@@ -20948,7 +21495,7 @@ There can be multiple contacts on an Organizations record with this value set to
         <title value="Alias"/>
         <status value="draft"/>
         <publisher value="HL7"/>
-        <date value="2016-11-16T23:52:25-05:00"/>
+        <date value="2016-11-28T17:29:55-05:00"/>
         <description value="Other names that this location is known as. (for Example, &quot;Pembo HC&quot; and &quot;Pembo Health Clinic&quot;)."/>
         <fhirVersion value="1.7.0"/>
         <mapping>
@@ -21483,7 +22030,7 @@ There can be multiple contacts on an Organizations record with this value set to
         <title value="Comment"/>
         <status value="draft"/>
         <publisher value="HL7"/>
-        <date value="2016-11-16T23:52:25-05:00"/>
+        <date value="2016-11-28T17:29:55-05:00"/>
         <description value="A comment that explains how this code is used in this context (where the value set is expected to be used)."/>
         <fhirVersion value="1.7.0"/>
         <mapping>
@@ -23055,7 +23602,7 @@ There can be multiple contacts on an Organizations record with this value set to
         <name value="Indicates the state of development of the value set"/>
         <status value="draft"/>
         <publisher value="HL7"/>
-        <date value="2016-11-16T23:52:25-05:00"/>
+        <date value="2016-11-28T17:29:55-05:00"/>
         <description value="Workflow Status is used to represent details of the value set development process while the value set has an Activity Status of Preliminary. The development of a value set often follows a formal workflow process from initiation to completion, and this element carries the state variable for this state machine. The assumption is that when first created a value set would have a workflow state of Draft. Additional workflow states may be used."/>
         <fhirVersion value="1.7.0"/>
         <mapping>
@@ -23577,7 +24124,7 @@ There can be multiple contacts on an Organizations record with this value set to
             <value value="http://www.hl7.org/Special/committees/security/index.cfm"/>
           </telecom>
         </contact>
-        <date value="2016-11-16T23:52:25-05:00"/>
+        <date value="2016-11-28T17:29:55-05:00"/>
         <description value="True or False indicating whether or not all patient identifying information was removed from the data."/>
         <fhirVersion value="1.7.0"/>
         <mapping>
@@ -25697,7 +26244,7 @@ There can be multiple contacts on an Organizations record with this value set to
         <title value="Expansion Truncated"/>
         <status value="draft"/>
         <publisher value="HL7"/>
-        <date value="2016-11-16T23:52:25-05:00"/>
+        <date value="2016-11-28T17:29:55-05:00"/>
         <description value="Marks that the expansion is  incomplete, because the full value set is too large to represent, and the client asked for an incomplete fragment."/>
         <fhirVersion value="1.7.0"/>
         <mapping>
@@ -27484,7 +28031,7 @@ There can be multiple contacts on an Organizations record with this value set to
         <name value="A concept map relevant to interpret this value set"/>
         <status value="draft"/>
         <publisher value="HL7"/>
-        <date value="2016-11-16T23:52:25-05:00"/>
+        <date value="2016-11-28T17:29:55-05:00"/>
         <description value="A reference to a concept map that is relevant for the interpretation of this value set."/>
         <fhirVersion value="1.7.0"/>
         <mapping>
@@ -27831,7 +28378,7 @@ There can be multiple contacts on an Organizations record with this value set to
             <value value="http://www.hl7.org/Special/committees/homehealth/index.cfm"/>
           </telecom>
         </contact>
-        <date value="2016-11-16T23:52:25-05:00"/>
+        <date value="2016-11-28T17:29:55-05:00"/>
         <description value="Rules of the Consent in a non FHIR format."/>
         <fhirVersion value="1.7.0"/>
         <mapping>
@@ -28130,6 +28677,10 @@ There can be multiple contacts on an Organizations record with this value set to
             <type>
               <code value="CodeableConcept"/>
             </type>
+            <binding>
+              <strength value="preferred"/>
+              <valueSetUri value="http://www.ebi.ac.uk/"/>
+            </binding>
             <mapping>
               <identity value="rim"/>
               <map value="N/A"/>
@@ -28170,6 +28721,10 @@ There can be multiple contacts on an Organizations record with this value set to
             <type>
               <code value="CodeableConcept"/>
             </type>
+            <binding>
+              <strength value="preferred"/>
+              <valueSetUri value="http://www.ebi.ac.uk/"/>
+            </binding>
           </element>
         </differential>
       </StructureDefinition>
@@ -28184,7 +28739,7 @@ There can be multiple contacts on an Organizations record with this value set to
         <name value="Human-specified notes and other documentation"/>
         <status value="draft"/>
         <publisher value="HL7"/>
-        <date value="2016-11-16T23:52:25-05:00"/>
+        <date value="2016-11-28T17:29:55-05:00"/>
         <description value="Each comment is a time-stamped entry of arbitrary length that is not editable except by anyone in the author group."/>
         <fhirVersion value="1.7.0"/>
         <mapping>
@@ -28252,7 +28807,7 @@ There can be multiple contacts on an Organizations record with this value set to
           </element>
           <element id="Extension:human-specifiednotesandotherdocumentation.extension">
             <path value="Extension.extension"/>
-            <slicing id="62">
+            <slicing id="64">
               <discriminator value="url"/>
               <ordered value="false"/>
               <rules value="open"/>
@@ -29056,7 +29611,7 @@ There can be multiple contacts on an Organizations record with this value set to
         <name value="Url of Value set the code was chosen from"/>
         <status value="draft"/>
         <publisher value="HL7"/>
-        <date value="2016-11-16T23:52:25-05:00"/>
+        <date value="2016-11-28T17:29:55-05:00"/>
         <description value="A logical reference (e.g. a reference to ValueSet.url) that identifies the value set/version that identifies the set of possible coded values this coding was chosen from or constrained by."/>
         <fhirVersion value="1.7.0"/>
         <mapping>
@@ -29243,7 +29798,7 @@ There can be multiple contacts on an Organizations record with this value set to
         <title value="Bi-directional"/>
         <status value="draft"/>
         <publisher value="HL7"/>
-        <date value="2016-11-16T23:52:25-05:00"/>
+        <date value="2016-11-28T17:29:55-05:00"/>
         <description value="Set to true of the concept map can be safely intepreted in reversse."/>
         <fhirVersion value="1.7.0"/>
         <mapping>
@@ -30005,7 +30560,7 @@ There can be multiple contacts on an Organizations record with this value set to
           </element>
           <element id="Extension:langaugetranslation.extension">
             <path value="Extension.extension"/>
-            <slicing id="56">
+            <slicing id="58">
               <discriminator value="url"/>
               <ordered value="false"/>
               <rules value="open"/>
@@ -31533,7 +32088,7 @@ There can be multiple contacts on an Organizations record with this value set to
             <value value="http://www.hl7.org/Special/committees/security/index.cfm"/>
           </telecom>
         </contact>
-        <date value="2016-11-16T23:52:25-05:00"/>
+        <date value="2016-11-28T17:29:55-05:00"/>
         <description value="An Accession Number associated with this participant object."/>
         <fhirVersion value="1.7.0"/>
         <mapping>
@@ -32048,7 +32603,7 @@ There can be multiple contacts on an Organizations record with this value set to
         <name value="User or Org actually involved in creating the value set content"/>
         <status value="draft"/>
         <publisher value="HL7"/>
-        <date value="2016-11-16T23:52:25-05:00"/>
+        <date value="2016-11-28T17:29:55-05:00"/>
         <description value="User or Org actually involved in creating the value set content."/>
         <fhirVersion value="1.7.0"/>
         <mapping>
@@ -32213,7 +32768,7 @@ There can be multiple contacts on an Organizations record with this value set to
         <name value="Indicates the state of development of the value set"/>
         <status value="draft"/>
         <publisher value="HL7"/>
-        <date value="2016-11-16T23:52:25-05:00"/>
+        <date value="2016-11-28T17:29:55-05:00"/>
         <description value="Workflow Status is used to represent details of the value set development process while the value set has an Activity Status of Preliminary. The development of a value set often follows a formal workflow process from initiation to completion, and this element carries the state variable for this state machine. The assumption is that when first created a value set would have a workflow state of Draft. Additional workflow states may be used."/>
         <fhirVersion value="1.7.0"/>
         <mapping>
@@ -32555,7 +33110,7 @@ There can be multiple contacts on an Organizations record with this value set to
         <title value="adoptionInfo"/>
         <status value="draft"/>
         <publisher value="HL7"/>
-        <date value="2016-11-16T23:52:25-05:00"/>
+        <date value="2016-11-28T17:29:55-05:00"/>
         <description value="Code indication the adoption status of the patient."/>
         <fhirVersion value="1.7.0"/>
         <mapping>
@@ -33070,7 +33625,7 @@ There can be multiple contacts on an Organizations record with this value set to
         <title value="birthTime"/>
         <status value="draft"/>
         <publisher value="HL7"/>
-        <date value="2016-11-16T23:52:25-05:00"/>
+        <date value="2016-11-28T17:29:55-05:00"/>
         <description value="The time of day that the Patient was born. This includes the date to ensure that the timezone information can be communicated effectively."/>
         <fhirVersion value="1.7.0"/>
         <mapping>
@@ -33594,7 +34149,7 @@ There can be multiple contacts on an Organizations record with this value set to
         <name value="Extra warning about the correct use of the value set"/>
         <status value="draft"/>
         <publisher value="HL7"/>
-        <date value="2016-11-16T23:52:25-05:00"/>
+        <date value="2016-11-28T17:29:55-05:00"/>
         <description value="An extra warning about the correct use of the value set."/>
         <fhirVersion value="1.7.0"/>
         <mapping>
@@ -33759,7 +34314,7 @@ There can be multiple contacts on an Organizations record with this value set to
         <name value="Human-specified notes and other documentation"/>
         <status value="draft"/>
         <publisher value="HL7"/>
-        <date value="2016-11-16T23:52:25-05:00"/>
+        <date value="2016-11-28T17:29:55-05:00"/>
         <description value="Each comment is a time-stamped entry of arbitrary length that is not editable except by anyone in the author group."/>
         <fhirVersion value="1.7.0"/>
         <mapping>
@@ -33827,7 +34382,7 @@ There can be multiple contacts on an Organizations record with this value set to
           </element>
           <element id="Extension:human-specifiednotesandotherdocumentation.extension">
             <path value="Extension.extension"/>
-            <slicing id="90">
+            <slicing id="93">
               <discriminator value="url"/>
               <ordered value="false"/>
               <rules value="open"/>
@@ -34282,7 +34837,7 @@ There can be multiple contacts on an Organizations record with this value set to
         <name value="E.g. &quot;(a)&quot;, &quot;1.&quot;, etc."/>
         <status value="draft"/>
         <publisher value="HL7"/>
-        <date value="2016-11-16T23:52:25-05:00"/>
+        <date value="2016-11-28T17:29:55-05:00"/>
         <description value="The label to list in front of a code when presenting a list of possible values in a questionnaire-like fashion."/>
         <fhirVersion value="1.7.0"/>
         <mapping>
@@ -34616,7 +35171,7 @@ There can be multiple contacts on an Organizations record with this value set to
         <name value="When the value set version should no longer be used"/>
         <status value="draft"/>
         <publisher value="HL7"/>
-        <date value="2016-11-16T23:52:25-05:00"/>
+        <date value="2016-11-28T17:29:55-05:00"/>
         <description value="The date when the value set version is no longer expected to be used to create new content. This is the first date-time when the value set version becomes Inactive, so this value MUST present on all Inactive value set versions. The start Date_time is expected to be as of 0001 UTC of the Expiration Date."/>
         <fhirVersion value="1.7.0"/>
         <mapping>
@@ -35185,7 +35740,7 @@ There can be multiple contacts on an Organizations record with this value set to
         <title value="Comment"/>
         <status value="draft"/>
         <publisher value="HL7"/>
-        <date value="2016-11-16T23:52:25-05:00"/>
+        <date value="2016-11-28T17:29:55-05:00"/>
         <description value="A comment that explains how this code is used in this context (where the value set is expected to be used)."/>
         <fhirVersion value="1.7.0"/>
         <mapping>
@@ -35813,7 +36368,7 @@ There can be multiple contacts on an Organizations record with this value set to
           </element>
           <element id="Extension:targetforgoal.extension">
             <path value="Extension.extension"/>
-            <slicing id="64">
+            <slicing id="66">
               <discriminator value="url"/>
               <ordered value="false"/>
               <rules value="open"/>
@@ -36279,7 +36834,7 @@ There can be multiple contacts on an Organizations record with this value set to
         <name value="Appearance order for user selection"/>
         <status value="draft"/>
         <publisher value="HL7"/>
-        <date value="2016-11-16T23:52:25-05:00"/>
+        <date value="2016-11-28T17:29:55-05:00"/>
         <description value="Identifies the relative order in which concepts within the value set should be presented to a user."/>
         <fhirVersion value="1.7.0"/>
         <mapping>
@@ -36444,7 +36999,7 @@ There can be multiple contacts on an Organizations record with this value set to
         <name value="The expansion is incomplete (because post-coordination)"/>
         <status value="draft"/>
         <publisher value="HL7"/>
-        <date value="2016-11-16T23:52:25-05:00"/>
+        <date value="2016-11-28T17:29:55-05:00"/>
         <description value="Marks that the expansion is  incomplete, and other values that those listed may be valid. This may be used because post-coordinated codes are allowed, and no finite expansion can be produced."/>
         <fhirVersion value="1.7.0"/>
         <mapping>
@@ -37701,7 +38256,7 @@ There can be multiple contacts on an Organizations record with this value set to
           </element>
           <element id="Extension:mothersfathers-geneticother.extension">
             <path value="Extension.extension"/>
-            <slicing id="61">
+            <slicing id="63">
               <discriminator value="url"/>
               <ordered value="false"/>
               <rules value="open"/>
@@ -37813,10 +38368,10 @@ There can be multiple contacts on an Organizations record with this value set to
               <code value="CodeableConcept"/>
             </type>
             <binding>
-              <strength value="required"/>
-              <description value="Parental relationship types"/>
+              <strength value="example"/>
+              <description value="The nature of the relationship between the patient and the related person being described in the family member history."/>
               <valueSetReference>
-                <reference value="http://hl7.org/fhir/ValueSet/parent-relationship-codes"/>
+                <reference value="http://hl7.org/fhir/ValueSet/v3-FamilyMember"/>
               </valueSetReference>
             </binding>
             <mapping>
@@ -38125,10 +38680,10 @@ There can be multiple contacts on an Organizations record with this value set to
               <code value="CodeableConcept"/>
             </type>
             <binding>
-              <strength value="required"/>
-              <description value="Parental relationship types"/>
+              <strength value="example"/>
+              <description value="The nature of the relationship between the patient and the related person being described in the family member history."/>
               <valueSetReference>
-                <reference value="http://hl7.org/fhir/ValueSet/parent-relationship-codes"/>
+                <reference value="http://hl7.org/fhir/ValueSet/v3-FamilyMember"/>
               </valueSetReference>
             </binding>
           </element>
@@ -38372,7 +38927,7 @@ There can be multiple contacts on an Organizations record with this value set to
         <name value="A code that replaces this"/>
         <status value="draft"/>
         <publisher value="HL7"/>
-        <date value="2016-11-16T23:52:25-05:00"/>
+        <date value="2016-11-28T17:29:55-05:00"/>
         <description value="A code that replaces this - use this code instead."/>
         <fhirVersion value="1.7.0"/>
         <mapping>
@@ -38539,7 +39094,7 @@ There can be multiple contacts on an Organizations record with this value set to
         <name value="Code system resource"/>
         <status value="draft"/>
         <publisher value="HL7"/>
-        <date value="2016-11-16T23:52:25-05:00"/>
+        <date value="2016-11-28T17:29:55-05:00"/>
         <description value="Allows a direct reference to the code system for FHIR query."/>
         <fhirVersion value="1.7.0"/>
         <mapping>
@@ -38706,7 +39261,7 @@ There can be multiple contacts on an Organizations record with this value set to
         <name value="Alternative names"/>
         <status value="draft"/>
         <publisher value="HL7"/>
-        <date value="2016-11-16T23:52:25-05:00"/>
+        <date value="2016-11-28T17:29:55-05:00"/>
         <description value="Human readable names for the valueset."/>
         <fhirVersion value="1.7.0"/>
         <mapping>
@@ -38774,7 +39329,7 @@ There can be multiple contacts on an Organizations record with this value set to
           </element>
           <element id="Extension:alternativenames.extension">
             <path value="Extension.extension"/>
-            <slicing id="45">
+            <slicing id="47">
               <discriminator value="url"/>
               <ordered value="false"/>
               <rules value="open"/>
@@ -39574,7 +40129,7 @@ There can be multiple contacts on an Organizations record with this value set to
         <name value="Code system name"/>
         <status value="draft"/>
         <publisher value="HL7"/>
-        <date value="2016-11-16T23:52:25-05:00"/>
+        <date value="2016-11-28T17:29:55-05:00"/>
         <description value="The human-readable name for the code system."/>
         <fhirVersion value="1.7.0"/>
         <mapping>
@@ -39739,7 +40294,7 @@ There can be multiple contacts on an Organizations record with this value set to
         <name value="When the value set version becomes Active and is available for use"/>
         <status value="draft"/>
         <publisher value="HL7"/>
-        <date value="2016-11-16T23:52:25-05:00"/>
+        <date value="2016-11-28T17:29:55-05:00"/>
         <description value="This is the first date-time when the value set version becomes active, so this value is present on Inactive value set versions as well. The start Date_time is expected to be as of 0001 UTC of the Effective Date."/>
         <fhirVersion value="1.7.0"/>
         <mapping>
@@ -39977,7 +40532,7 @@ There can be multiple contacts on an Organizations record with this value set to
           </element>
           <element id="Extension:haploid.extension">
             <path value="Extension.extension"/>
-            <slicing id="47">
+            <slicing id="49">
               <discriminator value="url"/>
               <ordered value="false"/>
               <rules value="open"/>
@@ -40551,7 +41106,7 @@ There can be multiple contacts on an Organizations record with this value set to
         <title value="nationality"/>
         <status value="draft"/>
         <publisher value="HL7"/>
-        <date value="2016-11-16T23:52:25-05:00"/>
+        <date value="2016-11-28T17:29:55-05:00"/>
         <description value="The nationality of the subject."/>
         <fhirVersion value="1.7.0"/>
         <mapping>
@@ -40618,7 +41173,7 @@ There can be multiple contacts on an Organizations record with this value set to
           </element>
           <element id="Extension:nationality.extension">
             <path value="Extension.extension"/>
-            <slicing id="46">
+            <slicing id="48">
               <discriminator value="url"/>
               <ordered value="false"/>
               <rules value="open"/>
@@ -42014,7 +42569,7 @@ There can be multiple contacts on an Organizations record with this value set to
           </element>
           <element id="Extension:individualacceptanceofgoal.extension">
             <path value="Extension.extension"/>
-            <slicing id="66">
+            <slicing id="68">
               <discriminator value="url"/>
               <ordered value="false"/>
               <rules value="open"/>
@@ -42633,7 +43188,7 @@ There can be multiple contacts on an Organizations record with this value set to
         <name value="Descriptors and key terms for search"/>
         <status value="draft"/>
         <publisher value="HL7"/>
-        <date value="2016-11-16T23:52:25-05:00"/>
+        <date value="2016-11-28T17:29:55-05:00"/>
         <description value="Word or words used in an information retrieval system to indicate the content of the value set."/>
         <fhirVersion value="1.7.0"/>
         <mapping>
@@ -43262,7 +43817,7 @@ There can be multiple contacts on an Organizations record with this value set to
           </element>
           <element id="Extension:glstring.extension">
             <path value="Extension.extension"/>
-            <slicing id="52">
+            <slicing id="54">
               <discriminator value="url"/>
               <ordered value="false"/>
               <rules value="open"/>
@@ -43935,7 +44490,7 @@ There can be multiple contacts on an Organizations record with this value set to
             <value value="http://www.hl7.org/Special/committees/security/index.cfm"/>
           </telecom>
         </contact>
-        <date value="2016-11-16T23:52:25-05:00"/>
+        <date value="2016-11-28T17:29:55-05:00"/>
         <description value="A Study Instance ID, which may be used when the Entity type is not (110180, DCM, &quot;Study Instance UID&quot;)."/>
         <fhirVersion value="1.7.0"/>
         <mapping>
@@ -44318,7 +44873,7 @@ There can be multiple contacts on an Organizations record with this value set to
         <title value="citizenship"/>
         <status value="draft"/>
         <publisher value="HL7"/>
-        <date value="2016-11-16T23:52:25-05:00"/>
+        <date value="2016-11-28T17:29:55-05:00"/>
         <description value="The patient&#39;s legal status as citizen of a country."/>
         <fhirVersion value="1.7.0"/>
         <mapping>
@@ -44385,7 +44940,7 @@ There can be multiple contacts on an Organizations record with this value set to
           </element>
           <element id="Extension:nationswherethepatientclaimscitizenship.extension">
             <path value="Extension.extension"/>
-            <slicing id="55">
+            <slicing id="57">
               <discriminator value="url"/>
               <ordered value="false"/>
               <rules value="open"/>
@@ -45758,7 +46313,7 @@ There can be multiple contacts on an Organizations record with this value set to
             <value value="http://www.hl7.org/Special/committees/homehealth/index.cfm"/>
           </telecom>
         </contact>
-        <date value="2016-11-16T23:52:25-05:00"/>
+        <date value="2016-11-28T17:29:55-05:00"/>
         <description value="Reference to the policy or rule in a policy that this exception is made in regard to. This extension would be used in the context where the policy reference in the Consent resource refers to a complex policy based on multiple underlying consent frameworks (e.g. multiple levels of jurisdiction), and there is a need to explicitly identify which underlying source policy an exception regards."/>
         <fhirVersion value="1.7.0"/>
         <mapping>
@@ -46404,7 +46959,7 @@ There can be multiple contacts on an Organizations record with this value set to
           </element>
           <element id="Extension:causesforthiscondition.extension">
             <path value="Extension.extension"/>
-            <slicing id="89">
+            <slicing id="92">
               <discriminator value="url"/>
               <ordered value="false"/>
               <rules value="open"/>
@@ -47504,7 +48059,7 @@ There can be multiple contacts on an Organizations record with this value set to
             <value value="http://www.hl7.org/Special/committees/security/index.cfm"/>
           </telecom>
         </contact>
-        <date value="2016-11-16T23:52:25-05:00"/>
+        <date value="2016-11-28T17:29:55-05:00"/>
         <description value="True or False indicating whether or not the data was encrypted."/>
         <fhirVersion value="1.7.0"/>
         <mapping>
@@ -47682,7 +48237,7 @@ There can be multiple contacts on an Organizations record with this value set to
         <name value="Comparison value for ordinal codes"/>
         <status value="draft"/>
         <publisher value="HL7"/>
-        <date value="2016-11-16T23:52:25-05:00"/>
+        <date value="2016-11-28T17:29:55-05:00"/>
         <description value="A numeric value that allows the comparison (less than, greater than) or other numerical manipulation of a concept (e.g. Adding up components of a score)."/>
         <fhirVersion value="1.7.0"/>
         <mapping>
@@ -47937,7 +48492,7 @@ There can be multiple contacts on an Organizations record with this value set to
           </element>
           <element id="Extension:uscoreraceextension.extension">
             <path value="Extension.extension"/>
-            <slicing id="58">
+            <slicing id="60">
               <discriminator value="url"/>
               <ordered value="false"/>
               <rules value="open"/>
@@ -49113,7 +49668,7 @@ There can be multiple contacts on an Organizations record with this value set to
         <name value="Url of Value set the code was chosen from"/>
         <status value="draft"/>
         <publisher value="HL7"/>
-        <date value="2016-11-16T23:52:25-05:00"/>
+        <date value="2016-11-28T17:29:55-05:00"/>
         <description value="A logical reference (e.g. a reference to CodeSystem.url) that identifies the value set/version that identifies the set of possible coded values this coding was chosen from or constrained by."/>
         <fhirVersion value="1.7.0"/>
         <mapping>
@@ -50018,7 +50573,7 @@ There can be multiple contacts on an Organizations record with this value set to
         <title value="animalSpecies"/>
         <status value="draft"/>
         <publisher value="HL7"/>
-        <date value="2016-11-16T23:52:25-05:00"/>
+        <date value="2016-11-28T17:29:55-05:00"/>
         <description value="This extension should be used to specifiy that a practioner or RelatedPerson resource is a service animal."/>
         <fhirVersion value="1.7.0"/>
         <mapping>
@@ -50283,7 +50838,7 @@ There can be multiple contacts on an Organizations record with this value set to
           </element>
           <element id="Extension:exposureriskofadversereactionallergyorintolerancetothespecifiedsubstance/product.extension">
             <path value="Extension.extension"/>
-            <slicing id="83">
+            <slicing id="86">
               <discriminator value="url"/>
               <ordered value="false"/>
               <rules value="open"/>
@@ -50787,7 +51342,7 @@ There can be multiple contacts on an Organizations record with this value set to
         <name value="If code is case sensitive"/>
         <status value="draft"/>
         <publisher value="HL7"/>
-        <date value="2016-11-16T23:52:25-05:00"/>
+        <date value="2016-11-28T17:29:55-05:00"/>
         <description value="If this a case sensitive code."/>
         <fhirVersion value="1.7.0"/>
         <mapping>
@@ -51300,7 +51855,7 @@ There can be multiple contacts on an Organizations record with this value set to
             <value value="http://www.hl7.org/Special/committees/security/index.cfm"/>
           </telecom>
         </contact>
-        <date value="2016-11-16T23:52:25-05:00"/>
+        <date value="2016-11-28T17:29:55-05:00"/>
         <description value="The Number of SOP Instances referred to by this entity."/>
         <fhirVersion value="1.7.0"/>
         <mapping>
@@ -53827,7 +54382,7 @@ There can be multiple contacts on an Organizations record with this value set to
             <value value="http://www.hl7.org/Special/committees/homehealth/index.cfm"/>
           </telecom>
         </contact>
-        <date value="2016-11-16T23:52:25-05:00"/>
+        <date value="2016-11-28T17:29:55-05:00"/>
         <description value="Any witness to the consent."/>
         <fhirVersion value="1.7.0"/>
         <mapping>
@@ -54744,7 +55299,7 @@ There can be multiple contacts on an Organizations record with this value set to
         <title value="classification"/>
         <status value="draft"/>
         <publisher value="HL7"/>
-        <date value="2016-11-16T23:52:25-05:00"/>
+        <date value="2016-11-28T17:29:55-05:00"/>
         <description value="The more specific service or occupation within the health care provider type of the practitioner at a specific organization unit, for example, counselor."/>
         <fhirVersion value="1.7.0"/>
         <mapping>
@@ -55079,7 +55634,7 @@ There can be multiple contacts on an Organizations record with this value set to
         <title value="Effective Period"/>
         <status value="draft"/>
         <publisher value="HL7"/>
-        <date value="2016-11-16T23:52:25-05:00"/>
+        <date value="2016-11-28T17:29:55-05:00"/>
         <description value="The period during which the resource content was or is planned to be effective."/>
         <fhirVersion value="1.7.0"/>
         <mapping>
@@ -55699,7 +56254,7 @@ There can be multiple contacts on an Organizations record with this value set to
           </element>
           <element id="Extension:theabsolutegeographiclocation.extension">
             <path value="Extension.extension"/>
-            <slicing id="75">
+            <slicing id="78">
               <discriminator value="url"/>
               <ordered value="false"/>
               <rules value="open"/>
@@ -56223,7 +56778,7 @@ There can be multiple contacts on an Organizations record with this value set to
           </element>
           <element id="Extension:analysis.extension">
             <path value="Extension.extension"/>
-            <slicing id="70">
+            <slicing id="72">
               <discriminator value="url"/>
               <ordered value="false"/>
               <rules value="open"/>
@@ -56850,7 +57405,7 @@ There can be multiple contacts on an Organizations record with this value set to
             <value value="http://www.hl7.org/Special/committees/homehealth/index.cfm"/>
           </telecom>
         </contact>
-        <date value="2016-11-16T23:52:25-05:00"/>
+        <date value="2016-11-28T17:29:55-05:00"/>
         <description value="Authorization service that will make decisions consistant with the Consent."/>
         <fhirVersion value="1.7.0"/>
         <mapping>
@@ -57185,7 +57740,7 @@ There can be multiple contacts on an Organizations record with this value set to
         <title value="Approval Date"/>
         <status value="draft"/>
         <publisher value="HL7"/>
-        <date value="2016-11-16T23:52:25-05:00"/>
+        <date value="2016-11-28T17:29:55-05:00"/>
         <description value="The date on which the asset content was approved by the publisher. Approval happens once when the content is officially approved for usage."/>
         <fhirVersion value="1.7.0"/>
         <mapping>
@@ -57906,7 +58461,7 @@ There can be multiple contacts on an Organizations record with this value set to
         <title value="clinicalTrial"/>
         <status value="draft"/>
         <publisher value="HL7"/>
-        <date value="2016-11-16T23:52:25-05:00"/>
+        <date value="2016-11-28T17:29:55-05:00"/>
         <description value="The clinical trials this patient has or is participating in."/>
         <fhirVersion value="1.7.0"/>
         <mapping>
@@ -57973,7 +58528,7 @@ There can be multiple contacts on an Organizations record with this value set to
           </element>
           <element id="Extension:thepatientsparticipationinclinicaltrials.extension">
             <path value="Extension.extension"/>
-            <slicing id="79">
+            <slicing id="82">
               <discriminator value="url"/>
               <ordered value="false"/>
               <rules value="open"/>
@@ -58546,7 +59101,7 @@ There can be multiple contacts on an Organizations record with this value set to
         <name value="Descriptors and key terms for search"/>
         <status value="draft"/>
         <publisher value="HL7"/>
-        <date value="2016-11-16T23:52:25-05:00"/>
+        <date value="2016-11-28T17:29:55-05:00"/>
         <description value="Word or words used in an information retrieval system to indicate the content of the value set."/>
         <fhirVersion value="1.7.0"/>
         <mapping>
@@ -58712,7 +59267,7 @@ There can be multiple contacts on an Organizations record with this value set to
         <title value="Subsumes"/>
         <status value="draft"/>
         <publisher value="HL7"/>
-        <date value="2016-11-16T23:52:25-05:00"/>
+        <date value="2016-11-28T17:29:55-05:00"/>
         <description value="Refers to another code defined within the code system that is also subsumed by this code. I.e. This concept subsumes the referenced concept.  Because meaning is inferred from hierarchy as well as definition, the presence of this extension modifies the meaning of the extended concept."/>
         <fhirVersion value="1.7.0"/>
         <mapping>
@@ -59901,7 +60456,7 @@ There can be multiple contacts on an Organizations record with this value set to
           </element>
           <element id="Extension:goalsrelatedtothisone.extension">
             <path value="Extension.extension"/>
-            <slicing id="76">
+            <slicing id="79">
               <discriminator value="url"/>
               <ordered value="false"/>
               <rules value="open"/>
@@ -60885,7 +61440,7 @@ There can be multiple contacts on an Organizations record with this value set to
         <name value="ValueSet definition used to generate this expansion (logical URL)"/>
         <status value="draft"/>
         <publisher value="HL7"/>
-        <date value="2016-11-16T23:52:25-05:00"/>
+        <date value="2016-11-28T17:29:55-05:00"/>
         <description value="The logical URL of the ValueSet definition that was used to generate this expansion."/>
         <fhirVersion value="1.7.0"/>
         <mapping>
@@ -61329,7 +61884,7 @@ There can be multiple contacts on an Organizations record with this value set to
           </element>
           <element id="Extension:anallowableparametercombination.extension">
             <path value="Extension.extension"/>
-            <slicing id="78">
+            <slicing id="81">
               <discriminator value="url"/>
               <ordered value="false"/>
               <rules value="open"/>
@@ -62203,7 +62758,7 @@ There can be multiple contacts on an Organizations record with this value set to
         <name value="Where did this content come from"/>
         <status value="draft"/>
         <publisher value="HL7"/>
-        <date value="2016-11-16T23:52:25-05:00"/>
+        <date value="2016-11-28T17:29:55-05:00"/>
         <description value="This text is intended to act as a citation to work done elsewhere that is not part of the current stewarding process where the referenced source is in some way a basis of the current value set definition."/>
         <fhirVersion value="1.7.0"/>
         <mapping>
@@ -62550,7 +63105,7 @@ There can be multiple contacts on an Organizations record with this value set to
             <value value="http://www.hl7.org/Special/committees/security/index.cfm"/>
           </telecom>
         </contact>
-        <date value="2016-11-16T23:52:25-05:00"/>
+        <date value="2016-11-28T17:29:55-05:00"/>
         <description value="Th SOP Instance UID values."/>
         <fhirVersion value="1.7.0"/>
         <mapping>
@@ -62806,7 +63361,7 @@ There can be multiple contacts on an Organizations record with this value set to
           </element>
           <element id="Extension:precedentforthiscondition.extension">
             <path value="Extension.extension"/>
-            <slicing id="92">
+            <slicing id="95">
               <discriminator value="url"/>
               <ordered value="false"/>
               <rules value="open"/>
@@ -63331,7 +63886,7 @@ There can be multiple contacts on an Organizations record with this value set to
             <value value="http://www.hl7.org/Special/committees/homehealth/index.cfm"/>
           </telecom>
         </contact>
-        <date value="2016-11-16T23:52:25-05:00"/>
+        <date value="2016-11-28T17:29:55-05:00"/>
         <description value="Endpoint for sending Disclosure notifications in the form of FHIR AuditEvent records."/>
         <fhirVersion value="1.7.0"/>
         <mapping>
@@ -63842,7 +64397,7 @@ There can be multiple contacts on an Organizations record with this value set to
         <title value="disability"/>
         <status value="draft"/>
         <publisher value="HL7"/>
-        <date value="2016-11-16T23:52:25-05:00"/>
+        <date value="2016-11-28T17:29:55-05:00"/>
         <description value="Value(s) identifying physical or mental condition(s) that limits a person&#39;s movements, senses, or activities."/>
         <fhirVersion value="1.7.0"/>
         <mapping>
@@ -64618,7 +65173,7 @@ There can be multiple contacts on an Organizations record with this value set to
           </element>
           <element id="Extension:otherassociatedconditions.extension">
             <path value="Extension.extension"/>
-            <slicing id="72">
+            <slicing id="74">
               <discriminator value="url"/>
               <ordered value="false"/>
               <rules value="open"/>
@@ -64962,7 +65517,7 @@ There can be multiple contacts on an Organizations record with this value set to
         <name value="User or Org actually involved in creating the value set content"/>
         <status value="draft"/>
         <publisher value="HL7"/>
-        <date value="2016-11-16T23:52:25-05:00"/>
+        <date value="2016-11-28T17:29:55-05:00"/>
         <description value="User or Org actually involved in creating the value set content."/>
         <fhirVersion value="1.7.0"/>
         <mapping>
@@ -65299,7 +65854,7 @@ There can be multiple contacts on an Organizations record with this value set to
         <name value="Reference to a trusted expansion"/>
         <status value="draft"/>
         <publisher value="HL7"/>
-        <date value="2016-11-16T23:52:25-05:00"/>
+        <date value="2016-11-28T17:29:55-05:00"/>
         <description value="Indicates an authoritative source for performing value set expansions."/>
         <fhirVersion value="1.7.0"/>
         <mapping>
@@ -66535,7 +67090,7 @@ For Questionnaire:
         <name value="Where to find code system"/>
         <status value="draft"/>
         <publisher value="HL7"/>
-        <date value="2016-11-16T23:52:25-05:00"/>
+        <date value="2016-11-28T17:29:55-05:00"/>
         <description value="The formal URI for the code system.  I.e. ValueSet.codeSystem.system (or its equivalent)."/>
         <fhirVersion value="1.7.0"/>
         <mapping>
@@ -66952,7 +67507,7 @@ For Questionnaire:
           </element>
           <element id="Extension:uscoreethnicityextension.extension">
             <path value="Extension.extension"/>
-            <slicing id="77">
+            <slicing id="80">
               <discriminator value="url"/>
               <ordered value="false"/>
               <rules value="open"/>
@@ -67571,7 +68126,7 @@ For Questionnaire:
         <name value="Who has used and how?"/>
         <status value="draft"/>
         <publisher value="HL7"/>
-        <date value="2016-11-16T23:52:25-05:00"/>
+        <date value="2016-11-28T17:29:55-05:00"/>
         <description value="Consumers of the value set and the implementations, projects or standards that the author has utilized the value set in."/>
         <fhirVersion value="1.7.0"/>
         <mapping>
@@ -67640,7 +68195,7 @@ For Questionnaire:
           </element>
           <element id="Extension:whohasusedandhow?.extension">
             <path value="Extension.extension"/>
-            <slicing id="80">
+            <slicing id="83">
               <discriminator value="url"/>
               <ordered value="false"/>
               <rules value="open"/>
@@ -68443,7 +68998,7 @@ For Questionnaire:
             <value value="http://www.hl7.org/Special/committees/security/index.cfm"/>
           </telecom>
         </contact>
-        <date value="2016-11-16T23:52:25-05:00"/>
+        <date value="2016-11-28T17:29:55-05:00"/>
         <description value="Required if ParticipantObjectIDTypeCode is (110180, DCM, &quot;Study Instance UID&quot;) and any of the optional fields (AccessionNumber, ContainsMPPS, NumberOfInstances, ContainsSOPInstances,Encrypted,Anonymized) are present in this Participant Object. May be present if ParticipantObjectIDTypeCode is (110180, DCM, &quot;Study Instance UID&quot;) even though none of the optional fields are present."/>
         <fhirVersion value="1.7.0"/>
         <mapping>
@@ -68813,7 +69368,7 @@ For Questionnaire:
         <name value="When the value set version becomes Active and is available for use"/>
         <status value="draft"/>
         <publisher value="HL7"/>
-        <date value="2016-11-16T23:52:25-05:00"/>
+        <date value="2016-11-28T17:29:55-05:00"/>
         <description value="This is the first date-time when the value set version becomes active, so this value is present on Inactive value set versions as well. The start Date_time is expected to be as of 0001 UTC of the Effective Date."/>
         <fhirVersion value="1.7.0"/>
         <mapping>
@@ -69674,7 +70229,7 @@ For Questionnaire:
         <title value="importance"/>
         <status value="draft"/>
         <publisher value="HL7"/>
-        <date value="2016-11-16T23:52:25-05:00"/>
+        <date value="2016-11-28T17:29:55-05:00"/>
         <description value="The importance of the patient (e.g. VIP)."/>
         <fhirVersion value="1.7.0"/>
         <mapping>
@@ -70393,7 +70948,7 @@ For Questionnaire:
         <name value="What has happened over time"/>
         <status value="draft"/>
         <publisher value="HL7"/>
-        <date value="2016-11-16T23:52:25-05:00"/>
+        <date value="2016-11-28T17:29:55-05:00"/>
         <description value="Information on changes made to the Value Set Definition over time, and also has a contained audit trail of all such changes."/>
         <fhirVersion value="1.7.0"/>
         <mapping>
@@ -70461,7 +71016,7 @@ For Questionnaire:
           </element>
           <element id="Extension:whathashappenedovertime.extension">
             <path value="Extension.extension"/>
-            <slicing id="87">
+            <slicing id="90">
               <discriminator value="url"/>
               <ordered value="false"/>
               <rules value="open"/>
@@ -70613,7 +71168,7 @@ For Questionnaire:
           </element>
           <element id="Extension:whathashappenedovertime.extension:revision.extension">
             <path value="Extension.extension.extension"/>
-            <slicing id="88">
+            <slicing id="91">
               <discriminator value="url"/>
               <ordered value="false"/>
               <rules value="open"/>
@@ -72671,7 +73226,7 @@ For Questionnaire:
           </element>
           <element id="Extension:theitemstheordererrequested.extension">
             <path value="Extension.extension"/>
-            <slicing id="93">
+            <slicing id="96">
               <discriminator value="url"/>
               <ordered value="false"/>
               <rules value="open"/>
@@ -73713,7 +74268,7 @@ For Questionnaire:
         <name value="When the value set version should no longer be used"/>
         <status value="draft"/>
         <publisher value="HL7"/>
-        <date value="2016-11-16T23:52:25-05:00"/>
+        <date value="2016-11-28T17:29:55-05:00"/>
         <description value="The date when the value set version is no longer expected to be used to create new content. This is the first date-time when the value set version becomes Inactive, so this value MUST present on all Inactive value set versions. The start Date_time is expected to be as of 0001 UTC of the Expiration Date."/>
         <fhirVersion value="1.7.0"/>
         <mapping>

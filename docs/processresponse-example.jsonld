@@ -25,23 +25,6 @@
   "ProcessResponse.status": {
     "code.value": "active"
   },
-  "ProcessResponse.request": {
-    "Reference.reference": {
-      "string.value": "http://happyvalley.com/fhir/claim/12345"
-    },
-    "Resource.reference": "http://happyvalley.com/fhir/claim/12345"
-  },
-  "ProcessResponse.outcome": {
-    "Coding.system": {
-      "uri.value": "http://hl7.org/fhir/processoutcomecodes"
-    },
-    "Coding.code": {
-      "code.value": "complete"
-    }
-  },
-  "ProcessResponse.disposition": {
-    "string.value": "Adjudication processing completed, ClaimResponse and EOB ready for retrieval."
-  },
   "ProcessResponse.created": {
     "dateTime.value": "2014-08-16"
   },
@@ -50,6 +33,27 @@
       "string.value": "Organization/2"
     },
     "Resource.reference": "http://hl7.org/fhir//Organization/2"
+  },
+  "ProcessResponse.request": {
+    "Reference.reference": {
+      "string.value": "http://happyvalley.com/fhir/claim/12345"
+    },
+    "Resource.reference": "http://happyvalley.com/fhir/claim/12345"
+  },
+  "ProcessResponse.outcome": {
+    "CodeableConcept.coding": [
+      {
+        "Coding.system": {
+          "uri.value": "http://hl7.org/fhir/processoutcomecodes"
+        },
+        "Coding.code": {
+          "code.value": "complete"
+        }
+      }
+    ]
+  },
+  "ProcessResponse.disposition": {
+    "string.value": "Adjudication processing completed, ClaimResponse and EOB ready for retrieval."
   },
   "ProcessResponse.requestOrganization": {
     "Reference.reference": {

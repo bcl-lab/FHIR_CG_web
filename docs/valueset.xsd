@@ -27,7 +27,7 @@
   POSSIBILITY OF SUCH DAMAGE.
   
 
-  Generated on Mon, Nov 28, 2016 17:29-0500 for FHIR v1.7.0 
+  Generated on Wed, Dec 7, 2016 14:18-0500 for FHIR v1.8.0 
 
   Note: the schemas &amp; schematrons do not contain all of the rules about what makes resources
   valid. Implementers will still need to be familiar with the content of the specification and with
@@ -157,7 +157,7 @@
         <xs:sequence>
           <xs:element name="lockedDate" minOccurs="0" maxOccurs="1" type="date">
             <xs:annotation>
-              <xs:documentation xml:lang="en">If a locked date is defined, then the Content Logical Definition must be evaluated using the current version of all referenced code system(s) and value set instances as of the locked date.</xs:documentation>
+              <xs:documentation xml:lang="en">If a locked date is defined, then the Content Logical Definition must be evaluated using the current version as of the locked date for referenced code system(s) and value set instances where ValueSet.compose.include.version is not defined.</xs:documentation>
            </xs:annotation>
           </xs:element>
           <xs:element name="inactive" minOccurs="0" maxOccurs="1" type="boolean">
@@ -452,6 +452,11 @@
       <xs:enumeration value="generalizes">
         <xs:annotation>
           <xs:documentation xml:lang="en">Generalizes (by Subsumption)</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="exists">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Exists</xs:documentation>
         </xs:annotation>
       </xs:enumeration>
     </xs:restriction>

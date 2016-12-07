@@ -3,7 +3,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>Researchstudy.shex - FHIR v1.7.0</title>
+  <title>Researchstudy.shex - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -138,7 +138,7 @@ start=@&lt;ResearchStudy&gt; AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
                                             # implementations 
     fhir:modifierExtension @&lt;Extension&gt;*;   # Extensions that cannot be ignored
-    fhir:ResearchStudy.identifier @&lt;Identifier&gt;?;  # Business Identifer for study
+    fhir:ResearchStudy.identifier @&lt;Identifier&gt;*;  # Business Identifer for study
     fhir:ResearchStudy.title @&lt;string&gt;?;    # Name for this study
     fhir:ResearchStudy.protocol @&lt;Reference&gt;*;  # Steps followed in executing study
     fhir:ResearchStudy.partOf @&lt;Reference&gt;*;  # Part of larger study
@@ -158,7 +158,7 @@ start=@&lt;ResearchStudy&gt; AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:ResearchStudy.period @&lt;Period&gt;?;   # When the study began and ended
     fhir:ResearchStudy.sponsor @&lt;Reference&gt;?;  # Organization responsible for the 
                                             # study 
-    fhir:ResearchStudy.principleInvestigator @&lt;Reference&gt;?;  # Individual responsible for the 
+    fhir:ResearchStudy.principalInvestigator @&lt;Reference&gt;?;  # Individual responsible for the 
                                             # study 
     fhir:ResearchStudy.site @&lt;Reference&gt;*;  # Location involved in study 
                                             # execution 
@@ -416,7 +416,8 @@ start=@&lt;ResearchStudy&gt; AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
                                             # implementations 
     fhir:ContactPoint.system @&lt;code&gt; AND
-    	{fhir:value @fhirvs:contact-point-system}?;  # phone | fax | email | pager | other
+    	{fhir:value @fhirvs:contact-point-system}?;  # phone | fax | email | pager | url 
+                                            # | other 
     fhir:ContactPoint.value @&lt;string&gt;?;     # The actual contact point details
     fhir:ContactPoint.use @&lt;code&gt; AND
     	{fhir:value @fhirvs:contact-point-use}?;  # home | work | temp | old | mobile 
@@ -483,23 +484,23 @@ start=@&lt;ResearchStudy&gt; AND {fhir:nodeRole [fhir:treeRoot]}
 
 #---------------------- Value Sets ------------------------
 
-# The type of relationship to the related artifact
-fhirvs:related-artifact-type [&quot;documentation&quot; &quot;justification&quot; &quot;citation&quot; &quot;predecessor&quot; &quot;successor&quot; &quot;derived-from&quot; &quot;depends-on&quot; &quot;composed-of&quot;]
-
-# Telecommunications form for contact point
-fhirvs:contact-point-system [&quot;phone&quot; &quot;fax&quot; &quot;email&quot; &quot;pager&quot; &quot;other&quot;]
-
-# Identifies the purpose for this identifier, if known .
-fhirvs:identifier-use [&quot;usual&quot; &quot;official&quot; &quot;temp&quot; &quot;secondary&quot;]
-
-# The status of a resource narrative
-fhirvs:narrative-status [&quot;generated&quot; &quot;extensions&quot; &quot;additional&quot; &quot;empty&quot;]
+# Codes that convey the current status of the research study
+fhirvs:research-study-status [&quot;draft&quot; &quot;in-progress&quot; &quot;suspended&quot; &quot;stopped&quot; &quot;completed&quot; &quot;entered-in-error&quot;]
 
 # Use of contact point
 fhirvs:contact-point-use [&quot;home&quot; &quot;work&quot; &quot;temp&quot; &quot;old&quot; &quot;mobile&quot;]
 
-# Codes that convey the current status of the research study
-fhirvs:research-study-status [&quot;draft&quot; &quot;in-progress&quot; &quot;suspended&quot; &quot;stopped&quot; &quot;completed&quot; &quot;entered-in-error&quot;]
+# Telecommunications form for contact point
+fhirvs:contact-point-system [&quot;phone&quot; &quot;fax&quot; &quot;email&quot; &quot;pager&quot; &quot;url&quot; &quot;other&quot;]
+
+# Identifies the purpose for this identifier, if known .
+fhirvs:identifier-use [&quot;usual&quot; &quot;official&quot; &quot;temp&quot; &quot;secondary&quot;]
+
+# The type of relationship to the related artifact
+fhirvs:related-artifact-type [&quot;documentation&quot; &quot;justification&quot; &quot;citation&quot; &quot;predecessor&quot; &quot;successor&quot; &quot;derived-from&quot; &quot;depends-on&quot; &quot;composed-of&quot;]
+
+# The status of a resource narrative
+fhirvs:narrative-status [&quot;generated&quot; &quot;extensions&quot; &quot;additional&quot; &quot;empty&quot;]
 
 </pre>
 </div>
@@ -525,7 +526,7 @@ of the specification.
 		<div class="container"><!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:33-0500. <a href="qa.html">QA Page</a>
+        © HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:28-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search</a> | 

@@ -3,7 +3,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>V3-ObservationValue.cs.json - FHIR v1.7.0</title>
+  <title>V3-ObservationValue.cs.json - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -120,7 +120,7 @@ Description copied from Concept Domain of same name.  Must be corrected..</p>
   &quot;resourceType&quot;: &quot;CodeSystem&quot;,
   &quot;id&quot;: &quot;v3-ObservationValue&quot;,
   &quot;meta&quot;: {
-    &quot;lastUpdated&quot;: &quot;2016-03-23T00:00:00.000-04:00&quot;
+    &quot;lastUpdated&quot;: &quot;2016-11-11T00:00:00.000-05:00&quot;
   },
   &quot;text&quot;: {
     &quot;status&quot;: &quot;generated&quot;,
@@ -131,7 +131,7 @@ Description copied from Concept Domain of same name.  Must be corrected..</p>
     &quot;system&quot;: &quot;urn:ietf:rfc:3986&quot;,
     &quot;value&quot;: &quot;urn:oid:2.16.840.1.113883.5.1063&quot;
   },
-  &quot;version&quot;: &quot;2016-03-23&quot;,
+  &quot;version&quot;: &quot;2016-11-11&quot;,
   &quot;name&quot;: &quot;v3 Code System ObservationValue&quot;,
   &quot;status&quot;: &quot;active&quot;,
   &quot;experimental&quot;: false,
@@ -140,17 +140,17 @@ Description copied from Concept Domain of same name.  Must be corrected..</p>
     {
       &quot;telecom&quot;: [
         {
-          &quot;system&quot;: &quot;other&quot;,
+          &quot;system&quot;: &quot;url&quot;,
           &quot;value&quot;: &quot;http://hl7.org&quot;
         }
       ]
     }
   ],
-  &quot;date&quot;: &quot;2016-03-23T00:00:00-04:00&quot;,
+  &quot;date&quot;: &quot;2016-11-11T00:00:00-05:00&quot;,
   &quot;description&quot;: &quot; This domain is the root domain to which all HL7-recognized value sets for the Observation.value attribute will be linked when Observation.value has a coded data type.  OpenIssue:\r\nDescription copied from Concept Domain of same name.  Must be corrected..&quot;,
   &quot;caseSensitive&quot;: true,
   &quot;valueSet&quot;: &quot;http://hl7.org/fhir/ValueSet/v3-ObservationValue&quot;,
-  &quot;hierarchyMeaning&quot;: &quot;subsumes&quot;,
+  &quot;hierarchyMeaning&quot;: &quot;is-a&quot;,
   &quot;content&quot;: &quot;complete&quot;,
   &quot;property&quot;: [
     {
@@ -564,6 +564,39 @@ Description copied from Concept Domain of same name.  Must be corrected..</p>
       ]
     },
     {
+      &quot;code&quot;: &quot;_CompositeMeasureScoring&quot;,
+      &quot;display&quot;: &quot;CompositeMeasureScoring&quot;,
+      &quot;definition&quot;: &quot;Observation values that communicate the method used in a quality measure to combine the component measure results included in an composite measure.&quot;,
+      &quot;property&quot;: [
+        {
+          &quot;code&quot;: &quot;notSelectable&quot;,
+          &quot;valueBoolean&quot;: true
+        }
+      ],
+      &quot;concept&quot;: [
+        {
+          &quot;code&quot;: &quot;ALLORNONESCR&quot;,
+          &quot;display&quot;: &quot;All-or-nothing Scoring&quot;,
+          &quot;definition&quot;: &quot;Code specifying that the measure uses all-or-nothing scoring. All-or-nothing scoring places an individual in the numerator of the composite measure if and only if they are in the numerator of all component measures in which they are in the denominator.&quot;
+        },
+        {
+          &quot;code&quot;: &quot;LINEARSCR&quot;,
+          &quot;display&quot;: &quot;Linear Scoring&quot;,
+          &quot;definition&quot;: &quot;Code specifying that the measure uses linear scoring. Linear scoring computes the fraction of component measures in which the individual appears in the numerator, giving equal weight to each component measure.&quot;
+        },
+        {
+          &quot;code&quot;: &quot;OPPORSCR&quot;,
+          &quot;display&quot;: &quot;Opportunity Scoring&quot;,
+          &quot;definition&quot;: &quot;Code specifying that the measure uses opportunity-based scoring. In opportunity-based scoring the measure score is determined by combining the denominator and numerator of each component measure to determine an overall composite score.&quot;
+        },
+        {
+          &quot;code&quot;: &quot;WEIGHTSCR&quot;,
+          &quot;display&quot;: &quot;Weighted Scoring&quot;,
+          &quot;definition&quot;: &quot;Code specifying that the measure uses weighted scoring. Weighted scoring assigns a factor to each component measure to weight that measure's contribution to the overall score.&quot;
+        }
+      ]
+    },
+    {
       &quot;code&quot;: &quot;_CoverageLimitObservationValue&quot;,
       &quot;display&quot;: &quot;CoverageLimitObservationValue&quot;,
       &quot;definition&quot;: &quot;Description:Coded observation values for coverage limitations, for e.g., types of claims or types of parties covered under a policy or program.&quot;,
@@ -963,7 +996,7 @@ Description copied from Concept Domain of same name.  Must be corrected..</p>
                 {
                   &quot;code&quot;: &quot;PSEUDED&quot;,
                   &quot;display&quot;: &quot;pseudonymized&quot;,
-                  &quot;definition&quot;: &quot;Security metadata observation value conveying the alteration integrity of an IT resource (data, information object, service, or system capability), by indicating the mechanism by which software systems can strip portions of the resource that could allow the identification of the source of the information or the information subject.  Custodian may retain a key to relink data necessary to reidentify the information subject.\r\n\n                        \n                           Rationale: Personal data which has been processed to make it impossible to know whose data it is. Used particularly for secondary use of health data. In some cases, it may be possible for authorized individuals to restore the identity of the individual, e.g.,for public health case management.  Based on ISO/TS 25237:2008 Health informatics Pseudonymization&quot;
+                  &quot;definition&quot;: &quot;Security metadata observation value conveying the alteration integrity of an IT resource (data, information object, service, or system capability), by indicating the mechanism by which software systems can strip portions of the resource that could allow the identification of the source of the information or the information subject.  Custodian may retain a key to relink data necessary to reidentify the information subject.\r\n\n                        \n                           Rationale: Personal data which has been processed to make it impossible to know whose data it is. Used particularly for secondary use of health data. In some cases, it may be possible for authorized individuals to restore the identity of the individual, e.g.,for public health case management.  Based on ISO/TS 25237:2008 Health informaticsâ€”Pseudonymization&quot;
                 },
                 {
                   &quot;code&quot;: &quot;REDACTED&quot;,
@@ -1235,7 +1268,7 @@ Description copied from Concept Domain of same name.  Must be corrected..</p>
                     {
                       &quot;code&quot;: &quot;LOAAN4&quot;,
                       &quot;display&quot;: &quot;high authentication level of assurance&quot;,
-                      &quot;definition&quot;: &quot;Indicator of high digital quality or reliability of the digital reliability of the verification and validation process used to verify the claimed identity of an entity by securely associating an identifier and its authenticator. [Based on ISO 7498-2] \r\n\n                        The degree of confidence in the vetting process used to establish the identity of the individual to whom the credential was issued, and 2) the degree of confidence that the individual who uses the credential is the individual to whom the credential was issued. [OMB M-04-04 E-Authentication Guidance for Federal Agencies]\r\n\n                        High authentication level of assurance indicates that the relying party may have very high confidence in the asserted identity's validity. Level 4 is for transactions that need very high confidence in the accuracy of the asserted identity. Level 4 provides the highest practical assurance of remote network authentication. Authentication is based on proof of possession of a key through a cryptographic protocol. This level is similar to Level 3 except that only hard cryptographic tokens are allowed, cryptographic module validation requirements are strengthened, and subsequent critical data transfers must be authenticated via a key that is bound to the authentication process. The token should be a hardware cryptographic module validated at FIPS 140-2 Level 2 or higher overall with at least FIPS 140-2 Level 3 physical security. This level requires a physical token, which cannot readily be copied, and operator authentication at Level 2 and higher, and ensures good, two-factor remote authentication.\r\n\n                        Level 4 requires strong cryptographic authentication of all parties and all sensitive data transfers between the parties. Either public key or symmetric key technology may be used. Authentication requires that the claimant prove through a secure authentication protocol that the claimant controls the token. Eavesdropper, replay, online guessing, verifier impersonation, and man-in-the-middle attacks are prevented. Long-term shared authentication secrets, if used, are never revealed to any party except the claimant and verifiers operated directly by the CSP; however, session (temporary) shared secrets may be provided to independent verifiers by the CSP. Strong approved cryptographic techniques are used for all operations. All sensitive data transfers are cryptographically authenticated using keys bound to the authentication process.   [Summary of the technical requirements specified in NIST SP 800-63 for the four levels of assurance defined by the December 2003, the Office of Management and Budget (OMB) issued Memorandum M-04-04, E-Authentication Guidance for Federal Agencies.]&quot;
+                      &quot;definition&quot;: &quot;Indicator of high digital quality or reliability of the digital reliability of the verification and validation process used to verify the claimed identity of an entity by securely associating an identifier and its authenticator. [Based on ISO 7498-2] \r\n\n                        The degree of confidence in the vetting process used to establish the identity of the individual to whom the credential was issued, and 2) the degree of confidence that the individual who uses the credential is the individual to whom the credential was issued. [OMB M-04-04 E-Authentication Guidance for Federal Agencies]\r\n\n                        High authentication level of assurance indicates that the relying party may have very high confidence in the asserted identity's validity. Level 4 is for transactions that need very high confidence in the accuracy of the asserted identity. Level 4 provides the highest practical assurance of remote network authentication. Authentication is based on proof of possession of a key through a cryptographic protocol. This level is similar to Level 3 except that only â€œhardâ€? cryptographic tokens are allowed, cryptographic module validation requirements are strengthened, and subsequent critical data transfers must be authenticated via a key that is bound to the authentication process. The token should be a hardware cryptographic module validated at FIPS 140-2 Level 2 or higher overall with at least FIPS 140-2 Level 3 physical security. This level requires a physical token, which cannot readily be copied, and operator authentication at Level 2 and higher, and ensures good, two-factor remote authentication.\r\n\n                        Level 4 requires strong cryptographic authentication of all parties and all sensitive data transfers between the parties. Either public key or symmetric key technology may be used. Authentication requires that the claimant prove through a secure authentication protocol that the claimant controls the token. Eavesdropper, replay, online guessing, verifier impersonation, and man-in-the-middle attacks are prevented. Long-term shared authentication secrets, if used, are never revealed to any party except the claimant and verifiers operated directly by the CSP; however, session (temporary) shared secrets may be provided to independent verifiers by the CSP. Strong approved cryptographic techniques are used for all operations. All sensitive data transfers are cryptographically authenticated using keys bound to the authentication process.   [Summary of the technical requirements specified in NIST SP 800-63 for the four levels of assurance defined by the December 2003, the Office of Management and Budget (OMB) issued Memorandum M-04-04, E-Authentication Guidance for Federal Agencies.]&quot;
                     }
                   ]
                 },
@@ -1627,7 +1660,7 @@ Description copied from Concept Domain of same name.  Must be corrected..</p>
           &quot;valueBoolean&quot;: true
         },
         {
-          &quot;code&quot;: &quot;notSelectable&quot;,
+          &quot;code&quot;: &quot;inactive&quot;,
           &quot;valueBoolean&quot;: true
         }
       ]
@@ -1642,7 +1675,7 @@ Description copied from Concept Domain of same name.  Must be corrected..</p>
           &quot;valueBoolean&quot;: true
         },
         {
-          &quot;code&quot;: &quot;notSelectable&quot;,
+          &quot;code&quot;: &quot;inactive&quot;,
           &quot;valueBoolean&quot;: true
         }
       ]
@@ -1657,7 +1690,7 @@ Description copied from Concept Domain of same name.  Must be corrected..</p>
           &quot;valueBoolean&quot;: true
         },
         {
-          &quot;code&quot;: &quot;notSelectable&quot;,
+          &quot;code&quot;: &quot;inactive&quot;,
           &quot;valueBoolean&quot;: true
         }
       ]
@@ -1672,7 +1705,7 @@ Description copied from Concept Domain of same name.  Must be corrected..</p>
           &quot;valueBoolean&quot;: true
         },
         {
-          &quot;code&quot;: &quot;notSelectable&quot;,
+          &quot;code&quot;: &quot;inactive&quot;,
           &quot;valueBoolean&quot;: true
         }
       ]
@@ -1703,7 +1736,7 @@ of the specification.
 		<div class="container"><!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:33-0500. <a href="../../qa.html">QA Page</a>
+        © HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:28-0500. <a href="../../qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search</a> | 

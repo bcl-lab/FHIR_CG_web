@@ -5,17 +5,39 @@
   <contained>
     <ValueSet>
       <id value="vs2"/>
-      <name value="Type options for Coverage.issuer"/>
+      <name value="Type options for Coverage.policyHolder"/>
       <status value="active"/>
-      <description value="Type options for Coverage.issuer"/>
+      <description value="Type options for Coverage.policyHolder"/>
       <expansion>
-        <identifier value="urn:uuid:061e3af8-6554-4761-b4fa-7dbb1a5831f4"/>
-        <timestamp value="2016-11-28T17:32:30-05:00"/>
+        <identifier value="urn:uuid:6ccb22fc-ffe3-4d39-8c8d-41644ebcd1f1"/>
+        <timestamp value="2016-12-07T14:21:38-05:00"/>
+        <contains>
+          <system value="http://hl7.org/fhir/resource-types"/>
+          <code value="Patient"/>
+          <display value="Patient"/>
+        </contains>
+        <contains>
+          <system value="http://hl7.org/fhir/resource-types"/>
+          <code value="RelatedPerson"/>
+          <display value="RelatedPerson"/>
+        </contains>
         <contains>
           <system value="http://hl7.org/fhir/resource-types"/>
           <code value="Organization"/>
           <display value="Organization"/>
         </contains>
+      </expansion>
+    </ValueSet>
+  </contained>
+  <contained>
+    <ValueSet>
+      <id value="vs3"/>
+      <name value="Type options for Coverage.subscriber"/>
+      <status value="active"/>
+      <description value="Type options for Coverage.subscriber"/>
+      <expansion>
+        <identifier value="urn:uuid:2e31d770-b6c7-437d-a992-12cdf8cf7ebf"/>
+        <timestamp value="2016-12-07T14:21:38-05:00"/>
         <contains>
           <system value="http://hl7.org/fhir/resource-types"/>
           <code value="Patient"/>
@@ -31,13 +53,18 @@
   </contained>
   <contained>
     <ValueSet>
-      <id value="vs3"/>
-      <name value="Type options for Coverage.planholder"/>
+      <id value="vs4"/>
+      <name value="Type options for Coverage.payor"/>
       <status value="active"/>
-      <description value="Type options for Coverage.planholder"/>
+      <description value="Type options for Coverage.payor"/>
       <expansion>
-        <identifier value="urn:uuid:7f221082-f044-442f-8c2d-05521fb28b6c"/>
-        <timestamp value="2016-11-28T17:32:30-05:00"/>
+        <identifier value="urn:uuid:0c8a5d1f-f8df-4384-b3c2-599f4aa8f83e"/>
+        <timestamp value="2016-12-07T14:21:38-05:00"/>
+        <contains>
+          <system value="http://hl7.org/fhir/resource-types"/>
+          <code value="Organization"/>
+          <display value="Organization"/>
+        </contains>
         <contains>
           <system value="http://hl7.org/fhir/resource-types"/>
           <code value="Patient"/>
@@ -48,11 +75,6 @@
           <code value="RelatedPerson"/>
           <display value="RelatedPerson"/>
         </contains>
-        <contains>
-          <system value="http://hl7.org/fhir/resource-types"/>
-          <code value="Organization"/>
-          <display value="Organization"/>
-        </contains>
       </expansion>
     </ValueSet>
   </contained>
@@ -60,7 +82,7 @@
     <system value="urn:ietf:rfc:3986"/>
   </identifier>
   <status value="draft"/>
-  <date value="2016-11-28T17:29:55-05:00"/>
+  <date value="2016-12-07T14:18:58-05:00"/>
   <publisher value="Health Level Seven International (Financial Management)"/>
   <item>
     <linkId value="Coverage"/>
@@ -302,7 +324,7 @@
             </coding>
           </valueCodeableConcept>
         </extension>
-        <text value="The main (and possibly only) identifier for the coverage - often referred to as a Member Id, Subscriber Id, Certificate number or Personal Health Number or Case ID."/>
+        <text value="The main (and possibly only) identifier for the coverage - often referred to as a Member Id, Certificate number, Personal Health Number or Case ID. May be constructed as the concatination of the Coverage.SubscriberID and the Coverage.dependant."/>
         <type value="display"/>
       </item>
       <item>
@@ -363,8 +385,11 @@
       <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs">
         <valueInteger value="1"/>
       </extension>
-      <linkId value="Coverage.issuer"/>
-      <text value="Identifier for the plan or agreement issuer"/>
+      <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
+        <valueString value="CodeableConcept"/>
+      </extension>
+      <linkId value="Coverage.type"/>
+      <text value="Type of coverage"/>
       <type value="group"/>
       <required value="false"/>
       <repeats value="true"/>
@@ -378,11 +403,48 @@
             </coding>
           </valueCodeableConcept>
         </extension>
-        <text value="The program or plan underwriter or payor including both insurance and non-insurance agreements, such as patient-pay agreements."/>
+        <text value="The type of coverage: social program, medical plan, accident coverage (workers compensation, auto), group health or payment by an individual or organization."/>
         <type value="display"/>
       </item>
       <item>
-        <linkId value="Coverage.issuer._type"/>
+        <linkId value="Coverage.type.coding"/>
+        <text value="code:"/>
+        <type value="open-choice"/>
+        <required value="false"/>
+        <repeats value="false"/>
+      </item>
+      <item>
+        <linkId value="Coverage.type.text"/>
+        <text value="text:"/>
+        <type value="string"/>
+        <required value="false"/>
+        <repeats value="false"/>
+      </item>
+    </item>
+    <item>
+      <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs">
+        <valueInteger value="1"/>
+      </extension>
+      <linkId value="Coverage.policyHolder"/>
+      <text value="Owner of the policy"/>
+      <type value="group"/>
+      <required value="false"/>
+      <repeats value="true"/>
+      <item>
+        <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl">
+          <valueCodeableConcept>
+            <coding>
+              <system value="http://hl7.org/fhir/questionnaire-item-control"/>
+              <code value="flyover"/>
+              <display value="Fly-over"/>
+            </coding>
+          </valueCodeableConcept>
+        </extension>
+        <text value="The party who &#39;owns&#39; the insurance policy,  may be an individual, corporation or the subscriber&#39;s employer."/>
+        <type value="display"/>
+      </item>
+      <item>
+        <linkId value="Coverage.policyHolder._type"/>
         <text value="type"/>
         <type value="choice"/>
         <required value="false"/>
@@ -394,27 +456,7 @@
           <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
             <valueString value="Reference"/>
           </extension>
-          <linkId value="Coverage.issuer._Organization"/>
-          <type value="group"/>
-          <item>
-            <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-allowedResource">
-              <valueCode value="Organization"/>
-            </extension>
-            <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-referenceFilter">
-              <valueString value="subject=$subj&amp;patient=$subj&amp;encounter=$encounter"/>
-            </extension>
-            <linkId value="Coverage.issuer._Organization.value"/>
-            <text value="Organization"/>
-            <type value="reference"/>
-            <required value="false"/>
-            <repeats value="false"/>
-          </item>
-        </item>
-        <item>
-          <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
-            <valueString value="Reference"/>
-          </extension>
-          <linkId value="Coverage.issuer._Patient"/>
+          <linkId value="Coverage.policyHolder._Patient"/>
           <type value="group"/>
           <item>
             <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-allowedResource">
@@ -423,7 +465,7 @@
             <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-referenceFilter">
               <valueString value="subject=$subj&amp;patient=$subj&amp;encounter=$encounter"/>
             </extension>
-            <linkId value="Coverage.issuer._Patient.value"/>
+            <linkId value="Coverage.policyHolder._Patient.value"/>
             <text value="Patient"/>
             <type value="reference"/>
             <required value="false"/>
@@ -434,7 +476,7 @@
           <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
             <valueString value="Reference"/>
           </extension>
-          <linkId value="Coverage.issuer._RelatedPerson"/>
+          <linkId value="Coverage.policyHolder._RelatedPerson"/>
           <type value="group"/>
           <item>
             <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-allowedResource">
@@ -443,7 +485,100 @@
             <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-referenceFilter">
               <valueString value="subject=$subj&amp;patient=$subj&amp;encounter=$encounter"/>
             </extension>
-            <linkId value="Coverage.issuer._RelatedPerson.value"/>
+            <linkId value="Coverage.policyHolder._RelatedPerson.value"/>
+            <text value="RelatedPerson"/>
+            <type value="reference"/>
+            <required value="false"/>
+            <repeats value="false"/>
+          </item>
+        </item>
+        <item>
+          <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
+            <valueString value="Reference"/>
+          </extension>
+          <linkId value="Coverage.policyHolder._Organization"/>
+          <type value="group"/>
+          <item>
+            <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-allowedResource">
+              <valueCode value="Organization"/>
+            </extension>
+            <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-referenceFilter">
+              <valueString value="subject=$subj&amp;patient=$subj&amp;encounter=$encounter"/>
+            </extension>
+            <linkId value="Coverage.policyHolder._Organization.value"/>
+            <text value="Organization"/>
+            <type value="reference"/>
+            <required value="false"/>
+            <repeats value="false"/>
+          </item>
+        </item>
+      </item>
+    </item>
+    <item>
+      <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs">
+        <valueInteger value="1"/>
+      </extension>
+      <linkId value="Coverage.subscriber"/>
+      <text value="Subscriber to the policy"/>
+      <type value="group"/>
+      <required value="false"/>
+      <repeats value="true"/>
+      <item>
+        <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl">
+          <valueCodeableConcept>
+            <coding>
+              <system value="http://hl7.org/fhir/questionnaire-item-control"/>
+              <code value="flyover"/>
+              <display value="Fly-over"/>
+            </coding>
+          </valueCodeableConcept>
+        </extension>
+        <text value="The party who has signed-up for or &#39;owns&#39; the contractual relationship to the policy or to whom the benefit of the policy for services rendered to them or their family is due."/>
+        <type value="display"/>
+      </item>
+      <item>
+        <linkId value="Coverage.subscriber._type"/>
+        <text value="type"/>
+        <type value="choice"/>
+        <required value="false"/>
+        <repeats value="false"/>
+        <options>
+          <reference value="#vs3"/>
+        </options>
+        <item>
+          <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
+            <valueString value="Reference"/>
+          </extension>
+          <linkId value="Coverage.subscriber._Patient"/>
+          <type value="group"/>
+          <item>
+            <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-allowedResource">
+              <valueCode value="Patient"/>
+            </extension>
+            <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-referenceFilter">
+              <valueString value="subject=$subj&amp;patient=$subj&amp;encounter=$encounter"/>
+            </extension>
+            <linkId value="Coverage.subscriber._Patient.value"/>
+            <text value="Patient"/>
+            <type value="reference"/>
+            <required value="false"/>
+            <repeats value="false"/>
+          </item>
+        </item>
+        <item>
+          <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
+            <valueString value="Reference"/>
+          </extension>
+          <linkId value="Coverage.subscriber._RelatedPerson"/>
+          <type value="group"/>
+          <item>
+            <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-allowedResource">
+              <valueCode value="RelatedPerson"/>
+            </extension>
+            <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-referenceFilter">
+              <valueString value="subject=$subj&amp;patient=$subj&amp;encounter=$encounter"/>
+            </extension>
+            <linkId value="Coverage.subscriber._RelatedPerson.value"/>
             <text value="RelatedPerson"/>
             <type value="reference"/>
             <required value="false"/>
@@ -457,9 +592,9 @@
         <valueInteger value="1"/>
       </extension>
       <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
-        <valueString value="boolean"/>
+        <valueString value="string"/>
       </extension>
-      <linkId value="Coverage.isAgreement"/>
+      <linkId value="Coverage.subscriberId"/>
       <type value="group"/>
       <required value="false"/>
       <repeats value="true"/>
@@ -473,13 +608,91 @@
             </coding>
           </valueCodeableConcept>
         </extension>
-        <text value="A self, or other, payment agreement not an insurance policy."/>
+        <text value="The insurer assigned ID for the Subscriber."/>
         <type value="display"/>
       </item>
       <item>
-        <linkId value="Coverage.isAgreement.value"/>
-        <text value="Is a Payment Agreement"/>
-        <type value="boolean"/>
+        <linkId value="Coverage.subscriberId.value"/>
+        <text value="ID assigned to the Subscriber"/>
+        <type value="string"/>
+        <required value="false"/>
+        <repeats value="false"/>
+      </item>
+    </item>
+    <item>
+      <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs">
+        <valueInteger value="1"/>
+      </extension>
+      <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
+        <valueString value="Reference"/>
+      </extension>
+      <linkId value="Coverage.beneficiary"/>
+      <type value="group"/>
+      <required value="false"/>
+      <repeats value="true"/>
+      <item>
+        <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl">
+          <valueCodeableConcept>
+            <coding>
+              <system value="http://hl7.org/fhir/questionnaire-item-control"/>
+              <code value="flyover"/>
+              <display value="Fly-over"/>
+            </coding>
+          </valueCodeableConcept>
+        </extension>
+        <text value="The party who benefits from the insurance coverage., the patient when services are provided."/>
+        <type value="display"/>
+      </item>
+      <item>
+        <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-allowedResource">
+          <valueCode value="Patient"/>
+        </extension>
+        <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-referenceFilter">
+          <valueString value="subject=$subj&amp;patient=$subj&amp;encounter=$encounter"/>
+        </extension>
+        <linkId value="Coverage.beneficiary.value"/>
+        <text value="Plan Beneficiary"/>
+        <type value="reference"/>
+        <required value="false"/>
+        <repeats value="false"/>
+      </item>
+    </item>
+    <item>
+      <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs">
+        <valueInteger value="1"/>
+      </extension>
+      <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
+        <valueString value="CodeableConcept"/>
+      </extension>
+      <linkId value="Coverage.relationship"/>
+      <text value="Beneficiary relationship to the Subscriber"/>
+      <type value="group"/>
+      <required value="false"/>
+      <repeats value="true"/>
+      <item>
+        <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl">
+          <valueCodeableConcept>
+            <coding>
+              <system value="http://hl7.org/fhir/questionnaire-item-control"/>
+              <code value="flyover"/>
+              <display value="Fly-over"/>
+            </coding>
+          </valueCodeableConcept>
+        </extension>
+        <text value="The relationship of beneficiary (patient) to the subscriber."/>
+        <type value="display"/>
+      </item>
+      <item>
+        <linkId value="Coverage.relationship.coding"/>
+        <text value="code:"/>
+        <type value="open-choice"/>
+        <required value="false"/>
+        <repeats value="false"/>
+      </item>
+      <item>
+        <linkId value="Coverage.relationship.text"/>
+        <text value="text:"/>
+        <type value="string"/>
         <required value="false"/>
         <repeats value="false"/>
       </item>
@@ -525,13 +738,8 @@
       </item>
     </item>
     <item>
-      <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs">
-        <valueInteger value="1"/>
-      </extension>
-      <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
-        <valueString value="Coding"/>
-      </extension>
-      <linkId value="Coverage.type"/>
+      <linkId value="Coverage.payor"/>
+      <text value="Identifier for the plan or agreement issuer"/>
       <type value="group"/>
       <required value="false"/>
       <repeats value="true"/>
@@ -545,53 +753,43 @@
             </coding>
           </valueCodeableConcept>
         </extension>
-        <text value="The type of coverage: social program, medical plan, accident coverage (workers compensation, auto), group health."/>
+        <text value="The program or plan underwriter or payor including both insurance and non-insurance agreements, such as patient-pay agreements. May provide multiple identifiers such as insurance company identifier or business identifier (BIN number)."/>
         <type value="display"/>
       </item>
       <item>
-        <linkId value="Coverage.type.value"/>
-        <text value="Type of coverage"/>
-        <type value="open-choice"/>
-        <required value="false"/>
-        <repeats value="false"/>
-      </item>
-    </item>
-    <item>
-      <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs">
-        <valueInteger value="1"/>
-      </extension>
-      <linkId value="Coverage.planholder"/>
-      <text value="Plan holder"/>
-      <type value="group"/>
-      <required value="false"/>
-      <repeats value="true"/>
-      <item>
-        <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl">
-          <valueCodeableConcept>
-            <coding>
-              <system value="http://hl7.org/fhir/questionnaire-item-control"/>
-              <code value="flyover"/>
-              <display value="Fly-over"/>
-            </coding>
-          </valueCodeableConcept>
-        </extension>
-        <text value="The party who &#39;owns&#39; the insurance contractual relationship to the policy or to whom the benefit of the policy is due."/>
-        <type value="display"/>
-      </item>
-      <item>
-        <linkId value="Coverage.planholder._type"/>
+        <linkId value="Coverage.payor._type"/>
         <text value="type"/>
         <type value="choice"/>
         <required value="false"/>
         <repeats value="false"/>
         <options>
-          <reference value="#vs3"/>
+          <reference value="#vs4"/>
         </options>
         <item>
           <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
             <valueString value="Reference"/>
           </extension>
-          <linkId value="Coverage.planholder._Patient"/>
+          <linkId value="Coverage.payor._Organization"/>
+          <type value="group"/>
+          <item>
+            <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-allowedResource">
+              <valueCode value="Organization"/>
+            </extension>
+            <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-referenceFilter">
+              <valueString value="subject=$subj&amp;patient=$subj&amp;encounter=$encounter"/>
+            </extension>
+            <linkId value="Coverage.payor._Organization.value"/>
+            <text value="Organization"/>
+            <type value="reference"/>
+            <required value="false"/>
+            <repeats value="false"/>
+          </item>
+        </item>
+        <item>
+          <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
+            <valueString value="Reference"/>
+          </extension>
+          <linkId value="Coverage.payor._Patient"/>
           <type value="group"/>
           <item>
             <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-allowedResource">
@@ -600,7 +798,7 @@
             <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-referenceFilter">
               <valueString value="subject=$subj&amp;patient=$subj&amp;encounter=$encounter"/>
             </extension>
-            <linkId value="Coverage.planholder._Patient.value"/>
+            <linkId value="Coverage.payor._Patient.value"/>
             <text value="Patient"/>
             <type value="reference"/>
             <required value="false"/>
@@ -611,7 +809,7 @@
           <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
             <valueString value="Reference"/>
           </extension>
-          <linkId value="Coverage.planholder._RelatedPerson"/>
+          <linkId value="Coverage.payor._RelatedPerson"/>
           <type value="group"/>
           <item>
             <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-allowedResource">
@@ -620,103 +818,13 @@
             <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-referenceFilter">
               <valueString value="subject=$subj&amp;patient=$subj&amp;encounter=$encounter"/>
             </extension>
-            <linkId value="Coverage.planholder._RelatedPerson.value"/>
+            <linkId value="Coverage.payor._RelatedPerson.value"/>
             <text value="RelatedPerson"/>
             <type value="reference"/>
             <required value="false"/>
             <repeats value="false"/>
           </item>
         </item>
-        <item>
-          <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
-            <valueString value="Reference"/>
-          </extension>
-          <linkId value="Coverage.planholder._Organization"/>
-          <type value="group"/>
-          <item>
-            <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-allowedResource">
-              <valueCode value="Organization"/>
-            </extension>
-            <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-referenceFilter">
-              <valueString value="subject=$subj&amp;patient=$subj&amp;encounter=$encounter"/>
-            </extension>
-            <linkId value="Coverage.planholder._Organization.value"/>
-            <text value="Organization"/>
-            <type value="reference"/>
-            <required value="false"/>
-            <repeats value="false"/>
-          </item>
-        </item>
-      </item>
-    </item>
-    <item>
-      <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs">
-        <valueInteger value="1"/>
-      </extension>
-      <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
-        <valueString value="Reference"/>
-      </extension>
-      <linkId value="Coverage.beneficiary"/>
-      <type value="group"/>
-      <required value="false"/>
-      <repeats value="true"/>
-      <item>
-        <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl">
-          <valueCodeableConcept>
-            <coding>
-              <system value="http://hl7.org/fhir/questionnaire-item-control"/>
-              <code value="flyover"/>
-              <display value="Fly-over"/>
-            </coding>
-          </valueCodeableConcept>
-        </extension>
-        <text value="The party who benefits from the insurance coverage."/>
-        <type value="display"/>
-      </item>
-      <item>
-        <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-allowedResource">
-          <valueCode value="Patient"/>
-        </extension>
-        <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-referenceFilter">
-          <valueString value="subject=$subj&amp;patient=$subj&amp;encounter=$encounter"/>
-        </extension>
-        <linkId value="Coverage.beneficiary.value"/>
-        <text value="Plan Beneficiary"/>
-        <type value="reference"/>
-        <required value="false"/>
-        <repeats value="false"/>
-      </item>
-    </item>
-    <item>
-      <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs">
-        <valueInteger value="1"/>
-      </extension>
-      <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
-        <valueString value="Coding"/>
-      </extension>
-      <linkId value="Coverage.relationship"/>
-      <type value="group"/>
-      <required value="false"/>
-      <repeats value="true"/>
-      <item>
-        <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl">
-          <valueCodeableConcept>
-            <coding>
-              <system value="http://hl7.org/fhir/questionnaire-item-control"/>
-              <code value="flyover"/>
-              <display value="Fly-over"/>
-            </coding>
-          </valueCodeableConcept>
-        </extension>
-        <text value="The relationship of beneficiary (patient) (subscriber) to the the planholder."/>
-        <type value="display"/>
-      </item>
-      <item>
-        <linkId value="Coverage.relationship.value"/>
-        <text value="Beneficiary relationship to Planholder"/>
-        <type value="open-choice"/>
-        <required value="false"/>
-        <repeats value="false"/>
       </item>
     </item>
     <item>
@@ -834,7 +942,7 @@
               </coding>
             </valueCodeableConcept>
           </extension>
-          <text value="Identifies a style or collective of coverage issues by the underwriter, for example may be used to identify a class of coverage or employer group. May also be referred to as a Policy or Group ID."/>
+          <text value="Identifies a style or collective of coverage issued by the underwriter, for example may be used to identify an employer group. May also be referred to as a Policy or Group ID."/>
           <type value="display"/>
         </item>
         <item>
@@ -898,7 +1006,7 @@
               </coding>
             </valueCodeableConcept>
           </extension>
-          <text value="Identifies a style or collective of coverage issues by the underwriter, for example may be used to identify a class of coverage or employer group. May also be referred to as a Policy or Group ID."/>
+          <text value="Identifies a style or collective of coverage issued by the underwriter, for example may be used to identify a subset of an employer group."/>
           <type value="display"/>
         </item>
         <item>
@@ -962,7 +1070,7 @@
               </coding>
             </valueCodeableConcept>
           </extension>
-          <text value="Identifies a style or collective of coverage issues by the underwriter, for example may be used to identify a class of coverage or employer group. May also be referred to as a Policy or Group ID."/>
+          <text value="Identifies a style or collective of coverage issued by the underwriter, for example may be used to identify a collection of benefits provided to employees. May be referred to as a Section or Division ID."/>
           <type value="display"/>
         </item>
         <item>
@@ -1026,7 +1134,7 @@
               </coding>
             </valueCodeableConcept>
           </extension>
-          <text value="Identifies a sub-style or sub-collective of coverage issues by the underwriter, for example may be used to identify a specific employer group within a class of employers. May be referred to as a Section or Division ID."/>
+          <text value="Identifies a sub-style or sub-collective of coverage issued by the underwriter, for example may be used to identify a subset of a collection of benefits provided to employees."/>
           <type value="display"/>
         </item>
         <item>
@@ -1203,7 +1311,7 @@
         <valueInteger value="1"/>
       </extension>
       <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
-        <valueString value="integer"/>
+        <valueString value="string"/>
       </extension>
       <linkId value="Coverage.dependent"/>
       <type value="group"/>
@@ -1225,7 +1333,7 @@
       <item>
         <linkId value="Coverage.dependent.value"/>
         <text value="Dependent number"/>
-        <type value="integer"/>
+        <type value="string"/>
         <required value="false"/>
         <repeats value="false"/>
       </item>
@@ -1235,7 +1343,7 @@
         <valueInteger value="1"/>
       </extension>
       <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
-        <valueString value="integer"/>
+        <valueString value="string"/>
       </extension>
       <linkId value="Coverage.sequence"/>
       <type value="group"/>
@@ -1257,6 +1365,38 @@
       <item>
         <linkId value="Coverage.sequence.value"/>
         <text value="The plan instance or sequence counter"/>
+        <type value="string"/>
+        <required value="false"/>
+        <repeats value="false"/>
+      </item>
+    </item>
+    <item>
+      <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs">
+        <valueInteger value="1"/>
+      </extension>
+      <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
+        <valueString value="integer"/>
+      </extension>
+      <linkId value="Coverage.order"/>
+      <type value="group"/>
+      <required value="false"/>
+      <repeats value="true"/>
+      <item>
+        <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl">
+          <valueCodeableConcept>
+            <coding>
+              <system value="http://hl7.org/fhir/questionnaire-item-control"/>
+              <code value="flyover"/>
+              <display value="Fly-over"/>
+            </coding>
+          </valueCodeableConcept>
+        </extension>
+        <text value="The order of applicability of this coverage relative to other coverages which are currently inforce. Note, there may be gaps in the numbering and this does not imply primary, secondard etc. as the specific positioning of coverages depends upon the episode of care."/>
+        <type value="display"/>
+      </item>
+      <item>
+        <linkId value="Coverage.order.value"/>
+        <text value="Relative order of the coverage"/>
         <type value="integer"/>
         <required value="false"/>
         <repeats value="false"/>
@@ -1283,7 +1423,7 @@
             </coding>
           </valueCodeableConcept>
         </extension>
-        <text value="The identifier for a community of providers."/>
+        <text value="The insurer-specific identifier for the insurer-defined network of providers to which the beneficiary may seek treatment which will be covered at the &#39;in-network&#39; rate, otherwise &#39;out of network&#39; terms and conditions apply."/>
         <type value="display"/>
       </item>
       <item>

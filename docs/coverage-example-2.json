@@ -12,27 +12,37 @@
     }
   ],
   "status": "active",
-  "issuer": {
-    "reference": "Organization/2"
-  },
-  "period": {
-    "start": "2011-03-17",
-    "end": "2012-03-17"
-  },
   "type": {
-    "system": "http://hl7.org/fhir/v3/ActCode",
-    "code": "EHCPOL",
-    "display": "extended healthcare"
+    "coding": [
+      {
+        "system": "http://hl7.org/fhir/v3/ActCode",
+        "code": "EHCPOL",
+        "display": "extended healthcare"
+      }
+    ]
   },
-  "planholder": {
+  "subscriber": {
     "reference": "Patient/5"
   },
   "beneficiary": {
     "reference": "Patient/5"
   },
   "relationship": {
-    "code": "self"
+    "coding": [
+      {
+        "code": "self"
+      }
+    ]
   },
+  "period": {
+    "start": "2011-03-17",
+    "end": "2012-03-17"
+  },
+  "payor": [
+    {
+      "reference": "Organization/2"
+    }
+  ],
   "group": {
     "group": "WESTAIR",
     "groupDisplay": "Western Airlines",
@@ -41,5 +51,5 @@
     "subPlan": "D15C9",
     "subPlanDisplay": "Platinum"
   },
-  "dependent": 1
+  "dependent": "1"
 }

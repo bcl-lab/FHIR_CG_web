@@ -3,7 +3,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>Auditevent.shex - FHIR v1.7.0</title>
+  <title>Auditevent.shex - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -156,6 +156,26 @@ start=@&lt;AuditEvent&gt; AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
+# Data or objects used
+&lt;AuditEvent.entity&gt; CLOSED {
+    fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
+    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @&lt;Extension&gt;*;   # Extensions that cannot be ignored
+    fhir:AuditEvent.entity.identifier @&lt;Identifier&gt;?;  # Specific instance of object
+    fhir:AuditEvent.entity.reference @&lt;Reference&gt;?;  # Specific instance of resource
+    fhir:AuditEvent.entity.type @&lt;Coding&gt;?;  # Type of entity involved
+    fhir:AuditEvent.entity.role @&lt;Coding&gt;?;  # What role the entity played
+    fhir:AuditEvent.entity.lifecycle @&lt;Coding&gt;?;  # Life-cycle stage for the entity
+    fhir:AuditEvent.entity.securityLabel @&lt;Coding&gt;*;  # Security labels on the entity
+    fhir:AuditEvent.entity.name @&lt;string&gt;?;  # Descriptor for entity
+    fhir:AuditEvent.entity.description @&lt;string&gt;?;  # Descriptive text
+    fhir:AuditEvent.entity.query @&lt;base64Binary&gt;?;  # Query parameters
+    fhir:AuditEvent.entity.detail @&lt;AuditEvent.entity.detail&gt;*;  # Additional Information about the 
+                                            # entity 
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
 # Actor involved in the event
 &lt;AuditEvent.agent&gt; CLOSED {
     fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
@@ -181,26 +201,6 @@ start=@&lt;AuditEvent&gt; AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:AuditEvent.agent.network @&lt;AuditEvent.agent.network&gt;?;  # Logical network location for 
                                             # application activity 
     fhir:AuditEvent.agent.purposeOfUse @&lt;CodeableConcept&gt;*;  # Reason given for this user
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
-# Data or objects used
-&lt;AuditEvent.entity&gt; CLOSED {
-    fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
-    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @&lt;Extension&gt;*;   # Extensions that cannot be ignored
-    fhir:AuditEvent.entity.identifier @&lt;Identifier&gt;?;  # Specific instance of object
-    fhir:AuditEvent.entity.reference @&lt;Reference&gt;?;  # Specific instance of resource
-    fhir:AuditEvent.entity.type @&lt;Coding&gt;?;  # Type of entity involved
-    fhir:AuditEvent.entity.role @&lt;Coding&gt;?;  # What role the entity played
-    fhir:AuditEvent.entity.lifecycle @&lt;Coding&gt;?;  # Life-cycle stage for the entity
-    fhir:AuditEvent.entity.securityLabel @&lt;Coding&gt;*;  # Security labels on the entity
-    fhir:AuditEvent.entity.name @&lt;string&gt;?;  # Descriptor for entity
-    fhir:AuditEvent.entity.description @&lt;string&gt;?;  # Descriptive text
-    fhir:AuditEvent.entity.query @&lt;base64Binary&gt;?;  # Query parameters
-    fhir:AuditEvent.entity.detail @&lt;AuditEvent.entity.detail&gt;*;  # Additional Information about the 
-                                            # entity 
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -505,20 +505,20 @@ start=@&lt;AuditEvent&gt; AND {fhir:nodeRole [fhir:treeRoot]}
 
 #---------------------- Value Sets ------------------------
 
+# Indicator for type of action performed during the event that generated the audit.
+fhirvs:audit-event-action [&quot;C&quot; &quot;R&quot; &quot;U&quot; &quot;D&quot; &quot;E&quot;]
+
 # The type of network access point of this agent in the audit event
 fhirvs:network-type [&quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;4&quot; &quot;5&quot;]
 
-# Indicator for type of action performed during the event that generated the audit.
-fhirvs:audit-event-action [&quot;C&quot; &quot;R&quot; &quot;U&quot; &quot;D&quot; &quot;E&quot;]
+# Indicates whether the event succeeded or failed
+fhirvs:audit-event-outcome [&quot;0&quot; &quot;4&quot; &quot;8&quot; &quot;12&quot;]
 
 # Identifies the purpose for this identifier, if known .
 fhirvs:identifier-use [&quot;usual&quot; &quot;official&quot; &quot;temp&quot; &quot;secondary&quot;]
 
 # The status of a resource narrative
 fhirvs:narrative-status [&quot;generated&quot; &quot;extensions&quot; &quot;additional&quot; &quot;empty&quot;]
-
-# Indicates whether the event succeeded or failed
-fhirvs:audit-event-outcome [&quot;0&quot; &quot;4&quot; &quot;8&quot; &quot;12&quot;]
 
 </pre>
 </div>
@@ -544,7 +544,7 @@ of the specification.
 		<div class="container"><!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:32-0500. <a href="qa.html">QA Page</a>
+        © HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:21-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search</a> | 

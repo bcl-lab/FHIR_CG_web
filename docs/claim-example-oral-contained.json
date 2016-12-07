@@ -42,9 +42,7 @@
       "name": [
         {
           "use": "official",
-          "family": [
-            "Donald"
-          ],
+          "family": "Donald",
           "given": [
             "Duck"
           ]
@@ -74,33 +72,43 @@
         }
       ],
       "status": "active",
-      "issuer": {
-        "identifier": {
-          "system": "http://www.bindb.com/bin",
-          "value": "123456"
-        }
-      },
       "type": {
-        "system": "http://hl7.org/fhir/v3/ActCode",
-        "code": "EHCPOL"
+        "coding": [
+          {
+            "system": "http://hl7.org/fhir/v3/ActCode",
+            "code": "EHCPOL"
+          }
+        ]
       },
-      "planholder": {
+      "subscriber": {
         "reference": "#patient-1"
       },
       "beneficiary": {
         "reference": "#patient-1"
       },
       "relationship": {
-        "code": "self"
+        "coding": [
+          {
+            "code": "self"
+          }
+        ]
       },
+      "payor": [
+        {
+          "identifier": {
+            "system": "http://www.bindb.com/bin",
+            "value": "123456"
+          }
+        }
+      ],
       "group": {
         "plan": "CBI35",
         "planDisplay": "Corporate Baker's Inc. Plan#35",
         "subPlan": "123",
         "subPlanDisplay": "Trainee Part-time Benefits"
       },
-      "dependent": 1,
-      "sequence": 1
+      "dependent": "1",
+      "sequence": "1"
     }
   ],
   "identifier": [
@@ -111,8 +119,16 @@
   ],
   "status": "active",
   "type": {
-    "system": "http://hl7.org/fhir/ex-claimtype",
-    "code": "oral"
+    "coding": [
+      {
+        "system": "http://hl7.org/fhir/ex-claimtype",
+        "code": "oral"
+      }
+    ]
+  },
+  "use": "complete",
+  "patient": {
+    "reference": "#patient-1"
   },
   "created": "2014-08-16",
   "insurer": {
@@ -121,27 +137,43 @@
   "organization": {
     "reference": "#org-org"
   },
-  "use": "complete",
   "priority": {
-    "code": "normal"
+    "coding": [
+      {
+        "code": "normal"
+      }
+    ]
   },
   "payee": {
     "type": {
-      "code": "provider"
+      "coding": [
+        {
+          "code": "provider"
+        }
+      ]
     }
   },
-  "diagnosis": [
+  "careTeam": [
     {
       "sequence": 1,
-      "diagnosis": {
-        "code": "123456"
+      "provider": {
+        "reference": "#provider-1"
       }
     }
   ],
-  "patient": {
-    "reference": "#patient-1"
-  },
-  "coverage": [
+  "diagnosis": [
+    {
+      "sequence": 1,
+      "diagnosisCodeableConcept": {
+        "coding": [
+          {
+            "code": "123456"
+          }
+        ]
+      }
+    }
+  ],
+  "insurance": [
     {
       "sequence": 1,
       "focal": true,
@@ -153,15 +185,15 @@
   "item": [
     {
       "sequence": 1,
-      "careTeam": [
-        {
-          "provider": {
-            "reference": "#provider-1"
-          }
-        }
+      "careTeamLinkId": [
+        1
       ],
       "service": {
-        "code": "1200"
+        "coding": [
+          {
+            "code": "1200"
+          }
+        ]
       },
       "servicedDate": "2014-08-16",
       "unitPrice": {

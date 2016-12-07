@@ -3,7 +3,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>Deviceuserequest.shex - FHIR v1.7.0</title>
+  <title>Deviceuserequest.shex - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -427,11 +427,24 @@ start=@&lt;DeviceUseRequest&gt; AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:Timing.repeat.periodUnit @&lt;code&gt; AND
     	{fhir:value @fhirvs:units-of-time}?;  # s | min | h | d | wk | mo | a - 
                                             # unit of time (UCUM) 
+    fhir:Timing.repeat.dayOfWeek @&lt;code&gt; AND
+    	{fhir:value @fhirvs:days-of-week}*;  # mon | tue | wed | thu | fri | sat 
+                                            # | sun 
+    fhir:Timing.repeat.timeOfDay @&lt;time&gt;*;  # Time of day for action
     fhir:Timing.repeat.when @&lt;code&gt; AND
     	{fhir:value @fhirvs:event-timing}?;  # Regular life events the event is 
                                             # tied to 
     fhir:Timing.repeat.offset @&lt;unsignedInt&gt;?;  # Minutes from event (before or 
                                             # after) 
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
+# Primitive Type integer
+&lt;integer&gt; CLOSED {
+    fhir:Element.id @&lt;id&gt;?;                 # xml:id (or equivalent in JSON)
+    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:value xsd:int MININCLUSIVE &quot;-2147483648&quot;^^xsd:int MAXINCLUSIVE &quot;2147483647&quot;^^xsd:int?;  # Primitive value for integer
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -451,15 +464,6 @@ start=@&lt;DeviceUseRequest&gt; AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
-# Primitive Type integer
-&lt;integer&gt; CLOSED {
-    fhir:Element.id @&lt;id&gt;?;                 # xml:id (or equivalent in JSON)
-    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:value xsd:int MININCLUSIVE &quot;-2147483648&quot;^^xsd:int MAXINCLUSIVE &quot;2147483647&quot;^^xsd:int?;  # Primitive value for integer
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
 # Set of values bounded by low and high
 &lt;Range&gt; CLOSED {
     fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
@@ -475,6 +479,15 @@ start=@&lt;DeviceUseRequest&gt; AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
                                             # implementations 
     fhir:value xsd:nonNegativeInteger?;     # Primitive value for unsignedInt
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
+# Primitive Type time
+&lt;time&gt; CLOSED {
+    fhir:Element.id @&lt;id&gt;?;                 # xml:id (or equivalent in JSON)
+    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:value xsd:time?;                   # Primitive value for time
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -630,8 +643,17 @@ start=@&lt;DeviceUseRequest&gt; AND {fhir:nodeRole [fhir:treeRoot]}
 
 #---------------------- Value Sets ------------------------
 
+# How the Quantity should be understood and represented.
+fhirvs:quantity-comparator [&quot;&lt;&quot; &quot;&lt;=&quot; &quot;&gt;=&quot; &quot;&gt;&quot;]
+
 # Real world event that the relating to the schedule.
-fhirvs:event-timing [&quot;HS&quot; &quot;WAKE&quot; &quot;C&quot; &quot;CM&quot; &quot;CD&quot; &quot;CV&quot; &quot;AC&quot; &quot;ACM&quot; &quot;ACD&quot; &quot;ACV&quot; &quot;PC&quot; &quot;PCM&quot; &quot;PCD&quot; &quot;PCV&quot;]
+fhirvs:event-timing [&quot;MORN&quot; &quot;AFT&quot; &quot;EVE&quot; &quot;NIGHT&quot; &quot;HS&quot; &quot;WAKE&quot; &quot;C&quot; &quot;CM&quot; &quot;CD&quot; &quot;CV&quot; &quot;AC&quot; &quot;ACM&quot; &quot;ACD&quot; &quot;ACV&quot; &quot;PC&quot; &quot;PCM&quot; &quot;PCD&quot; &quot;PCV&quot;]
+
+# A unit of time (units from UCUM).
+fhirvs:units-of-time [&quot;s&quot; &quot;min&quot; &quot;h&quot; &quot;d&quot; &quot;wk&quot; &quot;mo&quot; &quot;a&quot;]
+
+# The days of the week.
+fhirvs:days-of-week [&quot;mon&quot; &quot;tue&quot; &quot;wed&quot; &quot;thu&quot; &quot;fri&quot; &quot;sat&quot; &quot;sun&quot;]
 
 # Identifies the purpose for this identifier, if known .
 fhirvs:identifier-use [&quot;usual&quot; &quot;official&quot; &quot;temp&quot; &quot;secondary&quot;]
@@ -639,14 +661,8 @@ fhirvs:identifier-use [&quot;usual&quot; &quot;official&quot; &quot;temp&quot; &
 # The status of a resource narrative
 fhirvs:narrative-status [&quot;generated&quot; &quot;extensions&quot; &quot;additional&quot; &quot;empty&quot;]
 
-# How the Quantity should be understood and represented.
-fhirvs:quantity-comparator [&quot;&lt;&quot; &quot;&lt;=&quot; &quot;&gt;=&quot; &quot;&gt;&quot;]
-
-# A unit of time (units from UCUM).
-fhirvs:units-of-time [&quot;s&quot; &quot;min&quot; &quot;h&quot; &quot;d&quot; &quot;wk&quot; &quot;mo&quot; &quot;a&quot;]
-
-# The status of a request
-fhirvs:request-status [&quot;draft&quot; &quot;active&quot; &quot;suspended&quot; &quot;completed&quot; &quot;entered-in-error&quot; &quot;cancelled&quot;]
+# Codes identifying the stage lifecycle stage of a request
+fhirvs:request-status [&quot;draft&quot; &quot;active&quot; &quot;suspended&quot; &quot;cancelled&quot; &quot;completed&quot; &quot;entered-in-error&quot; &quot;unknown&quot;]
 
 </pre>
 </div>
@@ -672,7 +688,7 @@ of the specification.
 		<div class="container"><!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:32-0500. <a href="qa.html">QA Page</a>
+        © HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:21-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search</a> | 

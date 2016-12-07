@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>Questionnaire - FHIR v1.7.0</title>
+  <title>Questionnaire - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -106,7 +106,7 @@
 
 <ul class="nav nav-tabs"><li><a href="questionnaire.html">Content</a></li><li><a href="questionnaire-examples.html">Examples</a></li><li class="active"><a href="#">Detailed Descriptions</a></li><li><a href="questionnaire-mappings.html">Mappings</a></li><li><a href="questionnaire-profiles.html">Profiles &amp; Extensions</a></li><li><a href="questionnaire-operations.html">Operations</a></li></ul>
 
-<h2 class="self-link-parent"><span class="sectioncount">2.29.8<a name="2.29.8"> </a></span> Resource Questionnaire - Detailed Descriptions <a href="questionnaire-definitions.html#2.29.8" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h2>
+<h2 class="self-link-parent"><span class="sectioncount">2.30.8<a name="2.30.8"> </a></span> Resource Questionnaire - Detailed Descriptions <a href="questionnaire-definitions.html#2.30.8" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h2>
 
 <p>Detailed Descriptions for the elements in the Questionnaire resource.</p>
 
@@ -149,7 +149,7 @@
   <tr><td>Definition</td><td><p>The lifecycle status of the questionnaire as a whole.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>1..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>QuestionnaireStatus: <a href="valueset-questionnaire-status.html">Lifecycle status of the questionnaire.</a> (<a href="terminologies.html#required">Required</a>)</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-questionnaire-status.html">QuestionnaireStatus</a> (<a href="terminologies.html#required">Required</a>)</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#code">code</a></td></tr>
   <tr><td><a href="conformance-rules.html#ismodifier">Is Modifier</a></td><td>true</td></tr>
   <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
@@ -178,7 +178,7 @@
   <tr><td>Definition</td><td><p>A code that identifies the questionnaire as falling into a particular group of like questionnaires; e.g. &quot;Pediatric&quot;, &quot;Admissions&quot;, &quot;Research&quot;, &quot;Demographic&quot;, &quot;Opinion Survey&quot;, etc.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..*</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>Context of Use ValueSet: <a href="valueset-use-context.html">Indicates the countries, regions, disciplines and other aspects of use within which this artifact is targeted for use.</a> (<a href="terminologies.html#extensible">Extensible</a>)</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-use-context.html">Context of Use ValueSet</a> (<a href="terminologies.html#extensible">Extensible</a>)</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
   <tr><td>Requirements</td><td><p>Allows discovery of questionnaires.  Also allows organization of lists of questionnaires into groups for presentation.</p>
 </td></tr>
@@ -192,10 +192,10 @@
 </td></tr>
   <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
   <tr><td colspan="2" class="structure"><a name="Questionnaire.concept"> </a><b>Questionnaire.concept</b></td></tr>
-  <tr><td>Definition</td><td><p>Identifies a how this question or group of questions is known in a particular terminology such as LOINC.</p>
+  <tr><td>Definition</td><td><p>Identifies how this question or group of questions is known in a particular terminology such as LOINC.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..*</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>Questionnaire Question Codes: <a href="valueset-questionnaire-questions.html">Codes for questionnaires, groups and individual questions</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-questionnaire-questions.html">Questionnaire Question Codes</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#Coding">Coding</a></td></tr>
   <tr><td>Requirements</td><td><p>Allows linking of the complete Questionnaire resources to formal terminologies.  It's common for &quot;pannels&quot; of questions to be identified by a code.</p>
 </td></tr>
@@ -204,7 +204,7 @@
   <tr><td>Definition</td><td><p>Identifies the types of subjects that can be the subject of the questionnaire.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..*</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>ResourceType: <a href="valueset-resource-types.html">Any defined Resource Type name</a></td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-resource-types.html">Any defined Resource Type name</a></td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#code">code</a></td></tr>
   <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
   <tr><td>Comments</td><td><p>If none are specified, then the subject is unlimited.</p>
@@ -214,27 +214,47 @@
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..*</td></tr>
   <tr><td>Invariants</td><td><b>Defined on this element</b><br/>
-<b title="Formal Invariant Identifier">que-1</b>: Group items must have nested items, display items cannot have nested items (<a href="http://hl7.org/fluentpath">expression <img src="external.png" style="text-align: baseline"/></a>: (type='group' implies item.empty().not()) and (type.trace('type')='display' implies item.trace('item').empty()), xpath: not((f:type/@value='group' and not(f:item)) or (f:type/@value='display' and f:item)))<br/><b title="Formal Invariant Identifier">que-10</b>: Maximum length can only be declared for simple question types (<a href="http://hl7.org/fluentpath">expression <img src="external.png" style="text-align: baseline"/></a>: (type in ('boolean' | 'decimal' | 'integer' | 'string' | 'text' | 'url')) or maxLength.empty(), xpath: f:type/@value=('boolean', 'decimal', 'integer', 'open-choice', 'string', 'text', 'url') or not(f:maxLength))<br/><b title="Formal Invariant Identifier">que-3</b>: Display items cannot have a &quot;concept&quot; asserted (<a href="http://hl7.org/fluentpath">expression <img src="external.png" style="text-align: baseline"/></a>: type!='display' or concept.empty(), xpath: not(f:type/@value='display' and f:concept))<br/><b title="Formal Invariant Identifier">que-4</b>: A question cannot have both option and options (<a href="http://hl7.org/fluentpath">expression <img src="external.png" style="text-align: baseline"/></a>: option.empty() or options.empty(), xpath: not(f:options and f:option))<br/><b title="Formal Invariant Identifier">que-5</b>: Only 'choice' items can have options (<a href="http://hl7.org/fluentpath">expression <img src="external.png" style="text-align: baseline"/></a>: (type ='choice' or type = 'open-choice') or (options.empty() and option.empty()), xpath: f:type/@value=('choice','open-choice') or not(f:option or f:options))<br/><b title="Formal Invariant Identifier">que-6</b>: Required and repeat aren't permitted for display items (<a href="http://hl7.org/fluentpath">expression <img src="external.png" style="text-align: baseline"/></a>: type!='display' or (required.empty() and repeats.empty()), xpath: not(f:type/@value='display' and (f:required or f:repeats)))<br/><b title="Formal Invariant Identifier">que-8</b>: Default values can't be specified for groups or display items (<a href="http://hl7.org/fluentpath">expression <img src="external.png" style="text-align: baseline"/></a>: (type!='group' and type!='display') or initial.empty(), xpath: not(f:type/@value=('group', 'display') and f:*[starts-with(local-name(.), 'initial')]))<br/><b title="Formal Invariant Identifier">que-9</b>: Read-only can't be specified for &quot;display&quot; items (<a href="http://hl7.org/fluentpath">expression <img src="external.png" style="text-align: baseline"/></a>: type!='display' or readOnly.empty(), xpath: not(f:type/@value='display' and f:readOnly))<br/><b>Affect this element</b><br/>
+<b title="Formal Invariant Identifier">que-1</b>: Group items must have nested items, display items cannot have nested items (<a href="http://hl7.org/fluentpath">expression <img src="external.png" style="text-align: baseline"/></a>: (type='group' implies item.empty().not()) and (type.trace('type')='display' implies item.trace('item').empty()), xpath: not((f:type/@value='group' and not(f:item)) or (f:type/@value='display' and f:item)))<br/><b title="Formal Invariant Identifier">que-10</b>: Maximum length can only be declared for simple question types (<a href="http://hl7.org/fluentpath">expression <img src="external.png" style="text-align: baseline"/></a>: (type in ('boolean' | 'decimal' | 'integer' | 'string' | 'text' | 'url')) or maxLength.empty(), xpath: f:type/@value=('boolean', 'decimal', 'integer', 'open-choice', 'string', 'text', 'url') or not(f:maxLength))<br/><b title="Formal Invariant Identifier">que-11</b>: Type is required if a definition is not provided (<a href="http://hl7.org/fluentpath">expression <img src="external.png" style="text-align: baseline"/></a>: definition.empty() implies type.exists(), xpath: not(exists(f:type)) or exists(f:definition))<br/><b title="Formal Invariant Identifier">que-3</b>: Display items cannot have a &quot;concept&quot; asserted (<a href="http://hl7.org/fluentpath">expression <img src="external.png" style="text-align: baseline"/></a>: type!='display' or concept.empty(), xpath: not(f:type/@value='display' and f:concept))<br/><b title="Formal Invariant Identifier">que-4</b>: A question cannot have both option and options (<a href="http://hl7.org/fluentpath">expression <img src="external.png" style="text-align: baseline"/></a>: option.empty() or options.empty(), xpath: not(f:options and f:option))<br/><b title="Formal Invariant Identifier">que-5</b>: Only 'choice' items can have options (<a href="http://hl7.org/fluentpath">expression <img src="external.png" style="text-align: baseline"/></a>: (type ='choice' or type = 'open-choice') or (options.empty() and option.empty()), xpath: f:type/@value=('choice','open-choice') or not(f:option or f:options))<br/><b title="Formal Invariant Identifier">que-6</b>: Required and repeat aren't permitted for display items (<a href="http://hl7.org/fluentpath">expression <img src="external.png" style="text-align: baseline"/></a>: type!='display' or (required.empty() and repeats.empty()), xpath: not(f:type/@value='display' and (f:required or f:repeats)))<br/><b title="Formal Invariant Identifier">que-8</b>: Default values can't be specified for groups or display items (<a href="http://hl7.org/fluentpath">expression <img src="external.png" style="text-align: baseline"/></a>: (type!='group' and type!='display') or initial.empty(), xpath: not(f:type/@value=('group', 'display') and f:*[starts-with(local-name(.), 'initial')]))<br/><b title="Formal Invariant Identifier">que-9</b>: Read-only can't be specified for &quot;display&quot; items (<a href="http://hl7.org/fluentpath">expression <img src="external.png" style="text-align: baseline"/></a>: type!='display' or readOnly.empty(), xpath: not(f:type/@value='display' and f:readOnly))<br/><b>Affect this element</b><br/>
 </td></tr>
   <tr><td colspan="2" class="structure"><a name="Questionnaire.item.linkId"> </a><b>Questionnaire.item.linkId</b></td></tr>
   <tr><td>Definition</td><td><p>An identifier that is unique within the Questionnaire allowing linkage to the equivalent item in a QuestionnaireResponse resource.</p>
 </td></tr>
-  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
+  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>1..1</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#string">string</a></td></tr>
   <tr><td>Requirements</td><td><p><a href="questionnaireresponse.html">QuestionnaireResponse</a> does not require omitted items to be included and may have some items that repeat, so linkage based on position alone is not sufficient.</p>
 </td></tr>
-  <tr><td>Comments</td><td><p>May be omitted if there is no expectation to link answers back to a Questionnaire.  This ''can'' be a meaningful identifier (e.g. a LOINC code) but is not intended to have any meaning.  GUIDs or sequential numbers are appropriate here.</p>
+  <tr><td>Comments</td><td><p>This ''can'' be a meaningful identifier (e.g. a LOINC code) but is not intended to have any meaning.  GUIDs or sequential numbers are appropriate here.</p>
 </td></tr>
+  <tr><td colspan="2" class="structure"><a name="Questionnaire.item.definition"> </a><b>Questionnaire.item.definition</b></td></tr>
+  <tr><td>Definition</td><td><p>A reference to an <a href="elementdefinition.html">ElementDefinition</a> that provides the details for the item. If a definition is provided, then the following element values can be inferred from the definition:</p>
+<ul>
+<li>concept (ElementDefinition.code)</li>
+<li>type (ElementDefinition.type)</li>
+<li>required (ElementDefinition.min)</li>
+<li>repeats (ElementDefinition.max)</li>
+<li>maxLength (ElementDefinition.maxLength)</li>
+<li>options (ElementDefinition.binding)</li>
+</ul>
+<p>Any information provided in these elements overrides the information from the definition.</p>
+</td></tr>
+  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#uri">uri</a></td></tr>
+  <tr><td>Requirements</td><td><p>A common pattern is to define a set of data elements, and then build multiple different questionnaires for different circumstances to gather the data. This element provides traceability to the common definition, and allows the content for the question to come from the underlying definition.</p>
+</td></tr>
+  <tr><td>Comments</td><td><p>The ElementDefinition must be in a <a href="structuredefinition.html">StructureDefinition</a> or a <a href="dataelement.html">DataElement</a>, and must have a fragment identifier that identifies the specific data element by it's id (Element.id). E.g. http://hl7.org/fhir/StructureDefinition/Observation#Observation.value[x].</p>
+</td></tr>
+  <tr><td>Invariants</td><td><b>Affect this element</b><br/>
+<b title="Formal Invariant Identifier">que-11</b>: Type is required if a definition is not provided (<a href="http://hl7.org/fluentpath">expression <img src="external.png" style="text-align: baseline"/></a>: definition.empty() implies type.exists(), xpath: not(exists(f:type)) or exists(f:definition))</td></tr>
   <tr><td colspan="2" class="structure"><a name="Questionnaire.item.concept"> </a><b>Questionnaire.item.concept</b></td></tr>
-  <tr><td>Definition</td><td><p>Identifies a how this group of questions is known in a particular terminology such as LOINC.</p>
+  <tr><td>Definition</td><td><p>Terminology code that corresponds to this group or question (e.g. LOINC).</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..*</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>Questionnaire Question Codes: <a href="valueset-questionnaire-questions.html">Codes for questionnaires, groups and individual questions</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-questionnaire-questions.html">Questionnaire Question Codes</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#Coding">Coding</a></td></tr>
   <tr><td>Requirements</td><td><p>Allows linking of groups of questions (and complete Questionnaire resources) to formal terminologies.</p>
 </td></tr>
   <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
-  <tr><td>Comments</td><td><p>The code(s) for the &quot;root&quot; group apply to the questionnaire as a whole.</p>
+  <tr><td>Comments</td><td><p>The code(s) for the &quot;root&quot; group apply to the questionnaire as a whole. Value may come from the ElementDefinition referred to by .definition.</p>
 </td></tr>
   <tr><td>Invariants</td><td><b>Affect this element</b><br/>
 <b title="Formal Invariant Identifier">que-3</b>: Display items cannot have a &quot;concept&quot; asserted (<a href="http://hl7.org/fluentpath">expression <img src="external.png" style="text-align: baseline"/></a>: type!='display' or concept.empty(), xpath: not(f:type/@value='display' and f:concept))</td></tr>
@@ -259,13 +279,15 @@
   <tr><td colspan="2" class="structure"><a name="Questionnaire.item.type"> </a><b>Questionnaire.item.type</b></td></tr>
   <tr><td>Definition</td><td><p>Identifies the type of questionnaire item this is - whether text for display, a grouping of other items or a particular type of data to be captured (string, integer, coded choice, etc.).</p>
 </td></tr>
-  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>1..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>QuestionnaireItemType: <a href="valueset-item-type.html">Distinguishes groups from questions and display text and indicates data type for questions</a> (<a href="terminologies.html#required">Required</a>)</td></tr>
+  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-item-type.html">QuestionnaireItemType</a> (<a href="terminologies.html#required">Required</a>)</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#code">code</a></td></tr>
   <tr><td>Requirements</td><td><p>Defines the format in which the user is to be prompted for the answer.</p>
 </td></tr>
-  <tr><td>Comments</td><td><p>Additional constraints on the type of answer can be conveyed by extensions.</p>
+  <tr><td>Comments</td><td><p>Additional constraints on the type of answer can be conveyed by extensions. Value may come from the ElementDefinition referred to by .definition.</p>
 </td></tr>
+  <tr><td>Invariants</td><td><b>Affect this element</b><br/>
+<b title="Formal Invariant Identifier">que-11</b>: Type is required if a definition is not provided (<a href="http://hl7.org/fluentpath">expression <img src="external.png" style="text-align: baseline"/></a>: definition.empty() implies type.exists(), xpath: not(exists(f:type)) or exists(f:definition))</td></tr>
   <tr><td colspan="2" class="structure"><a name="Questionnaire.item.enableWhen"> </a><b>Questionnaire.item.enableWhen</b></td></tr>
   <tr><td>Definition</td><td><p>If present, indicates that this item should only be enabled (displayed/allow answers to be captured) when the specified condition is true.</p>
 </td></tr>
@@ -312,7 +334,7 @@
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#boolean">boolean</a></td></tr>
   <tr><td>Default Value</td><td>false</td></tr>
-  <tr><td>Comments</td><td><p>If an item that contains other items is marked as required, that does not automatically make the contained elements required (though required groups must contain at least one child element).</p>
+  <tr><td>Comments</td><td><p>Questionnaire.item.required only has meaning for elements that are conditionally enabled with enableWhen if the condition evaluates to true.  If an item that contains other items is marked as required, that does not automatically make the contained elements required (though required groups must contain at least one child element). Value may come from the ElementDefinition referred to by .definition.</p>
 </td></tr>
   <tr><td>Invariants</td><td><b>Affect this element</b><br/>
 <b title="Formal Invariant Identifier">que-6</b>: Required and repeat aren't permitted for display items (<a href="http://hl7.org/fluentpath">expression <img src="external.png" style="text-align: baseline"/></a>: type!='display' or (required.empty() and repeats.empty()), xpath: not(f:type/@value='display' and (f:required or f:repeats)))</td></tr>
@@ -323,6 +345,8 @@
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#boolean">boolean</a></td></tr>
   <tr><td>Default Value</td><td>false</td></tr>
   <tr><td>Requirements</td><td><p>Items may be used to create set of (related) questions that can be repeated to give multiple answers to such a set.</p>
+</td></tr>
+  <tr><td>Comments</td><td><p>If a question is marked as repeats=true, then multiple answers can be provided for the question in the corresponding QuestionnaireResponse.  When rendering the questionnaire, it is up to the rendering software whether to render the question text for each answer repetition or to simply list each of the answers beneath the question.  (Which is most appropriate visually may depend on the type of answer as well as whether there are nested items.). Value may come from the ElementDefinition referred to by .definition.</p>
 </td></tr>
   <tr><td>Invariants</td><td><b>Affect this element</b><br/>
 <b title="Formal Invariant Identifier">que-6</b>: Required and repeat aren't permitted for display items (<a href="http://hl7.org/fluentpath">expression <img src="external.png" style="text-align: baseline"/></a>: type!='display' or (required.empty() and repeats.empty()), xpath: not(f:type/@value='display' and (f:required or f:repeats)))</td></tr>
@@ -342,7 +366,7 @@
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#integer">integer</a></td></tr>
-  <tr><td>Comments</td><td><p>For base64binary, reflects the number of characters representing the encoded data, not the number of bytes of the binary data.</p>
+  <tr><td>Comments</td><td><p>For base64binary, reflects the number of characters representing the encoded data, not the number of bytes of the binary data. Value may come from the ElementDefinition referred to by .definition.</p>
 </td></tr>
   <tr><td>Invariants</td><td><b>Affect this element</b><br/>
 <b title="Formal Invariant Identifier">que-10</b>: Maximum length can only be declared for simple question types (<a href="http://hl7.org/fluentpath">expression <img src="external.png" style="text-align: baseline"/></a>: (type in ('boolean' | 'decimal' | 'integer' | 'string' | 'text' | 'url')) or maxLength.empty(), xpath: f:type/@value=('boolean', 'decimal', 'integer', 'open-choice', 'string', 'text', 'url') or not(f:maxLength))</td></tr>
@@ -351,7 +375,7 @@
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="references.html#Reference">Reference</a>(<a href="valueset.html">ValueSet</a>)</td></tr>
-  <tr><td>Comments</td><td><p>LOINC defines many useful value sets for questionnaire response. See <a href="loinc.html#alist">LOINC Answer Lists</a>.</p>
+  <tr><td>Comments</td><td><p>LOINC defines many useful value sets for questionnaire response. See <a href="loinc.html#alist">LOINC Answer Lists</a>. Value may come from the ElementDefinition referred to by .definition.</p>
 </td></tr>
   <tr><td>Invariants</td><td><b>Affect this element</b><br/>
 <b title="Formal Invariant Identifier">que-4</b>: A question cannot have both option and options (<a href="http://hl7.org/fluentpath">expression <img src="external.png" style="text-align: baseline"/></a>: option.empty() or options.empty(), xpath: not(f:options and f:option))<br/><b title="Formal Invariant Identifier">que-5</b>: Only 'choice' items can have options (<a href="http://hl7.org/fluentpath">expression <img src="external.png" style="text-align: baseline"/></a>: (type ='choice' or type = 'open-choice') or (options.empty() and option.empty()), xpath: f:type/@value=('choice','open-choice') or not(f:option or f:options))</td></tr>
@@ -365,16 +389,18 @@
   <tr><td>Definition</td><td><p>Identifies a specific answer that's allowed as the answer to a question.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>1..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>Questionnaire Answer Codes: <a href="valueset-questionnaire-answers.html">Allowed values to answer questions.</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-questionnaire-answers.html">Questionnaire Answer Codes</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#integer">integer</a>|<a href="datatypes.html#date">date</a>|<a href="datatypes.html#time">time</a>|<a href="datatypes.html#string">string</a>|<a href="datatypes.html#Coding">Coding</a></td></tr>
   <tr><td>[x] Note</td><td>See <a href="formats.html#choice">Choice of Data Types</a> for further information about how to use [x]</td></tr>
   <tr><td colspan="2" class="structure"><a name="Questionnaire.item.initial_x_"> </a><b>Questionnaire.item.initial[x]</b></td></tr>
-  <tr><td>Definition</td><td><p>The value that should be pre-populated when rendering the questionnaire for user input.</p>
+  <tr><td>Definition</td><td><p>The value that should be defaulted when rendering the questionnaire for user input.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#boolean">boolean</a>|<a href="datatypes.html#decimal">decimal</a>|<a href="datatypes.html#integer">integer</a>|<a href="datatypes.html#date">date</a>|<a href="datatypes.html#dateTime">dateTime</a>|<a href="datatypes.html#instant">instant</a>|<a href="datatypes.html#time">time</a>|<a href="datatypes.html#string">string</a>|<a href="datatypes.html#uri">uri</a>|<a href="datatypes.html#Attachment">Attachment</a>|<a href="datatypes.html#Coding">Coding</a>|<a href="datatypes.html#Quantity">Quantity</a>|<a href="references.html#Reference">Reference</a>(<a href="resourcelist.html#Any">Any</a>)</td></tr>
   <tr><td>[x] Note</td><td>See <a href="formats.html#choice">Choice of Data Types</a> for further information about how to use [x]</td></tr>
   <tr><td>Requirements</td><td><p>In some workflows, having defaults saves time.</p>
+</td></tr>
+  <tr><td>Comments</td><td><p>The user is allowed to change the value and override the default (unless marked as read-only). If the user doesn't change the value, then this initial value will be persisted when the QuestionnaireResponse is initially created.</p>
 </td></tr>
   <tr><td>Invariants</td><td><b>Affect this element</b><br/>
 <b title="Formal Invariant Identifier">que-8</b>: Default values can't be specified for groups or display items (<a href="http://hl7.org/fluentpath">expression <img src="external.png" style="text-align: baseline"/></a>: (type!='group' and type!='display') or initial.empty(), xpath: not(f:type/@value=('group', 'display') and f:*[starts-with(local-name(.), 'initial')]))</td></tr>
@@ -405,7 +431,7 @@
 		<div class="container">  <!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:33-0500. <a href="qa.html">QA Page</a>
+        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:28-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search <img src="external.png" style="text-align: baseline"/></a> | 

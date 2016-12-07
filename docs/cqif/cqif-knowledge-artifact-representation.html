@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>Cqif\cqif-knowledge-artifact-representation - FHIR v1.7.0</title>
+  <title>Cqif\cqif-knowledge-artifact-representation - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -106,13 +106,13 @@
 
 <div class="col-9">
 
-<a name="knowledge-artifact-representation"/>
+<a name="knowledge-artifact-representation"> </a>
 <h3 class="self-link-parent"><span class="sectioncount">G.4</span> Representing Knowledge Artifacts <a href="cqif-knowledge-artifact-representation.html#knowledge-artifact-representation" title="link to here" class="self-link"><img src="../assets/images/link.svg" width="20" class="self-link" height="20"/></a></h3>
 <p>For the purposes of the Clinical Reasoning module, a Knowledge Artifact is a structured, computable, and shareable representation of clinical knowledge. A comprehensive definition of clinical knowledge is beyond the scope of this module, but we effectively mean any knowledge relevant to improving patient care. For example, &quot;Patients with diabetes should have regular comprehensive foot examinations to identify risk factors predictive of ulcers and amputations&quot; is a statement of clinical knowledge. A knowledge artifact would then be some representation that can be used to integrate that knowledge into existing healthcare delivery systems.</p>
 
 <p>There are any number of ways to accomplish this integration of clinical knowledge, ranging from direct implementation within an existing EHR system to the use of high-level representation and reasoning systems that can adapt clinical workflow to provide cognitive support to clinicians. Within this module, we aim to provide a representation that is both flexible enough to represent a broad range of knowledge artifacts, but simple and specific enough to enable automated integration of the content.</p>
 
-<a name="knowledge-artifact-components"/>
+<a name="knowledge-artifact-components"> </a>
 <h4 class="self-link-parent"><span class="sectioncount">G.4.1</span> Knowledge Artifact Components <a href="cqif-knowledge-artifact-representation.html#knowledge-artifact-components" title="link to here" class="self-link"><img src="../assets/images/link.svg" width="20" class="self-link" height="20"/></a></h4>
 <p>To acheive these goals, we define several components that are present in a broad variety of knowledge artifacts:</p>
 
@@ -129,7 +129,7 @@
 	</tbody>
 </table>
 
-<a name="artifact-identity"/>
+<a name="artifact-identity"> </a>
 <h5 class="self-link-parent"><span class="sectioncount">G.4.1.1</span> Artifact Identity <a href="cqif-knowledge-artifact-representation.html#artifact-identity" title="link to here" class="self-link"><img src="../assets/images/link.svg" width="20" class="self-link" height="20"/></a></h5>
 <p>As with any FHIR resource, the instance identity is specified by the <a href="../resource-definitions.html#Resource.id">id</a> element. In addition, artifacts may have logical identifiers based on the content or behavior they provide, such as the CMS or NQF identifiers for measure content. These logical identifiers can be provided in the <code>identifier</code> element defined on each resource.</p>
 
@@ -158,7 +158,7 @@
 	</tbody>
 </table>
 
-<a name="metadata"/>
+<a name="metadata"> </a>
 <h5 class="self-link-parent"><span class="sectioncount">G.4.1.2</span> Metadata <a href="cqif-knowledge-artifact-representation.html#metadata" title="link to here" class="self-link"><img src="../assets/images/link.svg" width="20" class="self-link" height="20"/></a></h5>
 
 <p>Each of the various knowledge artifact resources defines a set of elements that provide consistent representation of metadata such as title, description, and usage, repository indexing and publication information, as well as additional supporting documentation and evidence:</p>
@@ -188,7 +188,7 @@
 	</tbody>
 </table>
 
-<a name="documentation"/>
+<a name="documentation"> </a>
 <h6 class="self-link-parent"><span class="sectioncount">G.4.1.2.1</span> Documentation <a href="cqif-knowledge-artifact-representation.html#documentation" title="link to here" class="self-link"><img src="../assets/images/link.svg" width="20" class="self-link" height="20"/></a></h6>
 
 <p>General documentation elements, including description, purpose, and usage, provide immediately available documentation for the use of the artifact as part of the artifact. Additional documentation can be provided using the <code>relatedResource</code> element to link to detailed information, supporting evidence, and to additional required artifacts as appropriate.</p>
@@ -207,7 +207,7 @@
 
 <p>For information on the <code>coverage</code> and <code>topic</code> elements, refer to the <a href="cqif-knowledge-artifact-distribution.html">Knowledge Artifact Distribution</a> section.</p>
 
-<a name="publication-information"/>
+<a name="publication-information"> </a>
 <h6 class="self-link-parent"><span class="sectioncount">G.4.1.2.2</span> Publication Information <a href="cqif-knowledge-artifact-representation.html#publication-information" title="link to here" class="self-link"><img src="../assets/images/link.svg" width="20" class="self-link" height="20"/></a></h6>
 
 <p>The <code>status</code> element describes the lifecycle status of the artifact, indicating whether it is a <i>draft</i>, <i>active</i>, or <i>inactive</i> artifact. This representation is consistent with the states described by the Quality Metadata Conceptual Model. The following table provides a mapping from the states defined here, to the states as defined in the Clinical Decision Support Knowledge Artifact Specification (CDS KAS), as well as the Decision Support Service (DSS) standard:</p>
@@ -226,7 +226,7 @@
 
 <p>Note that the <code>experimental</code> element can be used independent of the lifecycle status. This allows the full lifecycle of an artifact to be tested.</p>
 
-<a name="action-definitions"/>
+<a name="action-definitions"> </a>
 <h5 class="self-link-parent"><span class="sectioncount">G.4.1.3</span> Action Definitions <a href="cqif-knowledge-artifact-representation.html#action-definitions" title="link to here" class="self-link"><img src="../assets/images/link.svg" width="20" class="self-link" height="20"/></a></h5>
 
 <p>Actions describe the &quot;output&quot; actions of the knowledge artifact. These actions may be in the form of messages (such as reminders), or structured clinical acts (e.g., a laboratory test order) that can be implemented via clinical systems such as a computerized provider entry system or a documentation system, or they may create new events (e.g., declaration of a patient state such as failure of a treatment). Each action definition contains the following basic information:</p>
@@ -286,7 +286,7 @@
 &lt;/actionDefinition&gt;
 </code></pre>
 
-<a name="action-type"/>
+<a name="action-type"> </a>
 <h6 class="self-link-parent"><span class="sectioncount">G.4.1.3.1</span> Action Type <a href="cqif-knowledge-artifact-representation.html#action-type" title="link to here" class="self-link"><img src="../assets/images/link.svg" width="20" class="self-link" height="20"/></a></h6>
 
 <p>Each action may specify the type of action to perform:</p>
@@ -302,7 +302,7 @@
 
 <p>Note that this element is optional, and is used to indicate what type of action is to be taken with the associated activity definition. For example, an action that indicates <code>create</code> with an activity definition that defines a referral request means that the referral request should be realized and the resulting resource created (i.e. applied to the patient's record). An action that indicates <code>update</code> with an activity definition would indicate that an existing resource on the patient's record should be updated based on the new resource content.</p>
 
-<a name="trigger-definitions"/>
+<a name="trigger-definitions"> </a>
 <h6 class="self-link-parent"><span class="sectioncount">G.4.1.3.2</span> Trigger Definitions <a href="cqif-knowledge-artifact-representation.html#trigger-definitions" title="link to here" class="self-link"><img src="../assets/images/link.svg" width="20" class="self-link" height="20"/></a></h6>
 
 <p>Each action may have any number of triggers associated to indicate what events should trigger the action to be taken. The following types of triggers may be defined:</p>
@@ -323,7 +323,7 @@
 &lt;/triggerDefinition&gt;
 </code></pre>
 
-<a name="expression-logic"/>
+<a name="expression-logic"> </a>
 <h6 class="self-link-parent"><span class="sectioncount">G.4.1.3.3</span> Expression Logic <a href="cqif-knowledge-artifact-representation.html#expression-logic" title="link to here" class="self-link"><img src="../assets/images/link.svg" width="20" class="self-link" height="20"/></a></h6>
 
 <p>Each action may have an associated condition that specifies whether the action is applicable. The $apply operation is used to render a plan definition, and the parameters to the apply are available as context to expressions within the plan definition, including the applicable condition and the dynamic value expressions.</p>
@@ -335,7 +335,7 @@
 &lt;/condition&gt;
 </code></pre>
 
-<a name="knowledge-artifact-resources"/>
+<a name="knowledge-artifact-resources"> </a>
 <h4 class="self-link-parent"><span class="sectioncount">G.4.2</span> Knowledge Artifact Resources <a href="cqif-knowledge-artifact-representation.html#knowledge-artifact-resources" title="link to here" class="self-link"><img src="../assets/images/link.svg" width="20" class="self-link" height="20"/></a></h4>
 
 <p>The Clinical Reasoning module defines several resources, including Library, PlanDefinition, and Measure to represent each of the components described above. By combining these components in different ways, several different types of knowledge artifacts can be represented:</p>
@@ -354,14 +354,14 @@
 	</tbody>
 </table>
 
-<a name="library"/>
+<a name="library"> </a>
 <h4 class="self-link-parent"><span class="sectioncount">G.4.3</span> Library <a href="cqif-knowledge-artifact-representation.html#library" title="link to here" class="self-link"><img src="../assets/images/link.svg" width="20" class="self-link" height="20"/></a></h4>
 
 <p>The <a href="../library.html">Library</a> resource is a general purpose container for clinical knowledge that may be defined in non-FHIR representations. For example, a Clinical Quality Language expression library can be represented as a Library resource so that it can be referenced as part of other knowledge artifacts.</p>
 
 <p>For example, the following fragment shows a Library that contains the CQL logic for Chlamydia Screening decision support:</p>
 
-<a name="defining-a-cql-library">
+<a name="defining-a-cql-library"> </a>
 <pre><code>&lt;Library&gt;
   &lt;id value=&quot;example&quot;/&gt;
   &lt;identifier&gt;
@@ -400,9 +400,9 @@
   &lt;/content&gt;
 &lt;/Library&gt;
 </code></pre>
-</a>
 
-<a name="event-condition-action-rule"/>
+
+<a name="event-condition-action-rule"> </a>
 <h4 class="self-link-parent"><span class="sectioncount">G.4.4</span> Event-Condition-Action (ECA) Rule <a href="cqif-knowledge-artifact-representation.html#event-condition-action-rule" title="link to here" class="self-link"><img src="../assets/images/link.svg" width="20" class="self-link" height="20"/></a></h4>
 
 <p>An Event-Condition-Action (ECA) rule is an artifact with the general syntax &quot;on event, if condition is true, then do action.&quot; The event triggers the invocation of the rule; the condition is a logical test that, if satisfied or evaluates &quot;true&quot;, causes an action; while the action describes a set of activities to be performed. These actions may in turn cause further events to occur, which may in turn cause other ECA rules to fire.</p>
@@ -443,7 +443,7 @@
 &lt;/PlanDefinition&gt;
 </code></pre>
 
-<a name="order-set"/>
+<a name="order-set"> </a>
 <h4 class="self-link-parent"><span class="sectioncount">G.4.5</span> Order Set <a href="cqif-knowledge-artifact-representation.html#order-set" title="link to here" class="self-link"><img src="../assets/images/link.svg" width="20" class="self-link" height="20"/></a></h4>
 
 <p>An order set is a pre-defined and approved group of orders related to a particular clinical context (e.g., hypertension treatment and monitoring) or stage of care (e.g., hospital admission to Coronary Care Unit). An order set is typically used as a checklist for clinicians when managing a patient with a specific context. It is a structured collection of orders relevant to that condition or context and presented to the clinician in a computerized provider order entry system (CPOE).</p>
@@ -569,7 +569,7 @@
 
 <p>Each group defines the selection and grouping behavior for the items in the group, as well as providing links to supporting documentation for the particular items in the order set.</p>
 
-<a name="protocol"/>
+<a name="protocol"> </a>
 <h4 class="self-link-parent"><span class="sectioncount">G.4.6</span> Protocol <a href="cqif-knowledge-artifact-representation.html#protocol" title="link to here" class="self-link"><img src="../assets/images/link.svg" width="20" class="self-link" height="20"/></a></h4>
 
 <p>A protocol is a pre-defined procedural method for standardizing a set of activities. As examples, protocols can be used within laboratory settings to standardize handling of specimens for specific tests; standardize the treatment steps for a particular condition; or standardize the steps to be taken in a particular research trial.</p>
@@ -600,7 +600,7 @@ For those who have not been overweight, a 2 year interval is appropriate for the
 &lt;/actionDefinition&gt;
 </code></pre>
 
-<a name="documentation-template"/>
+<a name="documentation-template"> </a>
 <h4 class="self-link-parent"><span class="sectioncount">G.4.7</span> Documentation Template <a href="cqif-knowledge-artifact-representation.html#documentation-template" title="link to here" class="self-link"><img src="../assets/images/link.svg" width="20" class="self-link" height="20"/></a></h4>
 
 <p>A documentation template is a structured form for recording information on a patient into a set of pre-defined data slots. These templates are used to guide structured data entry within an EHR or other clinical information system. Some types of clinical documents that can be represented via the documentation template artifacts are encounter summaries, procedure notes, patient-reported outcomes, and flowsheets.</p>
@@ -644,7 +644,7 @@ For those who have not been overweight, a 2 year interval is appropriate for the
 		<div class="container">  <!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:33-0500. <a href="../qa.html">QA Page</a>
+        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:28-0500. <a href="../qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search <img src="../external.png" style="text-align: baseline"/></a> | 

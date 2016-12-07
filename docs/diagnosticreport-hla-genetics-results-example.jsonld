@@ -5,85 +5,14 @@
     "id.value": "hla-1"
   },
   "DomainResource.text": {
+    "Narrative.status": {
+      "code.value": "extensions"
+    },
     "Narrative.div": {
       "xhtml.value": "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n        <h3>HLA-A,-B,-C Genotyping Report for Marry Chalmers (MRN: 12345) </h3>\n        <pre>\n        Gene      Allele 1          Allele 2\n        HLA-A     HLA-A*01:01:01:01     HLA-A*01:02\n        HLA-B     HLA-B*15:01:01:01     HLA-B*57:01:01\n        HLA-C     HLA-C*01:02:01        HLA-C*03:04:01:01\n        </pre>\n        <p>Allele assignments based on IMGT/HLA 3.23</p>\n        <p>Issued: 2015-05-26T15:30:10+01:00</p>\n        <p>Method: Next-Generation Sequencing of exons 2 and 3 of HLA Class I genes</p>\n        <p>Lab: ACME labs, Inc</p>\n        <p>Please refer the <a href=\"genomics.html#hla\">implementation guide </a> for this usage example.</p>\n      </div>"
     }
   },
-  "DiagnosticReport.code": {
-    "CodeableConcept.coding": [
-      {
-        "Coding.system": {
-          "uri.value": "http://loinc.org"
-        },
-        "Coding.code": {
-          "code.value": "53767-0"
-        },
-        "Coding.display": {
-          "string.value": "HLA-A+B+C SBT [Interpretation] by High resolution"
-        }
-      }
-    ],
-    "Resource.concept": "http://loinc.org/owl#53767-0"
-  },
-  "DiagnosticReport.category": {
-    "CodeableConcept.coding": [
-      {
-        "Coding.system": {
-          "uri.value": "http://hl7.org/fhir/ValueSet/diagnostic-service-sections"
-        },
-        "Coding.code": {
-          "code.value": "GE"
-        },
-        "Coding.display": {
-          "string.value": "Genetics"
-        }
-      }
-    ]
-  },
-  "DiagnosticReport.subject": {
-    "Reference.reference": {
-      "string.value": "Patient/123"
-    },
-    "Reference.display": {
-      "string.value": "Mary Chalmers"
-    },
-    "Resource.reference": "http://hl7.org/fhir//Patient/123"
-  },
-  "DiagnosticReport.specimen": [
-    {
-      "Reference.reference": {
-        "string.value": "Specimen/456"
-      },
-      "Reference.display": {
-        "string.value": "buccal swab"
-      }
-    }
-  ],
-  "DiagnosticReport.request": [
-    {
-      "Reference.reference": {
-        "string.value": "DiagnosticRequest/789"
-      },
-      "Reference.display": {
-        "string.value": "Order for HLA-A,-B,-C genotyping"
-      }
-    }
-  ],
-  "DiagnosticReport.effectiveDateTime": {
-    "dateTime.value": "2015-05-26T15:30:10+01:00"
-  },
-  "DiagnosticReport.issued": {
-    "instant.value": "2014-05-16T10:28:00+01:00"
-  },
-  "DomainResource.extension": [
-    {
-      "Extension.url": {
-        "uri.value": "http://hl7.org/fhir/StructureDefinition/hla-genotyping-resultsAlleleAsignmentDate"
-      },
-      "Extension.valueDate": {
-        "date.value": "2014-05-16T10:28:00+01:00"
-      }
-    },
+  "DiagnosticReport.extension": [
     {
       "Extension.url": {
         "uri.value": "http://hl7.org/fhir/StructureDefinition/hla-genotyping-resultsAlleleDatabase"
@@ -108,7 +37,7 @@
       "Extension.url": {
         "uri.value": "http://hl7.org/fhir/StructureDefinition/hla-genotyping-resultsGlstring"
       },
-      "Element.extension": [
+      "Extension.extension": [
         {
           "Extension.url": {
             "uri.value": "text"
@@ -145,6 +74,75 @@
         "CodeableConcept.text": {
           "string.value": "Next Generation Sequencing of exons 2 and 3 of HLA Class I genes"
         }
+      }
+    }
+  ],
+  "DiagnosticReport.status": {
+    "code.value": "final"
+  },
+  "DiagnosticReport.category": {
+    "CodeableConcept.coding": [
+      {
+        "Coding.system": {
+          "uri.value": "http://hl7.org/fhir/ValueSet/diagnostic-service-sections"
+        },
+        "Coding.code": {
+          "code.value": "GE"
+        },
+        "Coding.display": {
+          "string.value": "Genetics"
+        }
+      }
+    ]
+  },
+  "DiagnosticReport.code": {
+    "CodeableConcept.coding": [
+      {
+        "Coding.system": {
+          "uri.value": "http://loinc.org"
+        },
+        "Coding.code": {
+          "code.value": "53767-0"
+        },
+        "Coding.display": {
+          "string.value": "HLA-A+B+C SBT [Interpretation] by High resolution"
+        }
+      }
+    ],
+    "Resource.concept": "http://loinc.org/owl#53767-0"
+  },
+  "DiagnosticReport.subject": {
+    "Reference.reference": {
+      "string.value": "Patient/123"
+    },
+    "Reference.display": {
+      "string.value": "Mary Chalmers"
+    },
+    "Resource.reference": "http://hl7.org/fhir//Patient/123"
+  },
+  "DiagnosticReport.effectiveDateTime": {
+    "dateTime.value": "2015-05-26T15:30:10+01:00"
+  },
+  "DiagnosticReport.issued": {
+    "instant.value": "2014-05-16T10:28:00+01:00"
+  },
+  "DiagnosticReport.request": [
+    {
+      "Reference.reference": {
+        "string.value": "DiagnosticRequest/789"
+      },
+      "Reference.display": {
+        "string.value": "Order for HLA-A,-B,-C genotyping"
+      }
+    }
+  ],
+  "DiagnosticReport.specimen": [
+    {
+      "Reference.reference": {
+        "string.value": "Specimen/456"
+      },
+      "Reference.display": {
+        "string.value": "buccal swab"
       }
     }
   ],

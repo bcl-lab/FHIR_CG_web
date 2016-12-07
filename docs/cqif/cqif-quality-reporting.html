@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>Cqif\cqif-quality-reporting - FHIR v1.7.0</title>
+  <title>Cqif\cqif-quality-reporting - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -106,7 +106,7 @@
 
 <div class="col-9">
 
-<a name="quality-reporting"/>
+<a name="quality-reporting"> </a>
 <h3 class="self-link-parent"><span class="sectioncount">G.7</span> Quality Reporting <a href="cqif-quality-reporting.html#quality-reporting" title="link to here" class="self-link"><img src="../assets/images/link.svg" width="20" class="self-link" height="20"/></a></h3>
 
 <p>
@@ -126,7 +126,7 @@ This approach supercedes previous approaches to representing eCQMs using the <a 
 Quality Measure Format (HQMF) <img src="../external.png" style="text-align: baseline"/></a>.
 </p>
 
-<a name="representing-quality-measures"/>
+<a name="representing-quality-measures"> </a>
 <h4 class="self-link-parent"><span class="sectioncount">G.7.1</span> Representing Quality Measures <a href="cqif-quality-reporting.html#representing-quality-measures" title="link to here" class="self-link"><img src="../assets/images/link.svg" width="20" class="self-link" height="20"/></a></h4>
 
 <p>The <a href="../measure.html">Measure</a> resource builds on the general approach to representing knowledge artifacts and adds the metadata and structure information that is specific to quality measures:</p>
@@ -145,7 +145,7 @@ Quality Measure Format (HQMF) <img src="../external.png" style="text-align: base
 	<li><b>Supplemental Data:</b> Additional information that should be included with the calculated results of the measure such as individual age or gender. A measure may define any number of supplemental data elements.</li>
 </ul>
 
-<a name="measure-metadata"/>
+<a name="measure-metadata"> </a>
 <h5 class="self-link-parent"><span class="sectioncount">G.7.1.1</span> Measure Metadata <a href="cqif-quality-reporting.html#measure-metadata" title="link to here" class="self-link"><img src="../assets/images/link.svg" width="20" class="self-link" height="20"/></a></h5>
 
 <p>The following table provides a requirements mapping from the content of an <a href="http://www.hl7.org/implement/standards/product_brief.cfm?product_id=97">eMeasure <img src="../external.png" style="text-align: baseline"/></a> to the elements defined in the <a href="../measure.html">Measure</a> resource:</p>
@@ -180,14 +180,14 @@ Quality Measure Format (HQMF) <img src="../external.png" style="text-align: base
 	</tbody>
 </table>
 
-<a name="measure-logic"/>
+<a name="measure-logic"> </a>
 <h5 class="self-link-parent"><span class="sectioncount">G.7.1.2</span> Measure Logic <a href="cqif-quality-reporting.html#measure-logic" title="link to here" class="self-link"><img src="../assets/images/link.svg" width="20" class="self-link" height="20"/></a></h5>
 
 <p>As with other knowledge artifacts, logic is included by referencing a <a href="../library.html">Library</a> resource. Although the base resource allows for the measure to reference any number of libraries, for simplicity of managing sharing, this implementation guide requires that a measure reference only one Library, the <i>primary measure library</i>, and that this library contain all the named expressions required to define the measure structure.</p>
 
 <p>Note that this restriction does not preclude sharing of logic between measures, it only requires that that sharing be explicitly done as dependencies within the referenced libraries, rather than allowing a measure to reference multiple libraries directly.</p>
 
-<a name="specifying-population-criteria"/>
+<a name="specifying-population-criteria"> </a>
 <h6 class="self-link-parent"><span class="sectioncount">G.7.1.2.1</span> Specifying Population Criteria <a href="cqif-quality-reporting.html#specifying-population-criteria" title="link to here" class="self-link"><img src="../assets/images/link.svg" width="20" class="self-link" height="20"/></a></h6>
 
 <p>A measure can specify various types of populations, depending on the type of measure scoring being used. The following table shows which population criteria types are required (R), optional (O), or not permitted (NP) for proportion, ratio, and continuous variable measures. This table is adapted from Table 1 from the <a href="http://www.hl7.org/implement/standards/product_brief.cfm?product_id=97">HQMF DSTU Release 2.1 <img src="../external.png" style="text-align: baseline"/></a> specification, and Table 2.1 from the <a href="http://www.hl7.org/implement/standards/product_brief.cfm?product_id=346">QDM-based HQMF IG <img src="../external.png" style="text-align: baseline"/></a>.</p>
@@ -231,27 +231,27 @@ Quality Measure Format (HQMF) <img src="../external.png" style="text-align: base
 &lt;/group&gt;
 </code></pre>
 
-<a name="multiple-populations"/>
+<a name="multiple-populations"> </a>
 <h6 class="self-link-parent"><span class="sectioncount">G.7.1.2.2</span> Measures with Multiple Populations <a href="cqif-quality-reporting.html#multiple-populations" title="link to here" class="self-link"><img src="../assets/images/link.svg" width="20" class="self-link" height="20"/></a></h6>
 
 <p>For quality measures that contain multiple populations, the criteria are specified once for each group. The <code>group</code> element contains an identifier that is used to uniquely identify the group within the measure, as well as within the quality reporting results.</p>
 
-<a name="continuous-variable-measures"/>
+<a name="continuous-variable-measures"> </a>
 <h6 class="self-link-parent"><span class="sectioncount">G.7.1.2.3</span> Continuous Variable Measures <a href="cqif-quality-reporting.html#continuous-variable-measures" title="link to here" class="self-link"><img src="../assets/images/link.svg" width="20" class="self-link" height="20"/></a></h6>
 
 <p>Continuous variable measures may include a measure observation section. This section defines variables (for example, time from check-in to time of antibiotic administration) used to score particular aspects of performance. Measure observations are not population criteria in that they do not determine whether or not a patient is to be counted in a measure. Rather, measure observations are data elements to be collected on patients meeting the population criteria within a continuous variable measure.</p>
 
-<a name="stratification-and-supplemental-data"/>
+<a name="stratification-and-supplemental-data"> </a>
 <h5 class="self-link-parent"><span class="sectioncount">G.7.1.3</span> Stratification and Supplemental Data <a href="cqif-quality-reporting.html#stratification-and-supplemental-data" title="link to here" class="self-link"><img src="../assets/images/link.svg" width="20" class="self-link" height="20"/></a></h5>
 
 <p>Stratifiers and supplemental data are specified using the <code>stratifier</code> and <code>supplementalData</code> elements of the <a href="../measure.html">Measure</a> resource. Stratification criteria are specified either as a reference to a CQL named expression within a Library (e.g. <code>CMS146.AgesUpToNine</code>), or as FHIR resource paths (e.g. <code>Patient.gender</code>). When the stratification criteria is an expression, the stratification will yield as many result groups as the expression returns. For example, if the expression returns a boolean, then there would be two stratification groups: true and false. When the stratification criteria is a FHIR resource path, there will be as many stratification groups as possible values for the resource path. For example, specifying Patient.gender will yield four stratification groups since FHIR has four gender codes: male, female, other, and unknown.</p>
 
 <p>Supplemental data elements are also specified using FHIR resource paths, and the number of resulting groups for supplemental data is determined in the same way.</p>
 
-<a name="Data Criteria"/>
+<a name="Data Criteria"> </a>
 <h6 class="self-link-parent"><span class="sectioncount">G.7.1.3.1</span> Data Criteria <a href="cqif-quality-reporting.html#Data Criteria" title="link to here" class="self-link"><img src="../assets/images/link.svg" width="20" class="self-link" height="20"/></a></h6>
 
-<p>The data criteria for the primary library defines the data of interest in the measure as a set of <a href="../datarequirement.html">DataRequirement</a> elements. Each data requirement identifies specific types of data along with constraints that the data must meet. For example, one data requirement for CMS 146 identifies FHIR Condition resources that represent confirmed diagnoses of acute pharyngitis. Other data requirements for this measure include Encounters, DiagnosticReports and other FHIR resources representing specific data that is used to calculate the measure.</p>
+<p>The data criteria for the primary library defines the data of interest in the measure as a set of <a href="../metadatatypes.html#DataRequirement">DataRequirement</a> elements. Each data requirement identifies specific types of data along with constraints that the data must meet. For example, one data requirement for CMS 146 identifies FHIR Condition resources that represent confirmed diagnoses of acute pharyngitis. Other data requirements for this measure include Encounters, DiagnosticReports and other FHIR resources representing specific data that is used to calculate the measure.</p>
 
 <p>Specifying the data criteria in this way enables the following use cases:</p>
 
@@ -268,12 +268,12 @@ Quality Measure Format (HQMF) <img src="../external.png" style="text-align: base
 	<li>When the expressions involve multiple libraries, rather than having to retrieve and deal with the requirements for each library, the $dataRequirements operation can aggregate the requirements and return them as a single <code>module-definition</code> library.</li>
 </ul>
 
-<a name="invoking-measures"/>
+<a name="invoking-measures"> </a>
 <h4 class="self-link-parent"><span class="sectioncount">G.7.2</span> Invoking Measures <a href="cqif-quality-reporting.html#invoking-measures" title="link to here" class="self-link"><img src="../assets/images/link.svg" width="20" class="self-link" height="20"/></a></h4>
 
 <p>The Health Quality Measure Format (HQMF) defines the electronic representation of an eMeasure but does not define a mechanism for invoking an eMeasure. FHIR defines both the representation of resources and a general mechanism for interacting with them via the <a href="../operationdefinition.html">OperationDefinition</a> resource. Prior sections of this specification described the Measure representation of an eMeasure, this section describes the evaluateMeasure operation that is used to invoke an eMeasure and obtain the results.</p>
 
-<a name="operation-definition"/>
+<a name="operation-definition"> </a>
 <h5 class="self-link-parent"><span class="sectioncount">G.7.2.1</span> Operation Definition <a href="cqif-quality-reporting.html#operation-definition" title="link to here" class="self-link"><img src="../assets/images/link.svg" width="20" class="self-link" height="20"/></a></h5>
 
 <p>FHIR defines a standard set of common interactions that include read, update, delete and search. In addition, FHIR defines a standard set of extended operations that can be performed on resources, resource types and system wide. The standard operations include profile validation, concept translation and value set expansion. FHIR also supports custom operations via the FHIR <a href="../operationdefinition.html">OperationDefinition</a> resource. This resource offers a means to create a formal definition of a custom operation that can be performed on a FHIR server. For the purposes of measure evaluation we define a new custom operation with a code of <a href="../operation-measure-evaluate-measure.html">$evaluate-measure</a>.</p>
@@ -289,10 +289,10 @@ Quality Measure Format (HQMF) <img src="../external.png" style="text-align: base
 
 <p>The effect of invoking the $evaluate-measure operation is to calculate the quality measure according to the supplied parameters and to return a <a href="../measurereport.html">MeasureReport</a> resource through which the results will be made available. Note that because measure calculation may not be instantaneous, the MeasureReport resource provides a mechanism to handle long running calculations.</p>
 
-<a name="operation-parameters"/>
+<a name="operation-parameters"> </a>
 <h5 class="self-link-parent"><span class="sectioncount">G.7.2.2</span> Parameters <a href="cqif-quality-reporting.html#operation-parameters" title="link to here" class="self-link"><img src="../assets/images/link.svg" width="20" class="self-link" height="20"/></a></h5>
 
-<a name="operation-examples"/>
+<a name="operation-examples"> </a>
 <h5 class="self-link-parent"><span class="sectioncount">G.7.2.3</span> Examples <a href="cqif-quality-reporting.html#operation-examples" title="link to here" class="self-link"><img src="../assets/images/link.svg" width="20" class="self-link" height="20"/></a></h5>
 
 <pre><code>GET [base]/Measure/$evaluate-measure?measure=CMS146&amp;periodStart=2014&amp;periodEnd=2014</code></pre>
@@ -317,14 +317,14 @@ The next example demonstrates how to obtain the results of evaluating the eMeasu
 
 <pre><code>GET [base]/Basic/CMS146/$evaluate-measure?patient=124&amp;periodStart=2014-01&amp;periodEnd=2014-03</code></pre>
 
-<a name="measure-report"/>
+<a name="measure-report"> </a>
 <h4 class="self-link-parent"><span class="sectioncount">G.7.3</span> Measure Report <a href="cqif-quality-reporting.html#measure-report" title="link to here" class="self-link"><img src="../assets/images/link.svg" width="20" class="self-link" height="20"/></a></h4>
 
 <p>When eCQMs are represented with the Health Quality Measure Format (HQMF), a single HQMF document represents both the measure itself and the request. Meanwhile, the responses are represented as Quality Reporting Document Architecture (QRDA) documents. QRDA documents come in two flavors: <a href="http://wiki.hl7.org/index.php?title=Quality_Reporting_Document_Architecture_Category_1">Category I <img src="../external.png" style="text-align: baseline"/></a> for individual patient reports and <a href="http://wiki.hl7.org/index.php?title=Quality_Reporting_Document_Architecture_Category_3">Category III <img src="../external.png" style="text-align: baseline"/></a> for population reports.</p>
 
 <p>When eCQMs are represented with FHIR resources, the measure is represented as a <a href="../measure.html">Measure</a> resource, and the request is an <code>HTTP GET</code> conforming to the <a href="../operationdefinition.html">OperationDefinition</a> described above. Meanwhile, the responses are represented as <a href="../measurereport.html">MeasureReport</a> resources. Like QRDA, the MeasureReport allows for Category I (individual), Category II (patient-list), and Category III (population) reports.</p>
 
-<a name="reporting-population-data"/>
+<a name="reporting-population-data"> </a>
 <h5 class="self-link-parent"><span class="sectioncount">G.7.3.1</span> Reporting Population Data <a href="cqif-quality-reporting.html#reporting-population-data" title="link to here" class="self-link"><img src="../assets/images/link.svg" width="20" class="self-link" height="20"/></a></h5>
 
 <p>A <a href="../measurereport.html">MeasureReport</a> will contain one group of data for each group specified in the corresponding <a href="../measure.html">Measure</a>, consisting of a set of population elements, one for each criteria defined in each group.</p>
@@ -333,7 +333,7 @@ The next example demonstrates how to obtain the results of evaluating the eMeasu
 
 <p>In addition, each group will contain stratifiers with a value stratum for each value defined by the stratifier criteria, for each criteria defined in the measure, as well as supplemental data value groups for each supplemental data element.</p>
 
-<a name="reporting-individual-data"/>
+<a name="reporting-individual-data"> </a>
 <h5 class="self-link-parent"><span class="sectioncount">G.7.3.2</span> Reporting Individual Data <a href="cqif-quality-reporting.html#reporting-individual-data" title="link to here" class="self-link"><img src="../assets/images/link.svg" width="20" class="self-link" height="20"/></a></h5>
 
 <p>When using a MeasureReport resource to represent the results of an individual calculation, the MeasureReport SHALL have a type-code of &quot;individual&quot; and SHALL have a reference to a patient that is the subject of the report. In addition, the result SHOULD include a reference to a Bundle containing the patient-specific resources that were used to calculate the result.</p>
@@ -342,7 +342,7 @@ The next example demonstrates how to obtain the results of evaluating the eMeasu
 
 <p>See the MeasureReport <a href="../measurereport-examples.html">examples</a> for a detailed illustration of how the data elements involved in the calculation of the measure are communicated through the <code>evaluatedResources</code> element.</p>
 
-<a name="reporting-patient-list-data"/>
+<a name="reporting-patient-list-data"> </a>
 <h5 class="self-link-parent"><span class="sectioncount">G.7.3.3</span> Patient-List Reports <a href="cqif-quality-reporting.html#reporting-patient-list-data" title="link to here" class="self-link"><img src="../assets/images/link.svg" width="20" class="self-link" height="20"/></a></h5>
 
 <p>When using a MeasureReport resource to represent a patient-list, the MeasureReport SHALL have a type-code of &quot;patient-list&quot; and SHALL NOT have a reference to a patient. Instead, the resource SHALL include for each population a reference to a List resource that references individual level MeasureReport resources for the same measure, one for each patient in the overall population.</p>
@@ -351,36 +351,36 @@ The next example demonstrates how to obtain the results of evaluating the eMeasu
 
 <p>For example, the initial population report, in addition to providing the count, provides a reference to a List resource that identifies each of the patients that make up that population. For each of those patients, the List will contain a reference to an individual-level report for that patient.</p>
 
-<a name="references"/>
+<a name="references"> </a>
 <h4 class="self-link-parent"><span class="sectioncount">G.7.4</span> References <a href="cqif-quality-reporting.html#references" title="link to here" class="self-link"><img src="../assets/images/link.svg" width="20" class="self-link" height="20"/></a></h4>
 
 <ol>
 	<li>
-		<a name="bibitem-cql"/>
+		<a name="bibitem-cql"> </a>
 		<a href="http://www.hl7.org/implement/standards/product_brief.cfm?product_id=400">HL7 Standard: Clinical Quality Language Specification, Release 1. <img src="../external.png" style="text-align: baseline"/></a>
 	</li>
 	<li>
-		<a name="bibitem-qicore"/>
+		<a name="bibitem-qicore"> </a>
 		<a href="http://hl7.org/fhir/current/qicore">Quality Improvement Core (QICore) FHIR Implementation Guide. <img src="../external.png" style="text-align: baseline"/></a>
 	</li>
 	<li>
-		<a name="bibitem-hqmf"/>
+		<a name="bibitem-hqmf"> </a>
 		<a href="http://www.hl7.org/implement/standards/product_brief.cfm?product_id=97">Representation of the Health Quality Measures Format (eMeasure) DSTU, Release 2.1. <img src="../external.png" style="text-align: baseline"/></a>
 	</li>
 	<li>
-		<a name="bibitem-qdmhqmf1"/>
+		<a name="bibitem-qdmhqmf1"> </a>
 		<a href="http://www.hl7.org/implement/standards/product_brief.cfm?product_id=346">HL7 Version 3 Implementation Guide: Quality Data Model (QDM)-based Health Quality Measure Format (HQMF), R1 � US Realm, Volume 1 (Draft Standard for Trial Use) <img src="../external.png" style="text-align: baseline"/></a>
 	</li>
 	<li>
-		<a name="bibitem-qdmhqmf2"/>
+		<a name="bibitem-qdmhqmf2"> </a>
 		<a href="http://www.hl7.org/implement/standards/product_brief.cfm?product_id=346">HL7 Version 3 Implementation Guide: Quality Data Model (QDM)-based Health Quality Measure Format (HQMF), R1 � US Realm, Volume 2 (Draft Standard for Trial Use) <img src="../external.png" style="text-align: baseline"/></a>
 	</li>
 	<li>
-		<a name="bibitem-qdm"/>
+		<a name="bibitem-qdm"> </a>
 		<a href="https://ecqi.healthit.gov/system/files/qdm_4_2.pdf">Quality Data Model, Version 4.2 <img src="../external.png" style="text-align: baseline"/></a>
 	</li>
 	<li>
-		<a name="bibitem-qrda"/>
+		<a name="bibitem-qrda"> </a>
 		<a href="http://www.hl7.org/implement/standards/product_brief.cfm?product_id=35">HL7 CDA R2 Implementation Guide: Quality Reporting Document Architecture - Category I (QRDA I) DSTU Release 3 (US Realm) <img src="../external.png" style="text-align: baseline"/></a>
 	</li>
 </ol>
@@ -398,7 +398,7 @@ The next example demonstrates how to obtain the results of evaluating the eMeasu
 		<div class="container">  <!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:33-0500. <a href="../qa.html">QA Page</a>
+        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:28-0500. <a href="../qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search <img src="../external.png" style="text-align: baseline"/></a> | 

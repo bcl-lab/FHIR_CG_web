@@ -9,7 +9,7 @@
     {
       "telecom": [
         {
-          "system": "other",
+          "system": "url",
           "value": "http://www.hl7.org/Special/committees/clingenomics"
         }
       ]
@@ -17,7 +17,7 @@
   ],
   "date": "2013-10-02",
   "description": "Identifies a parent of the relative.",
-  "fhirVersion": "1.7.0",
+  "fhirVersion": "1.8.0",
   "mapping": [
     {
       "identity": "rim",
@@ -109,7 +109,7 @@
         "id": "Extension:mothersfathers-geneticother.extension",
         "path": "Extension.extension",
         "slicing": {
-          "id": "63",
+          "id": "60",
           "discriminator": [
             "url"
           ],
@@ -250,10 +250,10 @@
           }
         ],
         "binding": {
-          "strength": "example",
-          "description": "The nature of the relationship between the patient and the related person being described in the family member history.",
+          "strength": "required",
+          "description": "Parental relationship types",
           "valueSetReference": {
-            "reference": "http://hl7.org/fhir/ValueSet/v3-FamilyMember"
+            "reference": "http://hl7.org/fhir/ValueSet/parent-relationship-codes"
           }
         },
         "mapping": [
@@ -264,9 +264,9 @@
         ]
       },
       {
-        "id": "Extension:mothersfathers-geneticother.extension:identifier",
+        "id": "Extension:mothersfathers-geneticother.extension:reference",
         "path": "Extension.extension",
-        "sliceName": "identifier",
+        "sliceName": "reference",
         "short": "Link to parent relative(s)",
         "definition": "Points to the FamilyMemberHistory record of the relation who is the parent of this relation.",
         "min": 1,
@@ -290,7 +290,7 @@
         ]
       },
       {
-        "id": "Extension:mothersfathers-geneticother.extension:identifier.id",
+        "id": "Extension:mothersfathers-geneticother.extension:reference.id",
         "path": "Extension.extension.id",
         "representation": [
           "xmlAttr"
@@ -317,7 +317,7 @@
         ]
       },
       {
-        "id": "Extension:mothersfathers-geneticother.extension:identifier.extension:extension",
+        "id": "Extension:mothersfathers-geneticother.extension:reference.extension:extension",
         "path": "Extension.extension.extension",
         "sliceName": "extension",
         "short": "Extension",
@@ -336,7 +336,7 @@
         ]
       },
       {
-        "id": "Extension:mothersfathers-geneticother.extension:identifier.url",
+        "id": "Extension:mothersfathers-geneticother.extension:reference.url",
         "path": "Extension.extension.url",
         "representation": [
           "xmlAttr"
@@ -356,7 +356,7 @@
             "code": "uri"
           }
         ],
-        "fixedUri": "identifier",
+        "fixedUri": "reference",
         "mapping": [
           {
             "identity": "rim",
@@ -365,7 +365,7 @@
         ]
       },
       {
-        "id": "Extension:mothersfathers-geneticother.extension:identifier.valueReference",
+        "id": "Extension:mothersfathers-geneticother.extension:reference.valueReference",
         "path": "Extension.extension.valueReference",
         "short": "Value of extension",
         "definition": "Value of extension - may be a resource or one of a constrained set of the data types (see Extensibility in the spec for list).",
@@ -620,17 +620,17 @@
           }
         ],
         "binding": {
-          "strength": "example",
-          "description": "The nature of the relationship between the patient and the related person being described in the family member history.",
+          "strength": "required",
+          "description": "Parental relationship types",
           "valueSetReference": {
-            "reference": "http://hl7.org/fhir/ValueSet/v3-FamilyMember"
+            "reference": "http://hl7.org/fhir/ValueSet/parent-relationship-codes"
           }
         }
       },
       {
-        "id": "Extension:mothersfathers-geneticother.extension:identifier",
+        "id": "Extension:mothersfathers-geneticother.extension:reference",
         "path": "Extension.extension",
-        "sliceName": "identifier",
+        "sliceName": "reference",
         "short": "Link to parent relative(s)",
         "definition": "Points to the FamilyMemberHistory record of the relation who is the parent of this relation.",
         "min": 1,
@@ -649,23 +649,23 @@
         ]
       },
       {
-        "id": "Extension:mothersfathers-geneticother.extension:identifier.extension:extension",
+        "id": "Extension:mothersfathers-geneticother.extension:reference.extension:extension",
         "path": "Extension.extension.extension",
         "sliceName": "extension",
         "max": "0"
       },
       {
-        "id": "Extension:mothersfathers-geneticother.extension:identifier.url",
+        "id": "Extension:mothersfathers-geneticother.extension:reference.url",
         "path": "Extension.extension.url",
         "type": [
           {
             "code": "uri"
           }
         ],
-        "fixedUri": "identifier"
+        "fixedUri": "reference"
       },
       {
-        "id": "Extension:mothersfathers-geneticother.extension:identifier.value[x]",
+        "id": "Extension:mothersfathers-geneticother.extension:reference.value[x]",
         "path": "Extension.extension.value[x]",
         "min": 1,
         "type": [

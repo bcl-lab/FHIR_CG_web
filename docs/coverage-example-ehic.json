@@ -12,27 +12,37 @@
     }
   ],
   "status": "active",
-  "issuer": {
-    "identifier": {
-      "system": "http://ehic.com/insurer",
-      "value": "123456789"
-    }
-  },
-  "period": {
-    "end": "2012-03-17"
-  },
   "type": {
-    "system": "http://hl7.org/fhir/v3/ActCode",
-    "code": "EHCPOL",
-    "display": "extended healthcare"
+    "coding": [
+      {
+        "system": "http://hl7.org/fhir/v3/ActCode",
+        "code": "EHCPOL",
+        "display": "extended healthcare"
+      }
+    ]
   },
-  "planholder": {
+  "subscriber": {
     "reference": "Patient/5"
   },
   "beneficiary": {
     "reference": "Patient/5"
   },
   "relationship": {
-    "code": "self"
-  }
+    "coding": [
+      {
+        "code": "self"
+      }
+    ]
+  },
+  "period": {
+    "end": "2012-03-17"
+  },
+  "payor": [
+    {
+      "identifier": {
+        "system": "http://ehic.com/insurer",
+        "value": "123456789"
+      }
+    }
+  ]
 }

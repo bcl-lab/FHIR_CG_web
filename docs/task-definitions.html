@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>Task - FHIR v1.7.0</title>
+  <title>Task - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -106,7 +106,7 @@
 
 <ul class="nav nav-tabs"><li><a href="task.html">Content</a></li><li><a href="task-examples.html">Examples</a></li><li class="active"><a href="#">Detailed Descriptions</a></li><li><a href="task-mappings.html">Mappings</a></li><li><a href="task-profiles.html">Profiles &amp; Extensions</a></li><li><a href="task-operations.html">Operations</a></li></ul>
 
-<h2 class="self-link-parent"><span class="sectioncount">12.8.8<a name="12.8.8"> </a></span> Resource Task - Detailed Descriptions <a href="task-definitions.html#12.8.8" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h2>
+<h2 class="self-link-parent"><span class="sectioncount">12.8.10<a name="12.8.10"> </a></span> Resource Task - Detailed Descriptions <a href="task-definitions.html#12.8.10" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h2>
 
 <p>Detailed Descriptions for the elements in the Task resource.</p>
 
@@ -116,20 +116,29 @@
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>1..1</td></tr>
   <tr><td>Invariants</td><td><b>Defined on this element</b><br/>
-<b title="Formal Invariant Identifier">inv-1</b>: Last modified date must be greater than or equal to created date. (<a href="http://hl7.org/fluentpath">expression <img src="external.png" style="text-align: baseline"/></a>: lastModified &gt;= created, xpath: f:lastModified &gt;= f:created)</td></tr>
+<b title="Formal Invariant Identifier">inv-1</b>: Last modified date must be greater than or equal to authored-on date. (<a href="http://hl7.org/fluentpath">expression <img src="external.png" style="text-align: baseline"/></a>: lastModified &gt;= authoredOn or lastModified.exists().not() or authoredOn.exists().not(), xpath: f:lastModified &gt;= f:authoredOn or not(exists(f:lastModified)) or not(exists(f:authoredOn)))</td></tr>
   <tr><td colspan="2" class="structure"><a name="Task.identifier"> </a><b>Task.identifier</b></td></tr>
   <tr><td>Definition</td><td><p>The business identifier for this task.</p>
 </td></tr>
   <tr><td>Note</td><td>This is a business identifer, not a resource identifier (see <a href="resource.html#identifiers">discussion</a>)</td></tr>
-  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
+  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..*</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#Identifier">Identifier</a></td></tr>
+  <tr><td colspan="2" class="structure"><a name="Task.definition_x_"> </a><b>Task.definition[x]</b></td></tr>
+  <tr><td>Definition</td><td><p>A reference to a formal or informal definition of the task.  For example, a protocol, a step within a defined workflow definition, etc.</p>
+</td></tr>
+  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#uri">uri</a>|<a href="references.html#Reference">Reference</a>(<a href="activitydefinition.html">ActivityDefinition</a>)</td></tr>
+  <tr><td>[x] Note</td><td>See <a href="formats.html#choice">Choice of Data Types</a> for further information about how to use [x]</td></tr>
+  <tr><td>Requirements</td><td><p>Enables a formal definition of how he task is to be performed (e.g. using BPMN, BPEL, XPDL or other formal notation) to be associated with a task, enabling automation.</p>
+</td></tr>
+  <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
   <tr><td colspan="2" class="structure"><a name="Task.basedOn"> </a><b>Task.basedOn</b></td></tr>
-  <tr><td>Definition</td><td><p>Identifies a plan, proposal or order that this task has been created in fulfillment of.</p>
+  <tr><td>Definition</td><td><p>BasedOn refers to a higher-level authorization that triggered the creation of the task.  It references a &quot;request&quot; resource such as a DiagnosticRequest, MedicationRequest, ProcedureRequest, CarePlan, etc. which is distinct from the &quot;request&quot; resource the task is seeking to fulfil.  This latter resource is referenced by FocusOn.  For example, based on a DiagnosticRequest (= BasedOn), a task is created to fulfil a procedureRequest ( = FocusOn ) to collect a specimen from a patient.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..*</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="references.html#Reference">Reference</a>(<a href="resourcelist.html#Any">Any</a>)</td></tr>
   <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
-  <tr><td colspan="2" class="structure"><a name="Task.requisition"> </a><b>Task.requisition</b></td></tr>
+  <tr><td colspan="2" class="structure"><a name="Task.groupIdentifier"> </a><b>Task.groupIdentifier</b></td></tr>
   <tr><td>Definition</td><td><p>An identifier that links together multiple tasks and other requests that were created in the same context.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
@@ -137,7 +146,7 @@
   <tr><td>Requirements</td><td><p>Billing and/or reporting can be linked to whether multiple requests were created as a single unit.</p>
 </td></tr>
   <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
-  <tr><td colspan="2" class="structure"><a name="Task.parent"> </a><b>Task.parent</b></td></tr>
+  <tr><td colspan="2" class="structure"><a name="Task.partOf"> </a><b>Task.partOf</b></td></tr>
   <tr><td>Definition</td><td><p>Task that this particular task is part of.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..*</td></tr>
@@ -151,7 +160,7 @@
   <tr><td>Definition</td><td><p>The current status of the task.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>1..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>TaskStatus: <a href="valueset-task-status.html">The current status of the task.</a> (<a href="terminologies.html#required">Required</a>)</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-task-status.html">TaskStatus</a> (<a href="terminologies.html#required">Required</a>)</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#code">code</a></td></tr>
   <tr><td>Requirements</td><td><p>These states enable coordination of task status with off-the-shelf workflow solutions that support automation of tasks.</p>
 </td></tr>
@@ -168,19 +177,29 @@
   <tr><td>Definition</td><td><p>Contains business-specific nuances of the business state.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td><a href="terminologies.html#unbound">TaskBusinessStatus</a>: The domain-specific business-contextual sub-state of the task.  For example: &quot;Blood drawn&quot;, &quot;IV inserted&quot;, &quot;Awaiting physician signature&quot;, etc.</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="terminologies.html#unbound">TaskBusinessStatus</a>: </td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
   <tr><td>Requirements</td><td><p>There's often a need to track substates of a task - this is often variable by specific workflow implementation.</p>
 </td></tr>
   <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
-  <tr><td colspan="2" class="structure"><a name="Task.stage"> </a><b>Task.stage</b></td></tr>
+  <tr><td colspan="2" class="structure"><a name="Task.intent"> </a><b>Task.intent</b></td></tr>
   <tr><td>Definition</td><td><p>Indicates the &quot;level&quot; of actionability associated with the Task.  I.e. Is this a proposed task, a planned task, an actionable task, etc.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>1..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>Task Stage Codes: <a href="valueset-task-stage.html">Distinguishes whether the task is a proposal, plan or full order</a> (<a href="terminologies.html#extensible">Extensible</a>)</td></tr>
-  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-request-intent.html">RequestIntent</a> (<a href="terminologies.html#required">Required</a>)</td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#code">code</a></td></tr>
   <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
   <tr><td>Comments</td><td><p>This element is immutable.  Proposed tasks, planned tasks, etc. must be distinct instances.</p>
+<p>In most cases, Tasks will have an intent of &quot;order&quot;.</p>
+</td></tr>
+  <tr><td colspan="2" class="structure"><a name="Task.priority"> </a><b>Task.priority</b></td></tr>
+  <tr><td>Definition</td><td><p>Indicates how quickly the Task should be addressed with respect to other requests.</p>
+</td></tr>
+  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-request-priority.html">RequestPriority</a> (<a href="terminologies.html#required">Required</a>)</td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#code">code</a></td></tr>
+  <tr><td>Meaning if Missing</td><td>If missing, this task should be performed with normal priority</td></tr>
+  <tr><td>Requirements</td><td><p>Used to identify the service level expected while performing a task.</p>
 </td></tr>
   <tr><td colspan="2" class="structure"><a name="Task.code"> </a><b>Task.code</b></td></tr>
   <tr><td>Definition</td><td><p>A name or code (or both) briefly describing what the task involves.</p>
@@ -188,14 +207,7 @@
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
   <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
-  <tr><td colspan="2" class="structure"><a name="Task.priority"> </a><b>Task.priority</b></td></tr>
-  <tr><td>Definition</td><td><p>The priority of the task among other tasks of the same type.</p>
-</td></tr>
-  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>TaskPriority: <a href="valueset-task-priority.html">The task's priority</a> (<a href="terminologies.html#required">Required</a>)</td></tr>
-  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#code">code</a></td></tr>
-  <tr><td>Meaning if Missing</td><td>If missing, this task should be performed with normal priority</td></tr>
-  <tr><td>Requirements</td><td><p>Used to identify the service level expected while performing a task.</p>
+  <tr><td>Comments</td><td><p>The title (eg &quot;My Tasks&quot;, &quot;Outstanding Tasks for Patient X&quot;) should go into the code.</p>
 </td></tr>
   <tr><td colspan="2" class="structure"><a name="Task.description"> </a><b>Task.description</b></td></tr>
   <tr><td>Definition</td><td><p>A free-text description of what is to be performed.</p>
@@ -230,36 +242,62 @@
   <tr><td>Requirements</td><td><p>For some tasks it may be important to know the link between the task or episode of care the task originated within.</p>
 </td></tr>
   <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
-  <tr><td colspan="2" class="structure"><a name="Task.created"> </a><b>Task.created</b></td></tr>
+  <tr><td colspan="2" class="structure"><a name="Task.executionPeriod"> </a><b>Task.executionPeriod</b></td></tr>
+  <tr><td>Definition</td><td><p>Identifies the time action was first taken against the task (start) and/or the time final action was taken against the task prior to marking it as completed (end).</p>
+</td></tr>
+  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#Period">Period</a></td></tr>
+  <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
+  <tr><td colspan="2" class="structure"><a name="Task.authoredOn"> </a><b>Task.authoredOn</b></td></tr>
   <tr><td>Definition</td><td><p>The date and time this task was created.</p>
 </td></tr>
-  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>1..1</td></tr>
+  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#dateTime">dateTime</a></td></tr>
   <tr><td>Requirements</td><td><p>Most often used along with lastUpdated to track duration of task to supporting monitoring and management.</p>
 </td></tr>
   <tr><td title="Other names by which this resource/element may be known">Alternate Names</td><td>Created Date</td></tr>
   <tr><td>Invariants</td><td><b>Affect this element</b><br/>
-<b title="Formal Invariant Identifier">inv-1</b>: Last modified date must be greater than or equal to created date. (<a href="http://hl7.org/fluentpath">expression <img src="external.png" style="text-align: baseline"/></a>: lastModified &gt;= created, xpath: f:lastModified &gt;= f:created)</td></tr>
+<b title="Formal Invariant Identifier">inv-1</b>: Last modified date must be greater than or equal to authored-on date. (<a href="http://hl7.org/fluentpath">expression <img src="external.png" style="text-align: baseline"/></a>: lastModified &gt;= authoredOn or lastModified.exists().not() or authoredOn.exists().not(), xpath: f:lastModified &gt;= f:authoredOn or not(exists(f:lastModified)) or not(exists(f:authoredOn)))</td></tr>
   <tr><td colspan="2" class="structure"><a name="Task.lastModified"> </a><b>Task.lastModified</b></td></tr>
   <tr><td>Definition</td><td><p>The date and time of last modification to this task.</p>
 </td></tr>
-  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>1..1</td></tr>
+  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#dateTime">dateTime</a></td></tr>
   <tr><td>Requirements</td><td><p>Used along with history to track task activity and time in a particular task state.  This enables monitoring and management.</p>
 </td></tr>
   <tr><td title="Other names by which this resource/element may be known">Alternate Names</td><td>Update Date</td></tr>
   <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
   <tr><td>Invariants</td><td><b>Affect this element</b><br/>
-<b title="Formal Invariant Identifier">inv-1</b>: Last modified date must be greater than or equal to created date. (<a href="http://hl7.org/fluentpath">expression <img src="external.png" style="text-align: baseline"/></a>: lastModified &gt;= created, xpath: f:lastModified &gt;= f:created)</td></tr>
+<b title="Formal Invariant Identifier">inv-1</b>: Last modified date must be greater than or equal to authored-on date. (<a href="http://hl7.org/fluentpath">expression <img src="external.png" style="text-align: baseline"/></a>: lastModified &gt;= authoredOn or lastModified.exists().not() or authoredOn.exists().not(), xpath: f:lastModified &gt;= f:authoredOn or not(exists(f:lastModified)) or not(exists(f:authoredOn)))</td></tr>
   <tr><td colspan="2" class="structure"><a name="Task.requester"> </a><b>Task.requester</b></td></tr>
   <tr><td>Definition</td><td><p>The creator of the task.</p>
 </td></tr>
-  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>1..1</td></tr>
-  <tr><td><a href="datatypes.html">Type</a></td><td><a href="references.html#Reference">Reference</a>(<a href="device.html">Device</a> | <a href="organization.html">Organization</a> | <a href="patient.html">Patient</a> | <a href="practitioner.html">Practitioner</a> | <a href="relatedperson.html">RelatedPerson</a>)</td></tr>
+  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
   <tr><td>Requirements</td><td><p>Identifies who created this task.  May be used by access control mechanisms (e.g., to ensure that only the creator can cancel a task).</p>
 </td></tr>
+  <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
+  <tr><td colspan="2" class="structure"><a name="Task.requester.agent"> </a><b>Task.requester.agent</b></td></tr>
+  <tr><td>Definition</td><td><p>The device, practitioner, etc. who initiated the task.</p>
+</td></tr>
+  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>1..1</td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="references.html#Reference">Reference</a>(<a href="device.html">Device</a> | <a href="organization.html">Organization</a> | <a href="patient.html">Patient</a> | <a href="practitioner.html">Practitioner</a> | <a href="relatedperson.html">RelatedPerson</a>)</td></tr>
   <tr><td title="Other names by which this resource/element may be known">Alternate Names</td><td>Initiator; Author</td></tr>
   <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
+  <tr><td colspan="2" class="structure"><a name="Task.requester.onBehalfOf"> </a><b>Task.requester.onBehalfOf</b></td></tr>
+  <tr><td>Definition</td><td><p>The organization the device or practitioner was acting on behalf of when they initiated the task.</p>
+</td></tr>
+  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="references.html#Reference">Reference</a>(<a href="organization.html">Organization</a>)</td></tr>
+  <tr><td>Requirements</td><td><p>Practitioners and Devices can be associated with multiple organizations.  This element indicates which organization they were acting on behalf of when authoring the request.</p>
+</td></tr>
+  <tr><td colspan="2" class="structure"><a name="Task.performerType"> </a><b>Task.performerType</b></td></tr>
+  <tr><td>Definition</td><td><p>The type of participant that can execute the task.</p>
+</td></tr>
+  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..*</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-task-performer-type.html">TaskPerformerType</a> (<a href="terminologies.html#preferred">Preferred</a>)</td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
+  <tr><td>Requirements</td><td><p>Use to distinguish tasks on different activity queues.</p>
+</td></tr>
   <tr><td colspan="2" class="structure"><a name="Task.owner"> </a><b>Task.owner</b></td></tr>
   <tr><td>Definition</td><td><p>The owner of this task.  The participant who can execute this task.</p>
 </td></tr>
@@ -271,19 +309,11 @@
   <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
   <tr><td>Comments</td><td><p>Tasks may be created with an owner not yet identified.</p>
 </td></tr>
-  <tr><td colspan="2" class="structure"><a name="Task.performerType"> </a><b>Task.performerType</b></td></tr>
-  <tr><td>Definition</td><td><p>The type of participant that can execute the task.</p>
-</td></tr>
-  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..*</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>TaskPerformerType: <a href="valueset-task-performer-type.html">The type(s) of task performers allowed</a> (<a href="terminologies.html#preferred">Preferred</a>)</td></tr>
-  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
-  <tr><td>Requirements</td><td><p>Use to distinguish tasks on different activity queues.</p>
-</td></tr>
   <tr><td colspan="2" class="structure"><a name="Task.reason"> </a><b>Task.reason</b></td></tr>
   <tr><td>Definition</td><td><p>A description or code indicating why this task needs to be performed.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td><a href="terminologies.html#unbound">TaskReason</a>: Indicates why the task is needed.  E.g. Suspended because patient admitted to hospital.</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="terminologies.html#unbound">TaskReason</a>: </td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
   <tr><td>Comments</td><td><p>This should only be included if there is no focus or if it differs from the reason indicated on the focus.</p>
 </td></tr>
@@ -292,40 +322,40 @@
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..*</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#Annotation">Annotation</a></td></tr>
-  <tr><td colspan="2" class="structure"><a name="Task.fulfillment"> </a><b>Task.fulfillment</b></td></tr>
-  <tr><td>Definition</td><td><p>Identifies any limitations on what part of a referenced task subject request should be actioned.</p>
+  <tr><td colspan="2" class="structure"><a name="Task.relevantHistory"> </a><b>Task.relevantHistory</b></td></tr>
+  <tr><td>Definition</td><td><p>Links to Provenance records for past versions of this Task that identify key state transitions or updates that are likely to be relevant to a user looking at the current version of the task.</p>
+</td></tr>
+  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..*</td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="references.html#Reference">Reference</a>(<a href="provenance.html">Provenance</a>)</td></tr>
+  <tr><td title="Other names by which this resource/element may be known">Alternate Names</td><td>Status History</td></tr>
+  <tr><td>Comments</td><td><p>This element does not point to the Provenance associated with the <em>current</em> version of the resource - as it would be created after this version existed.  The Provenance for the current version can be retrieved with a _revinclude.</p>
+</td></tr>
+  <tr><td colspan="2" class="structure"><a name="Task.restriction"> </a><b>Task.restriction</b></td></tr>
+  <tr><td>Definition</td><td><p>If the Task.focus is a request resource and the task is seeking fulfillment (i.e is asking for the request to be actioned), this element identifies any limitations on what parts of the referenced request should be actioned.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
   <tr><td>Requirements</td><td><p>Sometimes when fulfillment is sought, you don't want full fulfillment.</p>
 </td></tr>
-  <tr><td colspan="2" class="structure"><a name="Task.fulfillment.repetitions"> </a><b>Task.fulfillment.repetitions</b></td></tr>
+  <tr><td colspan="2" class="structure"><a name="Task.restriction.repetitions"> </a><b>Task.restriction.repetitions</b></td></tr>
   <tr><td>Definition</td><td><p>Indicates the number of times the requested action should occur.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#positiveInt">positiveInt</a></td></tr>
   <tr><td>Requirements</td><td><p>E.g. order that requests monthly lab tests, fulfillment is sought for 1.</p>
 </td></tr>
-  <tr><td colspan="2" class="structure"><a name="Task.fulfillment.period"> </a><b>Task.fulfillment.period</b></td></tr>
+  <tr><td colspan="2" class="structure"><a name="Task.restriction.period"> </a><b>Task.restriction.period</b></td></tr>
   <tr><td>Definition</td><td><p>Over what time-period is fulfillment sought.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#Period">Period</a></td></tr>
   <tr><td>Requirements</td><td><p>E.g. order that authorizes 1 year's services.  Fulfillment is sought for next 3 months.</p>
 </td></tr>
-  <tr><td colspan="2" class="structure"><a name="Task.fulfillment.recipients"> </a><b>Task.fulfillment.recipients</b></td></tr>
+  <tr><td colspan="2" class="structure"><a name="Task.restriction.recipient"> </a><b>Task.restriction.recipient</b></td></tr>
   <tr><td>Definition</td><td><p>For requests that are targeted to more than on potential recipient/target, for whom is fulfillment sought?</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..*</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="references.html#Reference">Reference</a>(<a href="patient.html">Patient</a> | <a href="practitioner.html">Practitioner</a> | <a href="relatedperson.html">RelatedPerson</a> | <a href="group.html">Group</a> | <a href="organization.html">Organization</a>)</td></tr>
   <tr><td>To Do</td><td>Is this in the 80%?</td></tr>
-  <tr><td colspan="2" class="structure"><a name="Task.definition"> </a><b>Task.definition</b></td></tr>
-  <tr><td>Definition</td><td><p>A reference to a formal or informal definition of the task.  For example, a protocol, a step within a defined workflow definition, etc.</p>
-</td></tr>
-  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#uri">uri</a></td></tr>
-  <tr><td>Requirements</td><td><p>Enables a formal definition of how he task is to be performed (e.g. using BPMN, BPEL, XPDL or other formal notation) to be associated with a task, enabling automation.</p>
-</td></tr>
-  <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
   <tr><td colspan="2" class="structure"><a name="Task.input"> </a><b>Task.input</b></td></tr>
   <tr><td>Definition</td><td><p>Additional information that may be needed in the execution of the task.</p>
 </td></tr>
@@ -337,7 +367,7 @@
   <tr><td>Definition</td><td><p>A code or description indicating how the input is intended to be used as part of the task execution.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>1..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td><a href="terminologies.html#unbound">TaskInputParameterType</a>: Codes to identify types of input parameters.  These will typically be specific to a particular workflow.  E.g. &quot;Comparison source&quot;, &quot;Applicable consent&quot;, &quot;Concommitent Medications&quot;, etc.</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="terminologies.html#unbound">TaskInputParameterType</a>: </td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
   <tr><td>Requirements</td><td><p>Inputs are named to enable task automation to bind data and pass it from one task to the next.</p>
 </td></tr>
@@ -360,7 +390,7 @@
   <tr><td>Definition</td><td><p>The name of the Output parameter.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>1..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td><a href="terminologies.html#unbound">TaskOutputParameterType</a>: Codes to identify types of input parameters.  These will typically be specific to a particular workflow.  E.g. &quot;Identified issues&quot;, &quot;Preliminary results&quot;, &quot;Filler order&quot;, &quot;Final results&quot;, etc.</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="terminologies.html#unbound">TaskOutputParameterType</a>: </td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
   <tr><td>Requirements</td><td><p>Outputs are named to enable task automation to bind data and pass it from one task to the next.</p>
 </td></tr>
@@ -391,7 +421,7 @@
 		<div class="container">  <!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:33-0500. <a href="qa.html">QA Page</a>
+        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:28-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search <img src="external.png" style="text-align: baseline"/></a> | 

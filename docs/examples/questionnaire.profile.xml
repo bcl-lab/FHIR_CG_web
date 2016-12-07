@@ -3,7 +3,7 @@
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="Questionnaire"/>
   <meta>
-    <lastUpdated value="2016-11-28T17:29:55.664-05:00"/>
+    <lastUpdated value="2016-12-07T14:18:58.982-05:00"/>
   </meta>
   <text>
     <status value="generated"/>
@@ -227,7 +227,7 @@
             <img src="data: image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAWCAYAAAABxvaqAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3wYeFzIs1vtcMQAAAB1pVFh0Q29tbWVudAAAAAAAQ3JlYXRlZCB3aXRoIEdJTVBkLmUHAAAAE0lEQVQI12P4//8/AxMDAwNdCABMPwMo2ctnoQAAAABJRU5ErkJggg==" alt="." style="background-color: inherit" class="hierarchy"/>
             <img src="data: image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAWCAYAAADJqhx8AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3wYeFzI3XJ6V3QAAAB1pVFh0Q29tbWVudAAAAAAAQ3JlYXRlZCB3aXRoIEdJTVBkLmUHAAAANklEQVQ4y+2RsQ0AIAzDav7/2VzQwoCY4iWbZSmo1QGoUgNMghvWaIejPQW/CrrNCylIwcOCDYfLNRcNer4SAAAAAElFTkSuQmCC" alt="." style="background-color: inherit" class="hierarchy"/>
             <img src="data: image/png;base64,R0lGODlhEAAQAOZ/APrkusOiYvvfqbiXWaV2G+jGhdq1b8GgYf3v1frw3vTUlsWkZNewbcSjY/DQkad4Hb6dXv3u0f3v1ObEgfPTlerJiP3w1v79+e7OkPrfrfnjuNOtZPrpydaxa+/YrvvdpP779ZxvFPvnwKKBQaFyF/369M2vdaqHRPz58/HNh/vowufFhfroxO3OkPrluv779tK0e6JzGProwvrow9m4eOnIifPTlPDPkP78+Naxaf3v0/zowfXRi+bFhLWUVv379/rnwPvszv3rye3LiPvnv+3MjPDasKiIS/789/3x2f747eXDg+7Mifvu0tu7f+/QkfDTnPXWmPrjsvrjtPbPgrqZW+/QlPz48K2EMv36866OUPvowat8Ivvgq/Pbrvzgq/PguvrgrqN0Gda2evfYm9+7d/rpw9q6e/LSku/Rl/XVl/LSlfrkt+zVqe7Wqv3x1/bNffbOf59wFdS6if3u0vrqyP3owPvepfXQivDQkO/PkKh9K7STVf779P///////yH5BAEAAH8ALAAAAAAQABAAAAfNgH+Cg36FfoOIhH4JBxBghYl/hQkNAV0IVT5GkJKLCwtQaSsSdx9aR26Gcwt2IkQaNRI6dBERIzCFDSgWSW8WCDkbBnoOQ3uFARc/JQJfCAZlT0x4ZFyFBxdNQT9ZCBNWKQoKUQ+FEDgcdTIAV14YDmg2CgSFA0hmQC5TLE4VRTdrKJAoxOeFCzZSwsw4U6BCizwUQhQyEaAPiAwCVNCY0FCNnA6GPAwYoETIFgY9loiRA4dToTYnsOxg8CBGHE6ICvEYQ4AKzkidfgoKBAA7" alt="." style="background-color: white; background-color: inherit" title="Data Type" class="hierarchy"/> 
-            <span title="Questionnaire.concept : Identifies a how this question or group of questions is known in a particular terminology such as LOINC.">concept</span>
+            <span title="Questionnaire.concept : Identifies how this question or group of questions is known in a particular terminology such as LOINC.">concept</span>
             <a name="Questionnaire.concept"> </a>
           </td>
           <td style="vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">
@@ -298,6 +298,8 @@
             <span style="font-style: italic" title="que-10">Maximum length can only be declared for simple question types</span>
             <br/>
             <span style="font-style: italic" title="que-1">Group items must have nested items, display items cannot have nested items</span>
+            <br/>
+            <span style="font-style: italic" title="que-11">Type is required if a definition is not provided</span>
           </td>
         </tr>
 
@@ -311,11 +313,39 @@
             <a name="Questionnaire.item.linkId"> </a>
           </td>
           <td style="vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy"/>
-          <td style="vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">0..1</td>
+          <td style="vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">1..1</td>
           <td style="vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">
             <a href="datatypes.html#string">string</a>
           </td>
-          <td style="vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">To link questionnaire with questionnaire response</td>
+          <td style="vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">Unique id for item in questionnaire</td>
+        </tr>
+
+        <tr style="border: 0px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: white;">
+          <td style="vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px; white-space: nowrap; background-image: url(data: image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAyAAAAACCAYAAACg/LjIAAAALElEQVR42u3QwQkAMAwDsezq/WdIO4XJQwa9DTdJpulv258AAMANIgAAADUPYAVAgAJ//usAAAAASUVORK5CYII=)" class="hierarchy">
+            <img src="data: image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAWCAYAAAABxvaqAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3wYeFzIs1vtcMQAAAB1pVFh0Q29tbWVudAAAAAAAQ3JlYXRlZCB3aXRoIEdJTVBkLmUHAAAAE0lEQVQI12P4//8/AxMDAwNdCABMPwMo2ctnoQAAAABJRU5ErkJggg==" alt="." style="background-color: inherit" class="hierarchy"/>
+            <img src="data: image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAWCAYAAADJqhx8AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3wYeFzIZgEiYEgAAAB1pVFh0Q29tbWVudAAAAAAAQ3JlYXRlZCB3aXRoIEdJTVBkLmUHAAAAIElEQVQ4y2P8//8/AyWAiYFCMGrAqAGjBowaMGoAAgAALL0DKYQ0DPIAAAAASUVORK5CYII=" alt="." style="background-color: inherit" class="hierarchy"/>
+            <img src="data: image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAWCAYAAADJqhx8AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3wYeFzI3XJ6V3QAAAB1pVFh0Q29tbWVudAAAAAAAQ3JlYXRlZCB3aXRoIEdJTVBkLmUHAAAANklEQVQ4y+2RsQ0AIAzDav7/2VzQwoCY4iWbZSmo1QGoUgNMghvWaIejPQW/CrrNCylIwcOCDYfLNRcNer4SAAAAAElFTkSuQmCC" alt="." style="background-color: inherit" class="hierarchy"/>
+            <img src="data: image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3gYBFzI0BrFQCwAAAERJREFUOMtj/P//PwMlgImBQjDwBrCcOnWKokBgYWBgYDCU+06W5i8MUggvnH/EOVJjAW4AuQHJ+O75LYqikXE0LzAAALePEntTkEoSAAAAAElFTkSuQmCC" alt="." style="background-color: white; background-color: inherit" title="Primitive Data Type" class="hierarchy"/> 
+            <span title="Questionnaire.item.definition : A reference to an [[[ElementDefinition]]] that provides the details for the item. If a definition is provided, then the following element values can be inferred from the definition: 
+
+* concept (ElementDefinition.code)
+* type (ElementDefinition.type)
+* required (ElementDefinition.min)
+* repeats (ElementDefinition.max)
+* maxLength (ElementDefinition.maxLength)
+* options (ElementDefinition.binding)
+
+Any information provided in these elements overrides the information from the definition.">definition</span>
+            <a name="Questionnaire.item.definition"> </a>
+          </td>
+          <td style="vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">
+            <span style="padding: 3px" title="This element has or is affected by some invariants">I</span>
+          </td>
+          <td style="vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">0..1</td>
+          <td style="vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">
+            <a href="datatypes.html#uri">uri</a>
+          </td>
+          <td style="vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">ElementDefinition - details for the item</td>
         </tr>
 
         <tr style="border: 0px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: white;">
@@ -324,7 +354,7 @@
             <img src="data: image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAWCAYAAADJqhx8AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3wYeFzIZgEiYEgAAAB1pVFh0Q29tbWVudAAAAAAAQ3JlYXRlZCB3aXRoIEdJTVBkLmUHAAAAIElEQVQ4y2P8//8/AyWAiYFCMGrAqAGjBowaMGoAAgAALL0DKYQ0DPIAAAAASUVORK5CYII=" alt="." style="background-color: inherit" class="hierarchy"/>
             <img src="data: image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAWCAYAAADJqhx8AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3wYeFzI3XJ6V3QAAAB1pVFh0Q29tbWVudAAAAAAAQ3JlYXRlZCB3aXRoIEdJTVBkLmUHAAAANklEQVQ4y+2RsQ0AIAzDav7/2VzQwoCY4iWbZSmo1QGoUgNMghvWaIejPQW/CrrNCylIwcOCDYfLNRcNer4SAAAAAElFTkSuQmCC" alt="." style="background-color: inherit" class="hierarchy"/>
             <img src="data: image/png;base64,R0lGODlhEAAQAOZ/APrkusOiYvvfqbiXWaV2G+jGhdq1b8GgYf3v1frw3vTUlsWkZNewbcSjY/DQkad4Hb6dXv3u0f3v1ObEgfPTlerJiP3w1v79+e7OkPrfrfnjuNOtZPrpydaxa+/YrvvdpP779ZxvFPvnwKKBQaFyF/369M2vdaqHRPz58/HNh/vowufFhfroxO3OkPrluv779tK0e6JzGProwvrow9m4eOnIifPTlPDPkP78+Naxaf3v0/zowfXRi+bFhLWUVv379/rnwPvszv3rye3LiPvnv+3MjPDasKiIS/789/3x2f747eXDg+7Mifvu0tu7f+/QkfDTnPXWmPrjsvrjtPbPgrqZW+/QlPz48K2EMv36866OUPvowat8Ivvgq/Pbrvzgq/PguvrgrqN0Gda2evfYm9+7d/rpw9q6e/LSku/Rl/XVl/LSlfrkt+zVqe7Wqv3x1/bNffbOf59wFdS6if3u0vrqyP3owPvepfXQivDQkO/PkKh9K7STVf779P///////yH5BAEAAH8ALAAAAAAQABAAAAfNgH+Cg36FfoOIhH4JBxBghYl/hQkNAV0IVT5GkJKLCwtQaSsSdx9aR26Gcwt2IkQaNRI6dBERIzCFDSgWSW8WCDkbBnoOQ3uFARc/JQJfCAZlT0x4ZFyFBxdNQT9ZCBNWKQoKUQ+FEDgcdTIAV14YDmg2CgSFA0hmQC5TLE4VRTdrKJAoxOeFCzZSwsw4U6BCizwUQhQyEaAPiAwCVNCY0FCNnA6GPAwYoETIFgY9loiRA4dToTYnsOxg8CBGHE6ICvEYQ4AKzkidfgoKBAA7" alt="." style="background-color: white; background-color: inherit" title="Data Type" class="hierarchy"/> 
-            <span title="Questionnaire.item.concept : Identifies a how this group of questions is known in a particular terminology such as LOINC.">concept</span>
+            <span title="Questionnaire.item.concept : Terminology code that corresponds to this group or question (e.g. LOINC).">concept</span>
             <a name="Questionnaire.item.concept"> </a>
           </td>
           <td style="vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">
@@ -387,12 +417,14 @@
             <span title="Questionnaire.item.type : Identifies the type of questionnaire item this is - whether text for display, a grouping of other items or a particular type of data to be captured (string, integer, coded choice, etc.).">type</span>
             <a name="Questionnaire.item.type"> </a>
           </td>
-          <td style="vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy"/>
-          <td style="vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">1..1</td>
+          <td style="vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">
+            <span style="padding: 3px" title="This element has or is affected by some invariants">I</span>
+          </td>
+          <td style="vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">0..1</td>
           <td style="vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">
             <a href="datatypes.html#code">code</a>
           </td>
-          <td style="vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">group | display | question | boolean | decimal | integer | date | dateTime +
+          <td style="vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">group | display | boolean | decimal | integer | date | dateTime +
             <br/>
             <a href="valueset-item-type.html" title="Distinguishes groups from questions and display text and indicates data type for questions">QuestionnaireItemType</a> (
             <a href="terminologies.html#required" title="To be conformant, instances of this element SHALL include a code from the specified value set.">Required</a>)
@@ -944,7 +976,7 @@
             <img src="data: image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAWCAYAAADJqhx8AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3wYeFzIZgEiYEgAAAB1pVFh0Q29tbWVudAAAAAAAQ3JlYXRlZCB3aXRoIEdJTVBkLmUHAAAAIElEQVQ4y2P8//8/AyWAiYFCMGrAqAGjBowaMGoAAgAALL0DKYQ0DPIAAAAASUVORK5CYII=" alt="." style="background-color: inherit" class="hierarchy"/>
             <img src="data: image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAWCAYAAADJqhx8AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3wYeFzI3XJ6V3QAAAB1pVFh0Q29tbWVudAAAAAAAQ3JlYXRlZCB3aXRoIEdJTVBkLmUHAAAANklEQVQ4y+2RsQ0AIAzDav7/2VzQwoCY4iWbZSmo1QGoUgNMghvWaIejPQW/CrrNCylIwcOCDYfLNRcNer4SAAAAAElFTkSuQmCC" alt="." style="background-color: inherit" class="hierarchy"/>
             <img src="data: image/png;base64,R0lGODlhEAAQAMQfAGm6/idTd4yTmF+v8Xa37KvW+lyh3KHJ62aq41ee2bXZ98nm/2mt5W2Ck5XN/C1chEZieho8WXXA/2Gn4P39/W+y6V+l3qjP8Njt/lx2izxPYGyv51Oa1EJWZ////////yH5BAEAAB8ALAAAAAAQABAAAAWH4Cd+Xml6Y0pCQts0EKp6GbYshaM/skhjhCChUmFIeL4OsHIxXRAISQTl6SgIG8+FgfBMoh2qtbLZQr0TQJhk3TC4pYPBApiyFVDEwSOf18UFXxMWBoUJBn9sDgmDewcJCRyJJBoEkRyYmAABPZQEAAOhA5seFDMaDw8BAQ9TpiokJyWwtLUhADs=" alt="." style="background-color: white; background-color: inherit" title="Choice of Types" class="hierarchy"/> 
-            <span title="Questionnaire.item.initial[x] : The value that should be pre-populated when rendering the questionnaire for user input.">initial[x]</span>
+            <span title="Questionnaire.item.initial[x] : The value that should be defaulted when rendering the questionnaire for user input.">initial[x]</span>
             <a name="Questionnaire.item.initial_x_"> </a>
           </td>
           <td style="vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">
@@ -952,7 +984,7 @@
           </td>
           <td style="vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">0..1</td>
           <td style="vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy"></td>
-          <td style="vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">Initial presumed answer for question</td>
+          <td style="vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">Default value when item is first rendered</td>
         </tr>
 
         <tr style="border: 0px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: white;">
@@ -1209,26 +1241,29 @@
   <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm">
     <valueInteger value="0"/>
   </extension>
+  <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-wg">
+    <valueCode value="pc"/>
+  </extension>
   <url value="http://hl7.org/fhir/StructureDefinition/Questionnaire"/>
   <name value="Questionnaire"/>
   <status value="draft"/>
   <publisher value="Health Level Seven International (Patient Care)"/>
   <contact>
     <telecom>
-      <system value="other"/>
+      <system value="url"/>
       <value value="http://hl7.org/fhir"/>
     </telecom>
   </contact>
   <contact>
     <telecom>
-      <system value="other"/>
+      <system value="url"/>
       <value value="http://www.hl7.org/Special/committees/patientcare/index.cfm"/>
     </telecom>
   </contact>
-  <date value="2016-11-28T17:29:55-05:00"/>
+  <date value="2016-12-07T14:18:58-05:00"/>
   <description value="Base StructureDefinition for Questionnaire Resource"/>
   <purpose value="To support structured, hierarchical registration of data gathered using digital forms and other questionnaires."/>
-  <fhirVersion value="1.7.0"/>
+  <fhirVersion value="1.8.0"/>
   <mapping>
     <identity value="rim"/>
     <uri value="http://hl7.org/v3"/>
@@ -1666,7 +1701,7 @@
     <element id="Questionnaire.concept">
       <path value="Questionnaire.concept"/>
       <short value="Concept that represents the overall questionnaire"/>
-      <definition value="Identifies a how this question or group of questions is known in a particular terminology such as LOINC."/>
+      <definition value="Identifies how this question or group of questions is known in a particular terminology such as LOINC."/>
       <requirements value="Allows linking of the complete Questionnaire resources to formal terminologies.  It&#39;s common for &quot;pannels&quot; of questions to be identified by a code."/>
       <min value="0"/>
       <max value="*"/>
@@ -1783,6 +1818,13 @@
         <expression value="(type=&#39;group&#39; implies item.empty().not()) and (type.trace(&#39;type&#39;)=&#39;display&#39; implies item.trace(&#39;item&#39;).empty())"/>
         <xpath value="not((f:type/@value=&#39;group&#39; and not(f:item)) or (f:type/@value=&#39;display&#39; and f:item))"/>
       </constraint>
+      <constraint>
+        <key value="que-11"/>
+        <severity value="error"/>
+        <human value="Type is required if a definition is not provided"/>
+        <expression value="definition.empty() implies type.exists()"/>
+        <xpath value="not(exists(f:type)) or exists(f:definition)"/>
+      </constraint>
       <mapping>
         <identity value="rim"/>
         <map value=".outboundRelationship[typeCode=COMP].target[classCode=OBS, moodCode=DEF]"/>
@@ -1857,11 +1899,11 @@
     </element>
     <element id="Questionnaire.item.linkId">
       <path value="Questionnaire.item.linkId"/>
-      <short value="To link questionnaire with questionnaire response"/>
+      <short value="Unique id for item in questionnaire"/>
       <definition value="An identifier that is unique within the Questionnaire allowing linkage to the equivalent item in a QuestionnaireResponse resource."/>
-      <comments value="May be omitted if there is no expectation to link answers back to a Questionnaire.  This &#39;&#39;can&#39;&#39; be a meaningful identifier (e.g. a LOINC code) but is not intended to have any meaning.  GUIDs or sequential numbers are appropriate here."/>
-      <requirements value="[[[QuestionnaireResponse]]] does not require omitted items to be included and may have some items that repeat, so linkage based on position alone is not sufficient."/>
-      <min value="0"/>
+      <comments value="This &#39;&#39;can&#39;&#39; be a meaningful identifier (e.g. a LOINC code) but is not intended to have any meaning.  GUIDs or sequential numbers are appropriate here."/>
+      <requirements value="[QuestionnaireResponse](questionnaireresponse.html#) does not require omitted items to be included and may have some items that repeat, so linkage based on position alone is not sufficient."/>
+      <min value="1"/>
       <max value="1"/>
       <type>
         <code value="string"/>
@@ -1871,11 +1913,37 @@
         <map value=".id"/>
       </mapping>
     </element>
+    <element id="Questionnaire.item.definition">
+      <path value="Questionnaire.item.definition"/>
+      <short value="ElementDefinition - details for the item"/>
+      <definition value="A reference to an [ElementDefinition](elementdefinition.html) that provides the details for the item. If a definition is provided, then the following element values can be inferred from the definition: 
+
+* concept (ElementDefinition.code)
+* type (ElementDefinition.type)
+* required (ElementDefinition.min)
+* repeats (ElementDefinition.max)
+* maxLength (ElementDefinition.maxLength)
+* options (ElementDefinition.binding)
+
+Any information provided in these elements overrides the information from the definition."/>
+      <comments value="The ElementDefinition must be in a [StructureDefinition](structuredefinition.html#) or a [DataElement](dataelement.html#), and must have a fragment identifier that identifies the specific data element by it\&#39;s id (Element.id). E.g. http://hl7.org/fhir/StructureDefinition/Observation#Observation.value[x]."/>
+      <requirements value="A common pattern is to define a set of data elements, and then build multiple different questionnaires for different circumstances to gather the data. This element provides traceability to the common definition, and allows the content for the question to come from the underlying definition."/>
+      <min value="0"/>
+      <max value="1"/>
+      <type>
+        <code value="uri"/>
+      </type>
+      <condition value="que-11"/>
+      <mapping>
+        <identity value="rim"/>
+        <map value="Not supported"/>
+      </mapping>
+    </element>
     <element id="Questionnaire.item.concept">
       <path value="Questionnaire.item.concept"/>
       <short value="Concept that represents this item within in a questionnaire"/>
-      <definition value="Identifies a how this group of questions is known in a particular terminology such as LOINC."/>
-      <comments value="The code(s) for the &quot;root&quot; group apply to the questionnaire as a whole."/>
+      <definition value="Terminology code that corresponds to this group or question (e.g. LOINC)."/>
+      <comments value="The code(s) for the &quot;root&quot; group apply to the questionnaire as a whole. Value may come from the ElementDefinition referred to by .definition."/>
       <requirements value="Allows linking of groups of questions (and complete Questionnaire resources) to formal terminologies."/>
       <min value="0"/>
       <max value="*"/>
@@ -1934,15 +2002,16 @@ Systems SHOULD NOT generate their own prefixes if prefixes are defined for any i
     </element>
     <element id="Questionnaire.item.type">
       <path value="Questionnaire.item.type"/>
-      <short value="group | display | question | boolean | decimal | integer | date | dateTime +"/>
+      <short value="group | display | boolean | decimal | integer | date | dateTime +"/>
       <definition value="Identifies the type of questionnaire item this is - whether text for display, a grouping of other items or a particular type of data to be captured (string, integer, coded choice, etc.)."/>
-      <comments value="Additional constraints on the type of answer can be conveyed by extensions."/>
+      <comments value="Additional constraints on the type of answer can be conveyed by extensions. Value may come from the ElementDefinition referred to by .definition."/>
       <requirements value="Defines the format in which the user is to be prompted for the answer."/>
-      <min value="1"/>
+      <min value="0"/>
       <max value="1"/>
       <type>
         <code value="code"/>
       </type>
+      <condition value="que-11"/>
       <binding>
         <strength value="required"/>
         <description value="Distinguishes groups from questions and display text and indicates data type for questions"/>
@@ -2147,7 +2216,7 @@ The dataType of this element must be the same as the data type of the question b
       <path value="Questionnaire.item.required"/>
       <short value="Whether the item must be included in data results"/>
       <definition value="If true, indicates that the item must be present in a &quot;completed&quot; QuestionnaireResponse.  If false, the item may be skipped when answering the questionnaire."/>
-      <comments value="If an item that contains other items is marked as required, that does not automatically make the contained elements required (though required groups must contain at least one child element)."/>
+      <comments value="Questionnaire.item.required only has meaning for elements that are conditionally enabled with enableWhen if the condition evaluates to true.  If an item that contains other items is marked as required, that does not automatically make the contained elements required (though required groups must contain at least one child element). Value may come from the ElementDefinition referred to by .definition."/>
       <min value="0"/>
       <max value="1"/>
       <type>
@@ -2164,6 +2233,7 @@ The dataType of this element must be the same as the data type of the question b
       <path value="Questionnaire.item.repeats"/>
       <short value="Whether the item may repeat"/>
       <definition value="Whether the item may occur multiple times in the instance, containing multiple sets of answers."/>
+      <comments value="If a question is marked as repeats=true, then multiple answers can be provided for the question in the corresponding QuestionnaireResponse.  When rendering the questionnaire, it is up to the rendering software whether to render the question text for each answer repetition or to simply list each of the answers beneath the question.  (Which is most appropriate visually may depend on the type of answer as well as whether there are nested items.). Value may come from the ElementDefinition referred to by .definition."/>
       <requirements value="Items may be used to create set of (related) questions that can be repeated to give multiple answers to such a set."/>
       <min value="0"/>
       <max value="1"/>
@@ -2198,7 +2268,7 @@ The dataType of this element must be the same as the data type of the question b
       <path value="Questionnaire.item.maxLength"/>
       <short value="No more than this many characters"/>
       <definition value="The maximum number of characters that are permitted in the answer to be considered a &quot;valid&quot; QuestionnaireResponse."/>
-      <comments value="For base64binary, reflects the number of characters representing the encoded data, not the number of bytes of the binary data."/>
+      <comments value="For base64binary, reflects the number of characters representing the encoded data, not the number of bytes of the binary data. Value may come from the ElementDefinition referred to by .definition."/>
       <min value="0"/>
       <max value="1"/>
       <type>
@@ -2218,7 +2288,7 @@ The dataType of this element must be the same as the data type of the question b
       <path value="Questionnaire.item.options"/>
       <short value="Valueset containing permitted answers"/>
       <definition value="Reference to a value set containing a list of codes representing permitted answers for the question."/>
-      <comments value="LOINC defines many useful value sets for questionnaire response. See [LOINC Answer Lists](loinc.html#alist)."/>
+      <comments value="LOINC defines many useful value sets for questionnaire response. See [LOINC Answer Lists](loinc.html#alist). Value may come from the ElementDefinition referred to by .definition."/>
       <min value="0"/>
       <max value="1"/>
       <type>
@@ -2358,8 +2428,9 @@ The dataType of this element must be the same as the data type of the question b
     </element>
     <element id="Questionnaire.item.initial[x]">
       <path value="Questionnaire.item.initial[x]"/>
-      <short value="Initial presumed answer for question"/>
-      <definition value="The value that should be pre-populated when rendering the questionnaire for user input."/>
+      <short value="Default value when item is first rendered"/>
+      <definition value="The value that should be defaulted when rendering the questionnaire for user input."/>
+      <comments value="The user is allowed to change the value and override the default (unless marked as read-only). If the user doesn&#39;t change the value, then this initial value will be persisted when the QuestionnaireResponse is initially created."/>
       <requirements value="In some workflows, having defaults saves time."/>
       <min value="0"/>
       <max value="1"/>
@@ -2633,7 +2704,7 @@ The dataType of this element must be the same as the data type of the question b
     <element id="Questionnaire.concept">
       <path value="Questionnaire.concept"/>
       <short value="Concept that represents the overall questionnaire"/>
-      <definition value="Identifies a how this question or group of questions is known in a particular terminology such as LOINC."/>
+      <definition value="Identifies how this question or group of questions is known in a particular terminology such as LOINC."/>
       <requirements value="Allows linking of the complete Questionnaire resources to formal terminologies.  It&#39;s common for &quot;pannels&quot; of questions to be identified by a code."/>
       <min value="0"/>
       <max value="*"/>
@@ -2742,6 +2813,13 @@ The dataType of this element must be the same as the data type of the question b
         <expression value="(type=&#39;group&#39; implies item.empty().not()) and (type.trace(&#39;type&#39;)=&#39;display&#39; implies item.trace(&#39;item&#39;).empty())"/>
         <xpath value="not((f:type/@value=&#39;group&#39; and not(f:item)) or (f:type/@value=&#39;display&#39; and f:item))"/>
       </constraint>
+      <constraint>
+        <key value="que-11"/>
+        <severity value="error"/>
+        <human value="Type is required if a definition is not provided"/>
+        <expression value="definition.empty() implies type.exists()"/>
+        <xpath value="not(exists(f:type)) or exists(f:definition)"/>
+      </constraint>
       <mapping>
         <identity value="rim"/>
         <map value=".outboundRelationship[typeCode=COMP].target[classCode=OBS, moodCode=DEF]"/>
@@ -2749,11 +2827,11 @@ The dataType of this element must be the same as the data type of the question b
     </element>
     <element id="Questionnaire.item.linkId">
       <path value="Questionnaire.item.linkId"/>
-      <short value="To link questionnaire with questionnaire response"/>
+      <short value="Unique id for item in questionnaire"/>
       <definition value="An identifier that is unique within the Questionnaire allowing linkage to the equivalent item in a QuestionnaireResponse resource."/>
-      <comments value="May be omitted if there is no expectation to link answers back to a Questionnaire.  This &#39;&#39;can&#39;&#39; be a meaningful identifier (e.g. a LOINC code) but is not intended to have any meaning.  GUIDs or sequential numbers are appropriate here."/>
-      <requirements value="[[[QuestionnaireResponse]]] does not require omitted items to be included and may have some items that repeat, so linkage based on position alone is not sufficient."/>
-      <min value="0"/>
+      <comments value="This &#39;&#39;can&#39;&#39; be a meaningful identifier (e.g. a LOINC code) but is not intended to have any meaning.  GUIDs or sequential numbers are appropriate here."/>
+      <requirements value="[QuestionnaireResponse](questionnaireresponse.html#) does not require omitted items to be included and may have some items that repeat, so linkage based on position alone is not sufficient."/>
+      <min value="1"/>
       <max value="1"/>
       <type>
         <code value="string"/>
@@ -2763,11 +2841,37 @@ The dataType of this element must be the same as the data type of the question b
         <map value=".id"/>
       </mapping>
     </element>
+    <element id="Questionnaire.item.definition">
+      <path value="Questionnaire.item.definition"/>
+      <short value="ElementDefinition - details for the item"/>
+      <definition value="A reference to an [ElementDefinition](elementdefinition.html) that provides the details for the item. If a definition is provided, then the following element values can be inferred from the definition: 
+
+* concept (ElementDefinition.code)
+* type (ElementDefinition.type)
+* required (ElementDefinition.min)
+* repeats (ElementDefinition.max)
+* maxLength (ElementDefinition.maxLength)
+* options (ElementDefinition.binding)
+
+Any information provided in these elements overrides the information from the definition."/>
+      <comments value="The ElementDefinition must be in a [StructureDefinition](structuredefinition.html#) or a [DataElement](dataelement.html#), and must have a fragment identifier that identifies the specific data element by it\&#39;s id (Element.id). E.g. http://hl7.org/fhir/StructureDefinition/Observation#Observation.value[x]."/>
+      <requirements value="A common pattern is to define a set of data elements, and then build multiple different questionnaires for different circumstances to gather the data. This element provides traceability to the common definition, and allows the content for the question to come from the underlying definition."/>
+      <min value="0"/>
+      <max value="1"/>
+      <type>
+        <code value="uri"/>
+      </type>
+      <condition value="que-11"/>
+      <mapping>
+        <identity value="rim"/>
+        <map value="Not supported"/>
+      </mapping>
+    </element>
     <element id="Questionnaire.item.concept">
       <path value="Questionnaire.item.concept"/>
       <short value="Concept that represents this item within in a questionnaire"/>
-      <definition value="Identifies a how this group of questions is known in a particular terminology such as LOINC."/>
-      <comments value="The code(s) for the &quot;root&quot; group apply to the questionnaire as a whole."/>
+      <definition value="Terminology code that corresponds to this group or question (e.g. LOINC)."/>
+      <comments value="The code(s) for the &quot;root&quot; group apply to the questionnaire as a whole. Value may come from the ElementDefinition referred to by .definition."/>
       <requirements value="Allows linking of groups of questions (and complete Questionnaire resources) to formal terminologies."/>
       <min value="0"/>
       <max value="*"/>
@@ -2826,15 +2930,16 @@ Systems SHOULD NOT generate their own prefixes if prefixes are defined for any i
     </element>
     <element id="Questionnaire.item.type">
       <path value="Questionnaire.item.type"/>
-      <short value="group | display | question | boolean | decimal | integer | date | dateTime +"/>
+      <short value="group | display | boolean | decimal | integer | date | dateTime +"/>
       <definition value="Identifies the type of questionnaire item this is - whether text for display, a grouping of other items or a particular type of data to be captured (string, integer, coded choice, etc.)."/>
-      <comments value="Additional constraints on the type of answer can be conveyed by extensions."/>
+      <comments value="Additional constraints on the type of answer can be conveyed by extensions. Value may come from the ElementDefinition referred to by .definition."/>
       <requirements value="Defines the format in which the user is to be prompted for the answer."/>
-      <min value="1"/>
+      <min value="0"/>
       <max value="1"/>
       <type>
         <code value="code"/>
       </type>
+      <condition value="que-11"/>
       <binding>
         <strength value="required"/>
         <description value="Distinguishes groups from questions and display text and indicates data type for questions"/>
@@ -2964,7 +3069,7 @@ The dataType of this element must be the same as the data type of the question b
       <path value="Questionnaire.item.required"/>
       <short value="Whether the item must be included in data results"/>
       <definition value="If true, indicates that the item must be present in a &quot;completed&quot; QuestionnaireResponse.  If false, the item may be skipped when answering the questionnaire."/>
-      <comments value="If an item that contains other items is marked as required, that does not automatically make the contained elements required (though required groups must contain at least one child element)."/>
+      <comments value="Questionnaire.item.required only has meaning for elements that are conditionally enabled with enableWhen if the condition evaluates to true.  If an item that contains other items is marked as required, that does not automatically make the contained elements required (though required groups must contain at least one child element). Value may come from the ElementDefinition referred to by .definition."/>
       <min value="0"/>
       <max value="1"/>
       <type>
@@ -2981,6 +3086,7 @@ The dataType of this element must be the same as the data type of the question b
       <path value="Questionnaire.item.repeats"/>
       <short value="Whether the item may repeat"/>
       <definition value="Whether the item may occur multiple times in the instance, containing multiple sets of answers."/>
+      <comments value="If a question is marked as repeats=true, then multiple answers can be provided for the question in the corresponding QuestionnaireResponse.  When rendering the questionnaire, it is up to the rendering software whether to render the question text for each answer repetition or to simply list each of the answers beneath the question.  (Which is most appropriate visually may depend on the type of answer as well as whether there are nested items.). Value may come from the ElementDefinition referred to by .definition."/>
       <requirements value="Items may be used to create set of (related) questions that can be repeated to give multiple answers to such a set."/>
       <min value="0"/>
       <max value="1"/>
@@ -3015,7 +3121,7 @@ The dataType of this element must be the same as the data type of the question b
       <path value="Questionnaire.item.maxLength"/>
       <short value="No more than this many characters"/>
       <definition value="The maximum number of characters that are permitted in the answer to be considered a &quot;valid&quot; QuestionnaireResponse."/>
-      <comments value="For base64binary, reflects the number of characters representing the encoded data, not the number of bytes of the binary data."/>
+      <comments value="For base64binary, reflects the number of characters representing the encoded data, not the number of bytes of the binary data. Value may come from the ElementDefinition referred to by .definition."/>
       <min value="0"/>
       <max value="1"/>
       <type>
@@ -3035,7 +3141,7 @@ The dataType of this element must be the same as the data type of the question b
       <path value="Questionnaire.item.options"/>
       <short value="Valueset containing permitted answers"/>
       <definition value="Reference to a value set containing a list of codes representing permitted answers for the question."/>
-      <comments value="LOINC defines many useful value sets for questionnaire response. See [LOINC Answer Lists](loinc.html#alist)."/>
+      <comments value="LOINC defines many useful value sets for questionnaire response. See [LOINC Answer Lists](loinc.html#alist). Value may come from the ElementDefinition referred to by .definition."/>
       <min value="0"/>
       <max value="1"/>
       <type>
@@ -3100,8 +3206,9 @@ The dataType of this element must be the same as the data type of the question b
     </element>
     <element id="Questionnaire.item.initial[x]">
       <path value="Questionnaire.item.initial[x]"/>
-      <short value="Initial presumed answer for question"/>
-      <definition value="The value that should be pre-populated when rendering the questionnaire for user input."/>
+      <short value="Default value when item is first rendered"/>
+      <definition value="The value that should be defaulted when rendering the questionnaire for user input."/>
+      <comments value="The user is allowed to change the value and override the default (unless marked as read-only). If the user doesn&#39;t change the value, then this initial value will be persisted when the QuestionnaireResponse is initially created."/>
       <requirements value="In some workflows, having defaults saves time."/>
       <min value="0"/>
       <max value="1"/>

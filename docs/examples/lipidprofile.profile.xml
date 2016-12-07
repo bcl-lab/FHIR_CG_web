@@ -9,19 +9,25 @@
   <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-summary">
     <valueMarkdown value="This is a test summary [lipids](observation.html)"/>
   </extension>
+  <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm">
+    <valueInteger value="1"/>
+  </extension>
+  <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-wg">
+    <valueCode value="oo"/>
+  </extension>
   <url value="http://hl7.org/fhir/StructureDefinition/lipidprofile"/>
   <name value="Example Lipid Profile"/>
   <status value="draft"/>
   <publisher value="Grahame Grieve"/>
   <contact>
     <telecom>
-      <system value="other"/>
+      <system value="url"/>
       <value value="grahame@healthintersections.com.au"/>
     </telecom>
   </contact>
   <date value="2012-05-12"/>
   <description value="Lipid Lab Report"/>
-  <fhirVersion value="1.7.0"/>
+  <fhirVersion value="1.8.0"/>
   <mapping>
     <identity value="v2"/>
     <uri value="http://hl7.org/v2"/>
@@ -440,11 +446,11 @@
       <definition value="The subject of the report. Usually, but not always, this is a patient. However diagnostic services also perform analyses on specimens collected from a variety of other sources."/>
       <requirements value="SHALL know the subject context."/>
       <alias value="Patient"/>
-      <min value="1"/>
+      <min value="0"/>
       <max value="1"/>
       <base>
         <path value="DiagnosticReport.subject"/>
-        <min value="1"/>
+        <min value="0"/>
         <max value="1"/>
       </base>
       <type>
@@ -514,11 +520,11 @@
       <requirements value="Need to know where in the patient history to file/present this report."/>
       <alias value="Observation time"/>
       <alias value="Effective Time"/>
-      <min value="1"/>
+      <min value="0"/>
       <max value="1"/>
       <base>
         <path value="DiagnosticReport.effective[x]"/>
-        <min value="1"/>
+        <min value="0"/>
         <max value="1"/>
       </base>
       <type>
@@ -550,11 +556,11 @@
       <alias value="Date Created"/>
       <alias value="Date published"/>
       <alias value="Date Issued"/>
-      <min value="1"/>
+      <min value="0"/>
       <max value="1"/>
       <base>
         <path value="DiagnosticReport.issued"/>
-        <min value="1"/>
+        <min value="0"/>
         <max value="1"/>
       </base>
       <type>
@@ -585,11 +591,11 @@
       <alias value="Practitioner"/>
       <alias value="Department"/>
       <alias value="Company"/>
-      <min value="1"/>
+      <min value="0"/>
       <max value="*"/>
       <base>
         <path value="DiagnosticReport.performer"/>
-        <min value="1"/>
+        <min value="0"/>
         <max value="*"/>
       </base>
       <type>

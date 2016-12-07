@@ -3,7 +3,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>Address.profile.json - FHIR v1.7.0</title>
+  <title>Address.profile.json - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -119,7 +119,7 @@
   &quot;resourceType&quot;: &quot;StructureDefinition&quot;,
   &quot;id&quot;: &quot;Address&quot;,
   &quot;meta&quot;: {
-    &quot;lastUpdated&quot;: &quot;2016-11-28T17:29:55.664-05:00&quot;
+    &quot;lastUpdated&quot;: &quot;2016-12-07T14:18:58.982-05:00&quot;
   },
   &quot;text&quot;: {
     &quot;status&quot;: &quot;generated&quot;,
@@ -133,16 +133,16 @@
     {
       &quot;telecom&quot;: [
         {
-          &quot;system&quot;: &quot;other&quot;,
+          &quot;system&quot;: &quot;url&quot;,
           &quot;value&quot;: &quot;http://hl7.org/fhir&quot;
         }
       ]
     }
   ],
-  &quot;date&quot;: &quot;2016-11-28T17:29:55-05:00&quot;,
+  &quot;date&quot;: &quot;2016-12-07T14:18:58-05:00&quot;,
   &quot;description&quot;: &quot;Base StructureDefinition for Address Type&quot;,
   &quot;purpose&quot;: &quot;Need to be able to record postal addresses, along with notes about their use.&quot;,
-  &quot;fhirVersion&quot;: &quot;1.7.0&quot;,
+  &quot;fhirVersion&quot;: &quot;1.8.0&quot;,
   &quot;mapping&quot;: [
     {
       &quot;identity&quot;: &quot;v2&quot;,
@@ -282,7 +282,12 @@
             &quot;code&quot;: &quot;code&quot;
           }
         ],
-        &quot;exampleCode&quot;: &quot;home&quot;,
+        &quot;example&quot;: [
+          {
+            &quot;label&quot;: &quot;General&quot;,
+            &quot;valueCode&quot;: &quot;home&quot;
+          }
+        ],
         &quot;isModifier&quot;: true,
         &quot;isSummary&quot;: true,
         &quot;binding&quot;: {
@@ -319,7 +324,12 @@
             &quot;code&quot;: &quot;code&quot;
           }
         ],
-        &quot;exampleCode&quot;: &quot;both&quot;,
+        &quot;example&quot;: [
+          {
+            &quot;label&quot;: &quot;General&quot;,
+            &quot;valueCode&quot;: &quot;both&quot;
+          }
+        ],
         &quot;isSummary&quot;: true,
         &quot;binding&quot;: {
           &quot;strength&quot;: &quot;required&quot;,
@@ -357,7 +367,12 @@
             &quot;code&quot;: &quot;string&quot;
           }
         ],
-        &quot;exampleString&quot;: &quot;137 Nowhere Street, Erewhon 9132&quot;,
+        &quot;example&quot;: [
+          {
+            &quot;label&quot;: &quot;General&quot;,
+            &quot;valueString&quot;: &quot;137 Nowhere Street, Erewhon 9132&quot;
+          }
+        ],
         &quot;isSummary&quot;: true,
         &quot;mapping&quot;: [
           {
@@ -387,7 +402,12 @@
             &quot;code&quot;: &quot;string&quot;
           }
         ],
-        &quot;exampleString&quot;: &quot;137 Nowhere Street&quot;,
+        &quot;example&quot;: [
+          {
+            &quot;label&quot;: &quot;General&quot;,
+            &quot;valueString&quot;: &quot;137 Nowhere Street&quot;
+          }
+        ],
         &quot;isSummary&quot;: true,
         &quot;mapping&quot;: [
           {
@@ -423,7 +443,12 @@
             &quot;code&quot;: &quot;string&quot;
           }
         ],
-        &quot;exampleString&quot;: &quot;Erewhon&quot;,
+        &quot;example&quot;: [
+          {
+            &quot;label&quot;: &quot;General&quot;,
+            &quot;valueString&quot;: &quot;Erewhon&quot;
+          }
+        ],
         &quot;isSummary&quot;: true,
         &quot;mapping&quot;: [
           {
@@ -460,7 +485,12 @@
             &quot;code&quot;: &quot;string&quot;
           }
         ],
-        &quot;exampleString&quot;: &quot;Madison&quot;,
+        &quot;example&quot;: [
+          {
+            &quot;label&quot;: &quot;General&quot;,
+            &quot;valueString&quot;: &quot;Madison&quot;
+          }
+        ],
         &quot;isSummary&quot;: true,
         &quot;mapping&quot;: [
           {
@@ -524,7 +554,12 @@
             &quot;code&quot;: &quot;string&quot;
           }
         ],
-        &quot;exampleString&quot;: &quot;9132&quot;,
+        &quot;example&quot;: [
+          {
+            &quot;label&quot;: &quot;General&quot;,
+            &quot;valueString&quot;: &quot;9132&quot;
+          }
+        ],
         &quot;isSummary&quot;: true,
         &quot;mapping&quot;: [
           {
@@ -548,7 +583,7 @@
       {
         &quot;id&quot;: &quot;Address.country&quot;,
         &quot;path&quot;: &quot;Address.country&quot;,
-        &quot;short&quot;: &quot;Country (can be ISO 3166 3 letter code)&quot;,
+        &quot;short&quot;: &quot;Country (e.g. can be ISO 3166 2 or 3 letter code)&quot;,
         &quot;definition&quot;: &quot;Country - a nation as commonly understood or generally accepted.&quot;,
         &quot;comments&quot;: &quot;ISO 3166 3 letter codes can be used in place of a full country name.&quot;,
         &quot;min&quot;: 0,
@@ -591,10 +626,15 @@
             &quot;code&quot;: &quot;Period&quot;
           }
         ],
-        &quot;examplePeriod&quot;: {
-          &quot;start&quot;: &quot;2010-03-23&quot;,
-          &quot;end&quot;: &quot;2010-07-01&quot;
-        },
+        &quot;example&quot;: [
+          {
+            &quot;label&quot;: &quot;General&quot;,
+            &quot;valuePeriod&quot;: {
+              &quot;start&quot;: &quot;2010-03-23&quot;,
+              &quot;end&quot;: &quot;2010-07-01&quot;
+            }
+          }
+        ],
         &quot;isSummary&quot;: true,
         &quot;mapping&quot;: [
           {
@@ -652,7 +692,12 @@
             &quot;code&quot;: &quot;code&quot;
           }
         ],
-        &quot;exampleCode&quot;: &quot;home&quot;,
+        &quot;example&quot;: [
+          {
+            &quot;label&quot;: &quot;General&quot;,
+            &quot;valueCode&quot;: &quot;home&quot;
+          }
+        ],
         &quot;isModifier&quot;: true,
         &quot;isSummary&quot;: true,
         &quot;binding&quot;: {
@@ -689,7 +734,12 @@
             &quot;code&quot;: &quot;code&quot;
           }
         ],
-        &quot;exampleCode&quot;: &quot;both&quot;,
+        &quot;example&quot;: [
+          {
+            &quot;label&quot;: &quot;General&quot;,
+            &quot;valueCode&quot;: &quot;both&quot;
+          }
+        ],
         &quot;isSummary&quot;: true,
         &quot;binding&quot;: {
           &quot;strength&quot;: &quot;required&quot;,
@@ -727,7 +777,12 @@
             &quot;code&quot;: &quot;string&quot;
           }
         ],
-        &quot;exampleString&quot;: &quot;137 Nowhere Street, Erewhon 9132&quot;,
+        &quot;example&quot;: [
+          {
+            &quot;label&quot;: &quot;General&quot;,
+            &quot;valueString&quot;: &quot;137 Nowhere Street, Erewhon 9132&quot;
+          }
+        ],
         &quot;isSummary&quot;: true,
         &quot;mapping&quot;: [
           {
@@ -757,7 +812,12 @@
             &quot;code&quot;: &quot;string&quot;
           }
         ],
-        &quot;exampleString&quot;: &quot;137 Nowhere Street&quot;,
+        &quot;example&quot;: [
+          {
+            &quot;label&quot;: &quot;General&quot;,
+            &quot;valueString&quot;: &quot;137 Nowhere Street&quot;
+          }
+        ],
         &quot;isSummary&quot;: true,
         &quot;mapping&quot;: [
           {
@@ -793,7 +853,12 @@
             &quot;code&quot;: &quot;string&quot;
           }
         ],
-        &quot;exampleString&quot;: &quot;Erewhon&quot;,
+        &quot;example&quot;: [
+          {
+            &quot;label&quot;: &quot;General&quot;,
+            &quot;valueString&quot;: &quot;Erewhon&quot;
+          }
+        ],
         &quot;isSummary&quot;: true,
         &quot;mapping&quot;: [
           {
@@ -830,7 +895,12 @@
             &quot;code&quot;: &quot;string&quot;
           }
         ],
-        &quot;exampleString&quot;: &quot;Madison&quot;,
+        &quot;example&quot;: [
+          {
+            &quot;label&quot;: &quot;General&quot;,
+            &quot;valueString&quot;: &quot;Madison&quot;
+          }
+        ],
         &quot;isSummary&quot;: true,
         &quot;mapping&quot;: [
           {
@@ -894,7 +964,12 @@
             &quot;code&quot;: &quot;string&quot;
           }
         ],
-        &quot;exampleString&quot;: &quot;9132&quot;,
+        &quot;example&quot;: [
+          {
+            &quot;label&quot;: &quot;General&quot;,
+            &quot;valueString&quot;: &quot;9132&quot;
+          }
+        ],
         &quot;isSummary&quot;: true,
         &quot;mapping&quot;: [
           {
@@ -918,7 +993,7 @@
       {
         &quot;id&quot;: &quot;Address.country&quot;,
         &quot;path&quot;: &quot;Address.country&quot;,
-        &quot;short&quot;: &quot;Country (can be ISO 3166 3 letter code)&quot;,
+        &quot;short&quot;: &quot;Country (e.g. can be ISO 3166 2 or 3 letter code)&quot;,
         &quot;definition&quot;: &quot;Country - a nation as commonly understood or generally accepted.&quot;,
         &quot;comments&quot;: &quot;ISO 3166 3 letter codes can be used in place of a full country name.&quot;,
         &quot;min&quot;: 0,
@@ -961,10 +1036,15 @@
             &quot;code&quot;: &quot;Period&quot;
           }
         ],
-        &quot;examplePeriod&quot;: {
-          &quot;start&quot;: &quot;2010-03-23&quot;,
-          &quot;end&quot;: &quot;2010-07-01&quot;
-        },
+        &quot;example&quot;: [
+          {
+            &quot;label&quot;: &quot;General&quot;,
+            &quot;valuePeriod&quot;: {
+              &quot;start&quot;: &quot;2010-03-23&quot;,
+              &quot;end&quot;: &quot;2010-07-01&quot;
+            }
+          }
+        ],
         &quot;isSummary&quot;: true,
         &quot;mapping&quot;: [
           {
@@ -1008,7 +1088,7 @@ of the specification.
 		<div class="container"><!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:32-0500. <a href="qa.html">QA Page</a>
+        © HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:21-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search</a> | 

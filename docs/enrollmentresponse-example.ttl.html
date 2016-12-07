@@ -3,7 +3,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>Enrollmentresponse-example.ttl - FHIR v1.7.0</title>
+  <title>Enrollmentresponse-example.ttl - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -136,14 +136,20 @@
      fhir:Identifier.value [ fhir:value &quot;781234&quot; ]
   ];
   fhir:EnrollmentResponse.status [ fhir:value &quot;active&quot;];
-  fhir:EnrollmentResponse.requestReference [
+  fhir:EnrollmentResponse.request [
      fhir:link &lt;http://www.BenefitsInc.com/fhir/eligibility/225476332402&gt;;
      fhir:Reference.reference [ fhir:value &quot;http://www.BenefitsInc.com/fhir/eligibility/225476332402&quot; ]
   ];
-  fhir:EnrollmentResponse.outcome [ fhir:value &quot;complete&quot;];
+  fhir:EnrollmentResponse.outcome [
+     fhir:CodeableConcept.coding [
+       fhir:index 0;
+       fhir:Coding.system [ fhir:value &quot;http://hl7.org/fhir/remittance-outcome&quot; ];
+       fhir:Coding.code [ fhir:value &quot;complete&quot; ]
+     ]
+  ];
   fhir:EnrollmentResponse.disposition [ fhir:value &quot;Dependant added to policy.&quot;];
   fhir:EnrollmentResponse.created [ fhir:value &quot;2014-08-16&quot;^^xsd:date];
-  fhir:EnrollmentResponse.organizationReference [
+  fhir:EnrollmentResponse.organization [
      fhir:link &lt;http://hl7.org/fhir/Organization/2&gt;;
      fhir:Reference.reference [ fhir:value &quot;Organization/2&quot; ]
   ] .
@@ -177,7 +183,7 @@ of the specification.
 		<div class="container"><!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:32-0500. <a href="qa.html">QA Page</a>
+        © HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:21-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search</a> | 

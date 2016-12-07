@@ -7,7 +7,7 @@
     }
   ],
   "status": "draft",
-  "date": "2016-11-28T17:29:55-05:00",
+  "date": "2016-12-07T14:18:58-05:00",
   "publisher": "Health Level Seven International (Financial Management)",
   "item": [
     {
@@ -368,10 +368,6 @@
         {
           "extension": [
             {
-              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-minOccurs",
-              "valueInteger": 1
-            },
-            {
               "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs",
               "valueInteger": 1
             },
@@ -382,7 +378,7 @@
           ],
           "linkId": "ProcessResponse.status",
           "type": "group",
-          "required": true,
+          "required": false,
           "repeats": true,
           "item": [
             {
@@ -407,231 +403,6 @@
               "linkId": "ProcessResponse.status.value",
               "text": "status",
               "type": "choice",
-              "required": false,
-              "repeats": false
-            }
-          ]
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs",
-              "valueInteger": 1
-            },
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType",
-              "valueString": "Reference"
-            }
-          ],
-          "linkId": "ProcessResponse.request",
-          "type": "group",
-          "required": false,
-          "repeats": true,
-          "item": [
-            {
-              "extension": [
-                {
-                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
-                  "valueCodeableConcept": {
-                    "coding": [
-                      {
-                        "system": "http://hl7.org/fhir/questionnaire-item-control",
-                        "code": "flyover",
-                        "display": "Fly-over"
-                      }
-                    ]
-                  }
-                }
-              ],
-              "text": "Original request resource reference.",
-              "type": "display"
-            },
-            {
-              "extension": [
-                {
-                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-allowedResource",
-                  "valueCode": "Resource"
-                },
-                {
-                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-referenceFilter",
-                  "valueString": "subject=$subj&patient=$subj&encounter=$encounter"
-                }
-              ],
-              "linkId": "ProcessResponse.request.value",
-              "text": "Request reference",
-              "type": "reference",
-              "required": false,
-              "repeats": false
-            }
-          ]
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs",
-              "valueInteger": 1
-            },
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType",
-              "valueString": "Coding"
-            }
-          ],
-          "linkId": "ProcessResponse.outcome",
-          "type": "group",
-          "required": false,
-          "repeats": true,
-          "item": [
-            {
-              "extension": [
-                {
-                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
-                  "valueCodeableConcept": {
-                    "coding": [
-                      {
-                        "system": "http://hl7.org/fhir/questionnaire-item-control",
-                        "code": "flyover",
-                        "display": "Fly-over"
-                      }
-                    ]
-                  }
-                }
-              ],
-              "text": "Transaction status: error, complete, held.",
-              "type": "display"
-            },
-            {
-              "linkId": "ProcessResponse.outcome.value",
-              "text": "Processing outcome",
-              "type": "open-choice",
-              "required": false,
-              "repeats": false
-            }
-          ]
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs",
-              "valueInteger": 1
-            },
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType",
-              "valueString": "string"
-            }
-          ],
-          "linkId": "ProcessResponse.disposition",
-          "type": "group",
-          "required": false,
-          "repeats": true,
-          "item": [
-            {
-              "extension": [
-                {
-                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
-                  "valueCodeableConcept": {
-                    "coding": [
-                      {
-                        "system": "http://hl7.org/fhir/questionnaire-item-control",
-                        "code": "flyover",
-                        "display": "Fly-over"
-                      }
-                    ]
-                  }
-                }
-              ],
-              "text": "A description of the status of the adjudication or processing.",
-              "type": "display"
-            },
-            {
-              "linkId": "ProcessResponse.disposition.value",
-              "text": "Disposition Message",
-              "type": "string",
-              "required": false,
-              "repeats": false
-            }
-          ]
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs",
-              "valueInteger": 1
-            },
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType",
-              "valueString": "Coding"
-            }
-          ],
-          "linkId": "ProcessResponse.ruleset",
-          "type": "group",
-          "required": false,
-          "repeats": true,
-          "item": [
-            {
-              "extension": [
-                {
-                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
-                  "valueCodeableConcept": {
-                    "coding": [
-                      {
-                        "system": "http://hl7.org/fhir/questionnaire-item-control",
-                        "code": "flyover",
-                        "display": "Fly-over"
-                      }
-                    ]
-                  }
-                }
-              ],
-              "text": "The version of the style of resource contents. This should be mapped to the allowable profiles for this and supporting resources.",
-              "type": "display"
-            },
-            {
-              "linkId": "ProcessResponse.ruleset.value",
-              "text": "Resource version",
-              "type": "open-choice",
-              "required": false,
-              "repeats": false
-            }
-          ]
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs",
-              "valueInteger": 1
-            },
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType",
-              "valueString": "Coding"
-            }
-          ],
-          "linkId": "ProcessResponse.originalRuleset",
-          "type": "group",
-          "required": false,
-          "repeats": true,
-          "item": [
-            {
-              "extension": [
-                {
-                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
-                  "valueCodeableConcept": {
-                    "coding": [
-                      {
-                        "system": "http://hl7.org/fhir/questionnaire-item-control",
-                        "code": "flyover",
-                        "display": "Fly-over"
-                      }
-                    ]
-                  }
-                }
-              ],
-              "text": "The style (standard) and version of the original material which was converted into this resource.",
-              "type": "display"
-            },
-            {
-              "linkId": "ProcessResponse.originalRuleset.value",
-              "text": "Original version",
-              "type": "open-choice",
               "required": false,
               "repeats": false
             }
@@ -728,6 +499,153 @@
               "linkId": "ProcessResponse.organization.value",
               "text": "Authoring Organization",
               "type": "reference",
+              "required": false,
+              "repeats": false
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs",
+              "valueInteger": 1
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType",
+              "valueString": "Reference"
+            }
+          ],
+          "linkId": "ProcessResponse.request",
+          "type": "group",
+          "required": false,
+          "repeats": true,
+          "item": [
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://hl7.org/fhir/questionnaire-item-control",
+                        "code": "flyover",
+                        "display": "Fly-over"
+                      }
+                    ]
+                  }
+                }
+              ],
+              "text": "Original request resource reference.",
+              "type": "display"
+            },
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-allowedResource",
+                  "valueCode": "Resource"
+                },
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-referenceFilter",
+                  "valueString": "subject=$subj&patient=$subj&encounter=$encounter"
+                }
+              ],
+              "linkId": "ProcessResponse.request.value",
+              "text": "Request reference",
+              "type": "reference",
+              "required": false,
+              "repeats": false
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs",
+              "valueInteger": 1
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType",
+              "valueString": "CodeableConcept"
+            }
+          ],
+          "linkId": "ProcessResponse.outcome",
+          "text": "Processing outcome",
+          "type": "group",
+          "required": false,
+          "repeats": true,
+          "item": [
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://hl7.org/fhir/questionnaire-item-control",
+                        "code": "flyover",
+                        "display": "Fly-over"
+                      }
+                    ]
+                  }
+                }
+              ],
+              "text": "Transaction status: error, complete, held.",
+              "type": "display"
+            },
+            {
+              "linkId": "ProcessResponse.outcome.coding",
+              "text": "code:",
+              "type": "open-choice",
+              "required": false,
+              "repeats": false
+            },
+            {
+              "linkId": "ProcessResponse.outcome.text",
+              "text": "text:",
+              "type": "string",
+              "required": false,
+              "repeats": false
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs",
+              "valueInteger": 1
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType",
+              "valueString": "string"
+            }
+          ],
+          "linkId": "ProcessResponse.disposition",
+          "type": "group",
+          "required": false,
+          "repeats": true,
+          "item": [
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://hl7.org/fhir/questionnaire-item-control",
+                        "code": "flyover",
+                        "display": "Fly-over"
+                      }
+                    ]
+                  }
+                }
+              ],
+              "text": "A description of the status of the adjudication or processing.",
+              "type": "display"
+            },
+            {
+              "linkId": "ProcessResponse.disposition.value",
+              "text": "Disposition Message",
+              "type": "string",
               "required": false,
               "repeats": false
             }
@@ -847,10 +765,11 @@
             },
             {
               "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType",
-              "valueString": "Coding"
+              "valueString": "CodeableConcept"
             }
           ],
           "linkId": "ProcessResponse.form",
+          "text": "Printed Form Identifier",
           "type": "group",
           "required": false,
           "repeats": true,
@@ -874,16 +793,23 @@
               "type": "display"
             },
             {
-              "linkId": "ProcessResponse.form.value",
-              "text": "Printed Form Identifier",
+              "linkId": "ProcessResponse.form.coding",
+              "text": "code:",
               "type": "choice",
+              "required": false,
+              "repeats": false
+            },
+            {
+              "linkId": "ProcessResponse.form.text",
+              "text": "text:",
+              "type": "string",
               "required": false,
               "repeats": false
             }
           ]
         },
         {
-          "linkId": "ProcessResponse.notes",
+          "linkId": "ProcessResponse.note",
           "text": "Notes",
           "type": "group",
           "required": false,
@@ -918,7 +844,7 @@
                   "valueString": "string"
                 }
               ],
-              "linkId": "ProcessResponse.notes.id",
+              "linkId": "ProcessResponse.note.id",
               "type": "group",
               "required": false,
               "repeats": true,
@@ -942,7 +868,7 @@
                   "type": "display"
                 },
                 {
-                  "linkId": "ProcessResponse.notes.id.value",
+                  "linkId": "ProcessResponse.note.id.value",
                   "text": "xml:id (or equivalent in JSON)",
                   "type": "string",
                   "required": false,
@@ -951,7 +877,7 @@
               ]
             },
             {
-              "linkId": "ProcessResponse.notes.extension",
+              "linkId": "ProcessResponse.note.extension",
               "text": "Additional Content defined by implementations",
               "type": "group",
               "required": false,
@@ -978,7 +904,7 @@
               ]
             },
             {
-              "linkId": "ProcessResponse.notes.modifierExtension",
+              "linkId": "ProcessResponse.note.modifierExtension",
               "text": "Extensions that cannot be ignored",
               "type": "group",
               "required": false,
@@ -1012,10 +938,11 @@
                 },
                 {
                   "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType",
-                  "valueString": "Coding"
+                  "valueString": "CodeableConcept"
                 }
               ],
-              "linkId": "ProcessResponse.notes.type",
+              "linkId": "ProcessResponse.note.type",
+              "text": "display | print | printoper",
               "type": "group",
               "required": false,
               "repeats": true,
@@ -1039,9 +966,16 @@
                   "type": "display"
                 },
                 {
-                  "linkId": "ProcessResponse.notes.type.value",
-                  "text": "display | print | printoper",
+                  "linkId": "ProcessResponse.note.type.coding",
+                  "text": "code:",
                   "type": "choice",
+                  "required": false,
+                  "repeats": false
+                },
+                {
+                  "linkId": "ProcessResponse.note.type.text",
+                  "text": "text:",
+                  "type": "string",
                   "required": false,
                   "repeats": false
                 }
@@ -1058,7 +992,7 @@
                   "valueString": "string"
                 }
               ],
-              "linkId": "ProcessResponse.notes.text",
+              "linkId": "ProcessResponse.note.text",
               "type": "group",
               "required": false,
               "repeats": true,
@@ -1082,7 +1016,7 @@
                   "type": "display"
                 },
                 {
-                  "linkId": "ProcessResponse.notes.text.value",
+                  "linkId": "ProcessResponse.note.text.value",
                   "text": "Notes text",
                   "type": "string",
                   "required": false,
@@ -1096,10 +1030,11 @@
           "extension": [
             {
               "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType",
-              "valueString": "Coding"
+              "valueString": "CodeableConcept"
             }
           ],
           "linkId": "ProcessResponse.error",
+          "text": "Error code",
           "type": "group",
           "required": false,
           "repeats": true,
@@ -1123,9 +1058,65 @@
               "type": "display"
             },
             {
-              "linkId": "ProcessResponse.error.value",
-              "text": "Error code",
+              "linkId": "ProcessResponse.error.coding",
+              "text": "code:",
               "type": "choice",
+              "required": false,
+              "repeats": false
+            },
+            {
+              "linkId": "ProcessResponse.error.text",
+              "text": "text:",
+              "type": "string",
+              "required": false,
+              "repeats": false
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType",
+              "valueString": "Reference"
+            }
+          ],
+          "linkId": "ProcessResponse.communicationRequest",
+          "type": "group",
+          "required": false,
+          "repeats": true,
+          "item": [
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://hl7.org/fhir/questionnaire-item-control",
+                        "code": "flyover",
+                        "display": "Fly-over"
+                      }
+                    ]
+                  }
+                }
+              ],
+              "text": "Request for additional supporting or authorizing information, such as: documents, images or resources.",
+              "type": "display"
+            },
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-allowedResource",
+                  "valueCode": "CommunicationRequest"
+                },
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-referenceFilter",
+                  "valueString": "subject=$subj&patient=$subj&encounter=$encounter"
+                }
+              ],
+              "linkId": "ProcessResponse.communicationRequest.value",
+              "text": "Request for additional information",
+              "type": "reference",
               "required": false,
               "repeats": false
             }

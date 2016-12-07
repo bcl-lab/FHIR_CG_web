@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>StructureDefinition: LipidProfile - FHIR v1.7.0</title>
+  <title>StructureDefinition: LipidProfile - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -144,7 +144,7 @@
   <tr><td>Definition</td><td><p>The base language in which the resource is written.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>A human language.<br/>The codes SHALL be taken from <a href="valueset-languages.html">Common Languages</a>; other codes may be used where these codes are not suitable</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td>A human language.<br/>The codes SHALL be taken from <a href="valueset-languages.html">Common Languages</a>; other codes may be used where these codes are not suitable</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#code">code</a></td></tr>
   <tr><td>Comments</td><td><p>Language is provided to support indexing and accessibility (typically, services such as text to speech use the language tag). The html language tag in the narrative applies  to the narrative. The language tag on the resource may be used to specify the language of other presentations generated from the data in the resource  Not all the content has to be in the base language. The Resource.language should not be assumed to apply to the narrative automatically. If a language is specified, it should it also be specified on the div element in the html (see rules in HTML5 for information about the relationship between xml:lang and the html lang attribute).</p>
 </td></tr>
@@ -193,7 +193,7 @@
   <tr><td>Definition</td><td><p>The status of the diagnostic report as a whole.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>1..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>The status of the diagnostic report as a whole.<br/>The codes SHALL be taken from <a href="valueset-diagnostic-report-status.html">DiagnosticReportStatus</a></td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td>The status of the diagnostic report as a whole.<br/>The codes SHALL be taken from <a href="valueset-diagnostic-report-status.html">DiagnosticReportStatus</a></td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#code">code</a></td></tr>
   <tr><td><a href="conformance-rules.html#ismodifier">Is Modifier</a></td><td>true</td></tr>
   <tr><td>Requirements</td><td><p>Diagnostic services routinely issue provisional/incomplete reports, and sometimes withdraw previously released reports.</p>
@@ -204,7 +204,7 @@
   <tr><td>Definition</td><td><p>A code that classifies the clinical discipline, department or diagnostic service that created the report (e.g. cardiology, biochemistry, hematology, MRI). This is used for searching, sorting and display purposes.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>Codes for diagnostic service sections.<br/>For example codes, see <a href="valueset-diagnostic-service-sections.html">Diagnostic Service Section Codes</a></td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td>Codes for diagnostic service sections.<br/>For example codes, see <a href="valueset-diagnostic-service-sections.html">Diagnostic Service Section Codes</a></td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
   <tr><td title="Other names by which this resource/element may be known">Alternate Names</td><td>Department, Sub-department, service, discipline</td></tr>
   <tr><td>Comments</td><td><p>The level of granularity is defined by the category concepts in the value set. More fine-grained filtering can be performed using the metadata and/or terminology hierarchy in DiagnosticReport.code.</p>
@@ -213,7 +213,7 @@
   <tr><td>Definition</td><td><p>LOINC Code for Lipid Panel with LDL.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>1..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>Codes that describe Diagnostic Reports.<br/>The codes SHOULD be taken from <a href="valueset-report-codes.html">LOINC Diagnostic Report Codes</a></td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td>Codes that describe Diagnostic Reports.<br/>The codes SHOULD be taken from <a href="valueset-report-codes.html">LOINC Diagnostic Report Codes</a></td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
   <tr><td>Comments</td><td><p>LOINC code includes &quot;direct&quot; LDL - does this mean LDL derived by measuring VLDL by ultracentrifugation? This panel includes both measured and calculated LDL.</p>
 </td></tr>
@@ -221,7 +221,7 @@
   <tr><td colspan="2" class="structure"><a name="lipidprofile.DiagnosticReport:lipidprofile.subject"> </a><b>DiagnosticReport.subject</b></td></tr>
   <tr><td>Definition</td><td><p>The subject of the report. Usually, but not always, this is a patient. However diagnostic services also perform analyses on specimens collected from a variety of other sources.</p>
 </td></tr>
-  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>1..1</td></tr>
+  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td>Choice of: <a href="references.html#Reference">Reference</a>(<a href="patient.html" title="http://hl7.org/fhir/StructureDefinition/Patient">Patient</a>), <a href="references.html#Reference">Reference</a>(<a href="group.html" title="http://hl7.org/fhir/StructureDefinition/Group">Group</a>), <a href="references.html#Reference">Reference</a>(<a href="device.html" title="http://hl7.org/fhir/StructureDefinition/Device">Device</a>), <a href="references.html#Reference">Reference</a>(<a href="location.html" title="http://hl7.org/fhir/StructureDefinition/Location">Location</a>)</td></tr>
   <tr><td>Requirements</td><td><p>SHALL know the subject context.</p>
 </td></tr>
@@ -234,7 +234,7 @@
   <tr><td colspan="2" class="structure"><a name="lipidprofile.DiagnosticReport:lipidprofile.effective[x]"> </a><b>DiagnosticReport.effective[x]</b></td></tr>
   <tr><td>Definition</td><td><p>The time or time-period the observed values are related to. When the subject of the report is a patient, this is usually either the time of the procedure or of specimen collection(s), but very often the source of the date/time is not known, only the date/time itself.</p>
 </td></tr>
-  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>1..1</td></tr>
+  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td>Choice of: <a href="datatypes.html#dateTime">dateTime</a>, <a href="datatypes.html#Period">Period</a></td></tr>
   <tr><td>[x] Note</td><td>See <a href="formats.html#choice">Choice of Data Types</a> for further information about how to use [x]</td></tr>
   <tr><td>Requirements</td><td><p>Need to know where in the patient history to file/present this report.</p>
@@ -245,7 +245,7 @@
   <tr><td colspan="2" class="structure"><a name="lipidprofile.DiagnosticReport:lipidprofile.issued"> </a><b>DiagnosticReport.issued</b></td></tr>
   <tr><td>Definition</td><td><p>The date and time that this version of the report was released from the source diagnostic service.</p>
 </td></tr>
-  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>1..1</td></tr>
+  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#instant">instant</a></td></tr>
   <tr><td>Requirements</td><td><p>Clinicians need to be able to check the date that the report was released.</p>
 </td></tr>
@@ -255,7 +255,7 @@
   <tr><td colspan="2" class="structure"><a name="lipidprofile.DiagnosticReport:lipidprofile.performer"> </a><b>DiagnosticReport.performer</b></td></tr>
   <tr><td>Definition</td><td><p>The diagnostic service that is responsible for issuing the report.</p>
 </td></tr>
-  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>1..*</td></tr>
+  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..*</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td>Choice of: <a href="references.html#Reference">Reference</a>(<a href="practitioner.html" title="http://hl7.org/fhir/StructureDefinition/Practitioner">Practitioner</a>), <a href="references.html#Reference">Reference</a>(<a href="organization.html" title="http://hl7.org/fhir/StructureDefinition/Organization">Organization</a>)</td></tr>
   <tr><td>Requirements</td><td><p>Need to know whom to contact if there are queries about the results. Also may need to track the source of reports for secondary data analysis.</p>
 </td></tr>
@@ -393,7 +393,7 @@
   <tr><td>Definition</td><td><p>No codes for a lipid panel.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..0</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>Diagnoses codes provided as adjuncts to the report.<br/>For example codes, see <a href="valueset-clinical-findings.html">SNOMED CT Clinical Findings</a></td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td>Diagnoses codes provided as adjuncts to the report.<br/>For example codes, see <a href="valueset-clinical-findings.html">SNOMED CT Clinical Findings</a></td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
   <tr><td>Comments</td><td><p>Not used in this context.</p>
 </td></tr>
@@ -423,7 +423,7 @@
 		<div class="container">  <!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:32-0500. <a href="qa.html">QA Page</a>
+        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:21-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search <img src="external.png" style="text-align: baseline"/></a> | 

@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>Encounter - FHIR v1.7.0</title>
+  <title>Encounter - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -157,6 +157,13 @@ This is always expected to be the same period as the encounter itself, where thi
 encounter is entered which captures this information which is a partOf this encounter instance.
 </p>
 
+<p>
+The Procedure and encounter have references to each other, and these should be to different procedures;
+one for the procedure that was performed during the encounter (stored in Prodecure.encounter), and another for cases
+where an encounter is a result of another procedure (stored in Encounter.indication) such as a followup encounter to
+resolve complications from an earlier procedure.
+</p>
+
 <h3 class="self-link-parent"><span class="sectioncount">8.15.1.1<a name="8.15.1.1"> </a></span> Status Management <a href="encounter.html#8.15.1.1" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h3>
 <p>
 During the life-cycle of an encounter it will pass through many statuses. Typically these are in order or the
@@ -219,7 +226,7 @@ This extension should be used to reference an encounter where there is no proper
 <p>This resource is referenced by <a href="careplan.html">CarePlan</a>, <a href="clinicalimpression.html">ClinicalImpression</a>, <a href="communication.html">Communication</a>, <a href="communicationrequest.html">CommunicationRequest</a>, <a href="composition.html">Composition</a>, <a href="condition.html">Condition</a>, <a href="deviceuserequest.html">DeviceUseRequest</a>, <a href="diagnosticreport.html">DiagnosticReport</a>, <a href="diagnosticrequest.html">DiagnosticRequest</a>, <a href="documentreference.html">DocumentReference</a>, <a href="flag.html">Flag</a>, <a href="guidanceresponse.html">GuidanceResponse</a>, <a href="imagingstudy.html">ImagingStudy</a>, <a href="immunization.html">Immunization</a>, <a href="list.html">List</a>, <a href="medicationadministration.html">MedicationAdministration</a>, <a href="medicationrequest.html">MedicationRequest</a>, <a href="nutritionrequest.html">NutritionRequest</a>, <a href="observation.html">Observation</a>, <a href="procedure.html">Procedure</a>, <a href="procedurerequest.html">ProcedureRequest</a>, <a href="questionnaireresponse.html">QuestionnaireResponse</a>, <a href="referralrequest.html">ReferralRequest</a>, <a href="requestgroup.html">RequestGroup</a>, <a href="riskassessment.html">RiskAssessment</a>, <a href="task.html">Task</a> and <a href="visionprescription.html">VisionPrescription</a></p>
 
 
-<a name="resource"/>
+<a name="resource"> </a>
 <h2 class="self-link-parent"><span class="sectioncount">8.15.3</span> 
 Resource Content
  <a href="encounter.html#resource" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h2>
@@ -518,7 +525,7 @@ Change binding strength from required to extensible, Change value set from http:
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Encounter.account</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
 </table>
 
@@ -800,7 +807,7 @@ Change binding strength from required to extensible, Change value set from http:
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Encounter.account</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
 </table>
 
@@ -815,8 +822,7 @@ Change binding strength from required to extensible, Change value set from http:
 <p>&nbsp;</p>  
 <p>Alternate definitions: 
 Master Definition (<a href="encounter.profile.xml.html">XML</a>, <a href="encounter.profile.json.html">JSON</a>),
-<a href="xml.html">XML</a> <a href="encounter.xsd">Schema</a>/<a href="encounter.sch">Schematron</a> (for ) + <a href="json.html">JSON</a> <a href="Encounter.schema.json">Schema</a>, <a href="encounter.shex.html">ShEx</a> (for <a href="rdf.html">Turtle</a>)</p>
-
+<a href="xml.html">XML</a> <a href="encounter.xsd">Schema</a>/<a href="encounter.sch">Schematron</a> (for ) + <a href="json.html">JSON</a> <a href="Encounter.schema.json">Schema</a>, <a href="encounter.shex.html">ShEx</a> (for <a href="rdf.html">Turtle</a>), <a href="Encounter.jsonld">JSON-LD</a> (for <a href="rdf.html#json-ld">RDF as JSON-LD</a>), </p>
 
 <a name="tx"> </a>
 <h3 class="self-link-parent"><span class="sectioncount">8.15.3.1</span> 
@@ -854,7 +860,7 @@ is required.</li>
 <li>In future versions of FHIR, some kind of charge posting vehicle (e.g. Account) will be added.</li>
 </ul>
 </p>
-<a name="examples"/>
+<a name="examples"> </a>
 <h2 class="self-link-parent"><span class="sectioncount">8.15.5</span> Example usage <a href="encounter.html#examples" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h2>
 <p>As stated, Encounter allows a flexible nesting of Encounters using the partOf element. For example:</p>
 <ul>
@@ -900,6 +906,7 @@ domain of exchange, profiles are used to limit the flexibility of Encounter to m
 <tr><td><a name="sp-practitioner"> </a>practitioner</td><td><a href="search.html#reference">reference</a></td><td>Persons involved in the encounter other than the patient</td><td>Encounter.participant.individual<br/>(<a href="practitioner.html">Practitioner</a>)</td><td/></tr>
 <tr><td><a name="sp-procedure"> </a>procedure</td><td><a href="search.html#reference">reference</a></td><td>Reason the encounter takes place (resource)</td><td>Encounter.indication<br/>(<a href="procedure.html">Procedure</a>)</td><td/></tr>
 <tr><td><a name="sp-reason"> </a>reason</td><td><a href="search.html#token">token</a></td><td>Reason the encounter takes place (code)</td><td>Encounter.reason</td><td/></tr>
+<tr><td><a name="sp-service-provider"> </a>service-provider</td><td><a href="search.html#reference">reference</a></td><td>The custodian organization of this Encounter record</td><td>Encounter.serviceProvider<br/>(<a href="organization.html">Organization</a>)</td><td/></tr>
 <tr><td><a name="sp-special-arrangement"> </a>special-arrangement</td><td><a href="search.html#token">token</a></td><td>Wheelchair, translator, stretcher, etc.</td><td>Encounter.hospitalization.specialArrangement</td><td/></tr>
 <tr><td><a name="sp-status"> </a>status</td><td><a href="search.html#token">token</a></td><td>planned | arrived | in-progress | onleave | finished | cancelled | entered-in-error</td><td>Encounter.status</td><td/></tr>
 <tr><td><a name="sp-type"> </a>type</td><td><a href="search.html#token">token</a></td><td>Specific type of encounter</td><td>Encounter.type</td><td><a href="searchparameter-registry.html#clinical-type">6 Resources</a></td></tr>
@@ -921,7 +928,7 @@ domain of exchange, profiles are used to limit the flexibility of Encounter to m
 		<div class="container">  <!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:32-0500. <a href="qa.html">QA Page</a>
+        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:21-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search <img src="external.png" style="text-align: baseline"/></a> | 

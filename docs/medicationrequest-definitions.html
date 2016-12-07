@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>MedicationRequest - FHIR v1.7.0</title>
+  <title>MedicationRequest - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -144,7 +144,7 @@
   <tr><td>Definition</td><td><p>A code specifying the state of the order.  Generally this will be active or completed state.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>MedicationRequestStatus: <a href="valueset-medication-request-status.html">A coded concept specifying the state of the prescribing event. Describes the lifecycle of the prescription</a> (<a href="terminologies.html#required">Required</a>)</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-medication-request-status.html">MedicationRequestStatus</a> (<a href="terminologies.html#required">Required</a>)</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#code">code</a></td></tr>
   <tr><td><a href="conformance-rules.html#ismodifier">Is Modifier</a></td><td>true</td></tr>
   <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
@@ -152,15 +152,17 @@
   <tr><td>Definition</td><td><p>Whether the request is a proposal, plan, or an original order.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>1..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>MedicationRequestStage: <a href="valueset-medication-request-stage.html">The kind of medication order</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-medication-request-stage.html">MedicationRequestStage</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
   <tr><td><a href="conformance-rules.html#ismodifier">Is Modifier</a></td><td>true</td></tr>
   <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
+  <tr><td>Comments</td><td><p>It is expected that the type of requester will be restricted for different stages of a MedicationRequest.  For example, Proposals can be created by a patient, relatedPerson, Practitioner or Device.  Plans can be created by Practitioners, Patients, RelatedPersons and Devices.  Original orders can be created by a Practitioner only.</p>
+</td></tr>
   <tr><td colspan="2" class="structure"><a name="MedicationRequest.medication_x_"> </a><b>MedicationRequest.medication[x]</b></td></tr>
   <tr><td>Definition</td><td><p>Identifies the medication being administered. This is a link to a resource that represents the medication which may be the details of the medication or simply an attribute carrying a code that identifies the medication from a known list of medications.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>1..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>SNOMED CT Medication Codes: <a href="valueset-medication-codes.html">A coded concept identifying substance or product that can be ordered.</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-medication-codes.html">SNOMED CT Medication Codes</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a>|<a href="references.html#Reference">Reference</a>(<a href="medication.html">Medication</a>)</td></tr>
   <tr><td>[x] Note</td><td>See <a href="formats.html#choice">Choice of Data Types</a> for further information about how to use [x]</td></tr>
   <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
@@ -192,17 +194,19 @@
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#dateTime">dateTime</a></td></tr>
   <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
-  <tr><td colspan="2" class="structure"><a name="MedicationRequest.prescriber"> </a><b>MedicationRequest.prescriber</b></td></tr>
+  <tr><td colspan="2" class="structure"><a name="MedicationRequest.requester"> </a><b>MedicationRequest.requester</b></td></tr>
   <tr><td>Definition</td><td><p>The healthcare professional responsible for authorizing the initial prescription.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="datatypes.html">Type</a></td><td><a href="references.html#Reference">Reference</a>(<a href="practitioner.html">Practitioner</a>)</td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="references.html#Reference">Reference</a>(<a href="practitioner.html">Practitioner</a> | <a href="organization.html">Organization</a> | <a href="patient.html">Patient</a> | <a href="relatedperson.html">RelatedPerson</a> | <a href="device.html">Device</a>)</td></tr>
   <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
+  <tr><td>Comments</td><td><p>It is expected that the type of requester will be restricted for different stages of a MedicationRequest.  For example, Proposals can be created by a patient, relatedPerson, Practitioner or Device.  Plans can be created by Practitioners, Patients, RelatedPersons and Devices.  Original orders can be created by a Practitioner only.</p>
+</td></tr>
   <tr><td colspan="2" class="structure"><a name="MedicationRequest.reasonCode"> </a><b>MedicationRequest.reasonCode</b></td></tr>
   <tr><td>Definition</td><td><p>Can be the reason or the indication for writing the prescription.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..*</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>Condition/Problem/Diagnosis Codes: <a href="valueset-condition-code.html">A coded concept indicating why the medication was ordered.</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-condition-code.html">Condition/Problem/Diagnosis Codes</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
   <tr><td>Comments</td><td><p>This could be a diagnosis code. If a full condition record exists or additional detail is needed, use reasonReference.</p>
 </td></tr>
@@ -222,7 +226,7 @@
   <tr><td>Definition</td><td><p>Indicates where type of medication order and where the medication is expected to be consumed or administered.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>MedicationRequestCategory: <a href="valueset-medication-request-category.html">A coded concept identifying where the medication ordered is expected to be consumed or administered</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-medication-request-category.html">MedicationRequestCategory</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
   <tr><td colspan="2" class="structure"><a name="MedicationRequest.dosageInstruction"> </a><b>MedicationRequest.dosageInstruction</b></td></tr>
   <tr><td>Definition</td><td><p>Indicates how the medication is to be used by the patient.</p>
@@ -280,7 +284,7 @@
   <tr><td>Definition</td><td><p>Indicates the reason for the substitution, or why substitution must or must not be performed.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>SubstanceAdminSubstitutionReason: <a href="v3/SubstanceAdminSubstitutionReason/vs.html">A coded concept describing the reason that a different medication should (or should not) be substituted from what was prescribed.</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="v3/SubstanceAdminSubstitutionReason/vs.html">SubstanceAdminSubstitutionReason</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
   <tr><td colspan="2" class="structure"><a name="MedicationRequest.priorPrescription"> </a><b>MedicationRequest.priorPrescription</b></td></tr>
   <tr><td>Definition</td><td><p>A link to a resource representing an earlier order related order or prescription.</p>
@@ -312,7 +316,7 @@
 		<div class="container">  <!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:32-0500. <a href="qa.html">QA Page</a>
+        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:27-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search <img src="external.png" style="text-align: baseline"/></a> | 

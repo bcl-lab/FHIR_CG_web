@@ -111,8 +111,8 @@ start=@<Person> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:Address.state @<string>?;          # Sub-unit of country (abbreviations 
                                             # ok) 
     fhir:Address.postalCode @<string>?;     # Postal code for area
-    fhir:Address.country @<string>?;        # Country (can be ISO 3166 3 letter 
-                                            # code) 
+    fhir:Address.country @<string>?;        # Country (e.g. can be ISO 3166 2 or 
+                                            # 3 letter code) 
     fhir:Address.period @<Period>?;         # Time period when address was/is in 
                                             # use 
     fhir:index xsd:integer?                 # Relative position in a list
@@ -194,7 +194,7 @@ start=@<Person> AND {fhir:nodeRole [fhir:treeRoot]}
                                             # | anonymous | old | maiden 
     fhir:HumanName.text @<string>?;         # Text representation of the full 
                                             # name 
-    fhir:HumanName.family @<string>*;       # Family name (often called 
+    fhir:HumanName.family @<string>?;       # Family name (often called 
                                             # 'Surname') 
     fhir:HumanName.given @<string>*;        # Given names (not always 'first'). 
                                             # Includes middle names 
@@ -210,7 +210,8 @@ start=@<Person> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:extension @<Extension>*;           # Additional Content defined by 
                                             # implementations 
     fhir:ContactPoint.system @<code> AND
-    	{fhir:value @fhirvs:contact-point-system}?;  # phone | fax | email | pager | other
+    	{fhir:value @fhirvs:contact-point-system}?;  # phone | fax | email | pager | url 
+                                            # | other 
     fhir:ContactPoint.value @<string>?;     # The actual contact point details
     fhir:ContactPoint.use @<code> AND
     	{fhir:value @fhirvs:contact-point-use}?;  # home | work | temp | old | mobile 
@@ -417,26 +418,26 @@ start=@<Person> AND {fhir:nodeRole [fhir:treeRoot]}
 # The use of an address
 fhirvs:address-use ["home" "work" "temp" "old"]
 
-# The use of a human name
-fhirvs:name-use ["usual" "official" "temp" "nickname" "anonymous" "old" "maiden"]
-
-# Telecommunications form for contact point
-fhirvs:contact-point-system ["phone" "fax" "email" "pager" "other"]
-
-# The level of confidence that this link represents the same actual person, based on NIST Authentication Levels.
-fhirvs:identity-assuranceLevel ["level1" "level2" "level3" "level4"]
-
 # The type of an address (physical / postal)
 fhirvs:address-type ["postal" "physical" "both"]
 
 # Use of contact point
 fhirvs:contact-point-use ["home" "work" "temp" "old" "mobile"]
 
+# Telecommunications form for contact point
+fhirvs:contact-point-system ["phone" "fax" "email" "pager" "url" "other"]
+
 # Identifies the purpose for this identifier, if known .
 fhirvs:identifier-use ["usual" "official" "temp" "secondary"]
+
+# The use of a human name
+fhirvs:name-use ["usual" "official" "temp" "nickname" "anonymous" "old" "maiden"]
 
 # The status of a resource narrative
 fhirvs:narrative-status ["generated" "extensions" "additional" "empty"]
 
 # The gender of a person used for administrative purposes.
 fhirvs:administrative-gender ["male" "female" "other" "unknown"]
+
+# The level of confidence that this link represents the same actual person, based on NIST Authentication Levels.
+fhirvs:identity-assuranceLevel ["level1" "level2" "level3" "level4"]

@@ -152,6 +152,14 @@
               "description": "Extensions for type",
               "$ref": "Element.schema.json#/definitions/Element"
             },
+            "derivedFrom": {
+              "description": "Where this search parameter is originally defined. If a derivedFrom is provided, then the details in the search parameter must be consistent with the definition from which it is defined. I.e. the parameter should have the same meaning, and (usually) the functionality should be a proper subset of the underlying search parameter.",
+              "type": "string"
+            },
+            "_derivedFrom": {
+              "description": "Extensions for derivedFrom",
+              "$ref": "Element.schema.json#/definitions/Element"
+            },
             "description": {
               "description": "A free text natural language description of the search parameter from the consumer\u0027s perspective. and how it used.",
               "type": "string"
@@ -206,16 +214,108 @@
                 "$ref": "Element.schema.json#/definitions/Element"
               }
             },
+            "comparator": {
+              "description": "Comparators supported for the search parameter.",
+              "enum": [
+                "eq",
+                "ne",
+                "gt",
+                "lt",
+                "ge",
+                "le",
+                "sa",
+                "eb",
+                "ap"
+              ],
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "_comparator": {
+              "description": "Extensions for comparator",
+              "type": "array",
+              "items": {
+                "$ref": "Element.schema.json#/definitions/Element"
+              }
+            },
+            "modifier": {
+              "description": "A modifier supported for the search parameter.",
+              "enum": [
+                "missing",
+                "exact",
+                "contains",
+                "not",
+                "text",
+                "in",
+                "not-in",
+                "below",
+                "above",
+                "type"
+              ],
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "_modifier": {
+              "description": "Extensions for modifier",
+              "type": "array",
+              "items": {
+                "$ref": "Element.schema.json#/definitions/Element"
+              }
+            },
+            "chain": {
+              "description": "Contains the names of any search parameters which may be chained to the containing search parameter. Chained parameters may be added to search parameters of type reference, and specify that resources will only be returned if they contain a reference to a resource which matches the chained parameter value. Values for this field should be drawn from SearchParameter.code for a parameter on the target resource type.",
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "_chain": {
+              "description": "Extensions for chain",
+              "type": "array",
+              "items": {
+                "$ref": "Element.schema.json#/definitions/Element"
+              }
+            },
             "component": {
               "description": "Used to define the parts of a composite search parameter.",
               "type": "array",
               "items": {
-                "$ref": "Reference.schema.json#/definitions/Reference"
+                "$ref": "#/definitions/SearchParameter_Component"
               }
             }
           },
           "required": [
             "resourceType"
+          ]
+        }
+      ]
+    },
+    "SearchParameter_Component": {
+      "allOf": [
+        {
+          "$ref": "BackboneElement.schema.json#/definitions/BackboneElement"
+        },
+        {
+          "description": "A search parameter that defines a named search item that can be used to search/filter on a resource.",
+          "properties": {
+            "definition": {
+              "description": "The definition of the search parameter that describes this part.",
+              "$ref": "Reference.schema.json#/definitions/Reference"
+            },
+            "expression": {
+              "description": "A sub-expression that defines how to extract values for this component from the output of the main SearchParameter.expression.",
+              "type": "string"
+            },
+            "_expression": {
+              "description": "Extensions for expression",
+              "$ref": "Element.schema.json#/definitions/Element"
+            }
+          },
+          "required": [
+            "definition"
           ]
         }
       ]

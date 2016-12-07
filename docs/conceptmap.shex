@@ -351,7 +351,8 @@ start=@<ConceptMap> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:extension @<Extension>*;           # Additional Content defined by 
                                             # implementations 
     fhir:ContactPoint.system @<code> AND
-    	{fhir:value @fhirvs:contact-point-system}?;  # phone | fax | email | pager | other
+    	{fhir:value @fhirvs:contact-point-system}?;  # phone | fax | email | pager | url 
+                                            # | other 
     fhir:ContactPoint.value @<string>?;     # The actual contact point details
     fhir:ContactPoint.use @<code> AND
     	{fhir:value @fhirvs:contact-point-use}?;  # home | work | temp | old | mobile 
@@ -414,14 +415,17 @@ start=@<ConceptMap> AND {fhir:nodeRole [fhir:treeRoot]}
 
 #---------------------- Value Sets ------------------------
 
-# The degree of equivalence between concepts.
-fhirvs:concept-map-equivalence ["relatedto" "equivalent" "equal" "wider" "subsumes" "narrower" "specializes" "inexact" "unmatched" "disjoint"]
+# How the Quantity should be understood and represented.
+fhirvs:quantity-comparator ["<" "<=" ">=" ">"]
+
+# Use of contact point
+fhirvs:contact-point-use ["home" "work" "temp" "old" "mobile"]
 
 # The lifecycle status of a Value Set or Concept Map.
 fhirvs:publication-status ["draft" "active" "retired"]
 
 # Telecommunications form for contact point
-fhirvs:contact-point-system ["phone" "fax" "email" "pager" "other"]
+fhirvs:contact-point-system ["phone" "fax" "email" "pager" "url" "other"]
 
 # Identifies the purpose for this identifier, if known .
 fhirvs:identifier-use ["usual" "official" "temp" "secondary"]
@@ -429,8 +433,5 @@ fhirvs:identifier-use ["usual" "official" "temp" "secondary"]
 # The status of a resource narrative
 fhirvs:narrative-status ["generated" "extensions" "additional" "empty"]
 
-# How the Quantity should be understood and represented.
-fhirvs:quantity-comparator ["<" "<=" ">=" ">"]
-
-# Use of contact point
-fhirvs:contact-point-use ["home" "work" "temp" "old" "mobile"]
+# The degree of equivalence between concepts.
+fhirvs:concept-map-equivalence ["relatedto" "equivalent" "equal" "wider" "subsumes" "narrower" "specializes" "inexact" "unmatched" "disjoint"]

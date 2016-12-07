@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>FamilyMemberHistory - FHIR v1.7.0</title>
+  <title>FamilyMemberHistory - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -116,7 +116,7 @@
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>1..1</td></tr>
   <tr><td>Invariants</td><td><b>Defined on this element</b><br/>
-<b title="Formal Invariant Identifier">fhs-1</b>: Can have age[x] or born[x], but not both (<a href="http://hl7.org/fluentpath">expression <img src="external.png" style="text-align: baseline"/></a>: age.empty() or born.empty(), xpath: not (*[starts-with(local-name(.), 'age')] and *[starts-with(local-name(.), 'birth')]))<br/><b title="Formal Invariant Identifier">fhs-2</b>: Can only have estimatedAge is age[x] is present (<a href="http://hl7.org/fluentpath">expression <img src="external.png" style="text-align: baseline"/></a>: age.exists() or estimatedAge.empty(), xpath: exists(*[starts-with(local-name(.), 'age')]) or not(exists(f:estimatedAge)))</td></tr>
+<b title="Formal Invariant Identifier">fhs-1</b>: Can have age[x] or born[x], but not both (<a href="http://hl7.org/fluentpath">expression <img src="external.png" style="text-align: baseline"/></a>: age.empty() or born.empty(), xpath: not (*[starts-with(local-name(.), 'age')] and *[starts-with(local-name(.), 'birth')]))<br/><b title="Formal Invariant Identifier">fhs-2</b>: Can only have estimatedAge if age[x] is present (<a href="http://hl7.org/fluentpath">expression <img src="external.png" style="text-align: baseline"/></a>: age.exists() or estimatedAge.empty(), xpath: exists(*[starts-with(local-name(.), 'age')]) or not(exists(f:estimatedAge)))</td></tr>
   <tr><td colspan="2" class="structure"><a name="FamilyMemberHistory.identifier"> </a><b>FamilyMemberHistory.identifier</b></td></tr>
   <tr><td>Definition</td><td><p>This records identifiers associated with this family member history record that are defined by business processes and/ or used to refer to it when a direct URL reference to the resource itself is not appropriate (e.g. in CDA documents, or in written / printed documentation).</p>
 </td></tr>
@@ -146,7 +146,7 @@
   <tr><td>Definition</td><td><p>A code specifying the status of the record of the family history of a specific family member.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>1..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>FamilyHistoryStatus: <a href="valueset-history-status.html">A code that identifies the status of the family history record.</a> (<a href="terminologies.html#required">Required</a>)</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-history-status.html">FamilyHistoryStatus</a> (<a href="terminologies.html#required">Required</a>)</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#code">code</a></td></tr>
   <tr><td><a href="conformance-rules.html#ismodifier">Is Modifier</a></td><td>true</td></tr>
   <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
@@ -162,14 +162,14 @@
   <tr><td>Definition</td><td><p>The type of relationship this person has to the patient (father, mother, brother etc.).</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>1..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>FamilyMember: <a href="v3/FamilyMember/vs.html">The nature of the relationship between the patient and the related person being described in the family member history.</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="v3/FamilyMember/vs.html">FamilyMember</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
   <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
   <tr><td colspan="2" class="structure"><a name="FamilyMemberHistory.gender"> </a><b>FamilyMemberHistory.gender</b></td></tr>
   <tr><td>Definition</td><td><p>Administrative Gender - the gender that the relative is considered to have for administration and record keeping purposes.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>AdministrativeGender: <a href="valueset-administrative-gender.html">The gender of a person used for administrative purposes.</a> (<a href="terminologies.html#required">Required</a>)</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-administrative-gender.html">AdministrativeGender</a> (<a href="terminologies.html#required">Required</a>)</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#code">code</a></td></tr>
   <tr><td>Requirements</td><td><p>Not all relationship codes imply gender and the relative's gender can be relevant for risk assessments.</p>
 </td></tr>
@@ -208,7 +208,7 @@
 </td></tr>
   <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
   <tr><td>Invariants</td><td><b>Affect this element</b><br/>
-<b title="Formal Invariant Identifier">fhs-2</b>: Can only have estimatedAge is age[x] is present (<a href="http://hl7.org/fluentpath">expression <img src="external.png" style="text-align: baseline"/></a>: age.exists() or estimatedAge.empty(), xpath: exists(*[starts-with(local-name(.), 'age')]) or not(exists(f:estimatedAge)))</td></tr>
+<b title="Formal Invariant Identifier">fhs-2</b>: Can only have estimatedAge if age[x] is present (<a href="http://hl7.org/fluentpath">expression <img src="external.png" style="text-align: baseline"/></a>: age.exists() or estimatedAge.empty(), xpath: exists(*[starts-with(local-name(.), 'age')]) or not(exists(f:estimatedAge)))</td></tr>
   <tr><td colspan="2" class="structure"><a name="FamilyMemberHistory.deceased_x_"> </a><b>FamilyMemberHistory.deceased[x]</b></td></tr>
   <tr><td>Definition</td><td><p>Deceased flag or the actual or approximate age of the relative at the time of death for the family member history record.</p>
 </td></tr>
@@ -231,13 +231,13 @@
   <tr><td>Definition</td><td><p>The actual condition specified. Could be a coded condition (like MI or Diabetes) or a less specific string like 'cancer' depending on how much is known about the condition and the capabilities of the creating system.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>1..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>Condition/Problem/Diagnosis Codes: <a href="valueset-condition-code.html">Identification of the Condition or diagnosis.</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-condition-code.html">Condition/Problem/Diagnosis Codes</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
   <tr><td colspan="2" class="structure"><a name="FamilyMemberHistory.condition.outcome"> </a><b>FamilyMemberHistory.condition.outcome</b></td></tr>
   <tr><td>Definition</td><td><p>Indicates what happened as a result of this condition.  If the condition resulted in death, deceased date is captured on the relation.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>Condition Outcome Codes: <a href="valueset-condition-outcome.html">The result of the condition for the patient; e.g. death, permanent disability, temporary disability, etc.</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-condition-outcome.html">Condition Outcome Codes</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
   <tr><td colspan="2" class="structure"><a name="FamilyMemberHistory.condition.onset_x_"> </a><b>FamilyMemberHistory.condition.onset[x]</b></td></tr>
   <tr><td>Definition</td><td><p>Either the age of onset, range of approximate age or descriptive string can be recorded.  For conditions with multiple occurrences, this describes the first known occurrence.</p>
@@ -271,7 +271,7 @@
 		<div class="container">  <!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:32-0500. <a href="qa.html">QA Page</a>
+        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:21-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search <img src="external.png" style="text-align: baseline"/></a> | 

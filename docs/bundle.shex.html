@@ -3,7 +3,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>Bundle.shex - FHIR v1.7.0</title>
+  <title>Bundle.shex - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -137,6 +137,8 @@ start=@&lt;Bundle&gt; AND {fhir:nodeRole [fhir:treeRoot]}
                                             # transaction-response | batch | 
                                             # batch-response | history | 
                                             # searchset | collection 
+    fhir:Bundle.identifier @&lt;Identifier&gt;?;  # Persistent identifier for the 
+                                            # bundle 
     fhir:Bundle.total @&lt;unsignedInt&gt;?;      # If search, the total number of 
                                             # matches 
     fhir:Bundle.link @&lt;Bundle.link&gt;*;       # Links related to this Bundle
@@ -168,27 +170,11 @@ start=@&lt;Bundle&gt; AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
                                             # implementations 
     fhir:modifierExtension @&lt;Extension&gt;*;   # Extensions that cannot be ignored
-    fhir:Bundle.link.relation @&lt;string&gt;;    # http://www.iana.org/assignments/-
+    fhir:Bundle.link.relation @&lt;string&gt;;    # See 
+                                            # http://www.iana.org/assignments/-
                                             # link-relations/link-relations.xh-
-                                            # tml 
+                                            # tml#link-relations-1 
     fhir:Bundle.link.url @&lt;uri&gt;;            # Reference details for the link
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
-# Transaction Related Information
-&lt;Bundle.entry.request&gt; CLOSED {
-    fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
-    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @&lt;Extension&gt;*;   # Extensions that cannot be ignored
-    fhir:Bundle.entry.request.method @&lt;code&gt; AND
-    	{fhir:value @fhirvs:http-verb};  # GET | POST | PUT | DELETE
-    fhir:Bundle.entry.request.url @&lt;uri&gt;;   # URL for HTTP equivalent of this 
-                                            # entry 
-    fhir:Bundle.entry.request.ifNoneMatch @&lt;string&gt;?;  # For managing cache currency
-    fhir:Bundle.entry.request.ifModifiedSince @&lt;instant&gt;?;  # For managing update contention
-    fhir:Bundle.entry.request.ifMatch @&lt;string&gt;?;  # For managing update contention
-    fhir:Bundle.entry.request.ifNoneExist @&lt;string&gt;?;  # For conditional creates
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -223,11 +209,24 @@ start=@&lt;Bundle&gt; AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
-#---------------------- Data Types -------------------
-
-&lt;Extension&gt; {fhir:extension @&lt;Extension&gt;*;
-    fhir:index xsd:integer?
+# Transaction Related Information
+&lt;Bundle.entry.request&gt; CLOSED {
+    fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
+    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @&lt;Extension&gt;*;   # Extensions that cannot be ignored
+    fhir:Bundle.entry.request.method @&lt;code&gt; AND
+    	{fhir:value @fhirvs:http-verb};  # GET | POST | PUT | DELETE
+    fhir:Bundle.entry.request.url @&lt;uri&gt;;   # URL for HTTP equivalent of this 
+                                            # entry 
+    fhir:Bundle.entry.request.ifNoneMatch @&lt;string&gt;?;  # For managing cache currency
+    fhir:Bundle.entry.request.ifModifiedSince @&lt;instant&gt;?;  # For managing update contention
+    fhir:Bundle.entry.request.ifMatch @&lt;string&gt;?;  # For managing update contention
+    fhir:Bundle.entry.request.ifNoneExist @&lt;string&gt;?;  # For conditional creates
+    fhir:index xsd:integer?                 # Relative position in a list
 }
+
+#---------------------- Data Types -------------------
 
 # Metadata about a resource
 &lt;Meta&gt; CLOSED {
@@ -259,6 +258,56 @@ start=@&lt;Bundle&gt; AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
                                             # implementations 
     fhir:value xsd:string MAXLENGTH 1048576?;  # Primitive value for string
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
+# Base Resource
+&lt;Resource&gt; {a .+;
+    fhir:Resource.id @&lt;id&gt;?;                # Logical id of this artifact
+    fhir:Resource.meta @&lt;Meta&gt;?;            # Metadata about the resource
+    fhir:Resource.implicitRules @&lt;uri&gt;?;    # A set of rules under which this 
+                                            # content was created 
+    fhir:Resource.language @&lt;code&gt;?;        # Language of the resource content
+    fhir:index xsd:integer?
+}
+
+# Primitive Type uri
+&lt;uri&gt; CLOSED {
+    fhir:Element.id @&lt;id&gt;?;                 # xml:id (or equivalent in JSON)
+    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:value xsd:string?;                 # Primitive value for uri
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
+# Primitive Type instant
+&lt;instant&gt; CLOSED {
+    fhir:Element.id @&lt;id&gt;?;                 # xml:id (or equivalent in JSON)
+    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:value xsd:dateTime?;               # Primitive value for instant
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
+&lt;Extension&gt; {fhir:extension @&lt;Extension&gt;*;
+    fhir:index xsd:integer?
+}
+
+# An identifier intended for computation
+&lt;Identifier&gt; CLOSED {
+    fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
+    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:Identifier.use @&lt;code&gt; AND
+    	{fhir:value @fhirvs:identifier-use}?;  # usual | official | temp | 
+                                            # secondary (If known) 
+    fhir:Identifier.type @&lt;CodeableConcept&gt;?;  # Description of identifier
+    fhir:Identifier.system @&lt;uri&gt;?;         # The namespace for the identifier
+    fhir:Identifier.value @&lt;string&gt;?;       # The value that is unique
+    fhir:Identifier.period @&lt;Period&gt;?;      # Time period when id is/was valid 
+                                            # for use 
+    fhir:Identifier.assigner @&lt;Reference&gt;?;  # Organization that issued id (may 
+                                            # be just text) 
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -301,16 +350,6 @@ start=@&lt;Bundle&gt; AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
-# Base Resource
-&lt;Resource&gt; {a .+;
-    fhir:Resource.id @&lt;id&gt;?;                # Logical id of this artifact
-    fhir:Resource.meta @&lt;Meta&gt;?;            # Metadata about the resource
-    fhir:Resource.implicitRules @&lt;uri&gt;?;    # A set of rules under which this 
-                                            # content was created 
-    fhir:Resource.language @&lt;code&gt;?;        # Language of the resource content
-    fhir:index xsd:integer?
-}
-
 # Primitive Type id
 &lt;id&gt; CLOSED {
     fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
@@ -328,24 +367,6 @@ start=@&lt;Bundle&gt; AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
-# Primitive Type uri
-&lt;uri&gt; CLOSED {
-    fhir:Element.id @&lt;id&gt;?;                 # xml:id (or equivalent in JSON)
-    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:value xsd:string?;                 # Primitive value for uri
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
-# Primitive Type instant
-&lt;instant&gt; CLOSED {
-    fhir:Element.id @&lt;id&gt;?;                 # xml:id (or equivalent in JSON)
-    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:value xsd:dateTime?;               # Primitive value for instant
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
 # A reference from one resource to another
 &lt;Reference&gt; CLOSED {
     fhir:link IRI?;
@@ -357,6 +378,18 @@ start=@&lt;Bundle&gt; AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:Reference.identifier @&lt;Identifier&gt;?;  # Logical reference, when literal 
                                             # reference is not known 
     fhir:Reference.display @&lt;string&gt;?;      # Text alternative for the resource
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
+# Time range defined by start and end date/time
+&lt;Period&gt; CLOSED {
+    fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
+    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:Period.start @&lt;dateTime&gt;?;         # Starting time with inclusive 
+                                            # boundary 
+    fhir:Period.end @&lt;dateTime&gt;?;           # End time with inclusive boundary, 
+                                            # if not ongoing 
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -386,45 +419,6 @@ start=@&lt;Bundle&gt; AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
-# An identifier intended for computation
-&lt;Identifier&gt; CLOSED {
-    fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
-    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:Identifier.use @&lt;code&gt; AND
-    	{fhir:value @fhirvs:identifier-use}?;  # usual | official | temp | 
-                                            # secondary (If known) 
-    fhir:Identifier.type @&lt;CodeableConcept&gt;?;  # Description of identifier
-    fhir:Identifier.system @&lt;uri&gt;?;         # The namespace for the identifier
-    fhir:Identifier.value @&lt;string&gt;?;       # The value that is unique
-    fhir:Identifier.period @&lt;Period&gt;?;      # Time period when id is/was valid 
-                                            # for use 
-    fhir:Identifier.assigner @&lt;Reference&gt;?;  # Organization that issued id (may 
-                                            # be just text) 
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
-# Primitive Type boolean
-&lt;boolean&gt; CLOSED {
-    fhir:Element.id @&lt;id&gt;?;                 # xml:id (or equivalent in JSON)
-    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:value xsd:boolean?;                # Primitive value for boolean
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
-# Time range defined by start and end date/time
-&lt;Period&gt; CLOSED {
-    fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
-    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:Period.start @&lt;dateTime&gt;?;         # Starting time with inclusive 
-                                            # boundary 
-    fhir:Period.end @&lt;dateTime&gt;?;           # End time with inclusive boundary, 
-                                            # if not ongoing 
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
 # Concept - reference to a terminology or just  text
 &lt;CodeableConcept&gt; CLOSED {
     fhir:concept IRI*;
@@ -447,18 +441,27 @@ start=@&lt;Bundle&gt; AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
+# Primitive Type boolean
+&lt;boolean&gt; CLOSED {
+    fhir:Element.id @&lt;id&gt;?;                 # xml:id (or equivalent in JSON)
+    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:value xsd:boolean?;                # Primitive value for boolean
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
 #---------------------- Reference Types -------------------
 
 #---------------------- Value Sets ------------------------
 
-# Why an entry is in the result set - whether it's included as a match or because of an _include requirement.
-fhirvs:search-entry-mode [&quot;match&quot; &quot;include&quot; &quot;outcome&quot;]
+# HTTP verbs (in the HTTP command line).
+fhirvs:http-verb [&quot;GET&quot; &quot;POST&quot; &quot;PUT&quot; &quot;DELETE&quot;]
 
 # Indicates the purpose of a bundle - how it was intended to be used.
 fhirvs:bundle-type [&quot;document&quot; &quot;message&quot; &quot;transaction&quot; &quot;transaction-response&quot; &quot;batch&quot; &quot;batch-response&quot; &quot;history&quot; &quot;searchset&quot; &quot;collection&quot;]
 
-# HTTP verbs (in the HTTP command line).
-fhirvs:http-verb [&quot;GET&quot; &quot;POST&quot; &quot;PUT&quot; &quot;DELETE&quot;]
+# Why an entry is in the result set - whether it's included as a match or because of an _include requirement.
+fhirvs:search-entry-mode [&quot;match&quot; &quot;include&quot; &quot;outcome&quot;]
 
 # Identifies the purpose for this identifier, if known .
 fhirvs:identifier-use [&quot;usual&quot; &quot;official&quot; &quot;temp&quot; &quot;secondary&quot;]
@@ -487,7 +490,7 @@ of the specification.
 		<div class="container"><!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:32-0500. <a href="qa.html">QA Page</a>
+        © HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:21-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search</a> | 

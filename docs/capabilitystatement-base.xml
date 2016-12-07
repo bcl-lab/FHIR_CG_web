@@ -1665,15 +1665,15 @@
     </div>
   </text>
   <url value="http://hl7.org/fhir/CapabilityStatement/base"/>
-  <version value="1.7.0-10208"/>
+  <version value="1.8.0-10529"/>
   <name value="Base FHIR Capability Statement (Full)"/>
   <status value="draft"/>
   <experimental value="true"/>
-  <date value="2016-11-28T17:29:55-05:00"/>
+  <date value="2016-12-07T14:18:58-05:00"/>
   <publisher value="FHIR Project Team"/>
   <contact>
     <telecom>
-      <system value="other"/>
+      <system value="url"/>
       <value value="http://hl7.org/fhir"/>
     </telecom>
   </contact>
@@ -1682,7 +1682,7 @@
   <software>
     <name value="Insert your softwware name here..."/>
   </software>
-  <fhirVersion value="1.7.0"/>
+  <fhirVersion value="1.8.0"/>
   <acceptUnknown value="both"/>
   <format value="xml"/>
   <format value="json"/>
@@ -1843,6 +1843,7 @@
       <conditionalDelete value="multiple"/>
       <referencePolicy value="literal"/>
       <referencePolicy value="logical"/>
+      <searchRevInclude value="Task.definition-ref"/>
       <searchParam>
         <name value="date"/>
         <definition value="http://hl7.org/fhir/SearchParameter/activitydefinition-date"/>
@@ -2659,6 +2660,12 @@
       <searchInclude value="Bundle.composition"/>
       <searchInclude value="Bundle.message"/>
       <searchParam>
+        <name value="identifier"/>
+        <definition value="http://hl7.org/fhir/SearchParameter/bundle-identifier"/>
+        <type value="token"/>
+        <documentation value="Persistent identifier for the bundle"/>
+      </searchParam>
+      <searchParam>
         <name value="composition"/>
         <definition value="http://hl7.org/fhir/SearchParameter/bundle-composition"/>
         <type value="reference"/>
@@ -2822,6 +2829,12 @@
         <definition value="http://hl7.org/fhir/SearchParameter/capabilitystatement-event"/>
         <type value="token"/>
         <documentation value="Event code in a capability statement"/>
+      </searchParam>
+      <searchParam>
+        <name value="guide"/>
+        <definition value="http://hl7.org/fhir/SearchParameter/capabilitystatement-guide"/>
+        <type value="uri"/>
+        <documentation value="Implementation Guide supported"/>
       </searchParam>
       <searchParam>
         <name value="status"/>
@@ -3214,12 +3227,12 @@
       <referencePolicy value="literal"/>
       <referencePolicy value="logical"/>
       <searchInclude value="ClaimResponse.request"/>
-      <searchInclude value="ClaimResponse.organization"/>
+      <searchInclude value="ClaimResponse.insurer"/>
       <searchParam>
         <name value="identifier"/>
         <definition value="http://hl7.org/fhir/SearchParameter/claimresponse-identifier"/>
         <type value="token"/>
-        <documentation value="The identity of the insurer"/>
+        <documentation value="The identity of the claimresponse"/>
       </searchParam>
       <searchParam>
         <name value="request"/>
@@ -3234,10 +3247,10 @@
         <documentation value="The contents of the disposition message"/>
       </searchParam>
       <searchParam>
-        <name value="paymentdate"/>
-        <definition value="http://hl7.org/fhir/SearchParameter/claimresponse-paymentdate"/>
-        <type value="date"/>
-        <documentation value="The expected paymentDate"/>
+        <name value="insurer"/>
+        <definition value="http://hl7.org/fhir/SearchParameter/claimresponse-insurer"/>
+        <type value="reference"/>
+        <documentation value="The organization who generated this resource"/>
       </searchParam>
       <searchParam>
         <name value="created"/>
@@ -3246,10 +3259,10 @@
         <documentation value="The creation date"/>
       </searchParam>
       <searchParam>
-        <name value="organization"/>
-        <definition value="http://hl7.org/fhir/SearchParameter/claimresponse-organization"/>
-        <type value="reference"/>
-        <documentation value="The organization who generated this resource"/>
+        <name value="payment-date"/>
+        <definition value="http://hl7.org/fhir/SearchParameter/claimresponse-payment-date"/>
+        <type value="date"/>
+        <documentation value="The expected paymentDate"/>
       </searchParam>
       <searchParam>
         <name value="outcome"/>
@@ -3368,7 +3381,7 @@
         <name value="action"/>
         <definition value="http://hl7.org/fhir/SearchParameter/clinicalimpression-action"/>
         <type value="reference"/>
-        <documentation value="Actions taken during assessment"/>
+        <documentation value="Action taken as part of assessment procedure"/>
       </searchParam>
       <searchParam>
         <name value="finding-ref"/>
@@ -4645,9 +4658,11 @@
       <conditionalDelete value="multiple"/>
       <referencePolicy value="literal"/>
       <referencePolicy value="logical"/>
-      <searchInclude value="Coverage.issuer"/>
-      <searchInclude value="Coverage.planholder"/>
+      <searchInclude value="Coverage.policyholder"/>
+      <searchInclude value="Coverage.subscriber"/>
+      <searchInclude value="Coverage.payor"/>
       <searchInclude value="Coverage.beneficiary"/>
+      <searchRevInclude value="ExplanationOfBenefit.coverage"/>
       <searchParam>
         <name value="identifier"/>
         <definition value="http://hl7.org/fhir/SearchParameter/coverage-identifier"/>
@@ -4655,10 +4670,22 @@
         <documentation value="The primary identifier of the insured and the coverage"/>
       </searchParam>
       <searchParam>
+        <name value="policyholder"/>
+        <definition value="http://hl7.org/fhir/SearchParameter/coverage-policyholder"/>
+        <type value="reference"/>
+        <documentation value="Reference to the policyholder"/>
+      </searchParam>
+      <searchParam>
         <name value="subgroup"/>
         <definition value="http://hl7.org/fhir/SearchParameter/coverage-subgroup"/>
         <type value="string"/>
         <documentation value="Sub-group identifier"/>
+      </searchParam>
+      <searchParam>
+        <name value="subscriber"/>
+        <definition value="http://hl7.org/fhir/SearchParameter/coverage-subscriber"/>
+        <type value="reference"/>
+        <documentation value="Reference to the subscriber"/>
       </searchParam>
       <searchParam>
         <name value="subplan"/>
@@ -4673,22 +4700,16 @@
         <documentation value="The kind of coverage (health plan, auto, Workers Compensation)"/>
       </searchParam>
       <searchParam>
-        <name value="issuer"/>
-        <definition value="http://hl7.org/fhir/SearchParameter/coverage-issuer"/>
-        <type value="reference"/>
-        <documentation value="The identity of the insurer"/>
-      </searchParam>
-      <searchParam>
         <name value="sequence"/>
         <definition value="http://hl7.org/fhir/SearchParameter/coverage-sequence"/>
-        <type value="number"/>
+        <type value="string"/>
         <documentation value="Sequence number"/>
       </searchParam>
       <searchParam>
-        <name value="planholder"/>
-        <definition value="http://hl7.org/fhir/SearchParameter/coverage-planholder"/>
+        <name value="payor"/>
+        <definition value="http://hl7.org/fhir/SearchParameter/coverage-payor"/>
         <type value="reference"/>
-        <documentation value="Reference to the planholder"/>
+        <documentation value="The identity of the insurer or party paying for services"/>
       </searchParam>
       <searchParam>
         <name value="beneficiary"/>
@@ -4717,7 +4738,7 @@
       <searchParam>
         <name value="dependent"/>
         <definition value="http://hl7.org/fhir/SearchParameter/coverage-dependent"/>
-        <type value="number"/>
+        <type value="string"/>
         <documentation value="Dependent number"/>
       </searchParam>
       <searchParam>
@@ -5019,6 +5040,7 @@
       <searchRevInclude value="Media.subject"/>
       <searchRevInclude value="Media.patient"/>
       <searchRevInclude value="MedicationAdministration.device"/>
+      <searchRevInclude value="MedicationRequest.requester"/>
       <searchRevInclude value="MessageHeader.target"/>
       <searchRevInclude value="Observation.subject"/>
       <searchRevInclude value="Observation.patient"/>
@@ -5280,7 +5302,6 @@
       <searchInclude value="DeviceUseRequest.definition"/>
       <searchInclude value="DeviceUseRequest.device"/>
       <searchRevInclude value="CarePlan.activityreference"/>
-      <searchRevInclude value="ClinicalImpression.action"/>
       <searchParam>
         <name value="requester"/>
         <definition value="http://hl7.org/fhir/SearchParameter/deviceuserequest-requester"/>
@@ -5695,16 +5716,22 @@
         <documentation value="Encounter or Episode during which request was created"/>
       </searchParam>
       <searchParam>
+        <name value="priority"/>
+        <definition value="http://hl7.org/fhir/SearchParameter/diagnosticrequest-priority"/>
+        <type value="token"/>
+        <documentation value="routine | urgent | asap | stat"/>
+      </searchParam>
+      <searchParam>
+        <name value="intent"/>
+        <definition value="http://hl7.org/fhir/SearchParameter/diagnosticrequest-intent"/>
+        <type value="token"/>
+        <documentation value="proposal | plan | original-order |reflex-order"/>
+      </searchParam>
+      <searchParam>
         <name value="based-on"/>
         <definition value="http://hl7.org/fhir/SearchParameter/diagnosticrequest-based-on"/>
         <type value="reference"/>
         <documentation value="Plan/proposal/order fulfilled by this request"/>
-      </searchParam>
-      <searchParam>
-        <name value="stage"/>
-        <definition value="http://hl7.org/fhir/SearchParameter/diagnosticrequest-stage"/>
-        <type value="token"/>
-        <documentation value="proposal | plan | original-order |reflex-order"/>
       </searchParam>
       <searchParam>
         <name value="patient"/>
@@ -6194,7 +6221,7 @@
       <referencePolicy value="literal"/>
       <referencePolicy value="logical"/>
       <searchInclude value="EligibilityResponse.request"/>
-      <searchInclude value="EligibilityResponse.organization"/>
+      <searchInclude value="EligibilityResponse.insurer"/>
       <searchInclude value="EligibilityResponse.request-organization"/>
       <searchInclude value="EligibilityResponse.request-provider"/>
       <searchParam>
@@ -6216,16 +6243,16 @@
         <documentation value="The contents of the disposition message"/>
       </searchParam>
       <searchParam>
+        <name value="insurer"/>
+        <definition value="http://hl7.org/fhir/SearchParameter/eligibilityresponse-insurer"/>
+        <type value="reference"/>
+        <documentation value="The organization which generated this resource"/>
+      </searchParam>
+      <searchParam>
         <name value="created"/>
         <definition value="http://hl7.org/fhir/SearchParameter/eligibilityresponse-created"/>
         <type value="date"/>
         <documentation value="The creation date"/>
-      </searchParam>
-      <searchParam>
-        <name value="organization"/>
-        <definition value="http://hl7.org/fhir/SearchParameter/eligibilityresponse-organization"/>
-        <type value="reference"/>
-        <documentation value="The organization which generated this resource"/>
       </searchParam>
       <searchParam>
         <name value="request-organization"/>
@@ -6298,6 +6325,7 @@
       <searchInclude value="Encounter.condition"/>
       <searchInclude value="Encounter.patient"/>
       <searchInclude value="Encounter.location"/>
+      <searchInclude value="Encounter.service-provider"/>
       <searchInclude value="Encounter.indication"/>
       <searchRevInclude value="ClinicalImpression.context"/>
       <searchRevInclude value="Communication.context"/>
@@ -6323,6 +6351,7 @@
       <searchRevInclude value="RequestGroup.context"/>
       <searchRevInclude value="RequestGroup.encounter"/>
       <searchRevInclude value="RiskAssessment.encounter"/>
+      <searchRevInclude value="Task.context"/>
       <searchRevInclude value="VisionPrescription.encounter"/>
       <searchParam>
         <name value="date"/>
@@ -6427,6 +6456,12 @@
         <documentation value="Location the encounter takes place"/>
       </searchParam>
       <searchParam>
+        <name value="service-provider"/>
+        <definition value="http://hl7.org/fhir/SearchParameter/encounter-service-provider"/>
+        <type value="reference"/>
+        <documentation value="The custodian organization of this Encounter record"/>
+      </searchParam>
+      <searchParam>
         <name value="indication"/>
         <definition value="http://hl7.org/fhir/SearchParameter/encounter-indication"/>
         <type value="reference"/>
@@ -6494,6 +6529,11 @@
       <referencePolicy value="literal"/>
       <referencePolicy value="logical"/>
       <searchInclude value="Endpoint.organization"/>
+      <searchRevInclude value="HealthcareService.endpoint"/>
+      <searchRevInclude value="Location.endpoint"/>
+      <searchRevInclude value="Organization.endpoint"/>
+      <searchRevInclude value="Practitioner.endpoint"/>
+      <searchRevInclude value="PractitionerRole.endpoint"/>
       <searchParam>
         <name value="payload-type"/>
         <definition value="http://hl7.org/fhir/SearchParameter/endpoint-payload-type"/>
@@ -6573,8 +6613,10 @@
       <conditionalDelete value="multiple"/>
       <referencePolicy value="literal"/>
       <referencePolicy value="logical"/>
-      <searchInclude value="EnrollmentRequest.patient-reference"/>
-      <searchInclude value="EnrollmentRequest.subject-reference"/>
+      <searchInclude value="EnrollmentRequest.subject"/>
+      <searchInclude value="EnrollmentRequest.patient"/>
+      <searchInclude value="EnrollmentRequest.organization"/>
+      <searchRevInclude value="EnrollmentResponse.request"/>
       <searchParam>
         <name value="identifier"/>
         <definition value="http://hl7.org/fhir/SearchParameter/enrollmentrequest-identifier"/>
@@ -6582,28 +6624,22 @@
         <documentation value="The business identifier of the Enrollment"/>
       </searchParam>
       <searchParam>
-        <name value="patient-reference"/>
-        <definition value="http://hl7.org/fhir/SearchParameter/enrollmentrequest-patient-reference"/>
+        <name value="subject"/>
+        <definition value="http://hl7.org/fhir/SearchParameter/enrollmentrequest-subject"/>
         <type value="reference"/>
         <documentation value="The party to be enrolled"/>
       </searchParam>
       <searchParam>
-        <name value="subject-identifier"/>
-        <definition value="http://hl7.org/fhir/SearchParameter/enrollmentrequest-subject-identifier"/>
-        <type value="token"/>
-        <documentation value="The party to be enrolled"/>
-      </searchParam>
-      <searchParam>
-        <name value="subject-reference"/>
-        <definition value="http://hl7.org/fhir/SearchParameter/enrollmentrequest-subject-reference"/>
+        <name value="patient"/>
+        <definition value="http://hl7.org/fhir/SearchParameter/enrollmentrequest-patient"/>
         <type value="reference"/>
         <documentation value="The party to be enrolled"/>
       </searchParam>
       <searchParam>
-        <name value="patient-identifier"/>
-        <definition value="http://hl7.org/fhir/SearchParameter/enrollmentrequest-patient-identifier"/>
-        <type value="token"/>
-        <documentation value="The party to be enrolled"/>
+        <name value="organization"/>
+        <definition value="http://hl7.org/fhir/SearchParameter/enrollmentrequest-organization"/>
+        <type value="reference"/>
+        <documentation value="The organization who generated this resource"/>
       </searchParam>
     </resource>
     <resource>
@@ -6648,11 +6684,25 @@
       <conditionalDelete value="multiple"/>
       <referencePolicy value="literal"/>
       <referencePolicy value="logical"/>
+      <searchInclude value="EnrollmentResponse.request"/>
+      <searchInclude value="EnrollmentResponse.organization"/>
       <searchParam>
         <name value="identifier"/>
         <definition value="http://hl7.org/fhir/SearchParameter/enrollmentresponse-identifier"/>
         <type value="token"/>
         <documentation value="The business identifier of the EnrollmentResponse"/>
+      </searchParam>
+      <searchParam>
+        <name value="request"/>
+        <definition value="http://hl7.org/fhir/SearchParameter/enrollmentresponse-request"/>
+        <type value="reference"/>
+        <documentation value="The reference to the claim"/>
+      </searchParam>
+      <searchParam>
+        <name value="organization"/>
+        <definition value="http://hl7.org/fhir/SearchParameter/enrollmentresponse-organization"/>
+        <type value="reference"/>
+        <documentation value="The organization who generated this resource"/>
       </searchParam>
     </resource>
     <resource>
@@ -6716,6 +6766,7 @@
       <searchRevInclude value="RequestGroup.context"/>
       <searchRevInclude value="RequestGroup.encounter"/>
       <searchRevInclude value="RiskAssessment.encounter"/>
+      <searchRevInclude value="Task.context"/>
       <searchParam>
         <name value="date"/>
         <definition value="http://hl7.org/fhir/SearchParameter/episodeofcare-date"/>
@@ -6910,11 +6961,18 @@
       <conditionalDelete value="multiple"/>
       <referencePolicy value="literal"/>
       <referencePolicy value="logical"/>
+      <searchInclude value="ExplanationOfBenefit.coverage"/>
       <searchInclude value="ExplanationOfBenefit.provider"/>
       <searchInclude value="ExplanationOfBenefit.patient"/>
       <searchInclude value="ExplanationOfBenefit.organization"/>
       <searchInclude value="ExplanationOfBenefit.claim"/>
       <searchInclude value="ExplanationOfBenefit.facility"/>
+      <searchParam>
+        <name value="coverage"/>
+        <definition value="http://hl7.org/fhir/SearchParameter/explanationofbenefit-coverage"/>
+        <type value="reference"/>
+        <documentation value="The plan under which the claim was adjudicated"/>
+      </searchParam>
       <searchParam>
         <name value="identifier"/>
         <definition value="http://hl7.org/fhir/SearchParameter/explanationofbenefit-identifier"/>
@@ -7282,6 +7340,7 @@
       <searchRevInclude value="List.patient"/>
       <searchRevInclude value="Media.subject"/>
       <searchRevInclude value="Media.patient"/>
+      <searchRevInclude value="MedicationStatement.subject"/>
       <searchRevInclude value="Observation.subject"/>
       <searchRevInclude value="Observation.patient"/>
       <searchRevInclude value="Procedure.subject"/>
@@ -7448,6 +7507,7 @@
       <conditionalDelete value="multiple"/>
       <referencePolicy value="literal"/>
       <referencePolicy value="logical"/>
+      <searchInclude value="HealthcareService.endpoint"/>
       <searchInclude value="HealthcareService.organization"/>
       <searchInclude value="HealthcareService.location"/>
       <searchRevInclude value="Account.subject"/>
@@ -7478,6 +7538,12 @@
         <definition value="http://hl7.org/fhir/SearchParameter/healthcareservice-servicetype"/>
         <type value="token"/>
         <documentation value="The type of service provided by this healthcare service"/>
+      </searchParam>
+      <searchParam>
+        <name value="endpoint"/>
+        <definition value="http://hl7.org/fhir/SearchParameter/healthcareservice-endpoint"/>
+        <type value="reference"/>
+        <documentation value="Technical endpoints providing access to services operated for the location"/>
       </searchParam>
       <searchParam>
         <name value="organization"/>
@@ -8420,6 +8486,7 @@
       <referencePolicy value="literal"/>
       <referencePolicy value="logical"/>
       <searchInclude value="Location.partof"/>
+      <searchInclude value="Location.endpoint"/>
       <searchInclude value="Location.organization"/>
       <searchRevInclude value="Account.subject"/>
       <searchRevInclude value="Account.patient"/>
@@ -8509,6 +8576,12 @@ Requires the near parameter to be included also"/>
         <definition value="http://hl7.org/fhir/SearchParameter/location-address-country"/>
         <type value="string"/>
         <documentation value="A country specified in an address"/>
+      </searchParam>
+      <searchParam>
+        <name value="endpoint"/>
+        <definition value="http://hl7.org/fhir/SearchParameter/location-endpoint"/>
+        <type value="reference"/>
+        <documentation value="Technical endpoints providing access to services operated for the location"/>
       </searchParam>
       <searchParam>
         <name value="organization"/>
@@ -9209,7 +9282,7 @@ Requires the near-distance parameter to be provided also"/>
       <conditionalDelete value="multiple"/>
       <referencePolicy value="literal"/>
       <referencePolicy value="logical"/>
-      <searchInclude value="MedicationRequest.prescriber"/>
+      <searchInclude value="MedicationRequest.requester"/>
       <searchInclude value="MedicationRequest.intended-dispenser"/>
       <searchInclude value="MedicationRequest.patient"/>
       <searchInclude value="MedicationRequest.context"/>
@@ -9219,8 +9292,8 @@ Requires the near-distance parameter to be provided also"/>
       <searchRevInclude value="MedicationAdministration.prescription"/>
       <searchRevInclude value="MedicationDispense.prescription"/>
       <searchParam>
-        <name value="prescriber"/>
-        <definition value="http://hl7.org/fhir/SearchParameter/medicationrequest-prescriber"/>
+        <name value="requester"/>
+        <definition value="http://hl7.org/fhir/SearchParameter/medicationrequest-requester"/>
         <type value="reference"/>
         <documentation value="Returns prescriptions prescribed by this prescriber"/>
       </searchParam>
@@ -9321,7 +9394,7 @@ Requires the near-distance parameter to be provided also"/>
       <conditionalDelete value="multiple"/>
       <referencePolicy value="literal"/>
       <referencePolicy value="logical"/>
-      <searchInclude value="MedicationStatement.patient"/>
+      <searchInclude value="MedicationStatement.subject"/>
       <searchInclude value="MedicationStatement.medication"/>
       <searchInclude value="MedicationStatement.source"/>
       <searchParam>
@@ -9343,10 +9416,10 @@ Requires the near-distance parameter to be provided also"/>
         <documentation value="Return statements of this medication code"/>
       </searchParam>
       <searchParam>
-        <name value="patient"/>
-        <definition value="http://hl7.org/fhir/SearchParameter/medicationstatement-patient"/>
+        <name value="subject"/>
+        <definition value="http://hl7.org/fhir/SearchParameter/medicationstatement-subject"/>
         <type value="reference"/>
-        <documentation value="The identity of a patient to list statements  for"/>
+        <documentation value="The identity of a patient, animal or group to list statements for"/>
       </searchParam>
       <searchParam>
         <name value="medication"/>
@@ -9802,7 +9875,6 @@ Requires the near-distance parameter to be provided also"/>
       <searchInclude value="NutritionRequest.patient"/>
       <searchInclude value="NutritionRequest.encounter"/>
       <searchRevInclude value="CarePlan.activityreference"/>
-      <searchRevInclude value="ClinicalImpression.action"/>
       <searchParam>
         <name value="identifier"/>
         <definition value="http://hl7.org/fhir/SearchParameter/nutritionrequest-identifier"/>
@@ -9939,12 +10011,6 @@ Requires the near-distance parameter to be provided also"/>
         <documentation value="The code of the observation type or component type"/>
       </searchParam>
       <searchParam>
-        <name value="code-value-[x]"/>
-        <definition value="http://hl7.org/fhir/SearchParameter/observation-code-value"/>
-        <type value="composite"/>
-        <documentation value="Code and value parameter pair"/>
-      </searchParam>
-      <searchParam>
         <name value="performer"/>
         <definition value="http://hl7.org/fhir/SearchParameter/observation-performer"/>
         <type value="reference"/>
@@ -10005,10 +10071,28 @@ Requires the near-distance parameter to be provided also"/>
         <documentation value="Resource that is related to this one"/>
       </searchParam>
       <searchParam>
+        <name value="code-value-concept"/>
+        <definition value="http://hl7.org/fhir/SearchParameter/observation-code-value-concept"/>
+        <type value="composite"/>
+        <documentation value="Code and coded value parameter pair, including in components"/>
+      </searchParam>
+      <searchParam>
+        <name value="code-value-string"/>
+        <definition value="http://hl7.org/fhir/SearchParameter/observation-code-value-string"/>
+        <type value="composite"/>
+        <documentation value="Code and string value parameter pair, including in components"/>
+      </searchParam>
+      <searchParam>
         <name value="related"/>
         <definition value="http://hl7.org/fhir/SearchParameter/observation-related"/>
         <type value="composite"/>
         <documentation value="Related Observations - search on related-type and related-target together"/>
+      </searchParam>
+      <searchParam>
+        <name value="code-value-date"/>
+        <definition value="http://hl7.org/fhir/SearchParameter/observation-code-value-date"/>
+        <type value="composite"/>
+        <documentation value="Code and date/time value parameter pair, including in components"/>
       </searchParam>
       <searchParam>
         <name value="patient"/>
@@ -10021,6 +10105,12 @@ Requires the near-distance parameter to be provided also"/>
         <definition value="http://hl7.org/fhir/SearchParameter/observation-specimen"/>
         <type value="reference"/>
         <documentation value="Specimen used for this observation"/>
+      </searchParam>
+      <searchParam>
+        <name value="code-value-quantity"/>
+        <definition value="http://hl7.org/fhir/SearchParameter/observation-code-value-quantity"/>
+        <type value="composite"/>
+        <documentation value="Code and quantity value parameter pair, including in components"/>
       </searchParam>
       <searchParam>
         <name value="category"/>
@@ -10269,6 +10359,7 @@ Requires the near-distance parameter to be provided also"/>
       <referencePolicy value="literal"/>
       <referencePolicy value="logical"/>
       <searchInclude value="Organization.partof"/>
+      <searchInclude value="Organization.endpoint"/>
       <searchRevInclude value="Account.owner"/>
       <searchRevInclude value="Account.subject"/>
       <searchRevInclude value="Account.patient"/>
@@ -10278,7 +10369,7 @@ Requires the near-distance parameter to be provided also"/>
       <searchRevInclude value="CareTeam.participant"/>
       <searchRevInclude value="Claim.insurer"/>
       <searchRevInclude value="Claim.organization"/>
-      <searchRevInclude value="ClaimResponse.organization"/>
+      <searchRevInclude value="ClaimResponse.insurer"/>
       <searchRevInclude value="Communication.sender"/>
       <searchRevInclude value="Communication.recipient"/>
       <searchRevInclude value="CommunicationRequest.sender"/>
@@ -10291,8 +10382,8 @@ Requires the near-distance parameter to be provided also"/>
       <searchRevInclude value="Contract.agent"/>
       <searchRevInclude value="Contract.authority"/>
       <searchRevInclude value="Contract.signer"/>
-      <searchRevInclude value="Coverage.issuer"/>
-      <searchRevInclude value="Coverage.planholder"/>
+      <searchRevInclude value="Coverage.policyholder"/>
+      <searchRevInclude value="Coverage.payor"/>
       <searchRevInclude value="Device.organization"/>
       <searchRevInclude value="DeviceUseRequest.requester"/>
       <searchRevInclude value="DeviceUseRequest.filler"/>
@@ -10305,9 +10396,12 @@ Requires the near-distance parameter to be provided also"/>
       <searchRevInclude value="DocumentReference.custodian"/>
       <searchRevInclude value="DocumentReference.author"/>
       <searchRevInclude value="EligibilityRequest.organization"/>
-      <searchRevInclude value="EligibilityResponse.organization"/>
+      <searchRevInclude value="EligibilityResponse.insurer"/>
       <searchRevInclude value="EligibilityResponse.request-organization"/>
+      <searchRevInclude value="Encounter.service-provider"/>
       <searchRevInclude value="Endpoint.organization"/>
+      <searchRevInclude value="EnrollmentRequest.organization"/>
+      <searchRevInclude value="EnrollmentResponse.organization"/>
       <searchRevInclude value="EpisodeOfCare.organization"/>
       <searchRevInclude value="ExplanationOfBenefit.organization"/>
       <searchRevInclude value="Flag.subject"/>
@@ -10321,6 +10415,7 @@ Requires the near-distance parameter to be provided also"/>
       <searchRevInclude value="Linkage.author"/>
       <searchRevInclude value="Location.organization"/>
       <searchRevInclude value="Medication.manufacturer"/>
+      <searchRevInclude value="MedicationRequest.requester"/>
       <searchRevInclude value="MedicationRequest.intended-dispenser"/>
       <searchRevInclude value="MedicationStatement.source"/>
       <searchRevInclude value="MessageHeader.receiver"/>
@@ -10347,6 +10442,7 @@ Requires the near-distance parameter to be provided also"/>
       <searchRevInclude value="SupplyRequest.source"/>
       <searchRevInclude value="Task.owner"/>
       <searchRevInclude value="Task.requester"/>
+      <searchRevInclude value="Task.organization"/>
       <searchParam>
         <name value="identifier"/>
         <definition value="http://hl7.org/fhir/SearchParameter/organization-identifier"/>
@@ -10358,12 +10454,6 @@ Requires the near-distance parameter to be provided also"/>
         <definition value="http://hl7.org/fhir/SearchParameter/organization-partof"/>
         <type value="reference"/>
         <documentation value="Search all organizations that are part of the given organization"/>
-      </searchParam>
-      <searchParam>
-        <name value="phonetic"/>
-        <definition value="http://hl7.org/fhir/SearchParameter/organization-phonetic"/>
-        <type value="string"/>
-        <documentation value="A portion of the organization&#39;s name using some kind of phonetic matching algorithm"/>
       </searchParam>
       <searchParam>
         <name value="address"/>
@@ -10378,18 +10468,6 @@ Requires the near-distance parameter to be provided also"/>
         <documentation value="A state specified in an address"/>
       </searchParam>
       <searchParam>
-        <name value="name"/>
-        <definition value="http://hl7.org/fhir/SearchParameter/organization-name"/>
-        <type value="string"/>
-        <documentation value="A portion of the organization&#39;s name, or alias"/>
-      </searchParam>
-      <searchParam>
-        <name value="address-use"/>
-        <definition value="http://hl7.org/fhir/SearchParameter/organization-address-use"/>
-        <type value="token"/>
-        <documentation value="A use code specified in an address"/>
-      </searchParam>
-      <searchParam>
         <name value="active"/>
         <definition value="http://hl7.org/fhir/SearchParameter/organization-active"/>
         <type value="token"/>
@@ -10402,12 +10480,6 @@ Requires the near-distance parameter to be provided also"/>
         <documentation value="A code for the type of organization"/>
       </searchParam>
       <searchParam>
-        <name value="address-city"/>
-        <definition value="http://hl7.org/fhir/SearchParameter/organization-address-city"/>
-        <type value="string"/>
-        <documentation value="A city specified in an address"/>
-      </searchParam>
-      <searchParam>
         <name value="address-postalcode"/>
         <definition value="http://hl7.org/fhir/SearchParameter/organization-address-postalcode"/>
         <type value="string"/>
@@ -10418,6 +10490,36 @@ Requires the near-distance parameter to be provided also"/>
         <definition value="http://hl7.org/fhir/SearchParameter/organization-address-country"/>
         <type value="string"/>
         <documentation value="A country specified in an address"/>
+      </searchParam>
+      <searchParam>
+        <name value="endpoint"/>
+        <definition value="http://hl7.org/fhir/SearchParameter/organization-endpoint"/>
+        <type value="reference"/>
+        <documentation value="Technical endpoints providing access to services operated for the organization"/>
+      </searchParam>
+      <searchParam>
+        <name value="phonetic"/>
+        <definition value="http://hl7.org/fhir/SearchParameter/organization-phonetic"/>
+        <type value="string"/>
+        <documentation value="A portion of the organization&#39;s name using some kind of phonetic matching algorithm"/>
+      </searchParam>
+      <searchParam>
+        <name value="name"/>
+        <definition value="http://hl7.org/fhir/SearchParameter/organization-name"/>
+        <type value="string"/>
+        <documentation value="A portion of the organization&#39;s name, or alias"/>
+      </searchParam>
+      <searchParam>
+        <name value="address-use"/>
+        <definition value="http://hl7.org/fhir/SearchParameter/organization-address-use"/>
+        <type value="token"/>
+        <documentation value="A use code specified in an address"/>
+      </searchParam>
+      <searchParam>
+        <name value="address-city"/>
+        <definition value="http://hl7.org/fhir/SearchParameter/organization-address-city"/>
+        <type value="string"/>
+        <documentation value="A city specified in an address"/>
       </searchParam>
     </resource>
     <resource>
@@ -10511,8 +10613,9 @@ Requires the near-distance parameter to be provided also"/>
       <searchRevInclude value="Consent.consentor"/>
       <searchRevInclude value="Contract.agent"/>
       <searchRevInclude value="Contract.signer"/>
-      <searchRevInclude value="Coverage.issuer"/>
-      <searchRevInclude value="Coverage.planholder"/>
+      <searchRevInclude value="Coverage.policyholder"/>
+      <searchRevInclude value="Coverage.subscriber"/>
+      <searchRevInclude value="Coverage.payor"/>
       <searchRevInclude value="Coverage.beneficiary"/>
       <searchRevInclude value="DetectedIssue.patient"/>
       <searchRevInclude value="Device.patient"/>
@@ -10535,8 +10638,8 @@ Requires the near-distance parameter to be provided also"/>
       <searchRevInclude value="DocumentReference.author"/>
       <searchRevInclude value="EligibilityRequest.patient"/>
       <searchRevInclude value="Encounter.patient"/>
-      <searchRevInclude value="EnrollmentRequest.patient-reference"/>
-      <searchRevInclude value="EnrollmentRequest.subject-reference"/>
+      <searchRevInclude value="EnrollmentRequest.subject"/>
+      <searchRevInclude value="EnrollmentRequest.patient"/>
       <searchRevInclude value="EpisodeOfCare.patient"/>
       <searchRevInclude value="ExplanationOfBenefit.patient"/>
       <searchRevInclude value="FamilyMemberHistory.patient"/>
@@ -10563,8 +10666,9 @@ Requires the near-distance parameter to be provided also"/>
       <searchRevInclude value="MedicationAdministration.patient"/>
       <searchRevInclude value="MedicationDispense.receiver"/>
       <searchRevInclude value="MedicationDispense.patient"/>
+      <searchRevInclude value="MedicationRequest.requester"/>
       <searchRevInclude value="MedicationRequest.patient"/>
-      <searchRevInclude value="MedicationStatement.patient"/>
+      <searchRevInclude value="MedicationStatement.subject"/>
       <searchRevInclude value="MedicationStatement.source"/>
       <searchRevInclude value="NutritionRequest.patient"/>
       <searchRevInclude value="Observation.performer"/>
@@ -11272,6 +11376,7 @@ Requires the near-distance parameter to be provided also"/>
       <conditionalDelete value="multiple"/>
       <referencePolicy value="literal"/>
       <referencePolicy value="logical"/>
+      <searchInclude value="Practitioner.endpoint"/>
       <searchInclude value="Practitioner.organization"/>
       <searchInclude value="Practitioner.location"/>
       <searchRevInclude value="Account.subject"/>
@@ -11342,7 +11447,7 @@ Requires the near-distance parameter to be provided also"/>
       <searchRevInclude value="MedicationDispense.receiver"/>
       <searchRevInclude value="MedicationDispense.responsibleparty"/>
       <searchRevInclude value="MedicationDispense.dispenser"/>
-      <searchRevInclude value="MedicationRequest.prescriber"/>
+      <searchRevInclude value="MedicationRequest.requester"/>
       <searchRevInclude value="MedicationStatement.source"/>
       <searchRevInclude value="MessageHeader.receiver"/>
       <searchRevInclude value="MessageHeader.author"/>
@@ -11369,7 +11474,7 @@ Requires the near-distance parameter to be provided also"/>
       <searchRevInclude value="ReferralRequest.recipient"/>
       <searchRevInclude value="RequestGroup.author"/>
       <searchRevInclude value="RequestGroup.participant"/>
-      <searchRevInclude value="ResearchStudy.principleinvestigator"/>
+      <searchRevInclude value="ResearchStudy.principalinvestigator"/>
       <searchRevInclude value="RiskAssessment.performer"/>
       <searchRevInclude value="Schedule.actor"/>
       <searchRevInclude value="Specimen.collector"/>
@@ -11438,6 +11543,12 @@ Requires the near-distance parameter to be provided also"/>
         <definition value="http://hl7.org/fhir/SearchParameter/practitioner-address-country"/>
         <type value="string"/>
         <documentation value="A country specified in an address"/>
+      </searchParam>
+      <searchParam>
+        <name value="endpoint"/>
+        <definition value="http://hl7.org/fhir/SearchParameter/practitioner-endpoint"/>
+        <type value="reference"/>
+        <documentation value="The endpoint of the practitioner for a role at an organization"/>
       </searchParam>
       <searchParam>
         <name value="phonetic"/>
@@ -11548,6 +11659,7 @@ Requires the near-distance parameter to be provided also"/>
       <conditionalDelete value="multiple"/>
       <referencePolicy value="literal"/>
       <referencePolicy value="logical"/>
+      <searchInclude value="PractitionerRole.endpoint"/>
       <searchInclude value="PractitionerRole.practitioner"/>
       <searchInclude value="PractitionerRole.organization"/>
       <searchInclude value="PractitionerRole.location"/>
@@ -11562,6 +11674,12 @@ Requires the near-distance parameter to be provided also"/>
         <definition value="http://hl7.org/fhir/SearchParameter/practitionerrole-specialty"/>
         <type value="token"/>
         <documentation value="The practitioner has this specialty at an organization"/>
+      </searchParam>
+      <searchParam>
+        <name value="endpoint"/>
+        <definition value="http://hl7.org/fhir/SearchParameter/practitionerrole-endpoint"/>
+        <type value="reference"/>
+        <documentation value="Technical endpoints providing access to services operated for the practitioner with this role"/>
       </searchParam>
       <searchParam>
         <name value="role"/>
@@ -12214,7 +12332,7 @@ Requires the near-distance parameter to be provided also"/>
         <name value="authored"/>
         <definition value="http://hl7.org/fhir/SearchParameter/questionnaireresponse-authored"/>
         <type value="date"/>
-        <documentation value="When the questionnaire was authored"/>
+        <documentation value="When the questionnaire response was authored"/>
       </searchParam>
       <searchParam>
         <name value="identifier"/>
@@ -12244,25 +12362,25 @@ Requires the near-distance parameter to be provided also"/>
         <name value="subject"/>
         <definition value="http://hl7.org/fhir/SearchParameter/questionnaireresponse-subject"/>
         <type value="reference"/>
-        <documentation value="The subject of the questionnaire"/>
+        <documentation value="The subject of the questionnaire response"/>
       </searchParam>
       <searchParam>
         <name value="author"/>
         <definition value="http://hl7.org/fhir/SearchParameter/questionnaireresponse-author"/>
         <type value="reference"/>
-        <documentation value="The author of the questionnaire"/>
+        <documentation value="The author of the questionnaire response"/>
       </searchParam>
       <searchParam>
         <name value="patient"/>
         <definition value="http://hl7.org/fhir/SearchParameter/questionnaireresponse-patient"/>
         <type value="reference"/>
-        <documentation value="The patient that is the subject of the questionnaire"/>
+        <documentation value="The patient that is the subject of the questionnaire response"/>
       </searchParam>
       <searchParam>
         <name value="context"/>
         <definition value="http://hl7.org/fhir/SearchParameter/questionnaireresponse-context"/>
         <type value="reference"/>
-        <documentation value="Encounter or episode during which questionnaire was authored"/>
+        <documentation value="Encounter or episode during which questionnaire response was authored"/>
       </searchParam>
       <searchParam>
         <name value="source"/>
@@ -12474,8 +12592,9 @@ Requires the near-distance parameter to be provided also"/>
       <searchRevInclude value="Consent.consentor"/>
       <searchRevInclude value="Contract.agent"/>
       <searchRevInclude value="Contract.signer"/>
-      <searchRevInclude value="Coverage.issuer"/>
-      <searchRevInclude value="Coverage.planholder"/>
+      <searchRevInclude value="Coverage.policyholder"/>
+      <searchRevInclude value="Coverage.subscriber"/>
+      <searchRevInclude value="Coverage.payor"/>
       <searchRevInclude value="DeviceUseRequest.filler"/>
       <searchRevInclude value="DiagnosticRequest.filler"/>
       <searchRevInclude value="DocumentManifest.author"/>
@@ -12485,6 +12604,7 @@ Requires the near-distance parameter to be provided also"/>
       <searchRevInclude value="Encounter.participant"/>
       <searchRevInclude value="ImagingManifest.author"/>
       <searchRevInclude value="MedicationAdministration.performer"/>
+      <searchRevInclude value="MedicationRequest.requester"/>
       <searchRevInclude value="MedicationStatement.source"/>
       <searchRevInclude value="Observation.performer"/>
       <searchRevInclude value="Patient.link"/>
@@ -12727,7 +12847,7 @@ Requires the near-distance parameter to be provided also"/>
       <referencePolicy value="logical"/>
       <searchInclude value="ResearchStudy.partof"/>
       <searchInclude value="ResearchStudy.sponsor"/>
-      <searchInclude value="ResearchStudy.principleinvestigator"/>
+      <searchInclude value="ResearchStudy.principalinvestigator"/>
       <searchInclude value="ResearchStudy.protocol"/>
       <searchInclude value="ResearchStudy.site"/>
       <searchRevInclude value="ResearchStudy.partof"/>
@@ -12768,8 +12888,8 @@ Requires the near-distance parameter to be provided also"/>
         <documentation value="Drugs, devices, conditions, etc. under study"/>
       </searchParam>
       <searchParam>
-        <name value="principleinvestigator"/>
-        <definition value="http://hl7.org/fhir/SearchParameter/researchstudy-principleinvestigator"/>
+        <name value="principalinvestigator"/>
+        <definition value="http://hl7.org/fhir/SearchParameter/researchstudy-principalinvestigator"/>
         <type value="reference"/>
         <documentation value="Individual responsible for the study"/>
       </searchParam>
@@ -13126,6 +13246,12 @@ Requires the near-distance parameter to be provided also"/>
         <documentation value="Text search against the description of the search parameter"/>
       </searchParam>
       <searchParam>
+        <name value="derived-from"/>
+        <definition value="http://hl7.org/fhir/SearchParameter/searchparameter-derived-from"/>
+        <type value="uri"/>
+        <documentation value="Original Definition for the search parameter"/>
+      </searchParam>
+      <searchParam>
         <name value="type"/>
         <definition value="http://hl7.org/fhir/SearchParameter/searchparameter-type"/>
         <type value="token"/>
@@ -13153,7 +13279,7 @@ Requires the near-distance parameter to be provided also"/>
         <name value="component"/>
         <definition value="http://hl7.org/fhir/SearchParameter/searchparameter-component"/>
         <type value="reference"/>
-        <documentation value="For Composite resources to define the parts"/>
+        <documentation value="Defines how the part works"/>
       </searchParam>
       <searchParam>
         <name value="name"/>
@@ -13234,13 +13360,13 @@ Requires the near-distance parameter to be provided also"/>
         <name value="coordinate"/>
         <definition value="http://hl7.org/fhir/SearchParameter/sequence-coordinate"/>
         <type value="composite"/>
-        <documentation value="Search parameter for region of the reference sequence string. This will refer to part of a locus or part of a gene where search region will be represented in 1-based system. Since the coordinateSystem can either be 0-based or 1-based, this search query will include the result of both coordinateSystem that contains the equivalent segment of the gene or whole genome sequence. For example, a search for sequence can be represented as `coordinate=1$lt345$gt123`, this means it will search for the Sequence resource on chromosome 1 and with position &gt;123 and &lt;345, where in 1-based system resource, all strings within region 1:124-344 will be revealed, while in 0-based system resource, all strings within region 1:123-344 will be revealed. You may want to check detail about 0-based v.s. 1-based above."/>
+        <documentation value="Search parameter for region of the reference DNA sequence string. This will refer to part of a locus or part of a gene where search region will be represented in 1-based system. Since the coordinateSystem can either be 0-based or 1-based, this search query will include the result of both coordinateSystem that contains the equivalent segment of the gene or whole genome sequence. For example, a search for sequence can be represented as `coordinate=1$lt345$gt123`, this means it will search for the Sequence resource on chromosome 1 and with position &gt;123 and &lt;345, where in 1-based system resource, all strings within region 1:124-344 will be revealed, while in 0-based system resource, all strings within region 1:123-344 will be revealed. You may want to check detail about 0-based v.s. 1-based above."/>
       </searchParam>
       <searchParam>
         <name value="patient"/>
         <definition value="http://hl7.org/fhir/SearchParameter/sequence-patient"/>
         <type value="reference"/>
-        <documentation value="The subject that the observedSeq is originated from"/>
+        <documentation value="The subject that the observation is about"/>
       </searchParam>
       <searchParam>
         <name value="chromosome"/>
@@ -13264,7 +13390,7 @@ Requires the near-distance parameter to be provided also"/>
         <name value="type"/>
         <definition value="http://hl7.org/fhir/SearchParameter/sequence-type"/>
         <type value="token"/>
-        <documentation value="The type of the sequencing result: Amino Acid Sequence / DNA Sequence / RNA Sequence."/>
+        <documentation value="Amino Acid Sequence/ DNA Sequence / RNA Sequence"/>
       </searchParam>
     </resource>
     <resource>
@@ -14241,10 +14367,15 @@ Requires the near-distance parameter to be provided also"/>
       <referencePolicy value="logical"/>
       <searchInclude value="Task.owner"/>
       <searchInclude value="Task.requester"/>
-      <searchInclude value="Task.parent"/>
+      <searchInclude value="Task.subject"/>
       <searchInclude value="Task.focus"/>
+      <searchInclude value="Task.part-of"/>
+      <searchInclude value="Task.based-on"/>
       <searchInclude value="Task.patient"/>
-      <searchRevInclude value="Task.parent"/>
+      <searchInclude value="Task.definition-ref"/>
+      <searchInclude value="Task.organization"/>
+      <searchInclude value="Task.context"/>
+      <searchRevInclude value="Task.part-of"/>
       <searchParam>
         <name value="owner"/>
         <definition value="http://hl7.org/fhir/SearchParameter/task-owner"/>
@@ -14264,10 +14395,16 @@ Requires the near-distance parameter to be provided also"/>
         <documentation value="Search for a task instance by its business identifier"/>
       </searchParam>
       <searchParam>
-        <name value="parent"/>
-        <definition value="http://hl7.org/fhir/SearchParameter/task-parent"/>
-        <type value="reference"/>
-        <documentation value="Search by parent task"/>
+        <name value="business-status"/>
+        <definition value="http://hl7.org/fhir/SearchParameter/task-business-status"/>
+        <type value="token"/>
+        <documentation value="Search by business status"/>
+      </searchParam>
+      <searchParam>
+        <name value="period"/>
+        <definition value="http://hl7.org/fhir/SearchParameter/task-period"/>
+        <type value="date"/>
+        <documentation value="Search by period Task is/was underway"/>
       </searchParam>
       <searchParam>
         <name value="code"/>
@@ -14282,10 +14419,10 @@ Requires the near-distance parameter to be provided also"/>
         <documentation value="Search by recommended type of performer (e.g., Requester, Performer, Scheduler)."/>
       </searchParam>
       <searchParam>
-        <name value="created"/>
-        <definition value="http://hl7.org/fhir/SearchParameter/task-created"/>
-        <type value="date"/>
-        <documentation value="Search by creation date"/>
+        <name value="subject"/>
+        <definition value="http://hl7.org/fhir/SearchParameter/task-subject"/>
+        <type value="reference"/>
+        <documentation value="Search by subject"/>
       </searchParam>
       <searchParam>
         <name value="focus"/>
@@ -14294,22 +14431,40 @@ Requires the near-distance parameter to be provided also"/>
         <documentation value="Search by task focus"/>
       </searchParam>
       <searchParam>
+        <name value="part-of"/>
+        <definition value="http://hl7.org/fhir/SearchParameter/task-part-of"/>
+        <type value="reference"/>
+        <documentation value="Search by task this task is part of"/>
+      </searchParam>
+      <searchParam>
         <name value="priority"/>
         <definition value="http://hl7.org/fhir/SearchParameter/task-priority"/>
         <type value="token"/>
         <documentation value="Search by task priority"/>
       </searchParam>
       <searchParam>
-        <name value="stage"/>
-        <definition value="http://hl7.org/fhir/SearchParameter/task-stage"/>
-        <type value="token"/>
-        <documentation value="Search by task stage"/>
+        <name value="authored-on"/>
+        <definition value="http://hl7.org/fhir/SearchParameter/task-authored-on"/>
+        <type value="date"/>
+        <documentation value="Search by creation date"/>
       </searchParam>
       <searchParam>
-        <name value="statusreason"/>
-        <definition value="http://hl7.org/fhir/SearchParameter/task-statusreason"/>
+        <name value="intent"/>
+        <definition value="http://hl7.org/fhir/SearchParameter/task-intent"/>
         <type value="token"/>
-        <documentation value="Search by status reason"/>
+        <documentation value="Search by task intent"/>
+      </searchParam>
+      <searchParam>
+        <name value="group-identifier"/>
+        <definition value="http://hl7.org/fhir/SearchParameter/task-group-identifier"/>
+        <type value="token"/>
+        <documentation value="Search by group identifier"/>
+      </searchParam>
+      <searchParam>
+        <name value="based-on"/>
+        <definition value="http://hl7.org/fhir/SearchParameter/task-based-on"/>
+        <type value="reference"/>
+        <documentation value="Search by requests this task is based on"/>
       </searchParam>
       <searchParam>
         <name value="patient"/>
@@ -14318,16 +14473,34 @@ Requires the near-distance parameter to be provided also"/>
         <documentation value="Search by patient"/>
       </searchParam>
       <searchParam>
+        <name value="statusreason"/>
+        <definition value="http://hl7.org/fhir/SearchParameter/task-statusreason"/>
+        <type value="token"/>
+        <documentation value="Search by status reason"/>
+      </searchParam>
+      <searchParam>
+        <name value="definition-ref"/>
+        <definition value="http://hl7.org/fhir/SearchParameter/task-definition-ref"/>
+        <type value="reference"/>
+        <documentation value="Search by task definition as a Reference"/>
+      </searchParam>
+      <searchParam>
+        <name value="organization"/>
+        <definition value="http://hl7.org/fhir/SearchParameter/task-organization"/>
+        <type value="reference"/>
+        <documentation value="Search by responsible organization"/>
+      </searchParam>
+      <searchParam>
+        <name value="context"/>
+        <definition value="http://hl7.org/fhir/SearchParameter/task-context"/>
+        <type value="reference"/>
+        <documentation value="Search by encounter or episode"/>
+      </searchParam>
+      <searchParam>
         <name value="modified"/>
         <definition value="http://hl7.org/fhir/SearchParameter/task-modified"/>
         <type value="date"/>
         <documentation value="Search by last modification date"/>
-      </searchParam>
-      <searchParam>
-        <name value="definition"/>
-        <definition value="http://hl7.org/fhir/SearchParameter/task-definition"/>
-        <type value="uri"/>
-        <documentation value="Search by task definition"/>
       </searchParam>
       <searchParam>
         <name value="status"/>

@@ -3,7 +3,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>Medicationrequest.profile.json - FHIR v1.7.0</title>
+  <title>Medicationrequest.profile.json - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -119,7 +119,7 @@
   &quot;resourceType&quot;: &quot;StructureDefinition&quot;,
   &quot;id&quot;: &quot;MedicationRequest&quot;,
   &quot;meta&quot;: {
-    &quot;lastUpdated&quot;: &quot;2016-11-28T17:29:55.664-05:00&quot;
+    &quot;lastUpdated&quot;: &quot;2016-12-07T14:18:58.982-05:00&quot;
   },
   &quot;text&quot;: {
     &quot;status&quot;: &quot;generated&quot;,
@@ -129,6 +129,10 @@
     {
       &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm&quot;,
       &quot;valueInteger&quot;: 1
+    },
+    {
+      &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/structuredefinition-wg&quot;,
+      &quot;valueCode&quot;: &quot;phx&quot;
     }
   ],
   &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/MedicationRequest&quot;,
@@ -139,7 +143,7 @@
     {
       &quot;telecom&quot;: [
         {
-          &quot;system&quot;: &quot;other&quot;,
+          &quot;system&quot;: &quot;url&quot;,
           &quot;value&quot;: &quot;http://hl7.org/fhir&quot;
         }
       ]
@@ -147,15 +151,15 @@
     {
       &quot;telecom&quot;: [
         {
-          &quot;system&quot;: &quot;other&quot;,
+          &quot;system&quot;: &quot;url&quot;,
           &quot;value&quot;: &quot;http://www.hl7.org/Special/committees/medication/index.cfm&quot;
         }
       ]
     }
   ],
-  &quot;date&quot;: &quot;2016-11-28T17:29:55-05:00&quot;,
+  &quot;date&quot;: &quot;2016-12-07T14:18:58-05:00&quot;,
   &quot;description&quot;: &quot;Base StructureDefinition for MedicationRequest Resource&quot;,
-  &quot;fhirVersion&quot;: &quot;1.7.0&quot;,
+  &quot;fhirVersion&quot;: &quot;1.8.0&quot;,
   &quot;mapping&quot;: [
     {
       &quot;identity&quot;: &quot;script10.6&quot;,
@@ -602,6 +606,7 @@
         &quot;path&quot;: &quot;MedicationRequest.stage&quot;,
         &quot;short&quot;: &quot;proposal | plan | original-order&quot;,
         &quot;definition&quot;: &quot;Whether the request is a proposal, plan, or an original order.&quot;,
+        &quot;comments&quot;: &quot;It is expected that the type of requester will be restricted for different stages of a MedicationRequest.  For example, Proposals can be created by a patient, relatedPerson, Practitioner or Device.  Plans can be created by Practitioners, Patients, RelatedPersons and Devices.  Original orders can be created by a Practitioner only.&quot;,
         &quot;min&quot;: 1,
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
@@ -793,16 +798,33 @@
         ]
       },
       {
-        &quot;id&quot;: &quot;MedicationRequest.prescriber&quot;,
-        &quot;path&quot;: &quot;MedicationRequest.prescriber&quot;,
+        &quot;id&quot;: &quot;MedicationRequest.requester&quot;,
+        &quot;path&quot;: &quot;MedicationRequest.requester&quot;,
         &quot;short&quot;: &quot;Who ordered the initial medication(s)&quot;,
         &quot;definition&quot;: &quot;The healthcare professional responsible for authorizing the initial prescription.&quot;,
+        &quot;comments&quot;: &quot;It is expected that the type of requester will be restricted for different stages of a MedicationRequest.  For example, Proposals can be created by a patient, relatedPerson, Practitioner or Device.  Plans can be created by Practitioners, Patients, RelatedPersons and Devices.  Original orders can be created by a Practitioner only.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
             &quot;code&quot;: &quot;Reference&quot;,
             &quot;targetProfile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/Practitioner&quot;
+          },
+          {
+            &quot;code&quot;: &quot;Reference&quot;,
+            &quot;targetProfile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/Organization&quot;
+          },
+          {
+            &quot;code&quot;: &quot;Reference&quot;,
+            &quot;targetProfile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/Patient&quot;
+          },
+          {
+            &quot;code&quot;: &quot;Reference&quot;,
+            &quot;targetProfile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/RelatedPerson&quot;
+          },
+          {
+            &quot;code&quot;: &quot;Reference&quot;,
+            &quot;targetProfile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/Device&quot;
           }
         ],
         &quot;isSummary&quot;: true,
@@ -1597,6 +1619,7 @@
         &quot;path&quot;: &quot;MedicationRequest.stage&quot;,
         &quot;short&quot;: &quot;proposal | plan | original-order&quot;,
         &quot;definition&quot;: &quot;Whether the request is a proposal, plan, or an original order.&quot;,
+        &quot;comments&quot;: &quot;It is expected that the type of requester will be restricted for different stages of a MedicationRequest.  For example, Proposals can be created by a patient, relatedPerson, Practitioner or Device.  Plans can be created by Practitioners, Patients, RelatedPersons and Devices.  Original orders can be created by a Practitioner only.&quot;,
         &quot;min&quot;: 1,
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
@@ -1788,16 +1811,33 @@
         ]
       },
       {
-        &quot;id&quot;: &quot;MedicationRequest.prescriber&quot;,
-        &quot;path&quot;: &quot;MedicationRequest.prescriber&quot;,
+        &quot;id&quot;: &quot;MedicationRequest.requester&quot;,
+        &quot;path&quot;: &quot;MedicationRequest.requester&quot;,
         &quot;short&quot;: &quot;Who ordered the initial medication(s)&quot;,
         &quot;definition&quot;: &quot;The healthcare professional responsible for authorizing the initial prescription.&quot;,
+        &quot;comments&quot;: &quot;It is expected that the type of requester will be restricted for different stages of a MedicationRequest.  For example, Proposals can be created by a patient, relatedPerson, Practitioner or Device.  Plans can be created by Practitioners, Patients, RelatedPersons and Devices.  Original orders can be created by a Practitioner only.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
             &quot;code&quot;: &quot;Reference&quot;,
             &quot;targetProfile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/Practitioner&quot;
+          },
+          {
+            &quot;code&quot;: &quot;Reference&quot;,
+            &quot;targetProfile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/Organization&quot;
+          },
+          {
+            &quot;code&quot;: &quot;Reference&quot;,
+            &quot;targetProfile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/Patient&quot;
+          },
+          {
+            &quot;code&quot;: &quot;Reference&quot;,
+            &quot;targetProfile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/RelatedPerson&quot;
+          },
+          {
+            &quot;code&quot;: &quot;Reference&quot;,
+            &quot;targetProfile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/Device&quot;
           }
         ],
         &quot;isSummary&quot;: true,
@@ -2257,7 +2297,7 @@ of the specification.
 		<div class="container"><!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:32-0500. <a href="qa.html">QA Page</a>
+        © HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:27-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search</a> | 

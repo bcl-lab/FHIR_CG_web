@@ -12,7 +12,7 @@ notes:
 
 * Major, Data types, rename Contact to ContactPoint --><html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>History - FHIR v1.7.0</title>
+  <title>History - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -118,7 +118,7 @@ notes:
 
 <p>See <a href="#history">below</a> for version history details.</p>
 
-<a name="history"> </a>
+<a name="versioning"> </a>
 <h2 class="self-link-parent"><span class="sectioncount">2.10<a name="2.10"> </a></span> Version History <a href="history.html#2.10" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h2>
 
 <p>
@@ -174,9 +174,9 @@ Each FHIR version is identified by a string composed from 4 parts: publication.m
    <td valign="top">publication</td>
    <td>
      <ul>
-       <li>Incremented when HL7 publishes FHIR as an updated specification, e.g. a DSTU or normative version of FHIR</li>
+       <li>Incremented when HL7 publishes FHIR as an updated specification, e.g. a STU or normative version of FHIR</li>
        <li>HL7 plans to do this every 1 to 2 years</li>
-       <li>The first DSTU was version 0</li>
+       <li>The first STU was version 0</li>
      </ul>
    </td>
   </tr>
@@ -262,6 +262,29 @@ This table lists substantive changes only.
 
 notes: do not list revision in the version -->
 
+	<tr>
+		<td>1.8.0</td>
+		<td>
+      <p><b>FHIR QA Release, Dec 6, 2016</b><a name="v1.8.0"> </a></p>
+      <p>
+      STU 3 Candidate, and also the basis for several implementation guide ballots and the <a href="http://wiki.hl7.org/index.php?title=FHIR_Connectathon_14">San Antonio Jan 2017 Connectathon <img src="external.png" style="text-align: baseline"/></a>
+      </p>
+      <p><b>Breaking Changes Summary:</b></p>
+      <ul>
+        <li>Change <a href="datatypes.html#HumanName">HumanName</a>.family from 0..* to 0..1</li> 
+        <li>Rename MedicationOrder and DiagnosticOrder to  <a href="medicationrequest.html">MedicationRequest</a> and <a href="diagnosticrequest.html">DiagnosticRequest</a>, and make a series of changes to align with the <a href="request.html">Request Pattern</a></li>
+        <li>Add cross resource search + rework composite parameter expressions</li>
+        <li>Harmonise resource metadata across the Terminology, Conformance, and Knowledge resources</li>
+        <li>Change the way <a href="references.html#canonical">versioned references to canonical URLs</a> are handled</li>
+        <li>REST - servers must <a href="http.html#create">return a location header</a> on a create</li>
+        <li><a href="condition.html">Condition</a> status elements reworked</li>
+      </ul>
+      <p>
+        These are only the more significant changes, there were many 100s of changes made in response to ballot comments and ongoing implementation experience.
+        These include breaking changes to may resources. Structural changes are <a href="diff.html">summarised here</a>.
+      </p>
+    </td>
+	</tr>
 	<tr>
 		<td>1.6.0</td>
 		<td>
@@ -771,7 +794,7 @@ Note: a useful tool for displaying the differences between pages is the <a href=
 		<div class="container">  <!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:33-0500. <a href="qa.html">QA Page</a>
+        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:28-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search <img src="external.png" style="text-align: baseline"/></a> | 

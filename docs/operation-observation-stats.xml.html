@@ -2,7 +2,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>Operation-observation-stats.xml - FHIR v1.7.0</title>
+  <title>Operation-observation-stats.xml - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -124,51 +124,147 @@
       </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">p</a></span><span class="xmltag">&gt;</span><b>OPERATION: Observation Statistics</b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">p</a>&gt;</span><b>
       </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">div</a></span><span class="xmltag">&gt;</span><b>
         </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">p</a></span><span class="xmltag">&gt;</span><b>The Statistics operation performs a set of statistical calculations on a set of clinical
-           measurements such as a blood pressure.  This operation is limited to 
-          </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">a</a></span><span class="xmlattr"> href="<span class="xmlattrvalue">observation.html</span>"</span><span class="xmltag">&gt;</span><b>Observation</b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">a</a>&gt;</span><b> resources with valueQuantity elements.
+           measurements such as a blood pressure as stored on the server.  This operation is focused
+           on 
+          </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">a</a></span><span class="xmlattr"> href="<span class="xmlattrvalue">observation.html</span>"</span><span class="xmltag">&gt;</span><b>Observation</b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">a</a>&gt;</span><b> resources with valueQuantity elements that have UCUM unit codes.
         </b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">p</a>&gt;</span><b>
 
-        </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">p</a></span><span class="xmltag">&gt;</span><b>The set of Observations is defined by a the input parameters 
-          </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">code</a></span><span class="xmltag">&gt;</span><b>patient</b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">code</a>&gt;</span><b>,
-          </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">code</a></span><span class="xmltag">&gt;</span><b>code</b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">code</a>&gt;</span><b> and 
-          </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">code</a></span><span class="xmltag">&gt;</span><b>duration</b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">code</a>&gt;</span><b> and 
-          </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">code</a></span><span class="xmltag">&gt;</span><b>params</b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">code</a>&gt;</span><b>. The set of statistical calculation depends upon the value of the 
-          </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">code</a></span><span class="xmltag">&gt;</span><b>params</b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">code</a>&gt;</span><b> parameter:
+        </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">p</a></span><span class="xmltag">&gt;</span><b>The set of Observations is defined by 4 parameters:</b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">p</a>&gt;</span><b>
+
+        </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">ul</a></span><span class="xmltag">&gt;</span><b>
+
+          </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">li</a></span><span class="xmltag">&gt;</span><b>the subject of the observations for which the statistics are being generated (
+            </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">code</a></span><span class="xmltag">&gt;</span><b>subject</b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">code</a>&gt;</span><b>)
+          </b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">li</a>&gt;</span><b>
+
+          </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">li</a></span><span class="xmltag">&gt;</span><b>which observations to generate statistics for (
+            </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">code</a></span><span class="xmltag">&gt;</span><b>code</b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">code</a>&gt;</span><b> and &apos;system&apos;, or &apos;coding&apos;)
+          </b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">li</a>&gt;</span><b>
+
+          </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">li</a></span><span class="xmltag">&gt;</span><b>the time period over which to generate statistics (&apos;duration&apos; or &apos;period&apos;)</b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">li</a>&gt;</span><b>
+
+          </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">li</a></span><span class="xmltag">&gt;</span><b>the set of statistical analyses to return (
+            </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">code</a></span><span class="xmltag">&gt;</span><b>statistic</b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">code</a>&gt;</span><b>).
+          </b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">li</a>&gt;</span><b>
+
+        </b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">ul</a>&gt;</span><b>
+
+        </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">p</a></span><span class="xmltag">&gt;</span><b>Possible statistical analyses (see 
+          </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">a</a></span><span class="xmlattr"> href="<span class="xmlattrvalue">valueset-observation-statistics.html</span>"</span><span class="xmltag">&gt;</span><b>StatisticsCode</b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">a</a>&gt;</span><b>):
         </b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">p</a>&gt;</span><b>
 
         </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">ul</a></span><span class="xmltag">&gt;</span><b>
 
           </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">li</a></span><span class="xmltag">&gt;</span><b>
-            </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">strong</a></span><span class="xmltag">&gt;</span><b>average</b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">strong</a>&gt;</span><b> - for example if code = 55284-4 the mean of 55284-4 over the stated period from an operation
+            </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">strong</a></span><span class="xmltag">&gt;</span><b>average</b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">strong</a>&gt;</span><b> (&amp;quot;Average&amp;quot;): The 
+            </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">a</a></span><span class="xmlattr"> href="<span class="xmlattrvalue">https://en.wikipedia.org/wiki/Arithmetic_mean</span>"</span><span class="xmltag">&gt;</span><b>mean</b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">a</a>&gt;</span><b> of N measurements over the stated period
           </b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">li</a>&gt;</span><b>
 
           </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">li</a></span><span class="xmltag">&gt;</span><b>
-            </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">strong</a></span><span class="xmltag">&gt;</span><b>max</b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">strong</a>&gt;</span><b> - for example if code = 55284-4 the max of 55284-4 over the stated period from an operation
+            </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">strong</a></span><span class="xmltag">&gt;</span><b>maximum</b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">strong</a>&gt;</span><b> (&amp;quot;Maximum&amp;quot;): The 
+            </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">a</a></span><span class="xmlattr"> href="<span class="xmlattrvalue">https://en.wikipedia.org/wiki/Maximal_element</span>"</span><span class="xmltag">&gt;</span><b>maximum</b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">a</a>&gt;</span><b> value of N measurements over the stated period
           </b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">li</a>&gt;</span><b>
 
           </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">li</a></span><span class="xmltag">&gt;</span><b>
-            </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">strong</a></span><span class="xmltag">&gt;</span><b>min</b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">strong</a>&gt;</span><b> - for example if code = 55284-4 the min of 55284-4 over the stated period from an operation
+            </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">strong</a></span><span class="xmltag">&gt;</span><b>minimum</b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">strong</a>&gt;</span><b> (&amp;quot;Minimum&amp;quot;): The 
+            </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">a</a></span><span class="xmlattr"> href="<span class="xmlattrvalue">https://en.wikipedia.org/wiki/Minimal_element</span>"</span><span class="xmltag">&gt;</span><b>minimum</b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">a</a>&gt;</span><b> value of N measurements over the stated period
           </b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">li</a>&gt;</span><b>
 
           </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">li</a></span><span class="xmltag">&gt;</span><b>
-            </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">strong</a></span><span class="xmltag">&gt;</span><b>count</b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">strong</a>&gt;</span><b> - for example if code = 55284-4 the number of occurances of value x of 55284-4 over the
-             stated period from an operation
+            </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">strong</a></span><span class="xmltag">&gt;</span><b>count</b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">strong</a>&gt;</span><b> (&amp;quot;Count&amp;quot;): The [number] of valid measurements over the stated period that contributed
+             to the other statistical outputs
+          </b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">li</a>&gt;</span><b>
+
+          </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">li</a></span><span class="xmltag">&gt;</span><b>
+            </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">strong</a></span><span class="xmltag">&gt;</span><b>totalcount</b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">strong</a>&gt;</span><b> (&amp;quot;Total Count&amp;quot;): The total [number] of valid measurements over the stated period,
+             including observations that were ignored because they did not contain valid result values
+          </b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">li</a>&gt;</span><b>
+
+          </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">li</a></span><span class="xmltag">&gt;</span><b>
+            </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">strong</a></span><span class="xmltag">&gt;</span><b>median</b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">strong</a>&gt;</span><b> (&amp;quot;Median&amp;quot;): The 
+            </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">a</a></span><span class="xmlattr"> href="<span class="xmlattrvalue">https://en.wikipedia.org/wiki/Median</span>"</span><span class="xmltag">&gt;</span><b>median</b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">a</a>&gt;</span><b> of N measurements over the stated period
+          </b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">li</a>&gt;</span><b>
+
+          </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">li</a></span><span class="xmltag">&gt;</span><b>
+            </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">strong</a></span><span class="xmltag">&gt;</span><b>std-dev</b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">strong</a>&gt;</span><b> (&amp;quot;standard deviation&amp;quot;): The 
+            </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">a</a></span><span class="xmlattr"> href="<span class="xmlattrvalue">https://en.wikipedia.org/wiki/Standard_deviation</span>"</span><span class="xmltag">&gt;</span><b>standard deviation</b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">a</a>&gt;</span><b> of N measurements over the stated period
+          </b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">li</a>&gt;</span><b>
+
+          </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">li</a></span><span class="xmltag">&gt;</span><b>
+            </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">strong</a></span><span class="xmltag">&gt;</span><b>sum</b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">strong</a>&gt;</span><b> (&amp;quot;sum&amp;quot;): The 
+            </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">a</a></span><span class="xmlattr"> href="<span class="xmlattrvalue">https://en.wikipedia.org/wiki/Summation</span>"</span><span class="xmltag">&gt;</span><b>sum</b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">a</a>&gt;</span><b> of N measurements over the stated period
+          </b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">li</a>&gt;</span><b>
+
+          </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">li</a></span><span class="xmltag">&gt;</span><b>
+            </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">strong</a></span><span class="xmltag">&gt;</span><b>variance</b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">strong</a>&gt;</span><b> (&amp;quot;variance&amp;quot;): The 
+            </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">a</a></span><span class="xmlattr"> href="<span class="xmlattrvalue">https://en.wikipedia.org/wiki/Variance</span>"</span><span class="xmltag">&gt;</span><b>variance</b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">a</a>&gt;</span><b> of N measurements over the stated period
+          </b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">li</a>&gt;</span><b>
+
+          </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">li</a></span><span class="xmltag">&gt;</span><b>
+            </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">strong</a></span><span class="xmltag">&gt;</span><b>%20</b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">strong</a>&gt;</span><b> (&amp;quot;20th percentile&amp;quot;): The 20th 
+            </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">a</a></span><span class="xmlattr"> href="<span class="xmlattrvalue">https://en.wikipedia.org/wiki/Percentile</span>"</span><span class="xmltag">&gt;</span><b>Percentile</b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">a</a>&gt;</span><b> of N measurements over the stated period
+          </b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">li</a>&gt;</span><b>
+
+          </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">li</a></span><span class="xmltag">&gt;</span><b>
+            </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">strong</a></span><span class="xmltag">&gt;</span><b>%80</b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">strong</a>&gt;</span><b> (&amp;quot;80th percentile&amp;quot;): The 80th 
+            </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">a</a></span><span class="xmlattr"> href="<span class="xmlattrvalue">https://en.wikipedia.org/wiki/Percentile</span>"</span><span class="xmltag">&gt;</span><b>Percentile</b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">a</a>&gt;</span><b> of N measurements over the stated period
+          </b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">li</a>&gt;</span><b>
+
+          </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">li</a></span><span class="xmltag">&gt;</span><b>
+            </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">strong</a></span><span class="xmltag">&gt;</span><b>4-lower</b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">strong</a>&gt;</span><b> (&amp;quot;lower quartile&amp;quot;): The lower 
+            </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">a</a></span><span class="xmlattr"> href="<span class="xmlattrvalue">https://en.wikipedia.org/wiki/Quartile</span>"</span><span class="xmltag">&gt;</span><b>Quartile</b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">a</a>&gt;</span><b> Boundary of N measurements over the stated period
+          </b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">li</a>&gt;</span><b>
+
+          </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">li</a></span><span class="xmltag">&gt;</span><b>
+            </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">strong</a></span><span class="xmltag">&gt;</span><b>4-upper</b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">strong</a>&gt;</span><b> (&amp;quot;upper quartile&amp;quot;): The upper 
+            </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">a</a></span><span class="xmlattr"> href="<span class="xmlattrvalue">https://en.wikipedia.org/wiki/Quartile</span>"</span><span class="xmltag">&gt;</span><b>Quartile</b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">a</a>&gt;</span><b> Boundary of N measurements over the stated period
+          </b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">li</a>&gt;</span><b>
+
+          </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">li</a></span><span class="xmltag">&gt;</span><b>
+            </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">strong</a></span><span class="xmltag">&gt;</span><b>4-dev</b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">strong</a>&gt;</span><b> (&amp;quot;quartile deviation&amp;quot;): The difference between the upper and lower 
+            </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">a</a></span><span class="xmlattr"> href="<span class="xmlattrvalue">https://en.wikipedia.org/wiki/Quartile</span>"</span><span class="xmltag">&gt;</span><b>Quartiles</b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">a</a>&gt;</span><b> is called the Interquartile range. (IQR = Q3-Q1) Quartile deviation or Semi-interquartile
+             range is one-half the difference between the first and the third quartiles.
+          </b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">li</a>&gt;</span><b>
+
+          </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">li</a></span><span class="xmltag">&gt;</span><b>
+            </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">strong</a></span><span class="xmltag">&gt;</span><b>5-1</b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">strong</a>&gt;</span><b> (&amp;quot;1st quintile&amp;quot;): The lowest of four values that divide the N measurementsinto
+             a frequency distribution of five classes with each containing one fifth of the total population
+          </b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">li</a>&gt;</span><b>
+
+          </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">li</a></span><span class="xmltag">&gt;</span><b>
+            </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">strong</a></span><span class="xmltag">&gt;</span><b>5-2</b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">strong</a>&gt;</span><b> (&amp;quot;2nd quintile&amp;quot;): The second of four values that divide the N measurementsinto
+             a frequency distribution of five classes with each containing one fifth of the total population
+          </b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">li</a>&gt;</span><b>
+
+          </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">li</a></span><span class="xmltag">&gt;</span><b>
+            </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">strong</a></span><span class="xmltag">&gt;</span><b>5-3</b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">strong</a>&gt;</span><b> (&amp;quot;3rd quintile&amp;quot;): The third of four values that divide the N measurementsinto
+             a frequency distribution of five classes with each containing one fifth of the total population
+          </b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">li</a>&gt;</span><b>
+
+          </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">li</a></span><span class="xmltag">&gt;</span><b>
+            </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">strong</a></span><span class="xmltag">&gt;</span><b>5-4</b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">strong</a>&gt;</span><b> (&amp;quot;4th quintile&amp;quot;): The fourth of four values that divide the N measurementsinto
+             a frequency distribution of five classes with each containing one fifth of the total population
           </b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">li</a>&gt;</span><b>
 
         </b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">ul</a>&gt;</span><b>
 
-        </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">p</a></span><span class="xmltag">&gt;</span><b>If successful, the operation returns an Observation resource with the results of the statistical
-           calculations as component value pairs where the component code = the params code. The
-           Observation also contains the the input parameters 
+        </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">p</a></span><span class="xmltag">&gt;</span><b>If successful, the operation returns an Observation resource for each code with the results
+           of the statistical calculations as component value pairs where the component code = the
+           statistical code. The Observation also contains the the input parameters 
           </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">code</a></span><span class="xmltag">&gt;</span><b>patient</b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">code</a>&gt;</span><b>,
           </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">code</a></span><span class="xmltag">&gt;</span><b>code</b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">code</a>&gt;</span><b> and 
           </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">code</a></span><span class="xmltag">&gt;</span><b>duration</b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">code</a>&gt;</span><b> parameters. If unsuccessful, an 
           </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">a</a></span><span class="xmlattr"> href="<span class="xmlattrvalue">operationoutcome.html</span>"</span><span class="xmltag">&gt;</span><b>OperationOutcome</b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">a</a>&gt;</span><b> with an error message will be returned.
         </b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">p</a>&gt;</span><b>
 
+        </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">p</a></span><span class="xmltag">&gt;</span><b>The client can request that all the observations on which the statistics are based be
+           returned as well, using the include parameter. If an include parameter is specified, a
+           limit may also be specified; the sources observations are subsetted at the server&apos;s discretion
+           if count &amp;gt; limit. This functionality is included with the intent of supporting graphical
+           presentation</b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">p</a>&gt;</span><b>
+
       </b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">div</a>&gt;</span><b>
       </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">p</a></span><span class="xmltag">&gt;</span><b>URL: [base]/Observation/$stats</b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">p</a>&gt;</span><b>
-      </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">p</a></span><span class="xmltag">&gt;</span><b>URL: [base]/Observation/[id]/$stats</b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">p</a>&gt;</span><b>
       </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">p</a></span><span class="xmltag">&gt;</span><b>Parameters</b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">p</a>&gt;</span><b>
       </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">table</a></span><span class="xmlattr"> class="<span class="xmlattrvalue">grid</span>"</span><span class="xmltag">&gt;</span><b>
         </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">tr</a></span><span class="xmltag">&gt;</span><b>
@@ -193,14 +289,15 @@
         </b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">tr</a>&gt;</span><b>
         </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">tr</a></span><span class="xmltag">&gt;</span><b>
           </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">td</a></span><span class="xmltag">&gt;</span><b>IN</b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">td</a>&gt;</span><b>
-          </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">td</a></span><span class="xmltag">&gt;</span><b>patient</b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">td</a>&gt;</span><b>
+          </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">td</a></span><span class="xmltag">&gt;</span><b>subject</b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">td</a>&gt;</span><b>
           </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">td</a></span><span class="xmltag">&gt;</span><b>1..1</b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">td</a>&gt;</span><b>
-          </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">td</a></span><span class="xmltag">&gt;</span><b>id</b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">td</a>&gt;</span><b>
+          </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">td</a></span><span class="xmltag">&gt;</span><b>uri</b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">td</a>&gt;</span><b>
           </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">td</a></span><span class="xmltag">/&gt;</span><b>
           </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">td</a></span><span class="xmltag">&gt;</span><b>
             </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">div</a></span><span class="xmltag">&gt;</span><b>
-              </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">p</a></span><span class="xmltag">&gt;</span><b>The FHIR Patient resource id of the relevant Observations. For example  The patient id
-                  = &amp;quot;123&amp;quot;  in Observation.subject.reference = Patient/123.</b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">p</a>&gt;</span><b>
+              </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">p</a></span><span class="xmltag">&gt;</span><b>The subject of the relevant Observations, which has the value of the Observation.subject.reference.
+                 E.g. &apos;Patient/123&apos;. Reference can be to an absolute URL, but servers only perform stats
+                 on their own observations</b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">p</a>&gt;</span><b>
 
             </b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">div</a>&gt;</span><b>
           </b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">td</a>&gt;</span><b>
@@ -208,13 +305,41 @@
         </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">tr</a></span><span class="xmltag">&gt;</span><b>
           </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">td</a></span><span class="xmltag">&gt;</span><b>IN</b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">td</a>&gt;</span><b>
           </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">td</a></span><span class="xmltag">&gt;</span><b>code</b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">td</a>&gt;</span><b>
-          </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">td</a></span><span class="xmltag">&gt;</span><b>1..1</b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">td</a>&gt;</span><b>
+          </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">td</a></span><span class="xmltag">&gt;</span><b>0..*</b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">td</a>&gt;</span><b>
           </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">td</a></span><span class="xmltag">&gt;</span><b>string</b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">td</a>&gt;</span><b>
           </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">td</a></span><span class="xmltag">/&gt;</span><b>
           </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">td</a></span><span class="xmltag">&gt;</span><b>
             </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">div</a></span><span class="xmltag">&gt;</span><b>
-              </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">p</a></span><span class="xmltag">&gt;</span><b>The test code upon which the statistics are being performed.   For example, the code 
-                 = &amp;quot;45667-2&amp;quot;  will evaluate all relevant Observations with this code in Observation.code.</b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">p</a>&gt;</span><b>
+              </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">p</a></span><span class="xmltag">&gt;</span><b>The test code(s) upon which the statistics are being performed. Provide along with a system,
+                 or as a coding. For example, the code  = &amp;quot;45667-2&amp;quot;  will evaluate all relevant
+                 Observations with this code in Observation.code. For LOINC codes that are panels, (e.g.
+                 55284-4) this means to include all the individual codes that are part of a panel</b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">p</a>&gt;</span><b>
+
+            </b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">div</a>&gt;</span><b>
+          </b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">td</a>&gt;</span><b>
+        </b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">tr</a>&gt;</span><b>
+        </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">tr</a></span><span class="xmltag">&gt;</span><b>
+          </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">td</a></span><span class="xmltag">&gt;</span><b>IN</b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">td</a>&gt;</span><b>
+          </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">td</a></span><span class="xmltag">&gt;</span><b>system</b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">td</a>&gt;</span><b>
+          </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">td</a></span><span class="xmltag">&gt;</span><b>0..1</b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">td</a>&gt;</span><b>
+          </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">td</a></span><span class="xmltag">&gt;</span><b>uri</b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">td</a>&gt;</span><b>
+          </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">td</a></span><span class="xmltag">/&gt;</span><b>
+          </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">td</a></span><span class="xmltag">&gt;</span><b>
+            </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">div</a></span><span class="xmltag">&gt;</span><b>
+              </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">p</a></span><span class="xmltag">&gt;</span><b>The system for the code(s). Or provide a coding instead</b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">p</a>&gt;</span><b>
+
+            </b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">div</a>&gt;</span><b>
+          </b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">td</a>&gt;</span><b>
+        </b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">tr</a>&gt;</span><b>
+        </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">tr</a></span><span class="xmltag">&gt;</span><b>
+          </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">td</a></span><span class="xmltag">&gt;</span><b>IN</b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">td</a>&gt;</span><b>
+          </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">td</a></span><span class="xmltag">&gt;</span><b>coding</b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">td</a>&gt;</span><b>
+          </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">td</a></span><span class="xmltag">&gt;</span><b>0..*</b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">td</a>&gt;</span><b>
+          </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">td</a></span><span class="xmltag">&gt;</span><b>Coding</b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">td</a>&gt;</span><b>
+          </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">td</a></span><span class="xmltag">/&gt;</span><b>
+          </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">td</a></span><span class="xmltag">&gt;</span><b>
+            </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">div</a></span><span class="xmltag">&gt;</span><b>
+              </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">p</a></span><span class="xmltag">&gt;</span><b>The test code upon which the statistics are being performed, as a Coding</b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">p</a>&gt;</span><b>
 
             </b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">div</a>&gt;</span><b>
           </b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">td</a>&gt;</span><b>
@@ -222,13 +347,26 @@
         </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">tr</a></span><span class="xmltag">&gt;</span><b>
           </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">td</a></span><span class="xmltag">&gt;</span><b>IN</b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">td</a>&gt;</span><b>
           </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">td</a></span><span class="xmltag">&gt;</span><b>duration</b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">td</a>&gt;</span><b>
-          </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">td</a></span><span class="xmltag">&gt;</span><b>1..1</b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">td</a>&gt;</span><b>
+          </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">td</a></span><span class="xmltag">&gt;</span><b>0..1</b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">td</a>&gt;</span><b>
           </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">td</a></span><span class="xmltag">&gt;</span><b>decimal</b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">td</a>&gt;</span><b>
           </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">td</a></span><span class="xmltag">/&gt;</span><b>
           </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">td</a></span><span class="xmltag">&gt;</span><b>
             </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">div</a></span><span class="xmltag">&gt;</span><b>
               </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">p</a></span><span class="xmltag">&gt;</span><b>The time period of interest given as hours.  For example, the duration = &amp;quot;1&amp;quot;
-                 is the last hour</b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">p</a>&gt;</span><b>
+                 represents the last hour - the time period from on hour ago to now</b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">p</a>&gt;</span><b>
+
+            </b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">div</a>&gt;</span><b>
+          </b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">td</a>&gt;</span><b>
+        </b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">tr</a>&gt;</span><b>
+        </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">tr</a></span><span class="xmltag">&gt;</span><b>
+          </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">td</a></span><span class="xmltag">&gt;</span><b>IN</b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">td</a>&gt;</span><b>
+          </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">td</a></span><span class="xmltag">&gt;</span><b>period</b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">td</a>&gt;</span><b>
+          </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">td</a></span><span class="xmltag">&gt;</span><b>0..1</b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">td</a>&gt;</span><b>
+          </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">td</a></span><span class="xmltag">&gt;</span><b>Period</b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">td</a>&gt;</span><b>
+          </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">td</a></span><span class="xmltag">/&gt;</span><b>
+          </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">td</a></span><span class="xmltag">&gt;</span><b>
+            </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">div</a></span><span class="xmltag">&gt;</span><b>
+              </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">p</a></span><span class="xmltag">&gt;</span><b>The time period over which the calculations to be performed, if a duration is not provided</b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">p</a>&gt;</span><b>
 
             </b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">div</a>&gt;</span><b>
           </b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">td</a>&gt;</span><b>
@@ -236,14 +374,14 @@
         </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">tr</a></span><span class="xmltag">&gt;</span><b>
           </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">td</a></span><span class="xmltag">&gt;</span><b>IN</b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">td</a>&gt;</span><b>
           </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">td</a></span><span class="xmltag">&gt;</span><b>params</b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">td</a>&gt;</span><b>
-          </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">td</a></span><span class="xmltag">&gt;</span><b>1..4</b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">td</a>&gt;</span><b>
+          </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">td</a></span><span class="xmltag">&gt;</span><b>1..*</b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">td</a>&gt;</span><b>
           </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">td</a></span><span class="xmltag">&gt;</span><b>code</b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">td</a>&gt;</span><b>
           </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">td</a></span><span class="xmltag">/&gt;</span><b>
           </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">td</a></span><span class="xmltag">&gt;</span><b>
             </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">div</a></span><span class="xmltag">&gt;</span><b>
               </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">p</a></span><span class="xmltag">&gt;</span><b>average|max|min|count  The statistical operations to be performed on the relevant operations.
-                   These codes are defined 
-                </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">a</a></span><span class="xmlattr"> href="<span class="xmlattrvalue">todo.html</span>"</span><span class="xmltag">&gt;</span><b>here</b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">a</a>&gt;</span><b>
+                 Multiple statistics operations can be specified. These codes are defined 
+                </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">a</a></span><span class="xmlattr"> href="<span class="xmlattrvalue">valueset-observation-statistics.html</span>"</span><span class="xmltag">&gt;</span><b>here</b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">a</a>&gt;</span><b>
               </b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">p</a>&gt;</span><b>
 
             </b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">div</a>&gt;</span><b>
@@ -251,18 +389,32 @@
         </b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">tr</a>&gt;</span><b>
         </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">tr</a></span><span class="xmltag">&gt;</span><b>
           </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">td</a></span><span class="xmltag">&gt;</span><b>OUT</b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">td</a>&gt;</span><b>
-          </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">td</a></span><span class="xmltag">&gt;</span><b>obs</b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">td</a>&gt;</span><b>
-          </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">td</a></span><span class="xmltag">&gt;</span><b>1..2</b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">td</a>&gt;</span><b>
+          </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">td</a></span><span class="xmltag">&gt;</span><b>return</b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">td</a>&gt;</span><b>
+          </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">td</a></span><span class="xmltag">&gt;</span><b>1..*</b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">td</a>&gt;</span><b>
           </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">td</a></span><span class="xmltag">&gt;</span><b>Observation</b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">td</a>&gt;</span><b>
           </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">td</a></span><span class="xmltag">/&gt;</span><b>
           </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">td</a></span><span class="xmltag">&gt;</span><b>
             </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">div</a></span><span class="xmltag">&gt;</span><b>
-              </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">p</a></span><span class="xmltag">&gt;</span><b>The Observation.component.code is relative to the Observation.code and cannot be interpreted
-                 independently.  The code input parameter is returned as the code element. The &apos;patient&apos;
-                 parameter is returned as the patient element.  The 
-                </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">code</a></span><span class="xmltag">&gt;</span><b>period</b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">code</a>&gt;</span><b> input parameter is returned as the appliesPeriod element.  The status is fixed to 
+              </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">p</a></span><span class="xmltag">&gt;</span><b>A set of observations, one observation for each code, each containing one component for
+                 each statistic. The Observation.component.code contains the statistic, and is relative
+                 to the Observation.code and cannot be interpreted independently.  The Observation will
+                 also contain a subject, effectivePeriod, and code reflecting the input parameters.  The
+                 status is fixed to 
                 </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">code</a></span><span class="xmltag">&gt;</span><b>final</b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">code</a>&gt;</span><b>.
               </b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">p</a>&gt;</span><b>
+
+            </b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">div</a>&gt;</span><b>
+          </b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">td</a>&gt;</span><b>
+        </b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">tr</a>&gt;</span><b>
+        </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">tr</a></span><span class="xmltag">&gt;</span><b>
+          </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">td</a></span><span class="xmltag">&gt;</span><b>OUT</b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">td</a>&gt;</span><b>
+          </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">td</a></span><span class="xmltag">&gt;</span><b>source</b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">td</a>&gt;</span><b>
+          </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">td</a></span><span class="xmltag">&gt;</span><b>0..*</b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">td</a>&gt;</span><b>
+          </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">td</a></span><span class="xmltag">&gt;</span><b>Observation</b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">td</a>&gt;</span><b>
+          </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">td</a></span><span class="xmltag">/&gt;</span><b>
+          </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">td</a></span><span class="xmltag">&gt;</span><b>
+            </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">div</a></span><span class="xmltag">&gt;</span><b>
+              </b><span class="xmltag">&lt;<a href="narrative.html" class="xmltag">p</a></span><span class="xmltag">&gt;</span><b>Source observations on which the statistics are based</b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">p</a>&gt;</span><b>
 
             </b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">div</a>&gt;</span><b>
           </b><span class="xmltag">&lt;/<a href="narrative.html" class="xmltag">td</a>&gt;</span><b>
@@ -274,82 +426,154 @@
   </b><span class="xmltag">&lt;<a href="operationdefinition-definitions.html#OperationDefinition.name" class="xmltag">name</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">Observation Statistics</span>"</span><span class="xmltag">/&gt;</span><b>
   </b><span class="xmltag">&lt;<a href="operationdefinition-definitions.html#OperationDefinition.status" class="xmltag">status</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">draft</span>"</span><span class="xmltag">/&gt;</span><b>
   </b><span class="xmltag">&lt;<a href="operationdefinition-definitions.html#OperationDefinition.kind" class="xmltag">kind</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">operation</span>"</span><span class="xmltag">/&gt;</span><b>
-  </b><span class="xmltag">&lt;<a href="operationdefinition-definitions.html#OperationDefinition.date" class="xmltag">date</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">2016-11-28T17:29:55-05:00</span>"</span><span class="xmltag">/&gt;</span><b>
+  </b><span class="xmltag">&lt;<a href="operationdefinition-definitions.html#OperationDefinition.date" class="xmltag">date</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">2016-12-07T14:18:58-05:00</span>"</span><span class="xmltag">/&gt;</span><b>
   </b><span class="xmltag">&lt;<a href="operationdefinition-definitions.html#OperationDefinition.publisher" class="xmltag">publisher</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">HL7 (FHIR Project)</span>"</span><span class="xmltag">/&gt;</span><b>
   </b><span class="xmltag">&lt;<a href="operationdefinition-definitions.html#OperationDefinition.contact" class="xmltag">contact</a></span><span class="xmltag">&gt;</span><b>
-    </b><span class="xmltag">&lt;<a href="contactdetail-definitions.html#ContactDetail.telecom" class="xmltag">telecom</a></span><span class="xmltag">&gt;</span><b>
-      </b><span class="xmltag">&lt;<a href="datatypes-definitions.html#ContactPoint.system" class="xmltag">system</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">other</span>"</span><span class="xmltag">/&gt;</span><b>
+    </b><span class="xmltag">&lt;<a href="metadatatypes-definitions.html#ContactDetail.telecom" class="xmltag">telecom</a></span><span class="xmltag">&gt;</span><b>
+      </b><span class="xmltag">&lt;<a href="datatypes-definitions.html#ContactPoint.system" class="xmltag">system</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">url</span>"</span><span class="xmltag">/&gt;</span><b>
       </b><span class="xmltag">&lt;<a href="datatypes-definitions.html#ContactPoint.value" class="xmltag">value</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">http://hl7.org/fhir</span>"</span><span class="xmltag">/&gt;</span><b>
-    </b><span class="xmltag">&lt;/<a href="contactdetail-definitions.html#ContactDetail.telecom" class="xmltag">telecom</a>&gt;</span><b>
-    </b><span class="xmltag">&lt;<a href="contactdetail-definitions.html#ContactDetail.telecom" class="xmltag">telecom</a></span><span class="xmltag">&gt;</span><b>
+    </b><span class="xmltag">&lt;/<a href="metadatatypes-definitions.html#ContactDetail.telecom" class="xmltag">telecom</a>&gt;</span><b>
+    </b><span class="xmltag">&lt;<a href="metadatatypes-definitions.html#ContactDetail.telecom" class="xmltag">telecom</a></span><span class="xmltag">&gt;</span><b>
       </b><span class="xmltag">&lt;<a href="datatypes-definitions.html#ContactPoint.system" class="xmltag">system</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">email</span>"</span><span class="xmltag">/&gt;</span><b>
       </b><span class="xmltag">&lt;<a href="datatypes-definitions.html#ContactPoint.value" class="xmltag">value</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">fhir@lists.hl7.org</span>"</span><span class="xmltag">/&gt;</span><b>
-    </b><span class="xmltag">&lt;/<a href="contactdetail-definitions.html#ContactDetail.telecom" class="xmltag">telecom</a>&gt;</span><b>
+    </b><span class="xmltag">&lt;/<a href="metadatatypes-definitions.html#ContactDetail.telecom" class="xmltag">telecom</a>&gt;</span><b>
   </b><span class="xmltag">&lt;/<a href="operationdefinition-definitions.html#OperationDefinition.contact" class="xmltag">contact</a>&gt;</span><b>
   </b><span class="xmltag">&lt;<a href="operationdefinition-definitions.html#OperationDefinition.description" class="xmltag">description</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">The Statistics operation performs a set of statistical calculations on a set of clinical
-   measurements such as a blood pressure.  This operation is limited to [Observation](observation.html)
-   resources with valueQuantity elements.  The set of Observations is defined by a the input
-   parameters `patient`,`code` and `duration` and `params`. The set of statistical calculation
-   depends upon the value of the `params` parameter:  - **average** - for example if code
-   = 55284-4 the mean of 55284-4 over the stated period from an operation - **max** - for
-   example if code = 55284-4 the max of 55284-4 over the stated period from an operation
-   - **min** - for example if code = 55284-4 the min of 55284-4 over the stated period from
-   an operation - **count** - for example if code = 55284-4 the number of occurances of value
-   x of 55284-4 over the stated period from an operation  If successful, the operation returns
-   an Observation resource with the results of the statistical calculations as component
-   value pairs where the component code = the params code. The Observation also contains
-   the the input parameters `patient`,`code` and `duration` parameters. If unsuccessful,
-   an [OperationOutcome](operationoutcome.html) with an error message will be returned.</span>"</span><span class="xmltag">/&gt;</span><b>
+   measurements such as a blood pressure as stored on the server.  This operation is focused
+   on [Observation](observation.html) resources with valueQuantity elements that have UCUM
+   unit codes.  The set of Observations is defined by 4 parameters:   - the subject of the
+   observations for which the statistics are being generated (`subject`) - which observations
+   to generate statistics for (`code` and &apos;system&apos;, or &apos;coding&apos;) - the time period over which
+   to generate statistics (&apos;duration&apos; or &apos;period&apos;) - the set of statistical analyses to return
+   (`statistic`).   Possible statistical analyses (see [StatisticsCode](valueset-observation-statistics
+  .html)):   - **average** (&amp;quot;Average&amp;quot;): The [mean](https://en.wikipedia.org/wiki/Arithmetic_m
+  ean) of N measurements over the stated period  - **maximum** (&amp;quot;Maximum&amp;quot;): The
+   [maximum](https://en.wikipedia.org/wiki/Maximal_element) value of N measurements over
+   the stated period  - **minimum** (&amp;quot;Minimum&amp;quot;): The [minimum](https://en.wikipedia.org/wiki/
+  Minimal_element) value of N measurements over the stated period  - **count** (&amp;quot;Count&amp;quot;):
+   The [number] of valid measurements over the stated period that contributed to the other
+   statistical outputs  - **totalcount** (&amp;quot;Total Count&amp;quot;): The total [number] of
+   valid measurements over the stated period, including observations that were ignored because
+   they did not contain valid result values  - **median** (&amp;quot;Median&amp;quot;): The [median](https://en
+  .wikipedia.org/wiki/Median) of N measurements over the stated period  - **std-dev** (&amp;quot;standard
+   deviation&amp;quot;): The [standard deviation](https://en.wikipedia.org/wiki/Standard_deviation)
+   of N measurements over the stated period  - **sum** (&amp;quot;sum&amp;quot;): The [sum](https://en.wikipedi
+  a.org/wiki/Summation) of N measurements over the stated period  - **variance** (&amp;quot;variance&amp;quot;)
+  : The [variance](https://en.wikipedia.org/wiki/Variance) of N measurements over the stated
+   period  - **%20** (&amp;quot;20th percentile&amp;quot;): The 20th [Percentile](https://en.wikipedia.org/wiki
+  /Percentile) of N measurements over the stated period  - **%80** (&amp;quot;80th percentile&amp;quot;):
+   The 80th [Percentile](https://en.wikipedia.org/wiki/Percentile) of N measurements over
+   the stated period  - **4-lower** (&amp;quot;lower quartile&amp;quot;): The lower [Quartile](https://en.wikip
+  edia.org/wiki/Quartile) Boundary of N measurements over the stated period  - **4-upper**
+   (&amp;quot;upper quartile&amp;quot;): The upper [Quartile](https://en.wikipedia.org/wiki/Quartile)
+   Boundary of N measurements over the stated period  - **4-dev** (&amp;quot;quartile deviation&amp;quot;):
+   The difference between the upper and lower [Quartiles](https://en.wikipedia.org/wiki/Quartile)
+   is called the Interquartile range. (IQR = Q3-Q1) Quartile deviation or Semi-interquartile
+   range is one-half the difference between the first and the third quartiles.  - **5-1**
+   (&amp;quot;1st quintile&amp;quot;): The lowest of four values that divide the N measurementsinto
+   a frequency distribution of five classes with each containing one fifth of the total population
+    - **5-2** (&amp;quot;2nd quintile&amp;quot;): The second of four values that divide the N measurementsinto
+   a frequency distribution of five classes with each containing one fifth of the total population
+    - **5-3** (&amp;quot;3rd quintile&amp;quot;): The third of four values that divide the N measurementsinto
+   a frequency distribution of five classes with each containing one fifth of the total population
+    - **5-4** (&amp;quot;4th quintile&amp;quot;): The fourth of four values that divide the N measurementsinto
+   a frequency distribution of five classes with each containing one fifth of the total population
+       If successful, the operation returns an Observation resource for each code with the
+   results of the statistical calculations as component value pairs where the component code
+   = the statistical code. The Observation also contains the the input parameters `patient`,`code`
+   and `duration` parameters. If unsuccessful, an [OperationOutcome](operationoutcome.html)
+   with an error message will be returned.   The client can request that all the observations
+   on which the statistics are based be returned as well, using the include parameter. If
+   an include parameter is specified, a limit may also be specified; the sources observations
+   are subsetted at the server&apos;s discretion if count &amp;gt; limit. This functionality is included
+   with the intent of supporting graphical presentation</span>"</span><span class="xmltag">/&gt;</span><b>
   </b><span class="xmltag">&lt;<a href="operationdefinition-definitions.html#OperationDefinition.code" class="xmltag">code</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">stats</span>"</span><span class="xmltag">/&gt;</span><b>
   </b><span class="xmltag">&lt;<a href="operationdefinition-definitions.html#OperationDefinition.resource" class="xmltag">resource</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">Observation</span>"</span><span class="xmltag">/&gt;</span><b>
   </b><span class="xmltag">&lt;<a href="operationdefinition-definitions.html#OperationDefinition.system" class="xmltag">system</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">false</span>"</span><span class="xmltag">/&gt;</span><b>
   </b><span class="xmltag">&lt;<a href="operationdefinition-definitions.html#OperationDefinition.type" class="xmltag">type</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">true</span>"</span><span class="xmltag">/&gt;</span><b>
-  </b><span class="xmltag">&lt;<a href="operationdefinition-definitions.html#OperationDefinition.instance" class="xmltag">instance</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">true</span>"</span><span class="xmltag">/&gt;</span><b>
+  </b><span class="xmltag">&lt;<a href="operationdefinition-definitions.html#OperationDefinition.instance" class="xmltag">instance</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">false</span>"</span><span class="xmltag">/&gt;</span><b>
   </b><span class="xmltag">&lt;<a href="operationdefinition-definitions.html#OperationDefinition.parameter" class="xmltag">parameter</a></span><span class="xmltag">&gt;</span><b>
-    </b><span class="xmltag">&lt;<a href="operationdefinition-definitions.html#OperationDefinition.parameter.name" class="xmltag">name</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">patient</span>"</span><span class="xmltag">/&gt;</span><b>
+    </b><span class="xmltag">&lt;<a href="operationdefinition-definitions.html#OperationDefinition.parameter.name" class="xmltag">name</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">subject</span>"</span><span class="xmltag">/&gt;</span><b>
     </b><span class="xmltag">&lt;<a href="operationdefinition-definitions.html#OperationDefinition.parameter.use" class="xmltag">use</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">in</span>"</span><span class="xmltag">/&gt;</span><b>
     </b><span class="xmltag">&lt;<a href="operationdefinition-definitions.html#OperationDefinition.parameter.min" class="xmltag">min</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">1</span>"</span><span class="xmltag">/&gt;</span><b>
     </b><span class="xmltag">&lt;<a href="operationdefinition-definitions.html#OperationDefinition.parameter.max" class="xmltag">max</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">1</span>"</span><span class="xmltag">/&gt;</span><b>
-    </b><span class="xmltag">&lt;<a href="operationdefinition-definitions.html#OperationDefinition.parameter.documentation" class="xmltag">documentation</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">The FHIR Patient resource id of the relevant Observations. For example  The patient id
-      = &amp;quot;123&amp;quot;  in Observation.subject.reference = Patient/123.</span>"</span><span class="xmltag">/&gt;</span><b>
-    </b><span class="xmltag">&lt;<a href="operationdefinition-definitions.html#OperationDefinition.parameter.type" class="xmltag">type</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">id</span>"</span><span class="xmltag">/&gt;</span><b>
+    </b><span class="xmltag">&lt;<a href="operationdefinition-definitions.html#OperationDefinition.parameter.documentation" class="xmltag">documentation</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">The subject of the relevant Observations, which has the value of the Observation.subject.reference.
+     E.g. &apos;Patient/123&apos;. Reference can be to an absolute URL, but servers only perform stats
+     on their own observations</span>"</span><span class="xmltag">/&gt;</span><b>
+    </b><span class="xmltag">&lt;<a href="operationdefinition-definitions.html#OperationDefinition.parameter.type" class="xmltag">type</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">uri</span>"</span><span class="xmltag">/&gt;</span><b>
   </b><span class="xmltag">&lt;/<a href="operationdefinition-definitions.html#OperationDefinition.parameter" class="xmltag">parameter</a>&gt;</span><b>
   </b><span class="xmltag">&lt;<a href="operationdefinition-definitions.html#OperationDefinition.parameter" class="xmltag">parameter</a></span><span class="xmltag">&gt;</span><b>
     </b><span class="xmltag">&lt;<a href="operationdefinition-definitions.html#OperationDefinition.parameter.name" class="xmltag">name</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">code</span>"</span><span class="xmltag">/&gt;</span><b>
     </b><span class="xmltag">&lt;<a href="operationdefinition-definitions.html#OperationDefinition.parameter.use" class="xmltag">use</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">in</span>"</span><span class="xmltag">/&gt;</span><b>
-    </b><span class="xmltag">&lt;<a href="operationdefinition-definitions.html#OperationDefinition.parameter.min" class="xmltag">min</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">1</span>"</span><span class="xmltag">/&gt;</span><b>
-    </b><span class="xmltag">&lt;<a href="operationdefinition-definitions.html#OperationDefinition.parameter.max" class="xmltag">max</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">1</span>"</span><span class="xmltag">/&gt;</span><b>
-    </b><span class="xmltag">&lt;<a href="operationdefinition-definitions.html#OperationDefinition.parameter.documentation" class="xmltag">documentation</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">The test code upon which the statistics are being performed.   For example, the code 
-     = &amp;quot;45667-2&amp;quot;  will evaluate all relevant Observations with this code in Observation.code.</span>"</span><span class="xmltag">/&gt;</span><b>
+    </b><span class="xmltag">&lt;<a href="operationdefinition-definitions.html#OperationDefinition.parameter.min" class="xmltag">min</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">0</span>"</span><span class="xmltag">/&gt;</span><b>
+    </b><span class="xmltag">&lt;<a href="operationdefinition-definitions.html#OperationDefinition.parameter.max" class="xmltag">max</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">*</span>"</span><span class="xmltag">/&gt;</span><b>
+    </b><span class="xmltag">&lt;<a href="operationdefinition-definitions.html#OperationDefinition.parameter.documentation" class="xmltag">documentation</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">The test code(s) upon which the statistics are being performed. Provide along with a system,
+     or as a coding. For example, the code  = &amp;quot;45667-2&amp;quot;  will evaluate all relevant
+     Observations with this code in Observation.code. For LOINC codes that are panels, (e.g.
+     55284-4) this means to include all the individual codes that are part of a panel</span>"</span><span class="xmltag">/&gt;</span><b>
     </b><span class="xmltag">&lt;<a href="operationdefinition-definitions.html#OperationDefinition.parameter.type" class="xmltag">type</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">string</span>"</span><span class="xmltag">/&gt;</span><b>
+  </b><span class="xmltag">&lt;/<a href="operationdefinition-definitions.html#OperationDefinition.parameter" class="xmltag">parameter</a>&gt;</span><b>
+  </b><span class="xmltag">&lt;<a href="operationdefinition-definitions.html#OperationDefinition.parameter" class="xmltag">parameter</a></span><span class="xmltag">&gt;</span><b>
+    </b><span class="xmltag">&lt;<a href="operationdefinition-definitions.html#OperationDefinition.parameter.name" class="xmltag">name</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">system</span>"</span><span class="xmltag">/&gt;</span><b>
+    </b><span class="xmltag">&lt;<a href="operationdefinition-definitions.html#OperationDefinition.parameter.use" class="xmltag">use</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">in</span>"</span><span class="xmltag">/&gt;</span><b>
+    </b><span class="xmltag">&lt;<a href="operationdefinition-definitions.html#OperationDefinition.parameter.min" class="xmltag">min</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">0</span>"</span><span class="xmltag">/&gt;</span><b>
+    </b><span class="xmltag">&lt;<a href="operationdefinition-definitions.html#OperationDefinition.parameter.max" class="xmltag">max</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">1</span>"</span><span class="xmltag">/&gt;</span><b>
+    </b><span class="xmltag">&lt;<a href="operationdefinition-definitions.html#OperationDefinition.parameter.documentation" class="xmltag">documentation</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">The system for the code(s). Or provide a coding instead</span>"</span><span class="xmltag">/&gt;</span><b>
+    </b><span class="xmltag">&lt;<a href="operationdefinition-definitions.html#OperationDefinition.parameter.type" class="xmltag">type</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">uri</span>"</span><span class="xmltag">/&gt;</span><b>
+  </b><span class="xmltag">&lt;/<a href="operationdefinition-definitions.html#OperationDefinition.parameter" class="xmltag">parameter</a>&gt;</span><b>
+  </b><span class="xmltag">&lt;<a href="operationdefinition-definitions.html#OperationDefinition.parameter" class="xmltag">parameter</a></span><span class="xmltag">&gt;</span><b>
+    </b><span class="xmltag">&lt;<a href="operationdefinition-definitions.html#OperationDefinition.parameter.name" class="xmltag">name</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">coding</span>"</span><span class="xmltag">/&gt;</span><b>
+    </b><span class="xmltag">&lt;<a href="operationdefinition-definitions.html#OperationDefinition.parameter.use" class="xmltag">use</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">in</span>"</span><span class="xmltag">/&gt;</span><b>
+    </b><span class="xmltag">&lt;<a href="operationdefinition-definitions.html#OperationDefinition.parameter.min" class="xmltag">min</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">0</span>"</span><span class="xmltag">/&gt;</span><b>
+    </b><span class="xmltag">&lt;<a href="operationdefinition-definitions.html#OperationDefinition.parameter.max" class="xmltag">max</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">*</span>"</span><span class="xmltag">/&gt;</span><b>
+    </b><span class="xmltag">&lt;<a href="operationdefinition-definitions.html#OperationDefinition.parameter.documentation" class="xmltag">documentation</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">The test code upon which the statistics are being performed, as a Coding</span>"</span><span class="xmltag">/&gt;</span><b>
+    </b><span class="xmltag">&lt;<a href="operationdefinition-definitions.html#OperationDefinition.parameter.type" class="xmltag">type</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">Coding</span>"</span><span class="xmltag">/&gt;</span><b>
   </b><span class="xmltag">&lt;/<a href="operationdefinition-definitions.html#OperationDefinition.parameter" class="xmltag">parameter</a>&gt;</span><b>
   </b><span class="xmltag">&lt;<a href="operationdefinition-definitions.html#OperationDefinition.parameter" class="xmltag">parameter</a></span><span class="xmltag">&gt;</span><b>
     </b><span class="xmltag">&lt;<a href="operationdefinition-definitions.html#OperationDefinition.parameter.name" class="xmltag">name</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">duration</span>"</span><span class="xmltag">/&gt;</span><b>
     </b><span class="xmltag">&lt;<a href="operationdefinition-definitions.html#OperationDefinition.parameter.use" class="xmltag">use</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">in</span>"</span><span class="xmltag">/&gt;</span><b>
-    </b><span class="xmltag">&lt;<a href="operationdefinition-definitions.html#OperationDefinition.parameter.min" class="xmltag">min</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">1</span>"</span><span class="xmltag">/&gt;</span><b>
+    </b><span class="xmltag">&lt;<a href="operationdefinition-definitions.html#OperationDefinition.parameter.min" class="xmltag">min</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">0</span>"</span><span class="xmltag">/&gt;</span><b>
     </b><span class="xmltag">&lt;<a href="operationdefinition-definitions.html#OperationDefinition.parameter.max" class="xmltag">max</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">1</span>"</span><span class="xmltag">/&gt;</span><b>
     </b><span class="xmltag">&lt;<a href="operationdefinition-definitions.html#OperationDefinition.parameter.documentation" class="xmltag">documentation</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">The time period of interest given as hours.  For example, the duration = &amp;quot;1&amp;quot;
-     is the last hour</span>"</span><span class="xmltag">/&gt;</span><b>
+     represents the last hour - the time period from on hour ago to now</span>"</span><span class="xmltag">/&gt;</span><b>
     </b><span class="xmltag">&lt;<a href="operationdefinition-definitions.html#OperationDefinition.parameter.type" class="xmltag">type</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">decimal</span>"</span><span class="xmltag">/&gt;</span><b>
+  </b><span class="xmltag">&lt;/<a href="operationdefinition-definitions.html#OperationDefinition.parameter" class="xmltag">parameter</a>&gt;</span><b>
+  </b><span class="xmltag">&lt;<a href="operationdefinition-definitions.html#OperationDefinition.parameter" class="xmltag">parameter</a></span><span class="xmltag">&gt;</span><b>
+    </b><span class="xmltag">&lt;<a href="operationdefinition-definitions.html#OperationDefinition.parameter.name" class="xmltag">name</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">period</span>"</span><span class="xmltag">/&gt;</span><b>
+    </b><span class="xmltag">&lt;<a href="operationdefinition-definitions.html#OperationDefinition.parameter.use" class="xmltag">use</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">in</span>"</span><span class="xmltag">/&gt;</span><b>
+    </b><span class="xmltag">&lt;<a href="operationdefinition-definitions.html#OperationDefinition.parameter.min" class="xmltag">min</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">0</span>"</span><span class="xmltag">/&gt;</span><b>
+    </b><span class="xmltag">&lt;<a href="operationdefinition-definitions.html#OperationDefinition.parameter.max" class="xmltag">max</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">1</span>"</span><span class="xmltag">/&gt;</span><b>
+    </b><span class="xmltag">&lt;<a href="operationdefinition-definitions.html#OperationDefinition.parameter.documentation" class="xmltag">documentation</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">The time period over which the calculations to be performed, if a duration is not provided</span>"</span><span class="xmltag">/&gt;</span><b>
+    </b><span class="xmltag">&lt;<a href="operationdefinition-definitions.html#OperationDefinition.parameter.type" class="xmltag">type</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">Period</span>"</span><span class="xmltag">/&gt;</span><b>
   </b><span class="xmltag">&lt;/<a href="operationdefinition-definitions.html#OperationDefinition.parameter" class="xmltag">parameter</a>&gt;</span><b>
   </b><span class="xmltag">&lt;<a href="operationdefinition-definitions.html#OperationDefinition.parameter" class="xmltag">parameter</a></span><span class="xmltag">&gt;</span><b>
     </b><span class="xmltag">&lt;<a href="operationdefinition-definitions.html#OperationDefinition.parameter.name" class="xmltag">name</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">params</span>"</span><span class="xmltag">/&gt;</span><b>
     </b><span class="xmltag">&lt;<a href="operationdefinition-definitions.html#OperationDefinition.parameter.use" class="xmltag">use</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">in</span>"</span><span class="xmltag">/&gt;</span><b>
     </b><span class="xmltag">&lt;<a href="operationdefinition-definitions.html#OperationDefinition.parameter.min" class="xmltag">min</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">1</span>"</span><span class="xmltag">/&gt;</span><b>
-    </b><span class="xmltag">&lt;<a href="operationdefinition-definitions.html#OperationDefinition.parameter.max" class="xmltag">max</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">4</span>"</span><span class="xmltag">/&gt;</span><b>
+    </b><span class="xmltag">&lt;<a href="operationdefinition-definitions.html#OperationDefinition.parameter.max" class="xmltag">max</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">*</span>"</span><span class="xmltag">/&gt;</span><b>
     </b><span class="xmltag">&lt;<a href="operationdefinition-definitions.html#OperationDefinition.parameter.documentation" class="xmltag">documentation</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">average|max|min|count  The statistical operations to be performed on the relevant operations.
-       These codes are defined [here](todo.html)</span>"</span><span class="xmltag">/&gt;</span><b>
+     Multiple statistics operations can be specified. These codes are defined [here](valueset-observation
+    -statistics.html)</span>"</span><span class="xmltag">/&gt;</span><b>
     </b><span class="xmltag">&lt;<a href="operationdefinition-definitions.html#OperationDefinition.parameter.type" class="xmltag">type</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">code</span>"</span><span class="xmltag">/&gt;</span><b>
   </b><span class="xmltag">&lt;/<a href="operationdefinition-definitions.html#OperationDefinition.parameter" class="xmltag">parameter</a>&gt;</span><b>
   </b><span class="xmltag">&lt;<a href="operationdefinition-definitions.html#OperationDefinition.parameter" class="xmltag">parameter</a></span><span class="xmltag">&gt;</span><b>
-    </b><span class="xmltag">&lt;<a href="operationdefinition-definitions.html#OperationDefinition.parameter.name" class="xmltag">name</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">obs</span>"</span><span class="xmltag">/&gt;</span><b>
+    </b><span class="xmltag">&lt;<a href="operationdefinition-definitions.html#OperationDefinition.parameter.name" class="xmltag">name</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">return</span>"</span><span class="xmltag">/&gt;</span><b>
     </b><span class="xmltag">&lt;<a href="operationdefinition-definitions.html#OperationDefinition.parameter.use" class="xmltag">use</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">out</span>"</span><span class="xmltag">/&gt;</span><b>
     </b><span class="xmltag">&lt;<a href="operationdefinition-definitions.html#OperationDefinition.parameter.min" class="xmltag">min</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">1</span>"</span><span class="xmltag">/&gt;</span><b>
-    </b><span class="xmltag">&lt;<a href="operationdefinition-definitions.html#OperationDefinition.parameter.max" class="xmltag">max</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">2</span>"</span><span class="xmltag">/&gt;</span><b>
-    </b><span class="xmltag">&lt;<a href="operationdefinition-definitions.html#OperationDefinition.parameter.documentation" class="xmltag">documentation</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">The Observation.component.code is relative to the Observation.code and cannot be interpreted
-     independently.  The code input parameter is returned as the code element. The &apos;patient&apos;
-     parameter is returned as the patient element.  The `period` input parameter is returned
-     as the appliesPeriod element.  The status is fixed to `final`.</span>"</span><span class="xmltag">/&gt;</span><b>
+    </b><span class="xmltag">&lt;<a href="operationdefinition-definitions.html#OperationDefinition.parameter.max" class="xmltag">max</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">*</span>"</span><span class="xmltag">/&gt;</span><b>
+    </b><span class="xmltag">&lt;<a href="operationdefinition-definitions.html#OperationDefinition.parameter.documentation" class="xmltag">documentation</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">A set of observations, one observation for each code, each containing one component for
+     each statistic. The Observation.component.code contains the statistic, and is relative
+     to the Observation.code and cannot be interpreted independently.  The Observation will
+     also contain a subject, effectivePeriod, and code reflecting the input parameters.  The
+     status is fixed to `final`.</span>"</span><span class="xmltag">/&gt;</span><b>
+    </b><span class="xmltag">&lt;<a href="operationdefinition-definitions.html#OperationDefinition.parameter.type" class="xmltag">type</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">Observation</span>"</span><span class="xmltag">/&gt;</span><b>
+  </b><span class="xmltag">&lt;/<a href="operationdefinition-definitions.html#OperationDefinition.parameter" class="xmltag">parameter</a>&gt;</span><b>
+  </b><span class="xmltag">&lt;<a href="operationdefinition-definitions.html#OperationDefinition.parameter" class="xmltag">parameter</a></span><span class="xmltag">&gt;</span><b>
+    </b><span class="xmltag">&lt;<a href="operationdefinition-definitions.html#OperationDefinition.parameter.name" class="xmltag">name</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">source</span>"</span><span class="xmltag">/&gt;</span><b>
+    </b><span class="xmltag">&lt;<a href="operationdefinition-definitions.html#OperationDefinition.parameter.use" class="xmltag">use</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">out</span>"</span><span class="xmltag">/&gt;</span><b>
+    </b><span class="xmltag">&lt;<a href="operationdefinition-definitions.html#OperationDefinition.parameter.min" class="xmltag">min</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">0</span>"</span><span class="xmltag">/&gt;</span><b>
+    </b><span class="xmltag">&lt;<a href="operationdefinition-definitions.html#OperationDefinition.parameter.max" class="xmltag">max</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">*</span>"</span><span class="xmltag">/&gt;</span><b>
+    </b><span class="xmltag">&lt;<a href="operationdefinition-definitions.html#OperationDefinition.parameter.documentation" class="xmltag">documentation</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">Source observations on which the statistics are based</span>"</span><span class="xmltag">/&gt;</span><b>
     </b><span class="xmltag">&lt;<a href="operationdefinition-definitions.html#OperationDefinition.parameter.type" class="xmltag">type</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">Observation</span>"</span><span class="xmltag">/&gt;</span><b>
   </b><span class="xmltag">&lt;/<a href="operationdefinition-definitions.html#OperationDefinition.parameter" class="xmltag">parameter</a>&gt;</span><b>
 </b><span class="xmltag">&lt;/<a href="operationdefinition-definitions.html" class="xmltag">OperationDefinition</a>&gt;</span></pre>
@@ -376,7 +600,7 @@ of the specification.
 		<div class="container"><!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:32-0500. <a href="qa.html">QA Page</a>
+        © HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:28-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search</a> | 

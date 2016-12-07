@@ -25,32 +25,22 @@
   "Coverage.status": {
     "code.value": "active"
   },
-  "Coverage.issuer": {
-    "Reference.reference": {
-      "string.value": "Organization/2"
-    },
-    "Resource.reference": "http://hl7.org/fhir//Organization/2"
-  },
-  "Coverage.period": {
-    "Period.start": {
-      "dateTime.value": "2011-03-17"
-    },
-    "Period.end": {
-      "dateTime.value": "2012-03-17"
-    }
-  },
   "Coverage.type": {
-    "Coding.system": {
-      "uri.value": "http://hl7.org/fhir/v3/ActCode"
-    },
-    "Coding.code": {
-      "code.value": "EHCPOL"
-    },
-    "Coding.display": {
-      "string.value": "extended healthcare"
-    }
+    "CodeableConcept.coding": [
+      {
+        "Coding.system": {
+          "uri.value": "http://hl7.org/fhir/v3/ActCode"
+        },
+        "Coding.code": {
+          "code.value": "EHCPOL"
+        },
+        "Coding.display": {
+          "string.value": "extended healthcare"
+        }
+      }
+    ]
   },
-  "Coverage.planholder": {
+  "Coverage.subscriber": {
     "Reference.reference": {
       "string.value": "Patient/5"
     },
@@ -63,10 +53,29 @@
     "Resource.reference": "http://hl7.org/fhir//Patient/5"
   },
   "Coverage.relationship": {
-    "Coding.code": {
-      "code.value": "self"
+    "CodeableConcept.coding": [
+      {
+        "Coding.code": {
+          "code.value": "self"
+        }
+      }
+    ]
+  },
+  "Coverage.period": {
+    "Period.start": {
+      "dateTime.value": "2011-03-17"
+    },
+    "Period.end": {
+      "dateTime.value": "2012-03-17"
     }
   },
+  "Coverage.payor": [
+    {
+      "Reference.reference": {
+        "string.value": "Organization/2"
+      }
+    }
+  ],
   "Coverage.group": {
     "Coverage.group.group": {
       "string.value": "WESTAIR"
@@ -88,6 +97,6 @@
     }
   },
   "Coverage.dependent": {
-    "positiveInt.value": 1
+    "string.value": "1"
   }
 }

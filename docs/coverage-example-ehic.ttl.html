@@ -3,7 +3,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>Coverage-example-ehic.ttl - FHIR v1.7.0</title>
+  <title>Coverage-example-ehic.ttl - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -136,21 +136,15 @@
      fhir:Identifier.value [ fhir:value &quot;A123456780&quot; ]
   ];
   fhir:Coverage.status [ fhir:value &quot;active&quot;];
-  fhir:Coverage.issuer [
-     fhir:Reference.identifier [
-       fhir:Identifier.system [ fhir:value &quot;http://ehic.com/insurer&quot; ];
-       fhir:Identifier.value [ fhir:value &quot;123456789&quot; ]
+  fhir:Coverage.type [
+     fhir:CodeableConcept.coding [
+       fhir:index 0;
+       fhir:Coding.system [ fhir:value &quot;http://hl7.org/fhir/v3/ActCode&quot; ];
+       fhir:Coding.code [ fhir:value &quot;EHCPOL&quot; ];
+       fhir:Coding.display [ fhir:value &quot;extended healthcare&quot; ]
      ]
   ];
-  fhir:Coverage.period [
-     fhir:Period.end [ fhir:value &quot;2012-03-17&quot;^^xsd:date ]
-  ];
-  fhir:Coverage.type [
-     fhir:Coding.system [ fhir:value &quot;http://hl7.org/fhir/v3/ActCode&quot; ];
-     fhir:Coding.code [ fhir:value &quot;EHCPOL&quot; ];
-     fhir:Coding.display [ fhir:value &quot;extended healthcare&quot; ]
-  ];
-  fhir:Coverage.planholder [
+  fhir:Coverage.subscriber [
      fhir:link &lt;http://hl7.org/fhir/Patient/5&gt;;
      fhir:Reference.reference [ fhir:value &quot;Patient/5&quot; ]
   ];
@@ -159,7 +153,20 @@
      fhir:Reference.reference [ fhir:value &quot;Patient/5&quot; ]
   ];
   fhir:Coverage.relationship [
-     fhir:Coding.code [ fhir:value &quot;self&quot; ]
+     fhir:CodeableConcept.coding [
+       fhir:index 0;
+       fhir:Coding.code [ fhir:value &quot;self&quot; ]
+     ]
+  ];
+  fhir:Coverage.period [
+     fhir:Period.end [ fhir:value &quot;2012-03-17&quot;^^xsd:date ]
+  ];
+  fhir:Coverage.payor [
+     fhir:index 0;
+     fhir:Reference.identifier [
+       fhir:Identifier.system [ fhir:value &quot;http://ehic.com/insurer&quot; ];
+       fhir:Identifier.value [ fhir:value &quot;123456789&quot; ]
+     ]
   ] .
 
 &lt;http://hl7.org/fhir/Patient/5&gt; a fhir:Patient, fhir:Patient .
@@ -191,7 +198,7 @@ of the specification.
 		<div class="container"><!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:32-0500. <a href="qa.html">QA Page</a>
+        © HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:21-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search</a> | 

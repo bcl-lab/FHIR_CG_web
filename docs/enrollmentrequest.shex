@@ -23,29 +23,15 @@ start=@<EnrollmentRequest> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
     fhir:EnrollmentRequest.identifier @<Identifier>*;  # Business Identifier
     fhir:EnrollmentRequest.status @<code> AND
-    	{fhir:value @fhirvs:enrollmentrequest-status};  # active | cancelled | draft | 
+    	{fhir:value @fhirvs:fm-status}?;  # active | cancelled | draft | 
                                             # entered-in-error 
-    fhir:EnrollmentRequest.ruleset @<Coding>?;  # Resource version
-    fhir:EnrollmentRequest.originalRuleset @<Coding>?;  # Original version
     fhir:EnrollmentRequest.created @<dateTime>?;  # Creation date
-    (                                       # Target
-        fhir:EnrollmentRequest.insurerIdentifier @<Identifier>  |
-        fhir:EnrollmentRequest.insurerReference @<Reference> 
-    )?;
-    (                                       # Responsible practitioner
-        fhir:EnrollmentRequest.providerIdentifier @<Identifier>  |
-        fhir:EnrollmentRequest.providerReference @<Reference> 
-    )?;
-    (                                       # Responsible organization
-        fhir:EnrollmentRequest.organizationIdentifier @<Identifier>  |
-        fhir:EnrollmentRequest.organizationReference @<Reference> 
-    )?;
-    (                                       # The subject of the Products and 
+    fhir:EnrollmentRequest.insurer @<Reference>?;  # Target
+    fhir:EnrollmentRequest.provider @<Reference>?;  # Responsible practitioner
+    fhir:EnrollmentRequest.organization @<Reference>?;  # Responsible organization
+    fhir:EnrollmentRequest.subject @<Reference>?;  # The subject of the Products and 
                                             # Services 
-        fhir:EnrollmentRequest.subjectIdentifier @<Identifier>  |
-        fhir:EnrollmentRequest.subjectReference @<Reference> 
-    );
-    fhir:EnrollmentRequest.coverage @<Reference>;  # Insurance information
+    fhir:EnrollmentRequest.coverage @<Reference>?;  # Insurance information
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -115,23 +101,6 @@ start=@<EnrollmentRequest> AND {fhir:nodeRole [fhir:treeRoot]}
     	{fhir:value @fhirvs:narrative-status};  # generated | extensions | 
                                             # additional | empty 
     fhir:Narrative.div xsd:string;          # Limited xhtml content
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
-# A reference to a code defined by a terminology system
-<Coding> CLOSED {
-    fhir:concept IRI?;
-    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
-    fhir:extension @<Extension>*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:Coding.system @<uri>?;             # Identity of the terminology system
-    fhir:Coding.version @<string>?;         # Version of the system - if relevant
-    fhir:Coding.code @<code>?;              # Symbol in syntax defined by the 
-                                            # system 
-    fhir:Coding.display @<string>?;         # Representation defined by the 
-                                            # system 
-    fhir:Coding.userSelected @<boolean>?;   # If this coding was chosen directly 
-                                            # by the user 
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -206,12 +175,20 @@ start=@<EnrollmentRequest> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
-# Primitive Type boolean
-<boolean> CLOSED {
-    fhir:Element.id @<id>?;                 # xml:id (or equivalent in JSON)
+# A reference to a code defined by a terminology system
+<Coding> CLOSED {
+    fhir:concept IRI?;
+    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
     fhir:extension @<Extension>*;           # Additional Content defined by 
                                             # implementations 
-    fhir:value xsd:boolean?;                # Primitive value for boolean
+    fhir:Coding.system @<uri>?;             # Identity of the terminology system
+    fhir:Coding.version @<string>?;         # Version of the system - if relevant
+    fhir:Coding.code @<code>?;              # Symbol in syntax defined by the 
+                                            # system 
+    fhir:Coding.display @<string>?;         # Representation defined by the 
+                                            # system 
+    fhir:Coding.userSelected @<boolean>?;   # If this coding was chosen directly 
+                                            # by the user 
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -228,12 +205,21 @@ start=@<EnrollmentRequest> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
+# Primitive Type boolean
+<boolean> CLOSED {
+    fhir:Element.id @<id>?;                 # xml:id (or equivalent in JSON)
+    fhir:extension @<Extension>*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:value xsd:boolean?;                # Primitive value for boolean
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
 #---------------------- Reference Types -------------------
 
 #---------------------- Value Sets ------------------------
 
-# A code specifying the state of the resource instance.
-fhirvs:enrollmentrequest-status ["active" "cancelled" "draft" "entered-in-error"]
+# This value set includes STatus codes.
+fhirvs:fm-status ["active" "cancelled" "draft" "entered-in-error"]
 
 # Identifies the purpose for this identifier, if known .
 fhirvs:identifier-use ["usual" "official" "temp" "secondary"]

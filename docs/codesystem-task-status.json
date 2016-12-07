@@ -2,18 +2,18 @@
   "resourceType": "CodeSystem",
   "id": "task-status",
   "meta": {
-    "lastUpdated": "2016-11-28T17:29:55.664-05:00"
+    "lastUpdated": "2016-12-07T14:18:58.982-05:00"
   },
   "text": {
     "status": "generated",
-    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><h2>TaskStatus</h2><div><p>The current status of the task.</p>\n</div><p>This code system http://hl7.org/fhir/task-status defines the following codes:</p><table class=\"codes\"><tr><td><b>Code</b></td><td><b>Display</b></td><td><b>Definition</b></td></tr><tr><td>draft<a name=\"task-status-draft\"> </a></td><td>Draft</td><td>The task is not yet ready to be acted upon.</td></tr><tr><td>requested<a name=\"task-status-requested\"> </a></td><td>Requested</td><td>The task is ready to be acted upon</td></tr><tr><td>received<a name=\"task-status-received\"> </a></td><td>Received</td><td>A potential performer has claimed ownership of the task and is evaluating whether to perform it</td></tr><tr><td>accepted<a name=\"task-status-accepted\"> </a></td><td>Accepted</td><td>The potential performer has agreed to execute the task but has not yet started work</td></tr><tr><td>rejected<a name=\"task-status-rejected\"> </a></td><td>Rejected</td><td>The potential performer who claimed ownership of the task has decided not to execute it prior to performing any action.</td></tr><tr><td>ready<a name=\"task-status-ready\"> </a></td><td>Ready</td><td>Task is ready to be performed, but no action has yet been taken.  Used in place of requested/received/accepted/rejected when request assignment and acceptance is a given.</td></tr><tr><td>in-progress<a name=\"task-status-in-progress\"> </a></td><td>In Progress</td><td>Task has been started but is not yet complete.</td></tr><tr><td>on-hold<a name=\"task-status-on-hold\"> </a></td><td>On Hold</td><td>Task has been started but work has been paused</td></tr><tr><td>failed<a name=\"task-status-failed\"> </a></td><td>Failed</td><td>The task was attempted but could not be completed due to some error.</td></tr><tr><td>completed<a name=\"task-status-completed\"> </a></td><td>Completed</td><td>The task has been completed (more or less) as requested.</td></tr></table></div>"
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><h2>TaskStatus</h2><div><p>The current status of the task.</p>\n</div><p>This code system http://hl7.org/fhir/task-status defines the following codes:</p><table class=\"codes\"><tr><td><b>Code</b></td><td><b>Display</b></td><td><b>Definition</b></td></tr><tr><td>draft<a name=\"task-status-draft\"> </a></td><td>Draft</td><td>The task is not yet ready to be acted upon.</td></tr><tr><td>requested<a name=\"task-status-requested\"> </a></td><td>Requested</td><td>The task is ready to be acted upon and action is sought</td></tr><tr><td>received<a name=\"task-status-received\"> </a></td><td>Received</td><td>A potential performer has claimed ownership of the task and is evaluating whether to perform it</td></tr><tr><td>accepted<a name=\"task-status-accepted\"> </a></td><td>Accepted</td><td>The potential performer has agreed to execute the task but has not yet started work</td></tr><tr><td>rejected<a name=\"task-status-rejected\"> </a></td><td>Rejected</td><td>The potential performer who claimed ownership of the task has decided not to execute it prior to performing any action.</td></tr><tr><td>ready<a name=\"task-status-ready\"> </a></td><td>Ready</td><td>Task is ready to be performed, but no action has yet been taken.  Used in place of requested/received/accepted/rejected when request assignment and acceptance is a given.</td></tr><tr><td>cancelled<a name=\"task-status-cancelled\"> </a></td><td>Cancelled</td><td>the task was not completed (more or less) as requested</td></tr><tr><td>in-progress<a name=\"task-status-in-progress\"> </a></td><td>In Progress</td><td>Task has been started but is not yet complete.</td></tr><tr><td>on-hold<a name=\"task-status-on-hold\"> </a></td><td>On Hold</td><td>Task has been started but work has been paused</td></tr><tr><td>failed<a name=\"task-status-failed\"> </a></td><td>Failed</td><td>The task was attempted but could not be completed due to some error.</td></tr><tr><td>completed<a name=\"task-status-completed\"> </a></td><td>Completed</td><td>The task has been completed (more or less) as requested.</td></tr><tr><td>entered-in-error<a name=\"task-status-entered-in-error\"> </a></td><td>Entered in Error</td><td>The task should never have existed and is retained only because of the possibility it may have used</td></tr></table></div>"
   },
   "url": "http://hl7.org/fhir/task-status",
   "identifier": {
     "system": "urn:ietf:rfc:3986",
     "value": "urn:oid:2.16.840.1.113883.4.642.1.562"
   },
-  "version": "1.7.0",
+  "version": "1.8.0",
   "name": "TaskStatus",
   "status": "draft",
   "experimental": false,
@@ -22,7 +22,7 @@
     {
       "telecom": [
         {
-          "system": "other",
+          "system": "url",
           "value": "http://hl7.org/fhir"
         },
         {
@@ -32,7 +32,7 @@
       ]
     }
   ],
-  "date": "2016-11-28T17:29:55-05:00",
+  "date": "2016-12-07T14:18:58-05:00",
   "description": "The current status of the task.",
   "caseSensitive": true,
   "valueSet": "http://hl7.org/fhir/ValueSet/task-status",
@@ -46,7 +46,7 @@
     {
       "code": "requested",
       "display": "Requested",
-      "definition": "The task is ready to be acted upon"
+      "definition": "The task is ready to be acted upon and action is sought"
     },
     {
       "code": "received",
@@ -69,6 +69,11 @@
       "definition": "Task is ready to be performed, but no action has yet been taken.  Used in place of requested/received/accepted/rejected when request assignment and acceptance is a given."
     },
     {
+      "code": "cancelled",
+      "display": "Cancelled",
+      "definition": "the task was not completed (more or less) as requested"
+    },
+    {
       "code": "in-progress",
       "display": "In Progress",
       "definition": "Task has been started but is not yet complete."
@@ -87,6 +92,11 @@
       "code": "completed",
       "display": "Completed",
       "definition": "The task has been completed (more or less) as requested."
+    },
+    {
+      "code": "entered-in-error",
+      "display": "Entered in Error",
+      "definition": "The task should never have existed and is retained only because of the possibility it may have used"
     }
   ]
 }

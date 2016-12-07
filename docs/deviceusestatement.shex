@@ -21,10 +21,7 @@ start=@<DeviceUseStatement> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:extension @<Extension>*;           # Additional Content defined by 
                                             # implementations 
     fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    (                                       # Target body site
-        fhir:DeviceUseStatement.bodySiteCodeableConcept @<CodeableConcept>  |
-        fhir:DeviceUseStatement.bodySiteReference @<Reference> 
-    )?;
+    fhir:DeviceUseStatement.bodySite @<CodeableConcept>?;  # Target body site
     fhir:DeviceUseStatement.whenUsed @<Period>?;  # Period device was used
     fhir:DeviceUseStatement.device @<Reference>;  # Reference to device used
     fhir:DeviceUseStatement.identifier @<Identifier>*;  # External identifier for this record
@@ -260,6 +257,10 @@ start=@<DeviceUseStatement> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:Timing.repeat.periodUnit @<code> AND
     	{fhir:value @fhirvs:units-of-time}?;  # s | min | h | d | wk | mo | a - 
                                             # unit of time (UCUM) 
+    fhir:Timing.repeat.dayOfWeek @<code> AND
+    	{fhir:value @fhirvs:days-of-week}*;  # mon | tue | wed | thu | fri | sat 
+                                            # | sun 
+    fhir:Timing.repeat.timeOfDay @<time>*;  # Time of day for action
     fhir:Timing.repeat.when @<code> AND
     	{fhir:value @fhirvs:event-timing}?;  # Regular life events the event is 
                                             # tied to 
@@ -311,6 +312,15 @@ start=@<DeviceUseStatement> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
+# Primitive Type time
+<time> CLOSED {
+    fhir:Element.id @<id>?;                 # xml:id (or equivalent in JSON)
+    fhir:extension @<Extension>*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:value xsd:time?;                   # Primitive value for time
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
 # Primitive Type decimal
 <decimal> CLOSED {
     fhir:Element.id @<id>?;                 # xml:id (or equivalent in JSON)
@@ -337,17 +347,20 @@ start=@<DeviceUseStatement> AND {fhir:nodeRole [fhir:treeRoot]}
 
 #---------------------- Value Sets ------------------------
 
+# How the Quantity should be understood and represented.
+fhirvs:quantity-comparator ["<" "<=" ">=" ">"]
+
 # Real world event that the relating to the schedule.
-fhirvs:event-timing ["HS" "WAKE" "C" "CM" "CD" "CV" "AC" "ACM" "ACD" "ACV" "PC" "PCM" "PCD" "PCV"]
+fhirvs:event-timing ["MORN" "AFT" "EVE" "NIGHT" "HS" "WAKE" "C" "CM" "CD" "CV" "AC" "ACM" "ACD" "ACV" "PC" "PCM" "PCD" "PCV"]
+
+# A unit of time (units from UCUM).
+fhirvs:units-of-time ["s" "min" "h" "d" "wk" "mo" "a"]
+
+# The days of the week.
+fhirvs:days-of-week ["mon" "tue" "wed" "thu" "fri" "sat" "sun"]
 
 # Identifies the purpose for this identifier, if known .
 fhirvs:identifier-use ["usual" "official" "temp" "secondary"]
 
 # The status of a resource narrative
 fhirvs:narrative-status ["generated" "extensions" "additional" "empty"]
-
-# How the Quantity should be understood and represented.
-fhirvs:quantity-comparator ["<" "<=" ">=" ">"]
-
-# A unit of time (units from UCUM).
-fhirvs:units-of-time ["s" "min" "h" "d" "wk" "mo" "a"]

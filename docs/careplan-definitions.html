@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>CarePlan - FHIR v1.7.0</title>
+  <title>CarePlan - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -129,7 +129,7 @@
   <tr><td>Definition</td><td><p>Indicates whether the plan is currently being acted upon, represents future intentions or is now a historical record.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>1..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>CarePlanStatus: <a href="valueset-care-plan-status.html">Indicates whether the plan is currently being acted upon, represents future intentions or is now a historical record.</a> (<a href="terminologies.html#required">Required</a>)</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-care-plan-status.html">CarePlanStatus</a> (<a href="terminologies.html#required">Required</a>)</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#code">code</a></td></tr>
   <tr><td><a href="conformance-rules.html#ismodifier">Is Modifier</a></td><td>true</td></tr>
   <tr><td>Requirements</td><td><p>Allows clinicians to determine whether the plan is actionable or not.</p>
@@ -141,7 +141,7 @@
   <tr><td>Definition</td><td><p>Identifies what &quot;kind&quot; of plan this is to support differentiation between multiple co-existing plans; e.g. &quot;Home health&quot;, &quot;psychiatric&quot;, &quot;asthma&quot;, &quot;disease management&quot;, &quot;wellness plan&quot;, etc.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..*</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>Care Plan Category: <a href="valueset-care-plan-category.html">Identifies what &quot;kind&quot; of plan this is to support differentiation between multiple co-existing plans; e.g. &quot;Home health&quot;, &quot;psychiatric&quot;, &quot;asthma&quot;, &quot;disease management&quot;, etc.</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-care-plan-category.html">Care Plan Category</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
   <tr><td>Requirements</td><td><p>Used for filtering what plan(s) are retrieved and displayed to different types of users.</p>
 </td></tr>
@@ -160,7 +160,7 @@
   <tr><td colspan="2" class="structure"><a name="CarePlan.subject"> </a><b>CarePlan.subject</b></td></tr>
   <tr><td>Definition</td><td><p>Identifies the patient or group whose intended care is described by the plan.</p>
 </td></tr>
-  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
+  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>1..1</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="references.html#Reference">Reference</a>(<a href="patient.html">Patient</a> | <a href="group.html">Group</a>)</td></tr>
   <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
   <tr><td colspan="2" class="structure"><a name="CarePlan.context"> </a><b>CarePlan.context</b></td></tr>
@@ -236,7 +236,7 @@
   <tr><td>Definition</td><td><p>Identifies the type of relationship this plan has to the target plan.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>CarePlanRelationship: <a href="valueset-care-plan-relationship.html">Codes identifying the types of relationships between two plans.</a> (<a href="terminologies.html#required">Required</a>)</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-care-plan-relationship.html">CarePlanRelationship</a> (<a href="terminologies.html#required">Required</a>)</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#code">code</a></td></tr>
   <tr><td>Comments</td><td><p>Read the relationship as &quot;this plan&quot; [relatedPlan.code] &quot;relatedPlan.plan&quot;; e.g. This plan includes Plan B.</p>
 <p>Additional relationship types can be proposed for future releases or handled as extensions.</p>
@@ -274,7 +274,7 @@
   <tr><td>Definition</td><td><p>Results of the careplan activity.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td><a href="terminologies.html#unbound">CarePlanActivityOutcome</a>: Identifies the results of the activity</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="terminologies.html#unbound">CarePlanActivityOutcome</a>: </td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
   <tr><td colspan="2" class="structure"><a name="CarePlan.activity.progress"> </a><b>CarePlan.activity.progress</b></td></tr>
   <tr><td>Definition</td><td><p>Notes about the adherence/status/progress of the activity.</p>
@@ -309,7 +309,7 @@ The goal should be visible when the resource referenced by CarePlan.activity.ref
   <tr><td>Definition</td><td><p>High-level categorization of the type of activity in a care plan.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>CarePlanActivityCategory: <a href="valueset-care-plan-activity-category.html">High-level categorization of the type of activity in a care plan.</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-care-plan-activity-category.html">CarePlanActivityCategory</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
   <tr><td>Requirements</td><td><p>May determine what types of extensions are permitted.</p>
 </td></tr>
@@ -324,7 +324,7 @@ The goal should be visible when the resource referenced by CarePlan.activity.ref
   <tr><td>Definition</td><td><p>Detailed description of the type of planned activity; e.g. What lab test, what procedure, what kind of encounter.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>Care Plan Activity: <a href="valueset-care-plan-activity.html">Detailed description of the type of activity; e.g. What lab test, what procedure, what kind of encounter.</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-care-plan-activity.html">Care Plan Activity</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
   <tr><td>Requirements</td><td><p>Allows matching performed to planned as well as validation against protocols.</p>
 </td></tr>
@@ -334,7 +334,7 @@ The goal should be visible when the resource referenced by CarePlan.activity.ref
   <tr><td>Definition</td><td><p>Provides the rationale that drove the inclusion of this particular activity as part of the plan or the reason why the activity was prohibited.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..*</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>Activity Reason: <a href="valueset-activity-reason.html">Identifies why a care plan activity is needed.  Can include any health condition codes as well as such concepts as &quot;general wellness&quot;, prophylaxis, surgical preparation, etc.</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-activity-reason.html">Activity Reason</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
   <tr><td>Comments</td><td><p>This could be a diagnosis code.  If a full condition record exists or additional detail is needed, use reasonCondition instead.</p>
 </td></tr>
@@ -356,7 +356,7 @@ The goal should be visible when the resource referenced by CarePlan.activity.ref
   <tr><td>Definition</td><td><p>Identifies what progress is being made for the specific activity.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>1..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>CarePlanActivityStatus: <a href="valueset-care-plan-activity-status.html">Indicates where the activity is at in its overall life cycle.</a> (<a href="terminologies.html#required">Required</a>)</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-care-plan-activity-status.html">CarePlanActivityStatus</a> (<a href="terminologies.html#required">Required</a>)</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#code">code</a></td></tr>
   <tr><td><a href="conformance-rules.html#ismodifier">Is Modifier</a></td><td>true</td></tr>
   <tr><td>Requirements</td><td><p>Indicates progress against the plan, whether the activity is still relevant for the plan.</p>
@@ -368,7 +368,7 @@ The unknown code is not to be used to convey other statuses.  The unknown code s
   <tr><td>Definition</td><td><p>Provides reason why the activity isn't yet started, is on hold, was cancelled, etc.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>GoalStatusReason: <a href="valueset-goal-status-reason.html">Describes why the current activity has the status it does; e.g. &quot;Recovering from injury&quot; as a reason for non-started or on-hold, &quot;Patient does not enjoy activity&quot; as a reason for cancelling a planned activity.</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-goal-status-reason.html">GoalStatusReason</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
   <tr><td>Comments</td><td><p>Will generally not be present if status is &quot;complete&quot;.  Be sure to prompt to update this (or at least remove the existing value) if the status is changed.</p>
 </td></tr>
@@ -412,7 +412,7 @@ The unknown code is not to be used to convey other statuses.  The unknown code s
   <tr><td>Definition</td><td><p>Identifies the food, drug or other product to be consumed or supplied in the activity.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>SNOMED CT Medication Codes: <a href="valueset-medication-codes.html">A product supplied or administered as part of a care plan activity.</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-medication-codes.html">SNOMED CT Medication Codes</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a>|<a href="references.html#Reference">Reference</a>(<a href="medication.html">Medication</a> | <a href="substance.html">Substance</a>)</td></tr>
   <tr><td>[x] Note</td><td>See <a href="formats.html#choice">Choice of Data Types</a> for further information about how to use [x]</td></tr>
   <tr><td colspan="2" class="structure"><a name="CarePlan.activity.detail.dailyAmount"> </a><b>CarePlan.activity.detail.dailyAmount</b></td></tr>
@@ -458,7 +458,7 @@ The unknown code is not to be used to convey other statuses.  The unknown code s
 		<div class="container">  <!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:32-0500. <a href="qa.html">QA Page</a>
+        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:21-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search <img src="external.png" style="text-align: baseline"/></a> | 

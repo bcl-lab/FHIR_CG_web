@@ -3,7 +3,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>Contract.shex - FHIR v1.7.0</title>
+  <title>Contract.shex - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -139,6 +139,9 @@ start=@&lt;Contract&gt; AND {fhir:nodeRole [fhir:treeRoot]}
                                             # implementations 
     fhir:modifierExtension @&lt;Extension&gt;*;   # Extensions that cannot be ignored
     fhir:Contract.identifier @&lt;Identifier&gt;?;  # Contract identifier
+    fhir:Contract.status @&lt;code&gt; AND
+    	{fhir:value @fhirvs:fm-status}?;  # active | cancelled | draft | 
+                                            # entered-in-error 
     fhir:Contract.issued @&lt;dateTime&gt;?;      # When this Contract was issued
     fhir:Contract.applies @&lt;Period&gt;?;       # Effective time
     fhir:Contract.subject @&lt;Reference&gt;*;    # Contract Target Entity
@@ -167,24 +170,36 @@ start=@&lt;Contract&gt; AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
-# Contract Agent
-&lt;Contract.agent&gt; CLOSED {
+# Contract Signer
+&lt;Contract.signer&gt; CLOSED {
     fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
     fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
                                             # implementations 
     fhir:modifierExtension @&lt;Extension&gt;*;   # Extensions that cannot be ignored
-    fhir:Contract.agent.actor               # Contract Agent Type
-    (   @&lt;ContractReference&gt; OR
-        @&lt;DeviceReference&gt; OR
-        @&lt;GroupReference&gt; OR
-        @&lt;LocationReference&gt; OR
-        @&lt;OrganizationReference&gt; OR
+    fhir:Contract.signer.type @&lt;Coding&gt;;    # Contract Signer Type
+    fhir:Contract.signer.party              # Contract Signatory Party
+    (   @&lt;OrganizationReference&gt; OR
         @&lt;PatientReference&gt; OR
         @&lt;PractitionerReference&gt; OR
-        @&lt;RelatedPersonReference&gt; OR
-        @&lt;SubstanceReference&gt;
+        @&lt;RelatedPersonReference&gt;
     );
-    fhir:Contract.agent.role @&lt;CodeableConcept&gt;*;  # Contract  Agent Role
+    fhir:Contract.signer.signature @&lt;Signature&gt;+;  # Contract Documentation Signature
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
+# Contract Friendly Language
+&lt;Contract.friendly&gt; CLOSED {
+    fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
+    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @&lt;Extension&gt;*;   # Extensions that cannot be ignored
+    (                                       # Easily comprehended representation 
+                                            # of this Contract 
+        fhir:Contract.friendly.contentAttachment @&lt;Attachment&gt;  |
+        fhir:Contract.friendly.contentReference @&lt;Reference&gt;  |
+        fhir:Contract.friendly.contentReference @&lt;Reference&gt;  |
+        fhir:Contract.friendly.contentReference @&lt;Reference&gt; 
+    );
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -224,52 +239,6 @@ start=@&lt;Contract&gt; AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
-# Contract Friendly Language
-&lt;Contract.friendly&gt; CLOSED {
-    fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
-    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @&lt;Extension&gt;*;   # Extensions that cannot be ignored
-    (                                       # Easily comprehended representation 
-                                            # of this Contract 
-        fhir:Contract.friendly.contentAttachment @&lt;Attachment&gt;  |
-        fhir:Contract.friendly.contentReference @&lt;Reference&gt;  |
-        fhir:Contract.friendly.contentReference @&lt;Reference&gt;  |
-        fhir:Contract.friendly.contentReference @&lt;Reference&gt; 
-    );
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
-# Contract Signer
-&lt;Contract.signer&gt; CLOSED {
-    fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
-    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @&lt;Extension&gt;*;   # Extensions that cannot be ignored
-    fhir:Contract.signer.type @&lt;Coding&gt;;    # Contract Signer Type
-    fhir:Contract.signer.party              # Contract Signatory Party
-    (   @&lt;OrganizationReference&gt; OR
-        @&lt;PatientReference&gt; OR
-        @&lt;PractitionerReference&gt; OR
-        @&lt;RelatedPersonReference&gt;
-    );
-    fhir:Contract.signer.signature @&lt;Signature&gt;+;  # Contract Documentation Signature
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
-# Computable Contract Language
-&lt;Contract.rule&gt; CLOSED {
-    fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
-    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @&lt;Extension&gt;*;   # Extensions that cannot be ignored
-    (                                       # Computable Contract Rules
-        fhir:Contract.rule.contentAttachment @&lt;Attachment&gt;  |
-        fhir:Contract.rule.contentReference @&lt;Reference&gt; 
-    );
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
 # Contract Valued Item
 &lt;Contract.valuedItem&gt; CLOSED {
     fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
@@ -293,13 +262,13 @@ start=@&lt;Contract&gt; AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
-# Contract Term Agent List
-&lt;Contract.term.agent&gt; CLOSED {
+# Contract Agent
+&lt;Contract.agent&gt; CLOSED {
     fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
     fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
                                             # implementations 
     fhir:modifierExtension @&lt;Extension&gt;*;   # Extensions that cannot be ignored
-    fhir:Contract.term.agent.actor          # Contract Term Agent List
+    fhir:Contract.agent.actor               # Contract Agent Type
     (   @&lt;ContractReference&gt; OR
         @&lt;DeviceReference&gt; OR
         @&lt;GroupReference&gt; OR
@@ -310,7 +279,20 @@ start=@&lt;Contract&gt; AND {fhir:nodeRole [fhir:treeRoot]}
         @&lt;RelatedPersonReference&gt; OR
         @&lt;SubstanceReference&gt;
     );
-    fhir:Contract.term.agent.role @&lt;CodeableConcept&gt;*;  # Contract Term Agent Role
+    fhir:Contract.agent.role @&lt;CodeableConcept&gt;*;  # Contract  Agent Role
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
+# Computable Contract Language
+&lt;Contract.rule&gt; CLOSED {
+    fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
+    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @&lt;Extension&gt;*;   # Extensions that cannot be ignored
+    (                                       # Computable Contract Rules
+        fhir:Contract.rule.contentAttachment @&lt;Attachment&gt;  |
+        fhir:Contract.rule.contentReference @&lt;Reference&gt; 
+    );
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -337,6 +319,27 @@ start=@&lt;Contract&gt; AND {fhir:nodeRole [fhir:treeRoot]}
                                             # Difficulty Scaling Factor 
     fhir:Contract.term.valuedItem.net @&lt;Money&gt;?;  # Total Contract Term Valued Item 
                                             # Value 
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
+# Contract Term Agent List
+&lt;Contract.term.agent&gt; CLOSED {
+    fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
+    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @&lt;Extension&gt;*;   # Extensions that cannot be ignored
+    fhir:Contract.term.agent.actor          # Contract Term Agent List
+    (   @&lt;ContractReference&gt; OR
+        @&lt;DeviceReference&gt; OR
+        @&lt;GroupReference&gt; OR
+        @&lt;LocationReference&gt; OR
+        @&lt;OrganizationReference&gt; OR
+        @&lt;PatientReference&gt; OR
+        @&lt;PractitionerReference&gt; OR
+        @&lt;RelatedPersonReference&gt; OR
+        @&lt;SubstanceReference&gt;
+    );
+    fhir:Contract.term.agent.role @&lt;CodeableConcept&gt;*;  # Contract Term Agent Role
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -758,6 +761,9 @@ start=@&lt;Contract&gt; AND {fhir:nodeRole [fhir:treeRoot]}
 # How the Quantity should be understood and represented.
 fhirvs:quantity-comparator [&quot;&lt;&quot; &quot;&lt;=&quot; &quot;&gt;=&quot; &quot;&gt;&quot;]
 
+# This value set includes STatus codes.
+fhirvs:fm-status [&quot;active&quot; &quot;cancelled&quot; &quot;draft&quot; &quot;entered-in-error&quot;]
+
 # Identifies the purpose for this identifier, if known .
 fhirvs:identifier-use [&quot;usual&quot; &quot;official&quot; &quot;temp&quot; &quot;secondary&quot;]
 
@@ -788,7 +794,7 @@ of the specification.
 		<div class="container"><!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:32-0500. <a href="qa.html">QA Page</a>
+        © HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:21-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search</a> | 

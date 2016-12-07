@@ -3,7 +3,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>Composition.shex - FHIR v1.7.0</title>
+  <title>Composition.shex - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -169,24 +169,17 @@ start=@&lt;Composition&gt; AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
-# Composition is broken into sections
-&lt;Composition.section&gt; CLOSED {
+# The clinical service(s) being documented
+&lt;Composition.event&gt; CLOSED {
     fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
     fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
                                             # implementations 
     fhir:modifierExtension @&lt;Extension&gt;*;   # Extensions that cannot be ignored
-    fhir:Composition.section.title @&lt;string&gt;?;  # Label for section (e.g. for ToC)
-    fhir:Composition.section.code @&lt;CodeableConcept&gt;?;  # Classification of section 
-                                            # (recommended) 
-    fhir:Composition.section.text @&lt;Narrative&gt;?;  # Text summary of the section, for 
-                                            # human interpretation 
-    fhir:Composition.section.mode @&lt;code&gt; AND
-    	{fhir:value @fhirvs:list-mode}?;  # working | snapshot | changes
-    fhir:Composition.section.orderedBy @&lt;CodeableConcept&gt;?;  # Order of section entries
-    fhir:Composition.section.entry @&lt;Reference&gt;*;  # A reference to data that supports 
-                                            # this section 
-    fhir:Composition.section.emptyReason @&lt;CodeableConcept&gt;?;  # Why the section is empty
-    fhir:Composition.section.section @&lt;Composition.section&gt;*;  # Nested Section
+    fhir:Composition.event.code @&lt;CodeableConcept&gt;*;  # Code(s) that apply to the event 
+                                            # being documented 
+    fhir:Composition.event.period @&lt;Period&gt;?;  # The period covered by the 
+                                            # documentation 
+    fhir:Composition.event.detail @&lt;Reference&gt;*;  # The event(s) being documented
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -208,17 +201,24 @@ start=@&lt;Composition&gt; AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
-# The clinical service(s) being documented
-&lt;Composition.event&gt; CLOSED {
+# Composition is broken into sections
+&lt;Composition.section&gt; CLOSED {
     fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
     fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
                                             # implementations 
     fhir:modifierExtension @&lt;Extension&gt;*;   # Extensions that cannot be ignored
-    fhir:Composition.event.code @&lt;CodeableConcept&gt;*;  # Code(s) that apply to the event 
-                                            # being documented 
-    fhir:Composition.event.period @&lt;Period&gt;?;  # The period covered by the 
-                                            # documentation 
-    fhir:Composition.event.detail @&lt;Reference&gt;*;  # The event(s) being documented
+    fhir:Composition.section.title @&lt;string&gt;?;  # Label for section (e.g. for ToC)
+    fhir:Composition.section.code @&lt;CodeableConcept&gt;?;  # Classification of section 
+                                            # (recommended) 
+    fhir:Composition.section.text @&lt;Narrative&gt;?;  # Text summary of the section, for 
+                                            # human interpretation 
+    fhir:Composition.section.mode @&lt;code&gt; AND
+    	{fhir:value @fhirvs:list-mode}?;  # working | snapshot | changes
+    fhir:Composition.section.orderedBy @&lt;CodeableConcept&gt;?;  # Order of section entries
+    fhir:Composition.section.entry @&lt;Reference&gt;*;  # A reference to data that supports 
+                                            # this section 
+    fhir:Composition.section.emptyReason @&lt;CodeableConcept&gt;?;  # Why the section is empty
+    fhir:Composition.section.section @&lt;Composition.section&gt;*;  # Nested Section
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -484,14 +484,14 @@ fhirvs:v3-ConfidentialityClassification [&quot;U&quot; &quot;L&quot; &quot;M&quo
 # The processing mode that applies to this list
 fhirvs:list-mode [&quot;working&quot; &quot;snapshot&quot; &quot;changes&quot;]
 
+# The way in which a person authenticated a composition.
+fhirvs:composition-attestation-mode [&quot;personal&quot; &quot;professional&quot; &quot;legal&quot; &quot;official&quot;]
+
 # Identifies the purpose for this identifier, if known .
 fhirvs:identifier-use [&quot;usual&quot; &quot;official&quot; &quot;temp&quot; &quot;secondary&quot;]
 
 # The status of a resource narrative
 fhirvs:narrative-status [&quot;generated&quot; &quot;extensions&quot; &quot;additional&quot; &quot;empty&quot;]
-
-# The way in which a person authenticated a composition.
-fhirvs:composition-attestation-mode [&quot;personal&quot; &quot;professional&quot; &quot;legal&quot; &quot;official&quot;]
 
 </pre>
 </div>
@@ -517,7 +517,7 @@ of the specification.
 		<div class="container"><!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:32-0500. <a href="qa.html">QA Page</a>
+        © HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:21-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search</a> | 

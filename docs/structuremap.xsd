@@ -27,7 +27,7 @@
   POSSIBILITY OF SUCH DAMAGE.
   
 
-  Generated on Mon, Nov 28, 2016 17:29-0500 for FHIR v1.7.0 
+  Generated on Wed, Dec 7, 2016 14:18-0500 for FHIR v1.8.0 
 
   Note: the schemas &amp; schematrons do not contain all of the rules about what makes resources
   valid. Implementers will still need to be familiar with the content of the specification and with
@@ -297,6 +297,21 @@
           <xs:element name="contextType" minOccurs="1" maxOccurs="1" type="StructureMapContextType">
             <xs:annotation>
               <xs:documentation xml:lang="en">How to interpret the context.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="min" minOccurs="0" maxOccurs="1" type="integer">
+            <xs:annotation>
+              <xs:documentation xml:lang="en">Specified minimum cardinality for the element. This is optional; if present, it acts an implicit check on the input content.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="max" minOccurs="0" maxOccurs="1" type="string">
+            <xs:annotation>
+              <xs:documentation xml:lang="en">Specified maximum cardinality for the element - a number or a &quot;*&quot;. This is optional; if present, it acts an implicit check on the input content (* just serves as documentation; it's the default value).</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="type" minOccurs="0" maxOccurs="1" type="string">
+            <xs:annotation>
+              <xs:documentation xml:lang="en">Specified type for the element. This works as a condition on the mapping - use for polymorphic elements.</xs:documentation>
            </xs:annotation>
           </xs:element>
           <xs:element name="element" minOccurs="0" maxOccurs="1" type="string">

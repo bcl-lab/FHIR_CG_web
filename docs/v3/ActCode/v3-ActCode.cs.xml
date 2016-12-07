@@ -3,12 +3,12 @@
 <CodeSystem xmlns="http://hl7.org/fhir">
   <id value="v3-ActCode"/>
   <meta>
-    <lastUpdated value="2016-03-23T00:00:00.000-04:00"/>
+    <lastUpdated value="2016-11-11T00:00:00.000-05:00"/>
   </meta>
   <text>
     <status value="generated"/>
     <div xmlns="http://www.w3.org/1999/xhtml">
-      <p>Release Date: 2016-03-23</p>
+      <p>Release Date: 2016-11-11</p>
 
       <table class="grid">
  
@@ -2993,14 +2993,14 @@
           <td>2</td>
           <td>  
             <span style="color: grey">
-              <i>(_ActCoverageAgeLimitCode)</i>
+              <i>(_ActCoverageQuantityLimitCode)</i>
             </span> 
             <b>
               <i>Abstract</i>
             </b>
           </td>
           <td>
-            <a name="_ActCoverageAgeLimitCode"> </a>
+            <a name="_ActCoverageQuantityLimitCode"> </a>
           </td>
           <td>
                         Maximum amount paid or maximum number of services/products covered; or maximum amount or number covered during a specified time period under the policy or program.
@@ -10000,24 +10000,6 @@
  
         <tr>
           <td>5</td>
-          <td>        SOC
-            <a name="SOC"> </a>
-          </td>
-          <td>social services sensitivity</td>
-          <td>
-                        Information about provision of social services.
-            <br/>
-
-                        
-                           Usage Note: This is a temporary addition to FHIR to be proposed in harmonization.
-            <br/>
-
-                     
-          </td>
-        </tr>
- 
-        <tr>
-          <td>5</td>
           <td>        SCA
             <a name="SCA"> </a>
           </td>
@@ -10028,6 +10010,24 @@
 
                         
                            Usage Note: If there is a jurisdictional mandate, then the Act valued with this ActCode should be associated with an Act valued with any applicable laws from the ActPrivacyLaw code system.
+            <br/>
+
+                     
+          </td>
+        </tr>
+ 
+        <tr>
+          <td>5</td>
+          <td>        SOC
+            <a name="SOC"> </a>
+          </td>
+          <td>social services sensitivity</td>
+          <td>
+                        Information about provision of social services.
+            <br/>
+
+                        
+                           Usage Note: This is a temporary addition to FHIR to be proposed in harmonization.
             <br/>
 
                      
@@ -13606,6 +13606,34 @@
           <td>aggregate measure observation</td>
           <td>
                         Indicates that the observation is carrying out an aggregation calculation, contained in the value element.
+            <br/>
+
+                     
+          </td>
+        </tr>
+ 
+        <tr>
+          <td>3</td>
+          <td>    CMPMSRMTH
+            <a name="CMPMSRMTH"> </a>
+          </td>
+          <td>composite measure method</td>
+          <td>
+                        Indicates what method is used in a quality measure to combine the component measure results included in an composite measure.
+            <br/>
+
+                     
+          </td>
+        </tr>
+ 
+        <tr>
+          <td>3</td>
+          <td>    CMPMSRSCRWGHT
+            <a name="CMPMSRSCRWGHT"> </a>
+          </td>
+          <td>component measure scoring weight</td>
+          <td>
+                        An attribute of a quality measure describing the weight this component measure score is to carry in determining the overall composite measure final score. The value is real value greater than 0 and less than 1.0. Each component measure score will be multiplied by its CMPMSRSCRWGHT and then summed with the other component measures to determine the final overall composite measure score. The sum across all CMPMSRSCRWGHT values within a single composite measure SHALL be 1.0. The value assigned is scoped to the composite measure referencing this component measure only.
             <br/>
 
                      
@@ -17617,23 +17645,23 @@ the measure population as a narrative description (e.g., all patients seen in th
     <system value="urn:ietf:rfc:3986"/>
     <value value="urn:oid:2.16.840.1.113883.5.4"/>
   </identifier>
-  <version value="2016-03-23"/>
+  <version value="2016-11-11"/>
   <name value="v3 Code System ActCode"/>
   <status value="active"/>
   <experimental value="false"/>
   <publisher value="HL7, Inc"/>
   <contact>
     <telecom>
-      <system value="other"/>
+      <system value="url"/>
       <value value="http://hl7.org"/>
     </telecom>
   </contact>
-  <date value="2016-03-23T00:00:00-04:00"/>
+  <date value="2016-11-11T00:00:00-05:00"/>
   <description value=" A code specifying the particular kind of Act that the Act-instance represents within its class.  Constraints:
 The kind of Act (e.g. physical examination, serum potassium, inpatient encounter, charge financial transaction, etc.) is specified with a code from one of several, typically external, coding systems.  The coding system will depend on the class of Act, such as LOINC for observations, etc. Conceptually, the Act.code must be a specialization of the Act.classCode. This is why the structure of ActClass domain should be reflected in the superstructure of the ActCode domain and then individual codes or externally referenced vocabularies subordinated under these domains that reflect the ActClass structure. Act.classCode and Act.code are not modifiers of each other but the Act.code concept should really imply the Act.classCode concept. For a negative example, it is not appropriate to use an Act.code &quot;potassium&quot; together with and Act.classCode for &quot;laboratory observation&quot; to somehow mean &quot;potassium laboratory observation&quot; and then use the same Act.code for &quot;potassium&quot; together with Act.classCode for &quot;medication&quot; to mean &quot;substitution of potassium&quot;. This mutually modifying use of Act.code and Act.classCode is not permitted."/>
   <caseSensitive value="true"/>
   <valueSet value="http://hl7.org/fhir/ValueSet/v3-ActCode"/>
-  <hierarchyMeaning value="subsumes"/>
+  <hierarchyMeaning value="is-a"/>
   <content value="complete"/>
   <property>
     <code value="notSelectable"/>
@@ -17898,7 +17926,7 @@ The kind of Act (e.g. physical examination, serum potassium, inpatient encounter
 
                         Fee for Service is used when an individual intervention/procedure/event is used for billing purposes.  In other words, fees are associated with the  intervention/procedure/event.  For example, a specific CCI (Canadian Classification of Interventions) code has an associated fee and is used for billing purposes."/>
       <property>
-        <code value="notSelectable"/>
+        <code value="inactive"/>
         <valueBoolean value="true"/>
       </property>
       <concept>
@@ -18722,7 +18750,7 @@ The kind of Act (e.g. physical examination, serum potassium, inpatient encounter
         <valueBoolean value="true"/>
       </property>
       <property>
-        <code value="notSelectable"/>
+        <code value="inactive"/>
         <valueBoolean value="true"/>
       </property>
       <concept>
@@ -18730,7 +18758,7 @@ The kind of Act (e.g. physical examination, serum potassium, inpatient encounter
         <display value="Eligible"/>
         <definition value="Insurance coverage is in effect for healthcare service(s) and/or product(s)."/>
         <property>
-          <code value="notSelectable"/>
+          <code value="inactive"/>
           <valueBoolean value="true"/>
         </property>
       </concept>
@@ -18739,7 +18767,7 @@ The kind of Act (e.g. physical examination, serum potassium, inpatient encounter
         <display value="Not Eligible"/>
         <definition value="Insurance coverage is not in effect for healthcare service(s) and/or product(s). May optionally include reasons for the ineligibility."/>
         <property>
-          <code value="notSelectable"/>
+          <code value="inactive"/>
           <valueBoolean value="true"/>
         </property>
       </concept>
@@ -18754,8 +18782,8 @@ The kind of Act (e.g. physical examination, serum potassium, inpatient encounter
       <valueBoolean value="true"/>
     </property>
     <concept>
-      <code value="_ActCoverageAgeLimitCode"/>
-      <display value="ActCoverageAgeLimitCode"/>
+      <code value="_ActCoverageQuantityLimitCode"/>
+      <display value="ActCoverageQuantityLimitCode"/>
       <definition value="Maximum amount paid or maximum number of services/products covered; or maximum amount or number covered during a specified time period under the policy or program."/>
       <property>
         <code value="notSelectable"/>
@@ -18812,7 +18840,7 @@ The kind of Act (e.g. physical examination, serum potassium, inpatient encounter
         <valueBoolean value="true"/>
       </property>
       <property>
-        <code value="notSelectable"/>
+        <code value="inactive"/>
         <valueBoolean value="true"/>
       </property>
     </concept>
@@ -19957,7 +19985,7 @@ The kind of Act (e.g. physical examination, serum potassium, inpatient encounter
             <display value="co-insurance"/>
             <definition value="The covered party pays a percentage of the cost of covered services."/>
             <property>
-              <code value="notSelectable"/>
+              <code value="inactive"/>
               <valueBoolean value="true"/>
             </property>
           </concept>
@@ -20146,7 +20174,7 @@ The kind of Act (e.g. physical examination, serum potassium, inpatient encounter
           <valueBoolean value="true"/>
         </property>
         <property>
-          <code value="notSelectable"/>
+          <code value="inactive"/>
           <valueBoolean value="true"/>
         </property>
       </concept>
@@ -21509,20 +21537,20 @@ The kind of Act (e.g. physical examination, serum potassium, inpatient encounter
                            Usage Note: If there is a jurisdictional mandate, then use the applicable ActPrivacyLaw code system, and specify the law rather than or in addition to this more generic code."/>
           </concept>
           <concept>
-            <code value="SOC"/>
-            <display value="social services sensitivity"/>
-            <definition value="Information about provision of social services.
-
-                        
-                           Usage Note: This is a temporary addition to FHIR to be proposed in harmonization."/>
-          </concept>
-          <concept>
             <code value="SCA"/>
             <display value="sickle cell anemia"/>
             <definition value="Policy for handling sickle cell disease information, which is afforded heightened confidentiality.  Information handling protocols are based on organizational policies related to sickle cell disease information, which is deemed sensitive.
 
                         
                            Usage Note: If there is a jurisdictional mandate, then the Act valued with this ActCode should be associated with an Act valued with any applicable laws from the ActPrivacyLaw code system."/>
+          </concept>
+          <concept>
+            <code value="SOC"/>
+            <display value="social services sensitivity"/>
+            <definition value="Information about provision of social services.
+
+                        
+                           Usage Note: This is a temporary addition to FHIR to be proposed in harmonization."/>
           </concept>
           <concept>
             <code value="SDV"/>
@@ -21568,7 +21596,7 @@ The kind of Act (e.g. physical examination, serum potassium, inpatient encounter
                         
                            Usage Note: ActSensitivity codes are used to bind information to an Act.confidentialityCode according to local sensitivity policy so that those confidentiality codes can then govern its handling across enterprises.  Internally to a policy domain, however, local policies guide the access control system on how end users in that policy domain are able to use information tagged with these sensitivity values."/>
             <property>
-              <code value="notSelectable"/>
+              <code value="inactive"/>
               <valueBoolean value="true"/>
             </property>
           </concept>
@@ -22244,7 +22272,7 @@ The kind of Act (e.g. physical examination, serum potassium, inpatient encounter
         <display value="Booster Immunization"/>
         <definition value="An additional immunization administration within a series intended to bolster or enhance immunity."/>
         <property>
-          <code value="notSelectable"/>
+          <code value="inactive"/>
           <valueBoolean value="true"/>
         </property>
       </concept>
@@ -22253,7 +22281,7 @@ The kind of Act (e.g. physical examination, serum potassium, inpatient encounter
         <display value="Initial Immunization"/>
         <definition value="The first immunization administration in a series intended to produce immunity"/>
         <property>
-          <code value="notSelectable"/>
+          <code value="inactive"/>
           <valueBoolean value="true"/>
         </property>
       </concept>
@@ -22949,6 +22977,16 @@ The kind of Act (e.g. physical examination, serum potassium, inpatient encounter
         <code value="AGGREGATE"/>
         <display value="aggregate measure observation"/>
         <definition value="Indicates that the observation is carrying out an aggregation calculation, contained in the value element."/>
+      </concept>
+      <concept>
+        <code value="CMPMSRMTH"/>
+        <display value="composite measure method"/>
+        <definition value="Indicates what method is used in a quality measure to combine the component measure results included in an composite measure."/>
+      </concept>
+      <concept>
+        <code value="CMPMSRSCRWGHT"/>
+        <display value="component measure scoring weight"/>
+        <definition value="An attribute of a quality measure describing the weight this component measure score is to carry in determining the overall composite measure final score. The value is real value greater than 0 and less than 1.0. Each component measure score will be multiplied by its CMPMSRSCRWGHT and then summed with the other component measures to determine the final overall composite measure score. The sum across all CMPMSRSCRWGHT values within a single composite measure SHALL be 1.0. The value assigned is scoped to the composite measure referencing this component measure only."/>
       </concept>
       <concept>
         <code value="COPY"/>
@@ -23826,7 +23864,7 @@ the measure population as a narrative description (e.g., all patients seen in th
               <valueBoolean value="true"/>
             </property>
             <property>
-              <code value="notSelectable"/>
+              <code value="inactive"/>
               <valueBoolean value="true"/>
             </property>
             <concept>
@@ -24029,7 +24067,7 @@ the measure population as a narrative description (e.g., all patients seen in th
         <valueBoolean value="true"/>
       </property>
       <property>
-        <code value="notSelectable"/>
+        <code value="inactive"/>
         <valueBoolean value="true"/>
       </property>
       <concept>
@@ -24037,7 +24075,7 @@ the measure population as a narrative description (e.g., all patients seen in th
         <display value="coating"/>
         <definition value="FDA label coating"/>
         <property>
-          <code value="notSelectable"/>
+          <code value="inactive"/>
           <valueBoolean value="true"/>
         </property>
       </concept>
@@ -24046,7 +24084,7 @@ the measure population as a narrative description (e.g., all patients seen in th
         <display value="color"/>
         <definition value="FDA label color"/>
         <property>
-          <code value="notSelectable"/>
+          <code value="inactive"/>
           <valueBoolean value="true"/>
         </property>
       </concept>
@@ -24055,7 +24093,7 @@ the measure population as a narrative description (e.g., all patients seen in th
         <display value="imprint code"/>
         <definition value="FDA label imprint code"/>
         <property>
-          <code value="notSelectable"/>
+          <code value="inactive"/>
           <valueBoolean value="true"/>
         </property>
       </concept>
@@ -24064,7 +24102,7 @@ the measure population as a narrative description (e.g., all patients seen in th
         <display value="logo"/>
         <definition value="FDA label logo"/>
         <property>
-          <code value="notSelectable"/>
+          <code value="inactive"/>
           <valueBoolean value="true"/>
         </property>
       </concept>
@@ -24073,7 +24111,7 @@ the measure population as a narrative description (e.g., all patients seen in th
         <display value="scoring"/>
         <definition value="FDA label scoring"/>
         <property>
-          <code value="notSelectable"/>
+          <code value="inactive"/>
           <valueBoolean value="true"/>
         </property>
       </concept>
@@ -24082,7 +24120,7 @@ the measure population as a narrative description (e.g., all patients seen in th
         <display value="shape"/>
         <definition value="FDA label shape"/>
         <property>
-          <code value="notSelectable"/>
+          <code value="inactive"/>
           <valueBoolean value="true"/>
         </property>
       </concept>
@@ -24091,7 +24129,7 @@ the measure population as a narrative description (e.g., all patients seen in th
         <display value="size"/>
         <definition value="FDA label size"/>
         <property>
-          <code value="notSelectable"/>
+          <code value="inactive"/>
           <valueBoolean value="true"/>
         </property>
       </concept>
@@ -24494,7 +24532,7 @@ the measure population as a narrative description (e.g., all patients seen in th
       <valueBoolean value="true"/>
     </property>
     <property>
-      <code value="notSelectable"/>
+      <code value="inactive"/>
       <valueBoolean value="true"/>
     </property>
     <concept>
@@ -24506,7 +24544,7 @@ the measure population as a narrative description (e.g., all patients seen in th
         <valueBoolean value="true"/>
       </property>
       <property>
-        <code value="notSelectable"/>
+        <code value="inactive"/>
         <valueBoolean value="true"/>
       </property>
     </concept>
@@ -24520,35 +24558,35 @@ the measure population as a narrative description (e.g., all patients seen in th
       <valueBoolean value="true"/>
     </property>
     <property>
-      <code value="notSelectable"/>
+      <code value="inactive"/>
       <valueBoolean value="true"/>
     </property>
   </concept>
   <concept>
     <code value="COPAY"/>
     <property>
-      <code value="notSelectable"/>
+      <code value="inactive"/>
       <valueBoolean value="true"/>
     </property>
   </concept>
   <concept>
     <code value="DEDUCT"/>
     <property>
-      <code value="notSelectable"/>
+      <code value="inactive"/>
       <valueBoolean value="true"/>
     </property>
   </concept>
   <concept>
     <code value="DOSEIND"/>
     <property>
-      <code value="notSelectable"/>
+      <code value="inactive"/>
       <valueBoolean value="true"/>
     </property>
   </concept>
   <concept>
     <code value="PRA"/>
     <property>
-      <code value="notSelectable"/>
+      <code value="inactive"/>
       <valueBoolean value="true"/>
     </property>
   </concept>
@@ -24557,7 +24595,7 @@ the measure population as a narrative description (e.g., all patients seen in th
     <display value="Storage"/>
     <definition value="The act of putting something away for safe keeping. The &quot;something&quot; may be physical object such as a specimen, or information, such as observations regarding a specimen."/>
     <property>
-      <code value="notSelectable"/>
+      <code value="inactive"/>
       <valueBoolean value="true"/>
     </property>
     <property>

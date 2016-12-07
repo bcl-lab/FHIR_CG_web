@@ -3,7 +3,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>Diagnosticreport-hla-genetics-results-example.json - FHIR v1.7.0</title>
+  <title>Diagnosticreport-hla-genetics-results-example.json - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -119,49 +119,10 @@
   &quot;resourceType&quot;: &quot;DiagnosticReport&quot;,
   &quot;id&quot;: &quot;hla-1&quot;,
   &quot;text&quot;: {
+    &quot;status&quot;: &quot;extensions&quot;,
     &quot;div&quot;: &quot;&lt;div xmlns=\&quot;http://www.w3.org/1999/xhtml\&quot;&gt;\n        &lt;h3&gt;HLA-A,-B,-C Genotyping Report for Marry Chalmers (MRN: 12345) &lt;/h3&gt;\n        &lt;pre&gt;\n        Gene      Allele 1          Allele 2\n        HLA-A     HLA-A*01:01:01:01     HLA-A*01:02\n        HLA-B     HLA-B*15:01:01:01     HLA-B*57:01:01\n        HLA-C     HLA-C*01:02:01        HLA-C*03:04:01:01\n        &lt;/pre&gt;\n        &lt;p&gt;Allele assignments based on IMGT/HLA 3.23&lt;/p&gt;\n        &lt;p&gt;Issued: 2015-05-26T15:30:10+01:00&lt;/p&gt;\n        &lt;p&gt;Method: Next-Generation Sequencing of exons 2 and 3 of HLA Class I genes&lt;/p&gt;\n        &lt;p&gt;Lab: ACME labs, Inc&lt;/p&gt;\n        &lt;p&gt;Please refer the &lt;a href=\&quot;genomics.html#hla\&quot;&gt;implementation guide &lt;/a&gt; for this usage example.&lt;/p&gt;\n      &lt;/div&gt;&quot;
   },
-  &quot;code&quot;: {
-    &quot;coding&quot;: [
-      {
-        &quot;system&quot;: &quot;http://loinc.org&quot;,
-        &quot;code&quot;: &quot;53767-0&quot;,
-        &quot;display&quot;: &quot;HLA-A+B+C SBT [Interpretation] by High resolution&quot;
-      }
-    ]
-  },
-  &quot;category&quot;: {
-    &quot;coding&quot;: [
-      {
-        &quot;system&quot;: &quot;http://hl7.org/fhir/ValueSet/diagnostic-service-sections&quot;,
-        &quot;code&quot;: &quot;GE&quot;,
-        &quot;display&quot;: &quot;Genetics&quot;
-      }
-    ]
-  },
-  &quot;subject&quot;: {
-    &quot;reference&quot;: &quot;Patient/123&quot;,
-    &quot;display&quot;: &quot;Mary Chalmers&quot;
-  },
-  &quot;specimen&quot;: [
-    {
-      &quot;reference&quot;: &quot;Specimen/456&quot;,
-      &quot;display&quot;: &quot;buccal swab&quot;
-    }
-  ],
-  &quot;request&quot;: [
-    {
-      &quot;reference&quot;: &quot;DiagnosticRequest/789&quot;,
-      &quot;display&quot;: &quot;Order for HLA-A,-B,-C genotyping&quot;
-    }
-  ],
-  &quot;effectiveDateTime&quot;: &quot;2015-05-26T15:30:10+01:00&quot;,
-  &quot;issued&quot;: &quot;2014-05-16T10:28:00+01:00&quot;,
   &quot;extension&quot;: [
-    {
-      &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/hla-genotyping-resultsAlleleAsignmentDate&quot;,
-      &quot;valueDate&quot;: &quot;2014-05-16T10:28:00+01:00&quot;
-    },
     {
       &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/hla-genotyping-resultsAlleleDatabase&quot;,
       &quot;valueCodeableConcept&quot;: {
@@ -198,6 +159,43 @@
         ],
         &quot;text&quot;: &quot;Next Generation Sequencing of exons 2 and 3 of HLA Class I genes&quot;
       }
+    }
+  ],
+  &quot;status&quot;: &quot;final&quot;,
+  &quot;category&quot;: {
+    &quot;coding&quot;: [
+      {
+        &quot;system&quot;: &quot;http://hl7.org/fhir/ValueSet/diagnostic-service-sections&quot;,
+        &quot;code&quot;: &quot;GE&quot;,
+        &quot;display&quot;: &quot;Genetics&quot;
+      }
+    ]
+  },
+  &quot;code&quot;: {
+    &quot;coding&quot;: [
+      {
+        &quot;system&quot;: &quot;http://loinc.org&quot;,
+        &quot;code&quot;: &quot;53767-0&quot;,
+        &quot;display&quot;: &quot;HLA-A+B+C SBT [Interpretation] by High resolution&quot;
+      }
+    ]
+  },
+  &quot;subject&quot;: {
+    &quot;reference&quot;: &quot;Patient/123&quot;,
+    &quot;display&quot;: &quot;Mary Chalmers&quot;
+  },
+  &quot;effectiveDateTime&quot;: &quot;2015-05-26T15:30:10+01:00&quot;,
+  &quot;issued&quot;: &quot;2014-05-16T10:28:00+01:00&quot;,
+  &quot;request&quot;: [
+    {
+      &quot;reference&quot;: &quot;DiagnosticRequest/789&quot;,
+      &quot;display&quot;: &quot;Order for HLA-A,-B,-C genotyping&quot;
+    }
+  ],
+  &quot;specimen&quot;: [
+    {
+      &quot;reference&quot;: &quot;Specimen/456&quot;,
+      &quot;display&quot;: &quot;buccal swab&quot;
     }
   ],
   &quot;result&quot;: [
@@ -239,7 +237,7 @@ of the specification.
 		<div class="container"><!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:32-0500. <a href="qa.html">QA Page</a>
+        © HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:21-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search</a> | 

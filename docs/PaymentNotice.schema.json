@@ -28,25 +28,29 @@
             },
             "status": {
               "description": "The status of the resource instance.",
-              "enum": [
-                "active",
-                "cancelled",
-                "draft",
-                "entered-in-error"
-              ],
-              "type": "string"
+              "type": "string",
+              "pattern": "[^\\s]+([\\s]?[^\\s]+)*"
             },
             "_status": {
               "description": "Extensions for status",
               "$ref": "Element.schema.json#/definitions/Element"
             },
-            "ruleset": {
-              "description": "The version of the style of resource contents. This should be mapped to the allowable profiles for this and supporting resources.",
-              "$ref": "Coding.schema.json#/definitions/Coding"
+            "request": {
+              "description": "Reference of resource for which payment is being made.",
+              "$ref": "Reference.schema.json#/definitions/Reference"
             },
-            "originalRuleset": {
-              "description": "The style (standard) and version of the original material which was converted into this resource.",
-              "$ref": "Coding.schema.json#/definitions/Coding"
+            "response": {
+              "description": "Reference of response to resource for which payment is being made.",
+              "$ref": "Reference.schema.json#/definitions/Reference"
+            },
+            "statusDate": {
+              "description": "The date when the above payment action occurrred.",
+              "type": "string",
+              "pattern": "-?[0-9]{4}(-(0[1-9]|1[0-2])(-(0[0-9]|[1-2][0-9]|3[0-1]))?)?"
+            },
+            "_statusDate": {
+              "description": "Extensions for statusDate",
+              "$ref": "Element.schema.json#/definitions/Element"
             },
             "created": {
               "description": "The date when this resource was created.",
@@ -69,30 +73,12 @@
               "description": "The organization which is responsible for the services rendered to the patient.",
               "$ref": "Reference.schema.json#/definitions/Reference"
             },
-            "request": {
-              "description": "Reference of resource for which payment is being made.",
-              "$ref": "Reference.schema.json#/definitions/Reference"
-            },
-            "response": {
-              "description": "Reference of response to resource for which payment is being made.",
-              "$ref": "Reference.schema.json#/definitions/Reference"
-            },
             "paymentStatus": {
               "description": "The payment status, typically paid: payment sent, cleared: payment received.",
-              "$ref": "Coding.schema.json#/definitions/Coding"
-            },
-            "statusDate": {
-              "description": "The date when the above payment action occurrred.",
-              "type": "string",
-              "pattern": "-?[0-9]{4}(-(0[1-9]|1[0-2])(-(0[0-9]|[1-2][0-9]|3[0-1]))?)?"
-            },
-            "_statusDate": {
-              "description": "Extensions for statusDate",
-              "$ref": "Element.schema.json#/definitions/Element"
+              "$ref": "CodeableConcept.schema.json#/definitions/CodeableConcept"
             }
           },
           "required": [
-            "paymentStatus",
             "resourceType"
           ]
         }

@@ -3,12 +3,12 @@
 <CodeSystem xmlns="http://hl7.org/fhir">
   <id value="v3-ObservationValue"/>
   <meta>
-    <lastUpdated value="2016-03-23T00:00:00.000-04:00"/>
+    <lastUpdated value="2016-11-11T00:00:00.000-05:00"/>
   </meta>
   <text>
     <status value="generated"/>
     <div xmlns="http://www.w3.org/1999/xhtml">
-      <p>Release Date: 2016-03-23</p>
+      <p>Release Date: 2016-11-11</p>
 
       <table class="grid">
  
@@ -1037,6 +1037,83 @@
           <td>1</td>
           <td>
             <span style="color: grey">
+              <i>(_CompositeMeasureScoring)</i>
+            </span> 
+            <b>
+              <i>Abstract</i>
+            </b>
+          </td>
+          <td>
+            <a name="_CompositeMeasureScoring"> </a>
+          </td>
+          <td>
+                        Observation values that communicate the method used in a quality measure to combine the component measure results included in an composite measure.
+            <br/>
+
+                     
+          </td>
+        </tr>
+ 
+        <tr>
+          <td>2</td>
+          <td>  ALLORNONESCR
+            <a name="ALLORNONESCR"> </a>
+          </td>
+          <td>All-or-nothing Scoring</td>
+          <td>
+                        Code specifying that the measure uses all-or-nothing scoring. All-or-nothing scoring places an individual in the numerator of the composite measure if and only if they are in the numerator of all component measures in which they are in the denominator. 
+            <br/>
+
+                     
+          </td>
+        </tr>
+ 
+        <tr>
+          <td>2</td>
+          <td>  LINEARSCR
+            <a name="LINEARSCR"> </a>
+          </td>
+          <td>Linear Scoring</td>
+          <td>
+                        Code specifying that the measure uses linear scoring. Linear scoring computes the fraction of component measures in which the individual appears in the numerator, giving equal weight to each component measure.
+            <br/>
+
+                     
+          </td>
+        </tr>
+ 
+        <tr>
+          <td>2</td>
+          <td>  OPPORSCR
+            <a name="OPPORSCR"> </a>
+          </td>
+          <td>Opportunity Scoring</td>
+          <td>
+                        Code specifying that the measure uses opportunity-based scoring. In opportunity-based scoring the measure score is determined by combining the denominator and numerator of each component measure to determine an overall composite score.
+            <br/>
+
+                     
+          </td>
+        </tr>
+ 
+        <tr>
+          <td>2</td>
+          <td>  WEIGHTSCR
+            <a name="WEIGHTSCR"> </a>
+          </td>
+          <td>Weighted Scoring</td>
+          <td>
+                        Code specifying that the measure uses weighted scoring. Weighted scoring assigns a factor to each component measure to weight that measure&#39;s contribution to the overall score.
+            <br/>
+
+                     
+          </td>
+        </tr>
+ 
+        <tr>
+          <td>1</td>
+          <td>
+            <span style="color: grey">
               <i>(_CoverageLimitObservationValue)</i>
             </span> 
             <b>
@@ -1914,7 +1991,7 @@
             <br/>
 
                         
-                           Rationale: Personal data which has been processed to make it impossible to know whose data it is. Used particularly for secondary use of health data. In some cases, it may be possible for authorized individuals to restore the identity of the individual, e.g.,for public health case management.  Based on ISO/TS 25237:2008 Health informatics Pseudonymization
+                           Rationale: Personal data which has been processed to make it impossible to know whose data it is. Used particularly for secondary use of health data. In some cases, it may be possible for authorized individuals to restore the identity of the individual, e.g.,for public health case management.  Based on ISO/TS 25237:2008 Health informaticsâ€”Pseudonymization
             <br/>
 
                      
@@ -2657,7 +2734,7 @@ Long-term shared authentication secrets, if used, are never revealed to any part
                         The degree of confidence in the vetting process used to establish the identity of the individual to whom the credential was issued, and 2) the degree of confidence that the individual who uses the credential is the individual to whom the credential was issued. [OMB M-04-04 E-Authentication Guidance for Federal Agencies]
             <br/>
 
-                        High authentication level of assurance indicates that the relying party may have very high confidence in the asserted identity&#39;s validity. Level 4 is for transactions that need very high confidence in the accuracy of the asserted identity. Level 4 provides the highest practical assurance of remote network authentication. Authentication is based on proof of possession of a key through a cryptographic protocol. This level is similar to Level 3 except that only hard cryptographic tokens are allowed, cryptographic module validation requirements are strengthened, and subsequent critical data transfers must be authenticated via a key that is bound to the authentication process. The token should be a hardware cryptographic module validated at FIPS 140-2 Level 2 or higher overall with at least FIPS 140-2 Level 3 physical security. This level requires a physical token, which cannot readily be copied, and operator authentication at Level 2 and higher, and ensures good, two-factor remote authentication.
+                        High authentication level of assurance indicates that the relying party may have very high confidence in the asserted identity&#39;s validity. Level 4 is for transactions that need very high confidence in the accuracy of the asserted identity. Level 4 provides the highest practical assurance of remote network authentication. Authentication is based on proof of possession of a key through a cryptographic protocol. This level is similar to Level 3 except that only â€œhardâ€? cryptographic tokens are allowed, cryptographic module validation requirements are strengthened, and subsequent critical data transfers must be authenticated via a key that is bound to the authentication process. The token should be a hardware cryptographic module validated at FIPS 140-2 Level 2 or higher overall with at least FIPS 140-2 Level 3 physical security. This level requires a physical token, which cannot readily be copied, and operator authentication at Level 2 and higher, and ensures good, two-factor remote authentication.
             <br/>
 
                         Level 4 requires strong cryptographic authentication of all parties and all sensitive data transfers between the parties. Either public key or symmetric key technology may be used. Authentication requires that the claimant prove through a secure authentication protocol that the claimant controls the token. Eavesdropper, replay, online guessing, verifier impersonation, and man-in-the-middle attacks are prevented. Long-term shared authentication secrets, if used, are never revealed to any party except the claimant and verifiers operated directly by the CSP; however, session (temporary) shared secrets may be provided to independent verifiers by the CSP. Strong approved cryptographic techniques are used for all operations. All sensitive data transfers are cryptographically authenticated using keys bound to the authentication process.   [Summary of the technical requirements specified in NIST SP 800-63 for the four levels of assurance defined by the December 2003, the Office of Management and Budget (OMB) issued Memorandum M-04-04, E-Authentication Guidance for Federal Agencies.]
@@ -3671,23 +3748,23 @@ Long-term shared authentication secrets, if used, are never revealed to any part
     <system value="urn:ietf:rfc:3986"/>
     <value value="urn:oid:2.16.840.1.113883.5.1063"/>
   </identifier>
-  <version value="2016-03-23"/>
+  <version value="2016-11-11"/>
   <name value="v3 Code System ObservationValue"/>
   <status value="active"/>
   <experimental value="false"/>
   <publisher value="HL7, Inc"/>
   <contact>
     <telecom>
-      <system value="other"/>
+      <system value="url"/>
       <value value="http://hl7.org"/>
     </telecom>
   </contact>
-  <date value="2016-03-23T00:00:00-04:00"/>
+  <date value="2016-11-11T00:00:00-05:00"/>
   <description value=" This domain is the root domain to which all HL7-recognized value sets for the Observation.value attribute will be linked when Observation.value has a coded data type.  OpenIssue:
 Description copied from Concept Domain of same name.  Must be corrected.."/>
   <caseSensitive value="true"/>
   <valueSet value="http://hl7.org/fhir/ValueSet/v3-ObservationValue"/>
-  <hierarchyMeaning value="subsumes"/>
+  <hierarchyMeaning value="is-a"/>
   <content value="complete"/>
   <property>
     <code value="notSelectable"/>
@@ -4070,6 +4147,35 @@ Description copied from Concept Domain of same name.  Must be corrected.."/>
     </concept>
   </concept>
   <concept>
+    <code value="_CompositeMeasureScoring"/>
+    <display value="CompositeMeasureScoring"/>
+    <definition value="Observation values that communicate the method used in a quality measure to combine the component measure results included in an composite measure."/>
+    <property>
+      <code value="notSelectable"/>
+      <valueBoolean value="true"/>
+    </property>
+    <concept>
+      <code value="ALLORNONESCR"/>
+      <display value="All-or-nothing Scoring"/>
+      <definition value="Code specifying that the measure uses all-or-nothing scoring. All-or-nothing scoring places an individual in the numerator of the composite measure if and only if they are in the numerator of all component measures in which they are in the denominator."/>
+    </concept>
+    <concept>
+      <code value="LINEARSCR"/>
+      <display value="Linear Scoring"/>
+      <definition value="Code specifying that the measure uses linear scoring. Linear scoring computes the fraction of component measures in which the individual appears in the numerator, giving equal weight to each component measure."/>
+    </concept>
+    <concept>
+      <code value="OPPORSCR"/>
+      <display value="Opportunity Scoring"/>
+      <definition value="Code specifying that the measure uses opportunity-based scoring. In opportunity-based scoring the measure score is determined by combining the denominator and numerator of each component measure to determine an overall composite score."/>
+    </concept>
+    <concept>
+      <code value="WEIGHTSCR"/>
+      <display value="Weighted Scoring"/>
+      <definition value="Code specifying that the measure uses weighted scoring. Weighted scoring assigns a factor to each component measure to weight that measure&#39;s contribution to the overall score."/>
+    </concept>
+  </concept>
+  <concept>
     <code value="_CoverageLimitObservationValue"/>
     <display value="CoverageLimitObservationValue"/>
     <definition value="Description:Coded observation values for coverage limitations, for e.g., types of claims or types of parties covered under a policy or program."/>
@@ -4432,7 +4538,7 @@ Description copied from Concept Domain of same name.  Must be corrected.."/>
           <definition value="Security metadata observation value conveying the alteration integrity of an IT resource (data, information object, service, or system capability), by indicating the mechanism by which software systems can strip portions of the resource that could allow the identification of the source of the information or the information subject.  Custodian may retain a key to relink data necessary to reidentify the information subject.
 
                         
-                           Rationale: Personal data which has been processed to make it impossible to know whose data it is. Used particularly for secondary use of health data. In some cases, it may be possible for authorized individuals to restore the identity of the individual, e.g.,for public health case management.  Based on ISO/TS 25237:2008 Health informatics Pseudonymization"/>
+                           Rationale: Personal data which has been processed to make it impossible to know whose data it is. Used particularly for secondary use of health data. In some cases, it may be possible for authorized individuals to restore the identity of the individual, e.g.,for public health case management.  Based on ISO/TS 25237:2008 Health informaticsâ€”Pseudonymization"/>
         </concept>
         <concept>
           <code value="REDACTED"/>
@@ -4750,7 +4856,7 @@ Long-term shared authentication secrets, if used, are never revealed to any part
 
                         The degree of confidence in the vetting process used to establish the identity of the individual to whom the credential was issued, and 2) the degree of confidence that the individual who uses the credential is the individual to whom the credential was issued. [OMB M-04-04 E-Authentication Guidance for Federal Agencies]
 
-                        High authentication level of assurance indicates that the relying party may have very high confidence in the asserted identity&#39;s validity. Level 4 is for transactions that need very high confidence in the accuracy of the asserted identity. Level 4 provides the highest practical assurance of remote network authentication. Authentication is based on proof of possession of a key through a cryptographic protocol. This level is similar to Level 3 except that only hard cryptographic tokens are allowed, cryptographic module validation requirements are strengthened, and subsequent critical data transfers must be authenticated via a key that is bound to the authentication process. The token should be a hardware cryptographic module validated at FIPS 140-2 Level 2 or higher overall with at least FIPS 140-2 Level 3 physical security. This level requires a physical token, which cannot readily be copied, and operator authentication at Level 2 and higher, and ensures good, two-factor remote authentication.
+                        High authentication level of assurance indicates that the relying party may have very high confidence in the asserted identity&#39;s validity. Level 4 is for transactions that need very high confidence in the accuracy of the asserted identity. Level 4 provides the highest practical assurance of remote network authentication. Authentication is based on proof of possession of a key through a cryptographic protocol. This level is similar to Level 3 except that only â€œhardâ€? cryptographic tokens are allowed, cryptographic module validation requirements are strengthened, and subsequent critical data transfers must be authenticated via a key that is bound to the authentication process. The token should be a hardware cryptographic module validated at FIPS 140-2 Level 2 or higher overall with at least FIPS 140-2 Level 3 physical security. This level requires a physical token, which cannot readily be copied, and operator authentication at Level 2 and higher, and ensures good, two-factor remote authentication.
 
                         Level 4 requires strong cryptographic authentication of all parties and all sensitive data transfers between the parties. Either public key or symmetric key technology may be used. Authentication requires that the claimant prove through a secure authentication protocol that the claimant controls the token. Eavesdropper, replay, online guessing, verifier impersonation, and man-in-the-middle attacks are prevented. Long-term shared authentication secrets, if used, are never revealed to any party except the claimant and verifiers operated directly by the CSP; however, session (temporary) shared secrets may be provided to independent verifiers by the CSP. Strong approved cryptographic techniques are used for all operations. All sensitive data transfers are cryptographically authenticated using keys bound to the authentication process.   [Summary of the technical requirements specified in NIST SP 800-63 for the four levels of assurance defined by the December 2003, the Office of Management and Budget (OMB) issued Memorandum M-04-04, E-Authentication Guidance for Federal Agencies.]"/>
           </concept>
@@ -5118,7 +5224,7 @@ Long-term shared authentication secrets, if used, are never revealed to any part
       <valueBoolean value="true"/>
     </property>
     <property>
-      <code value="notSelectable"/>
+      <code value="inactive"/>
       <valueBoolean value="true"/>
     </property>
   </concept>
@@ -5131,7 +5237,7 @@ Long-term shared authentication secrets, if used, are never revealed to any part
       <valueBoolean value="true"/>
     </property>
     <property>
-      <code value="notSelectable"/>
+      <code value="inactive"/>
       <valueBoolean value="true"/>
     </property>
   </concept>
@@ -5144,7 +5250,7 @@ Long-term shared authentication secrets, if used, are never revealed to any part
       <valueBoolean value="true"/>
     </property>
     <property>
-      <code value="notSelectable"/>
+      <code value="inactive"/>
       <valueBoolean value="true"/>
     </property>
   </concept>
@@ -5157,7 +5263,7 @@ Long-term shared authentication secrets, if used, are never revealed to any part
       <valueBoolean value="true"/>
     </property>
     <property>
-      <code value="notSelectable"/>
+      <code value="inactive"/>
       <valueBoolean value="true"/>
     </property>
   </concept>

@@ -2,7 +2,7 @@
   <!-- These elements SHALL always appear in this order. These basic elements shared by all resources come first
 in order to support consistent definitions for schema and UML derived code. --><html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-      <title>Administration-module - FHIR v1.7.0</title>
+      <title>Administration-module - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -103,7 +103,8 @@ in order to support consistent definitions for schema and UML derived code. --><
   <!-- CONTENT CONTENT -->
 
 
-    <div class="col-9">
+    <div class="col-12">
+        <table class="cols"><tr><td id="wg">Work Group <a href="http://www.hl7.org/Special/committees/pafm/index.cfm" _target="blank">Patient Administration <img src="external.png" style="text-align: baseline"/></a> </td><td id="ballot"><a href="help.html#status">Ballot Status</a>: <a href="history.html#pubs">n/a</a></td></tr></table>
 
         <a name="root"> </a>
         <h2 class="self-link-parent"><span class="sectioncount">8.0<a name="8.0"> </a></span> Administration Module <a href="administration-module.html#8.0" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h2>
@@ -121,11 +122,49 @@ in order to support consistent definitions for schema and UML derived code. --><
 
         <a name="index"> </a>
         <h3 class="self-link-parent"><span class="sectioncount">8.0.2</span> Index <a href="administration-module.html#index" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h3>
+        <table width="100%" style="table-layout: fixed">
+            <tr>
+                <td>
+                    <ul>
+                        <li><a href="patient.html">Patient</a></li>
+                        <li><a href="relatedperson.html">RelatedPerson</a></li>
+                        <li><a href="group.html">Group</a></li>
+                        <li><a href="practitioner.html">Practitioner</a></li>
+                        <li><a href="practitionerrole.html">PractitionerRole</a></li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li><a href="organization.html">Organization</a></li>
+                        <li><a href="location.html">Location</a></li>
+                        <li><a href="healthcareservice.html">HealthcareService</a></li>
+                        <li><a href="endpoint.html">Endpoint</a></li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li><a href="episodeofcare.html">EpisodeOfCare</a></li>
+                        <li><a href="encounter.html">Encounter</a></li>
+                        <li><a href="account.html">Account</a></li>
+                        <li><a href="flag.html">Flag</a></li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li><a href="device.html">Device</a></li>
+                        <li><a href="devicecomponent.html">DeviceComponent</a></li>
+                        <li><a href="devicemetric.html">DeviceMetric</a></li>
+                        <li><a href="substance.html">Substance</a></li>
+                    </ul>
+                </td>
+            </tr>
+        </table>
+        <a name="patient-reg"> </a>
+        <h4 class="self-link-parent"><span class="sectioncount">8.0.2.1</span> Patient Registers <a href="administration-module.html#patient-reg" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h4>
+        <p>
+            Track people involved in receiving healthcare, the basics nearly everything else references back to
+        </p>
         <table class="bare">
-            <tr><td colspan="3"><hr/></td></tr>
-<tr><th colspan="3">Patient Registers<a name="patientregisters"> </a></th></tr>
-<tr><td colspan="3">Track people involved in receiving healthcare, the basics nearly everything else references back to</td></tr>
-
             <tr><td><b>Name</b></td><td><b>Aliases</b></td><td><b>Description</b></td></tr>
             <tr bgcolor="#EFEFEF"><td><a href="patient.html">Patient</a></td><td>SubjectOfCare Client Resident</td><td>Demographics and other administrative information about an individual or animal receiving care or other health-related services.</td></tr>
 
@@ -154,11 +193,12 @@ in order to support consistent definitions for schema and UML derived code. --><
             </blockquote>
         </p>
 
+        <a name="patient-reg"> </a>
+        <h4 class="self-link-parent"><span class="sectioncount">8.0.2.2</span> Clinical Categorization Resources <a href="administration-module.html#patient-reg" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h4>
+        <p>
+            Most clinical actitivies occur grouped in some way. Long term care is typically covered by an EpisodeOfCare, where short term care by encounters. Account associates the tracking of transactions back to a Patient (or other resource). Flag is just used to highlight a warning or other notification about a patient (or other resource)
+        </p>
         <table class="bare">
-            <tr><td colspan="3"><hr/></td></tr>
-<tr><th colspan="3">Clinical Categorization Resources<a name="clinicalcategorizationresources"> </a></th></tr>
-<tr><td colspan="3">Most clinical actitivies occur grouped in some way. Long term care is typically covered by an EpisodeOfCare, where short term care by encounters. Account associates the tracking of transactions back to a Patient (or other resource). Flag is just used to highlight a warning or other notification about a patient (or other resource)</td></tr>
-
             <tr><td><b>Name</b></td><td><b>Aliases</b></td><td><b>Description</b></td></tr>
             <tr bgcolor="#EFEFEF"><td><a href="episodeofcare.html">EpisodeOfCare</a></td><td>Case Program Problem</td><td>An association between a patient and an organization / healthcare provider(s) during which time encounters may occur. The managing organization assumes a level of responsibility for the patient during this time.</td></tr>
 
@@ -179,11 +219,12 @@ in order to support consistent definitions for schema and UML derived code. --><
             </blockquote>
         </p>
 
+        <a name="patient-reg"> </a>
+        <h4 class="self-link-parent"><span class="sectioncount">8.0.2.3</span> Service Provider Directory Resources <a href="administration-module.html#patient-reg" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h4>
+        <p>
+            Service Directory resources are usually stored in the administration section of applications, and may even be synchronized from external systems.
+        </p>
         <table class="bare">
-            <tr><td colspan="3"><hr/></td></tr>
-<tr><th colspan="3">Service Provider Directory Resources<a name="serviceproviderdirectoryresources"> </a></th></tr>
-<tr><td colspan="3">Service Directory resources are usually stored in the administration section of applications, and may even be synchronized from external systems.</td></tr>
-
             <tr><td><b>Name</b></td><td><b>Aliases</b></td><td><b>Description</b></td></tr>
             <tr bgcolor="#EFEFEF"><td><a href="organization.html">Organization</a></td><td/><td>A formally or informally recognized grouping of people or organizations formed for the purpose of achieving some form of collective action.  Includes companies, institutions, corporations, departments, community groups, healthcare practice groups, etc.</td></tr>
 
@@ -191,11 +232,11 @@ in order to support consistent definitions for schema and UML derived code. --><
 
             <tr bgcolor="#EFEFEF"><td><a href="practitioner.html">Practitioner</a></td><td/><td>A person who is directly or indirectly involved in the provisioning of healthcare.</td></tr>
 
-            <tr bgcolor="#FFFFFF"><td><a href="healthcareservice.html">HealthcareService</a></td><td/><td>The details of a healthcare service available at a location.</td></tr>
-
-            <tr bgcolor="#EFEFEF"><td><a href="endpoint.html">Endpoint</a></td><td/><td>The technical details of an endpoint that can be used for electronic services, such as for web services providing XDS.b or a REST endpoint for another FHIR server. This may include any security context information.</td></tr>
-
             <tr bgcolor="#FFFFFF"><td><a href="practitionerrole.html">PractitionerRole</a></td><td/><td>A specific set of Roles/Locations/specialties/services that a practitioner may perform at an organization for a period of time.</td></tr>
+
+            <tr bgcolor="#EFEFEF"><td><a href="healthcareservice.html">HealthcareService</a></td><td/><td>The details of a healthcare service available at a location.</td></tr>
+
+            <tr bgcolor="#FFFFFF"><td><a href="endpoint.html">Endpoint</a></td><td/><td>The technical details of an endpoint that can be used for electronic services, such as for web services providing XDS.b or a REST endpoint for another FHIR server. This may include any security context information.</td></tr>
 
         </table>
         <div>
@@ -203,18 +244,18 @@ in order to support consistent definitions for schema and UML derived code. --><
         </div>
         <p>
             <blockquote>
-                <em>Note:</em> The PractitionerRole resource is a draft concept to experiment with the
-                extraction from within the practitioner resource. It will be the subject of a Provider Directory Connectathon,
-                and the Baltimore WGM Connectathon in September 2016<br/>
-                If this is approved, then the Role component in Practitioner would likely be removed.
+                <em>Note:</em> The PractitionerRole resource is new concept enabling the seperation of roles from core details.
+                It has been tested at several Provider Directory Connectathons, and will be re-verified at the January 2017 WGM.<br/>
+                The Role component in Practitioner is likely be removed in the near future once other flow-on effects have been considered completely.
             </blockquote>
         </p>
 
+        <a name="patient-reg"> </a>
+        <h4 class="self-link-parent"><span class="sectioncount">8.0.2.4</span> Devices and Substances <a href="administration-module.html#patient-reg" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h4>
+        <p>
+            Other assets are often registered in the administration system, and maintained as master files.
+        </p>
         <table class="bare">
-            <tr><td colspan="3"><hr/></td></tr>
-<tr><th colspan="3">Devices and Substances<a name="devicesandsubstances"> </a></th></tr>
-<tr><td colspan="3">Other assets are often registered in the administration system, and maintained as master files.</td></tr>
-
             <tr><td><b>Name</b></td><td><b>Aliases</b></td><td><b>Description</b></td></tr>
             <tr bgcolor="#EFEFEF"><td><a href="device.html">Device</a></td><td/><td>This resource identifies an instance or a type of a manufactured item that is used in the provision of healthcare without being substantially changed through that activity. The device may be a medical or non-medical device.  Medical devices includes durable (reusable) medical equipment, implantable devices, as well as disposable equipment used for diagnostic, treatment, and research for healthcare and public health.  Non-medical devices may include items such as a machine, cellphone, computer, application, etc.</td></tr>
 
@@ -236,6 +277,17 @@ in order to support consistent definitions for schema and UML derived code. --><
         </p>
         <p>
             One of the more common use cases is for marking a patient as being a <a href="security-labels.html">celebrity</a>.
+        </p>
+        <p>
+            Note that privacy considerations apply to Person, Practitioner and RelatedPerson records in addition to Patient's.
+        </p>
+        <p>
+            While Organization, Location, Device and other non-person-identifying records are generally subject to less stringent
+            security precautions, such data must still be protected to avoid safety issues
+            (e.g. someone maliciously changing the ingredients associated with a drug to cause/fail to cause alerts)
+        </p>
+        <p>
+            Devices can be linked to Patients.  If this occurs, they must be protected as any other patient-linked element
         </p>
         <p>
             For more general considerations, see <a href="secpriv-module.html">the Security and Privacy module</a>.
@@ -281,7 +333,7 @@ in order to support consistent definitions for schema and UML derived code. --><
 		<div class="container">  <!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:33-0500. <a href="qa.html">QA Page</a>
+        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:28-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search <img src="external.png" style="text-align: baseline"/></a> | 

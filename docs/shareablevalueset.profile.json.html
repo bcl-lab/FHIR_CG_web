@@ -4,7 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>StructureDefinition: ShareableValueSet - FHIR v1.7.0</title>
+  <title>StructureDefinition: ShareableValueSet - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -126,9 +126,9 @@
   &quot;name&quot;: &quot;Shareable ValueSet&quot;,
   &quot;status&quot;: &quot;draft&quot;,
   &quot;publisher&quot;: &quot;HL7&quot;,
-  &quot;date&quot;: &quot;2016-11-28T17:29:55-05:00&quot;,
+  &quot;date&quot;: &quot;2016-12-07T14:18:58-05:00&quot;,
   &quot;description&quot;: &quot;Enforces the minimum information set for the value set metadata required by HL7 and other organisations that share and publish value sets&quot;,
-  &quot;fhirVersion&quot;: &quot;1.7.0&quot;,
+  &quot;fhirVersion&quot;: &quot;1.8.0&quot;,
   &quot;mapping&quot;: [
     {
       &quot;identity&quot;: &quot;rim&quot;,
@@ -1024,8 +1024,8 @@
       {
         &quot;id&quot;: &quot;ValueSet:shareablevalueset.compose.lockedDate&quot;,
         &quot;path&quot;: &quot;ValueSet.compose.lockedDate&quot;,
-        &quot;short&quot;: &quot;Fixed date for all referenced code systems and value sets&quot;,
-        &quot;definition&quot;: &quot;If a locked date is defined, then the Content Logical Definition must be evaluated using the current version of all referenced code system(s) and value set instances as of the locked date.&quot;,
+        &quot;short&quot;: &quot;Fixed date for version-less references (transitive)&quot;,
+        &quot;definition&quot;: &quot;If a locked date is defined, then the Content Logical Definition must be evaluated using the current version as of the locked date for referenced code system(s) and value set instances where ValueSet.compose.include.version is not defined.&quot;,
         &quot;comments&quot;: &quot;With a defined lockedDate the value set is considered \&quot;Locked\&quot;. Otherwise, the value set may have different expansions as underlying code systems and/or value sets evolve.  The interpretation of lockedDate is often dependent on the context - e.g. a SNOMED CT derived value set with a lockedDate will have a different expansion in USA than in UK.  If a value set specifies a version for include and exclude statements, and also specifies a locked date, the specified versions need to be available that date, or the value set will not be usable.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
@@ -1811,7 +1811,7 @@
       {
         &quot;id&quot;: &quot;ValueSet:shareablevalueset.compose.include.filter.op&quot;,
         &quot;path&quot;: &quot;ValueSet.compose.include.filter.op&quot;,
-        &quot;short&quot;: &quot;= | is-a | descendent-of | is-not-a | regex | in | not-in | generalizes&quot;,
+        &quot;short&quot;: &quot;= | is-a | descendent-of | is-not-a | regex | in | not-in | generalizes | exists&quot;,
         &quot;definition&quot;: &quot;The kind of operation to perform as a part of the filter criteria.&quot;,
         &quot;min&quot;: 1,
         &quot;max&quot;: &quot;1&quot;,
@@ -1825,6 +1825,7 @@
             &quot;code&quot;: &quot;code&quot;
           }
         ],
+        &quot;isModifier&quot;: true,
         &quot;binding&quot;: {
           &quot;strength&quot;: &quot;required&quot;,
           &quot;description&quot;: &quot;The kind of operation to perform as a part of a property based filter.&quot;,
@@ -2708,7 +2709,7 @@
 		<div class="container"><!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:31-0500. <a href="qa.html">QA Page</a>
+        © HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:20-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search</a> | 

@@ -3,7 +3,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>Eligibilityrequest-questionnaire.json - FHIR v1.7.0</title>
+  <title>Eligibilityrequest-questionnaire.json - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -126,8 +126,8 @@
       &quot;status&quot;: &quot;active&quot;,
       &quot;description&quot;: &quot;Type options for EligibilityRequest.serviced[x]&quot;,
       &quot;expansion&quot;: {
-        &quot;identifier&quot;: &quot;urn:uuid:c318582f-0d68-42c4-af6d-56d597f32c7a&quot;,
-        &quot;timestamp&quot;: &quot;2016-11-28T17:32:37-05:00&quot;,
+        &quot;identifier&quot;: &quot;urn:uuid:624ce002-d5eb-46da-bbc9-c99ca003aae4&quot;,
+        &quot;timestamp&quot;: &quot;2016-12-07T14:21:45-05:00&quot;,
         &quot;contains&quot;: [
           {
             &quot;system&quot;: &quot;http://hl7.org/fhir/data-types&quot;,
@@ -149,7 +149,7 @@
     }
   ],
   &quot;status&quot;: &quot;draft&quot;,
-  &quot;date&quot;: &quot;2016-11-28T17:29:55-05:00&quot;,
+  &quot;date&quot;: &quot;2016-12-07T14:18:58-05:00&quot;,
   &quot;publisher&quot;: &quot;Health Level Seven International (Financial Management)&quot;,
   &quot;item&quot;: [
     {
@@ -174,7 +174,7 @@
               }
             }
           ],
-          &quot;text&quot;: &quot;This resource provides the insurance eligibility details from the insurer regarding a specified coverage and optionally some class of service.&quot;,
+          &quot;text&quot;: &quot;This resource provides the details  from the insurer to identify a specified coverage and optionally some class of service.&quot;,
           &quot;type&quot;: &quot;display&quot;
         },
         {
@@ -510,10 +510,6 @@
         {
           &quot;extension&quot;: [
             {
-              &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-minOccurs&quot;,
-              &quot;valueInteger&quot;: 1
-            },
-            {
               &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs&quot;,
               &quot;valueInteger&quot;: 1
             },
@@ -524,7 +520,7 @@
           ],
           &quot;linkId&quot;: &quot;EligibilityRequest.status&quot;,
           &quot;type&quot;: &quot;group&quot;,
-          &quot;required&quot;: true,
+          &quot;required&quot;: false,
           &quot;repeats&quot;: true,
           &quot;item&quot;: [
             {
@@ -562,10 +558,11 @@
             },
             {
               &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType&quot;,
-              &quot;valueString&quot;: &quot;Coding&quot;
+              &quot;valueString&quot;: &quot;CodeableConcept&quot;
             }
           ],
-          &quot;linkId&quot;: &quot;EligibilityRequest.ruleset&quot;,
+          &quot;linkId&quot;: &quot;EligibilityRequest.priority&quot;,
+          &quot;text&quot;: &quot;Desired processing priority&quot;,
           &quot;type&quot;: &quot;group&quot;,
           &quot;required&quot;: false,
           &quot;repeats&quot;: true,
@@ -585,13 +582,20 @@
                   }
                 }
               ],
-              &quot;text&quot;: &quot;The version of the style of resource contents. This should be mapped to the allowable profiles for this and supporting resources.&quot;,
+              &quot;text&quot;: &quot;Immediate (STAT), best effort (NORMAL), deferred (DEFER).&quot;,
               &quot;type&quot;: &quot;display&quot;
             },
             {
-              &quot;linkId&quot;: &quot;EligibilityRequest.ruleset.value&quot;,
-              &quot;text&quot;: &quot;Resource version&quot;,
+              &quot;linkId&quot;: &quot;EligibilityRequest.priority.coding&quot;,
+              &quot;text&quot;: &quot;code:&quot;,
               &quot;type&quot;: &quot;open-choice&quot;,
+              &quot;required&quot;: false,
+              &quot;repeats&quot;: false
+            },
+            {
+              &quot;linkId&quot;: &quot;EligibilityRequest.priority.text&quot;,
+              &quot;text&quot;: &quot;text:&quot;,
+              &quot;type&quot;: &quot;string&quot;,
               &quot;required&quot;: false,
               &quot;repeats&quot;: false
             }
@@ -605,10 +609,10 @@
             },
             {
               &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType&quot;,
-              &quot;valueString&quot;: &quot;Coding&quot;
+              &quot;valueString&quot;: &quot;Reference&quot;
             }
           ],
-          &quot;linkId&quot;: &quot;EligibilityRequest.originalRuleset&quot;,
+          &quot;linkId&quot;: &quot;EligibilityRequest.patient&quot;,
           &quot;type&quot;: &quot;group&quot;,
           &quot;required&quot;: false,
           &quot;repeats&quot;: true,
@@ -628,15 +632,116 @@
                   }
                 }
               ],
-              &quot;text&quot;: &quot;The style (standard) and version of the original material which was converted into this resource.&quot;,
+              &quot;text&quot;: &quot;Patient Resource. 1..1.&quot;,
               &quot;type&quot;: &quot;display&quot;
             },
             {
-              &quot;linkId&quot;: &quot;EligibilityRequest.originalRuleset.value&quot;,
-              &quot;text&quot;: &quot;Original version&quot;,
-              &quot;type&quot;: &quot;open-choice&quot;,
+              &quot;extension&quot;: [
+                {
+                  &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-allowedResource&quot;,
+                  &quot;valueCode&quot;: &quot;Patient&quot;
+                },
+                {
+                  &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-referenceFilter&quot;,
+                  &quot;valueString&quot;: &quot;subject=$subj&amp;patient=$subj&amp;encounter=$encounter&quot;
+                }
+              ],
+              &quot;linkId&quot;: &quot;EligibilityRequest.patient.value&quot;,
+              &quot;text&quot;: &quot;The subject of the Products and Services&quot;,
+              &quot;type&quot;: &quot;reference&quot;,
               &quot;required&quot;: false,
               &quot;repeats&quot;: false
+            }
+          ]
+        },
+        {
+          &quot;extension&quot;: [
+            {
+              &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs&quot;,
+              &quot;valueInteger&quot;: 1
+            }
+          ],
+          &quot;linkId&quot;: &quot;EligibilityRequest.serviced[x]&quot;,
+          &quot;text&quot;: &quot;Estimated date or dates of Service&quot;,
+          &quot;type&quot;: &quot;group&quot;,
+          &quot;required&quot;: false,
+          &quot;repeats&quot;: true,
+          &quot;item&quot;: [
+            {
+              &quot;extension&quot;: [
+                {
+                  &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl&quot;,
+                  &quot;valueCodeableConcept&quot;: {
+                    &quot;coding&quot;: [
+                      {
+                        &quot;system&quot;: &quot;http://hl7.org/fhir/questionnaire-item-control&quot;,
+                        &quot;code&quot;: &quot;flyover&quot;,
+                        &quot;display&quot;: &quot;Fly-over&quot;
+                      }
+                    ]
+                  }
+                }
+              ],
+              &quot;text&quot;: &quot;The date or dates when the enclosed suite of services were performed or completed.&quot;,
+              &quot;type&quot;: &quot;display&quot;
+            },
+            {
+              &quot;linkId&quot;: &quot;EligibilityRequest.serviced[x]._type&quot;,
+              &quot;text&quot;: &quot;type&quot;,
+              &quot;type&quot;: &quot;choice&quot;,
+              &quot;required&quot;: false,
+              &quot;repeats&quot;: false,
+              &quot;options&quot;: {
+                &quot;reference&quot;: &quot;#vs2&quot;
+              },
+              &quot;item&quot;: [
+                {
+                  &quot;extension&quot;: [
+                    {
+                      &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType&quot;,
+                      &quot;valueString&quot;: &quot;datetime&quot;
+                    }
+                  ],
+                  &quot;linkId&quot;: &quot;EligibilityRequest.serviced[x]._date&quot;,
+                  &quot;type&quot;: &quot;group&quot;,
+                  &quot;item&quot;: [
+                    {
+                      &quot;linkId&quot;: &quot;EligibilityRequest.serviced[x]._date.value&quot;,
+                      &quot;text&quot;: &quot;date&quot;,
+                      &quot;type&quot;: &quot;dateTime&quot;,
+                      &quot;required&quot;: false,
+                      &quot;repeats&quot;: false
+                    }
+                  ]
+                },
+                {
+                  &quot;extension&quot;: [
+                    {
+                      &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType&quot;,
+                      &quot;valueString&quot;: &quot;Period&quot;
+                    }
+                  ],
+                  &quot;linkId&quot;: &quot;EligibilityRequest.serviced[x]._Period&quot;,
+                  &quot;text&quot;: &quot;Period&quot;,
+                  &quot;type&quot;: &quot;group&quot;,
+                  &quot;item&quot;: [
+                    {
+                      &quot;linkId&quot;: &quot;EligibilityRequest.serviced[x]._Period.low&quot;,
+                      &quot;text&quot;: &quot;start:&quot;,
+                      &quot;type&quot;: &quot;dateTime&quot;,
+                      &quot;required&quot;: false,
+                      &quot;repeats&quot;: false
+                    },
+                    {
+                      &quot;linkId&quot;: &quot;EligibilityRequest.serviced[x]._Period.end&quot;,
+                      &quot;text&quot;: &quot;end:&quot;,
+                      &quot;type&quot;: &quot;dateTime&quot;,
+                      &quot;required&quot;: false,
+                      &quot;repeats&quot;: false
+                    }
+                  ]
+                }
+              ]
             }
           ]
         },
@@ -694,7 +799,7 @@
               &quot;valueString&quot;: &quot;Reference&quot;
             }
           ],
-          &quot;linkId&quot;: &quot;EligibilityRequest.insurer&quot;,
+          &quot;linkId&quot;: &quot;EligibilityRequest.enterer&quot;,
           &quot;type&quot;: &quot;group&quot;,
           &quot;required&quot;: false,
           &quot;repeats&quot;: true,
@@ -714,22 +819,22 @@
                   }
                 }
               ],
-              &quot;text&quot;: &quot;The Insurer who is target  of the request.&quot;,
+              &quot;text&quot;: &quot;Person who created the invoice/claim/pre-determination or pre-authorization.&quot;,
               &quot;type&quot;: &quot;display&quot;
             },
             {
               &quot;extension&quot;: [
                 {
                   &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-allowedResource&quot;,
-                  &quot;valueCode&quot;: &quot;Organization&quot;
+                  &quot;valueCode&quot;: &quot;Practitioner&quot;
                 },
                 {
                   &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-referenceFilter&quot;,
                   &quot;valueString&quot;: &quot;subject=$subj&amp;patient=$subj&amp;encounter=$encounter&quot;
                 }
               ],
-              &quot;linkId&quot;: &quot;EligibilityRequest.insurer.value&quot;,
-              &quot;text&quot;: &quot;Target&quot;,
+              &quot;linkId&quot;: &quot;EligibilityRequest.enterer.value&quot;,
+              &quot;text&quot;: &quot;Author&quot;,
               &quot;type&quot;: &quot;reference&quot;,
               &quot;required&quot;: false,
               &quot;repeats&quot;: false
@@ -850,53 +955,10 @@
             },
             {
               &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType&quot;,
-              &quot;valueString&quot;: &quot;Coding&quot;
-            }
-          ],
-          &quot;linkId&quot;: &quot;EligibilityRequest.priority&quot;,
-          &quot;type&quot;: &quot;group&quot;,
-          &quot;required&quot;: false,
-          &quot;repeats&quot;: true,
-          &quot;item&quot;: [
-            {
-              &quot;extension&quot;: [
-                {
-                  &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl&quot;,
-                  &quot;valueCodeableConcept&quot;: {
-                    &quot;coding&quot;: [
-                      {
-                        &quot;system&quot;: &quot;http://hl7.org/fhir/questionnaire-item-control&quot;,
-                        &quot;code&quot;: &quot;flyover&quot;,
-                        &quot;display&quot;: &quot;Fly-over&quot;
-                      }
-                    ]
-                  }
-                }
-              ],
-              &quot;text&quot;: &quot;Immediate (STAT), best effort (NORMAL), deferred (DEFER).&quot;,
-              &quot;type&quot;: &quot;display&quot;
-            },
-            {
-              &quot;linkId&quot;: &quot;EligibilityRequest.priority.value&quot;,
-              &quot;text&quot;: &quot;Desired processing priority&quot;,
-              &quot;type&quot;: &quot;open-choice&quot;,
-              &quot;required&quot;: false,
-              &quot;repeats&quot;: false
-            }
-          ]
-        },
-        {
-          &quot;extension&quot;: [
-            {
-              &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs&quot;,
-              &quot;valueInteger&quot;: 1
-            },
-            {
-              &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType&quot;,
               &quot;valueString&quot;: &quot;Reference&quot;
             }
           ],
-          &quot;linkId&quot;: &quot;EligibilityRequest.enterer&quot;,
+          &quot;linkId&quot;: &quot;EligibilityRequest.insurer&quot;,
           &quot;type&quot;: &quot;group&quot;,
           &quot;required&quot;: false,
           &quot;repeats&quot;: true,
@@ -916,22 +978,22 @@
                   }
                 }
               ],
-              &quot;text&quot;: &quot;Person who created the invoice/claim/pre-determination or pre-authorization.&quot;,
+              &quot;text&quot;: &quot;The Insurer who is target  of the request.&quot;,
               &quot;type&quot;: &quot;display&quot;
             },
             {
               &quot;extension&quot;: [
                 {
                   &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-allowedResource&quot;,
-                  &quot;valueCode&quot;: &quot;Practitioner&quot;
+                  &quot;valueCode&quot;: &quot;Organization&quot;
                 },
                 {
                   &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-referenceFilter&quot;,
                   &quot;valueString&quot;: &quot;subject=$subj&amp;patient=$subj&amp;encounter=$encounter&quot;
                 }
               ],
-              &quot;linkId&quot;: &quot;EligibilityRequest.enterer.value&quot;,
-              &quot;text&quot;: &quot;Author&quot;,
+              &quot;linkId&quot;: &quot;EligibilityRequest.insurer.value&quot;,
+              &quot;text&quot;: &quot;Target&quot;,
               &quot;type&quot;: &quot;reference&quot;,
               &quot;required&quot;: false,
               &quot;repeats&quot;: false
@@ -985,59 +1047,6 @@
               ],
               &quot;linkId&quot;: &quot;EligibilityRequest.facility.value&quot;,
               &quot;text&quot;: &quot;Servicing Facility&quot;,
-              &quot;type&quot;: &quot;reference&quot;,
-              &quot;required&quot;: false,
-              &quot;repeats&quot;: false
-            }
-          ]
-        },
-        {
-          &quot;extension&quot;: [
-            {
-              &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs&quot;,
-              &quot;valueInteger&quot;: 1
-            },
-            {
-              &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType&quot;,
-              &quot;valueString&quot;: &quot;Reference&quot;
-            }
-          ],
-          &quot;linkId&quot;: &quot;EligibilityRequest.patient&quot;,
-          &quot;type&quot;: &quot;group&quot;,
-          &quot;required&quot;: false,
-          &quot;repeats&quot;: true,
-          &quot;item&quot;: [
-            {
-              &quot;extension&quot;: [
-                {
-                  &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl&quot;,
-                  &quot;valueCodeableConcept&quot;: {
-                    &quot;coding&quot;: [
-                      {
-                        &quot;system&quot;: &quot;http://hl7.org/fhir/questionnaire-item-control&quot;,
-                        &quot;code&quot;: &quot;flyover&quot;,
-                        &quot;display&quot;: &quot;Fly-over&quot;
-                      }
-                    ]
-                  }
-                }
-              ],
-              &quot;text&quot;: &quot;Patient Resource. 1..1.&quot;,
-              &quot;type&quot;: &quot;display&quot;
-            },
-            {
-              &quot;extension&quot;: [
-                {
-                  &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-allowedResource&quot;,
-                  &quot;valueCode&quot;: &quot;Patient&quot;
-                },
-                {
-                  &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-referenceFilter&quot;,
-                  &quot;valueString&quot;: &quot;subject=$subj&amp;patient=$subj&amp;encounter=$encounter&quot;
-                }
-              ],
-              &quot;linkId&quot;: &quot;EligibilityRequest.patient.value&quot;,
-              &quot;text&quot;: &quot;The subject of the Products and Services&quot;,
               &quot;type&quot;: &quot;reference&quot;,
               &quot;required&quot;: false,
               &quot;repeats&quot;: false
@@ -1145,104 +1154,14 @@
             {
               &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs&quot;,
               &quot;valueInteger&quot;: 1
-            }
-          ],
-          &quot;linkId&quot;: &quot;EligibilityRequest.serviced[x]&quot;,
-          &quot;text&quot;: &quot;Estimated date or dates of Service&quot;,
-          &quot;type&quot;: &quot;group&quot;,
-          &quot;required&quot;: false,
-          &quot;repeats&quot;: true,
-          &quot;item&quot;: [
-            {
-              &quot;extension&quot;: [
-                {
-                  &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl&quot;,
-                  &quot;valueCodeableConcept&quot;: {
-                    &quot;coding&quot;: [
-                      {
-                        &quot;system&quot;: &quot;http://hl7.org/fhir/questionnaire-item-control&quot;,
-                        &quot;code&quot;: &quot;flyover&quot;,
-                        &quot;display&quot;: &quot;Fly-over&quot;
-                      }
-                    ]
-                  }
-                }
-              ],
-              &quot;text&quot;: &quot;The date or dates when the enclosed suite of services were performed or completed.&quot;,
-              &quot;type&quot;: &quot;display&quot;
-            },
-            {
-              &quot;linkId&quot;: &quot;EligibilityRequest.serviced[x]._type&quot;,
-              &quot;text&quot;: &quot;type&quot;,
-              &quot;type&quot;: &quot;choice&quot;,
-              &quot;required&quot;: false,
-              &quot;repeats&quot;: false,
-              &quot;options&quot;: {
-                &quot;reference&quot;: &quot;#vs2&quot;
-              },
-              &quot;item&quot;: [
-                {
-                  &quot;extension&quot;: [
-                    {
-                      &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType&quot;,
-                      &quot;valueString&quot;: &quot;datetime&quot;
-                    }
-                  ],
-                  &quot;linkId&quot;: &quot;EligibilityRequest.serviced[x]._date&quot;,
-                  &quot;type&quot;: &quot;group&quot;,
-                  &quot;item&quot;: [
-                    {
-                      &quot;linkId&quot;: &quot;EligibilityRequest.serviced[x]._date.value&quot;,
-                      &quot;text&quot;: &quot;date&quot;,
-                      &quot;type&quot;: &quot;dateTime&quot;,
-                      &quot;required&quot;: false,
-                      &quot;repeats&quot;: false
-                    }
-                  ]
-                },
-                {
-                  &quot;extension&quot;: [
-                    {
-                      &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType&quot;,
-                      &quot;valueString&quot;: &quot;Period&quot;
-                    }
-                  ],
-                  &quot;linkId&quot;: &quot;EligibilityRequest.serviced[x]._Period&quot;,
-                  &quot;text&quot;: &quot;Period&quot;,
-                  &quot;type&quot;: &quot;group&quot;,
-                  &quot;item&quot;: [
-                    {
-                      &quot;linkId&quot;: &quot;EligibilityRequest.serviced[x]._Period.low&quot;,
-                      &quot;text&quot;: &quot;start:&quot;,
-                      &quot;type&quot;: &quot;dateTime&quot;,
-                      &quot;required&quot;: false,
-                      &quot;repeats&quot;: false
-                    },
-                    {
-                      &quot;linkId&quot;: &quot;EligibilityRequest.serviced[x]._Period.end&quot;,
-                      &quot;text&quot;: &quot;end:&quot;,
-                      &quot;type&quot;: &quot;dateTime&quot;,
-                      &quot;required&quot;: false,
-                      &quot;repeats&quot;: false
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
-        },
-        {
-          &quot;extension&quot;: [
-            {
-              &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs&quot;,
-              &quot;valueInteger&quot;: 1
             },
             {
               &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType&quot;,
-              &quot;valueString&quot;: &quot;Coding&quot;
+              &quot;valueString&quot;: &quot;CodeableConcept&quot;
             }
           ],
           &quot;linkId&quot;: &quot;EligibilityRequest.benefitCategory&quot;,
+          &quot;text&quot;: &quot;Benefit Category&quot;,
           &quot;type&quot;: &quot;group&quot;,
           &quot;required&quot;: false,
           &quot;repeats&quot;: true,
@@ -1266,9 +1185,16 @@
               &quot;type&quot;: &quot;display&quot;
             },
             {
-              &quot;linkId&quot;: &quot;EligibilityRequest.benefitCategory.value&quot;,
-              &quot;text&quot;: &quot;Benefit Category&quot;,
+              &quot;linkId&quot;: &quot;EligibilityRequest.benefitCategory.coding&quot;,
+              &quot;text&quot;: &quot;code:&quot;,
               &quot;type&quot;: &quot;open-choice&quot;,
+              &quot;required&quot;: false,
+              &quot;repeats&quot;: false
+            },
+            {
+              &quot;linkId&quot;: &quot;EligibilityRequest.benefitCategory.text&quot;,
+              &quot;text&quot;: &quot;text:&quot;,
+              &quot;type&quot;: &quot;string&quot;,
               &quot;required&quot;: false,
               &quot;repeats&quot;: false
             }
@@ -1282,10 +1208,11 @@
             },
             {
               &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType&quot;,
-              &quot;valueString&quot;: &quot;Coding&quot;
+              &quot;valueString&quot;: &quot;CodeableConcept&quot;
             }
           ],
           &quot;linkId&quot;: &quot;EligibilityRequest.benefitSubCategory&quot;,
+          &quot;text&quot;: &quot;Benefit SubCategory&quot;,
           &quot;type&quot;: &quot;group&quot;,
           &quot;required&quot;: false,
           &quot;repeats&quot;: true,
@@ -1309,9 +1236,16 @@
               &quot;type&quot;: &quot;display&quot;
             },
             {
-              &quot;linkId&quot;: &quot;EligibilityRequest.benefitSubCategory.value&quot;,
-              &quot;text&quot;: &quot;Benefit SubCategory&quot;,
+              &quot;linkId&quot;: &quot;EligibilityRequest.benefitSubCategory.coding&quot;,
+              &quot;text&quot;: &quot;code:&quot;,
               &quot;type&quot;: &quot;open-choice&quot;,
+              &quot;required&quot;: false,
+              &quot;repeats&quot;: false
+            },
+            {
+              &quot;linkId&quot;: &quot;EligibilityRequest.benefitSubCategory.text&quot;,
+              &quot;text&quot;: &quot;text:&quot;,
+              &quot;type&quot;: &quot;string&quot;,
               &quot;required&quot;: false,
               &quot;repeats&quot;: false
             }
@@ -1345,7 +1279,7 @@ of the specification.
 		<div class="container"><!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:32-0500. <a href="qa.html">QA Page</a>
+        © HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:21-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search</a> | 

@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>Immunization - FHIR v1.7.0</title>
+  <title>Immunization - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -127,7 +127,7 @@
   <tr><td>Definition</td><td><p>Indicates the current status of the vaccination event.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>1..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>Immunization Status Codes: <a href="valueset-immunization-status.html">A set of codes indicating the current status of an Immunization</a> (<a href="terminologies.html#required">Required</a>)</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-immunization-status.html">Immunization Status Codes</a> (<a href="terminologies.html#required">Required</a>)</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#code">code</a></td></tr>
   <tr><td><a href="conformance-rules.html#ismodifier">Is Modifier</a></td><td>true</td></tr>
   <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
@@ -144,7 +144,7 @@
   <tr><td>Definition</td><td><p>Vaccine that was administered or was to be administered.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>1..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>Vaccine Administered Value Set: <a href="valueset-vaccine-code.html">The code for vaccine product administered</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-vaccine-code.html">Vaccine Administered Value Set</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
   <tr><td colspan="2" class="structure"><a name="Immunization.patient"> </a><b>Immunization.patient</b></td></tr>
   <tr><td>Definition</td><td><p>The patient who either received or did not receive the immunization.</p>
@@ -158,12 +158,20 @@
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#boolean">boolean</a></td></tr>
   <tr><td><a href="conformance-rules.html#ismodifier">Is Modifier</a></td><td>true</td></tr>
   <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
-  <tr><td colspan="2" class="structure"><a name="Immunization.reported"> </a><b>Immunization.reported</b></td></tr>
-  <tr><td>Definition</td><td><p>True if this administration was reported rather than directly administered.</p>
+  <tr><td colspan="2" class="structure"><a name="Immunization.primarySource"> </a><b>Immunization.primarySource</b></td></tr>
+  <tr><td>Definition</td><td><p>An indication that the content of the record is based on information from the person who administered the vaccine. This reflects the context under which the data was originally recorded.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>1..1</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#boolean">boolean</a></td></tr>
-  <tr><td>Comments</td><td><p>May need source of reported info (e.g. parent), but leave out for now.</p>
+  <tr><td>Comments</td><td><p>Reflects the “reliability” of the content.</p>
+</td></tr>
+  <tr><td colspan="2" class="structure"><a name="Immunization.reportOrigin"> </a><b>Immunization.reportOrigin</b></td></tr>
+  <tr><td>Definition</td><td><p>The source of the data when the report of the immunization event is not based on information from the person who administered the vaccine.</p>
+</td></tr>
+  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-immunization-origin.html">ImmunizationOrigin</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
+  <tr><td>Comments</td><td><p>Should not be populated if primarySource = True, will not be required even if primarySource = False.</p>
 </td></tr>
   <tr><td colspan="2" class="structure"><a name="Immunization.performer"> </a><b>Immunization.performer</b></td></tr>
   <tr><td>Definition</td><td><p>Clinician who administered the vaccine.</p>
@@ -206,13 +214,13 @@
   <tr><td>Definition</td><td><p>Body site where vaccine was administered.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>Codes for Immunization Site of Administration: <a href="valueset-immunization-site.html">The site at which the vaccine was administered</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-immunization-site.html">Codes for Immunization Site of Administration</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
   <tr><td colspan="2" class="structure"><a name="Immunization.route"> </a><b>Immunization.route</b></td></tr>
   <tr><td>Definition</td><td><p>The path by which the vaccine product is taken into the body.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>Immunization Route Codes: <a href="valueset-immunization-route.html">The route by which the vaccine was administered</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-immunization-route.html">Immunization Route Codes</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
   <tr><td colspan="2" class="structure"><a name="Immunization.doseQuantity"> </a><b>Immunization.doseQuantity</b></td></tr>
   <tr><td>Definition</td><td><p>The quantity of vaccine product that was administered.</p>
@@ -233,13 +241,13 @@
   <tr><td>Definition</td><td><p>Reasons why a vaccine was administered.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..*</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>Immunization Reason Codes: <a href="valueset-immunization-reason.html">The reason why a vaccine was administered</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-immunization-reason.html">Immunization Reason Codes</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
   <tr><td colspan="2" class="structure"><a name="Immunization.explanation.reasonNotGiven"> </a><b>Immunization.explanation.reasonNotGiven</b></td></tr>
   <tr><td>Definition</td><td><p>Reason why a vaccine was not administered.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..*</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>Immunization Reasons for Not Immunizing Codes: <a href="valueset-no-immunization-reason.html">The reason why a vaccine was not administered</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-no-immunization-reason.html">Immunization Reasons for Not Immunizing Codes</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
   <tr><td colspan="2" class="structure"><a name="Immunization.reaction"> </a><b>Immunization.reaction</b></td></tr>
   <tr><td>Definition</td><td><p>Categorical data indicating that an adverse event is associated in time to an immunization.</p>
@@ -295,13 +303,13 @@
   <tr><td>Definition</td><td><p>The targeted disease.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>1..*</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>Vaccination Protocol Dose Target Codes: <a href="valueset-vaccination-protocol-dose-target.html">The disease target of the vaccination protocol</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-vaccination-protocol-dose-target.html">Vaccination Protocol Dose Target Codes</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
   <tr><td colspan="2" class="structure"><a name="Immunization.vaccinationProtocol.doseStatus"> </a><b>Immunization.vaccinationProtocol.doseStatus</b></td></tr>
   <tr><td>Definition</td><td><p>Indicates if the immunization event should &quot;count&quot; against  the protocol.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>1..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>Vaccination Protocol Dose Status codes: <a href="valueset-vaccination-protocol-dose-status.html">The status of the vaccination protocol (i.e. should this count)</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-vaccination-protocol-dose-status.html">Vaccination Protocol Dose Status codes</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
   <tr><td>Comments</td><td><p>May need to differentiate between status declarations by a provider vs. a CDS engine.</p>
 </td></tr>
@@ -309,7 +317,7 @@
   <tr><td>Definition</td><td><p>Provides an explanation as to why an immunization event should or should not count against the protocol.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>Vaccination Protocol Dose Status Reason codes: <a href="valueset-vaccination-protocol-dose-status-reason.html">The reason for the determining if a vaccination should count or why vaccination should not count.</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-vaccination-protocol-dose-status-reason.html">Vaccination Protocol Dose Status Reason codes</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
 </table>
 
@@ -329,7 +337,7 @@
 		<div class="container">  <!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:32-0500. <a href="qa.html">QA Page</a>
+        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:21-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search <img src="external.png" style="text-align: baseline"/></a> | 

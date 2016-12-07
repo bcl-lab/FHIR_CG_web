@@ -25,16 +25,10 @@
   "ClaimResponse.status": {
     "code.value": "active"
   },
-  "ClaimResponse.request": {
-    "Reference.reference": {
-      "string.value": "http://www.BenefitsInc.com/fhir/oralhealthclaim/15476332402"
-    },
-    "Resource.reference": "http://www.BenefitsInc.com/fhir/oralhealthclaim/15476332402"
-  },
   "ClaimResponse.created": {
     "dateTime.value": "2014-08-16"
   },
-  "ClaimResponse.organization": {
+  "ClaimResponse.insurer": {
     "Reference.identifier": {
       "Identifier.system": {
         "uri.value": "http://www.jurisdiction.org/insurers"
@@ -44,24 +38,44 @@
       }
     }
   },
-  "ClaimResponse.outcome": {
-    "Coding.system": {
-      "uri.value": "http://hl7.org/fhir/remittance-outcome"
+  "ClaimResponse.requestOrganization": {
+    "Reference.reference": {
+      "string.value": "Organization/1"
     },
-    "Coding.code": {
-      "code.value": "complete"
-    }
+    "Resource.reference": "http://hl7.org/fhir//Organization/1"
+  },
+  "ClaimResponse.request": {
+    "Reference.reference": {
+      "string.value": "http://www.BenefitsInc.com/fhir/oralhealthclaim/15476332402"
+    },
+    "Resource.reference": "http://www.BenefitsInc.com/fhir/oralhealthclaim/15476332402"
+  },
+  "ClaimResponse.outcome": {
+    "CodeableConcept.coding": [
+      {
+        "Coding.system": {
+          "uri.value": "http://hl7.org/fhir/remittance-outcome"
+        },
+        "Coding.code": {
+          "code.value": "complete"
+        }
+      }
+    ]
   },
   "ClaimResponse.disposition": {
     "string.value": "Claim settled as per contract."
   },
   "ClaimResponse.payeeType": {
-    "Coding.system": {
-      "uri.value": "http://hl7.org/fhir/payeetype"
-    },
-    "Coding.code": {
-      "code.value": "provider"
-    }
+    "CodeableConcept.coding": [
+      {
+        "Coding.system": {
+          "uri.value": "http://hl7.org/fhir/payeetype"
+        },
+        "Coding.code": {
+          "code.value": "provider"
+        }
+      }
+    ]
   },
   "ClaimResponse.item": [
     {
@@ -71,9 +85,13 @@
       "ClaimResponse.item.adjudication": [
         {
           "ClaimResponse.item.adjudication.category": {
-            "Coding.code": {
-              "code.value": "eligible"
-            }
+            "CodeableConcept.coding": [
+              {
+                "Coding.code": {
+                  "code.value": "eligible"
+                }
+              }
+            ]
           },
           "ClaimResponse.item.adjudication.amount": {
             "Quantity.value": {
@@ -89,9 +107,13 @@
         },
         {
           "ClaimResponse.item.adjudication.category": {
-            "Coding.code": {
-              "code.value": "copay"
-            }
+            "CodeableConcept.coding": [
+              {
+                "Coding.code": {
+                  "code.value": "copay"
+                }
+              }
+            ]
           },
           "ClaimResponse.item.adjudication.amount": {
             "Quantity.value": {
@@ -107,9 +129,13 @@
         },
         {
           "ClaimResponse.item.adjudication.category": {
-            "Coding.code": {
-              "code.value": "eligpercent"
-            }
+            "CodeableConcept.coding": [
+              {
+                "Coding.code": {
+                  "code.value": "eligpercent"
+                }
+              }
+            ]
           },
           "ClaimResponse.item.adjudication.value": {
             "decimal.value": 80.00
@@ -117,9 +143,13 @@
         },
         {
           "ClaimResponse.item.adjudication.category": {
-            "Coding.code": {
-              "code.value": "benefit"
-            }
+            "CodeableConcept.coding": [
+              {
+                "Coding.code": {
+                  "code.value": "benefit"
+                }
+              }
+            ]
           },
           "ClaimResponse.item.adjudication.amount": {
             "Quantity.value": {
@@ -160,12 +190,16 @@
   },
   "ClaimResponse.payment": {
     "ClaimResponse.payment.type": {
-      "Coding.system": {
-        "uri.value": "http://hl7.org/fhir/ValueSet/ex-paymenttype"
-      },
-      "Coding.code": {
-        "code.value": "complete"
-      }
+      "CodeableConcept.coding": [
+        {
+          "Coding.system": {
+            "uri.value": "http://hl7.org/fhir/ValueSet/ex-paymenttype"
+          },
+          "Coding.code": {
+            "code.value": "complete"
+          }
+        }
+      ]
     },
     "ClaimResponse.payment.date": {
       "date.value": "2014-08-31"

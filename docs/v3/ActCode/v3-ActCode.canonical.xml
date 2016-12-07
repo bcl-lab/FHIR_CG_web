@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><ValueSet xmlns="http://hl7.org/fhir"><id value="v3-ActCode"/><meta><lastUpdated value="2016-03-23T00:00:00.000-04:00"/><profile value="http://hl7.org/fhir/StructureDefinition/valueset-shareable-definition"/></meta><text><status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml"><p>Release Date: 2016-03-23</p>
+<?xml version="1.0" encoding="UTF-8"?><ValueSet xmlns="http://hl7.org/fhir"><id value="v3-ActCode"/><meta><lastUpdated value="2016-11-11T00:00:00.000-05:00"/><profile value="http://hl7.org/fhir/StructureDefinition/valueset-shareable-definition"/></meta><text><status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml"><p>Release Date: 2016-11-11</p>
 <table class="grid">
  <tr><td><b>Level</b></td><td><b>Code</b></td><td><b>Display</b></td><td><b>Definition</b></td></tr>
  <tr><td>1</td><td><span style="color: grey"><i>(_ActAccountCode)</i></span> <b><i>Abstract</i></b></td><td><a name="_ActAccountCode"> </a></td><td>
@@ -897,7 +897,7 @@
                         Criteria that are applicable to the authorized coverage.<br/>
 
                      </td></tr>
- <tr><td>2</td><td>  <span style="color: grey"><i>(_ActCoverageAgeLimitCode)</i></span> <b><i>Abstract</i></b></td><td><a name="_ActCoverageAgeLimitCode"> </a></td><td>
+ <tr><td>2</td><td>  <span style="color: grey"><i>(_ActCoverageQuantityLimitCode)</i></span> <b><i>Abstract</i></b></td><td><a name="_ActCoverageQuantityLimitCode"> </a></td><td>
                         Maximum amount paid or maximum number of services/products covered; or maximum amount or number covered during a specified time period under the policy or program.<br/>
 
                      </td></tr>
@@ -3080,18 +3080,18 @@
                            Usage Note: If there is a jurisdictional mandate, then use the applicable ActPrivacyLaw code system, and specify the law rather than or in addition to this more generic code.<br/>
 
                      </td></tr>
- <tr><td>5</td><td>        SOC<a name="SOC"> </a></td><td>social services sensitivity</td><td>
-                        Information about provision of social services.<br/>
-
-                        
-                           Usage Note: This is a temporary addition to FHIR to be proposed in harmonization.<br/>
-
-                     </td></tr>
  <tr><td>5</td><td>        SCA<a name="SCA"> </a></td><td>sickle cell anemia</td><td>
                         Policy for handling sickle cell disease information, which is afforded heightened confidentiality.  Information handling protocols are based on organizational policies related to sickle cell disease information, which is deemed sensitive.<br/>
 
                         
                            Usage Note: If there is a jurisdictional mandate, then the Act valued with this ActCode should be associated with an Act valued with any applicable laws from the ActPrivacyLaw code system.<br/>
+
+                     </td></tr>
+ <tr><td>5</td><td>        SOC<a name="SOC"> </a></td><td>social services sensitivity</td><td>
+                        Information about provision of social services.<br/>
+
+                        
+                           Usage Note: This is a temporary addition to FHIR to be proposed in harmonization.<br/>
 
                      </td></tr>
  <tr><td>5</td><td>        SDV<a name="SDV"> </a></td><td>sexual assault, abuse, or domestic violence information sensitivity</td><td>
@@ -4196,6 +4196,14 @@
                      </td></tr>
  <tr><td>3</td><td>    AGGREGATE<a name="AGGREGATE"> </a></td><td>aggregate measure observation</td><td>
                         Indicates that the observation is carrying out an aggregation calculation, contained in the value element.<br/>
+
+                     </td></tr>
+ <tr><td>3</td><td>    CMPMSRMTH<a name="CMPMSRMTH"> </a></td><td>composite measure method</td><td>
+                        Indicates what method is used in a quality measure to combine the component measure results included in an composite measure.<br/>
+
+                     </td></tr>
+ <tr><td>3</td><td>    CMPMSRSCRWGHT<a name="CMPMSRSCRWGHT"> </a></td><td>component measure scoring weight</td><td>
+                        An attribute of a quality measure describing the weight this component measure score is to carry in determining the overall composite measure final score. The value is real value greater than 0 and less than 1.0. Each component measure score will be multiplied by its CMPMSRSCRWGHT and then summed with the other component measures to determine the final overall composite measure score. The sum across all CMPMSRSCRWGHT values within a single composite measure SHALL be 1.0. The value assigned is scoped to the composite measure referencing this component measure only.<br/>
 
                      </td></tr>
  <tr><td>3</td><td>    COPY<a name="COPY"> </a></td><td>copyright</td><td>
@@ -5392,5 +5400,5 @@ the measure population as a narrative description (e.g., all patients seen in th
 
                      </td></tr>
 </table>
-</div></text><url value="http://hl7.org/fhir/ValueSet/v3-ActCode"/><version value="2016-03-23"/><name value="v3 Code System ActCode"/><status value="active"/><experimental value="false"/><publisher value="HL7, Inc"/><contact><telecom><system value="other"/><value value="http://hl7.org"/></telecom></contact><date value="2016-03-23"/><description value=" A code specifying the particular kind of Act that the Act-instance represents within its class.  Constraints:
+</div></text><url value="http://hl7.org/fhir/ValueSet/v3-ActCode"/><version value="2016-11-11"/><name value="v3 Code System ActCode"/><status value="active"/><experimental value="false"/><publisher value="HL7, Inc"/><contact><telecom><system value="url"/><value value="http://hl7.org"/></telecom></contact><date value="2016-11-11"/><description value=" A code specifying the particular kind of Act that the Act-instance represents within its class.  Constraints:
 The kind of Act (e.g. physical examination, serum potassium, inpatient encounter, charge financial transaction, etc.) is specified with a code from one of several, typically external, coding systems.  The coding system will depend on the class of Act, such as LOINC for observations, etc. Conceptually, the Act.code must be a specialization of the Act.classCode. This is why the structure of ActClass domain should be reflected in the superstructure of the ActCode domain and then individual codes or externally referenced vocabularies subordinated under these domains that reflect the ActClass structure. Act.classCode and Act.code are not modifiers of each other but the Act.code concept should really imply the Act.classCode concept. For a negative example, it is not appropriate to use an Act.code &quot;potassium&quot; together with and Act.classCode for &quot;laboratory observation&quot; to somehow mean &quot;potassium laboratory observation&quot; and then use the same Act.code for &quot;potassium&quot; together with Act.classCode for &quot;medication&quot; to mean &quot;substitution of potassium&quot;. This mutually modifying use of Act.code and Act.classCode is not permitted."/><immutable value="true"/><compose><include><system value="http://hl7.org/fhir/v3/ActCode"/></include></compose></ValueSet>

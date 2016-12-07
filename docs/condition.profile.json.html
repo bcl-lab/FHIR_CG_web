@@ -3,7 +3,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>Condition.profile.json - FHIR v1.7.0</title>
+  <title>Condition.profile.json - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -119,7 +119,7 @@
   &quot;resourceType&quot;: &quot;StructureDefinition&quot;,
   &quot;id&quot;: &quot;Condition&quot;,
   &quot;meta&quot;: {
-    &quot;lastUpdated&quot;: &quot;2016-11-28T17:29:55.664-05:00&quot;
+    &quot;lastUpdated&quot;: &quot;2016-12-07T14:18:58.982-05:00&quot;
   },
   &quot;text&quot;: {
     &quot;status&quot;: &quot;generated&quot;,
@@ -129,6 +129,10 @@
     {
       &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm&quot;,
       &quot;valueInteger&quot;: 2
+    },
+    {
+      &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/structuredefinition-wg&quot;,
+      &quot;valueCode&quot;: &quot;pc&quot;
     }
   ],
   &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/Condition&quot;,
@@ -139,7 +143,7 @@
     {
       &quot;telecom&quot;: [
         {
-          &quot;system&quot;: &quot;other&quot;,
+          &quot;system&quot;: &quot;url&quot;,
           &quot;value&quot;: &quot;http://hl7.org/fhir&quot;
         }
       ]
@@ -147,15 +151,15 @@
     {
       &quot;telecom&quot;: [
         {
-          &quot;system&quot;: &quot;other&quot;,
+          &quot;system&quot;: &quot;url&quot;,
           &quot;value&quot;: &quot;http://www.hl7.org/Special/committees/patientcare/index.cfm&quot;
         }
       ]
     }
   ],
-  &quot;date&quot;: &quot;2016-11-28T17:29:55-05:00&quot;,
+  &quot;date&quot;: &quot;2016-12-07T14:18:58-05:00&quot;,
   &quot;description&quot;: &quot;Base StructureDefinition for Condition Resource&quot;,
-  &quot;fhirVersion&quot;: &quot;1.7.0&quot;,
+  &quot;fhirVersion&quot;: &quot;1.8.0&quot;,
   &quot;mapping&quot;: [
     {
       &quot;identity&quot;: &quot;sct-concept&quot;,
@@ -229,6 +233,20 @@
             &quot;expression&quot;: &quot;contained.where(('#'+id in %resource.descendants().reference).not()).empty()&quot;,
             &quot;xpath&quot;: &quot;not(exists(for $id in f:contained/*/@id return $id[not(ancestor::f:contained/parent::*/descendant::f:reference/@value=concat('#', $id))]))&quot;,
             &quot;source&quot;: &quot;DomainResource&quot;
+          },
+          {
+            &quot;key&quot;: &quot;con-4&quot;,
+            &quot;severity&quot;: &quot;error&quot;,
+            &quot;human&quot;: &quot;If condition is abated, then clinicalStatus must be either inactive, resolved, or remission&quot;,
+            &quot;expression&quot;: &quot;abatement.empty() or (abatement as boolean).not()  or clinicalStatus='resolved' or clinicalStatus='remission' or clinicalStatus='inactive'&quot;,
+            &quot;xpath&quot;: &quot;xpath: not(f:abatementBoolean='true' or (not(exists(f:abatementBoolean)) and exists(*[starts-with(local-name(.), 'abatement')])) or f:clinicalStatus/@value=('resolved', 'remission', 'inactive')&quot;
+          },
+          {
+            &quot;key&quot;: &quot;con-3&quot;,
+            &quot;severity&quot;: &quot;error&quot;,
+            &quot;human&quot;: &quot;Condition.clinicalStatus SHALL be present if verificationStatus is not entered-in-error&quot;,
+            &quot;expression&quot;: &quot;verificationStatus='entered-in-error' or clinicalStatus.exists()&quot;,
+            &quot;xpath&quot;: &quot;f:verificationStatus/@value='entered-in-error' or exists(f:clinicalStatus)&quot;
           }
         ],
         &quot;mapping&quot;: [
@@ -499,7 +517,7 @@
       {
         &quot;id&quot;: &quot;Condition.clinicalStatus&quot;,
         &quot;path&quot;: &quot;Condition.clinicalStatus&quot;,
-        &quot;short&quot;: &quot;active | relapse | remission | resolved&quot;,
+        &quot;short&quot;: &quot;active | recurrence | inactive | remission | resolved&quot;,
         &quot;definition&quot;: &quot;The clinical status of the condition.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
@@ -537,13 +555,15 @@
         &quot;path&quot;: &quot;Condition.verificationStatus&quot;,
         &quot;short&quot;: &quot;provisional | differential | confirmed | refuted | entered-in-error | unknown&quot;,
         &quot;definition&quot;: &quot;The verification status to support the clinical status of the condition.&quot;,
-        &quot;min&quot;: 1,
+        &quot;comments&quot;: &quot;verificationStatus is not required.  For example, when a patient has abdominal pain in the ED, there is not likely going to be a verification status.&quot;,
+        &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
             &quot;code&quot;: &quot;code&quot;
           }
         ],
+        &quot;defaultValueCode&quot;: &quot;unknown&quot;,
         &quot;isModifier&quot;: true,
         &quot;isSummary&quot;: true,
         &quot;binding&quot;: {
@@ -706,7 +726,7 @@
         &quot;path&quot;: &quot;Condition.bodySite&quot;,
         &quot;short&quot;: &quot;Anatomical location, if relevant&quot;,
         &quot;definition&quot;: &quot;The anatomical location where this condition manifests itself.&quot;,
-        &quot;comments&quot;: &quot;May be a summary code, or a reference to a very precise definition of the location, or both.&quot;,
+        &quot;comments&quot;: &quot;Only used if not implicit in code found in Condition.code. If the use case requires attributes from the BodySite resource (e.g. to identify and track separately) then use the standard extension [body-site-instance](extension-body-site-instance.html).  May be a summary code, or a reference to a very precise definition of the location, or both.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;*&quot;,
         &quot;type&quot;: [
@@ -850,7 +870,7 @@
         &quot;path&quot;: &quot;Condition.abatement[x]&quot;,
         &quot;short&quot;: &quot;If/when in resolution/remission&quot;,
         &quot;definition&quot;: &quot;The date or estimated date that the condition resolved or went into remission. This is called \&quot;abatement\&quot; because of the many overloaded connotations associated with \&quot;remission\&quot; or \&quot;resolution\&quot; - Conditions are never really resolved, but they can abate.&quot;,
-        &quot;comments&quot;: &quot;There is no explicit distinction between resolution and remission because in many cases the distinction is not clear. Age is generally used when the patient reports an age at which the Condition abated.  If there is no abatement element, it is unknown whether the condition has resolved or entered remission; applications and users should generally assume that the condition is still valid.&quot;,
+        &quot;comments&quot;: &quot;There is no explicit distinction between resolution and remission because in many cases the distinction is not clear. Age is generally used when the patient reports an age at which the Condition abated.  If there is no abatement element, it is unknown whether the condition has resolved or entered remission; applications and users should generally assume that the condition is still valid.  When abatementString exists, it implies the condition is abated.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
@@ -1356,6 +1376,22 @@
         &quot;definition&quot;: &quot;Use to record detailed information about conditions, problems or diagnoses recognized by a clinician. There are many uses including: recording a diagnosis during an encounter; populating a problem list or a summary statement, such as a discharge summary.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;*&quot;,
+        &quot;constraint&quot;: [
+          {
+            &quot;key&quot;: &quot;con-4&quot;,
+            &quot;severity&quot;: &quot;error&quot;,
+            &quot;human&quot;: &quot;If condition is abated, then clinicalStatus must be either inactive, resolved, or remission&quot;,
+            &quot;expression&quot;: &quot;abatement.empty() or (abatement as boolean).not()  or clinicalStatus='resolved' or clinicalStatus='remission' or clinicalStatus='inactive'&quot;,
+            &quot;xpath&quot;: &quot;xpath: not(f:abatementBoolean='true' or (not(exists(f:abatementBoolean)) and exists(*[starts-with(local-name(.), 'abatement')])) or f:clinicalStatus/@value=('resolved', 'remission', 'inactive')&quot;
+          },
+          {
+            &quot;key&quot;: &quot;con-3&quot;,
+            &quot;severity&quot;: &quot;error&quot;,
+            &quot;human&quot;: &quot;Condition.clinicalStatus SHALL be present if verificationStatus is not entered-in-error&quot;,
+            &quot;expression&quot;: &quot;verificationStatus='entered-in-error' or clinicalStatus.exists()&quot;,
+            &quot;xpath&quot;: &quot;f:verificationStatus/@value='entered-in-error' or exists(f:clinicalStatus)&quot;
+          }
+        ],
         &quot;mapping&quot;: [
           {
             &quot;identity&quot;: &quot;sct-concept&quot;,
@@ -1403,7 +1439,7 @@
       {
         &quot;id&quot;: &quot;Condition.clinicalStatus&quot;,
         &quot;path&quot;: &quot;Condition.clinicalStatus&quot;,
-        &quot;short&quot;: &quot;active | relapse | remission | resolved&quot;,
+        &quot;short&quot;: &quot;active | recurrence | inactive | remission | resolved&quot;,
         &quot;definition&quot;: &quot;The clinical status of the condition.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
@@ -1441,13 +1477,15 @@
         &quot;path&quot;: &quot;Condition.verificationStatus&quot;,
         &quot;short&quot;: &quot;provisional | differential | confirmed | refuted | entered-in-error | unknown&quot;,
         &quot;definition&quot;: &quot;The verification status to support the clinical status of the condition.&quot;,
-        &quot;min&quot;: 1,
+        &quot;comments&quot;: &quot;verificationStatus is not required.  For example, when a patient has abdominal pain in the ED, there is not likely going to be a verification status.&quot;,
+        &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
             &quot;code&quot;: &quot;code&quot;
           }
         ],
+        &quot;defaultValueCode&quot;: &quot;unknown&quot;,
         &quot;isModifier&quot;: true,
         &quot;isSummary&quot;: true,
         &quot;binding&quot;: {
@@ -1610,7 +1648,7 @@
         &quot;path&quot;: &quot;Condition.bodySite&quot;,
         &quot;short&quot;: &quot;Anatomical location, if relevant&quot;,
         &quot;definition&quot;: &quot;The anatomical location where this condition manifests itself.&quot;,
-        &quot;comments&quot;: &quot;May be a summary code, or a reference to a very precise definition of the location, or both.&quot;,
+        &quot;comments&quot;: &quot;Only used if not implicit in code found in Condition.code. If the use case requires attributes from the BodySite resource (e.g. to identify and track separately) then use the standard extension [body-site-instance](extension-body-site-instance.html).  May be a summary code, or a reference to a very precise definition of the location, or both.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;*&quot;,
         &quot;type&quot;: [
@@ -1754,7 +1792,7 @@
         &quot;path&quot;: &quot;Condition.abatement[x]&quot;,
         &quot;short&quot;: &quot;If/when in resolution/remission&quot;,
         &quot;definition&quot;: &quot;The date or estimated date that the condition resolved or went into remission. This is called \&quot;abatement\&quot; because of the many overloaded connotations associated with \&quot;remission\&quot; or \&quot;resolution\&quot; - Conditions are never really resolved, but they can abate.&quot;,
-        &quot;comments&quot;: &quot;There is no explicit distinction between resolution and remission because in many cases the distinction is not clear. Age is generally used when the patient reports an age at which the Condition abated.  If there is no abatement element, it is unknown whether the condition has resolved or entered remission; applications and users should generally assume that the condition is still valid.&quot;,
+        &quot;comments&quot;: &quot;There is no explicit distinction between resolution and remission because in many cases the distinction is not clear. Age is generally used when the patient reports an age at which the Condition abated.  If there is no abatement element, it is unknown whether the condition has resolved or entered remission; applications and users should generally assume that the condition is still valid.  When abatementString exists, it implies the condition is abated.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
@@ -2084,7 +2122,7 @@ of the specification.
 		<div class="container"><!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:32-0500. <a href="qa.html">QA Page</a>
+        © HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:21-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search</a> | 

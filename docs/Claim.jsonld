@@ -10,27 +10,31 @@
     },
     "Claim.type": {
       "@id": "http://hl7.org/fhir/Claim.type",
-      "@type": "http://hl7.org/fhir/Coding"
+      "@type": "http://hl7.org/fhir/CodeableConcept"
     },
     "Claim.subType": {
       "@id": "http://hl7.org/fhir/Claim.subType",
-      "@type": "http://hl7.org/fhir/Coding"
+      "@type": "http://hl7.org/fhir/CodeableConcept"
     },
-    "Claim.ruleset": {
-      "@id": "http://hl7.org/fhir/Claim.ruleset",
-      "@type": "http://hl7.org/fhir/Coding"
+    "Claim.use": {
+      "@id": "http://hl7.org/fhir/Claim.use",
+      "@type": "http://hl7.org/fhir/code"
     },
-    "Claim.originalRuleset": {
-      "@id": "http://hl7.org/fhir/Claim.originalRuleset",
-      "@type": "http://hl7.org/fhir/Coding"
+    "Claim.patient": {
+      "@id": "http://hl7.org/fhir/Claim.patient",
+      "@type": "http://hl7.org/fhir/Reference(Patient)"
+    },
+    "Claim.billablePeriod": {
+      "@id": "http://hl7.org/fhir/Claim.billablePeriod",
+      "@type": "http://hl7.org/fhir/Period"
     },
     "Claim.created": {
       "@id": "http://hl7.org/fhir/Claim.created",
       "@type": "http://hl7.org/fhir/dateTime"
     },
-    "Claim.billablePeriod": {
-      "@id": "http://hl7.org/fhir/Claim.billablePeriod",
-      "@type": "http://hl7.org/fhir/Period"
+    "Claim.enterer": {
+      "@id": "http://hl7.org/fhir/Claim.enterer",
+      "@type": "http://hl7.org/fhir/Reference(Practitioner)"
     },
     "Claim.insurer": {
       "@id": "http://hl7.org/fhir/Claim.insurer",
@@ -44,25 +48,13 @@
       "@id": "http://hl7.org/fhir/Claim.organization",
       "@type": "http://hl7.org/fhir/Reference(Organization)"
     },
-    "Claim.use": {
-      "@id": "http://hl7.org/fhir/Claim.use",
-      "@type": "http://hl7.org/fhir/code"
-    },
     "Claim.priority": {
       "@id": "http://hl7.org/fhir/Claim.priority",
-      "@type": "http://hl7.org/fhir/Coding"
+      "@type": "http://hl7.org/fhir/CodeableConcept"
     },
     "Claim.fundsReserve": {
       "@id": "http://hl7.org/fhir/Claim.fundsReserve",
-      "@type": "http://hl7.org/fhir/Coding"
-    },
-    "Claim.enterer": {
-      "@id": "http://hl7.org/fhir/Claim.enterer",
-      "@type": "http://hl7.org/fhir/Reference(Practitioner)"
-    },
-    "Claim.facility": {
-      "@id": "http://hl7.org/fhir/Claim.facility",
-      "@type": "http://hl7.org/fhir/Reference(Location)"
+      "@type": "http://hl7.org/fhir/CodeableConcept"
     },
     "Claim.related": {
       "@id": "http://hl7.org/fhir/Claim.related",
@@ -84,6 +76,14 @@
       "@id": "http://hl7.org/fhir/Claim.referral",
       "@type": "http://hl7.org/fhir/Reference(ReferralRequest)"
     },
+    "Claim.facility": {
+      "@id": "http://hl7.org/fhir/Claim.facility",
+      "@type": "http://hl7.org/fhir/Reference(Location)"
+    },
+    "Claim.careTeam": {
+      "@id": "http://hl7.org/fhir/Claim.careTeam",
+      "@type": "http://hl7.org/fhir/"
+    },
     "Claim.information": {
       "@id": "http://hl7.org/fhir/Claim.information",
       "@type": "http://hl7.org/fhir/"
@@ -96,12 +96,8 @@
       "@id": "http://hl7.org/fhir/Claim.procedure",
       "@type": "http://hl7.org/fhir/"
     },
-    "Claim.patient": {
-      "@id": "http://hl7.org/fhir/Claim.patient",
-      "@type": "http://hl7.org/fhir/Reference(Patient)"
-    },
-    "Claim.coverage": {
-      "@id": "http://hl7.org/fhir/Claim.coverage",
+    "Claim.insurance": {
+      "@id": "http://hl7.org/fhir/Claim.insurance",
       "@type": "http://hl7.org/fhir/"
     },
     "Claim.accident": {
@@ -123,10 +119,6 @@
     "Claim.total": {
       "@id": "http://hl7.org/fhir/Claim.total",
       "@type": "http://hl7.org/fhir/Money"
-    },
-    "Claim.missingTeeth": {
-      "@id": "http://hl7.org/fhir/Claim.missingTeeth",
-      "@type": "http://hl7.org/fhir/"
     }
   },
   "@id": "http://hl7.org/fhir/Claim"

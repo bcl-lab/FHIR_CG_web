@@ -9,23 +9,14 @@
       "code.value": "generated"
     },
     "Narrative.div": {
-      "xhtml.value": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative with Details</b></p><p><b>id</b>: example</p><p><b>text</b>: </p><p><b>status</b>: draft</p><p><b>stage</b>: actionable <span>(Details : {http://hl7.org/fhir/task-stage code 'actionable' = 'actionable)</span></p><p><b>code</b>: Refill Request <span>(Details )</span></p><p><b>focus</b>: <a>MedicationRequest/medrx001</a></p><p><b>for</b>: <a>Patient/f001</a></p><p><b>created</b>: 2016-3-10 22:39:32</p><p><b>lastModified</b>: 2016-3-10 22:39:32</p><p><b>requester</b>: <a>Patient/Keith</a></p><p><b>owner</b>: <a>Practitioner/MyDoc</a></p></div>"
+      "xhtml.value": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative with Details</b></p><p><b>id</b>: example</p><p><b>text</b>: </p><p><b>status</b>: draft</p><p><b>intent</b>: order</p><p><b>code</b>: Refill Request <span>(Details )</span></p><p><b>focus</b>: <a>MedicationRequest/medrx002</a></p><p><b>for</b>: <a>Patient/f001</a></p><p><b>authoredOn</b>: 2016-3-10 22:39:32</p><p><b>lastModified</b>: 2016-3-10 22:39:32</p><h3>Requesters</h3><table><tr><td>-</td><td><b>Agent</b></td></tr><tr><td>*</td><td><a>Patient/example</a></td></tr></table><p><b>owner</b>: <a>Practitioner/example</a></p></div>"
     }
   },
   "Task.status": {
     "code.value": "draft"
   },
-  "Task.stage": {
-    "CodeableConcept.coding": [
-      {
-        "Coding.system": {
-          "uri.value": "http://hl7.org/fhir/task-stage"
-        },
-        "Coding.code": {
-          "code.value": "actionable"
-        }
-      }
-    ]
+  "Task.intent": {
+    "code.value": "order"
   },
   "Task.code": {
     "CodeableConcept.text": {
@@ -34,9 +25,9 @@
   },
   "Task.focus": {
     "Reference.reference": {
-      "string.value": "MedicationRequest/medrx001"
+      "string.value": "MedicationRequest/medrx002"
     },
-    "Resource.reference": "http://hl7.org/fhir//MedicationRequest/medrx001"
+    "Resource.reference": "http://hl7.org/fhir//MedicationRequest/medrx002"
   },
   "Task.for": {
     "Reference.reference": {
@@ -44,22 +35,24 @@
     },
     "Resource.reference": "http://hl7.org/fhir//Patient/f001"
   },
-  "Task.created": {
+  "Task.authoredOn": {
     "dateTime.value": "2016-03-10T22:39:32-04:00"
   },
   "Task.lastModified": {
     "dateTime.value": "2016-03-10T22:39:32-04:00"
   },
   "Task.requester": {
-    "Reference.reference": {
-      "string.value": "Patient/Keith"
-    },
-    "Resource.reference": "http://hl7.org/fhir//Patient/Keith"
+    "Task.requester.agent": {
+      "Reference.reference": {
+        "string.value": "Patient/example"
+      },
+      "Resource.reference": "http://hl7.org/fhir//Patient/example"
+    }
   },
   "Task.owner": {
     "Reference.reference": {
-      "string.value": "Practitioner/MyDoc"
+      "string.value": "Practitioner/example"
     },
-    "Resource.reference": "http://hl7.org/fhir//Practitioner/MyDoc"
+    "Resource.reference": "http://hl7.org/fhir//Practitioner/example"
   }
 }

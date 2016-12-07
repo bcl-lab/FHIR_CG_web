@@ -3,7 +3,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>Codesystem.shex - FHIR v1.7.0</title>
+  <title>Codesystem.shex - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -170,7 +170,7 @@ start=@&lt;CodeSystem&gt; AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:CodeSystem.valueSet @&lt;uri&gt;?;       # Canonical URL for value set with 
                                             # entire code system 
     fhir:CodeSystem.hierarchyMeaning @&lt;code&gt; AND
-    	{fhir:value @fhirvs:codesystem-hierarchy-meaning}?;  # grouped-by | subsumes | part-of | 
+    	{fhir:value @fhirvs:codesystem-hierarchy-meaning}?;  # grouped-by | is-a | part-of | 
                                             # classified-with 
     fhir:CodeSystem.compositional @&lt;boolean&gt;?;  # If code system defines a 
                                             # post-composition grammar 
@@ -184,24 +184,6 @@ start=@&lt;CodeSystem&gt; AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:CodeSystem.property @&lt;CodeSystem.property&gt;*;  # Additional information supplied 
                                             # about each concept 
     fhir:CodeSystem.concept @&lt;CodeSystem.concept&gt;*;  # Concepts in the code system
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
-# Additional information supplied about each concept
-&lt;CodeSystem.property&gt; CLOSED {
-    fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
-    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @&lt;Extension&gt;*;   # Extensions that cannot be ignored
-    fhir:CodeSystem.property.code @&lt;code&gt;;  # Identifies the property on the 
-                                            # concepts, and when referred to in 
-                                            # operations 
-    fhir:CodeSystem.property.uri @&lt;uri&gt;?;   # Formal identifier for the property
-    fhir:CodeSystem.property.description @&lt;string&gt;?;  # Why the property is defined, 
-                                            # and/or what it conveys 
-    fhir:CodeSystem.property.type @&lt;code&gt; AND
-    	{fhir:value @fhirvs:concept-property-type};  # code | Coding | string | integer | 
-                                            # boolean | dateTime 
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -234,6 +216,24 @@ start=@&lt;CodeSystem&gt; AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:CodeSystem.concept.property @&lt;CodeSystem.concept.property&gt;*;  # Property value for the concept
     fhir:CodeSystem.concept.concept @&lt;CodeSystem.concept&gt;*;  # Child Concepts 
                                             # (is-a/contains/categorizes) 
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
+# Additional information supplied about each concept
+&lt;CodeSystem.property&gt; CLOSED {
+    fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
+    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @&lt;Extension&gt;*;   # Extensions that cannot be ignored
+    fhir:CodeSystem.property.code @&lt;code&gt;;  # Identifies the property on the 
+                                            # concepts, and when referred to in 
+                                            # operations 
+    fhir:CodeSystem.property.uri @&lt;uri&gt;?;   # Formal identifier for the property
+    fhir:CodeSystem.property.description @&lt;string&gt;?;  # Why the property is defined, 
+                                            # and/or what it conveys 
+    fhir:CodeSystem.property.type @&lt;code&gt; AND
+    	{fhir:value @fhirvs:concept-property-type};  # code | Coding | string | integer | 
+                                            # boolean | dateTime 
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -479,7 +479,8 @@ start=@&lt;CodeSystem&gt; AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
                                             # implementations 
     fhir:ContactPoint.system @&lt;code&gt; AND
-    	{fhir:value @fhirvs:contact-point-system}?;  # phone | fax | email | pager | other
+    	{fhir:value @fhirvs:contact-point-system}?;  # phone | fax | email | pager | url 
+                                            # | other 
     fhir:ContactPoint.value @&lt;string&gt;?;     # The actual contact point details
     fhir:ContactPoint.use @&lt;code&gt; AND
     	{fhir:value @fhirvs:contact-point-use}?;  # home | work | temp | old | mobile 
@@ -577,23 +578,11 @@ start=@&lt;CodeSystem&gt; AND {fhir:nodeRole [fhir:treeRoot]}
 
 #---------------------- Value Sets ------------------------
 
-# The type of a property value
-fhirvs:concept-property-type [&quot;code&quot; &quot;Coding&quot; &quot;string&quot; &quot;integer&quot; &quot;boolean&quot; &quot;dateTime&quot;]
+# How much of the content of the code system - the concepts and codes it defines - are represented in a code system resource
+fhirvs:codesystem-content-mode [&quot;not-present&quot; &quot;examplar&quot; &quot;fragment&quot; &quot;complete&quot;]
 
-# The kind of operation to perform as a part of a property based filter.
-fhirvs:filter-operator [&quot;=&quot; &quot;is-a&quot; &quot;descendent-of&quot; &quot;is-not-a&quot; &quot;regex&quot; &quot;in&quot; &quot;not-in&quot; &quot;generalizes&quot;]
-
-# The lifecycle status of a Value Set or Concept Map.
-fhirvs:publication-status [&quot;draft&quot; &quot;active&quot; &quot;retired&quot;]
-
-# Telecommunications form for contact point
-fhirvs:contact-point-system [&quot;phone&quot; &quot;fax&quot; &quot;email&quot; &quot;pager&quot; &quot;other&quot;]
-
-# Identifies the purpose for this identifier, if known .
-fhirvs:identifier-use [&quot;usual&quot; &quot;official&quot; &quot;temp&quot; &quot;secondary&quot;]
-
-# The status of a resource narrative
-fhirvs:narrative-status [&quot;generated&quot; &quot;extensions&quot; &quot;additional&quot; &quot;empty&quot;]
+# The meaning of the hierarchy of concepts in a code system
+fhirvs:codesystem-hierarchy-meaning [&quot;grouped-by&quot; &quot;is-a&quot; &quot;part-of&quot; &quot;classified-with&quot;]
 
 # Use of contact point
 fhirvs:contact-point-use [&quot;home&quot; &quot;work&quot; &quot;temp&quot; &quot;old&quot; &quot;mobile&quot;]
@@ -601,11 +590,23 @@ fhirvs:contact-point-use [&quot;home&quot; &quot;work&quot; &quot;temp&quot; &qu
 # How the Quantity should be understood and represented.
 fhirvs:quantity-comparator [&quot;&lt;&quot; &quot;&lt;=&quot; &quot;&gt;=&quot; &quot;&gt;&quot;]
 
-# The meaning of the hierarchy of concepts in a code system
-fhirvs:codesystem-hierarchy-meaning [&quot;grouped-by&quot; &quot;subsumes&quot; &quot;part-of&quot; &quot;classified-with&quot;]
+# The type of a property value
+fhirvs:concept-property-type [&quot;code&quot; &quot;Coding&quot; &quot;string&quot; &quot;integer&quot; &quot;boolean&quot; &quot;dateTime&quot;]
 
-# How much of the content of the code system - the concepts and codes it defines - are represented in a code system resource
-fhirvs:codesystem-content-mode [&quot;not-present&quot; &quot;examplar&quot; &quot;fragment&quot; &quot;complete&quot;]
+# The lifecycle status of a Value Set or Concept Map.
+fhirvs:publication-status [&quot;draft&quot; &quot;active&quot; &quot;retired&quot;]
+
+# Telecommunications form for contact point
+fhirvs:contact-point-system [&quot;phone&quot; &quot;fax&quot; &quot;email&quot; &quot;pager&quot; &quot;url&quot; &quot;other&quot;]
+
+# Identifies the purpose for this identifier, if known .
+fhirvs:identifier-use [&quot;usual&quot; &quot;official&quot; &quot;temp&quot; &quot;secondary&quot;]
+
+# The status of a resource narrative
+fhirvs:narrative-status [&quot;generated&quot; &quot;extensions&quot; &quot;additional&quot; &quot;empty&quot;]
+
+# The kind of operation to perform as a part of a property based filter.
+fhirvs:filter-operator [&quot;=&quot; &quot;is-a&quot; &quot;descendent-of&quot; &quot;is-not-a&quot; &quot;regex&quot; &quot;in&quot; &quot;not-in&quot; &quot;generalizes&quot; &quot;exists&quot;]
 
 </pre>
 </div>
@@ -631,7 +632,7 @@ of the specification.
 		<div class="container"><!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:31-0500. <a href="qa.html">QA Page</a>
+        © HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:20-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search</a> | 

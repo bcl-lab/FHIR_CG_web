@@ -9,8 +9,8 @@
       "status": "active",
       "description": "Type options for StructureMap.group.rule.target.parameter.value[x]",
       "expansion": {
-        "identifier": "urn:uuid:ccc75499-080c-4e62-8954-34dae1f4434a",
-        "timestamp": "2016-11-28T17:33:11-05:00",
+        "identifier": "urn:uuid:5b9fc9dc-4804-41f0-a22d-4337c5e55259",
+        "timestamp": "2016-12-07T14:28:15-05:00",
         "contains": [
           {
             "system": "http://hl7.org/fhir/data-types",
@@ -47,7 +47,7 @@
     }
   ],
   "status": "draft",
-  "date": "2016-11-28T17:29:55-05:00",
+  "date": "2016-12-07T14:18:58-05:00",
   "publisher": "Health Level Seven International (FHIR Infrastructure)",
   "item": [
     {
@@ -2327,6 +2327,135 @@
                           "linkId": "StructureMap.group.rule.source.contextType.value",
                           "text": "context type",
                           "type": "choice",
+                          "required": false,
+                          "repeats": false
+                        }
+                      ]
+                    },
+                    {
+                      "extension": [
+                        {
+                          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs",
+                          "valueInteger": 1
+                        },
+                        {
+                          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType",
+                          "valueString": "integer"
+                        }
+                      ],
+                      "linkId": "StructureMap.group.rule.source.min",
+                      "type": "group",
+                      "required": false,
+                      "repeats": true,
+                      "item": [
+                        {
+                          "extension": [
+                            {
+                              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                              "valueCodeableConcept": {
+                                "coding": [
+                                  {
+                                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                                    "code": "flyover",
+                                    "display": "Fly-over"
+                                  }
+                                ]
+                              }
+                            }
+                          ],
+                          "text": "Specified minimum cardinality for the element. This is optional; if present, it acts an implicit check on the input content.",
+                          "type": "display"
+                        },
+                        {
+                          "linkId": "StructureMap.group.rule.source.min.value",
+                          "text": "Specified minimum cardinality",
+                          "type": "integer",
+                          "required": false,
+                          "repeats": false
+                        }
+                      ]
+                    },
+                    {
+                      "extension": [
+                        {
+                          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs",
+                          "valueInteger": 1
+                        },
+                        {
+                          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType",
+                          "valueString": "string"
+                        }
+                      ],
+                      "linkId": "StructureMap.group.rule.source.max",
+                      "type": "group",
+                      "required": false,
+                      "repeats": true,
+                      "item": [
+                        {
+                          "extension": [
+                            {
+                              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                              "valueCodeableConcept": {
+                                "coding": [
+                                  {
+                                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                                    "code": "flyover",
+                                    "display": "Fly-over"
+                                  }
+                                ]
+                              }
+                            }
+                          ],
+                          "text": "Specified maximum cardinality for the element - a number or a \"*\". This is optional; if present, it acts an implicit check on the input content (* just serves as documentation; it's the default value).",
+                          "type": "display"
+                        },
+                        {
+                          "linkId": "StructureMap.group.rule.source.max.value",
+                          "text": "Specified maximum cardinality (number or *)",
+                          "type": "string",
+                          "required": false,
+                          "repeats": false
+                        }
+                      ]
+                    },
+                    {
+                      "extension": [
+                        {
+                          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs",
+                          "valueInteger": 1
+                        },
+                        {
+                          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType",
+                          "valueString": "string"
+                        }
+                      ],
+                      "linkId": "StructureMap.group.rule.source.type",
+                      "type": "group",
+                      "required": false,
+                      "repeats": true,
+                      "item": [
+                        {
+                          "extension": [
+                            {
+                              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                              "valueCodeableConcept": {
+                                "coding": [
+                                  {
+                                    "system": "http://hl7.org/fhir/questionnaire-item-control",
+                                    "code": "flyover",
+                                    "display": "Fly-over"
+                                  }
+                                ]
+                              }
+                            }
+                          ],
+                          "text": "Specified type for the element. This works as a condition on the mapping - use for polymorphic elements.",
+                          "type": "display"
+                        },
+                        {
+                          "linkId": "StructureMap.group.rule.source.type.value",
+                          "text": "Type for this source",
+                          "type": "string",
                           "required": false,
                           "repeats": false
                         }

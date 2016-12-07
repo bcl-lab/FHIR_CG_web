@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>Subscription - FHIR v1.7.0</title>
+  <title>Subscription - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -173,7 +173,7 @@ the server that doesn't involve missing updates and/or deletes.
 
 
 
-<a name="resource"/>
+<a name="resource"> </a>
 <h2 class="self-link-parent"><span class="sectioncount">12.19.3</span> 
 Resource Content
  <a href="subscription.html#resource" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h2>
@@ -497,8 +497,7 @@ Resource Content
 <p>&nbsp;</p>  
 <p>Alternate definitions: 
 Master Definition (<a href="subscription.profile.xml.html">XML</a>, <a href="subscription.profile.json.html">JSON</a>),
-<a href="xml.html">XML</a> <a href="subscription.xsd">Schema</a>/<a href="subscription.sch">Schematron</a> (for ) + <a href="json.html">JSON</a> <a href="Subscription.schema.json">Schema</a>, <a href="subscription.shex.html">ShEx</a> (for <a href="rdf.html">Turtle</a>)</p>
-
+<a href="xml.html">XML</a> <a href="subscription.xsd">Schema</a>/<a href="subscription.sch">Schematron</a> (for ) + <a href="json.html">JSON</a> <a href="Subscription.schema.json">Schema</a>, <a href="subscription.shex.html">ShEx</a> (for <a href="rdf.html">Turtle</a>), <a href="Subscription.jsonld">JSON-LD</a> (for <a href="rdf.html#json-ld">RDF as JSON-LD</a>), </p>
 
 <a name="tx"> </a>
 <h3 class="self-link-parent"><span class="sectioncount">12.19.3.1</span> 
@@ -583,18 +582,16 @@ deletes it at the specified time.
 
 <p>
 This uses an empty POST message to alert the client that new results 
-are available.
+are available - POST to [base]/Subscription:
 </p>
-<pre class="json">
-POST /Subscription
-
+<pre fragment="Subscription" class="json">
 {
   &quot;resourceType&quot;: &quot;Subscription&quot;,
   &quot;criteria&quot;: &quot;/Observation?name=http://loinc.org|1975-2&amp;_format=json&quot;,
   &quot;channel&quot;: {
     &quot;type&quot;: &quot;rest-hook&quot;,
-    &quot;url&quot;: &quot;https://biliwatch.com/customers/mount-auburn-miu/on-result&quot;,
-    &quot;header&quot;: [&quot;Authorization: Bearer secret-token-abc-123&quot;]
+    &quot;endpoint&quot;: &quot;https://biliwatch.com/customers/mount-auburn-miu/on-result&quot;,
+    &quot;header&quot;: &quot;Authorization: Bearer secret-token-abc-123&quot;
   }
 }
 </pre>
@@ -621,12 +618,14 @@ for defining routing rules within a managed eco-system such
 as a healthcare institution. 
 </p>
 
-<pre class="json">
+<pre fragment="Subscription" class="json">
+{
   &quot;channel&quot;: {
     &quot;type&quot;: &quot;rest-hook&quot;,
-    &quot;url&quot;: &quot;https://internal.acme.com/research/saturn&quot;,
+    &quot;endpoint&quot;: &quot;https://internal.acme.com/research/saturn&quot;,
     &quot;payload&quot;: &quot;application/fhir+json&quot;
   }
+}
 </pre>
 
 <p>
@@ -657,10 +656,12 @@ operation. This can be accomplished using a websocket notification channel.
 A client can declare its intention to listen via Web Sockets:
 </p>
 
-<pre class="json">
+<pre fragment="Subscription" class="json">
+{
   &quot;channel&quot;: {
     &quot;type&quot;: &quot;websocket&quot;
   }
+}
 </pre>
 
 <p>
@@ -683,12 +684,14 @@ A client can register for its user to receive notifications by
 email:
 </p>
 
-<pre class="json">
+<pre fragment="Subscription" class="json">
+{
   &quot;channel&quot;: {
     &quot;type&quot;: &quot;email&quot;,
-    &quot;url&quot;: &quot;mailto:mt-auburn-results@direct.biliwatch.com&quot;,
+    &quot;endpoint&quot;: &quot;mailto:mt-auburn-results@direct.biliwatch.com&quot;,
     &quot;header&quot;: &quot;A new bilirubin result has arrived!&quot;
   }
+}
 </pre>
 
 <p>
@@ -702,11 +705,13 @@ by the rules of the applicable jurisdictions.
 
 <p>SMS works very similarly:</p>
 
-<pre class="json">
+<pre fragment="Subscription" class="json">
+{
   &quot;channel&quot;: {
     &quot;type&quot;: &quot;sms&quot;,
-    &quot;url&quot;: &quot;tel:+1555-345-5555&quot;
+    &quot;endpoint&quot;: &quot;tel:+1555-345-5555&quot;
   }
+}
 </pre>
 
 <p>
@@ -721,11 +726,13 @@ reasons.
 A client can register for its user to receive notifications by <a href="messaging.html">messaging</a>:
 </p>
 
-<pre class="json">
+<pre fragment="Subscription" class="json">
+{
   &quot;channel&quot;: {
     &quot;type&quot;: &quot;message&quot;,
-    &quot;url&quot;: &quot;http://ehr.example.org/fhir/$process-message&quot;
+    &quot;endpoint&quot;: &quot;http://ehr.example.org/fhir/$process-message&quot;
   }
+}
 </pre>
 <p>
 For each matching resource, a server will send a message to the 
@@ -735,7 +742,7 @@ is white-listed prior to allowing these kinds of subscriptions.
 <blockquote class="dstu-note">
 <a name="dstu"> </a>
 <p>
-<b>DSTU Note:</b>  The details of the message - mainly the event code - are 
+<b>STU Note:</b>  The details of the message - mainly the event code - are 
 still to be resolved during the trial use period.
 </p>
 <p>
@@ -776,7 +783,7 @@ Feedback is welcome <a href="http://wiki.hl7.org/index.php?title=FHIR_Specificat
 		<div class="container">  <!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:33-0500. <a href="qa.html">QA Page</a>
+        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:28-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search <img src="external.png" style="text-align: baseline"/></a> | 

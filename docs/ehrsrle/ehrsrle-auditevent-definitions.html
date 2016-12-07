@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>StructureDefinition: EHRSRLE-AuditEvent - FHIR v1.7.0</title>
+  <title>StructureDefinition: EHRSRLE-AuditEvent - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -145,7 +145,7 @@
   <tr><td>Definition</td><td><p>The base language in which the resource is written.</p>
 </td></tr>
   <tr><td><a href="../conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="../terminologies.html">Binding</a></td><td>A human language.<br/>The codes SHALL be taken from <a href="../valueset-languages.html">Common Languages</a>; other codes may be used where these codes are not suitable</td></tr>
+  <tr><td><a href="../terminologies.html">Terminology Binding</a></td><td>A human language.<br/>The codes SHALL be taken from <a href="../valueset-languages.html">Common Languages</a>; other codes may be used where these codes are not suitable</td></tr>
   <tr><td><a href="../datatypes.html">Type</a></td><td><a href="../datatypes.html#code">code</a></td></tr>
   <tr><td>Comments</td><td><p>Language is provided to support indexing and accessibility (typically, services such as text to speech use the language tag). The html language tag in the narrative applies  to the narrative. The language tag on the resource may be used to specify the language of other presentations generated from the data in the resource  Not all the content has to be in the base language. The Resource.language should not be assumed to apply to the narrative automatically. If a language is specified, it should it also be specified on the div element in the html (see rules in HTML5 for information about the relationship between xml:lang and the html lang attribute).</p>
 </td></tr>
@@ -186,7 +186,7 @@
   <tr><td>Definition</td><td><p>Identifier for a family of the event.  For example, a menu item, program, rule, policy, function code, application name or URL. It identifies the performed function.</p>
 </td></tr>
   <tr><td><a href="../conformance-rules.html#conformance">Control</a></td><td>1..1</td></tr>
-  <tr><td><a href="../terminologies.html">Binding</a></td><td>Type of event.<br/>The codes SHALL be taken from <a href="../valueset-audit-event-type.html">Audit Event ID</a>; other codes may be used where these codes are not suitable</td></tr>
+  <tr><td><a href="../terminologies.html">Terminology Binding</a></td><td>Type of event.<br/>The codes SHALL be taken from <a href="../valueset-audit-event-type.html">Audit Event ID</a>; other codes may be used where these codes are not suitable</td></tr>
   <tr><td><a href="../datatypes.html">Type</a></td><td><a href="../datatypes.html#Coding">Coding</a></td></tr>
   <tr><td><a href="../conformance-rules.html#mustSupport">Must Support</a></td><td>true</td></tr>
   <tr><td>Requirements</td><td><p>This identifies the performed function. For &quot;Execute&quot; Event Action Code audit records, this identifies the application function performed.</p>
@@ -195,7 +195,7 @@
   <tr><td>Definition</td><td><p>Identifier for the category of event.</p>
 </td></tr>
   <tr><td><a href="../conformance-rules.html#conformance">Control</a></td><td>0..*</td></tr>
-  <tr><td><a href="../terminologies.html">Binding</a></td><td>Sub-type of event.<br/>The codes SHALL be taken from <a href="../valueset-audit-event-sub-type.html">Audit Event Sub-Type</a>; other codes may be used where these codes are not suitable</td></tr>
+  <tr><td><a href="../terminologies.html">Terminology Binding</a></td><td>Sub-type of event.<br/>The codes SHALL be taken from <a href="../valueset-audit-event-sub-type.html">Audit Event Sub-Type</a>; other codes may be used where these codes are not suitable</td></tr>
   <tr><td><a href="../datatypes.html">Type</a></td><td><a href="../datatypes.html#Coding">Coding</a></td></tr>
   <tr><td><a href="../conformance-rules.html#mustSupport">Must Support</a></td><td>true</td></tr>
   <tr><td>Requirements</td><td><p>This field enables queries of messages by implementation-defined event categories.</p>
@@ -204,7 +204,7 @@
   <tr><td>Definition</td><td><p>Indicator for type of action performed during the event that generated the audit.</p>
 </td></tr>
   <tr><td><a href="../conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="../terminologies.html">Binding</a></td><td>Indicator for type of action performed during the event that generated the audit.<br/>The codes SHALL be taken from <a href="../valueset-audit-event-action.html">AuditEventAction</a></td></tr>
+  <tr><td><a href="../terminologies.html">Terminology Binding</a></td><td>Indicator for type of action performed during the event that generated the audit.<br/>The codes SHALL be taken from <a href="../valueset-audit-event-action.html">AuditEventAction</a></td></tr>
   <tr><td><a href="../datatypes.html">Type</a></td><td><a href="../datatypes.html#code">code</a></td></tr>
   <tr><td><a href="../conformance-rules.html#mustSupport">Must Support</a></td><td>true</td></tr>
   <tr><td>Requirements</td><td><p>This broadly indicates what kind of action was done on the AuditEvent.entity by the AuditEvent.agent.</p>
@@ -223,7 +223,7 @@
   <tr><td>Definition</td><td><p>Indicates whether the event succeeded or failed.</p>
 </td></tr>
   <tr><td><a href="../conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="../terminologies.html">Binding</a></td><td>Indicates whether the event succeeded or failed<br/>The codes SHALL be taken from <a href="../valueset-audit-event-outcome.html">AuditEventOutcome</a></td></tr>
+  <tr><td><a href="../terminologies.html">Terminology Binding</a></td><td>Indicates whether the event succeeded or failed<br/>The codes SHALL be taken from <a href="../valueset-audit-event-outcome.html">AuditEventOutcome</a></td></tr>
   <tr><td><a href="../datatypes.html">Type</a></td><td><a href="../datatypes.html#code">code</a></td></tr>
   <tr><td>Comments</td><td><p>In some cases a &quot;success&quot; may be partial, for example, an incomplete or interrupted transfer of a radiological study. For the purpose of establishing accountability, these distinctions are not relevant.</p>
 </td></tr>
@@ -236,7 +236,7 @@
   <tr><td>Definition</td><td><p>The purposeOfUse (reason) that was used during the event being recorded.</p>
 </td></tr>
   <tr><td><a href="../conformance-rules.html#conformance">Control</a></td><td>0..*</td></tr>
-  <tr><td><a href="../terminologies.html">Binding</a></td><td>The reason the activity took place.<br/>The codes SHALL be taken from <a href="../v3/PurposeOfUse/vs.html">PurposeOfUse</a>; other codes may be used where these codes are not suitable</td></tr>
+  <tr><td><a href="../terminologies.html">Terminology Binding</a></td><td>The reason the activity took place.<br/>The codes SHALL be taken from <a href="../v3/PurposeOfUse/vs.html">PurposeOfUse</a>; other codes may be used where these codes are not suitable</td></tr>
   <tr><td><a href="../datatypes.html">Type</a></td><td><a href="../datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
   <tr><td><a href="../conformance-rules.html#mustSupport">Must Support</a></td><td>true</td></tr>
   <tr><td>Comments</td><td><p>Use AuditEvent.agent.purposeOfUse when you know that is specific to the agent, otherwise use AuditEvent.purposeOfEvent. For example, during a machine-to-machine transfer it might not be obvious to the audit system who caused the event, but it does know why.</p>
@@ -281,7 +281,7 @@
   <tr><td>Definition</td><td><p>Specification of the role(s) the user plays when performing the event. Additional may contain security role codes that come from local codes defined by the access control security system (e.g. RBAC, ABAC) used in the local context.</p>
 </td></tr>
   <tr><td><a href="../conformance-rules.html#conformance">Control</a></td><td>0..*</td></tr>
-  <tr><td><a href="../terminologies.html">Binding</a></td><td>How the agent participated in the event.<br/>The codes SHALL be taken from <a href="../valueset-dicm-402-roleid.html">Audit agent Role ID Code</a>; other codes may be used where these codes are not suitable</td></tr>
+  <tr><td><a href="../terminologies.html">Terminology Binding</a></td><td>How the agent participated in the event.<br/>The codes SHALL be taken from <a href="../valueset-dicm-402-roleid.html">Audit agent Role ID Code</a>; other codes may be used where these codes are not suitable</td></tr>
   <tr><td><a href="../datatypes.html">Type</a></td><td><a href="../datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
   <tr><td><a href="../conformance-rules.html#mustSupport">Must Support</a></td><td>true</td></tr>
   <tr><td>Requirements</td><td><p>This value ties an audited event to a user's role(s). It is an optional value that might be used to group events for analysis by user functional role categories.</p>
@@ -350,7 +350,7 @@
   <tr><td>Definition</td><td><p>Type of media involved. Used when the event is about exporting/importing onto media.</p>
 </td></tr>
   <tr><td><a href="../conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="../terminologies.html">Binding</a></td><td>Used when the event is about exporting/importing onto media.<br/>The codes SHALL be taken from <a href="../valueset-dicm-405-mediatype.html">Media Type Code</a>; other codes may be used where these codes are not suitable</td></tr>
+  <tr><td><a href="../terminologies.html">Terminology Binding</a></td><td>Used when the event is about exporting/importing onto media.<br/>The codes SHALL be taken from <a href="../valueset-dicm-405-mediatype.html">Media Type Code</a>; other codes may be used where these codes are not suitable</td></tr>
   <tr><td><a href="../datatypes.html">Type</a></td><td><a href="../datatypes.html#Coding">Coding</a></td></tr>
   <tr><td>Requirements</td><td><p>Usually, this is used instead of specifying a network address. This field is not used for Media Id (i.e. the serial number of a CD).</p>
 </td></tr>
@@ -398,7 +398,7 @@
   <tr><td>Definition</td><td><p>An identifier for the type of network access point that originated the audit event.</p>
 </td></tr>
   <tr><td><a href="../conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="../terminologies.html">Binding</a></td><td>The type of network access point of this agent in the audit event<br/>The codes SHALL be taken from <a href="../valueset-network-type.html">AuditEventAgentNetworkType</a></td></tr>
+  <tr><td><a href="../terminologies.html">Terminology Binding</a></td><td>The type of network access point of this agent in the audit event<br/>The codes SHALL be taken from <a href="../valueset-network-type.html">AuditEventAgentNetworkType</a></td></tr>
   <tr><td><a href="../datatypes.html">Type</a></td><td><a href="../datatypes.html#code">code</a></td></tr>
   <tr><td><a href="../conformance-rules.html#mustSupport">Must Support</a></td><td>true</td></tr>
   <tr><td>Requirements</td><td><p>This datum identifies the type of network access point identifier of the user device for the audit event. It is an optional value that may be used to group events recorded on separate servers for analysis of access according to a network access point's type.</p>
@@ -407,7 +407,7 @@
   <tr><td>Definition</td><td><p>The reason (purpose of use), specific to this agent, that was used during the event being recorded.</p>
 </td></tr>
   <tr><td><a href="../conformance-rules.html#conformance">Control</a></td><td>0..*</td></tr>
-  <tr><td><a href="../terminologies.html">Binding</a></td><td>The reason the activity took place.<br/>The codes SHALL be taken from <a href="../v3/PurposeOfUse/vs.html">PurposeOfUse</a>; other codes may be used where these codes are not suitable</td></tr>
+  <tr><td><a href="../terminologies.html">Terminology Binding</a></td><td>The reason the activity took place.<br/>The codes SHALL be taken from <a href="../v3/PurposeOfUse/vs.html">PurposeOfUse</a>; other codes may be used where these codes are not suitable</td></tr>
   <tr><td><a href="../datatypes.html">Type</a></td><td><a href="../datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
   <tr><td><a href="../conformance-rules.html#mustSupport">Must Support</a></td><td>true</td></tr>
   <tr><td>Comments</td><td><p>Use AuditEvent.agent.purposeOfUse when you know that is specific to the agent, otherwise use AuditEvent.purposeOfEvent. For example, during a machine-to-machine transfer it might not be obvious to the audit system who caused the event, but it does know why.</p>
@@ -466,7 +466,7 @@
   <tr><td>Definition</td><td><p>Code specifying the type of source where event originated.</p>
 </td></tr>
   <tr><td><a href="../conformance-rules.html#conformance">Control</a></td><td>0..*</td></tr>
-  <tr><td><a href="../terminologies.html">Binding</a></td><td>Code specifying the type of system that detected and recorded the event.<br/>The codes SHALL be taken from <a href="../valueset-audit-source-type.html">Audit Event Source Type</a>; other codes may be used where these codes are not suitable</td></tr>
+  <tr><td><a href="../terminologies.html">Terminology Binding</a></td><td>Code specifying the type of system that detected and recorded the event.<br/>The codes SHALL be taken from <a href="../valueset-audit-source-type.html">Audit Event Source Type</a>; other codes may be used where these codes are not suitable</td></tr>
   <tr><td><a href="../datatypes.html">Type</a></td><td><a href="../datatypes.html#Coding">Coding</a></td></tr>
   <tr><td><a href="../conformance-rules.html#mustSupport">Must Support</a></td><td>true</td></tr>
   <tr><td>Requirements</td><td><p>This field indicates which type of source is identified by the Audit Source ID. It is an optional value that may be used to group events for analysis according to the type of source where the event occurred.</p>
@@ -524,7 +524,7 @@
   <tr><td>Definition</td><td><p>The type of the object that was involved in this audit event.</p>
 </td></tr>
   <tr><td><a href="../conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="../terminologies.html">Binding</a></td><td>Code for the entity type involved audited.<br/>The codes SHALL be taken from <a href="../valueset-object-type.html">AuditEventEntityType</a>; other codes may be used where these codes are not suitable</td></tr>
+  <tr><td><a href="../terminologies.html">Terminology Binding</a></td><td>Code for the entity type involved audited.<br/>The codes SHALL be taken from <a href="../valueset-object-type.html">AuditEventEntityType</a>; other codes may be used where these codes are not suitable</td></tr>
   <tr><td><a href="../datatypes.html">Type</a></td><td><a href="../datatypes.html#Coding">Coding</a></td></tr>
   <tr><td><a href="../conformance-rules.html#mustSupport">Must Support</a></td><td>true</td></tr>
   <tr><td>Requirements</td><td><p>To describe the object being acted upon. In addition to queries on the subject of the action in an auditable event, it is also important to be able to query on the object type for the action.</p>
@@ -535,7 +535,7 @@
   <tr><td>Definition</td><td><p>Code representing the role the entity played in the event being audited.</p>
 </td></tr>
   <tr><td><a href="../conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="../terminologies.html">Binding</a></td><td>Code representing the role the entity played in the event.<br/>The codes SHALL be taken from <a href="../valueset-object-role.html">AuditEventEntityRole</a>; other codes may be used where these codes are not suitable</td></tr>
+  <tr><td><a href="../terminologies.html">Terminology Binding</a></td><td>Code representing the role the entity played in the event.<br/>The codes SHALL be taken from <a href="../valueset-object-role.html">AuditEventEntityRole</a>; other codes may be used where these codes are not suitable</td></tr>
   <tr><td><a href="../datatypes.html">Type</a></td><td><a href="../datatypes.html#Coding">Coding</a></td></tr>
   <tr><td><a href="../conformance-rules.html#mustSupport">Must Support</a></td><td>true</td></tr>
   <tr><td>Requirements</td><td><p>For some detailed audit analysis it may be necessary to indicate a more granular type of entity, based on the application role it serves.</p>
@@ -544,7 +544,7 @@
   <tr><td>Definition</td><td><p>Identifier for the data life-cycle stage for the entity.</p>
 </td></tr>
   <tr><td><a href="../conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="../terminologies.html">Binding</a></td><td>Identifier for the data life-cycle stage for the entity.<br/>The codes SHALL be taken from <a href="../valueset-object-lifecycle.html">AuditEventEntityLifecycle</a>; other codes may be used where these codes are not suitable</td></tr>
+  <tr><td><a href="../terminologies.html">Terminology Binding</a></td><td>Identifier for the data life-cycle stage for the entity.<br/>The codes SHALL be taken from <a href="../valueset-object-lifecycle.html">AuditEventEntityLifecycle</a>; other codes may be used where these codes are not suitable</td></tr>
   <tr><td><a href="../datatypes.html">Type</a></td><td><a href="../datatypes.html#Coding">Coding</a></td></tr>
   <tr><td><a href="../conformance-rules.html#mustSupport">Must Support</a></td><td>true</td></tr>
   <tr><td>Requirements</td><td><p>Institutional policies for privacy and security may optionally fall under different accountability rules based on data life cycle. This provides a differentiating value for those cases.</p>
@@ -555,7 +555,7 @@
   <tr><td>Definition</td><td><p>Denotes security labels for the identified entity.</p>
 </td></tr>
   <tr><td><a href="../conformance-rules.html#conformance">Control</a></td><td>0..*</td></tr>
-  <tr><td><a href="../terminologies.html">Binding</a></td><td>Security Labels from the Healthcare Privacy and Security Classification System.<br/>The codes SHALL be taken from <a href="../valueset-security-labels.html">All Security Labels</a>; other codes may be used where these codes are not suitable</td></tr>
+  <tr><td><a href="../terminologies.html">Terminology Binding</a></td><td>Security Labels from the Healthcare Privacy and Security Classification System.<br/>The codes SHALL be taken from <a href="../valueset-security-labels.html">All Security Labels</a>; other codes may be used where these codes are not suitable</td></tr>
   <tr><td><a href="../datatypes.html">Type</a></td><td><a href="../datatypes.html#Coding">Coding</a></td></tr>
   <tr><td><a href="../conformance-rules.html#mustSupport">Must Support</a></td><td>true</td></tr>
   <tr><td>Requirements</td><td><p>This field identifies the security labels for a specific instance of an object, such as a patient, to detect/track privacy and security issues.</p>
@@ -641,7 +641,7 @@
 		<div class="container">  <!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:33-0500. <a href="../qa.html">QA Page</a>
+        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:28-0500. <a href="../qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search <img src="../external.png" style="text-align: baseline"/></a> | 

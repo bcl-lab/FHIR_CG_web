@@ -222,8 +222,22 @@
                 "$ref": "Element.schema.json#/definitions/Element"
               }
             },
+            "implementationGuide": {
+              "description": "A list of implementation guides that the server does (or should) support in their entirety.",
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "_implementationGuide": {
+              "description": "Extensions for implementationGuide",
+              "type": "array",
+              "items": {
+                "$ref": "Element.schema.json#/definitions/Element"
+              }
+            },
             "profile": {
-              "description": "A list of profiles that represent different use cases supported by the system. For a server, \"supported by the system\" means the system hosts/produces a set of resources that are conformant to a particular profile, and allows clients that use its services to search using this profile and to find appropriate data. For a client, it means the system will search by this profile and process data according to the guidance implicit in the profile. See further discussion in [Using Profiles]{profiling.html#profile-uses}.",
+              "description": "A list of profiles that represent different use cases supported by the system. For a server, \"supported by the system\" means the system hosts/produces a set of resources that are conformant to a particular profile, and allows clients that use its services to search using this profile and to find appropriate data. For a client, it means the system will search by this profile and process data according to the guidance implicit in the profile. See further discussion in [Using Profiles](profiling.html#profile-uses).",
               "type": "array",
               "items": {
                 "$ref": "Reference.schema.json#/definitions/Reference"
@@ -730,61 +744,6 @@
             "_documentation": {
               "description": "Extensions for documentation",
               "$ref": "Element.schema.json#/definitions/Element"
-            },
-            "target": {
-              "description": "Types of resource (if a resource is referenced).",
-              "type": "array",
-              "items": {
-                "type": "string",
-                "pattern": "[^\\s]+([\\s]?[^\\s]+)*"
-              }
-            },
-            "_target": {
-              "description": "Extensions for target",
-              "type": "array",
-              "items": {
-                "$ref": "Element.schema.json#/definitions/Element"
-              }
-            },
-            "modifier": {
-              "description": "A modifier supported for the search parameter.",
-              "enum": [
-                "missing",
-                "exact",
-                "contains",
-                "not",
-                "text",
-                "in",
-                "not-in",
-                "below",
-                "above",
-                "type"
-              ],
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            },
-            "_modifier": {
-              "description": "Extensions for modifier",
-              "type": "array",
-              "items": {
-                "$ref": "Element.schema.json#/definitions/Element"
-              }
-            },
-            "chain": {
-              "description": "Contains the names of any search parameters which may be chained to the containing search parameter. Chained parameters may be added to search parameters of type reference, and specify that resources will only be returned if they contain a reference to a resource which matches the chained parameter value. Values for this field should be drawn from CapabilityStatement.rest.resource.searchParam.name on the target resource type.",
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            },
-            "_chain": {
-              "description": "Extensions for chain",
-              "type": "array",
-              "items": {
-                "$ref": "Element.schema.json#/definitions/Element"
-              }
             }
           }
         }

@@ -10,7 +10,7 @@
   fhir:Resource.id [ fhir:value "example-extension"];
   fhir:DomainResource.text [
      fhir:Narrative.status [ fhir:value "generated" ];
-     fhir:Narrative.div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative with Details</b></p><p><b>id</b>: example-extension</p><p><b>url</b>: <a>http://hl7.org/fhir/SearchParameter/example-extension</a></p><p><b>name</b>: Example Search Parameter on an extension</p><p><b>status</b>: draft</p><p><b>experimental</b>: true</p><p><b>publisher</b>: Health Level Seven International (FHIR Infrastructure)</p><p><b>contact</b>: </p><p><b>code</b>: part-agree</p><p><b>base</b>: Patient</p><p><b>type</b>: reference</p><p><b>description</b>: Search by url for a participation agreement, which is stored in a DocumentReference</p><p><b>xpath</b>: f:DocumentReference/f:extension[@url='http://example.org/fhir/StructureDefinition/participation-agreement']</p><p><b>xpathUsage</b>: normal</p><p><b>target</b>: DocumentReference</p></div>"
+     fhir:Narrative.div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative with Details</b></p><p><b>id</b>: example-extension</p><p><b>url</b>: <a>http://hl7.org/fhir/SearchParameter/example-extension</a></p><p><b>name</b>: Example Search Parameter on an extension</p><p><b>status</b>: draft</p><p><b>experimental</b>: true</p><p><b>publisher</b>: Health Level Seven International (FHIR Infrastructure)</p><p><b>contact</b>: </p><p><b>code</b>: part-agree</p><p><b>base</b>: Patient</p><p><b>type</b>: reference</p><p><b>description</b>: Search by url for a participation agreement, which is stored in a DocumentReference</p><p><b>expression</b>: DocumentReference.extension('http://example.org/fhir/StructureDefinition/participation-agreement')</p><p><b>xpath</b>: f:DocumentReference/f:extension[@url='http://example.org/fhir/StructureDefinition/participation-agreement']</p><p><b>xpathUsage</b>: normal</p><p><b>target</b>: DocumentReference</p></div>"
   ];
   fhir:SearchParameter.url [ fhir:value "http://hl7.org/fhir/SearchParameter/example-extension"];
   fhir:SearchParameter.name [ fhir:value "Example Search Parameter on an extension"];
@@ -21,7 +21,7 @@
      fhir:index 0;
      fhir:ContactDetail.telecom [
        fhir:index 0;
-       fhir:ContactPoint.system [ fhir:value "other" ];
+       fhir:ContactPoint.system [ fhir:value "url" ];
        fhir:ContactPoint.value [ fhir:value "http://hl7.org/fhir" ]
      ]
   ];
@@ -32,6 +32,7 @@
   ];
   fhir:SearchParameter.type [ fhir:value "reference"];
   fhir:SearchParameter.description [ fhir:value "Search by url for a participation agreement, which is stored in a DocumentReference"];
+  fhir:SearchParameter.expression [ fhir:value "DocumentReference.extension('http://example.org/fhir/StructureDefinition/participation-agreement')"];
   fhir:SearchParameter.xpath [ fhir:value "f:DocumentReference/f:extension[@url='http://example.org/fhir/StructureDefinition/participation-agreement']"];
   fhir:SearchParameter.xpathUsage [ fhir:value "normal"];
   fhir:SearchParameter.target [

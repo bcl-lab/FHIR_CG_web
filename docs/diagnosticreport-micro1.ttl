@@ -11,7 +11,7 @@
   fhir:Resource.id [ fhir:value "micro"];
   fhir:DomainResource.text [
      fhir:Narrative.status [ fhir:value "generated" ];
-     fhir:Narrative.div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative with Details</b></p><p><b>id</b>: micro</p><p><b>contained</b>: , , , , , , , , , , , , , , , , , , , , , , , , , </p><p><b>identifier</b>: 290741144</p><p><b>status</b>: final</p><p><b>category</b>: Microbiology <span>(Details : {http://hl7.org/fhir/v2/0074 code 'MB' = 'Microbiology)</span></p><p><b>code</b>: Culture, MRSA <span>(Details : {LOINC code '632-0' = 'Bacteria identified in Wound by Aerobe culture)</span></p><p><b>subject</b>: <a>Patient/example</a></p><p><b>effective</b>: 2009-8-7 19:00:00</p><p><b>issued</b>: 2009-8-10 8:25:44</p><p><b>performer</b>: Todd Ashby</p><p><b>request</b>: id: req; 255337816; Original Order <span>(Details : {http://hl7.org/fhir/request-stage code 'original-order' = 'Original Order)</span>; Culture, MRSA <span>(Details : {LOINC code '632-0' = 'Bacteria identified in Wound by Aerobe culture)</span>; ????</p><p><b>result</b>: id: org1; status: final; Staphylococcus aureus Panel <span>(Details : {http://acme.org/lab/codes/organisms code 'Staaur' = 'Staaur)</span>; ????</p></div>"
+     fhir:Narrative.div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative with Details</b></p><p><b>id</b>: micro</p><p><b>contained</b>: , , , , , , , , , , , , , , , , , , , , , , , , , </p><p><b>identifier</b>: 290741144</p><p><b>status</b>: final</p><p><b>category</b>: Microbiology <span>(Details : {http://hl7.org/fhir/v2/0074 code 'MB' = 'Microbiology)</span></p><p><b>code</b>: Culture, MRSA <span>(Details : {LOINC code '632-0' = 'Bacteria identified in Wound by Aerobe culture)</span></p><p><b>subject</b>: <a>Patient/example</a></p><p><b>effective</b>: 2009-8-7 19:00:00</p><p><b>issued</b>: 2009-8-10 8:25:44</p><p><b>performer</b>: Todd Ashby</p><p><b>request</b>: id: req; 255337816; status: active; intent: original-order; Culture, MRSA <span>(Details : {LOINC code '632-0' = 'Bacteria identified in Wound by Aerobe culture)</span>; ????</p><p><b>result</b>: id: org1; status: final; Staphylococcus aureus Panel <span>(Details : {http://acme.org/lab/codes/organisms code 'Staaur' = 'Staaur)</span>; ????</p></div>"
   ];
   fhir:DomainResource.contained [
      a fhir:Observation;
@@ -896,13 +896,8 @@
        fhir:index 0;
        fhir:Identifier.value [ fhir:value "255337816" ]
      ];
-     fhir:DiagnosticRequest.stage [
-       fhir:CodeableConcept.coding [
-         fhir:index 0;
-         fhir:Coding.system [ fhir:value "http://hl7.org/fhir/request-stage" ];
-         fhir:Coding.code [ fhir:value "original-order" ]
-       ]
-     ];
+     fhir:DiagnosticRequest.status [ fhir:value "active" ];
+     fhir:DiagnosticRequest.intent [ fhir:value "original-order" ];
      fhir:DiagnosticRequest.code [
        fhir:CodeableConcept.coding [
          fhir:index 0;

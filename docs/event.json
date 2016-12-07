@@ -14,15 +14,15 @@
     {
       "telecom": [
         {
-          "system": "other",
+          "system": "url",
           "value": "http://hl7.org/fhir"
         }
       ]
     }
   ],
-  "date": "2016-11-28T17:29:55-05:00",
-  "description": "Logical Model: A pattern to be followed by resources that represent the performance of some task, possibly in accordance with a request or service definition.",
-  "fhirVersion": "1.7.0",
+  "date": "2016-12-07T14:18:58-05:00",
+  "description": "Logical Model: A pattern to be followed by resources that represent the performance of some activity, possibly in accordance with a request or service definition.",
+  "fhirVersion": "1.8.0",
   "mapping": [
     {
       "identity": "rim",
@@ -43,9 +43,18 @@
         "id": "Event",
         "path": "Event",
         "short": "Event Pattern",
-        "definition": "A pattern to be followed by resources that represent the performance of some task, possibly in accordance with a request or service definition.",
+        "definition": "A pattern to be followed by resources that represent the performance of some activity, possibly in accordance with a request or service definition.",
         "min": 0,
         "max": "*",
+        "constraint": [
+          {
+            "key": "inv-1",
+            "severity": "error",
+            "human": "Not Done Reason can only be specified if NotDone is \"true\"",
+            "expression": "notDone or notDoneReason.exists().not()",
+            "xpath": "f:notDone='true' or not(exists(f:notDoneReason))"
+          }
+        ],
         "mapping": [
           {
             "identity": "rim",
@@ -157,6 +166,7 @@
         "path": "Event.status",
         "short": "preparation | in-progress | suspended | aborted | completed | entered-in-error",
         "definition": "The current state of the event.",
+        "comments": "A nominal state-transition diagram can be found in the [[event.html#statemachine | Event pattern]] documentation\n\nUnknown does not represent \"other\" - one of the defined statuses must apply.  Unknown is used when the authoring system is not sure what the current status is.",
         "min": 1,
         "max": "1",
         "type": [
@@ -181,6 +191,53 @@
           {
             "identity": "w5",
             "map": "status"
+          }
+        ]
+      },
+      {
+        "id": "Event.notDone",
+        "path": "Event.notDone",
+        "short": "{{title}} did not occur",
+        "definition": "If true, indicates that the described event (combination of code, timing, performer, etc.) did not actually occur.",
+        "comments": "The more attributes are populated, the more constrained the negated statement is.  For example if timeframe and performer are specified, that means the event wasn't done by that performer in that time-period, but could well have been done by someone else or by that performer in a different time period.",
+        "requirements": "Creating a {{title}} where notDone is true is intended for situations where there's a need for a specific statement in the record about something not being done.  If the need is merely to indicate that a request wasn't fulfilled, that should be handled using Task.",
+        "min": 0,
+        "max": "1",
+        "type": [
+          {
+            "code": "boolean"
+          }
+        ],
+        "isModifier": true,
+        "isSummary": true,
+        "mapping": [
+          {
+            "identity": "rim",
+            "map": ".actionNegationInd"
+          }
+        ]
+      },
+      {
+        "id": "Event.notDoneReason",
+        "path": "Event.notDoneReason",
+        "short": "Why {{title}} did not occur",
+        "definition": "Describes why the event did not occur in coded and/or textual form.",
+        "requirements": "This is a separate element to allow it to have a distinct binding from reasonCode.",
+        "min": 0,
+        "max": "1",
+        "type": [
+          {
+            "code": "CodeableConcept"
+          }
+        ],
+        "condition": [
+          "inv-1"
+        ],
+        "isSummary": true,
+        "mapping": [
+          {
+            "identity": "rim",
+            "map": ".reasonCode"
           }
         ]
       },
@@ -313,7 +370,7 @@
           },
           {
             "identity": "w5",
-            "map": "when.planned"
+            "map": "when.done"
           }
         ]
       },
@@ -322,7 +379,55 @@
         "path": "Event.performer",
         "short": "Who performed event",
         "definition": "Indicates who or what performed the event.",
+        "comments": "[Resources may choose to replace this with just a single performer or repeating where there's no need to distinguish role and/or responsible organization].",
         "min": 0,
+        "max": "*",
+        "type": [
+          {
+            "code": "Element"
+          }
+        ],
+        "isSummary": true,
+        "mapping": [
+          {
+            "identity": "rim",
+            "map": ".participation[typeCode=PRF].role[scoper.determinerCode=INSTANCE]"
+          }
+        ]
+      },
+      {
+        "id": "Event.performer.role",
+        "path": "Event.performer.role",
+        "short": "What type of performance was done",
+        "definition": "Describes the type of performance (e.g. primary surgeon, anaesthesiologiest, etc.).",
+        "min": 0,
+        "max": "1",
+        "type": [
+          {
+            "code": "CodeableConcept"
+          }
+        ],
+        "isSummary": true,
+        "binding": {
+          "strength": "required",
+          "description": "Codes describing the types of functional roles performers can take on when performing events",
+          "valueSetReference": {
+            "reference": "http://hl7.org/fhir/ValueSet/performer-role"
+          }
+        },
+        "mapping": [
+          {
+            "identity": "rim",
+            "map": ".participation.functionCode"
+          }
+        ]
+      },
+      {
+        "id": "Event.performer.actor",
+        "path": "Event.performer.actor",
+        "short": "Individual who was performing",
+        "definition": "The device, practitioner, etc. who performed the action.",
+        "min": 1,
         "max": "1",
         "type": [
           {
@@ -350,7 +455,7 @@
         "mapping": [
           {
             "identity": "rim",
-            "map": ".participation[typeCode=PRF].role[scoper.determinerCode=INSTANCE]"
+            "map": ".player"
           },
           {
             "identity": "w5",
@@ -359,8 +464,29 @@
         ]
       },
       {
-        "id": "Event.reasonCode",
-        "path": "Event.reasonCode",
+        "id": "Event.performer.onBehalfOf",
+        "path": "Event.performer.onBehalfOf",
+        "short": "Organization organization was acting for",
+        "definition": "The organization the device or practitioner was acting on behalf of.",
+        "requirements": "Practitioners and Devices can be associated with multiple organizations.  This element indicates which organization they were acting on behalf of when performing the action.",
+        "min": 0,
+        "max": "1",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/StructureDefinition/Organization"
+          }
+        ],
+        "mapping": [
+          {
+            "identity": "rim",
+            "map": ".scoper"
+          }
+        ]
+      },
+      {
+        "id": "Event.reasonCodeableConcept",
+        "path": "Event.reasonCodeableConcept",
         "short": "Why was event performed?",
         "definition": "Describes why the event occurred in coded or textual form.",
         "comments": "Textual reasons can be caprued using reasonCode.text.",

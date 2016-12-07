@@ -2,7 +2,7 @@
   <!-- These elements SHALL always appear in this order. These basic elements shared by all resources come first
 in order to support consistent definitions for schema and UML derived code. --><html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>Diagnostics-module - FHIR v1.7.0</title>
+  <title>Diagnostics-module - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -103,7 +103,8 @@ in order to support consistent definitions for schema and UML derived code. --><
   <!-- CONTENT CONTENT -->
 
 
-<div class="col-9">
+<div class="col-12">
+<table class="cols"><tr><td id="wg">Work Group <a href="http://www.hl7.org/Special/committees/orders/index.cfm" _target="blank">Orders and Observations <img src="external.png" style="text-align: baseline"/></a><a href="http://www.hl7.org/Special/committees/pher/index.cfm" _target="blank">Public Health and Emergency Response <img src="external.png" style="text-align: baseline"/></a> </td><td id="ballot"><a href="help.html#status">Ballot Status</a>: <a href="history.html#pubs">n/a</a></td></tr></table>
 
 <a name="root"> </a>
 <h2 class="self-link-parent"><span class="sectioncount">10.0<a name="10.0"> </a></span> Diagnostic Medicine Module <a href="diagnostics-module.html#10.0" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h2>
@@ -147,9 +148,30 @@ The Diagnostics Module provides an overview and guide to the FHIR content that a
     <img src="diagnostic-module-resources.png" alt="Image showing the diagnostic resources" width="800px"/>
     
 <p>
-Also, see the <a href="genomics.html">Genomics Implementation Guidance</a> for additional information about how to use the 
-Diagnostic resources for Clinical Genomic Reporting and Analysis.
+<blockquote>
+    <em>Note:</em> See the <a href="genomics.html">Genomics Implementation Guidance</a> for additional information about how to use the
+    Diagnostic resources for Clinical Genomic Reporting and Analysis.
+</blockquote>
 </p>
+    <table class="bare">
+        <tr><td><b>Name</b></td><td><b>Aliases</b></td><td><b>Description</b></td></tr>
+        <tr bgcolor="#EFEFEF"><td><a href="observation.html">Observation</a></td><td>Vital Signs, Measurement, Results</td><td>Measurements and simple assertions made about a patient, device or other subject.</td></tr>
+
+        <tr bgcolor="#FFFFFF"><td><a href="diagnosticreport.html">DiagnosticReport</a></td><td>Report, Test, Result, Results, Labs</td><td>The findings and interpretation of diagnostic  tests performed on patients, groups of patients, devices, and locations, and/or specimens derived from these. The report includes clinical context such as requesting and provider information, and some mix of atomic results, images, textual and coded interpretations, and formatted representation of diagnostic reports.</td></tr>
+
+        <tr bgcolor="#EFEFEF"><td><a href="diagnosticrequest.html">DiagnosticRequest</a></td><td/><td>A record of a request for a diagnostic investigation service to be performed.</td></tr>
+
+        <tr bgcolor="#FFFFFF"><td><a href="imagingstudy.html">ImagingStudy</a></td><td/><td>Representation of the content produced in a DICOM imaging study. A study comprises a set of series, each of which includes a set of Service-Object Pair Instances (SOP Instances - images or other data) acquired or produced in a common context.  A series is of only one modality (e.g. X-ray, CT, MR, ultrasound), but a study may have multiple series of different modalities.</td></tr>
+
+        <tr bgcolor="#EFEFEF"><td><a href="imagingmanifest.html">ImagingManifest</a></td><td>Manifest, XDS-I summary, Key Images</td><td>A manifest of a set of DICOM Service-Object Pair Instances (SOP Instances).  The referenced SOP Instances (images or other content) are for a single patient, and may be from one or more studies. The referenced SOP Instances may have been selected for a purpose, such as  conference, or consult.  Reflecting a range of sharing purposes, typical ImagingManifest resources may include all SOP Instances in a study (perhaps for sharing through a Health Information Exchange); key images from multiple studies (for reference by a referring or treating physician); both a multi-frame ultrasound instance (&quot;cine&quot; video clip) and a set of measurements taken from that instance (for inclusion in a teaching file); and so on.</td></tr>
+
+        <tr bgcolor="#FFFFFF"><td><a href="sequence.html">Sequence</a></td><td/><td>Raw data describing a biological sequence.</td></tr>
+
+        <tr bgcolor="#EFEFEF"><td><a href="specimen.html">Specimen</a></td><td/><td>A sample to be used for analysis.</td></tr>
+
+        <tr bgcolor="#FFFFFF"><td><a href="bodysite.html">BodySite</a></td><td>anatomical location</td><td>Record details about the anatomical location of a specimen or body part.  This resource may be used when a coded concept does not provide the necessary detail needed for the use case.</td></tr>
+
+    </table>
 
 <a name="secpriv"> </a>
 <h3 class="self-link-parent"><span class="sectioncount">10.0.3</span> Security and Privacy <a href="diagnostics-module.html#secpriv" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h3>
@@ -161,20 +183,18 @@ The diagnostic resources often represent patient-related data, and as such are s
 <h3 class="self-link-parent"><span class="sectioncount">10.0.4</span> Common use Cases <a href="diagnostics-module.html#uses" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h3>
 <p>
 Diagnostic resources are commonly used as to order and report clinical diagnostics:
-
+</p>
 <ul>
 <li>Ordering a Laboratory Test such as a <a href="diagnosticrequest-example-lipid.html">lipid panel</a></li>
 <li>Reporting a Laboratory Test such as a <a href="diagnosticreport-example-lipids.html">lipid panel</a></li>
 <li>Ordering an imaging study such as a <a href="diagnosticrequest-example-di.html">CT study</a></li>
 <li>Reporting an imaging study such as a <a href="imagingstudy-example.html">CT study</a></li>
-<li>Ordering a genetics test  such as a <a href="diagnosticrequest-genetics-example-1.html">CT study</a></li>
+<li>Ordering a genetics test  such as a <a href="diagnosticrequest-genetics-example-1.html">gene mutation analysis </a></li>
 <li>Reporting a genetics test such as <a href="diagnosticreport-hla-genetics-results-example.html">HLA genotyping</a></li>
 </ul>
-
-
-
+<p>
 There are many ways to use these resources independently as well.  The Observation resource in particular is central to capturing many measurements and events in healthcare and is often used outside the context of diagnostic orders and reports.
-
+</p>
 <ul>
 <li>recording vital signs such as <a href="observation-example-f202-temperature.html">temperature</a></li>
 <li>recording other observations such as patient's social history like tobacco use</li>
@@ -182,7 +202,7 @@ There are many ways to use these resources independently as well.  The Observati
 <li>recording clinical assessment tool scores such as an <a href="observation-example-5minute-apgar-score.html">Apgar score</a>.</li>
 <li>identifying and describing a <a href="specimen-example-serum.html">specimen</a> or <a href="bodysite-example-tumor.html">body site</a></li>
 </ul>
-</p>
+
 
 <a name="roadmap"> </a>
 <h3 class="self-link-parent"><span class="sectioncount">10.0.5</span> Developmental Roadmap <a href="diagnostics-module.html#roadmap" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h3>
@@ -205,7 +225,6 @@ There are many ways to use these resources independently as well.  The Observati
 
 
 </p>
-<p>Editor : Eric Haas</p>
 </div>
 
 
@@ -220,7 +239,7 @@ There are many ways to use these resources independently as well.  The Observati
 		<div class="container">  <!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:33-0500. <a href="qa.html">QA Page</a>
+        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:28-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search <img src="external.png" style="text-align: baseline"/></a> | 

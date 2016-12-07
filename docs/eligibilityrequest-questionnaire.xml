@@ -9,8 +9,8 @@
       <status value="active"/>
       <description value="Type options for EligibilityRequest.serviced[x]"/>
       <expansion>
-        <identifier value="urn:uuid:c318582f-0d68-42c4-af6d-56d597f32c7a"/>
-        <timestamp value="2016-11-28T17:32:37-05:00"/>
+        <identifier value="urn:uuid:624ce002-d5eb-46da-bbc9-c99ca003aae4"/>
+        <timestamp value="2016-12-07T14:21:45-05:00"/>
         <contains>
           <system value="http://hl7.org/fhir/data-types"/>
           <code value="date"/>
@@ -28,7 +28,7 @@
     <system value="urn:ietf:rfc:3986"/>
   </identifier>
   <status value="draft"/>
-  <date value="2016-11-28T17:29:55-05:00"/>
+  <date value="2016-12-07T14:18:58-05:00"/>
   <publisher value="Health Level Seven International (Financial Management)"/>
   <item>
     <linkId value="EligibilityRequest"/>
@@ -46,7 +46,7 @@
           </coding>
         </valueCodeableConcept>
       </extension>
-      <text value="This resource provides the insurance eligibility details from the insurer regarding a specified coverage and optionally some class of service."/>
+      <text value="This resource provides the details  from the insurer to identify a specified coverage and optionally some class of service."/>
       <type value="display"/>
     </item>
     <item>
@@ -296,9 +296,6 @@
       </item>
     </item>
     <item>
-      <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-minOccurs">
-        <valueInteger value="1"/>
-      </extension>
       <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs">
         <valueInteger value="1"/>
       </extension>
@@ -307,7 +304,7 @@
       </extension>
       <linkId value="EligibilityRequest.status"/>
       <type value="group"/>
-      <required value="true"/>
+      <required value="false"/>
       <repeats value="true"/>
       <item>
         <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl">
@@ -335,9 +332,10 @@
         <valueInteger value="1"/>
       </extension>
       <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
-        <valueString value="Coding"/>
+        <valueString value="CodeableConcept"/>
       </extension>
-      <linkId value="EligibilityRequest.ruleset"/>
+      <linkId value="EligibilityRequest.priority"/>
+      <text value="Desired processing priority"/>
       <type value="group"/>
       <required value="false"/>
       <repeats value="true"/>
@@ -351,13 +349,20 @@
             </coding>
           </valueCodeableConcept>
         </extension>
-        <text value="The version of the style of resource contents. This should be mapped to the allowable profiles for this and supporting resources."/>
+        <text value="Immediate (STAT), best effort (NORMAL), deferred (DEFER)."/>
         <type value="display"/>
       </item>
       <item>
-        <linkId value="EligibilityRequest.ruleset.value"/>
-        <text value="Resource version"/>
+        <linkId value="EligibilityRequest.priority.coding"/>
+        <text value="code:"/>
         <type value="open-choice"/>
+        <required value="false"/>
+        <repeats value="false"/>
+      </item>
+      <item>
+        <linkId value="EligibilityRequest.priority.text"/>
+        <text value="text:"/>
+        <type value="string"/>
         <required value="false"/>
         <repeats value="false"/>
       </item>
@@ -367,9 +372,9 @@
         <valueInteger value="1"/>
       </extension>
       <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
-        <valueString value="Coding"/>
+        <valueString value="Reference"/>
       </extension>
-      <linkId value="EligibilityRequest.originalRuleset"/>
+      <linkId value="EligibilityRequest.patient"/>
       <type value="group"/>
       <required value="false"/>
       <repeats value="true"/>
@@ -383,15 +388,90 @@
             </coding>
           </valueCodeableConcept>
         </extension>
-        <text value="The style (standard) and version of the original material which was converted into this resource."/>
+        <text value="Patient Resource. 1..1."/>
         <type value="display"/>
       </item>
       <item>
-        <linkId value="EligibilityRequest.originalRuleset.value"/>
-        <text value="Original version"/>
-        <type value="open-choice"/>
+        <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-allowedResource">
+          <valueCode value="Patient"/>
+        </extension>
+        <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-referenceFilter">
+          <valueString value="subject=$subj&amp;patient=$subj&amp;encounter=$encounter"/>
+        </extension>
+        <linkId value="EligibilityRequest.patient.value"/>
+        <text value="The subject of the Products and Services"/>
+        <type value="reference"/>
         <required value="false"/>
         <repeats value="false"/>
+      </item>
+    </item>
+    <item>
+      <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs">
+        <valueInteger value="1"/>
+      </extension>
+      <linkId value="EligibilityRequest.serviced[x]"/>
+      <text value="Estimated date or dates of Service"/>
+      <type value="group"/>
+      <required value="false"/>
+      <repeats value="true"/>
+      <item>
+        <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl">
+          <valueCodeableConcept>
+            <coding>
+              <system value="http://hl7.org/fhir/questionnaire-item-control"/>
+              <code value="flyover"/>
+              <display value="Fly-over"/>
+            </coding>
+          </valueCodeableConcept>
+        </extension>
+        <text value="The date or dates when the enclosed suite of services were performed or completed."/>
+        <type value="display"/>
+      </item>
+      <item>
+        <linkId value="EligibilityRequest.serviced[x]._type"/>
+        <text value="type"/>
+        <type value="choice"/>
+        <required value="false"/>
+        <repeats value="false"/>
+        <options>
+          <reference value="#vs2"/>
+        </options>
+        <item>
+          <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
+            <valueString value="datetime"/>
+          </extension>
+          <linkId value="EligibilityRequest.serviced[x]._date"/>
+          <type value="group"/>
+          <item>
+            <linkId value="EligibilityRequest.serviced[x]._date.value"/>
+            <text value="date"/>
+            <type value="dateTime"/>
+            <required value="false"/>
+            <repeats value="false"/>
+          </item>
+        </item>
+        <item>
+          <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
+            <valueString value="Period"/>
+          </extension>
+          <linkId value="EligibilityRequest.serviced[x]._Period"/>
+          <text value="Period"/>
+          <type value="group"/>
+          <item>
+            <linkId value="EligibilityRequest.serviced[x]._Period.low"/>
+            <text value="start:"/>
+            <type value="dateTime"/>
+            <required value="false"/>
+            <repeats value="false"/>
+          </item>
+          <item>
+            <linkId value="EligibilityRequest.serviced[x]._Period.end"/>
+            <text value="end:"/>
+            <type value="dateTime"/>
+            <required value="false"/>
+            <repeats value="false"/>
+          </item>
+        </item>
       </item>
     </item>
     <item>
@@ -433,7 +513,7 @@
       <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
         <valueString value="Reference"/>
       </extension>
-      <linkId value="EligibilityRequest.insurer"/>
+      <linkId value="EligibilityRequest.enterer"/>
       <type value="group"/>
       <required value="false"/>
       <repeats value="true"/>
@@ -447,18 +527,18 @@
             </coding>
           </valueCodeableConcept>
         </extension>
-        <text value="The Insurer who is target  of the request."/>
+        <text value="Person who created the invoice/claim/pre-determination or pre-authorization."/>
         <type value="display"/>
       </item>
       <item>
         <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-allowedResource">
-          <valueCode value="Organization"/>
+          <valueCode value="Practitioner"/>
         </extension>
         <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-referenceFilter">
           <valueString value="subject=$subj&amp;patient=$subj&amp;encounter=$encounter"/>
         </extension>
-        <linkId value="EligibilityRequest.insurer.value"/>
-        <text value="Target"/>
+        <linkId value="EligibilityRequest.enterer.value"/>
+        <text value="Author"/>
         <type value="reference"/>
         <required value="false"/>
         <repeats value="false"/>
@@ -545,41 +625,9 @@
         <valueInteger value="1"/>
       </extension>
       <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
-        <valueString value="Coding"/>
-      </extension>
-      <linkId value="EligibilityRequest.priority"/>
-      <type value="group"/>
-      <required value="false"/>
-      <repeats value="true"/>
-      <item>
-        <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl">
-          <valueCodeableConcept>
-            <coding>
-              <system value="http://hl7.org/fhir/questionnaire-item-control"/>
-              <code value="flyover"/>
-              <display value="Fly-over"/>
-            </coding>
-          </valueCodeableConcept>
-        </extension>
-        <text value="Immediate (STAT), best effort (NORMAL), deferred (DEFER)."/>
-        <type value="display"/>
-      </item>
-      <item>
-        <linkId value="EligibilityRequest.priority.value"/>
-        <text value="Desired processing priority"/>
-        <type value="open-choice"/>
-        <required value="false"/>
-        <repeats value="false"/>
-      </item>
-    </item>
-    <item>
-      <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs">
-        <valueInteger value="1"/>
-      </extension>
-      <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
         <valueString value="Reference"/>
       </extension>
-      <linkId value="EligibilityRequest.enterer"/>
+      <linkId value="EligibilityRequest.insurer"/>
       <type value="group"/>
       <required value="false"/>
       <repeats value="true"/>
@@ -593,18 +641,18 @@
             </coding>
           </valueCodeableConcept>
         </extension>
-        <text value="Person who created the invoice/claim/pre-determination or pre-authorization."/>
+        <text value="The Insurer who is target  of the request."/>
         <type value="display"/>
       </item>
       <item>
         <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-allowedResource">
-          <valueCode value="Practitioner"/>
+          <valueCode value="Organization"/>
         </extension>
         <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-referenceFilter">
           <valueString value="subject=$subj&amp;patient=$subj&amp;encounter=$encounter"/>
         </extension>
-        <linkId value="EligibilityRequest.enterer.value"/>
-        <text value="Author"/>
+        <linkId value="EligibilityRequest.insurer.value"/>
+        <text value="Target"/>
         <type value="reference"/>
         <required value="false"/>
         <repeats value="false"/>
@@ -643,44 +691,6 @@
         </extension>
         <linkId value="EligibilityRequest.facility.value"/>
         <text value="Servicing Facility"/>
-        <type value="reference"/>
-        <required value="false"/>
-        <repeats value="false"/>
-      </item>
-    </item>
-    <item>
-      <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs">
-        <valueInteger value="1"/>
-      </extension>
-      <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
-        <valueString value="Reference"/>
-      </extension>
-      <linkId value="EligibilityRequest.patient"/>
-      <type value="group"/>
-      <required value="false"/>
-      <repeats value="true"/>
-      <item>
-        <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl">
-          <valueCodeableConcept>
-            <coding>
-              <system value="http://hl7.org/fhir/questionnaire-item-control"/>
-              <code value="flyover"/>
-              <display value="Fly-over"/>
-            </coding>
-          </valueCodeableConcept>
-        </extension>
-        <text value="Patient Resource. 1..1."/>
-        <type value="display"/>
-      </item>
-      <item>
-        <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-allowedResource">
-          <valueCode value="Patient"/>
-        </extension>
-        <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-referenceFilter">
-          <valueString value="subject=$subj&amp;patient=$subj&amp;encounter=$encounter"/>
-        </extension>
-        <linkId value="EligibilityRequest.patient.value"/>
-        <text value="The subject of the Products and Services"/>
         <type value="reference"/>
         <required value="false"/>
         <repeats value="false"/>
@@ -760,79 +770,11 @@
       <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs">
         <valueInteger value="1"/>
       </extension>
-      <linkId value="EligibilityRequest.serviced[x]"/>
-      <text value="Estimated date or dates of Service"/>
-      <type value="group"/>
-      <required value="false"/>
-      <repeats value="true"/>
-      <item>
-        <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl">
-          <valueCodeableConcept>
-            <coding>
-              <system value="http://hl7.org/fhir/questionnaire-item-control"/>
-              <code value="flyover"/>
-              <display value="Fly-over"/>
-            </coding>
-          </valueCodeableConcept>
-        </extension>
-        <text value="The date or dates when the enclosed suite of services were performed or completed."/>
-        <type value="display"/>
-      </item>
-      <item>
-        <linkId value="EligibilityRequest.serviced[x]._type"/>
-        <text value="type"/>
-        <type value="choice"/>
-        <required value="false"/>
-        <repeats value="false"/>
-        <options>
-          <reference value="#vs2"/>
-        </options>
-        <item>
-          <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
-            <valueString value="datetime"/>
-          </extension>
-          <linkId value="EligibilityRequest.serviced[x]._date"/>
-          <type value="group"/>
-          <item>
-            <linkId value="EligibilityRequest.serviced[x]._date.value"/>
-            <text value="date"/>
-            <type value="dateTime"/>
-            <required value="false"/>
-            <repeats value="false"/>
-          </item>
-        </item>
-        <item>
-          <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
-            <valueString value="Period"/>
-          </extension>
-          <linkId value="EligibilityRequest.serviced[x]._Period"/>
-          <text value="Period"/>
-          <type value="group"/>
-          <item>
-            <linkId value="EligibilityRequest.serviced[x]._Period.low"/>
-            <text value="start:"/>
-            <type value="dateTime"/>
-            <required value="false"/>
-            <repeats value="false"/>
-          </item>
-          <item>
-            <linkId value="EligibilityRequest.serviced[x]._Period.end"/>
-            <text value="end:"/>
-            <type value="dateTime"/>
-            <required value="false"/>
-            <repeats value="false"/>
-          </item>
-        </item>
-      </item>
-    </item>
-    <item>
-      <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs">
-        <valueInteger value="1"/>
-      </extension>
       <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
-        <valueString value="Coding"/>
+        <valueString value="CodeableConcept"/>
       </extension>
       <linkId value="EligibilityRequest.benefitCategory"/>
+      <text value="Benefit Category"/>
       <type value="group"/>
       <required value="false"/>
       <repeats value="true"/>
@@ -850,9 +792,16 @@
         <type value="display"/>
       </item>
       <item>
-        <linkId value="EligibilityRequest.benefitCategory.value"/>
-        <text value="Benefit Category"/>
+        <linkId value="EligibilityRequest.benefitCategory.coding"/>
+        <text value="code:"/>
         <type value="open-choice"/>
+        <required value="false"/>
+        <repeats value="false"/>
+      </item>
+      <item>
+        <linkId value="EligibilityRequest.benefitCategory.text"/>
+        <text value="text:"/>
+        <type value="string"/>
         <required value="false"/>
         <repeats value="false"/>
       </item>
@@ -862,9 +811,10 @@
         <valueInteger value="1"/>
       </extension>
       <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
-        <valueString value="Coding"/>
+        <valueString value="CodeableConcept"/>
       </extension>
       <linkId value="EligibilityRequest.benefitSubCategory"/>
+      <text value="Benefit SubCategory"/>
       <type value="group"/>
       <required value="false"/>
       <repeats value="true"/>
@@ -882,9 +832,16 @@
         <type value="display"/>
       </item>
       <item>
-        <linkId value="EligibilityRequest.benefitSubCategory.value"/>
-        <text value="Benefit SubCategory"/>
+        <linkId value="EligibilityRequest.benefitSubCategory.coding"/>
+        <text value="code:"/>
         <type value="open-choice"/>
+        <required value="false"/>
+        <repeats value="false"/>
+      </item>
+      <item>
+        <linkId value="EligibilityRequest.benefitSubCategory.text"/>
+        <text value="text:"/>
+        <type value="string"/>
         <required value="false"/>
         <repeats value="false"/>
       </item>

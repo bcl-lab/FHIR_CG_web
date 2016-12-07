@@ -3,7 +3,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>Coverage-example.ttl - FHIR v1.7.0</title>
+  <title>Coverage-example.ttl - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -136,20 +136,19 @@
      fhir:Identifier.value [ fhir:value &quot;12345&quot; ]
   ];
   fhir:Coverage.status [ fhir:value &quot;active&quot;];
-  fhir:Coverage.issuer [
-     fhir:link &lt;http://hl7.org/fhir/Organization/2&gt;;
-     fhir:Reference.reference [ fhir:value &quot;Organization/2&quot; ]
-  ];
-  fhir:Coverage.period [
-     fhir:Period.start [ fhir:value &quot;2011-05-23&quot;^^xsd:date ];
-     fhir:Period.end [ fhir:value &quot;2012-05-23&quot;^^xsd:date ]
-  ];
   fhir:Coverage.type [
-     fhir:Coding.system [ fhir:value &quot;http://hl7.org/fhir/v3/ActCode&quot; ];
-     fhir:Coding.code [ fhir:value &quot;EHCPOL&quot; ];
-     fhir:Coding.display [ fhir:value &quot;extended healthcare&quot; ]
+     fhir:CodeableConcept.coding [
+       fhir:index 0;
+       fhir:Coding.system [ fhir:value &quot;http://hl7.org/fhir/v3/ActCode&quot; ];
+       fhir:Coding.code [ fhir:value &quot;EHCPOL&quot; ];
+       fhir:Coding.display [ fhir:value &quot;extended healthcare&quot; ]
+     ]
   ];
-  fhir:Coverage.planholder [
+  fhir:Coverage.policyHolder [
+     fhir:link &lt;http://benefitsinc.com/FHIR/Organization/CBI35&gt;;
+     fhir:Reference.reference [ fhir:value &quot;http://benefitsinc.com/FHIR/Organization/CBI35&quot; ]
+  ];
+  fhir:Coverage.subscriber [
      fhir:link &lt;http://hl7.org/fhir/Patient/4&gt;;
      fhir:Reference.reference [ fhir:value &quot;Patient/4&quot; ]
   ];
@@ -158,20 +157,40 @@
      fhir:Reference.reference [ fhir:value &quot;Patient/4&quot; ]
   ];
   fhir:Coverage.relationship [
-     fhir:Coding.code [ fhir:value &quot;self&quot; ]
+     fhir:CodeableConcept.coding [
+       fhir:index 0;
+       fhir:Coding.code [ fhir:value &quot;self&quot; ]
+     ]
+  ];
+  fhir:Coverage.period [
+     fhir:Period.start [ fhir:value &quot;2011-05-23&quot;^^xsd:date ];
+     fhir:Period.end [ fhir:value &quot;2012-05-23&quot;^^xsd:date ]
+  ];
+  fhir:Coverage.payor [
+     fhir:index 0;
+     fhir:link &lt;http://hl7.org/fhir/Organization/2&gt;;
+     fhir:Reference.reference [ fhir:value &quot;Organization/2&quot; ]
   ];
   fhir:Coverage.group [
-     fhir:Coverage.group.plan [ fhir:value &quot;CBI35&quot; ];
-     fhir:Coverage.group.planDisplay [ fhir:value &quot;Corporate Baker's Inc. Plan#35&quot; ];
-     fhir:Coverage.group.subPlan [ fhir:value &quot;123&quot; ];
-     fhir:Coverage.group.subPlanDisplay [ fhir:value &quot;Trainee Part-time Benefits&quot; ]
+     fhir:Coverage.group.group [ fhir:value &quot;CBI35&quot; ];
+     fhir:Coverage.group.groupDisplay [ fhir:value &quot;Corporate Baker's Inc. Local #35&quot; ];
+     fhir:Coverage.group.subGroup [ fhir:value &quot;123&quot; ];
+     fhir:Coverage.group.subGroupDisplay [ fhir:value &quot;Trainee Part-time Benefits&quot; ];
+     fhir:Coverage.group.plan [ fhir:value &quot;B37FC&quot; ];
+     fhir:Coverage.group.planDisplay [ fhir:value &quot;Full Coverage: Medical, Dental, Pharmacy, Vision, EHC&quot; ];
+     fhir:Coverage.group.subPlan [ fhir:value &quot;P7&quot; ];
+     fhir:Coverage.group.subPlanDisplay [ fhir:value &quot;Includes afterlife benefits&quot; ];
+     fhir:Coverage.group.class [ fhir:value &quot;SILVER&quot; ];
+     fhir:Coverage.group.classDisplay [ fhir:value &quot;Silver: Family Plan spouse only&quot; ];
+     fhir:Coverage.group.subClass [ fhir:value &quot;Tier2&quot; ];
+     fhir:Coverage.group.subClassDisplay [ fhir:value &quot;Low deductable, max $20 copay&quot; ]
   ];
-  fhir:Coverage.dependent [ fhir:value &quot;1&quot;^^xsd:positiveInteger];
-  fhir:Coverage.sequence [ fhir:value &quot;1&quot;^^xsd:positiveInteger] .
-
-&lt;http://hl7.org/fhir/Organization/2&gt; a fhir:Organization .
+  fhir:Coverage.dependent [ fhir:value &quot;0&quot;];
+  fhir:Coverage.sequence [ fhir:value &quot;9&quot;] .
 
 &lt;http://hl7.org/fhir/Patient/4&gt; a fhir:Patient, fhir:Patient .
+
+&lt;http://hl7.org/fhir/Organization/2&gt; a fhir:Organization .
 
 # -------------------------------------------------------------------------------------
 
@@ -200,7 +219,7 @@ of the specification.
 		<div class="container"><!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:32-0500. <a href="qa.html">QA Page</a>
+        © HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:21-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search</a> | 

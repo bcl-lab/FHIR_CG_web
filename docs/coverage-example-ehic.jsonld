@@ -25,33 +25,22 @@
   "Coverage.status": {
     "code.value": "active"
   },
-  "Coverage.issuer": {
-    "Reference.identifier": {
-      "Identifier.system": {
-        "uri.value": "http://ehic.com/insurer"
-      },
-      "Identifier.value": {
-        "string.value": "123456789"
-      }
-    }
-  },
-  "Coverage.period": {
-    "Period.end": {
-      "dateTime.value": "2012-03-17"
-    }
-  },
   "Coverage.type": {
-    "Coding.system": {
-      "uri.value": "http://hl7.org/fhir/v3/ActCode"
-    },
-    "Coding.code": {
-      "code.value": "EHCPOL"
-    },
-    "Coding.display": {
-      "string.value": "extended healthcare"
-    }
+    "CodeableConcept.coding": [
+      {
+        "Coding.system": {
+          "uri.value": "http://hl7.org/fhir/v3/ActCode"
+        },
+        "Coding.code": {
+          "code.value": "EHCPOL"
+        },
+        "Coding.display": {
+          "string.value": "extended healthcare"
+        }
+      }
+    ]
   },
-  "Coverage.planholder": {
+  "Coverage.subscriber": {
     "Reference.reference": {
       "string.value": "Patient/5"
     },
@@ -64,8 +53,29 @@
     "Resource.reference": "http://hl7.org/fhir//Patient/5"
   },
   "Coverage.relationship": {
-    "Coding.code": {
-      "code.value": "self"
+    "CodeableConcept.coding": [
+      {
+        "Coding.code": {
+          "code.value": "self"
+        }
+      }
+    ]
+  },
+  "Coverage.period": {
+    "Period.end": {
+      "dateTime.value": "2012-03-17"
     }
-  }
+  },
+  "Coverage.payor": [
+    {
+      "Reference.identifier": {
+        "Identifier.system": {
+          "uri.value": "http://ehic.com/insurer"
+        },
+        "Identifier.value": {
+          "string.value": "123456789"
+        }
+      }
+    }
+  ]
 }

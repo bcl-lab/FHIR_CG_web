@@ -27,7 +27,7 @@
   POSSIBILITY OF SUCH DAMAGE.
   
 
-  Generated on Mon, Nov 28, 2016 17:29-0500 for FHIR v1.7.0 
+  Generated on Wed, Dec 7, 2016 14:18-0500 for FHIR v1.8.0 
 
   Note: the schemas &amp; schematrons do not contain all of the rules about what makes resources
   valid. Implementers will still need to be familiar with the content of the specification and with
@@ -66,9 +66,9 @@
             <xs:element name="medicationCodeableConcept" type="CodeableConcept"/>
             <xs:element name="medicationReference" type="Reference"/>
           </xs:choice>
-          <xs:element name="patient" minOccurs="1" maxOccurs="1" type="Reference">
+          <xs:element name="subject" minOccurs="1" maxOccurs="1" type="Reference">
             <xs:annotation>
-              <xs:documentation xml:lang="en">The person or animal who is/was taking the medication.</xs:documentation>
+              <xs:documentation xml:lang="en">The person, animal or group who is/was taking the medication.</xs:documentation>
            </xs:annotation>
           </xs:element>
           <xs:choice minOccurs="0" maxOccurs="1" >
@@ -103,14 +103,14 @@
               <xs:documentation xml:lang="en">A code indicating why the medication was not taken.</xs:documentation>
            </xs:annotation>
           </xs:element>
-          <xs:element name="reasonForUseCode" minOccurs="0" maxOccurs="unbounded" type="CodeableConcept">
+          <xs:element name="reasonForUseCodeableConcept" minOccurs="0" maxOccurs="unbounded" type="CodeableConcept">
             <xs:annotation>
               <xs:documentation xml:lang="en">A reason for why the medication is being/was taken.</xs:documentation>
            </xs:annotation>
           </xs:element>
           <xs:element name="reasonForUseReference" minOccurs="0" maxOccurs="unbounded" type="Reference">
             <xs:annotation>
-              <xs:documentation xml:lang="en">Condition that supports why the medication is being/was taken.</xs:documentation>
+              <xs:documentation xml:lang="en">Condition or observation that supports why the medication is being/was taken.</xs:documentation>
            </xs:annotation>
           </xs:element>
           <xs:element name="note" minOccurs="0" maxOccurs="unbounded" type="Annotation">

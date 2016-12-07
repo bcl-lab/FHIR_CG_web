@@ -14,11 +14,26 @@
   <status value="active"/>
 
   <type>
+   <coding>
     <system value="http://hl7.org/fhir/ex-claimtype"/>
     <code value="institutional"/>
+   </coding>
   </type>
  
-  <created value="2014-08-16"/>
+ <use value="complete"/>
+
+ <patient>
+   <reference value="Patient/1"/>
+ </patient>
+ 
+ <created value="2014-08-16"/>
+
+ <enterer>
+   <identifier>
+    <system value="http://jurisdiction.org/facilities/HOSP1234/users"/>
+    <value value="UC1234"/>
+   </identifier>
+</enterer>
 
  <insurer>
   <reference value="Organization/2"/>
@@ -28,61 +43,59 @@
     <reference value="Organization/1"/>
  </organization>
 
- <use value="complete"/>
-
  <priority>
+  <coding>
     <code value="normal"/>
+  </coding>
  </priority>
 
- <enterer>
-   <identifier>
-    <system value="http://jurisdiction.org/facilities/HOSP1234/users"/>
-    <value value="UC1234"/>
-   </identifier>
-</enterer>
-
+ <payee>
+   <type>
+    <coding>
+     <code value="provider"/>
+	</coding>
+   </type>
+ </payee>
+ 
  <facility>
   <identifier>
     <system value="http://jurisdiction.org/facilities"/>
     <value value="HOSP1234"/>
   </identifier>
-</facility>
+ </facility>
  
- <payee>
-   <type>
-     <code value="provider"/>
-   </type>
- </payee>
- 
-  <diagnosis>
+   <careTeam>
+     <sequence value="1"/>
+     <provider>
+       <reference value="Practitioner/example"/>
+     </provider>
+   </careTeam>
+
+   <diagnosis>
     <sequence value="1"/>
-	<diagnosis>
+	<diagnosisCodeableConcept>
+	 <coding>
 	  <code value="654456"/>
-	</diagnosis>
+	 </coding>
+	</diagnosisCodeableConcept>
   </diagnosis>
  
- <patient>
-   <reference value="Patient/1"/>
- </patient>
- 
- <coverage>
+ <insurance>
    <sequence value="1"/>
    <focal value="true"/>
    <coverage>
      <reference value="Coverage/9876B1"/>
    </coverage>
- </coverage>
+ </insurance>
   
  <item>
    <sequence value="1"/>
-   <careTeam>
-     <provider>
-       <reference value="Practitioner/example"/>
-     </provider>
-   </careTeam>
+   <careTeamLinkId value="1"/>
    <service>
+    <coding>
      <system value="http://hl7.org/fhir/ex-serviceproduct"/>
      <code value="exam"/> 
+	</coding>
    </service>
    <servicedDate value="2014-08-16"/>
    <unitPrice>

@@ -3,7 +3,7 @@
 <CodeSystem xmlns="http://hl7.org/fhir">
   <id value="payment-status"/>
   <meta>
-    <lastUpdated value="2016-11-28T17:29:55.664-05:00"/>
+    <lastUpdated value="2016-12-07T14:18:58.982-05:00"/>
     <profile value="http://hl7.org/fhir/StructureDefinition/codesystem-shareable-definition"/>
   </meta>
   <text>
@@ -24,6 +24,9 @@
             <b>Code</b>
           </td>
           <td>
+            <b>Display</b>
+          </td>
+          <td>
             <b>Definition</b>
           </td>
         </tr>
@@ -31,13 +34,15 @@
           <td>paid
             <a name="payment-status-paid"> </a>
           </td>
-          <td/>
+          <td>Paid</td>
+          <td>The payment has been sent physically or electronically.</td>
         </tr>
         <tr>
           <td>cleared
             <a name="payment-status-cleared"> </a>
           </td>
-          <td/>
+          <td>Cleared</td>
+          <td>The payment has been received by the payee.</td>
         </tr>
       </table>
     </div>
@@ -47,14 +52,14 @@
     <system value="urn:ietf:rfc:3986"/>
     <value value="urn:oid:2.16.840.1.113883.4.642.1.334"/>
   </identifier>
-  <version value="1.7.0"/>
+  <version value="1.8.0"/>
   <name value="Payment Status Codes"/>
   <status value="draft"/>
   <experimental value="true"/>
   <publisher value="Financial Management"/>
   <contact>
     <telecom>
-      <system value="other"/>
+      <system value="url"/>
       <value value="http://hl7.org/fhir"/>
     </telecom>
   </contact>
@@ -65,8 +70,12 @@
   <content value="complete"/>
   <concept>
     <code value="paid"/>
+    <display value="Paid"/>
+    <definition value="The payment has been sent physically or electronically."/>
   </concept>
   <concept>
     <code value="cleared"/>
+    <display value="Cleared"/>
+    <definition value="The payment has been received by the payee."/>
   </concept>
 </CodeSystem>

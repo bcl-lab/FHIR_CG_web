@@ -13,7 +13,7 @@
     {
       "telecom": [
         {
-          "system": "other",
+          "system": "url",
           "value": "http://www.hl7.org/Special/committees/clingenomics"
         }
       ]
@@ -21,7 +21,7 @@
   ],
   "date": "2015-10-20",
   "description": "Describes how the DiagnosticRequest resource is used to for genetics",
-  "fhirVersion": "1.7.0",
+  "fhirVersion": "1.8.0",
   "mapping": [
     {
       "identity": "rim",
@@ -430,8 +430,14 @@
       {
         "id": "DiagnosticRequest:diagnosticrequest-genetics.requisition",
         "path": "DiagnosticRequest.requisition",
-        "short": "Identifier of composite request",
-        "definition": "Composite request this is part of.",
+        "short": "Composite Request ID",
+        "definition": "A shared identifier common to all diagnostic requests that were authorized more or less simultaneously by a single author, representing the composite or group identifier.",
+        "comments": "Requests are linked either by a \"basedOn\" relationship (i.e. one request is fulfilling another) or by having a common requisition. Requests that are part of the same requisition are generally treated independently from the perspective of changing their state or maintaining them after initial creation.",
+        "requirements": "Some business processes need to know if multiple items were ordered as part of the same \"requisition\" for billing or other purposes.",
+        "alias": [
+          "grouperId",
+          "groupIdentifier"
+        ],
         "min": 0,
         "max": "1",
         "base": {
@@ -451,12 +457,12 @@
         "path": "DiagnosticRequest.status",
         "short": "draft | active | suspended | completed | entered-in-error | cancelled",
         "definition": "The status of the order.",
-        "comments": "Typically the system placing the order sets the status to \"requested\". Thereafter, the order is maintained by the receiver that updates the status as the request is handled.",
-        "min": 0,
+        "comments": "The status is generally fully in the control of the requester - they determine whether the order is draft or active and, after it has been activated, competed, cancelled or suspended. States relating to the activities of the performer are reflected on either the corresponding event (see [Event Pattern](event.html) for general discussion) or using the [Task](task.html) resource.",
+        "min": 1,
         "max": "1",
         "base": {
           "path": "DiagnosticRequest.status",
-          "min": 0,
+          "min": 1,
           "max": "1"
         },
         "type": [
@@ -485,29 +491,62 @@
         ]
       },
       {
-        "id": "DiagnosticRequest:diagnosticrequest-genetics.stage",
-        "path": "DiagnosticRequest.stage",
+        "id": "DiagnosticRequest:diagnosticrequest-genetics.intent",
+        "path": "DiagnosticRequest.intent",
         "short": "proposal | plan | original-order | reflex-order",
         "definition": "Whether the request is a proposal, plan, an original order or a reflex order.",
         "min": 1,
         "max": "1",
         "base": {
-          "path": "DiagnosticRequest.stage",
+          "path": "DiagnosticRequest.intent",
           "min": 1,
           "max": "1"
         },
         "type": [
           {
-            "code": "CodeableConcept"
+            "code": "code"
           }
         ],
         "isModifier": true,
         "isSummary": true,
         "binding": {
-          "strength": "extensible",
+          "strength": "required",
           "description": "The kind of diagnostic request",
           "valueSetReference": {
-            "reference": "http://hl7.org/fhir/ValueSet/diagnostic-request-stage"
+            "reference": "http://hl7.org/fhir/ValueSet/request-intent"
+          }
+        },
+        "mapping": [
+          {
+            "identity": "w5",
+            "map": "class"
+          }
+        ]
+      },
+      {
+        "id": "DiagnosticRequest:diagnosticrequest-genetics.priority",
+        "path": "DiagnosticRequest.priority",
+        "short": "routine | urgent | asap | stat",
+        "definition": "Indicates how quickly the {{title}} should be addressed with respect to other requests.",
+        "min": 0,
+        "max": "1",
+        "base": {
+          "path": "DiagnosticRequest.priority",
+          "min": 0,
+          "max": "1"
+        },
+        "type": [
+          {
+            "code": "code"
+          }
+        ],
+        "meaningWhenMissing": "If missing, this task should be performed with normal priority",
+        "isSummary": true,
+        "binding": {
+          "strength": "required",
+          "description": "Identifies the level of importance to be assigned to actioning the request",
+          "valueSetReference": {
+            "reference": "http://hl7.org/fhir/ValueSet/request-priority"
           }
         },
         "mapping": [
@@ -670,14 +709,14 @@
         ]
       },
       {
-        "id": "DiagnosticRequest:diagnosticrequest-genetics.authored",
-        "path": "DiagnosticRequest.authored",
+        "id": "DiagnosticRequest:diagnosticrequest-genetics.authoredOn",
+        "path": "DiagnosticRequest.authoredOn",
         "short": "Date request signed",
         "definition": "When the request transitioned to being actionable.",
         "min": 0,
         "max": "1",
         "base": {
-          "path": "DiagnosticRequest.authored",
+          "path": "DiagnosticRequest.authoredOn",
           "min": 0,
           "max": "1"
         },
@@ -814,15 +853,15 @@
         ]
       },
       {
-        "id": "DiagnosticRequest:diagnosticrequest-genetics.reason",
-        "path": "DiagnosticRequest.reason",
+        "id": "DiagnosticRequest:diagnosticrequest-genetics.reasonCode",
+        "path": "DiagnosticRequest.reasonCode",
         "short": "Explanation/Justification for test",
-        "definition": "An explanation or justification for why this diagnostic investigation is being requested.   This is often for billing purposes.  May relate to the resources referred to in supportingInformation.",
+        "definition": "An explanation or justification for why this diagnostic investigation is being requested in coded or textual form.   This is often for billing purposes.  May relate to the resources referred to in supportingInformation.",
         "comments": "This may be used to decide how the diagnostic investigation will be performed, or even if it will be performed at all.   Use CodeableConcept text element if the data is free (uncoded) text as shown in the [CT Scan example](diagnosticrequest-example-di.html).",
         "min": 0,
         "max": "*",
         "base": {
-          "path": "DiagnosticRequest.reason",
+          "path": "DiagnosticRequest.reasonCode",
           "min": 0,
           "max": "*"
         },
@@ -839,6 +878,41 @@
             "reference": "http://hl7.org/fhir/ValueSet/condition-code"
           }
         },
+        "mapping": [
+          {
+            "identity": "rim",
+            "map": ".reasonCode"
+          },
+          {
+            "identity": "w5",
+            "map": "why"
+          }
+        ]
+      },
+      {
+        "id": "DiagnosticRequest:diagnosticrequest-genetics.reasonReference",
+        "path": "DiagnosticRequest.reasonReference",
+        "short": "Explanation/Justification for test",
+        "definition": "Indicates another resource that provides a justification for why this diagnostic investigation is being requested.   May relate to the resources referred to in supportingInformation.",
+        "comments": "This may be used to decide how the diagnostic investigation will be performed, or even if it will be performed at all.   Use CodeableConcept text element if the data is free (uncoded) text as shown in the [CT Scan example](diagnosticrequest-example-di.html).",
+        "min": 0,
+        "max": "*",
+        "base": {
+          "path": "DiagnosticRequest.reasonReference",
+          "min": 0,
+          "max": "*"
+        },
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/StructureDefinition/Condition"
+          },
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/StructureDefinition/Observation"
+          }
+        ],
+        "isSummary": true,
         "mapping": [
           {
             "identity": "rim",

@@ -46,6 +46,23 @@ start=@<Account> AND {fhir:nodeRole [fhir:treeRoot]}
     )?;
     fhir:Account.owner @<Reference>?;       # Who is responsible?
     fhir:Account.description @<string>?;    # Explanation of purpose/use
+    fhir:Account.guarantor @<Account.guarantor>*;  # Responsible for the account
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
+# Responsible for the account
+<Account.guarantor> CLOSED {
+    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
+    fhir:extension @<Extension>*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
+    fhir:Account.guarantor.party            # Responsible entity
+    (   @<PatientReference> OR
+        @<RelatedPersonReference> OR
+        @<OrganizationReference>
+    );
+    fhir:Account.guarantor.onHold @<boolean>?;  # Credit or other hold applied
+    fhir:Account.guarantor.period @<Period>?;  # Guarrantee account during
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -167,6 +184,15 @@ start=@<Account> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
+# Primitive Type boolean
+<boolean> CLOSED {
+    fhir:Element.id @<id>?;                 # xml:id (or equivalent in JSON)
+    fhir:extension @<Extension>*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:value xsd:boolean?;                # Primitive value for boolean
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
 # A human-readable formatted text, including images
 <Narrative> CLOSED {
     fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
@@ -232,15 +258,6 @@ start=@<Account> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:extension @<Extension>*;           # Additional Content defined by 
                                             # implementations 
     fhir:value xsd:dateTime?;               # Primitive value for instant
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
-# Primitive Type boolean
-<boolean> CLOSED {
-    fhir:Element.id @<id>?;                 # xml:id (or equivalent in JSON)
-    fhir:extension @<Extension>*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:value xsd:boolean?;                # Primitive value for boolean
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -325,6 +342,20 @@ start=@<Account> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:nodeRole [fhir:treeRoot]?
 }
 
+<RelatedPersonReference> CLOSED {
+    fhir:Element.id @<id>?;
+    fhir:extension @<Extension>*;
+    fhir:link @<RelatedPerson> OR CLOSED {a fhir:RelatedPerson}?;
+    fhir:Reference.reference @<string>?;
+    fhir:Reference.display @<string>?;
+    fhir:index xsd:integer?
+}
+
+<RelatedPerson> {
+    a [fhir:RelatedPerson];
+    fhir:nodeRole [fhir:treeRoot]?
+}
+
 <LocationReference> CLOSED {
     fhir:Element.id @<id>?;
     fhir:extension @<Extension>*;
@@ -341,9 +372,6 @@ start=@<Account> AND {fhir:nodeRole [fhir:treeRoot]}
 
 #---------------------- Value Sets ------------------------
 
-# Indicates whether the account is available to be used.
-fhirvs:account-status ["active" "inactive" "entered-in-error"]
-
 # How the Quantity should be understood and represented.
 fhirvs:quantity-comparator ["<" "<=" ">=" ">"]
 
@@ -352,3 +380,6 @@ fhirvs:identifier-use ["usual" "official" "temp" "secondary"]
 
 # The status of a resource narrative
 fhirvs:narrative-status ["generated" "extensions" "additional" "empty"]
+
+# Indicates whether the account is available to be used.
+fhirvs:account-status ["active" "inactive" "entered-in-error"]

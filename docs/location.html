@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>Location - FHIR v1.7.0</title>
+  <title>Location - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -178,7 +178,7 @@ freezers to full hospital buildings or parking garages.
 <p>This resource is referenced by <a href="account.html">Account</a>, <a href="activitydefinition.html">ActivityDefinition</a>, <a href="appointment.html">Appointment</a>, <a href="appointmentresponse.html">AppointmentResponse</a>, <a href="auditevent.html">AuditEvent</a>, <a href="careplan.html">CarePlan</a>, <a href="claim.html">Claim</a>, <a href="contract.html">Contract</a>, <a href="device.html">Device</a>, <a href="deviceuserequest.html">DeviceUseRequest</a>, <a href="diagnosticreport.html">DiagnosticReport</a>, <a href="diagnosticrequest.html">DiagnosticRequest</a>, <a href="eligibilityrequest.html">EligibilityRequest</a>, <a href="encounter.html">Encounter</a>, <a href="explanationofbenefit.html">ExplanationOfBenefit</a>, <a href="flag.html">Flag</a>, <a href="healthcareservice.html">HealthcareService</a>, <a href="immunization.html">Immunization</a>, <a href="list.html">List</a>, <a href="medicationdispense.html">MedicationDispense</a>, <a href="observation.html">Observation</a>, <a href="practitioner.html">Practitioner</a>, <a href="practitionerrole.html">PractitionerRole</a>, <a href="procedure.html">Procedure</a>, <a href="provenance.html">Provenance</a>, <a href="researchstudy.html">ResearchStudy</a>, <a href="schedule.html">Schedule</a> and <a href="supplydelivery.html">SupplyDelivery</a></p>
 
 
-<a name="resource"/>
+<a name="resource"> </a>
 <h2 class="self-link-parent"><span class="sectioncount">8.12.3</span> 
 Resource Content
  <a href="location.html#resource" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h2>
@@ -361,11 +361,11 @@ Resource Content
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Location.alias</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Location.endpoint</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
 </table>
 
@@ -531,11 +531,11 @@ Resource Content
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Location.alias</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Location.endpoint</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
 </table>
 
@@ -550,8 +550,7 @@ Resource Content
 <p>&nbsp;</p>  
 <p>Alternate definitions: 
 Master Definition (<a href="location.profile.xml.html">XML</a>, <a href="location.profile.json.html">JSON</a>),
-<a href="xml.html">XML</a> <a href="location.xsd">Schema</a>/<a href="location.sch">Schematron</a> (for ) + <a href="json.html">JSON</a> <a href="Location.schema.json">Schema</a>, <a href="location.shex.html">ShEx</a> (for <a href="rdf.html">Turtle</a>)</p>
-
+<a href="xml.html">XML</a> <a href="location.xsd">Schema</a>/<a href="location.sch">Schematron</a> (for ) + <a href="json.html">JSON</a> <a href="Location.schema.json">Schema</a>, <a href="location.shex.html">ShEx</a> (for <a href="rdf.html">Turtle</a>), <a href="Location.jsonld">JSON-LD</a> (for <a href="rdf.html#json-ld">RDF as JSON-LD</a>), </p>
 
 <a name="tx"> </a>
 <h3 class="self-link-parent"><span class="sectioncount">8.12.3.1</span> 
@@ -697,6 +696,7 @@ Mobile Services (kind)
 <tr><td><a name="sp-address-postalcode"> </a>address-postalcode</td><td><a href="search.html#string">string</a></td><td>A postal code specified in an address</td><td>Location.address.postalCode</td><td/></tr>
 <tr><td><a name="sp-address-state"> </a>address-state</td><td><a href="search.html#string">string</a></td><td>A state specified in an address</td><td>Location.address.state</td><td/></tr>
 <tr><td><a name="sp-address-use"> </a>address-use</td><td><a href="search.html#token">token</a></td><td>A use code specified in an address</td><td>Location.address.use</td><td/></tr>
+<tr><td><a name="sp-endpoint"> </a>endpoint</td><td><a href="search.html#reference">reference</a></td><td>Technical endpoints providing access to services operated for the location</td><td>Location.endpoint<br/>(<a href="endpoint.html">Endpoint</a>)</td><td/></tr>
 <tr><td><a name="sp-identifier"> </a>identifier</td><td><a href="search.html#token">token</a></td><td>Unique code or number identifying the location to its users</td><td>Location.identifier</td><td/></tr>
 <tr><td><a name="sp-name"> </a>name</td><td><a href="search.html#string">string</a></td><td>A (portion of the) name of the location or alias</td><td>Location.name, Location.alias</td><td/></tr>
 <tr><td><a name="sp-near"> </a>near</td><td><a href="search.html#token">token</a></td><td>The coordinates expressed as [latitude]:[longitude] (using the WGS84 datum, see notes) to find locations near to (servers may search using a square rather than a circle for efficiency). 
@@ -727,7 +727,7 @@ Requires the near parameter to be included also</td><td>Location.position</td><t
 		<div class="container">  <!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:32-0500. <a href="qa.html">QA Page</a>
+        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:21-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search <img src="external.png" style="text-align: baseline"/></a> | 

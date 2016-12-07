@@ -52,7 +52,10 @@ start=@<GuidanceResponse> AND {fhir:nodeRole [fhir:treeRoot]}
                                             # artifacts 
     fhir:GuidanceResponse.outputParameters @<Reference>?;  # The output parameters of the 
                                             # evaluation, if any 
-    fhir:GuidanceResponse.requestGroup @<Reference>?;  # Proposed actions, if any
+    fhir:GuidanceResponse.result            # Proposed actions, if any
+    (   @<CarePlanReference> OR
+        @<RequestGroupReference>
+    )?;
     fhir:GuidanceResponse.dataRequirement @<DataRequirement>*;  # Additional required data
     fhir:index xsd:integer?                 # Relative position in a list
 }
@@ -344,6 +347,20 @@ start=@<GuidanceResponse> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:nodeRole [fhir:treeRoot]?
 }
 
+<CarePlanReference> CLOSED {
+    fhir:Element.id @<id>?;
+    fhir:extension @<Extension>*;
+    fhir:link @<CarePlan> OR CLOSED {a fhir:CarePlan}?;
+    fhir:Reference.reference @<string>?;
+    fhir:Reference.display @<string>?;
+    fhir:index xsd:integer?
+}
+
+<CarePlan> {
+    a [fhir:CarePlan];
+    fhir:nodeRole [fhir:treeRoot]?
+}
+
 <EpisodeOfCareReference> CLOSED {
     fhir:Element.id @<id>?;
     fhir:extension @<Extension>*;
@@ -355,6 +372,20 @@ start=@<GuidanceResponse> AND {fhir:nodeRole [fhir:treeRoot]}
 
 <EpisodeOfCare> {
     a [fhir:EpisodeOfCare];
+    fhir:nodeRole [fhir:treeRoot]?
+}
+
+<RequestGroupReference> CLOSED {
+    fhir:Element.id @<id>?;
+    fhir:extension @<Extension>*;
+    fhir:link @<RequestGroup> OR CLOSED {a fhir:RequestGroup}?;
+    fhir:Reference.reference @<string>?;
+    fhir:Reference.display @<string>?;
+    fhir:index xsd:integer?
+}
+
+<RequestGroup> {
+    a [fhir:RequestGroup];
     fhir:nodeRole [fhir:treeRoot]?
 }
 
@@ -388,17 +419,17 @@ start=@<GuidanceResponse> AND {fhir:nodeRole [fhir:treeRoot]}
 
 #---------------------- Value Sets ------------------------
 
-# The status of a guidance response
-fhirvs:guidance-response-status ["success" "data-requested" "data-required" "in-progress" "failure"]
+# How the Quantity should be understood and represented.
+fhirvs:quantity-comparator ["<" "<=" ">=" ">"]
 
 # Either an abstract type, a resource or a data type.
 fhirvs:all-types ["Address" "Age" "Annotation" "Attachment" "BackboneElement" "CodeableConcept" "Coding" "ContactDetail" "ContactPoint" "Contributor" "Count" "DataRequirement" "Distance" "DosageInstruction" "Duration" "Element" "ElementDefinition" "Extension" "HumanName" "Identifier" "Meta" "Money" "Narrative" "ParameterDefinition" "Period" "Quantity" "Range" "Ratio" "Reference" "RelatedArtifact" "SampledData" "Signature" "SimpleQuantity" "Timing" "TriggerDefinition" "UsageContext" "base64Binary" "boolean" "code" "date" "dateTime" "decimal" "id" "instant" "integer" "markdown" "oid" "positiveInt" "string" "time" "unsignedInt" "uri" "uuid" "xhtml" "Account" "ActivityDefinition" "AllergyIntolerance" "Appointment" "AppointmentResponse" "AuditEvent" "Basic" "Binary" "BodySite" "Bundle" "CapabilityStatement" "CarePlan" "CareTeam" "Claim" "ClaimResponse" "ClinicalImpression" "CodeSystem" "Communication" "CommunicationRequest" "CompartmentDefinition" "Composition" "ConceptMap" "Condition" "Consent" "Contract" "Coverage" "DataElement" "DetectedIssue" "Device" "DeviceComponent" "DeviceMetric" "DeviceUseRequest" "DeviceUseStatement" "DiagnosticReport" "DiagnosticRequest" "DocumentManifest" "DocumentReference" "DomainResource" "EligibilityRequest" "EligibilityResponse" "Encounter" "Endpoint" "EnrollmentRequest" "EnrollmentResponse" "EpisodeOfCare" "ExpansionProfile" "ExplanationOfBenefit" "FamilyMemberHistory" "Flag" "Goal" "Group" "GuidanceResponse" "HealthcareService" "ImagingManifest" "ImagingStudy" "Immunization" "ImmunizationRecommendation" "ImplementationGuide" "Library" "Linkage" "List" "Location" "Measure" "MeasureReport" "Media" "Medication" "MedicationAdministration" "MedicationDispense" "MedicationRequest" "MedicationStatement" "MessageDefinition" "MessageHeader" "NamingSystem" "NutritionRequest" "Observation" "OperationDefinition" "OperationOutcome" "Organization" "Parameters" "Patient" "PaymentNotice" "PaymentReconciliation" "Person" "PlanDefinition" "Practitioner" "PractitionerRole" "Procedure" "ProcedureRequest" "ProcessRequest" "ProcessResponse" "Provenance" "Questionnaire" "QuestionnaireResponse" "ReferralRequest" "RelatedPerson" "RequestGroup" "ResearchStudy" "ResearchSubject" "Resource" "RiskAssessment" "Schedule" "SearchParameter" "Sequence" "ServiceDefinition" "Slot" "Specimen" "StructureDefinition" "StructureMap" "Subscription" "Substance" "SupplyDelivery" "SupplyRequest" "Task" "TestReport" "TestScript" "ValueSet" "VisionPrescription" "Type" "Any"]
+
+# The status of a guidance response
+fhirvs:guidance-response-status ["success" "data-requested" "data-required" "in-progress" "failure"]
 
 # Identifies the purpose for this identifier, if known .
 fhirvs:identifier-use ["usual" "official" "temp" "secondary"]
 
 # The status of a resource narrative
 fhirvs:narrative-status ["generated" "extensions" "additional" "empty"]
-
-# How the Quantity should be understood and represented.
-fhirvs:quantity-comparator ["<" "<=" ">=" ">"]

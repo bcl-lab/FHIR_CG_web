@@ -3,12 +3,12 @@
 <CodeSystem xmlns="http://hl7.org/fhir">
   <id value="v3-ObservationInterpretation"/>
   <meta>
-    <lastUpdated value="2016-03-23T00:00:00.000-04:00"/>
+    <lastUpdated value="2016-11-11T00:00:00.000-05:00"/>
   </meta>
   <text>
     <status value="generated"/>
     <div xmlns="http://www.w3.org/1999/xhtml">
-      <p>Release Date: 2016-03-23</p>
+      <p>Release Date: 2016-11-11</p>
 
       <table class="grid">
  
@@ -223,14 +223,23 @@
           </td>
         </tr>
  
-        <tr>
+        <tr style="background: #EFEFEF">
           <td>2</td>
           <td>  AC
-            <a name="AC"> </a>
+            <a name="AC"> </a> 
+            <b>
+              <i>Deprecated</i>
+            </b>
           </td>
           <td>Anti-complementary substances present</td>
           <td>
                         A valid result cannot be obtained for the specified component / analyte due to the presence of anti-complementary substances in the sample.
+            <br/>
+
+                        
+                           
+                              Deprecation Comment: 
+                           This code is being deprecated to match the status in V2 Table 0078 &quot;Interpretation Codes.
             <br/>
 
                      
@@ -254,28 +263,46 @@
           </td>
         </tr>
  
-        <tr>
+        <tr style="background: #EFEFEF">
           <td>2</td>
           <td>  QCF
-            <a name="QCF"> </a>
+            <a name="QCF"> </a> 
+            <b>
+              <i>Deprecated</i>
+            </b>
           </td>
           <td>Quality control failure</td>
           <td>
                         A result cannot be considered valid for the specified component / analyte or organism due to failure in the quality control testing component.
             <br/>
 
+                        
+                           
+                              Deprecation Comment: 
+                           This code is being deprecated to match the status in V2 Table 0078 &quot;Interpretation Codes.
+            <br/>
+
                      
           </td>
         </tr>
  
-        <tr>
+        <tr style="background: #EFEFEF">
           <td>2</td>
           <td>  TOX
-            <a name="TOX"> </a>
+            <a name="TOX"> </a> 
+            <b>
+              <i>Deprecated</i>
+            </b>
           </td>
           <td>Cytotoxic substance present</td>
           <td>
                         A valid result cannot be obtained for the specified organism or cell line due to the presence of cytotoxic substances in the sample or culture.
+            <br/>
+
+                        
+                           
+                              Deprecation Comment: 
+                           This code is being deprecated to match the status in V2 Table 0078 &quot;Interpretation Codes.
             <br/>
 
                      
@@ -821,6 +848,27 @@ Members of the OO WG have recently attempted to contact members of RCRIM regardi
           </td>
         </tr>
  
+        <tr style="background: #EFEFEF">
+          <td>1</td>
+          <td>HM
+            <a name="HM"> </a> 
+            <b>
+              <i>Deprecated</i>
+            </b>
+          </td>
+          <td>Hold for Medical Review</td>
+          <td>
+                        Hold for Medical Review
+            <br/>
+
+                        
+                           Usage Note: This code is not intended for use in V3 artifacts.  It is included in the code system to maintain alignment with the V2 Table 0078 &quot;Interpretation Codes.&quot;
+            <br/>
+
+                     
+          </td>
+        </tr>
+ 
         <tr>
           <td>1</td>
           <td>
@@ -982,6 +1030,27 @@ Members of the OO WG have recently attempted to contact members of RCRIM regardi
           </td>
         </tr>
  
+        <tr style="background: #EFEFEF">
+          <td>1</td>
+          <td>OBX
+            <a name="OBX"> </a> 
+            <b>
+              <i>Deprecated</i>
+            </b>
+          </td>
+          <td>Interpretation qualifiers in separate OBX segments</td>
+          <td>
+                        Interpretation qualifiers in separate OBX segments
+            <br/>
+
+                        
+                           Usage Note: This code is not intended for use in V3 artifacts.  It is included in the code system to maintain alignment with the V2 Table 0078 &quot;Interpretation Codes.&quot;
+            <br/>
+
+                     
+          </td>
+        </tr>
+ 
         <tr>
           <td>1</td>
           <td>
@@ -1054,23 +1123,23 @@ Members of the OO WG have recently attempted to contact members of RCRIM regardi
     <system value="urn:ietf:rfc:3986"/>
     <value value="urn:oid:2.16.840.1.113883.5.83"/>
   </identifier>
-  <version value="2016-03-23"/>
+  <version value="2016-11-11"/>
   <name value="v3 Code System ObservationInterpretation"/>
   <status value="active"/>
   <experimental value="false"/>
   <publisher value="HL7, Inc"/>
   <contact>
     <telecom>
-      <system value="other"/>
+      <system value="url"/>
       <value value="http://hl7.org"/>
     </telecom>
   </contact>
-  <date value="2016-03-23T00:00:00-04:00"/>
+  <date value="2016-11-11T00:00:00-05:00"/>
   <description value=" One or more codes specifying a rough qualitative interpretation of the observation, such as &quot;normal&quot;, &quot;abnormal&quot;, &quot;below normal&quot;, &quot;change up&quot;, &quot;resistant&quot;, &quot;susceptible&quot;, etc.  OpenIssue:
 Description copied from Concept Domain of same name.  Must be verified.  Note also that this might be identical to the V2 code system of interpretation codes (formerly Abnormal Flags in older versions)."/>
   <caseSensitive value="true"/>
   <valueSet value="http://hl7.org/fhir/ValueSet/v3-ObservationInterpretation"/>
-  <hierarchyMeaning value="subsumes"/>
+  <hierarchyMeaning value="is-a"/>
   <content value="complete"/>
   <property>
     <code value="notSelectable"/>
@@ -1170,7 +1239,16 @@ Description copied from Concept Domain of same name.  Must be verified.  Note al
     <concept>
       <code value="AC"/>
       <display value="Anti-complementary substances present"/>
-      <definition value="A valid result cannot be obtained for the specified component / analyte due to the presence of anti-complementary substances in the sample."/>
+      <definition value="A valid result cannot be obtained for the specified component / analyte due to the presence of anti-complementary substances in the sample.
+
+                        
+                           
+                              Deprecation Comment: 
+                           This code is being deprecated to match the status in V2 Table 0078 &quot;Interpretation Codes."/>
+      <property>
+        <code value="deprecated"/>
+        <valueDateTime value="2016-11-10"/>
+      </property>
     </concept>
     <concept>
       <code value="IE"/>
@@ -1182,12 +1260,30 @@ Description copied from Concept Domain of same name.  Must be verified.  Note al
     <concept>
       <code value="QCF"/>
       <display value="Quality control failure"/>
-      <definition value="A result cannot be considered valid for the specified component / analyte or organism due to failure in the quality control testing component."/>
+      <definition value="A result cannot be considered valid for the specified component / analyte or organism due to failure in the quality control testing component.
+
+                        
+                           
+                              Deprecation Comment: 
+                           This code is being deprecated to match the status in V2 Table 0078 &quot;Interpretation Codes."/>
+      <property>
+        <code value="deprecated"/>
+        <valueDateTime value="2016-11-10"/>
+      </property>
     </concept>
     <concept>
       <code value="TOX"/>
       <display value="Cytotoxic substance present"/>
-      <definition value="A valid result cannot be obtained for the specified organism or cell line due to the presence of cytotoxic substances in the sample or culture."/>
+      <definition value="A valid result cannot be obtained for the specified organism or cell line due to the presence of cytotoxic substances in the sample or culture.
+
+                        
+                           
+                              Deprecation Comment: 
+                           This code is being deprecated to match the status in V2 Table 0078 &quot;Interpretation Codes."/>
+      <property>
+        <code value="deprecated"/>
+        <valueDateTime value="2016-11-10"/>
+      </property>
     </concept>
   </concept>
   <concept>
@@ -1443,6 +1539,18 @@ Members of the OO WG have recently attempted to contact members of RCRIM regardi
     </concept>
   </concept>
   <concept>
+    <code value="HM"/>
+    <display value="Hold for Medical Review"/>
+    <definition value="Hold for Medical Review
+
+                        
+                           Usage Note: This code is not intended for use in V3 artifacts.  It is included in the code system to maintain alignment with the V2 Table 0078 &quot;Interpretation Codes.&quot;"/>
+    <property>
+      <code value="deprecated"/>
+      <valueDateTime value="2016-11-10"/>
+    </property>
+  </concept>
+  <concept>
     <code value="ObservationInterpretationDetection"/>
     <display value="ObservationInterpretationDetection"/>
     <definition value="Interpretations of the presence or absence of a component / analyte or organism in a test or of a sign in a clinical observation. In keeping with laboratory data processing practice, these concepts provide a categorical interpretation of the &quot;meaning&quot; of the quantitative value for the same observation."/>
@@ -1504,6 +1612,18 @@ Members of the OO WG have recently attempted to contact members of RCRIM regardi
       <display value="Unexpected"/>
       <definition value="This result has been evaluated in light of known contraindicators.  Once those contraindicators have been taken into account the result is determined to be &quot;Unexpected&quot; (e.g., presence of non-prescribed drugs in a patient that is taking prescription medication for pain management)."/>
     </concept>
+  </concept>
+  <concept>
+    <code value="OBX"/>
+    <display value="Interpretation qualifiers in separate OBX segments"/>
+    <definition value="Interpretation qualifiers in separate OBX segments
+
+                        
+                           Usage Note: This code is not intended for use in V3 artifacts.  It is included in the code system to maintain alignment with the V2 Table 0078 &quot;Interpretation Codes.&quot;"/>
+    <property>
+      <code value="deprecated"/>
+      <valueDateTime value="2016-11-10"/>
+    </property>
   </concept>
   <concept>
     <code value="ReactivityObservationInterpretation"/>

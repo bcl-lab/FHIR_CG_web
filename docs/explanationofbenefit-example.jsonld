@@ -25,6 +25,33 @@
   "ExplanationOfBenefit.status": {
     "code.value": "active"
   },
+  "ExplanationOfBenefit.type": {
+    "CodeableConcept.coding": [
+      {
+        "Coding.system": {
+          "uri.value": "http://hl7.org/fhir/ex-claimtype"
+        },
+        "Coding.code": {
+          "code.value": "oral"
+        }
+      }
+    ]
+  },
+  "ExplanationOfBenefit.patient": {
+    "Reference.reference": {
+      "string.value": "Patient/pat1"
+    },
+    "Resource.reference": "http://hl7.org/fhir//Patient/pat1"
+  },
+  "ExplanationOfBenefit.created": {
+    "dateTime.value": "2014-08-16"
+  },
+  "ExplanationOfBenefit.organization": {
+    "Reference.reference": {
+      "string.value": "Organization/2"
+    },
+    "Resource.reference": "http://hl7.org/fhir//Organization/2"
+  },
   "ExplanationOfBenefit.claim": {
     "Reference.reference": {
       "string.value": "Claim/100150"
@@ -37,42 +64,36 @@
     },
     "Resource.reference": "http://hl7.org/fhir//ClaimResponse/R3500"
   },
-  "ExplanationOfBenefit.type": {
-    "Coding.system": {
-      "uri.value": "http://hl7.org/fhir/ex-claimtype"
-    },
-    "Coding.code": {
-      "code.value": "oral"
-    }
-  },
-  "ExplanationOfBenefit.created": {
-    "dateTime.value": "2014-08-16"
-  },
   "ExplanationOfBenefit.outcome": {
-    "Coding.system": {
-      "uri.value": "http://hl7.org/fhir/remittance-outcome"
-    },
-    "Coding.code": {
-      "code.value": "complete"
-    }
+    "CodeableConcept.coding": [
+      {
+        "Coding.system": {
+          "uri.value": "http://hl7.org/fhir/remittance-outcome"
+        },
+        "Coding.code": {
+          "code.value": "complete"
+        }
+      }
+    ]
   },
   "ExplanationOfBenefit.disposition": {
     "string.value": "Claim settled as per contract."
   },
-  "ExplanationOfBenefit.organization": {
-    "Reference.reference": {
-      "string.value": "Organization/2"
-    },
-    "Resource.reference": "http://hl7.org/fhir//Organization/2"
-  },
-  "ExplanationOfBenefit.patient": {
-    "Reference.reference": {
-      "string.value": "Patient/pat1"
-    },
-    "Resource.reference": "http://hl7.org/fhir//Patient/pat1"
-  },
-  "ExplanationOfBenefit.coverage": {
-    "ExplanationOfBenefit.coverage.coverage": {
+  "ExplanationOfBenefit.careTeam": [
+    {
+      "ExplanationOfBenefit.careTeam.sequence": {
+        "positiveInt.value": 1
+      },
+      "ExplanationOfBenefit.careTeam.provider": {
+        "Reference.reference": {
+          "string.value": "Practitioner/example"
+        },
+        "Resource.reference": "http://hl7.org/fhir//Practitioner/example"
+      }
+    }
+  ],
+  "ExplanationOfBenefit.insurance": {
+    "ExplanationOfBenefit.insurance.coverage": {
       "Reference.reference": {
         "string.value": "Coverage/9876B1"
       },
@@ -84,23 +105,22 @@
       "ExplanationOfBenefit.item.sequence": {
         "positiveInt.value": 1
       },
-      "ExplanationOfBenefit.item.careTeam": [
+      "ExplanationOfBenefit.item.careTeamLinkId": [
         {
-          "ExplanationOfBenefit.item.careTeam.provider": {
-            "Reference.reference": {
-              "string.value": "Practitioner/example"
-            },
-            "Resource.reference": "http://hl7.org/fhir//Practitioner/example"
-          }
+          "positiveInt.value": 1
         }
       ],
       "ExplanationOfBenefit.item.service": {
-        "Coding.system": {
-          "uri.value": "http://hl7.org/fhir/service-uscls"
-        },
-        "Coding.code": {
-          "code.value": "1200"
-        }
+        "CodeableConcept.coding": [
+          {
+            "Coding.system": {
+              "uri.value": "http://hl7.org/fhir/service-uscls"
+            },
+            "Coding.code": {
+              "code.value": "1200"
+            }
+          }
+        ]
       },
       "ExplanationOfBenefit.item.servicedDate": {
         "date.value": "2014-08-16"
@@ -130,9 +150,13 @@
       "ExplanationOfBenefit.item.adjudication": [
         {
           "ExplanationOfBenefit.item.adjudication.category": {
-            "Coding.code": {
-              "code.value": "eligible"
-            }
+            "CodeableConcept.coding": [
+              {
+                "Coding.code": {
+                  "code.value": "eligible"
+                }
+              }
+            ]
           },
           "ExplanationOfBenefit.item.adjudication.amount": {
             "Quantity.value": {
@@ -148,9 +172,13 @@
         },
         {
           "ExplanationOfBenefit.item.adjudication.category": {
-            "Coding.code": {
-              "code.value": "eligpercent"
-            }
+            "CodeableConcept.coding": [
+              {
+                "Coding.code": {
+                  "code.value": "eligpercent"
+                }
+              }
+            ]
           },
           "ExplanationOfBenefit.item.adjudication.value": {
             "decimal.value": 0.80
@@ -158,9 +186,13 @@
         },
         {
           "ExplanationOfBenefit.item.adjudication.category": {
-            "Coding.code": {
-              "code.value": "benefit"
-            }
+            "CodeableConcept.coding": [
+              {
+                "Coding.code": {
+                  "code.value": "benefit"
+                }
+              }
+            ]
           },
           "ExplanationOfBenefit.item.adjudication.amount": {
             "Quantity.value": {

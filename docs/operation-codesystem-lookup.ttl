@@ -12,13 +12,13 @@
   fhir:OperationDefinition.name [ fhir:value "Concept Look Up & Decomposition"];
   fhir:OperationDefinition.status [ fhir:value "draft"];
   fhir:OperationDefinition.kind [ fhir:value "operation"];
-  fhir:OperationDefinition.date [ fhir:value "2016-11-28T17:29:55-05:00"];
+  fhir:OperationDefinition.date [ fhir:value "2016-12-07T14:18:58-05:00"];
   fhir:OperationDefinition.publisher [ fhir:value "HL7 (FHIR Project)"];
   fhir:OperationDefinition.contact [
      fhir:index 0;
      fhir:ContactDetail.telecom [
        fhir:index 0;
-       fhir:ContactPoint.system [ fhir:value "other" ];
+       fhir:ContactPoint.system [ fhir:value "url" ];
        fhir:ContactPoint.value [ fhir:value "http://hl7.org/fhir" ]
      ], [
        fhir:index 1;
@@ -78,6 +78,14 @@
      fhir:OperationDefinition.type [ fhir:value "dateTime" ]
   ], [
      fhir:index 5;
+     fhir:OperationDefinition.name [ fhir:value "displayLanguage" ];
+     fhir:OperationDefinition.use [ fhir:value "in" ];
+     fhir:OperationDefinition.min [ fhir:value "0" ];
+     fhir:OperationDefinition.max [ fhir:value "1" ];
+     fhir:OperationDefinition.documentation [ fhir:value "The requested language for display (see ExpansionProfile.displayLanguage)" ];
+     fhir:OperationDefinition.type [ fhir:value "code" ]
+  ], [
+     fhir:index 6;
      fhir:OperationDefinition.name [ fhir:value "property" ];
      fhir:OperationDefinition.use [ fhir:value "in" ];
      fhir:OperationDefinition.min [ fhir:value "0" ];
@@ -85,7 +93,7 @@
      fhir:OperationDefinition.documentation [ fhir:value "A property that the client wishes to be returned in the output. If no properties are specified, the server chooses what to return. The following properties are defined for all code systems: system, version, display, definition, designation, parent, child, and lang.X where X is a language code in a designation. These properties refer to the directly return parameters documented for the operation" ];
      fhir:OperationDefinition.type [ fhir:value "code" ]
   ], [
-     fhir:index 6;
+     fhir:index 7;
      fhir:OperationDefinition.name [ fhir:value "name" ];
      fhir:OperationDefinition.use [ fhir:value "out" ];
      fhir:OperationDefinition.min [ fhir:value "1" ];
@@ -93,7 +101,7 @@
      fhir:OperationDefinition.documentation [ fhir:value "A display name for the code system" ];
      fhir:OperationDefinition.type [ fhir:value "string" ]
   ], [
-     fhir:index 7;
+     fhir:index 8;
      fhir:OperationDefinition.name [ fhir:value "version" ];
      fhir:OperationDefinition.use [ fhir:value "out" ];
      fhir:OperationDefinition.min [ fhir:value "0" ];
@@ -101,7 +109,7 @@
      fhir:OperationDefinition.documentation [ fhir:value "The version that these details are based on" ];
      fhir:OperationDefinition.type [ fhir:value "string" ]
   ], [
-     fhir:index 8;
+     fhir:index 9;
      fhir:OperationDefinition.name [ fhir:value "display" ];
      fhir:OperationDefinition.use [ fhir:value "out" ];
      fhir:OperationDefinition.min [ fhir:value "1" ];
@@ -109,7 +117,7 @@
      fhir:OperationDefinition.documentation [ fhir:value "The preferred display for this concept" ];
      fhir:OperationDefinition.type [ fhir:value "string" ]
   ], [
-     fhir:index 9;
+     fhir:index 10;
      fhir:OperationDefinition.name [ fhir:value "designation" ];
      fhir:OperationDefinition.use [ fhir:value "out" ];
      fhir:OperationDefinition.min [ fhir:value "0" ];
@@ -141,7 +149,7 @@
        fhir:OperationDefinition.type [ fhir:value "string" ]
      ]
   ], [
-     fhir:index 10;
+     fhir:index 11;
      fhir:OperationDefinition.name [ fhir:value "property" ];
      fhir:OperationDefinition.use [ fhir:value "out" ];
      fhir:OperationDefinition.min [ fhir:value "0" ];

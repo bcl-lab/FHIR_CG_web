@@ -3,7 +3,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>Immunization-questionnaire.json - FHIR v1.7.0</title>
+  <title>Immunization-questionnaire.json - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -124,7 +124,7 @@
     }
   ],
   &quot;status&quot;: &quot;draft&quot;,
-  &quot;date&quot;: &quot;2016-11-28T17:29:55-05:00&quot;,
+  &quot;date&quot;: &quot;2016-12-07T14:18:58-05:00&quot;,
   &quot;publisher&quot;: &quot;Health Level Seven International (Public Health and Emergency Response)&quot;,
   &quot;item&quot;: [
     {
@@ -746,7 +746,7 @@
               &quot;valueString&quot;: &quot;boolean&quot;
             }
           ],
-          &quot;linkId&quot;: &quot;Immunization.reported&quot;,
+          &quot;linkId&quot;: &quot;Immunization.primarySource&quot;,
           &quot;type&quot;: &quot;group&quot;,
           &quot;required&quot;: true,
           &quot;repeats&quot;: true,
@@ -766,13 +766,64 @@
                   }
                 }
               ],
-              &quot;text&quot;: &quot;True if this administration was reported rather than directly administered. May need source of reported info (e.g. parent), but leave out for now.&quot;,
+              &quot;text&quot;: &quot;An indication that the content of the record is based on information from the person who administered the vaccine. This reflects the context under which the data was originally recorded. Reflects the “reliability” of the content.&quot;,
               &quot;type&quot;: &quot;display&quot;
             },
             {
-              &quot;linkId&quot;: &quot;Immunization.reported.value&quot;,
-              &quot;text&quot;: &quot;Indicates a self-reported record&quot;,
+              &quot;linkId&quot;: &quot;Immunization.primarySource.value&quot;,
+              &quot;text&quot;: &quot;Indicates context the data was recorded in&quot;,
               &quot;type&quot;: &quot;boolean&quot;,
+              &quot;required&quot;: false,
+              &quot;repeats&quot;: false
+            }
+          ]
+        },
+        {
+          &quot;extension&quot;: [
+            {
+              &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs&quot;,
+              &quot;valueInteger&quot;: 1
+            },
+            {
+              &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType&quot;,
+              &quot;valueString&quot;: &quot;CodeableConcept&quot;
+            }
+          ],
+          &quot;linkId&quot;: &quot;Immunization.reportOrigin&quot;,
+          &quot;text&quot;: &quot;Indicates the source of a secondarily reported record&quot;,
+          &quot;type&quot;: &quot;group&quot;,
+          &quot;required&quot;: false,
+          &quot;repeats&quot;: true,
+          &quot;item&quot;: [
+            {
+              &quot;extension&quot;: [
+                {
+                  &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl&quot;,
+                  &quot;valueCodeableConcept&quot;: {
+                    &quot;coding&quot;: [
+                      {
+                        &quot;system&quot;: &quot;http://hl7.org/fhir/questionnaire-item-control&quot;,
+                        &quot;code&quot;: &quot;flyover&quot;,
+                        &quot;display&quot;: &quot;Fly-over&quot;
+                      }
+                    ]
+                  }
+                }
+              ],
+              &quot;text&quot;: &quot;The source of the data when the report of the immunization event is not based on information from the person who administered the vaccine. Should not be populated if primarySource = True, will not be required even if primarySource = False.&quot;,
+              &quot;type&quot;: &quot;display&quot;
+            },
+            {
+              &quot;linkId&quot;: &quot;Immunization.reportOrigin.coding&quot;,
+              &quot;text&quot;: &quot;code:&quot;,
+              &quot;type&quot;: &quot;open-choice&quot;,
+              &quot;required&quot;: false,
+              &quot;repeats&quot;: false
+            },
+            {
+              &quot;linkId&quot;: &quot;Immunization.reportOrigin.text&quot;,
+              &quot;text&quot;: &quot;text:&quot;,
+              &quot;type&quot;: &quot;string&quot;,
               &quot;required&quot;: false,
               &quot;repeats&quot;: false
             }
@@ -1568,7 +1619,7 @@
           &quot;repeats&quot;: true,
           &quot;item&quot;: [
             {
-              &quot;text&quot;: &quot;A reaction may be an indication of an allergy or intolerance and, if this is determined to be the case,  it should be recorded as a new [[[AllergyIntolerance]]] resource instance as most systems will not query against  past Immunization.reaction elements.&quot;,
+              &quot;text&quot;: &quot;A reaction may be an indication of an allergy or intolerance and, if this is determined to be the case,  it should be recorded as a new [AllergyIntolerance](allergyintolerance.html) resource instance as most systems will not query against  past Immunization.reaction elements.&quot;,
               &quot;type&quot;: &quot;display&quot;
             },
             {
@@ -2361,7 +2412,7 @@ of the specification.
 		<div class="container"><!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:32-0500. <a href="qa.html">QA Page</a>
+        © HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:21-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search</a> | 

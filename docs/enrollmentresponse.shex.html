@@ -3,7 +3,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>Enrollmentresponse.shex - FHIR v1.7.0</title>
+  <title>Enrollmentresponse.shex - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -140,30 +140,16 @@ start=@&lt;EnrollmentResponse&gt; AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:modifierExtension @&lt;Extension&gt;*;   # Extensions that cannot be ignored
     fhir:EnrollmentResponse.identifier @&lt;Identifier&gt;*;  # Business Identifier
     fhir:EnrollmentResponse.status @&lt;code&gt; AND
-    	{fhir:value @fhirvs:enrollmentresponse-status};  # active | cancelled | draft | 
+    	{fhir:value @fhirvs:fm-status}?;  # active | cancelled | draft | 
                                             # entered-in-error 
-    (                                       # Claim reference
-        fhir:EnrollmentResponse.requestIdentifier @&lt;Identifier&gt;  |
-        fhir:EnrollmentResponse.requestReference @&lt;Reference&gt; 
-    )?;
-    fhir:EnrollmentResponse.outcome @&lt;code&gt; AND
+    fhir:EnrollmentResponse.request @&lt;Reference&gt;?;  # Claim reference
+    fhir:EnrollmentResponse.outcome @&lt;CodeableConcept&gt; AND
     	{fhir:value @fhirvs:remittance-outcome}?;  # complete | error | partial
     fhir:EnrollmentResponse.disposition @&lt;string&gt;?;  # Disposition Message
-    fhir:EnrollmentResponse.ruleset @&lt;Coding&gt;?;  # Resource version
-    fhir:EnrollmentResponse.originalRuleset @&lt;Coding&gt;?;  # Original version
     fhir:EnrollmentResponse.created @&lt;dateTime&gt;?;  # Creation date
-    (                                       # Insurer
-        fhir:EnrollmentResponse.organizationIdentifier @&lt;Identifier&gt;  |
-        fhir:EnrollmentResponse.organizationReference @&lt;Reference&gt; 
-    )?;
-    (                                       # Responsible practitioner
-        fhir:EnrollmentResponse.requestProviderIdentifier @&lt;Identifier&gt;  |
-        fhir:EnrollmentResponse.requestProviderReference @&lt;Reference&gt; 
-    )?;
-    (                                       # Responsible organization
-        fhir:EnrollmentResponse.requestOrganizationIdentifier @&lt;Identifier&gt;  |
-        fhir:EnrollmentResponse.requestOrganizationReference @&lt;Reference&gt; 
-    )?;
+    fhir:EnrollmentResponse.organization @&lt;Reference&gt;?;  # Insurer
+    fhir:EnrollmentResponse.requestProvider @&lt;Reference&gt;?;  # Responsible practitioner
+    fhir:EnrollmentResponse.requestOrganization @&lt;Reference&gt;?;  # Responsible organization
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -278,28 +264,24 @@ start=@&lt;EnrollmentResponse&gt; AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
-# A reference to a code defined by a terminology system
-&lt;Coding&gt; CLOSED {
-    fhir:concept IRI?;
-    fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
-    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:Coding.system @&lt;uri&gt;?;             # Identity of the terminology system
-    fhir:Coding.version @&lt;string&gt;?;         # Version of the system - if relevant
-    fhir:Coding.code @&lt;code&gt;?;              # Symbol in syntax defined by the 
-                                            # system 
-    fhir:Coding.display @&lt;string&gt;?;         # Representation defined by the 
-                                            # system 
-    fhir:Coding.userSelected @&lt;boolean&gt;?;   # If this coding was chosen directly 
-                                            # by the user 
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
 # Primitive Type id
 &lt;id&gt; CLOSED {
     fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
                                             # implementations 
     fhir:value xsd:string?;                 # Primitive value for id
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
+# Concept - reference to a terminology or just  text
+&lt;CodeableConcept&gt; CLOSED {
+    fhir:concept IRI*;
+    fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
+    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:CodeableConcept.coding @&lt;Coding&gt;*;  # Code defined by a terminology 
+                                            # system 
+    fhir:CodeableConcept.text @&lt;string&gt;?;   # Plain text representation of the 
+                                            # concept 
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -324,25 +306,29 @@ start=@&lt;EnrollmentResponse&gt; AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
+# A reference to a code defined by a terminology system
+&lt;Coding&gt; CLOSED {
+    fhir:concept IRI?;
+    fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
+    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:Coding.system @&lt;uri&gt;?;             # Identity of the terminology system
+    fhir:Coding.version @&lt;string&gt;?;         # Version of the system - if relevant
+    fhir:Coding.code @&lt;code&gt;?;              # Symbol in syntax defined by the 
+                                            # system 
+    fhir:Coding.display @&lt;string&gt;?;         # Representation defined by the 
+                                            # system 
+    fhir:Coding.userSelected @&lt;boolean&gt;?;   # If this coding was chosen directly 
+                                            # by the user 
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
 # Primitive Type boolean
 &lt;boolean&gt; CLOSED {
     fhir:Element.id @&lt;id&gt;?;                 # xml:id (or equivalent in JSON)
     fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
                                             # implementations 
     fhir:value xsd:boolean?;                # Primitive value for boolean
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
-# Concept - reference to a terminology or just  text
-&lt;CodeableConcept&gt; CLOSED {
-    fhir:concept IRI*;
-    fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
-    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:CodeableConcept.coding @&lt;Coding&gt;*;  # Code defined by a terminology 
-                                            # system 
-    fhir:CodeableConcept.text @&lt;string&gt;?;   # Plain text representation of the 
-                                            # concept 
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -353,14 +339,14 @@ start=@&lt;EnrollmentResponse&gt; AND {fhir:nodeRole [fhir:treeRoot]}
 # This value set includes a Claim Processing Outcome codes.
 fhirvs:remittance-outcome [&quot;complete&quot; &quot;error&quot; &quot;partial&quot;]
 
+# This value set includes STatus codes.
+fhirvs:fm-status [&quot;active&quot; &quot;cancelled&quot; &quot;draft&quot; &quot;entered-in-error&quot;]
+
 # Identifies the purpose for this identifier, if known .
 fhirvs:identifier-use [&quot;usual&quot; &quot;official&quot; &quot;temp&quot; &quot;secondary&quot;]
 
 # The status of a resource narrative
 fhirvs:narrative-status [&quot;generated&quot; &quot;extensions&quot; &quot;additional&quot; &quot;empty&quot;]
-
-# A code specifying the state of the resource instance.
-fhirvs:enrollmentresponse-status [&quot;active&quot; &quot;cancelled&quot; &quot;draft&quot; &quot;entered-in-error&quot;]
 
 </pre>
 </div>
@@ -386,7 +372,7 @@ of the specification.
 		<div class="container"><!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:32-0500. <a href="qa.html">QA Page</a>
+        © HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:21-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search</a> | 

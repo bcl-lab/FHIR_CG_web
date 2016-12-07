@@ -14,15 +14,15 @@
     {
       "telecom": [
         {
-          "system": "other",
+          "system": "url",
           "value": "http://hl7.org/fhir"
         }
       ]
     }
   ],
-  "date": "2016-11-28T17:29:55-05:00",
+  "date": "2016-12-07T14:18:58-05:00",
   "description": "Logical Model: A pattern to be followed by resources that represent a specific proposal, plan and/or order for some sort of action or service.",
-  "fhirVersion": "1.7.0",
+  "fhirVersion": "1.8.0",
   "mapping": [
     {
       "identity": "rim",
@@ -54,11 +54,37 @@
         ]
       },
       {
+        "id": "Definition.url",
+        "path": "Definition.url",
+        "short": "Logical uri to reference this {{title}} (globally unique)",
+        "definition": "An absolute URL that is used to identify this {{title}} when it is referenced in a specification, model, design or an instance. This SHALL be a URL, SHOULD be globally unique, and SHOULD be an address at which this {{title}} is (or will be) published. The URL SHOULD include the major version of the {{title}}. For more information see [Technical and Business Versions](resource.html#versions).",
+        "comments": "Can be a urn:uuid: or a urn:oid:, but real http: addresses are preferred.",
+        "requirements": "Allows the {{title}} to be referenced by a single globally unique identifier.",
+        "min": 0,
+        "max": "1",
+        "type": [
+          {
+            "code": "uri"
+          }
+        ],
+        "isSummary": true,
+        "mapping": [
+          {
+            "identity": "rim",
+            "map": ".identifier"
+          },
+          {
+            "identity": "w5",
+            "map": "id"
+          }
+        ]
+      },
+      {
         "id": "Definition.identifier",
         "path": "Definition.identifier",
-        "short": "Business Identifer for definition/protocol",
-        "definition": "Identifiers assigned to this request by the requester, performer and other systems.",
-        "requirements": "Allows identification of the definition as it is known by various participating systems and in a way that remains consistent across servers.",
+        "short": "Business Identifer for {{title}}",
+        "definition": "Identifier assigned to this {{title}} request by the requester, performer and other systems.",
+        "requirements": "Allows identification of the {{title}} as it is known by various participating systems and in a way that remains consistent across servers.",
         "min": 0,
         "max": "1",
         "type": [
@@ -77,6 +103,41 @@
             "map": "id"
           }
         ]
+      },
+      {
+        "id": "Definition.version",
+        "path": "Definition.version",
+        "short": "Business version of the {{title}}",
+        "definition": "The identifier that is used to identify this version of the {{title}} when it is referenced in a specification, model, design or instance. This is an arbitrary value managed by the {{title}} author and is not expected to be globally unique. For example, it might be a timestamp (e.g. yyyymmdd) if a managed version is not available. There is also no expectation that versions are orderable.",
+        "comments": "There may be multiple different instances of a {{title}} that have the same identifier but different versions.",
+        "min": 0,
+        "max": "1",
+        "type": [
+          {
+            "code": "string"
+          }
+        ],
+        "isSummary": true,
+        "mapping": [
+          {
+            "identity": "w5",
+            "map": "id.version"
+          }
+        ]
+      },
+      {
+        "id": "Definition.title",
+        "path": "Definition.title",
+        "short": "Name for this {{title}} (Human friendly)",
+        "definition": "A short, descriptive, user-friendly title for the {{title}}.",
+        "min": 0,
+        "max": "1",
+        "type": [
+          {
+            "code": "string"
+          }
+        ],
+        "isSummary": true
       },
       {
         "id": "Definition.definition",
@@ -158,7 +219,8 @@
         "id": "Definition.status",
         "path": "Definition.status",
         "short": "draft | active | withdrawn",
-        "definition": "The current state of the definition.",
+        "definition": "The current state of the {{title}}.",
+        "comments": "A nominal state-transition diagram can be found in the [[definition.html#statemachine | Definition pattern]] documentation\n\nUnknown does not represent \"other\" - one of the defined statuses must apply.  Unknown is used when the authoring system is not sure what the current status is.",
         "min": 1,
         "max": "1",
         "type": [
@@ -183,6 +245,29 @@
           {
             "identity": "w5",
             "map": "status"
+          }
+        ]
+      },
+      {
+        "id": "Definition.experimental",
+        "path": "Definition.experimental",
+        "short": "If for testing purposes, not real usage",
+        "definition": "A flag to indicate that this {{title}} is authored for testing purposes (or education/evaluation/marketing), and is not intended to be used for genuine usage.",
+        "comments": "Allows filtering of {{title}} that are appropriate for use vs. not.",
+        "requirements": "Enables experimental content to be developed following the same life-cycle as a production-level {{title}} would.",
+        "min": 0,
+        "max": "1",
+        "type": [
+          {
+            "code": "boolean"
+          }
+        ],
+        "isModifier": true,
+        "isSummary": true,
+        "mapping": [
+          {
+            "identity": "w5",
+            "map": "class"
           }
         ]
       },
@@ -250,10 +335,11 @@
         ]
       },
       {
-        "id": "Definition.author",
-        "path": "Definition.author",
-        "short": "Who/what is requesting service",
-        "definition": "The individual or group with primary responsibility for the content of this definition.",
+        "id": "Definition.publisher",
+        "path": "Definition.publisher",
+        "short": "The name of the individual or organization that published the {{title}}",
+        "definition": "Helps establish the \"authority/credibility\" of the {{title}}.  May also allow for contact.",
+        "requirements": "Usually an organization, but may be an individual. The publisher (or steward) of the {{title}} is the organization or individual primarily responsible for the maintenance and upkeep of the {{title}}. This is not necessarily the same individual or organization that developed and initially authored the content. The publisher is the primary point of contact for questions or issues with the {{title}}. This item SHOULD be populated unless the information is available from context.",
         "alias": [
           "author"
         ],
@@ -280,6 +366,153 @@
             "map": "who.author"
           }
         ]
+      },
+      {
+        "id": "Definition.contact",
+        "path": "Definition.contact",
+        "short": "Contact details for the publisher",
+        "definition": "Contact details to assist a user in finding and communicating with the publisher.",
+        "comments": "May be a web site, an email address, a telephone number, etc.",
+        "min": 0,
+        "max": "*",
+        "type": [
+          {
+            "code": "ContactDetail"
+          }
+        ],
+        "isSummary": true
+      },
+      {
+        "id": "Definition.useContext",
+        "path": "Definition.useContext",
+        "short": "Content intends to support these contexts",
+        "definition": "The content was developed with a focus and intent of supporting the contexts that are listed. These terms may be used to assist with indexing and searching of code system definitions.",
+        "comments": "When multiple usageContexts are specified, there is no expectation for whether all or any of the contexts apply.",
+        "requirements": "Assist in searching for appropriate content.",
+        "min": 0,
+        "max": "*",
+        "type": [
+          {
+            "code": "UsageContext"
+          }
+        ],
+        "isSummary": true
+      },
+      {
+        "id": "Definition.jurisdiction",
+        "path": "Definition.jurisdiction",
+        "short": "Intended jurisdiction for {{title}} (if applicable)",
+        "definition": "A jurisdiction in which the {{title}} is intended to be used.",
+        "min": 0,
+        "max": "*",
+        "type": [
+          {
+            "code": "CodeableConcept"
+          }
+        ],
+        "isSummary": true,
+        "binding": {
+          "strength": "extensible",
+          "description": "Countries and regions within which this artifact is targeted for use",
+          "valueSetReference": {
+            "reference": "http://hl7.org/fhir/ValueSet/jurisdiction"
+          }
+        }
+      },
+      {
+        "id": "Definition.description",
+        "path": "Definition.description",
+        "short": "Natural language description of the {{title}}",
+        "definition": "A free text natural language description of the {{title}} from the consumer's perspective.",
+        "comments": "This description can be used to capture details such as why the {{title}} was built, comments about misuse, instructions for clinical use and interpretation, literature references, examples from the paper world, etc. It is not a rendering of the module as conveyed in the text field of the resource itself. This item SHOULD be populated unless the information is available from context.",
+        "min": 0,
+        "max": "1",
+        "type": [
+          {
+            "code": "markdown"
+          }
+        ]
+      },
+      {
+        "id": "Definition.purpose",
+        "path": "Definition.purpose",
+        "short": "Why this {{title}} is defined",
+        "definition": "Explains why this {{title}} is needed and why it has been designed as it has.",
+        "comments": "This element does not describe the usage of the {{title}} (See, e.g, the comments element, or relatedArtifacts), rather it's for traceability of ''why'' the resource is either needed or ''why'' it is defined as it is.  This may be used to point to source materials or specifications that drove the structure of this {{title}}.",
+        "min": 0,
+        "max": "1",
+        "type": [
+          {
+            "code": "markdown"
+          }
+        ],
+        "mapping": [
+          {
+            "identity": "w5",
+            "map": "why"
+          }
+        ]
+      },
+      {
+        "id": "Definition.copyright",
+        "path": "Definition.copyright",
+        "short": "Use and/or publishing restrictions",
+        "definition": "A copyright statement relating to the {{title}} and/or its contents. Copyright statements are generally legal restrictions on the use and publishing of the {{title}}.",
+        "requirements": "Consumers of the {{title}} must be able to determine any legal restrictions on the use of the artifact and/or its content.",
+        "alias": [
+          "License",
+          "Restrictions"
+        ],
+        "min": 0,
+        "max": "1",
+        "type": [
+          {
+            "code": "markdown"
+          }
+        ]
+      },
+      {
+        "id": "Definition.approvalDate",
+        "path": "Definition.approvalDate",
+        "short": "When {{title}} approved by publisher",
+        "definition": "The date on which the asset content was approved by the publisher. Approval happens once when the content is officially approved for usage.",
+        "comments": "The date may be more recent than the approval date because of minor changes / editorial corrections.",
+        "min": 0,
+        "max": "1",
+        "type": [
+          {
+            "code": "date"
+          }
+        ]
+      },
+      {
+        "id": "Definition.lastReviewDate",
+        "path": "Definition.lastReviewDate",
+        "short": "Last review date for the {{title}}",
+        "definition": "The date on which the asset content was last reviewed. Review happens periodically after that, but doesn't change the original approval date.",
+        "comments": "If specified, this is usually after the approval date.",
+        "min": 0,
+        "max": "1",
+        "type": [
+          {
+            "code": "date"
+          }
+        ]
+      },
+      {
+        "id": "Definition.effectivePeriod",
+        "path": "Definition.effectivePeriod",
+        "short": "The effective date range for the {{title}}",
+        "definition": "The period during which the {{title}} content was or is planned to be effective.",
+        "comments": "The effective period for a {{title}}  determines when the content is applicable for usage and is independent of publication and review dates. For example, a measure intended to be used for the year 2016 would be published in 2015.",
+        "min": 0,
+        "max": "1",
+        "type": [
+          {
+            "code": "Period"
+          }
+        ],
+        "isSummary": true
       },
       {
         "id": "Definition.performerType",

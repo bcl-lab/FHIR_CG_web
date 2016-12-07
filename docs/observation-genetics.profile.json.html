@@ -4,7 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>StructureDefinition: Observation-Genetics - FHIR v1.7.0</title>
+  <title>StructureDefinition: Observation-Genetics - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -130,7 +130,7 @@
     {
       &quot;telecom&quot;: [
         {
-          &quot;system&quot;: &quot;other&quot;,
+          &quot;system&quot;: &quot;url&quot;,
           &quot;value&quot;: &quot;http://www.hl7.org/Special/committees/clingenomics&quot;
         }
       ]
@@ -138,7 +138,7 @@
   ],
   &quot;date&quot;: &quot;2016-03-14&quot;,
   &quot;description&quot;: &quot;Describes how the observation resource is used to report structured genetic test results&quot;,
-  &quot;fhirVersion&quot;: &quot;1.7.0&quot;,
+  &quot;fhirVersion&quot;: &quot;1.8.0&quot;,
   &quot;mapping&quot;: [
     {
       &quot;identity&quot;: &quot;v2&quot;,
@@ -414,7 +414,7 @@
         &quot;id&quot;: &quot;Observation:observation-genetics.extension&quot;,
         &quot;path&quot;: &quot;Observation.extension&quot;,
         &quot;slicing&quot;: {
-          &quot;id&quot;: &quot;98&quot;,
+          &quot;id&quot;: &quot;92&quot;,
           &quot;discriminator&quot;: [
             &quot;url&quot;
           ],
@@ -433,170 +433,6 @@
         &quot;type&quot;: [
           {
             &quot;code&quot;: &quot;Extension&quot;
-          }
-        ]
-      },
-      {
-        &quot;id&quot;: &quot;Observation:observation-genetics.extension:transcriptreferencesequenceid&quot;,
-        &quot;path&quot;: &quot;Observation.extension&quot;,
-        &quot;sliceName&quot;: &quot;TranscriptReferenceSequenceId&quot;,
-        &quot;short&quot;: &quot;Transcript reference sequence ID&quot;,
-        &quot;definition&quot;: &quot;Identifier for the transcribed reference sequence that is part of the genetic reference sequence that gets converted to messenger RNA. A transcript is an RNA synthesized on a DNA or RNA template by an RNA polymerase ([SO:0000673](http://www.sequenceontology.org/browser/current_svn/term/SO:0000673)).&quot;,
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;base&quot;: {
-          &quot;path&quot;: &quot;DomainResource.extension&quot;,
-          &quot;min&quot;: 0,
-          &quot;max&quot;: &quot;*&quot;
-        },
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;Extension&quot;,
-            &quot;profile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/observation-geneticsTranscriptReferenceSequenceId&quot;
-          }
-        ],
-        &quot;condition&quot;: [
-          &quot;ele-1&quot;
-        ],
-        &quot;constraint&quot;: [
-          {
-            &quot;key&quot;: &quot;ele-1&quot;,
-            &quot;severity&quot;: &quot;error&quot;,
-            &quot;human&quot;: &quot;All FHIR elements must have a @value or children&quot;,
-            &quot;expression&quot;: &quot;children().count() &gt; id.count()&quot;,
-            &quot;xpath&quot;: &quot;@value|f:*|h:div&quot;,
-            &quot;source&quot;: &quot;Element&quot;
-          },
-          {
-            &quot;key&quot;: &quot;ext-1&quot;,
-            &quot;severity&quot;: &quot;error&quot;,
-            &quot;human&quot;: &quot;Must have either extensions or value[x], not both&quot;,
-            &quot;expression&quot;: &quot;extension.exists() != value.exists()&quot;,
-            &quot;xpath&quot;: &quot;exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])&quot;,
-            &quot;source&quot;: &quot;Extension&quot;
-          }
-        ]
-      },
-      {
-        &quot;id&quot;: &quot;Observation:observation-genetics.extension:proteinreferencesequenceid&quot;,
-        &quot;path&quot;: &quot;Observation.extension&quot;,
-        &quot;sliceName&quot;: &quot;ProteinReferenceSequenceId&quot;,
-        &quot;short&quot;: &quot;Protein reference sequence ID&quot;,
-        &quot;definition&quot;: &quot;Reference identifier for protein transcript, with version, from NCBI's RefSeq or ENSEMBL. A protein is a sequence of amino acids linked by peptide bonds which may lack appreciable tertiary structure and may not be liable to irreversible denaturation ([SO:0000104](http://www.sequenceontology.org/browser/current_svn/term/SO:0000104)).&quot;,
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;base&quot;: {
-          &quot;path&quot;: &quot;DomainResource.extension&quot;,
-          &quot;min&quot;: 0,
-          &quot;max&quot;: &quot;*&quot;
-        },
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;Extension&quot;,
-            &quot;profile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/observation-geneticsProteinReferenceSequenceId&quot;
-          }
-        ],
-        &quot;condition&quot;: [
-          &quot;ele-1&quot;
-        ],
-        &quot;constraint&quot;: [
-          {
-            &quot;key&quot;: &quot;ele-1&quot;,
-            &quot;severity&quot;: &quot;error&quot;,
-            &quot;human&quot;: &quot;All FHIR elements must have a @value or children&quot;,
-            &quot;expression&quot;: &quot;children().count() &gt; id.count()&quot;,
-            &quot;xpath&quot;: &quot;@value|f:*|h:div&quot;,
-            &quot;source&quot;: &quot;Element&quot;
-          },
-          {
-            &quot;key&quot;: &quot;ext-1&quot;,
-            &quot;severity&quot;: &quot;error&quot;,
-            &quot;human&quot;: &quot;Must have either extensions or value[x], not both&quot;,
-            &quot;expression&quot;: &quot;extension.exists() != value.exists()&quot;,
-            &quot;xpath&quot;: &quot;exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])&quot;,
-            &quot;source&quot;: &quot;Extension&quot;
-          }
-        ]
-      },
-      {
-        &quot;id&quot;: &quot;Observation:observation-genetics.extension:dnasequencevariant&quot;,
-        &quot;path&quot;: &quot;Observation.extension&quot;,
-        &quot;sliceName&quot;: &quot;DNASequenceVariant&quot;,
-        &quot;short&quot;: &quot;DNA sequence variant&quot;,
-        &quot;definition&quot;: &quot;A' is a variant (mutation) of A = definition every instance of A' is either an immediate mutation of some instance of A, or there is a chain of immediate mutation processes linking A' to some instance of A ([variant_of](http://www.sequenceontology.org/browser/current_svn/term/variant_of)). This element is the Human Genome Variation Society (HGVS) nomenclature for a single or set of DNA sequence variant(s) identified in testing. Reference sequence ID used for HGVS naming must be anotated.&quot;,
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;base&quot;: {
-          &quot;path&quot;: &quot;DomainResource.extension&quot;,
-          &quot;min&quot;: 0,
-          &quot;max&quot;: &quot;*&quot;
-        },
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;Extension&quot;,
-            &quot;profile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/observation-geneticsDNASequenceVariant&quot;
-          }
-        ],
-        &quot;condition&quot;: [
-          &quot;ele-1&quot;
-        ],
-        &quot;constraint&quot;: [
-          {
-            &quot;key&quot;: &quot;ele-1&quot;,
-            &quot;severity&quot;: &quot;error&quot;,
-            &quot;human&quot;: &quot;All FHIR elements must have a @value or children&quot;,
-            &quot;expression&quot;: &quot;children().count() &gt; id.count()&quot;,
-            &quot;xpath&quot;: &quot;@value|f:*|h:div&quot;,
-            &quot;source&quot;: &quot;Element&quot;
-          },
-          {
-            &quot;key&quot;: &quot;ext-1&quot;,
-            &quot;severity&quot;: &quot;error&quot;,
-            &quot;human&quot;: &quot;Must have either extensions or value[x], not both&quot;,
-            &quot;expression&quot;: &quot;extension.exists() != value.exists()&quot;,
-            &quot;xpath&quot;: &quot;exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])&quot;,
-            &quot;source&quot;: &quot;Extension&quot;
-          }
-        ]
-      },
-      {
-        &quot;id&quot;: &quot;Observation:observation-genetics.extension:dnavariantid&quot;,
-        &quot;path&quot;: &quot;Observation.extension&quot;,
-        &quot;sliceName&quot;: &quot;DNAVariantId&quot;,
-        &quot;short&quot;: &quot;DNA sequence variant ID&quot;,
-        &quot;definition&quot;: &quot;Identifier for DNA sequence variant.  If a germline variant, ClinVar or dbSNP identifier should be used.  If a somatic variant, COSMIC identifier should be used, unless in ClinVar then either maybe used. Need to provide the code system used (ClinVar, dbSNP, COSMIC).&quot;,
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;base&quot;: {
-          &quot;path&quot;: &quot;DomainResource.extension&quot;,
-          &quot;min&quot;: 0,
-          &quot;max&quot;: &quot;*&quot;
-        },
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;Extension&quot;,
-            &quot;profile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/observation-geneticsDNAVariantId&quot;
-          }
-        ],
-        &quot;condition&quot;: [
-          &quot;ele-1&quot;
-        ],
-        &quot;constraint&quot;: [
-          {
-            &quot;key&quot;: &quot;ele-1&quot;,
-            &quot;severity&quot;: &quot;error&quot;,
-            &quot;human&quot;: &quot;All FHIR elements must have a @value or children&quot;,
-            &quot;expression&quot;: &quot;children().count() &gt; id.count()&quot;,
-            &quot;xpath&quot;: &quot;@value|f:*|h:div&quot;,
-            &quot;source&quot;: &quot;Element&quot;
-          },
-          {
-            &quot;key&quot;: &quot;ext-1&quot;,
-            &quot;severity&quot;: &quot;error&quot;,
-            &quot;human&quot;: &quot;Must have either extensions or value[x], not both&quot;,
-            &quot;expression&quot;: &quot;extension.exists() != value.exists()&quot;,
-            &quot;xpath&quot;: &quot;exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])&quot;,
-            &quot;source&quot;: &quot;Extension&quot;
           }
         ]
       },
@@ -642,9 +478,9 @@
         ]
       },
       {
-        &quot;id&quot;: &quot;Observation:observation-genetics.extension:aminoacidchange&quot;,
+        &quot;id&quot;: &quot;Observation:observation-genetics.extension:aminoacidchangename&quot;,
         &quot;path&quot;: &quot;Observation.extension&quot;,
-        &quot;sliceName&quot;: &quot;AminoAcidChange&quot;,
+        &quot;sliceName&quot;: &quot;AminoAcidChangeName&quot;,
         &quot;short&quot;: &quot;Amino acid change&quot;,
         &quot;definition&quot;: &quot;Human Genome Variation Society (HGVS) nomenclature for an amino acid change. Reference sequence ID used for HGVS naming must be anotated. An amino acid is a sequence feature that corresponds to a single amino acid residue in a polypeptide ([SO:0001237](http://www.sequenceontology.org/browser/current_svn/term/SO:0001237)).&quot;,
         &quot;min&quot;: 0,
@@ -657,7 +493,7 @@
         &quot;type&quot;: [
           {
             &quot;code&quot;: &quot;Extension&quot;,
-            &quot;profile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/observation-geneticsAminoAcidChange&quot;
+            &quot;profile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/observation-geneticsAminoAcidChangeName&quot;
           }
         ],
         &quot;condition&quot;: [
@@ -724,9 +560,9 @@
         ]
       },
       {
-        &quot;id&quot;: &quot;Observation:observation-genetics.extension:gene&quot;,
+        &quot;id&quot;: &quot;Observation:observation-genetics.extension:genesymbol&quot;,
         &quot;path&quot;: &quot;Observation.extension&quot;,
-        &quot;sliceName&quot;: &quot;Gene&quot;,
+        &quot;sliceName&quot;: &quot;GeneSymbol&quot;,
         &quot;short&quot;: &quot;HGNC gene symbol&quot;,
         &quot;definition&quot;: &quot;A region (or regions) that includes all of the sequence elements necessary to encode a functional transcript. A gene may include regulatory regions, transcribed regions and/or other functional sequence regions ([SO:0000704](http://www.sequenceontology.org/browser/current_svn/term/SO:0000704)). This element is the official gene symbol approved by the HGNC, which is a short abbreviated form of the gene name ([HGNC](http://www.genenames.org)).&quot;,
         &quot;comments&quot;: &quot;Other systems or genes not defined in HGNC (e.g., BCR-ABL fusion gene) can be added by using a local extension.&quot;,
@@ -1251,7 +1087,7 @@
         &quot;path&quot;: &quot;Observation.category&quot;,
         &quot;short&quot;: &quot;Classification of  type of observation&quot;,
         &quot;definition&quot;: &quot;A code that classifies the general type of observation being made.&quot;,
-        &quot;comments&quot;: &quot;There may be multiple axis of categoriization depending on the context or use case for retrieving or displaying the resource.  The level of granularity is defined by the category concepts in the value set.   More fine-grained filtering can be performed using the metadata and/or terminology hierarchy in Observation.code.&quot;,
+        &quot;comments&quot;: &quot;There may be multiple axis of categoriization depending on the context or use case for retrieving or displaying the resource.  The level of granularity is defined by the category concepts in the value set.&quot;,
         &quot;requirements&quot;: &quot;Used for filtering what observations are retreived and displayed.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;*&quot;,
@@ -2291,7 +2127,7 @@
         &quot;id&quot;: &quot;Observation:observation-genetics.related.target&quot;,
         &quot;path&quot;: &quot;Observation.related.target&quot;,
         &quot;short&quot;: &quot;Resource that is related to this one&quot;,
-        &quot;definition&quot;: &quot;A reference to the observation or [[[QuestionnaireResponse]]] resource that is related to this observation.&quot;,
+        &quot;definition&quot;: &quot;A reference to the observation or [QuestionnaireResponse](questionnaireresponse.html#) resource that is related to this observation.&quot;,
         &quot;min&quot;: 1,
         &quot;max&quot;: &quot;1&quot;,
         &quot;base&quot;: {
@@ -2666,66 +2502,6 @@
         &quot;max&quot;: &quot;*&quot;
       },
       {
-        &quot;id&quot;: &quot;Observation:observation-genetics.extension:transcriptreferencesequenceid&quot;,
-        &quot;path&quot;: &quot;Observation.extension&quot;,
-        &quot;sliceName&quot;: &quot;TranscriptReferenceSequenceId&quot;,
-        &quot;short&quot;: &quot;Transcript reference sequence ID&quot;,
-        &quot;definition&quot;: &quot;Identifier for the transcribed reference sequence that is part of the genetic reference sequence that gets converted to messenger RNA. A transcript is an RNA synthesized on a DNA or RNA template by an RNA polymerase ([SO:0000673](http://www.sequenceontology.org/browser/current_svn/term/SO:0000673)).&quot;,
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;Extension&quot;,
-            &quot;profile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/observation-geneticsTranscriptReferenceSequenceId&quot;
-          }
-        ]
-      },
-      {
-        &quot;id&quot;: &quot;Observation:observation-genetics.extension:proteinreferencesequenceid&quot;,
-        &quot;path&quot;: &quot;Observation.extension&quot;,
-        &quot;sliceName&quot;: &quot;ProteinReferenceSequenceId&quot;,
-        &quot;short&quot;: &quot;Protein reference sequence ID&quot;,
-        &quot;definition&quot;: &quot;Reference identifier for protein transcript, with version, from NCBI's RefSeq or ENSEMBL. A protein is a sequence of amino acids linked by peptide bonds which may lack appreciable tertiary structure and may not be liable to irreversible denaturation ([SO:0000104](http://www.sequenceontology.org/browser/current_svn/term/SO:0000104)).&quot;,
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;Extension&quot;,
-            &quot;profile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/observation-geneticsProteinReferenceSequenceId&quot;
-          }
-        ]
-      },
-      {
-        &quot;id&quot;: &quot;Observation:observation-genetics.extension:dnasequencevariant&quot;,
-        &quot;path&quot;: &quot;Observation.extension&quot;,
-        &quot;sliceName&quot;: &quot;DNASequenceVariant&quot;,
-        &quot;short&quot;: &quot;DNA sequence variant&quot;,
-        &quot;definition&quot;: &quot;A' is a variant (mutation) of A = definition every instance of A' is either an immediate mutation of some instance of A, or there is a chain of immediate mutation processes linking A' to some instance of A ([variant_of](http://www.sequenceontology.org/browser/current_svn/term/variant_of)). This element is the Human Genome Variation Society (HGVS) nomenclature for a single or set of DNA sequence variant(s) identified in testing. Reference sequence ID used for HGVS naming must be anotated.&quot;,
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;Extension&quot;,
-            &quot;profile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/observation-geneticsDNASequenceVariant&quot;
-          }
-        ]
-      },
-      {
-        &quot;id&quot;: &quot;Observation:observation-genetics.extension:dnavariantid&quot;,
-        &quot;path&quot;: &quot;Observation.extension&quot;,
-        &quot;sliceName&quot;: &quot;DNAVariantId&quot;,
-        &quot;short&quot;: &quot;DNA sequence variant ID&quot;,
-        &quot;definition&quot;: &quot;Identifier for DNA sequence variant.  If a germline variant, ClinVar or dbSNP identifier should be used.  If a somatic variant, COSMIC identifier should be used, unless in ClinVar then either maybe used. Need to provide the code system used (ClinVar, dbSNP, COSMIC).&quot;,
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;Extension&quot;,
-            &quot;profile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/observation-geneticsDNAVariantId&quot;
-          }
-        ]
-      },
-      {
         &quot;id&quot;: &quot;Observation:observation-genetics.extension:dnasequencevarianttype&quot;,
         &quot;path&quot;: &quot;Observation.extension&quot;,
         &quot;sliceName&quot;: &quot;DNASequenceVariantType&quot;,
@@ -2741,9 +2517,9 @@
         ]
       },
       {
-        &quot;id&quot;: &quot;Observation:observation-genetics.extension:aminoacidchange&quot;,
+        &quot;id&quot;: &quot;Observation:observation-genetics.extension:aminoacidchangename&quot;,
         &quot;path&quot;: &quot;Observation.extension&quot;,
-        &quot;sliceName&quot;: &quot;AminoAcidChange&quot;,
+        &quot;sliceName&quot;: &quot;AminoAcidChangeName&quot;,
         &quot;short&quot;: &quot;Amino acid change&quot;,
         &quot;definition&quot;: &quot;Human Genome Variation Society (HGVS) nomenclature for an amino acid change. Reference sequence ID used for HGVS naming must be anotated. An amino acid is a sequence feature that corresponds to a single amino acid residue in a polypeptide ([SO:0001237](http://www.sequenceontology.org/browser/current_svn/term/SO:0001237)).&quot;,
         &quot;min&quot;: 0,
@@ -2751,7 +2527,7 @@
         &quot;type&quot;: [
           {
             &quot;code&quot;: &quot;Extension&quot;,
-            &quot;profile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/observation-geneticsAminoAcidChange&quot;
+            &quot;profile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/observation-geneticsAminoAcidChangeName&quot;
           }
         ]
       },
@@ -2771,9 +2547,9 @@
         ]
       },
       {
-        &quot;id&quot;: &quot;Observation:observation-genetics.extension:gene&quot;,
+        &quot;id&quot;: &quot;Observation:observation-genetics.extension:genesymbol&quot;,
         &quot;path&quot;: &quot;Observation.extension&quot;,
-        &quot;sliceName&quot;: &quot;Gene&quot;,
+        &quot;sliceName&quot;: &quot;GeneSymbol&quot;,
         &quot;short&quot;: &quot;HGNC gene symbol&quot;,
         &quot;definition&quot;: &quot;A region (or regions) that includes all of the sequence elements necessary to encode a functional transcript. A gene may include regulatory regions, transcribed regions and/or other functional sequence regions ([SO:0000704](http://www.sequenceontology.org/browser/current_svn/term/SO:0000704)). This element is the official gene symbol approved by the HGNC, which is a short abbreviated form of the gene name ([HGNC](http://www.genenames.org)).&quot;,
         &quot;comments&quot;: &quot;Other systems or genes not defined in HGNC (e.g., BCR-ABL fusion gene) can be added by using a local extension.&quot;,
@@ -2944,7 +2720,7 @@
 		<div class="container"><!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:32-0500. <a href="qa.html">QA Page</a>
+        © HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:28-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search</a> | 

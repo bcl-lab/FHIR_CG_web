@@ -3,7 +3,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>Claim-example-oral-contained-identifier.ttl - FHIR v1.7.0</title>
+  <title>Claim-example-oral-contained-identifier.ttl - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -137,10 +137,7 @@
      fhir:Patient.name [
        fhir:index 0;
        fhir:HumanName.use [ fhir:value &quot;official&quot; ];
-       fhir:HumanName.family [
-         fhir:value &quot;Donald&quot;;
-         fhir:index 0
-       ];
+       fhir:HumanName.family [ fhir:value &quot;Donald&quot; ];
        fhir:HumanName.given [
          fhir:value &quot;Duck&quot;;
          fhir:index 0
@@ -167,8 +164,15 @@
   ];
   fhir:Claim.status [ fhir:value &quot;active&quot;];
   fhir:Claim.type [
-     fhir:Coding.system [ fhir:value &quot;http://hl7.org/fhir/ex-claimtype&quot; ];
-     fhir:Coding.code [ fhir:value &quot;oral&quot; ]
+     fhir:CodeableConcept.coding [
+       fhir:index 0;
+       fhir:Coding.system [ fhir:value &quot;http://hl7.org/fhir/ex-claimtype&quot; ];
+       fhir:Coding.code [ fhir:value &quot;oral&quot; ]
+     ]
+  ];
+  fhir:Claim.use [ fhir:value &quot;complete&quot;];
+  fhir:Claim.patient [
+     fhir:Reference.reference [ fhir:value &quot;#patient-1&quot; ]
   ];
   fhir:Claim.created [ fhir:value &quot;2014-08-16&quot;^^xsd:date];
   fhir:Claim.insurer [
@@ -183,30 +187,45 @@
        fhir:Identifier.value [ fhir:value &quot;HOSP12345&quot; ]
      ]
   ];
-  fhir:Claim.use [ fhir:value &quot;complete&quot;];
   fhir:Claim.priority [
-     fhir:Coding.code [ fhir:value &quot;normal&quot; ]
+     fhir:CodeableConcept.coding [
+       fhir:index 0;
+       fhir:Coding.code [ fhir:value &quot;normal&quot; ]
+     ]
   ];
   fhir:Claim.payee [
      fhir:Claim.payee.type [
-       fhir:Coding.code [ fhir:value &quot;provider&quot; ]
+       fhir:CodeableConcept.coding [
+         fhir:index 0;
+         fhir:Coding.code [ fhir:value &quot;provider&quot; ]
+       ]
+     ]
+  ];
+  fhir:Claim.careTeam [
+     fhir:index 0;
+     fhir:Claim.careTeam.sequence [ fhir:value &quot;1&quot;^^xsd:positiveInteger ];
+     fhir:Claim.careTeam.provider [
+       fhir:Reference.identifier [
+         fhir:Identifier.system [ fhir:value &quot;http://www.jurisdiction.com/providerId&quot; ];
+         fhir:Identifier.value [ fhir:value &quot;MD98765&quot; ]
+       ]
      ]
   ];
   fhir:Claim.diagnosis [
      fhir:index 0;
      fhir:Claim.diagnosis.sequence [ fhir:value &quot;1&quot;^^xsd:positiveInteger ];
-     fhir:Claim.diagnosis.diagnosis [
-       fhir:Coding.code [ fhir:value &quot;123456&quot; ]
+     fhir:Claim.diagnosis.diagnosisCodeableConcept [
+       fhir:CodeableConcept.coding [
+         fhir:index 0;
+         fhir:Coding.code [ fhir:value &quot;123456&quot; ]
+       ]
      ]
   ];
-  fhir:Claim.patient [
-     fhir:Reference.reference [ fhir:value &quot;#patient-1&quot; ]
-  ];
-  fhir:Claim.coverage [
+  fhir:Claim.insurance [
      fhir:index 0;
-     fhir:Claim.coverage.sequence [ fhir:value &quot;1&quot;^^xsd:positiveInteger ];
-     fhir:Claim.coverage.focal [ fhir:value &quot;true&quot;^^xsd:boolean ];
-     fhir:Claim.coverage.coverage [
+     fhir:Claim.insurance.sequence [ fhir:value &quot;1&quot;^^xsd:positiveInteger ];
+     fhir:Claim.insurance.focal [ fhir:value &quot;true&quot;^^xsd:boolean ];
+     fhir:Claim.insurance.coverage [
        fhir:link &lt;http://www.jurisdiction.com/nationalplan/123AB345&gt;;
        fhir:Reference.reference [ fhir:value &quot;http://www.jurisdiction.com/nationalplan/123AB345&quot; ]
      ]
@@ -214,17 +233,15 @@
   fhir:Claim.item [
      fhir:index 0;
      fhir:Claim.item.sequence [ fhir:value &quot;1&quot;^^xsd:positiveInteger ];
-     fhir:Claim.item.careTeam [
-       fhir:index 0;
-       fhir:Claim.item.careTeam.provider [
-         fhir:Reference.identifier [
-           fhir:Identifier.system [ fhir:value &quot;http://www.jurisdiction.com/providerId&quot; ];
-           fhir:Identifier.value [ fhir:value &quot;MD98765&quot; ]
-         ]
-       ]
+     fhir:Claim.item.careTeamLinkId [
+       fhir:value &quot;1&quot;^^xsd:positiveInteger;
+       fhir:index 0
      ];
      fhir:Claim.item.service [
-       fhir:Coding.code [ fhir:value &quot;1200&quot; ]
+       fhir:CodeableConcept.coding [
+         fhir:index 0;
+         fhir:Coding.code [ fhir:value &quot;1200&quot; ]
+       ]
      ];
      fhir:Claim.item.servicedDate [ fhir:value &quot;2014-08-16&quot;^^xsd:date ];
      fhir:Claim.item.unitPrice [
@@ -266,7 +283,7 @@ of the specification.
 		<div class="container"><!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:32-0500. <a href="qa.html">QA Page</a>
+        © HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:21-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search</a> | 

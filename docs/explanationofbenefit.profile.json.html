@@ -3,7 +3,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>Explanationofbenefit.profile.json - FHIR v1.7.0</title>
+  <title>Explanationofbenefit.profile.json - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -119,7 +119,7 @@
   &quot;resourceType&quot;: &quot;StructureDefinition&quot;,
   &quot;id&quot;: &quot;ExplanationOfBenefit&quot;,
   &quot;meta&quot;: {
-    &quot;lastUpdated&quot;: &quot;2016-11-28T17:29:55.664-05:00&quot;
+    &quot;lastUpdated&quot;: &quot;2016-12-07T14:18:58.982-05:00&quot;
   },
   &quot;text&quot;: {
     &quot;status&quot;: &quot;generated&quot;,
@@ -129,6 +129,10 @@
     {
       &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm&quot;,
       &quot;valueInteger&quot;: 1
+    },
+    {
+      &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/structuredefinition-wg&quot;,
+      &quot;valueCode&quot;: &quot;fm&quot;
     }
   ],
   &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/ExplanationOfBenefit&quot;,
@@ -139,7 +143,7 @@
     {
       &quot;telecom&quot;: [
         {
-          &quot;system&quot;: &quot;other&quot;,
+          &quot;system&quot;: &quot;url&quot;,
           &quot;value&quot;: &quot;http://hl7.org/fhir&quot;
         }
       ]
@@ -147,15 +151,15 @@
     {
       &quot;telecom&quot;: [
         {
-          &quot;system&quot;: &quot;other&quot;,
+          &quot;system&quot;: &quot;url&quot;,
           &quot;value&quot;: &quot;http://www.hl7.org/Special/committees/fm/index.cfm&quot;
         }
       ]
     }
   ],
-  &quot;date&quot;: &quot;2016-11-28T17:29:55-05:00&quot;,
+  &quot;date&quot;: &quot;2016-12-07T14:18:58-05:00&quot;,
   &quot;description&quot;: &quot;Base StructureDefinition for ExplanationOfBenefit Resource&quot;,
-  &quot;fhirVersion&quot;: &quot;1.7.0&quot;,
+  &quot;fhirVersion&quot;: &quot;1.8.0&quot;,
   &quot;mapping&quot;: [
     {
       &quot;identity&quot;: &quot;w5&quot;,
@@ -481,7 +485,7 @@
         &quot;path&quot;: &quot;ExplanationOfBenefit.status&quot;,
         &quot;short&quot;: &quot;active | cancelled | draft | entered-in-error&quot;,
         &quot;definition&quot;: &quot;The status of the resource instance.&quot;,
-        &quot;min&quot;: 1,
+        &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
@@ -505,84 +509,16 @@
         ]
       },
       {
-        &quot;id&quot;: &quot;ExplanationOfBenefit.author&quot;,
-        &quot;path&quot;: &quot;ExplanationOfBenefit.author&quot;,
-        &quot;short&quot;: &quot;Insurer&quot;,
-        &quot;definition&quot;: &quot;The insurer which is responsible for the explanation of benefit.&quot;,
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;Reference&quot;,
-            &quot;targetProfile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/Organization&quot;
-          }
-        ],
-        &quot;mapping&quot;: [
-          {
-            &quot;identity&quot;: &quot;cdanetv4&quot;,
-            &quot;map&quot;: &quot;B02&quot;
-          },
-          {
-            &quot;identity&quot;: &quot;w5&quot;,
-            &quot;map&quot;: &quot;who.author&quot;
-          }
-        ]
-      },
-      {
-        &quot;id&quot;: &quot;ExplanationOfBenefit.claim&quot;,
-        &quot;path&quot;: &quot;ExplanationOfBenefit.claim&quot;,
-        &quot;short&quot;: &quot;Claim reference&quot;,
-        &quot;definition&quot;: &quot;The business identifier for the instance: invoice number, claim number, pre-determination or pre-authorization number.&quot;,
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;Reference&quot;,
-            &quot;targetProfile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/Claim&quot;
-          }
-        ],
-        &quot;mapping&quot;: [
-          {
-            &quot;identity&quot;: &quot;cdanetv4&quot;,
-            &quot;map&quot;: &quot;A02|G01&quot;
-          },
-          {
-            &quot;identity&quot;: &quot;w5&quot;,
-            &quot;map&quot;: &quot;why&quot;
-          }
-        ]
-      },
-      {
-        &quot;id&quot;: &quot;ExplanationOfBenefit.claimResponse&quot;,
-        &quot;path&quot;: &quot;ExplanationOfBenefit.claimResponse&quot;,
-        &quot;short&quot;: &quot;Claim response reference&quot;,
-        &quot;definition&quot;: &quot;The business identifier for the instance: invoice number, claim number, pre-determination or pre-authorization number.&quot;,
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;Reference&quot;,
-            &quot;targetProfile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/ClaimResponse&quot;
-          }
-        ],
-        &quot;mapping&quot;: [
-          {
-            &quot;identity&quot;: &quot;cdanetv4&quot;,
-            &quot;map&quot;: &quot;A02|G01&quot;
-          }
-        ]
-      },
-      {
         &quot;id&quot;: &quot;ExplanationOfBenefit.type&quot;,
         &quot;path&quot;: &quot;ExplanationOfBenefit.type&quot;,
         &quot;short&quot;: &quot;Type or discipline&quot;,
         &quot;definition&quot;: &quot;The category of claim, eg, oral, pharmacy, vision, insitutional, professional.&quot;,
         &quot;comments&quot;: &quot;Affects which fields and value sets are used.&quot;,
-        &quot;min&quot;: 1,
+        &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -609,7 +545,7 @@
         &quot;max&quot;: &quot;*&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -627,73 +563,26 @@
         ]
       },
       {
-        &quot;id&quot;: &quot;ExplanationOfBenefit.ruleset&quot;,
-        &quot;path&quot;: &quot;ExplanationOfBenefit.ruleset&quot;,
-        &quot;short&quot;: &quot;Current specification followed&quot;,
-        &quot;definition&quot;: &quot;The version of the specification on which this instance relies.&quot;,
-        &quot;alias&quot;: [
-          &quot;BusinessVersion&quot;
-        ],
+        &quot;id&quot;: &quot;ExplanationOfBenefit.patient&quot;,
+        &quot;path&quot;: &quot;ExplanationOfBenefit.patient&quot;,
+        &quot;short&quot;: &quot;The subject of the Products and Services&quot;,
+        &quot;definition&quot;: &quot;Patient Resource.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
-          }
-        ],
-        &quot;binding&quot;: {
-          &quot;strength&quot;: &quot;example&quot;,
-          &quot;description&quot;: &quot;The static and dynamic model to which contents conform, which may be business version or standard/version.&quot;,
-          &quot;valueSetReference&quot;: {
-            &quot;reference&quot;: &quot;http://hl7.org/fhir/ValueSet/ruleset&quot;
-          }
-        },
-        &quot;mapping&quot;: [
-          {
-            &quot;identity&quot;: &quot;w5&quot;,
-            &quot;map&quot;: &quot;id.version&quot;
-          }
-        ]
-      },
-      {
-        &quot;id&quot;: &quot;ExplanationOfBenefit.originalRuleset&quot;,
-        &quot;path&quot;: &quot;ExplanationOfBenefit.originalRuleset&quot;,
-        &quot;short&quot;: &quot;Original specification followed&quot;,
-        &quot;definition&quot;: &quot;The version of the specification from which the original instance was created.&quot;,
-        &quot;alias&quot;: [
-          &quot;OriginalBusinessVersion&quot;
-        ],
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;Coding&quot;
-          }
-        ],
-        &quot;binding&quot;: {
-          &quot;strength&quot;: &quot;example&quot;,
-          &quot;description&quot;: &quot;The static and dynamic model to which contents conform, which may be business version or standard/version.&quot;,
-          &quot;valueSetReference&quot;: {
-            &quot;reference&quot;: &quot;http://hl7.org/fhir/ValueSet/ruleset&quot;
-          }
-        }
-      },
-      {
-        &quot;id&quot;: &quot;ExplanationOfBenefit.created&quot;,
-        &quot;path&quot;: &quot;ExplanationOfBenefit.created&quot;,
-        &quot;short&quot;: &quot;Creation date&quot;,
-        &quot;definition&quot;: &quot;The date when the EOB was created.&quot;,
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;dateTime&quot;
+            &quot;code&quot;: &quot;Reference&quot;,
+            &quot;targetProfile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/Patient&quot;
           }
         ],
         &quot;mapping&quot;: [
           {
+            &quot;identity&quot;: &quot;cdanetv4&quot;,
+            &quot;map&quot;: &quot;C06,C07,C08, C05, C04&quot;
+          },
+          {
             &quot;identity&quot;: &quot;w5&quot;,
-            &quot;map&quot;: &quot;when.recorded&quot;
+            &quot;map&quot;: &quot;who.focus&quot;
           }
         ]
       },
@@ -717,36 +606,65 @@
         ]
       },
       {
-        &quot;id&quot;: &quot;ExplanationOfBenefit.outcome&quot;,
-        &quot;path&quot;: &quot;ExplanationOfBenefit.outcome&quot;,
-        &quot;short&quot;: &quot;complete | error | partial&quot;,
-        &quot;definition&quot;: &quot;Processing outcome errror, partial or complete processing.&quot;,
+        &quot;id&quot;: &quot;ExplanationOfBenefit.created&quot;,
+        &quot;path&quot;: &quot;ExplanationOfBenefit.created&quot;,
+        &quot;short&quot;: &quot;Creation date&quot;,
+        &quot;definition&quot;: &quot;The date when the EOB was created.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;dateTime&quot;
           }
         ],
-        &quot;binding&quot;: {
-          &quot;strength&quot;: &quot;example&quot;,
-          &quot;description&quot;: &quot;The result of the claim processing&quot;,
-          &quot;valueSetReference&quot;: {
-            &quot;reference&quot;: &quot;http://hl7.org/fhir/ValueSet/remittance-outcome&quot;
+        &quot;mapping&quot;: [
+          {
+            &quot;identity&quot;: &quot;w5&quot;,
+            &quot;map&quot;: &quot;when.recorded&quot;
           }
-        }
+        ]
       },
       {
-        &quot;id&quot;: &quot;ExplanationOfBenefit.disposition&quot;,
-        &quot;path&quot;: &quot;ExplanationOfBenefit.disposition&quot;,
-        &quot;short&quot;: &quot;Disposition Message&quot;,
-        &quot;definition&quot;: &quot;A description of the status of the adjudication.&quot;,
-        &quot;comments&quot;: &quot;Do we need a disposition code?&quot;,
+        &quot;id&quot;: &quot;ExplanationOfBenefit.enterer&quot;,
+        &quot;path&quot;: &quot;ExplanationOfBenefit.enterer&quot;,
+        &quot;short&quot;: &quot;Author&quot;,
+        &quot;definition&quot;: &quot;The person who created the explanation of benefit.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;string&quot;
+            &quot;code&quot;: &quot;Reference&quot;,
+            &quot;targetProfile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/Practitioner&quot;
+          }
+        ],
+        &quot;mapping&quot;: [
+          {
+            &quot;identity&quot;: &quot;w5&quot;,
+            &quot;map&quot;: &quot;who.author&quot;
+          }
+        ]
+      },
+      {
+        &quot;id&quot;: &quot;ExplanationOfBenefit.insurer&quot;,
+        &quot;path&quot;: &quot;ExplanationOfBenefit.insurer&quot;,
+        &quot;short&quot;: &quot;Insurer&quot;,
+        &quot;definition&quot;: &quot;The insurer which is responsible for the explanation of benefit.&quot;,
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;1&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;Reference&quot;,
+            &quot;targetProfile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/Organization&quot;
+          }
+        ],
+        &quot;mapping&quot;: [
+          {
+            &quot;identity&quot;: &quot;cdanetv4&quot;,
+            &quot;map&quot;: &quot;B02&quot;
+          },
+          {
+            &quot;identity&quot;: &quot;w5&quot;,
+            &quot;map&quot;: &quot;who.author&quot;
           }
         ]
       },
@@ -799,6 +717,30 @@
         ]
       },
       {
+        &quot;id&quot;: &quot;ExplanationOfBenefit.referral&quot;,
+        &quot;path&quot;: &quot;ExplanationOfBenefit.referral&quot;,
+        &quot;short&quot;: &quot;Treatment Referral&quot;,
+        &quot;definition&quot;: &quot;The referral resource which lists the date, practitioner, reason and other supporting information.&quot;,
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;1&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;Reference&quot;,
+            &quot;targetProfile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/ReferralRequest&quot;
+          }
+        ],
+        &quot;mapping&quot;: [
+          {
+            &quot;identity&quot;: &quot;cdanetv4&quot;,
+            &quot;map&quot;: &quot;B05&quot;
+          },
+          {
+            &quot;identity&quot;: &quot;w5&quot;,
+            &quot;map&quot;: &quot;who.cause&quot;
+          }
+        ]
+      },
+      {
         &quot;id&quot;: &quot;ExplanationOfBenefit.facility&quot;,
         &quot;path&quot;: &quot;ExplanationOfBenefit.facility&quot;,
         &quot;short&quot;: &quot;Servicing Facility&quot;,
@@ -819,6 +761,84 @@
         ]
       },
       {
+        &quot;id&quot;: &quot;ExplanationOfBenefit.claim&quot;,
+        &quot;path&quot;: &quot;ExplanationOfBenefit.claim&quot;,
+        &quot;short&quot;: &quot;Claim reference&quot;,
+        &quot;definition&quot;: &quot;The business identifier for the instance: invoice number, claim number, pre-determination or pre-authorization number.&quot;,
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;1&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;Reference&quot;,
+            &quot;targetProfile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/Claim&quot;
+          }
+        ],
+        &quot;mapping&quot;: [
+          {
+            &quot;identity&quot;: &quot;cdanetv4&quot;,
+            &quot;map&quot;: &quot;A02|G01&quot;
+          },
+          {
+            &quot;identity&quot;: &quot;w5&quot;,
+            &quot;map&quot;: &quot;why&quot;
+          }
+        ]
+      },
+      {
+        &quot;id&quot;: &quot;ExplanationOfBenefit.claimResponse&quot;,
+        &quot;path&quot;: &quot;ExplanationOfBenefit.claimResponse&quot;,
+        &quot;short&quot;: &quot;Claim response reference&quot;,
+        &quot;definition&quot;: &quot;The business identifier for the instance: invoice number, claim number, pre-determination or pre-authorization number.&quot;,
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;1&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;Reference&quot;,
+            &quot;targetProfile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/ClaimResponse&quot;
+          }
+        ],
+        &quot;mapping&quot;: [
+          {
+            &quot;identity&quot;: &quot;cdanetv4&quot;,
+            &quot;map&quot;: &quot;A02|G01&quot;
+          }
+        ]
+      },
+      {
+        &quot;id&quot;: &quot;ExplanationOfBenefit.outcome&quot;,
+        &quot;path&quot;: &quot;ExplanationOfBenefit.outcome&quot;,
+        &quot;short&quot;: &quot;complete | error | partial&quot;,
+        &quot;definition&quot;: &quot;Processing outcome errror, partial or complete processing.&quot;,
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;1&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;CodeableConcept&quot;
+          }
+        ],
+        &quot;binding&quot;: {
+          &quot;strength&quot;: &quot;example&quot;,
+          &quot;description&quot;: &quot;The result of the claim processing&quot;,
+          &quot;valueSetReference&quot;: {
+            &quot;reference&quot;: &quot;http://hl7.org/fhir/ValueSet/remittance-outcome&quot;
+          }
+        }
+      },
+      {
+        &quot;id&quot;: &quot;ExplanationOfBenefit.disposition&quot;,
+        &quot;path&quot;: &quot;ExplanationOfBenefit.disposition&quot;,
+        &quot;short&quot;: &quot;Disposition Message&quot;,
+        &quot;definition&quot;: &quot;A description of the status of the adjudication.&quot;,
+        &quot;comments&quot;: &quot;Do we need a disposition code?&quot;,
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;1&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;string&quot;
+          }
+        ]
+      },
+      {
         &quot;id&quot;: &quot;ExplanationOfBenefit.related&quot;,
         &quot;extension&quot;: [
           {
@@ -827,7 +847,7 @@
           }
         ],
         &quot;path&quot;: &quot;ExplanationOfBenefit.related&quot;,
-        &quot;short&quot;: &quot;Related Claims which may be revelant to processing this claimn&quot;,
+        &quot;short&quot;: &quot;Related Claims which may be revelant to processing this claim&quot;,
         &quot;definition&quot;: &quot;Other claims which are related to this claim such as prior claim versions or for related services.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;*&quot;,
@@ -959,7 +979,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -1006,7 +1026,7 @@
         &quot;id&quot;: &quot;ExplanationOfBenefit.originalPrescription&quot;,
         &quot;path&quot;: &quot;ExplanationOfBenefit.originalPrescription&quot;,
         &quot;short&quot;: &quot;Original Prescription&quot;,
-        &quot;definition&quot;: &quot;Original prescription which has been superceded by this prescription to support the dispensing of pharmacy services, medications or products.&quot;,
+        &quot;definition&quot;: &quot;Original prescription which has been superceded by this prescription to support the dispensing of pharmacy services, medications or products. For example, a physician may prescribe a medication which the pharmacy determines is contraindicated, or for which the patient has an intolerance, and therefor issues a new precription for an alternate medication which has the same theraputic intent. The prescription from the pharmacy becomes the 'prescription' and that from the physician becomes the 'original prescription'.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
@@ -1148,7 +1168,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -1168,7 +1188,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -1215,35 +1235,11 @@
         ]
       },
       {
-        &quot;id&quot;: &quot;ExplanationOfBenefit.referral&quot;,
-        &quot;path&quot;: &quot;ExplanationOfBenefit.referral&quot;,
-        &quot;short&quot;: &quot;Treatment Referral&quot;,
-        &quot;definition&quot;: &quot;The referral resource which lists the date, practitioner, reason and other supporting information.&quot;,
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;Reference&quot;,
-            &quot;targetProfile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/ReferralRequest&quot;
-          }
-        ],
-        &quot;mapping&quot;: [
-          {
-            &quot;identity&quot;: &quot;cdanetv4&quot;,
-            &quot;map&quot;: &quot;B05&quot;
-          },
-          {
-            &quot;identity&quot;: &quot;w5&quot;,
-            &quot;map&quot;: &quot;who.cause&quot;
-          }
-        ]
-      },
-      {
         &quot;id&quot;: &quot;ExplanationOfBenefit.information&quot;,
         &quot;extension&quot;: [
           {
             &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/structuredefinition-explicit-type-name&quot;,
-            &quot;valueString&quot;: &quot;SpecialCondition&quot;
+            &quot;valueString&quot;: &quot;SupportingInformation&quot;
           }
         ],
         &quot;path&quot;: &quot;ExplanationOfBenefit.information&quot;,
@@ -1366,7 +1362,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -1387,7 +1383,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -1396,7 +1392,13 @@
           &quot;valueSetReference&quot;: {
             &quot;reference&quot;: &quot;http://hl7.org/fhir/ValueSet/claim-exception&quot;
           }
-        }
+        },
+        &quot;mapping&quot;: [
+          {
+            &quot;identity&quot;: &quot;cdanetv4&quot;,
+            &quot;map&quot;: &quot;F23&quot;
+          }
+        ]
       },
       {
         &quot;id&quot;: &quot;ExplanationOfBenefit.information.timing[x]&quot;,
@@ -1412,13 +1414,19 @@
           {
             &quot;code&quot;: &quot;Period&quot;
           }
+        ],
+        &quot;mapping&quot;: [
+          {
+            &quot;identity&quot;: &quot;cdanetv4&quot;,
+            &quot;map&quot;: &quot;F24&quot;
+          }
         ]
       },
       {
         &quot;id&quot;: &quot;ExplanationOfBenefit.information.value[x]&quot;,
         &quot;path&quot;: &quot;ExplanationOfBenefit.information.value[x]&quot;,
-        &quot;short&quot;: &quot;Additional Data&quot;,
-        &quot;definition&quot;: &quot;Additional data.&quot;,
+        &quot;short&quot;: &quot;Additional Data or supporting information&quot;,
+        &quot;definition&quot;: &quot;Additional data or information such as resources, documents, images etc. including references to the data or the actual inclusion of the data.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
@@ -1427,8 +1435,244 @@
           },
           {
             &quot;code&quot;: &quot;Quantity&quot;
+          },
+          {
+            &quot;code&quot;: &quot;Attachment&quot;
+          },
+          {
+            &quot;code&quot;: &quot;Reference&quot;,
+            &quot;targetProfile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/Resource&quot;
           }
         ]
+      },
+      {
+        &quot;id&quot;: &quot;ExplanationOfBenefit.information.reason&quot;,
+        &quot;path&quot;: &quot;ExplanationOfBenefit.information.reason&quot;,
+        &quot;short&quot;: &quot;Reason associated with the information&quot;,
+        &quot;definition&quot;: &quot;For example, provides the reason for: the additional stay, or missing tooth or any other situation where a reason code is required in addition to the content.&quot;,
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;1&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;Coding&quot;
+          }
+        ],
+        &quot;binding&quot;: {
+          &quot;strength&quot;: &quot;example&quot;,
+          &quot;description&quot;: &quot;Reason codes for the missing teeth&quot;,
+          &quot;valueSetReference&quot;: {
+            &quot;reference&quot;: &quot;http://hl7.org/fhir/ValueSet/missing-tooth-reason&quot;
+          }
+        }
+      },
+      {
+        &quot;id&quot;: &quot;ExplanationOfBenefit.careTeam&quot;,
+        &quot;extension&quot;: [
+          {
+            &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/structuredefinition-explicit-type-name&quot;,
+            &quot;valueString&quot;: &quot;CareTeam&quot;
+          }
+        ],
+        &quot;path&quot;: &quot;ExplanationOfBenefit.careTeam&quot;,
+        &quot;short&quot;: &quot;Care Team members&quot;,
+        &quot;definition&quot;: &quot;The members of the team who provided the overall service as well as their role and whether responsible and qualifications.&quot;,
+        &quot;requirements&quot;: &quot;Role and Responsible may not be required when there is only a single provider listed.&quot;,
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;*&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;BackboneElement&quot;
+          }
+        ],
+        &quot;constraint&quot;: [
+          {
+            &quot;key&quot;: &quot;ele-1&quot;,
+            &quot;severity&quot;: &quot;error&quot;,
+            &quot;human&quot;: &quot;All FHIR elements must have a @value or children&quot;,
+            &quot;expression&quot;: &quot;children().count() &gt; id.count()&quot;,
+            &quot;xpath&quot;: &quot;@value|f:*|h:div&quot;,
+            &quot;source&quot;: &quot;Element&quot;
+          }
+        ]
+      },
+      {
+        &quot;id&quot;: &quot;ExplanationOfBenefit.careTeam.id&quot;,
+        &quot;path&quot;: &quot;ExplanationOfBenefit.careTeam.id&quot;,
+        &quot;representation&quot;: [
+          &quot;xmlAttr&quot;
+        ],
+        &quot;short&quot;: &quot;xml:id (or equivalent in JSON)&quot;,
+        &quot;definition&quot;: &quot;unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.&quot;,
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;1&quot;,
+        &quot;base&quot;: {
+          &quot;path&quot;: &quot;Element.id&quot;,
+          &quot;min&quot;: 0,
+          &quot;max&quot;: &quot;1&quot;
+        },
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;string&quot;
+          }
+        ],
+        &quot;mapping&quot;: [
+          {
+            &quot;identity&quot;: &quot;rim&quot;,
+            &quot;map&quot;: &quot;n/a&quot;
+          }
+        ]
+      },
+      {
+        &quot;id&quot;: &quot;ExplanationOfBenefit.careTeam.extension&quot;,
+        &quot;path&quot;: &quot;ExplanationOfBenefit.careTeam.extension&quot;,
+        &quot;short&quot;: &quot;Additional Content defined by implementations&quot;,
+        &quot;definition&quot;: &quot;May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.&quot;,
+        &quot;comments&quot;: &quot;There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone.&quot;,
+        &quot;alias&quot;: [
+          &quot;extensions&quot;,
+          &quot;user content&quot;
+        ],
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;*&quot;,
+        &quot;base&quot;: {
+          &quot;path&quot;: &quot;Element.extension&quot;,
+          &quot;min&quot;: 0,
+          &quot;max&quot;: &quot;*&quot;
+        },
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;Extension&quot;
+          }
+        ],
+        &quot;mapping&quot;: [
+          {
+            &quot;identity&quot;: &quot;rim&quot;,
+            &quot;map&quot;: &quot;n/a&quot;
+          }
+        ]
+      },
+      {
+        &quot;id&quot;: &quot;ExplanationOfBenefit.careTeam.modifierExtension&quot;,
+        &quot;path&quot;: &quot;ExplanationOfBenefit.careTeam.modifierExtension&quot;,
+        &quot;short&quot;: &quot;Extensions that cannot be ignored&quot;,
+        &quot;definition&quot;: &quot;May be used to represent additional information that is not part of the basic definition of the element, and that modifies the understanding of the element that contains it. Usually modifier elements provide negation or qualification. In order to make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.&quot;,
+        &quot;comments&quot;: &quot;There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone.&quot;,
+        &quot;alias&quot;: [
+          &quot;extensions&quot;,
+          &quot;user content&quot;,
+          &quot;modifiers&quot;
+        ],
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;*&quot;,
+        &quot;base&quot;: {
+          &quot;path&quot;: &quot;BackboneElement.modifierExtension&quot;,
+          &quot;min&quot;: 0,
+          &quot;max&quot;: &quot;*&quot;
+        },
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;Extension&quot;
+          }
+        ],
+        &quot;isModifier&quot;: true,
+        &quot;isSummary&quot;: true,
+        &quot;mapping&quot;: [
+          {
+            &quot;identity&quot;: &quot;rim&quot;,
+            &quot;map&quot;: &quot;N/A&quot;
+          }
+        ]
+      },
+      {
+        &quot;id&quot;: &quot;ExplanationOfBenefit.careTeam.sequence&quot;,
+        &quot;path&quot;: &quot;ExplanationOfBenefit.careTeam.sequence&quot;,
+        &quot;short&quot;: &quot;Number to covey order of careteam&quot;,
+        &quot;definition&quot;: &quot;Sequence of careteam which serves to order and provide a link.&quot;,
+        &quot;requirements&quot;: &quot;Required to maintain order of the careteam members.&quot;,
+        &quot;min&quot;: 1,
+        &quot;max&quot;: &quot;1&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;positiveInt&quot;
+          }
+        ]
+      },
+      {
+        &quot;id&quot;: &quot;ExplanationOfBenefit.careTeam.provider&quot;,
+        &quot;path&quot;: &quot;ExplanationOfBenefit.careTeam.provider&quot;,
+        &quot;short&quot;: &quot;Member of the Care Team&quot;,
+        &quot;definition&quot;: &quot;The members of the team who provided the overall service.&quot;,
+        &quot;min&quot;: 1,
+        &quot;max&quot;: &quot;1&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;Reference&quot;,
+            &quot;targetProfile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/Practitioner&quot;
+          },
+          {
+            &quot;code&quot;: &quot;Reference&quot;,
+            &quot;targetProfile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/Organization&quot;
+          }
+        ],
+        &quot;mapping&quot;: [
+          {
+            &quot;identity&quot;: &quot;w5&quot;,
+            &quot;map&quot;: &quot;who.actor&quot;
+          }
+        ]
+      },
+      {
+        &quot;id&quot;: &quot;ExplanationOfBenefit.careTeam.responsible&quot;,
+        &quot;path&quot;: &quot;ExplanationOfBenefit.careTeam.responsible&quot;,
+        &quot;short&quot;: &quot;Billing practitioner&quot;,
+        &quot;definition&quot;: &quot;The practitioner who is billing and responsible for the claimed services rendered to the patient.&quot;,
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;1&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;boolean&quot;
+          }
+        ]
+      },
+      {
+        &quot;id&quot;: &quot;ExplanationOfBenefit.careTeam.role&quot;,
+        &quot;path&quot;: &quot;ExplanationOfBenefit.careTeam.role&quot;,
+        &quot;short&quot;: &quot;Role on the team&quot;,
+        &quot;definition&quot;: &quot;The lead, assisting or supervising practitioner and their discipline if a multidisiplinary team.&quot;,
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;1&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;CodeableConcept&quot;
+          }
+        ],
+        &quot;binding&quot;: {
+          &quot;strength&quot;: &quot;example&quot;,
+          &quot;description&quot;: &quot;The role codes for the care team members.&quot;,
+          &quot;valueSetReference&quot;: {
+            &quot;reference&quot;: &quot;http://hl7.org/fhir/ValueSet/claim-careteamrole&quot;
+          }
+        }
+      },
+      {
+        &quot;id&quot;: &quot;ExplanationOfBenefit.careTeam.qualification&quot;,
+        &quot;path&quot;: &quot;ExplanationOfBenefit.careTeam.qualification&quot;,
+        &quot;short&quot;: &quot;Type, classification or Specialization&quot;,
+        &quot;definition&quot;: &quot;The qualification which is applicable for this service.&quot;,
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;1&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;CodeableConcept&quot;
+          }
+        ],
+        &quot;binding&quot;: {
+          &quot;strength&quot;: &quot;example&quot;,
+          &quot;description&quot;: &quot;Provider professional qualifications&quot;,
+          &quot;valueSetReference&quot;: {
+            &quot;reference&quot;: &quot;http://hl7.org/fhir/ValueSet/provider-qualification&quot;
+          }
+        }
       },
       {
         &quot;id&quot;: &quot;ExplanationOfBenefit.diagnosis&quot;,
@@ -1562,8 +1806,8 @@
         ]
       },
       {
-        &quot;id&quot;: &quot;ExplanationOfBenefit.diagnosis.diagnosis&quot;,
-        &quot;path&quot;: &quot;ExplanationOfBenefit.diagnosis.diagnosis&quot;,
+        &quot;id&quot;: &quot;ExplanationOfBenefit.diagnosis.diagnosis[x]&quot;,
+        &quot;path&quot;: &quot;ExplanationOfBenefit.diagnosis.diagnosis[x]&quot;,
         &quot;short&quot;: &quot;Patient's list of diagnosis&quot;,
         &quot;definition&quot;: &quot;The diagnosis.&quot;,
         &quot;requirements&quot;: &quot;Required to adjudicate services rendered to condition presented.&quot;,
@@ -1571,7 +1815,11 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
+          },
+          {
+            &quot;code&quot;: &quot;Reference&quot;,
+            &quot;targetProfile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/Condition&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -1593,7 +1841,7 @@
         &quot;max&quot;: &quot;*&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -1605,16 +1853,16 @@
         }
       },
       {
-        &quot;id&quot;: &quot;ExplanationOfBenefit.diagnosis.drg&quot;,
-        &quot;path&quot;: &quot;ExplanationOfBenefit.diagnosis.drg&quot;,
-        &quot;short&quot;: &quot;Diagnosis Related Group&quot;,
-        &quot;definition&quot;: &quot;The Diagnosis Related Group (DRG) code based on the assigned grouping code system.&quot;,
-        &quot;requirements&quot;: &quot;Required to adjudicate services rendered to the mandated diagnosis grouping system.&quot;,
+        &quot;id&quot;: &quot;ExplanationOfBenefit.diagnosis.packageCode&quot;,
+        &quot;path&quot;: &quot;ExplanationOfBenefit.diagnosis.packageCode&quot;,
+        &quot;short&quot;: &quot;Package billing code&quot;,
+        &quot;definition&quot;: &quot;The package billing code, for example DRG, based on the assigned grouping code system.&quot;,
+        &quot;requirements&quot;: &quot;Required to adjudicate services rendered to the mandated grouping system.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -1781,7 +2029,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           },
           {
             &quot;code&quot;: &quot;Reference&quot;,
@@ -1797,30 +2045,6 @@
         }
       },
       {
-        &quot;id&quot;: &quot;ExplanationOfBenefit.patient&quot;,
-        &quot;path&quot;: &quot;ExplanationOfBenefit.patient&quot;,
-        &quot;short&quot;: &quot;The subject of the Products and Services&quot;,
-        &quot;definition&quot;: &quot;Patient Resource.&quot;,
-        &quot;min&quot;: 1,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;Reference&quot;,
-            &quot;targetProfile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/Patient&quot;
-          }
-        ],
-        &quot;mapping&quot;: [
-          {
-            &quot;identity&quot;: &quot;cdanetv4&quot;,
-            &quot;map&quot;: &quot;C06,C07,C08, C05, C04&quot;
-          },
-          {
-            &quot;identity&quot;: &quot;w5&quot;,
-            &quot;map&quot;: &quot;who.focus&quot;
-          }
-        ]
-      },
-      {
         &quot;id&quot;: &quot;ExplanationOfBenefit.precedence&quot;,
         &quot;path&quot;: &quot;ExplanationOfBenefit.precedence&quot;,
         &quot;short&quot;: &quot;Precedence (primary, secondary, etc.)&quot;,
@@ -1832,27 +2056,21 @@
           {
             &quot;code&quot;: &quot;positiveInt&quot;
           }
-        ],
-        &quot;mapping&quot;: [
-          {
-            &quot;identity&quot;: &quot;v2&quot;,
-            &quot;map&quot;: &quot;Coverage&quot;
-          }
         ]
       },
       {
-        &quot;id&quot;: &quot;ExplanationOfBenefit.coverage&quot;,
+        &quot;id&quot;: &quot;ExplanationOfBenefit.insurance&quot;,
         &quot;extension&quot;: [
           {
             &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/structuredefinition-explicit-type-name&quot;,
-            &quot;valueString&quot;: &quot;Coverage&quot;
+            &quot;valueString&quot;: &quot;Insurance&quot;
           }
         ],
-        &quot;path&quot;: &quot;ExplanationOfBenefit.coverage&quot;,
+        &quot;path&quot;: &quot;ExplanationOfBenefit.insurance&quot;,
         &quot;short&quot;: &quot;Insurance or medical plan&quot;,
         &quot;definition&quot;: &quot;Financial instrument by which payment information for health care.&quot;,
         &quot;requirements&quot;: &quot;Health care programs and insurers are significant payors of health service costs.&quot;,
-        &quot;min&quot;: 1,
+        &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
@@ -1877,8 +2095,8 @@
         ]
       },
       {
-        &quot;id&quot;: &quot;ExplanationOfBenefit.coverage.id&quot;,
-        &quot;path&quot;: &quot;ExplanationOfBenefit.coverage.id&quot;,
+        &quot;id&quot;: &quot;ExplanationOfBenefit.insurance.id&quot;,
+        &quot;path&quot;: &quot;ExplanationOfBenefit.insurance.id&quot;,
         &quot;representation&quot;: [
           &quot;xmlAttr&quot;
         ],
@@ -1904,8 +2122,8 @@
         ]
       },
       {
-        &quot;id&quot;: &quot;ExplanationOfBenefit.coverage.extension&quot;,
-        &quot;path&quot;: &quot;ExplanationOfBenefit.coverage.extension&quot;,
+        &quot;id&quot;: &quot;ExplanationOfBenefit.insurance.extension&quot;,
+        &quot;path&quot;: &quot;ExplanationOfBenefit.insurance.extension&quot;,
         &quot;short&quot;: &quot;Additional Content defined by implementations&quot;,
         &quot;definition&quot;: &quot;May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.&quot;,
         &quot;comments&quot;: &quot;There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone.&quot;,
@@ -1933,8 +2151,8 @@
         ]
       },
       {
-        &quot;id&quot;: &quot;ExplanationOfBenefit.coverage.modifierExtension&quot;,
-        &quot;path&quot;: &quot;ExplanationOfBenefit.coverage.modifierExtension&quot;,
+        &quot;id&quot;: &quot;ExplanationOfBenefit.insurance.modifierExtension&quot;,
+        &quot;path&quot;: &quot;ExplanationOfBenefit.insurance.modifierExtension&quot;,
         &quot;short&quot;: &quot;Extensions that cannot be ignored&quot;,
         &quot;definition&quot;: &quot;May be used to represent additional information that is not part of the basic definition of the element, and that modifies the understanding of the element that contains it. Usually modifier elements provide negation or qualification. In order to make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.&quot;,
         &quot;comments&quot;: &quot;There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone.&quot;,
@@ -1965,8 +2183,8 @@
         ]
       },
       {
-        &quot;id&quot;: &quot;ExplanationOfBenefit.coverage.coverage&quot;,
-        &quot;path&quot;: &quot;ExplanationOfBenefit.coverage.coverage&quot;,
+        &quot;id&quot;: &quot;ExplanationOfBenefit.insurance.coverage&quot;,
+        &quot;path&quot;: &quot;ExplanationOfBenefit.insurance.coverage&quot;,
         &quot;short&quot;: &quot;Insurance information&quot;,
         &quot;definition&quot;: &quot;Reference to the program or plan identification, underwriter or payor.&quot;,
         &quot;requirements&quot;: &quot;Need to identify the issuer to target for processing and for coordination of benefit processing.&quot;,
@@ -1980,8 +2198,8 @@
         ]
       },
       {
-        &quot;id&quot;: &quot;ExplanationOfBenefit.coverage.preAuthRef&quot;,
-        &quot;path&quot;: &quot;ExplanationOfBenefit.coverage.preAuthRef&quot;,
+        &quot;id&quot;: &quot;ExplanationOfBenefit.insurance.preAuthRef&quot;,
+        &quot;path&quot;: &quot;ExplanationOfBenefit.insurance.preAuthRef&quot;,
         &quot;short&quot;: &quot;Pre-Authorization/Determination Reference&quot;,
         &quot;definition&quot;: &quot;A list of references from the Insurer to which these services pertain.&quot;,
         &quot;requirements&quot;: &quot;To provide any pre=determination or prior authorization reference.&quot;,
@@ -2146,7 +2364,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -2337,209 +2555,15 @@
         ]
       },
       {
-        &quot;id&quot;: &quot;ExplanationOfBenefit.item.careTeam&quot;,
-        &quot;extension&quot;: [
-          {
-            &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/structuredefinition-explicit-type-name&quot;,
-            &quot;valueString&quot;: &quot;CareTeam&quot;
-          }
-        ],
-        &quot;path&quot;: &quot;ExplanationOfBenefit.item.careTeam&quot;,
-        &quot;short&quot;: &quot;Care Team members&quot;,
-        &quot;definition&quot;: &quot;The members of the team who provided the overall service as well as their role and whether responsible and qualifications.&quot;,
-        &quot;requirements&quot;: &quot;Role and Responsible may not be required when there is only a single provider listed.&quot;,
+        &quot;id&quot;: &quot;ExplanationOfBenefit.item.careTeamLinkId&quot;,
+        &quot;path&quot;: &quot;ExplanationOfBenefit.item.careTeamLinkId&quot;,
+        &quot;short&quot;: &quot;Applicable careteam members&quot;,
+        &quot;definition&quot;: &quot;Careteam applicable for this service or product line.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;*&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;BackboneElement&quot;
-          }
-        ],
-        &quot;constraint&quot;: [
-          {
-            &quot;key&quot;: &quot;ele-1&quot;,
-            &quot;severity&quot;: &quot;error&quot;,
-            &quot;human&quot;: &quot;All FHIR elements must have a @value or children&quot;,
-            &quot;expression&quot;: &quot;children().count() &gt; id.count()&quot;,
-            &quot;xpath&quot;: &quot;@value|f:*|h:div&quot;,
-            &quot;source&quot;: &quot;Element&quot;
-          }
-        ]
-      },
-      {
-        &quot;id&quot;: &quot;ExplanationOfBenefit.item.careTeam.id&quot;,
-        &quot;path&quot;: &quot;ExplanationOfBenefit.item.careTeam.id&quot;,
-        &quot;representation&quot;: [
-          &quot;xmlAttr&quot;
-        ],
-        &quot;short&quot;: &quot;xml:id (or equivalent in JSON)&quot;,
-        &quot;definition&quot;: &quot;unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.&quot;,
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;base&quot;: {
-          &quot;path&quot;: &quot;Element.id&quot;,
-          &quot;min&quot;: 0,
-          &quot;max&quot;: &quot;1&quot;
-        },
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;string&quot;
-          }
-        ],
-        &quot;mapping&quot;: [
-          {
-            &quot;identity&quot;: &quot;rim&quot;,
-            &quot;map&quot;: &quot;n/a&quot;
-          }
-        ]
-      },
-      {
-        &quot;id&quot;: &quot;ExplanationOfBenefit.item.careTeam.extension&quot;,
-        &quot;path&quot;: &quot;ExplanationOfBenefit.item.careTeam.extension&quot;,
-        &quot;short&quot;: &quot;Additional Content defined by implementations&quot;,
-        &quot;definition&quot;: &quot;May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.&quot;,
-        &quot;comments&quot;: &quot;There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone.&quot;,
-        &quot;alias&quot;: [
-          &quot;extensions&quot;,
-          &quot;user content&quot;
-        ],
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;*&quot;,
-        &quot;base&quot;: {
-          &quot;path&quot;: &quot;Element.extension&quot;,
-          &quot;min&quot;: 0,
-          &quot;max&quot;: &quot;*&quot;
-        },
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;Extension&quot;
-          }
-        ],
-        &quot;mapping&quot;: [
-          {
-            &quot;identity&quot;: &quot;rim&quot;,
-            &quot;map&quot;: &quot;n/a&quot;
-          }
-        ]
-      },
-      {
-        &quot;id&quot;: &quot;ExplanationOfBenefit.item.careTeam.modifierExtension&quot;,
-        &quot;path&quot;: &quot;ExplanationOfBenefit.item.careTeam.modifierExtension&quot;,
-        &quot;short&quot;: &quot;Extensions that cannot be ignored&quot;,
-        &quot;definition&quot;: &quot;May be used to represent additional information that is not part of the basic definition of the element, and that modifies the understanding of the element that contains it. Usually modifier elements provide negation or qualification. In order to make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.&quot;,
-        &quot;comments&quot;: &quot;There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone.&quot;,
-        &quot;alias&quot;: [
-          &quot;extensions&quot;,
-          &quot;user content&quot;,
-          &quot;modifiers&quot;
-        ],
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;*&quot;,
-        &quot;base&quot;: {
-          &quot;path&quot;: &quot;BackboneElement.modifierExtension&quot;,
-          &quot;min&quot;: 0,
-          &quot;max&quot;: &quot;*&quot;
-        },
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;Extension&quot;
-          }
-        ],
-        &quot;isModifier&quot;: true,
-        &quot;isSummary&quot;: true,
-        &quot;mapping&quot;: [
-          {
-            &quot;identity&quot;: &quot;rim&quot;,
-            &quot;map&quot;: &quot;N/A&quot;
-          }
-        ]
-      },
-      {
-        &quot;id&quot;: &quot;ExplanationOfBenefit.item.careTeam.provider&quot;,
-        &quot;path&quot;: &quot;ExplanationOfBenefit.item.careTeam.provider&quot;,
-        &quot;short&quot;: &quot;Member of the Care Team&quot;,
-        &quot;definition&quot;: &quot;The members of the team who provided the overall service.&quot;,
-        &quot;min&quot;: 1,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;Reference&quot;,
-            &quot;targetProfile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/Practitioner&quot;
-          },
-          {
-            &quot;code&quot;: &quot;Reference&quot;,
-            &quot;targetProfile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/Organization&quot;
-          }
-        ],
-        &quot;mapping&quot;: [
-          {
-            &quot;identity&quot;: &quot;w5&quot;,
-            &quot;map&quot;: &quot;who.actor&quot;
-          }
-        ]
-      },
-      {
-        &quot;id&quot;: &quot;ExplanationOfBenefit.item.careTeam.responsible&quot;,
-        &quot;path&quot;: &quot;ExplanationOfBenefit.item.careTeam.responsible&quot;,
-        &quot;short&quot;: &quot;Billing practitioner&quot;,
-        &quot;definition&quot;: &quot;The practitioner who is billing and responsible for the claimed services rendered to the patient.&quot;,
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;boolean&quot;
-          }
-        ],
-        &quot;mapping&quot;: [
-          {
-            &quot;identity&quot;: &quot;cdanetv4&quot;,
-            &quot;map&quot;: &quot;True&quot;
-          }
-        ]
-      },
-      {
-        &quot;id&quot;: &quot;ExplanationOfBenefit.item.careTeam.role&quot;,
-        &quot;path&quot;: &quot;ExplanationOfBenefit.item.careTeam.role&quot;,
-        &quot;short&quot;: &quot;Role on the team&quot;,
-        &quot;definition&quot;: &quot;The lead, assisting or supervising practitioner and their discipline if a multidisiplinary team.&quot;,
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;Coding&quot;
-          }
-        ],
-        &quot;binding&quot;: {
-          &quot;strength&quot;: &quot;example&quot;,
-          &quot;description&quot;: &quot;The role codes for the care team members.&quot;,
-          &quot;valueSetReference&quot;: {
-            &quot;reference&quot;: &quot;http://hl7.org/fhir/ValueSet/claim-careteamrole&quot;
-          }
-        }
-      },
-      {
-        &quot;id&quot;: &quot;ExplanationOfBenefit.item.careTeam.qualification&quot;,
-        &quot;path&quot;: &quot;ExplanationOfBenefit.item.careTeam.qualification&quot;,
-        &quot;short&quot;: &quot;Type, classification or Specialization&quot;,
-        &quot;definition&quot;: &quot;The qualification which is applicable for this service.&quot;,
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;Coding&quot;
-          }
-        ],
-        &quot;binding&quot;: {
-          &quot;strength&quot;: &quot;example&quot;,
-          &quot;description&quot;: &quot;Provider professional qualifications&quot;,
-          &quot;valueSetReference&quot;: {
-            &quot;reference&quot;: &quot;http://hl7.org/fhir/ValueSet/provider-qualification&quot;
-          }
-        },
-        &quot;mapping&quot;: [
-          {
-            &quot;identity&quot;: &quot;cdanetv4&quot;,
-            &quot;map&quot;: &quot;not used&quot;
+            &quot;code&quot;: &quot;positiveInt&quot;
           }
         ]
       },
@@ -2557,6 +2581,32 @@
         ]
       },
       {
+        &quot;id&quot;: &quot;ExplanationOfBenefit.item.procedureLinkId&quot;,
+        &quot;path&quot;: &quot;ExplanationOfBenefit.item.procedureLinkId&quot;,
+        &quot;short&quot;: &quot;Applicable procedures&quot;,
+        &quot;definition&quot;: &quot;Procedures applicable for this service or product line.&quot;,
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;*&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;positiveInt&quot;
+          }
+        ]
+      },
+      {
+        &quot;id&quot;: &quot;ExplanationOfBenefit.item.informationLinkId&quot;,
+        &quot;path&quot;: &quot;ExplanationOfBenefit.item.informationLinkId&quot;,
+        &quot;short&quot;: &quot;Applicable exception and supporting information&quot;,
+        &quot;definition&quot;: &quot;Exceptions, special conditions and supporting information pplicable for this service or product line.&quot;,
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;*&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;positiveInt&quot;
+          }
+        ]
+      },
+      {
         &quot;id&quot;: &quot;ExplanationOfBenefit.item.revenue&quot;,
         &quot;path&quot;: &quot;ExplanationOfBenefit.item.revenue&quot;,
         &quot;short&quot;: &quot;Revenue or cost center code&quot;,
@@ -2565,7 +2615,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -2585,7 +2635,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -2605,7 +2655,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -2632,7 +2682,7 @@
         &quot;max&quot;: &quot;*&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -2658,7 +2708,7 @@
         &quot;max&quot;: &quot;*&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -2704,7 +2754,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           },
           {
             &quot;code&quot;: &quot;Address&quot;
@@ -2782,26 +2832,6 @@
         ]
       },
       {
-        &quot;id&quot;: &quot;ExplanationOfBenefit.item.points&quot;,
-        &quot;path&quot;: &quot;ExplanationOfBenefit.item.points&quot;,
-        &quot;short&quot;: &quot;Difficulty scaling factor&quot;,
-        &quot;definition&quot;: &quot;An amount that expresses the weighting (based on difficulty, cost and/or resource intensiveness) associated with the good or service delivered. The concept of Points allows for assignment of point values for services and/or goods, such that a monetary amount can be assigned to each point.&quot;,
-        &quot;requirements&quot;: &quot;If a fee is present the associated product/service code must be present.&quot;,
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;decimal&quot;
-          }
-        ],
-        &quot;mapping&quot;: [
-          {
-            &quot;identity&quot;: &quot;cdanetv4&quot;,
-            &quot;map&quot;: &quot;F13/F14&quot;
-          }
-        ]
-      },
-      {
         &quot;id&quot;: &quot;ExplanationOfBenefit.item.net&quot;,
         &quot;path&quot;: &quot;ExplanationOfBenefit.item.net&quot;,
         &quot;short&quot;: &quot;Total item cost&quot;,
@@ -2845,7 +2875,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -2871,7 +2901,7 @@
         &quot;max&quot;: &quot;*&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -3027,7 +3057,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -3047,7 +3077,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -3230,7 +3260,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -3250,7 +3280,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -3270,7 +3300,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -3290,7 +3320,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -3317,7 +3347,7 @@
         &quot;max&quot;: &quot;*&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -3343,7 +3373,7 @@
         &quot;max&quot;: &quot;*&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -3393,26 +3423,6 @@
         &quot;path&quot;: &quot;ExplanationOfBenefit.item.detail.factor&quot;,
         &quot;short&quot;: &quot;Price scaling factor&quot;,
         &quot;definition&quot;: &quot;A real number that represents a multiplier used in determining the overall value of services delivered and/or goods received. The concept of a Factor allows for a discount or surcharge multiplier to be applied to a monetary amount.&quot;,
-        &quot;requirements&quot;: &quot;If a fee is present the associated product/service code must be present.&quot;,
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;decimal&quot;
-          }
-        ],
-        &quot;mapping&quot;: [
-          {
-            &quot;identity&quot;: &quot;cdanetv4&quot;,
-            &quot;map&quot;: &quot;F13/F14&quot;
-          }
-        ]
-      },
-      {
-        &quot;id&quot;: &quot;ExplanationOfBenefit.item.detail.points&quot;,
-        &quot;path&quot;: &quot;ExplanationOfBenefit.item.detail.points&quot;,
-        &quot;short&quot;: &quot;Difficulty scaling factor&quot;,
-        &quot;definition&quot;: &quot;An amount that expresses the weighting (based on difficulty, cost and/or resource intensiveness) associated with the good or service delivered. The concept of Points allows for assignment of point values for services and/or goods, such that a monetary amount can be assigned to each point.&quot;,
         &quot;requirements&quot;: &quot;If a fee is present the associated product/service code must be present.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
@@ -3630,7 +3640,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -3650,7 +3660,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -3670,7 +3680,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -3690,7 +3700,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -3717,7 +3727,7 @@
         &quot;max&quot;: &quot;*&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -3743,7 +3753,7 @@
         &quot;max&quot;: &quot;*&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -3793,26 +3803,6 @@
         &quot;path&quot;: &quot;ExplanationOfBenefit.item.detail.subDetail.factor&quot;,
         &quot;short&quot;: &quot;Price scaling factor&quot;,
         &quot;definition&quot;: &quot;A real number that represents a multiplier used in determining the overall value of services delivered and/or goods received. The concept of a Factor allows for a discount or surcharge multiplier to be applied to a monetary amount.&quot;,
-        &quot;requirements&quot;: &quot;If a fee is present the associated product/service code must be present.&quot;,
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;decimal&quot;
-          }
-        ],
-        &quot;mapping&quot;: [
-          {
-            &quot;identity&quot;: &quot;cdanetv4&quot;,
-            &quot;map&quot;: &quot;F13/F14&quot;
-          }
-        ]
-      },
-      {
-        &quot;id&quot;: &quot;ExplanationOfBenefit.item.detail.subDetail.points&quot;,
-        &quot;path&quot;: &quot;ExplanationOfBenefit.item.detail.subDetail.points&quot;,
-        &quot;short&quot;: &quot;Difficulty scaling factor&quot;,
-        &quot;definition&quot;: &quot;An amount that expresses the weighting (based on difficulty, cost and/or resource intensiveness) associated with the good or service delivered. The concept of Points allows for assignment of point values for services and/or goods, such that a monetary amount can be assigned to each point.&quot;,
         &quot;requirements&quot;: &quot;If a fee is present the associated product/service code must be present.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
@@ -4052,7 +4042,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -4208,7 +4198,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -4228,7 +4218,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -4254,7 +4244,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -4275,7 +4265,7 @@
         &quot;max&quot;: &quot;*&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -4453,7 +4443,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -4473,7 +4463,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -4499,7 +4489,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -4520,7 +4510,7 @@
         &quot;max&quot;: &quot;*&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -4571,198 +4561,6 @@
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;*&quot;,
         &quot;contentReference&quot;: &quot;#ExplanationOfBenefit.item.adjudication&quot;
-      },
-      {
-        &quot;id&quot;: &quot;ExplanationOfBenefit.missingTeeth&quot;,
-        &quot;extension&quot;: [
-          {
-            &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/structuredefinition-explicit-type-name&quot;,
-            &quot;valueString&quot;: &quot;MissingTeeth&quot;
-          }
-        ],
-        &quot;path&quot;: &quot;ExplanationOfBenefit.missingTeeth&quot;,
-        &quot;short&quot;: &quot;Only if type = oral&quot;,
-        &quot;definition&quot;: &quot;A list of teeth which would be expected but are not found due to having been previously  extracted or for other reasons.&quot;,
-        &quot;requirements&quot;: &quot;The list of missing teeth may influence the adjudication of services for example with Bridges.&quot;,
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;*&quot;,
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;BackboneElement&quot;
-          }
-        ],
-        &quot;constraint&quot;: [
-          {
-            &quot;key&quot;: &quot;ele-1&quot;,
-            &quot;severity&quot;: &quot;error&quot;,
-            &quot;human&quot;: &quot;All FHIR elements must have a @value or children&quot;,
-            &quot;expression&quot;: &quot;children().count() &gt; id.count()&quot;,
-            &quot;xpath&quot;: &quot;@value|f:*|h:div&quot;,
-            &quot;source&quot;: &quot;Element&quot;
-          }
-        ]
-      },
-      {
-        &quot;id&quot;: &quot;ExplanationOfBenefit.missingTeeth.id&quot;,
-        &quot;path&quot;: &quot;ExplanationOfBenefit.missingTeeth.id&quot;,
-        &quot;representation&quot;: [
-          &quot;xmlAttr&quot;
-        ],
-        &quot;short&quot;: &quot;xml:id (or equivalent in JSON)&quot;,
-        &quot;definition&quot;: &quot;unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.&quot;,
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;base&quot;: {
-          &quot;path&quot;: &quot;Element.id&quot;,
-          &quot;min&quot;: 0,
-          &quot;max&quot;: &quot;1&quot;
-        },
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;string&quot;
-          }
-        ],
-        &quot;mapping&quot;: [
-          {
-            &quot;identity&quot;: &quot;rim&quot;,
-            &quot;map&quot;: &quot;n/a&quot;
-          }
-        ]
-      },
-      {
-        &quot;id&quot;: &quot;ExplanationOfBenefit.missingTeeth.extension&quot;,
-        &quot;path&quot;: &quot;ExplanationOfBenefit.missingTeeth.extension&quot;,
-        &quot;short&quot;: &quot;Additional Content defined by implementations&quot;,
-        &quot;definition&quot;: &quot;May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.&quot;,
-        &quot;comments&quot;: &quot;There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone.&quot;,
-        &quot;alias&quot;: [
-          &quot;extensions&quot;,
-          &quot;user content&quot;
-        ],
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;*&quot;,
-        &quot;base&quot;: {
-          &quot;path&quot;: &quot;Element.extension&quot;,
-          &quot;min&quot;: 0,
-          &quot;max&quot;: &quot;*&quot;
-        },
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;Extension&quot;
-          }
-        ],
-        &quot;mapping&quot;: [
-          {
-            &quot;identity&quot;: &quot;rim&quot;,
-            &quot;map&quot;: &quot;n/a&quot;
-          }
-        ]
-      },
-      {
-        &quot;id&quot;: &quot;ExplanationOfBenefit.missingTeeth.modifierExtension&quot;,
-        &quot;path&quot;: &quot;ExplanationOfBenefit.missingTeeth.modifierExtension&quot;,
-        &quot;short&quot;: &quot;Extensions that cannot be ignored&quot;,
-        &quot;definition&quot;: &quot;May be used to represent additional information that is not part of the basic definition of the element, and that modifies the understanding of the element that contains it. Usually modifier elements provide negation or qualification. In order to make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.&quot;,
-        &quot;comments&quot;: &quot;There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone.&quot;,
-        &quot;alias&quot;: [
-          &quot;extensions&quot;,
-          &quot;user content&quot;,
-          &quot;modifiers&quot;
-        ],
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;*&quot;,
-        &quot;base&quot;: {
-          &quot;path&quot;: &quot;BackboneElement.modifierExtension&quot;,
-          &quot;min&quot;: 0,
-          &quot;max&quot;: &quot;*&quot;
-        },
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;Extension&quot;
-          }
-        ],
-        &quot;isModifier&quot;: true,
-        &quot;isSummary&quot;: true,
-        &quot;mapping&quot;: [
-          {
-            &quot;identity&quot;: &quot;rim&quot;,
-            &quot;map&quot;: &quot;N/A&quot;
-          }
-        ]
-      },
-      {
-        &quot;id&quot;: &quot;ExplanationOfBenefit.missingTeeth.tooth&quot;,
-        &quot;path&quot;: &quot;ExplanationOfBenefit.missingTeeth.tooth&quot;,
-        &quot;short&quot;: &quot;Tooth Code&quot;,
-        &quot;definition&quot;: &quot;The code identifying which tooth is missing.&quot;,
-        &quot;requirements&quot;: &quot;Provides the tooth number of the missing tooth.&quot;,
-        &quot;min&quot;: 1,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;Coding&quot;
-          }
-        ],
-        &quot;binding&quot;: {
-          &quot;strength&quot;: &quot;example&quot;,
-          &quot;description&quot;: &quot;The codes for the teeth, subset of OralSites&quot;,
-          &quot;valueSetReference&quot;: {
-            &quot;reference&quot;: &quot;http://hl7.org/fhir/ValueSet/teeth&quot;
-          }
-        },
-        &quot;mapping&quot;: [
-          {
-            &quot;identity&quot;: &quot;cdanetv4&quot;,
-            &quot;map&quot;: &quot;F23&quot;
-          }
-        ]
-      },
-      {
-        &quot;id&quot;: &quot;ExplanationOfBenefit.missingTeeth.reason&quot;,
-        &quot;path&quot;: &quot;ExplanationOfBenefit.missingTeeth.reason&quot;,
-        &quot;short&quot;: &quot;Reason for missing&quot;,
-        &quot;definition&quot;: &quot;Missing reason may be: E-extraction, O-other.&quot;,
-        &quot;requirements&quot;: &quot;Provides the reason for the missing tooth.&quot;,
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;Coding&quot;
-          }
-        ],
-        &quot;binding&quot;: {
-          &quot;strength&quot;: &quot;example&quot;,
-          &quot;description&quot;: &quot;Reason codes for the missing teeth&quot;,
-          &quot;valueSetReference&quot;: {
-            &quot;reference&quot;: &quot;http://hl7.org/fhir/ValueSet/missing-tooth-reason&quot;
-          }
-        },
-        &quot;mapping&quot;: [
-          {
-            &quot;identity&quot;: &quot;cdanetv4&quot;,
-            &quot;map&quot;: &quot;not used&quot;
-          }
-        ]
-      },
-      {
-        &quot;id&quot;: &quot;ExplanationOfBenefit.missingTeeth.extractionDate&quot;,
-        &quot;path&quot;: &quot;ExplanationOfBenefit.missingTeeth.extractionDate&quot;,
-        &quot;short&quot;: &quot;Date of Extraction&quot;,
-        &quot;definition&quot;: &quot;The date of the extraction either known from records or patient reported estimate.&quot;,
-        &quot;requirements&quot;: &quot;Some services and adjudications require this information.&quot;,
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;date&quot;
-          }
-        ],
-        &quot;mapping&quot;: [
-          {
-            &quot;identity&quot;: &quot;cdanetv4&quot;,
-            &quot;map&quot;: &quot;F24&quot;
-          }
-        ]
       },
       {
         &quot;id&quot;: &quot;ExplanationOfBenefit.totalCost&quot;,
@@ -4930,7 +4728,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -4963,7 +4761,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -5028,7 +4826,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -5184,7 +4982,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -5223,7 +5021,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -5368,7 +5166,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -5388,7 +5186,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -5398,6 +5196,19 @@
             &quot;reference&quot;: &quot;http://hl7.org/fhir/ValueSet/benefit-subcategory&quot;
           }
         }
+      },
+      {
+        &quot;id&quot;: &quot;ExplanationOfBenefit.benefitBalance.excluded&quot;,
+        &quot;path&quot;: &quot;ExplanationOfBenefit.benefitBalance.excluded&quot;,
+        &quot;short&quot;: &quot;Excluded from the plan&quot;,
+        &quot;definition&quot;: &quot;True if the indicated class of service is excluded from the plan, missing or False indicated the service is included in the coverage.&quot;,
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;1&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;boolean&quot;
+          }
+        ]
       },
       {
         &quot;id&quot;: &quot;ExplanationOfBenefit.benefitBalance.name&quot;,
@@ -5434,7 +5245,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -5454,7 +5265,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -5474,7 +5285,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -5611,7 +5422,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -5702,7 +5513,7 @@
         &quot;path&quot;: &quot;ExplanationOfBenefit.status&quot;,
         &quot;short&quot;: &quot;active | cancelled | draft | entered-in-error&quot;,
         &quot;definition&quot;: &quot;The status of the resource instance.&quot;,
-        &quot;min&quot;: 1,
+        &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
@@ -5726,84 +5537,16 @@
         ]
       },
       {
-        &quot;id&quot;: &quot;ExplanationOfBenefit.author&quot;,
-        &quot;path&quot;: &quot;ExplanationOfBenefit.author&quot;,
-        &quot;short&quot;: &quot;Insurer&quot;,
-        &quot;definition&quot;: &quot;The insurer which is responsible for the explanation of benefit.&quot;,
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;Reference&quot;,
-            &quot;targetProfile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/Organization&quot;
-          }
-        ],
-        &quot;mapping&quot;: [
-          {
-            &quot;identity&quot;: &quot;cdanetv4&quot;,
-            &quot;map&quot;: &quot;B02&quot;
-          },
-          {
-            &quot;identity&quot;: &quot;w5&quot;,
-            &quot;map&quot;: &quot;who.author&quot;
-          }
-        ]
-      },
-      {
-        &quot;id&quot;: &quot;ExplanationOfBenefit.claim&quot;,
-        &quot;path&quot;: &quot;ExplanationOfBenefit.claim&quot;,
-        &quot;short&quot;: &quot;Claim reference&quot;,
-        &quot;definition&quot;: &quot;The business identifier for the instance: invoice number, claim number, pre-determination or pre-authorization number.&quot;,
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;Reference&quot;,
-            &quot;targetProfile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/Claim&quot;
-          }
-        ],
-        &quot;mapping&quot;: [
-          {
-            &quot;identity&quot;: &quot;cdanetv4&quot;,
-            &quot;map&quot;: &quot;A02|G01&quot;
-          },
-          {
-            &quot;identity&quot;: &quot;w5&quot;,
-            &quot;map&quot;: &quot;why&quot;
-          }
-        ]
-      },
-      {
-        &quot;id&quot;: &quot;ExplanationOfBenefit.claimResponse&quot;,
-        &quot;path&quot;: &quot;ExplanationOfBenefit.claimResponse&quot;,
-        &quot;short&quot;: &quot;Claim response reference&quot;,
-        &quot;definition&quot;: &quot;The business identifier for the instance: invoice number, claim number, pre-determination or pre-authorization number.&quot;,
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;Reference&quot;,
-            &quot;targetProfile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/ClaimResponse&quot;
-          }
-        ],
-        &quot;mapping&quot;: [
-          {
-            &quot;identity&quot;: &quot;cdanetv4&quot;,
-            &quot;map&quot;: &quot;A02|G01&quot;
-          }
-        ]
-      },
-      {
         &quot;id&quot;: &quot;ExplanationOfBenefit.type&quot;,
         &quot;path&quot;: &quot;ExplanationOfBenefit.type&quot;,
         &quot;short&quot;: &quot;Type or discipline&quot;,
         &quot;definition&quot;: &quot;The category of claim, eg, oral, pharmacy, vision, insitutional, professional.&quot;,
         &quot;comments&quot;: &quot;Affects which fields and value sets are used.&quot;,
-        &quot;min&quot;: 1,
+        &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -5830,7 +5573,7 @@
         &quot;max&quot;: &quot;*&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -5848,73 +5591,26 @@
         ]
       },
       {
-        &quot;id&quot;: &quot;ExplanationOfBenefit.ruleset&quot;,
-        &quot;path&quot;: &quot;ExplanationOfBenefit.ruleset&quot;,
-        &quot;short&quot;: &quot;Current specification followed&quot;,
-        &quot;definition&quot;: &quot;The version of the specification on which this instance relies.&quot;,
-        &quot;alias&quot;: [
-          &quot;BusinessVersion&quot;
-        ],
+        &quot;id&quot;: &quot;ExplanationOfBenefit.patient&quot;,
+        &quot;path&quot;: &quot;ExplanationOfBenefit.patient&quot;,
+        &quot;short&quot;: &quot;The subject of the Products and Services&quot;,
+        &quot;definition&quot;: &quot;Patient Resource.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
-          }
-        ],
-        &quot;binding&quot;: {
-          &quot;strength&quot;: &quot;example&quot;,
-          &quot;description&quot;: &quot;The static and dynamic model to which contents conform, which may be business version or standard/version.&quot;,
-          &quot;valueSetReference&quot;: {
-            &quot;reference&quot;: &quot;http://hl7.org/fhir/ValueSet/ruleset&quot;
-          }
-        },
-        &quot;mapping&quot;: [
-          {
-            &quot;identity&quot;: &quot;w5&quot;,
-            &quot;map&quot;: &quot;id.version&quot;
-          }
-        ]
-      },
-      {
-        &quot;id&quot;: &quot;ExplanationOfBenefit.originalRuleset&quot;,
-        &quot;path&quot;: &quot;ExplanationOfBenefit.originalRuleset&quot;,
-        &quot;short&quot;: &quot;Original specification followed&quot;,
-        &quot;definition&quot;: &quot;The version of the specification from which the original instance was created.&quot;,
-        &quot;alias&quot;: [
-          &quot;OriginalBusinessVersion&quot;
-        ],
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;Coding&quot;
-          }
-        ],
-        &quot;binding&quot;: {
-          &quot;strength&quot;: &quot;example&quot;,
-          &quot;description&quot;: &quot;The static and dynamic model to which contents conform, which may be business version or standard/version.&quot;,
-          &quot;valueSetReference&quot;: {
-            &quot;reference&quot;: &quot;http://hl7.org/fhir/ValueSet/ruleset&quot;
-          }
-        }
-      },
-      {
-        &quot;id&quot;: &quot;ExplanationOfBenefit.created&quot;,
-        &quot;path&quot;: &quot;ExplanationOfBenefit.created&quot;,
-        &quot;short&quot;: &quot;Creation date&quot;,
-        &quot;definition&quot;: &quot;The date when the EOB was created.&quot;,
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;dateTime&quot;
+            &quot;code&quot;: &quot;Reference&quot;,
+            &quot;targetProfile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/Patient&quot;
           }
         ],
         &quot;mapping&quot;: [
           {
+            &quot;identity&quot;: &quot;cdanetv4&quot;,
+            &quot;map&quot;: &quot;C06,C07,C08, C05, C04&quot;
+          },
+          {
             &quot;identity&quot;: &quot;w5&quot;,
-            &quot;map&quot;: &quot;when.recorded&quot;
+            &quot;map&quot;: &quot;who.focus&quot;
           }
         ]
       },
@@ -5938,36 +5634,65 @@
         ]
       },
       {
-        &quot;id&quot;: &quot;ExplanationOfBenefit.outcome&quot;,
-        &quot;path&quot;: &quot;ExplanationOfBenefit.outcome&quot;,
-        &quot;short&quot;: &quot;complete | error | partial&quot;,
-        &quot;definition&quot;: &quot;Processing outcome errror, partial or complete processing.&quot;,
+        &quot;id&quot;: &quot;ExplanationOfBenefit.created&quot;,
+        &quot;path&quot;: &quot;ExplanationOfBenefit.created&quot;,
+        &quot;short&quot;: &quot;Creation date&quot;,
+        &quot;definition&quot;: &quot;The date when the EOB was created.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;dateTime&quot;
           }
         ],
-        &quot;binding&quot;: {
-          &quot;strength&quot;: &quot;example&quot;,
-          &quot;description&quot;: &quot;The result of the claim processing&quot;,
-          &quot;valueSetReference&quot;: {
-            &quot;reference&quot;: &quot;http://hl7.org/fhir/ValueSet/remittance-outcome&quot;
+        &quot;mapping&quot;: [
+          {
+            &quot;identity&quot;: &quot;w5&quot;,
+            &quot;map&quot;: &quot;when.recorded&quot;
           }
-        }
+        ]
       },
       {
-        &quot;id&quot;: &quot;ExplanationOfBenefit.disposition&quot;,
-        &quot;path&quot;: &quot;ExplanationOfBenefit.disposition&quot;,
-        &quot;short&quot;: &quot;Disposition Message&quot;,
-        &quot;definition&quot;: &quot;A description of the status of the adjudication.&quot;,
-        &quot;comments&quot;: &quot;Do we need a disposition code?&quot;,
+        &quot;id&quot;: &quot;ExplanationOfBenefit.enterer&quot;,
+        &quot;path&quot;: &quot;ExplanationOfBenefit.enterer&quot;,
+        &quot;short&quot;: &quot;Author&quot;,
+        &quot;definition&quot;: &quot;The person who created the explanation of benefit.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;string&quot;
+            &quot;code&quot;: &quot;Reference&quot;,
+            &quot;targetProfile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/Practitioner&quot;
+          }
+        ],
+        &quot;mapping&quot;: [
+          {
+            &quot;identity&quot;: &quot;w5&quot;,
+            &quot;map&quot;: &quot;who.author&quot;
+          }
+        ]
+      },
+      {
+        &quot;id&quot;: &quot;ExplanationOfBenefit.insurer&quot;,
+        &quot;path&quot;: &quot;ExplanationOfBenefit.insurer&quot;,
+        &quot;short&quot;: &quot;Insurer&quot;,
+        &quot;definition&quot;: &quot;The insurer which is responsible for the explanation of benefit.&quot;,
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;1&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;Reference&quot;,
+            &quot;targetProfile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/Organization&quot;
+          }
+        ],
+        &quot;mapping&quot;: [
+          {
+            &quot;identity&quot;: &quot;cdanetv4&quot;,
+            &quot;map&quot;: &quot;B02&quot;
+          },
+          {
+            &quot;identity&quot;: &quot;w5&quot;,
+            &quot;map&quot;: &quot;who.author&quot;
           }
         ]
       },
@@ -6020,6 +5745,30 @@
         ]
       },
       {
+        &quot;id&quot;: &quot;ExplanationOfBenefit.referral&quot;,
+        &quot;path&quot;: &quot;ExplanationOfBenefit.referral&quot;,
+        &quot;short&quot;: &quot;Treatment Referral&quot;,
+        &quot;definition&quot;: &quot;The referral resource which lists the date, practitioner, reason and other supporting information.&quot;,
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;1&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;Reference&quot;,
+            &quot;targetProfile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/ReferralRequest&quot;
+          }
+        ],
+        &quot;mapping&quot;: [
+          {
+            &quot;identity&quot;: &quot;cdanetv4&quot;,
+            &quot;map&quot;: &quot;B05&quot;
+          },
+          {
+            &quot;identity&quot;: &quot;w5&quot;,
+            &quot;map&quot;: &quot;who.cause&quot;
+          }
+        ]
+      },
+      {
         &quot;id&quot;: &quot;ExplanationOfBenefit.facility&quot;,
         &quot;path&quot;: &quot;ExplanationOfBenefit.facility&quot;,
         &quot;short&quot;: &quot;Servicing Facility&quot;,
@@ -6040,6 +5789,84 @@
         ]
       },
       {
+        &quot;id&quot;: &quot;ExplanationOfBenefit.claim&quot;,
+        &quot;path&quot;: &quot;ExplanationOfBenefit.claim&quot;,
+        &quot;short&quot;: &quot;Claim reference&quot;,
+        &quot;definition&quot;: &quot;The business identifier for the instance: invoice number, claim number, pre-determination or pre-authorization number.&quot;,
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;1&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;Reference&quot;,
+            &quot;targetProfile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/Claim&quot;
+          }
+        ],
+        &quot;mapping&quot;: [
+          {
+            &quot;identity&quot;: &quot;cdanetv4&quot;,
+            &quot;map&quot;: &quot;A02|G01&quot;
+          },
+          {
+            &quot;identity&quot;: &quot;w5&quot;,
+            &quot;map&quot;: &quot;why&quot;
+          }
+        ]
+      },
+      {
+        &quot;id&quot;: &quot;ExplanationOfBenefit.claimResponse&quot;,
+        &quot;path&quot;: &quot;ExplanationOfBenefit.claimResponse&quot;,
+        &quot;short&quot;: &quot;Claim response reference&quot;,
+        &quot;definition&quot;: &quot;The business identifier for the instance: invoice number, claim number, pre-determination or pre-authorization number.&quot;,
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;1&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;Reference&quot;,
+            &quot;targetProfile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/ClaimResponse&quot;
+          }
+        ],
+        &quot;mapping&quot;: [
+          {
+            &quot;identity&quot;: &quot;cdanetv4&quot;,
+            &quot;map&quot;: &quot;A02|G01&quot;
+          }
+        ]
+      },
+      {
+        &quot;id&quot;: &quot;ExplanationOfBenefit.outcome&quot;,
+        &quot;path&quot;: &quot;ExplanationOfBenefit.outcome&quot;,
+        &quot;short&quot;: &quot;complete | error | partial&quot;,
+        &quot;definition&quot;: &quot;Processing outcome errror, partial or complete processing.&quot;,
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;1&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;CodeableConcept&quot;
+          }
+        ],
+        &quot;binding&quot;: {
+          &quot;strength&quot;: &quot;example&quot;,
+          &quot;description&quot;: &quot;The result of the claim processing&quot;,
+          &quot;valueSetReference&quot;: {
+            &quot;reference&quot;: &quot;http://hl7.org/fhir/ValueSet/remittance-outcome&quot;
+          }
+        }
+      },
+      {
+        &quot;id&quot;: &quot;ExplanationOfBenefit.disposition&quot;,
+        &quot;path&quot;: &quot;ExplanationOfBenefit.disposition&quot;,
+        &quot;short&quot;: &quot;Disposition Message&quot;,
+        &quot;definition&quot;: &quot;A description of the status of the adjudication.&quot;,
+        &quot;comments&quot;: &quot;Do we need a disposition code?&quot;,
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;1&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;string&quot;
+          }
+        ]
+      },
+      {
         &quot;id&quot;: &quot;ExplanationOfBenefit.related&quot;,
         &quot;extension&quot;: [
           {
@@ -6048,7 +5875,7 @@
           }
         ],
         &quot;path&quot;: &quot;ExplanationOfBenefit.related&quot;,
-        &quot;short&quot;: &quot;Related Claims which may be revelant to processing this claimn&quot;,
+        &quot;short&quot;: &quot;Related Claims which may be revelant to processing this claim&quot;,
         &quot;definition&quot;: &quot;Other claims which are related to this claim such as prior claim versions or for related services.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;*&quot;,
@@ -6082,7 +5909,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -6129,7 +5956,7 @@
         &quot;id&quot;: &quot;ExplanationOfBenefit.originalPrescription&quot;,
         &quot;path&quot;: &quot;ExplanationOfBenefit.originalPrescription&quot;,
         &quot;short&quot;: &quot;Original Prescription&quot;,
-        &quot;definition&quot;: &quot;Original prescription which has been superceded by this prescription to support the dispensing of pharmacy services, medications or products.&quot;,
+        &quot;definition&quot;: &quot;Original prescription which has been superceded by this prescription to support the dispensing of pharmacy services, medications or products. For example, a physician may prescribe a medication which the pharmacy determines is contraindicated, or for which the patient has an intolerance, and therefor issues a new precription for an alternate medication which has the same theraputic intent. The prescription from the pharmacy becomes the 'prescription' and that from the physician becomes the 'original prescription'.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
@@ -6173,7 +6000,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -6193,7 +6020,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -6240,35 +6067,11 @@
         ]
       },
       {
-        &quot;id&quot;: &quot;ExplanationOfBenefit.referral&quot;,
-        &quot;path&quot;: &quot;ExplanationOfBenefit.referral&quot;,
-        &quot;short&quot;: &quot;Treatment Referral&quot;,
-        &quot;definition&quot;: &quot;The referral resource which lists the date, practitioner, reason and other supporting information.&quot;,
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;Reference&quot;,
-            &quot;targetProfile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/ReferralRequest&quot;
-          }
-        ],
-        &quot;mapping&quot;: [
-          {
-            &quot;identity&quot;: &quot;cdanetv4&quot;,
-            &quot;map&quot;: &quot;B05&quot;
-          },
-          {
-            &quot;identity&quot;: &quot;w5&quot;,
-            &quot;map&quot;: &quot;who.cause&quot;
-          }
-        ]
-      },
-      {
         &quot;id&quot;: &quot;ExplanationOfBenefit.information&quot;,
         &quot;extension&quot;: [
           {
             &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/structuredefinition-explicit-type-name&quot;,
-            &quot;valueString&quot;: &quot;SpecialCondition&quot;
+            &quot;valueString&quot;: &quot;SupportingInformation&quot;
           }
         ],
         &quot;path&quot;: &quot;ExplanationOfBenefit.information&quot;,
@@ -6293,7 +6096,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -6314,7 +6117,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -6323,7 +6126,13 @@
           &quot;valueSetReference&quot;: {
             &quot;reference&quot;: &quot;http://hl7.org/fhir/ValueSet/claim-exception&quot;
           }
-        }
+        },
+        &quot;mapping&quot;: [
+          {
+            &quot;identity&quot;: &quot;cdanetv4&quot;,
+            &quot;map&quot;: &quot;F23&quot;
+          }
+        ]
       },
       {
         &quot;id&quot;: &quot;ExplanationOfBenefit.information.timing[x]&quot;,
@@ -6339,13 +6148,19 @@
           {
             &quot;code&quot;: &quot;Period&quot;
           }
+        ],
+        &quot;mapping&quot;: [
+          {
+            &quot;identity&quot;: &quot;cdanetv4&quot;,
+            &quot;map&quot;: &quot;F24&quot;
+          }
         ]
       },
       {
         &quot;id&quot;: &quot;ExplanationOfBenefit.information.value[x]&quot;,
         &quot;path&quot;: &quot;ExplanationOfBenefit.information.value[x]&quot;,
-        &quot;short&quot;: &quot;Additional Data&quot;,
-        &quot;definition&quot;: &quot;Additional data.&quot;,
+        &quot;short&quot;: &quot;Additional Data or supporting information&quot;,
+        &quot;definition&quot;: &quot;Additional data or information such as resources, documents, images etc. including references to the data or the actual inclusion of the data.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
@@ -6354,8 +6169,146 @@
           },
           {
             &quot;code&quot;: &quot;Quantity&quot;
+          },
+          {
+            &quot;code&quot;: &quot;Attachment&quot;
+          },
+          {
+            &quot;code&quot;: &quot;Reference&quot;,
+            &quot;targetProfile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/Resource&quot;
           }
         ]
+      },
+      {
+        &quot;id&quot;: &quot;ExplanationOfBenefit.information.reason&quot;,
+        &quot;path&quot;: &quot;ExplanationOfBenefit.information.reason&quot;,
+        &quot;short&quot;: &quot;Reason associated with the information&quot;,
+        &quot;definition&quot;: &quot;For example, provides the reason for: the additional stay, or missing tooth or any other situation where a reason code is required in addition to the content.&quot;,
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;1&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;Coding&quot;
+          }
+        ],
+        &quot;binding&quot;: {
+          &quot;strength&quot;: &quot;example&quot;,
+          &quot;description&quot;: &quot;Reason codes for the missing teeth&quot;,
+          &quot;valueSetReference&quot;: {
+            &quot;reference&quot;: &quot;http://hl7.org/fhir/ValueSet/missing-tooth-reason&quot;
+          }
+        }
+      },
+      {
+        &quot;id&quot;: &quot;ExplanationOfBenefit.careTeam&quot;,
+        &quot;extension&quot;: [
+          {
+            &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/structuredefinition-explicit-type-name&quot;,
+            &quot;valueString&quot;: &quot;CareTeam&quot;
+          }
+        ],
+        &quot;path&quot;: &quot;ExplanationOfBenefit.careTeam&quot;,
+        &quot;short&quot;: &quot;Care Team members&quot;,
+        &quot;definition&quot;: &quot;The members of the team who provided the overall service as well as their role and whether responsible and qualifications.&quot;,
+        &quot;requirements&quot;: &quot;Role and Responsible may not be required when there is only a single provider listed.&quot;,
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;*&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;BackboneElement&quot;
+          }
+        ]
+      },
+      {
+        &quot;id&quot;: &quot;ExplanationOfBenefit.careTeam.sequence&quot;,
+        &quot;path&quot;: &quot;ExplanationOfBenefit.careTeam.sequence&quot;,
+        &quot;short&quot;: &quot;Number to covey order of careteam&quot;,
+        &quot;definition&quot;: &quot;Sequence of careteam which serves to order and provide a link.&quot;,
+        &quot;requirements&quot;: &quot;Required to maintain order of the careteam members.&quot;,
+        &quot;min&quot;: 1,
+        &quot;max&quot;: &quot;1&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;positiveInt&quot;
+          }
+        ]
+      },
+      {
+        &quot;id&quot;: &quot;ExplanationOfBenefit.careTeam.provider&quot;,
+        &quot;path&quot;: &quot;ExplanationOfBenefit.careTeam.provider&quot;,
+        &quot;short&quot;: &quot;Member of the Care Team&quot;,
+        &quot;definition&quot;: &quot;The members of the team who provided the overall service.&quot;,
+        &quot;min&quot;: 1,
+        &quot;max&quot;: &quot;1&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;Reference&quot;,
+            &quot;targetProfile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/Practitioner&quot;
+          },
+          {
+            &quot;code&quot;: &quot;Reference&quot;,
+            &quot;targetProfile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/Organization&quot;
+          }
+        ],
+        &quot;mapping&quot;: [
+          {
+            &quot;identity&quot;: &quot;w5&quot;,
+            &quot;map&quot;: &quot;who.actor&quot;
+          }
+        ]
+      },
+      {
+        &quot;id&quot;: &quot;ExplanationOfBenefit.careTeam.responsible&quot;,
+        &quot;path&quot;: &quot;ExplanationOfBenefit.careTeam.responsible&quot;,
+        &quot;short&quot;: &quot;Billing practitioner&quot;,
+        &quot;definition&quot;: &quot;The practitioner who is billing and responsible for the claimed services rendered to the patient.&quot;,
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;1&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;boolean&quot;
+          }
+        ]
+      },
+      {
+        &quot;id&quot;: &quot;ExplanationOfBenefit.careTeam.role&quot;,
+        &quot;path&quot;: &quot;ExplanationOfBenefit.careTeam.role&quot;,
+        &quot;short&quot;: &quot;Role on the team&quot;,
+        &quot;definition&quot;: &quot;The lead, assisting or supervising practitioner and their discipline if a multidisiplinary team.&quot;,
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;1&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;CodeableConcept&quot;
+          }
+        ],
+        &quot;binding&quot;: {
+          &quot;strength&quot;: &quot;example&quot;,
+          &quot;description&quot;: &quot;The role codes for the care team members.&quot;,
+          &quot;valueSetReference&quot;: {
+            &quot;reference&quot;: &quot;http://hl7.org/fhir/ValueSet/claim-careteamrole&quot;
+          }
+        }
+      },
+      {
+        &quot;id&quot;: &quot;ExplanationOfBenefit.careTeam.qualification&quot;,
+        &quot;path&quot;: &quot;ExplanationOfBenefit.careTeam.qualification&quot;,
+        &quot;short&quot;: &quot;Type, classification or Specialization&quot;,
+        &quot;definition&quot;: &quot;The qualification which is applicable for this service.&quot;,
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;1&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;CodeableConcept&quot;
+          }
+        ],
+        &quot;binding&quot;: {
+          &quot;strength&quot;: &quot;example&quot;,
+          &quot;description&quot;: &quot;Provider professional qualifications&quot;,
+          &quot;valueSetReference&quot;: {
+            &quot;reference&quot;: &quot;http://hl7.org/fhir/ValueSet/provider-qualification&quot;
+          }
+        }
       },
       {
         &quot;id&quot;: &quot;ExplanationOfBenefit.diagnosis&quot;,
@@ -6391,8 +6344,8 @@
         ]
       },
       {
-        &quot;id&quot;: &quot;ExplanationOfBenefit.diagnosis.diagnosis&quot;,
-        &quot;path&quot;: &quot;ExplanationOfBenefit.diagnosis.diagnosis&quot;,
+        &quot;id&quot;: &quot;ExplanationOfBenefit.diagnosis.diagnosis[x]&quot;,
+        &quot;path&quot;: &quot;ExplanationOfBenefit.diagnosis.diagnosis[x]&quot;,
         &quot;short&quot;: &quot;Patient's list of diagnosis&quot;,
         &quot;definition&quot;: &quot;The diagnosis.&quot;,
         &quot;requirements&quot;: &quot;Required to adjudicate services rendered to condition presented.&quot;,
@@ -6400,7 +6353,11 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
+          },
+          {
+            &quot;code&quot;: &quot;Reference&quot;,
+            &quot;targetProfile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/Condition&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -6422,7 +6379,7 @@
         &quot;max&quot;: &quot;*&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -6434,16 +6391,16 @@
         }
       },
       {
-        &quot;id&quot;: &quot;ExplanationOfBenefit.diagnosis.drg&quot;,
-        &quot;path&quot;: &quot;ExplanationOfBenefit.diagnosis.drg&quot;,
-        &quot;short&quot;: &quot;Diagnosis Related Group&quot;,
-        &quot;definition&quot;: &quot;The Diagnosis Related Group (DRG) code based on the assigned grouping code system.&quot;,
-        &quot;requirements&quot;: &quot;Required to adjudicate services rendered to the mandated diagnosis grouping system.&quot;,
+        &quot;id&quot;: &quot;ExplanationOfBenefit.diagnosis.packageCode&quot;,
+        &quot;path&quot;: &quot;ExplanationOfBenefit.diagnosis.packageCode&quot;,
+        &quot;short&quot;: &quot;Package billing code&quot;,
+        &quot;definition&quot;: &quot;The package billing code, for example DRG, based on the assigned grouping code system.&quot;,
+        &quot;requirements&quot;: &quot;Required to adjudicate services rendered to the mandated grouping system.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -6512,7 +6469,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           },
           {
             &quot;code&quot;: &quot;Reference&quot;,
@@ -6528,30 +6485,6 @@
         }
       },
       {
-        &quot;id&quot;: &quot;ExplanationOfBenefit.patient&quot;,
-        &quot;path&quot;: &quot;ExplanationOfBenefit.patient&quot;,
-        &quot;short&quot;: &quot;The subject of the Products and Services&quot;,
-        &quot;definition&quot;: &quot;Patient Resource.&quot;,
-        &quot;min&quot;: 1,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;Reference&quot;,
-            &quot;targetProfile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/Patient&quot;
-          }
-        ],
-        &quot;mapping&quot;: [
-          {
-            &quot;identity&quot;: &quot;cdanetv4&quot;,
-            &quot;map&quot;: &quot;C06,C07,C08, C05, C04&quot;
-          },
-          {
-            &quot;identity&quot;: &quot;w5&quot;,
-            &quot;map&quot;: &quot;who.focus&quot;
-          }
-        ]
-      },
-      {
         &quot;id&quot;: &quot;ExplanationOfBenefit.precedence&quot;,
         &quot;path&quot;: &quot;ExplanationOfBenefit.precedence&quot;,
         &quot;short&quot;: &quot;Precedence (primary, secondary, etc.)&quot;,
@@ -6563,27 +6496,21 @@
           {
             &quot;code&quot;: &quot;positiveInt&quot;
           }
-        ],
-        &quot;mapping&quot;: [
-          {
-            &quot;identity&quot;: &quot;v2&quot;,
-            &quot;map&quot;: &quot;Coverage&quot;
-          }
         ]
       },
       {
-        &quot;id&quot;: &quot;ExplanationOfBenefit.coverage&quot;,
+        &quot;id&quot;: &quot;ExplanationOfBenefit.insurance&quot;,
         &quot;extension&quot;: [
           {
             &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/structuredefinition-explicit-type-name&quot;,
-            &quot;valueString&quot;: &quot;Coverage&quot;
+            &quot;valueString&quot;: &quot;Insurance&quot;
           }
         ],
-        &quot;path&quot;: &quot;ExplanationOfBenefit.coverage&quot;,
+        &quot;path&quot;: &quot;ExplanationOfBenefit.insurance&quot;,
         &quot;short&quot;: &quot;Insurance or medical plan&quot;,
         &quot;definition&quot;: &quot;Financial instrument by which payment information for health care.&quot;,
         &quot;requirements&quot;: &quot;Health care programs and insurers are significant payors of health service costs.&quot;,
-        &quot;min&quot;: 1,
+        &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
@@ -6598,8 +6525,8 @@
         ]
       },
       {
-        &quot;id&quot;: &quot;ExplanationOfBenefit.coverage.coverage&quot;,
-        &quot;path&quot;: &quot;ExplanationOfBenefit.coverage.coverage&quot;,
+        &quot;id&quot;: &quot;ExplanationOfBenefit.insurance.coverage&quot;,
+        &quot;path&quot;: &quot;ExplanationOfBenefit.insurance.coverage&quot;,
         &quot;short&quot;: &quot;Insurance information&quot;,
         &quot;definition&quot;: &quot;Reference to the program or plan identification, underwriter or payor.&quot;,
         &quot;requirements&quot;: &quot;Need to identify the issuer to target for processing and for coordination of benefit processing.&quot;,
@@ -6613,8 +6540,8 @@
         ]
       },
       {
-        &quot;id&quot;: &quot;ExplanationOfBenefit.coverage.preAuthRef&quot;,
-        &quot;path&quot;: &quot;ExplanationOfBenefit.coverage.preAuthRef&quot;,
+        &quot;id&quot;: &quot;ExplanationOfBenefit.insurance.preAuthRef&quot;,
+        &quot;path&quot;: &quot;ExplanationOfBenefit.insurance.preAuthRef&quot;,
         &quot;short&quot;: &quot;Pre-Authorization/Determination Reference&quot;,
         &quot;definition&quot;: &quot;A list of references from the Insurer to which these services pertain.&quot;,
         &quot;requirements&quot;: &quot;To provide any pre=determination or prior authorization reference.&quot;,
@@ -6681,7 +6608,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -6774,111 +6701,15 @@
         ]
       },
       {
-        &quot;id&quot;: &quot;ExplanationOfBenefit.item.careTeam&quot;,
-        &quot;extension&quot;: [
-          {
-            &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/structuredefinition-explicit-type-name&quot;,
-            &quot;valueString&quot;: &quot;CareTeam&quot;
-          }
-        ],
-        &quot;path&quot;: &quot;ExplanationOfBenefit.item.careTeam&quot;,
-        &quot;short&quot;: &quot;Care Team members&quot;,
-        &quot;definition&quot;: &quot;The members of the team who provided the overall service as well as their role and whether responsible and qualifications.&quot;,
-        &quot;requirements&quot;: &quot;Role and Responsible may not be required when there is only a single provider listed.&quot;,
+        &quot;id&quot;: &quot;ExplanationOfBenefit.item.careTeamLinkId&quot;,
+        &quot;path&quot;: &quot;ExplanationOfBenefit.item.careTeamLinkId&quot;,
+        &quot;short&quot;: &quot;Applicable careteam members&quot;,
+        &quot;definition&quot;: &quot;Careteam applicable for this service or product line.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;*&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;BackboneElement&quot;
-          }
-        ]
-      },
-      {
-        &quot;id&quot;: &quot;ExplanationOfBenefit.item.careTeam.provider&quot;,
-        &quot;path&quot;: &quot;ExplanationOfBenefit.item.careTeam.provider&quot;,
-        &quot;short&quot;: &quot;Member of the Care Team&quot;,
-        &quot;definition&quot;: &quot;The members of the team who provided the overall service.&quot;,
-        &quot;min&quot;: 1,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;Reference&quot;,
-            &quot;targetProfile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/Practitioner&quot;
-          },
-          {
-            &quot;code&quot;: &quot;Reference&quot;,
-            &quot;targetProfile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/Organization&quot;
-          }
-        ],
-        &quot;mapping&quot;: [
-          {
-            &quot;identity&quot;: &quot;w5&quot;,
-            &quot;map&quot;: &quot;who.actor&quot;
-          }
-        ]
-      },
-      {
-        &quot;id&quot;: &quot;ExplanationOfBenefit.item.careTeam.responsible&quot;,
-        &quot;path&quot;: &quot;ExplanationOfBenefit.item.careTeam.responsible&quot;,
-        &quot;short&quot;: &quot;Billing practitioner&quot;,
-        &quot;definition&quot;: &quot;The practitioner who is billing and responsible for the claimed services rendered to the patient.&quot;,
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;boolean&quot;
-          }
-        ],
-        &quot;mapping&quot;: [
-          {
-            &quot;identity&quot;: &quot;cdanetv4&quot;,
-            &quot;map&quot;: &quot;True&quot;
-          }
-        ]
-      },
-      {
-        &quot;id&quot;: &quot;ExplanationOfBenefit.item.careTeam.role&quot;,
-        &quot;path&quot;: &quot;ExplanationOfBenefit.item.careTeam.role&quot;,
-        &quot;short&quot;: &quot;Role on the team&quot;,
-        &quot;definition&quot;: &quot;The lead, assisting or supervising practitioner and their discipline if a multidisiplinary team.&quot;,
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;Coding&quot;
-          }
-        ],
-        &quot;binding&quot;: {
-          &quot;strength&quot;: &quot;example&quot;,
-          &quot;description&quot;: &quot;The role codes for the care team members.&quot;,
-          &quot;valueSetReference&quot;: {
-            &quot;reference&quot;: &quot;http://hl7.org/fhir/ValueSet/claim-careteamrole&quot;
-          }
-        }
-      },
-      {
-        &quot;id&quot;: &quot;ExplanationOfBenefit.item.careTeam.qualification&quot;,
-        &quot;path&quot;: &quot;ExplanationOfBenefit.item.careTeam.qualification&quot;,
-        &quot;short&quot;: &quot;Type, classification or Specialization&quot;,
-        &quot;definition&quot;: &quot;The qualification which is applicable for this service.&quot;,
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;Coding&quot;
-          }
-        ],
-        &quot;binding&quot;: {
-          &quot;strength&quot;: &quot;example&quot;,
-          &quot;description&quot;: &quot;Provider professional qualifications&quot;,
-          &quot;valueSetReference&quot;: {
-            &quot;reference&quot;: &quot;http://hl7.org/fhir/ValueSet/provider-qualification&quot;
-          }
-        },
-        &quot;mapping&quot;: [
-          {
-            &quot;identity&quot;: &quot;cdanetv4&quot;,
-            &quot;map&quot;: &quot;not used&quot;
+            &quot;code&quot;: &quot;positiveInt&quot;
           }
         ]
       },
@@ -6896,6 +6727,32 @@
         ]
       },
       {
+        &quot;id&quot;: &quot;ExplanationOfBenefit.item.procedureLinkId&quot;,
+        &quot;path&quot;: &quot;ExplanationOfBenefit.item.procedureLinkId&quot;,
+        &quot;short&quot;: &quot;Applicable procedures&quot;,
+        &quot;definition&quot;: &quot;Procedures applicable for this service or product line.&quot;,
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;*&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;positiveInt&quot;
+          }
+        ]
+      },
+      {
+        &quot;id&quot;: &quot;ExplanationOfBenefit.item.informationLinkId&quot;,
+        &quot;path&quot;: &quot;ExplanationOfBenefit.item.informationLinkId&quot;,
+        &quot;short&quot;: &quot;Applicable exception and supporting information&quot;,
+        &quot;definition&quot;: &quot;Exceptions, special conditions and supporting information pplicable for this service or product line.&quot;,
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;*&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;positiveInt&quot;
+          }
+        ]
+      },
+      {
         &quot;id&quot;: &quot;ExplanationOfBenefit.item.revenue&quot;,
         &quot;path&quot;: &quot;ExplanationOfBenefit.item.revenue&quot;,
         &quot;short&quot;: &quot;Revenue or cost center code&quot;,
@@ -6904,7 +6761,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -6924,7 +6781,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -6944,7 +6801,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -6971,7 +6828,7 @@
         &quot;max&quot;: &quot;*&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -6997,7 +6854,7 @@
         &quot;max&quot;: &quot;*&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -7043,7 +6900,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           },
           {
             &quot;code&quot;: &quot;Address&quot;
@@ -7121,26 +6978,6 @@
         ]
       },
       {
-        &quot;id&quot;: &quot;ExplanationOfBenefit.item.points&quot;,
-        &quot;path&quot;: &quot;ExplanationOfBenefit.item.points&quot;,
-        &quot;short&quot;: &quot;Difficulty scaling factor&quot;,
-        &quot;definition&quot;: &quot;An amount that expresses the weighting (based on difficulty, cost and/or resource intensiveness) associated with the good or service delivered. The concept of Points allows for assignment of point values for services and/or goods, such that a monetary amount can be assigned to each point.&quot;,
-        &quot;requirements&quot;: &quot;If a fee is present the associated product/service code must be present.&quot;,
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;decimal&quot;
-          }
-        ],
-        &quot;mapping&quot;: [
-          {
-            &quot;identity&quot;: &quot;cdanetv4&quot;,
-            &quot;map&quot;: &quot;F13/F14&quot;
-          }
-        ]
-      },
-      {
         &quot;id&quot;: &quot;ExplanationOfBenefit.item.net&quot;,
         &quot;path&quot;: &quot;ExplanationOfBenefit.item.net&quot;,
         &quot;short&quot;: &quot;Total item cost&quot;,
@@ -7184,7 +7021,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -7210,7 +7047,7 @@
         &quot;max&quot;: &quot;*&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -7268,7 +7105,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -7288,7 +7125,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -7373,7 +7210,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -7393,7 +7230,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -7413,7 +7250,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -7433,7 +7270,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -7460,7 +7297,7 @@
         &quot;max&quot;: &quot;*&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -7486,7 +7323,7 @@
         &quot;max&quot;: &quot;*&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -7536,26 +7373,6 @@
         &quot;path&quot;: &quot;ExplanationOfBenefit.item.detail.factor&quot;,
         &quot;short&quot;: &quot;Price scaling factor&quot;,
         &quot;definition&quot;: &quot;A real number that represents a multiplier used in determining the overall value of services delivered and/or goods received. The concept of a Factor allows for a discount or surcharge multiplier to be applied to a monetary amount.&quot;,
-        &quot;requirements&quot;: &quot;If a fee is present the associated product/service code must be present.&quot;,
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;decimal&quot;
-          }
-        ],
-        &quot;mapping&quot;: [
-          {
-            &quot;identity&quot;: &quot;cdanetv4&quot;,
-            &quot;map&quot;: &quot;F13/F14&quot;
-          }
-        ]
-      },
-      {
-        &quot;id&quot;: &quot;ExplanationOfBenefit.item.detail.points&quot;,
-        &quot;path&quot;: &quot;ExplanationOfBenefit.item.detail.points&quot;,
-        &quot;short&quot;: &quot;Difficulty scaling factor&quot;,
-        &quot;definition&quot;: &quot;An amount that expresses the weighting (based on difficulty, cost and/or resource intensiveness) associated with the good or service delivered. The concept of Points allows for assignment of point values for services and/or goods, such that a monetary amount can be assigned to each point.&quot;,
         &quot;requirements&quot;: &quot;If a fee is present the associated product/service code must be present.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
@@ -7675,7 +7492,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -7695,7 +7512,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -7715,7 +7532,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -7735,7 +7552,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -7762,7 +7579,7 @@
         &quot;max&quot;: &quot;*&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -7788,7 +7605,7 @@
         &quot;max&quot;: &quot;*&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -7838,26 +7655,6 @@
         &quot;path&quot;: &quot;ExplanationOfBenefit.item.detail.subDetail.factor&quot;,
         &quot;short&quot;: &quot;Price scaling factor&quot;,
         &quot;definition&quot;: &quot;A real number that represents a multiplier used in determining the overall value of services delivered and/or goods received. The concept of a Factor allows for a discount or surcharge multiplier to be applied to a monetary amount.&quot;,
-        &quot;requirements&quot;: &quot;If a fee is present the associated product/service code must be present.&quot;,
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;decimal&quot;
-          }
-        ],
-        &quot;mapping&quot;: [
-          {
-            &quot;identity&quot;: &quot;cdanetv4&quot;,
-            &quot;map&quot;: &quot;F13/F14&quot;
-          }
-        ]
-      },
-      {
-        &quot;id&quot;: &quot;ExplanationOfBenefit.item.detail.subDetail.points&quot;,
-        &quot;path&quot;: &quot;ExplanationOfBenefit.item.detail.subDetail.points&quot;,
-        &quot;short&quot;: &quot;Difficulty scaling factor&quot;,
-        &quot;definition&quot;: &quot;An amount that expresses the weighting (based on difficulty, cost and/or resource intensiveness) associated with the good or service delivered. The concept of Points allows for assignment of point values for services and/or goods, such that a monetary amount can be assigned to each point.&quot;,
         &quot;requirements&quot;: &quot;If a fee is present the associated product/service code must be present.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
@@ -7999,7 +7796,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -8057,7 +7854,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -8077,7 +7874,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -8103,7 +7900,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -8124,7 +7921,7 @@
         &quot;max&quot;: &quot;*&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -8204,7 +8001,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -8224,7 +8021,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -8250,7 +8047,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -8271,7 +8068,7 @@
         &quot;max&quot;: &quot;*&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -8322,100 +8119,6 @@
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;*&quot;,
         &quot;contentReference&quot;: &quot;#ExplanationOfBenefit.item.adjudication&quot;
-      },
-      {
-        &quot;id&quot;: &quot;ExplanationOfBenefit.missingTeeth&quot;,
-        &quot;extension&quot;: [
-          {
-            &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/structuredefinition-explicit-type-name&quot;,
-            &quot;valueString&quot;: &quot;MissingTeeth&quot;
-          }
-        ],
-        &quot;path&quot;: &quot;ExplanationOfBenefit.missingTeeth&quot;,
-        &quot;short&quot;: &quot;Only if type = oral&quot;,
-        &quot;definition&quot;: &quot;A list of teeth which would be expected but are not found due to having been previously  extracted or for other reasons.&quot;,
-        &quot;requirements&quot;: &quot;The list of missing teeth may influence the adjudication of services for example with Bridges.&quot;,
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;*&quot;,
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;BackboneElement&quot;
-          }
-        ]
-      },
-      {
-        &quot;id&quot;: &quot;ExplanationOfBenefit.missingTeeth.tooth&quot;,
-        &quot;path&quot;: &quot;ExplanationOfBenefit.missingTeeth.tooth&quot;,
-        &quot;short&quot;: &quot;Tooth Code&quot;,
-        &quot;definition&quot;: &quot;The code identifying which tooth is missing.&quot;,
-        &quot;requirements&quot;: &quot;Provides the tooth number of the missing tooth.&quot;,
-        &quot;min&quot;: 1,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;Coding&quot;
-          }
-        ],
-        &quot;binding&quot;: {
-          &quot;strength&quot;: &quot;example&quot;,
-          &quot;description&quot;: &quot;The codes for the teeth, subset of OralSites&quot;,
-          &quot;valueSetReference&quot;: {
-            &quot;reference&quot;: &quot;http://hl7.org/fhir/ValueSet/teeth&quot;
-          }
-        },
-        &quot;mapping&quot;: [
-          {
-            &quot;identity&quot;: &quot;cdanetv4&quot;,
-            &quot;map&quot;: &quot;F23&quot;
-          }
-        ]
-      },
-      {
-        &quot;id&quot;: &quot;ExplanationOfBenefit.missingTeeth.reason&quot;,
-        &quot;path&quot;: &quot;ExplanationOfBenefit.missingTeeth.reason&quot;,
-        &quot;short&quot;: &quot;Reason for missing&quot;,
-        &quot;definition&quot;: &quot;Missing reason may be: E-extraction, O-other.&quot;,
-        &quot;requirements&quot;: &quot;Provides the reason for the missing tooth.&quot;,
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;Coding&quot;
-          }
-        ],
-        &quot;binding&quot;: {
-          &quot;strength&quot;: &quot;example&quot;,
-          &quot;description&quot;: &quot;Reason codes for the missing teeth&quot;,
-          &quot;valueSetReference&quot;: {
-            &quot;reference&quot;: &quot;http://hl7.org/fhir/ValueSet/missing-tooth-reason&quot;
-          }
-        },
-        &quot;mapping&quot;: [
-          {
-            &quot;identity&quot;: &quot;cdanetv4&quot;,
-            &quot;map&quot;: &quot;not used&quot;
-          }
-        ]
-      },
-      {
-        &quot;id&quot;: &quot;ExplanationOfBenefit.missingTeeth.extractionDate&quot;,
-        &quot;path&quot;: &quot;ExplanationOfBenefit.missingTeeth.extractionDate&quot;,
-        &quot;short&quot;: &quot;Date of Extraction&quot;,
-        &quot;definition&quot;: &quot;The date of the extraction either known from records or patient reported estimate.&quot;,
-        &quot;requirements&quot;: &quot;Some services and adjudications require this information.&quot;,
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;date&quot;
-          }
-        ],
-        &quot;mapping&quot;: [
-          {
-            &quot;identity&quot;: &quot;cdanetv4&quot;,
-            &quot;map&quot;: &quot;F24&quot;
-          }
-        ]
       },
       {
         &quot;id&quot;: &quot;ExplanationOfBenefit.totalCost&quot;,
@@ -8485,7 +8188,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -8518,7 +8221,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -8583,7 +8286,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -8641,7 +8344,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -8680,7 +8383,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -8727,7 +8430,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -8747,7 +8450,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -8757,6 +8460,19 @@
             &quot;reference&quot;: &quot;http://hl7.org/fhir/ValueSet/benefit-subcategory&quot;
           }
         }
+      },
+      {
+        &quot;id&quot;: &quot;ExplanationOfBenefit.benefitBalance.excluded&quot;,
+        &quot;path&quot;: &quot;ExplanationOfBenefit.benefitBalance.excluded&quot;,
+        &quot;short&quot;: &quot;Excluded from the plan&quot;,
+        &quot;definition&quot;: &quot;True if the indicated class of service is excluded from the plan, missing or False indicated the service is included in the coverage.&quot;,
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;1&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;boolean&quot;
+          }
+        ]
       },
       {
         &quot;id&quot;: &quot;ExplanationOfBenefit.benefitBalance.name&quot;,
@@ -8793,7 +8509,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -8813,7 +8529,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -8833,7 +8549,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -8872,7 +8588,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -8945,7 +8661,7 @@ of the specification.
 		<div class="container"><!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:32-0500. <a href="qa.html">QA Page</a>
+        © HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:21-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search</a> | 

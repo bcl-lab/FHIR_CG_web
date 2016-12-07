@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>DiagnosticRequest - FHIR v1.7.0</title>
+  <title>DiagnosticRequest - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -143,34 +143,47 @@
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="references.html#Reference">Reference</a>(<a href="resourcelist.html#Any">Any</a>)</td></tr>
   <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
   <tr><td colspan="2" class="structure"><a name="DiagnosticRequest.requisition"> </a><b>DiagnosticRequest.requisition</b></td></tr>
-  <tr><td>Definition</td><td><p>Composite request this is part of.</p>
+  <tr><td>Definition</td><td><p>A shared identifier common to all diagnostic requests that were authorized more or less simultaneously by a single author, representing the composite or group identifier.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#Identifier">Identifier</a></td></tr>
+  <tr><td>Requirements</td><td><p>Some business processes need to know if multiple items were ordered as part of the same &quot;requisition&quot; for billing or other purposes.</p>
+</td></tr>
+  <tr><td title="Other names by which this resource/element may be known">Alternate Names</td><td>grouperId; groupIdentifier</td></tr>
   <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
+  <tr><td>Comments</td><td><p>Requests are linked either by a &quot;basedOn&quot; relationship (i.e. one request is fulfilling another) or by having a common requisition. Requests that are part of the same requisition are generally treated independently from the perspective of changing their state or maintaining them after initial creation.</p>
+</td></tr>
   <tr><td colspan="2" class="structure"><a name="DiagnosticRequest.status"> </a><b>DiagnosticRequest.status</b></td></tr>
   <tr><td>Definition</td><td><p>The status of the order.</p>
 </td></tr>
-  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>RequestStatus: <a href="valueset-request-status.html">The status of a diagnostic order.</a> (<a href="terminologies.html#required">Required</a>)</td></tr>
+  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>1..1</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-request-status.html">RequestStatus</a> (<a href="terminologies.html#required">Required</a>)</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#code">code</a></td></tr>
   <tr><td><a href="conformance-rules.html#ismodifier">Is Modifier</a></td><td>true</td></tr>
   <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
-  <tr><td>Comments</td><td><p>Typically the system placing the order sets the status to &quot;requested&quot;. Thereafter, the order is maintained by the receiver that updates the status as the request is handled.</p>
+  <tr><td>Comments</td><td><p>The status is generally fully in the control of the requester - they determine whether the order is draft or active and, after it has been activated, competed, cancelled or suspended. States relating to the activities of the performer are reflected on either the corresponding event (see <a href="event.html">Event Pattern</a> for general discussion) or using the <a href="task.html">Task</a> resource.</p>
 </td></tr>
-  <tr><td colspan="2" class="structure"><a name="DiagnosticRequest.stage"> </a><b>DiagnosticRequest.stage</b></td></tr>
+  <tr><td colspan="2" class="structure"><a name="DiagnosticRequest.intent"> </a><b>DiagnosticRequest.intent</b></td></tr>
   <tr><td>Definition</td><td><p>Whether the request is a proposal, plan, an original order or a reflex order.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>1..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>DiagnosticRequestStage: <a href="valueset-diagnostic-request-stage.html">The kind of diagnostic request</a> (<a href="terminologies.html#extensible">Extensible</a>)</td></tr>
-  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-request-intent.html">RequestIntent</a> (<a href="terminologies.html#required">Required</a>)</td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#code">code</a></td></tr>
   <tr><td><a href="conformance-rules.html#ismodifier">Is Modifier</a></td><td>true</td></tr>
+  <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
+  <tr><td colspan="2" class="structure"><a name="DiagnosticRequest.priority"> </a><b>DiagnosticRequest.priority</b></td></tr>
+  <tr><td>Definition</td><td><p>Indicates how quickly the {{title}} should be addressed with respect to other requests.</p>
+</td></tr>
+  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-request-priority.html">RequestPriority</a> (<a href="terminologies.html#required">Required</a>)</td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#code">code</a></td></tr>
+  <tr><td>Meaning if Missing</td><td>If missing, this task should be performed with normal priority</td></tr>
   <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
   <tr><td colspan="2" class="structure"><a name="DiagnosticRequest.code"> </a><b>DiagnosticRequest.code</b></td></tr>
   <tr><td>Definition</td><td><p>A code that identifies a particular diagnostic investigation, or panel of investigations, that have been requested.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>1..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>LOINC Diagnostic Request Codes: <a href="valueset-diagnostic-requests.html">Codes for tests/services that can be performed by diagnostic services.</a> (<a href="terminologies.html#preferred">Preferred</a>)</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-diagnostic-requests.html">LOINC Diagnostic Request Codes</a> (<a href="terminologies.html#preferred">Preferred</a>)</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
   <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
   <tr><td>Comments</td><td><p>Many laboratory tests and radiology tests embed the specimen/organ system in the test name, for example,  serum or serum/plasma glucose, or a chest xray. The specimen may not be recorded separately from the test code.</p>
@@ -194,7 +207,7 @@
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#dateTime">dateTime</a>|<a href="datatypes.html#Period">Period</a>|<a href="datatypes.html#Timing">Timing</a></td></tr>
   <tr><td>[x] Note</td><td>See <a href="formats.html#choice">Choice of Data Types</a> for further information about how to use [x]</td></tr>
   <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
-  <tr><td colspan="2" class="structure"><a name="DiagnosticRequest.authored"> </a><b>DiagnosticRequest.authored</b></td></tr>
+  <tr><td colspan="2" class="structure"><a name="DiagnosticRequest.authoredOn"> </a><b>DiagnosticRequest.authoredOn</b></td></tr>
   <tr><td>Definition</td><td><p>When the request transitioned to being actionable.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
@@ -212,7 +225,7 @@
   <tr><td>Definition</td><td><p>Desired type of performer for doing the diagnostic testing. (.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>Participant Roles: <a href="valueset-participant-role.html">Indicates specific responsibility of an individual within the care team, such as &quot;Primary physician&quot;, &quot;Team coordinator&quot;, &quot;Caregiver&quot;, etc.</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-participant-role.html">Participant Roles</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
   <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
   <tr><td>Comments</td><td><p>this is a  role, not  aparticipation type.  I.e. doesn’t describe the task, describes the capacity.  Examples “compounding pharmacy” or “psychiatrist” or “internal referral”.</p>
@@ -225,12 +238,20 @@
   <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
   <tr><td>Comments</td><td><p>Use an <a href="extensibility.html">extension</a> or listing alternative alternative performers and/or roles and/or preference.</p>
 </td></tr>
-  <tr><td colspan="2" class="structure"><a name="DiagnosticRequest.reason"> </a><b>DiagnosticRequest.reason</b></td></tr>
-  <tr><td>Definition</td><td><p>An explanation or justification for why this diagnostic investigation is being requested.   This is often for billing purposes.  May relate to the resources referred to in supportingInformation.</p>
+  <tr><td colspan="2" class="structure"><a name="DiagnosticRequest.reasonCode"> </a><b>DiagnosticRequest.reasonCode</b></td></tr>
+  <tr><td>Definition</td><td><p>An explanation or justification for why this diagnostic investigation is being requested in coded or textual form.   This is often for billing purposes.  May relate to the resources referred to in supportingInformation.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..*</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>Condition/Problem/Diagnosis Codes: <a href="valueset-condition-code.html">Diagnosis or problem codes justifying the reason for requesting the diagnostic investigation.</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-condition-code.html">Condition/Problem/Diagnosis Codes</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
+  <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
+  <tr><td>Comments</td><td><p>This may be used to decide how the diagnostic investigation will be performed, or even if it will be performed at all.   Use CodeableConcept text element if the data is free (uncoded) text as shown in the <a href="diagnosticrequest-example-di.html">CT Scan example</a>.</p>
+</td></tr>
+  <tr><td colspan="2" class="structure"><a name="DiagnosticRequest.reasonReference"> </a><b>DiagnosticRequest.reasonReference</b></td></tr>
+  <tr><td>Definition</td><td><p>Indicates another resource that provides a justification for why this diagnostic investigation is being requested.   May relate to the resources referred to in supportingInformation.</p>
+</td></tr>
+  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..*</td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="references.html#Reference">Reference</a>(<a href="condition.html">Condition</a> | <a href="observation.html">Observation</a>)</td></tr>
   <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
   <tr><td>Comments</td><td><p>This may be used to decide how the diagnostic investigation will be performed, or even if it will be performed at all.   Use CodeableConcept text element if the data is free (uncoded) text as shown in the <a href="diagnosticrequest-example-di.html">CT Scan example</a>.</p>
 </td></tr>
@@ -274,7 +295,7 @@ All Provenances should have some historical version of this Request as their sub
 		<div class="container">  <!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:32-0500. <a href="qa.html">QA Page</a>
+        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:21-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search <img src="external.png" style="text-align: baseline"/></a> | 

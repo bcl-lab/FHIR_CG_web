@@ -3,7 +3,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>Diagnosticrequest.profile.json - FHIR v1.7.0</title>
+  <title>Diagnosticrequest.profile.json - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -119,7 +119,7 @@
   &quot;resourceType&quot;: &quot;StructureDefinition&quot;,
   &quot;id&quot;: &quot;DiagnosticRequest&quot;,
   &quot;meta&quot;: {
-    &quot;lastUpdated&quot;: &quot;2016-11-28T17:29:55.664-05:00&quot;
+    &quot;lastUpdated&quot;: &quot;2016-12-07T14:18:58.982-05:00&quot;
   },
   &quot;text&quot;: {
     &quot;status&quot;: &quot;generated&quot;,
@@ -129,6 +129,10 @@
     {
       &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm&quot;,
       &quot;valueInteger&quot;: 1
+    },
+    {
+      &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/structuredefinition-wg&quot;,
+      &quot;valueCode&quot;: &quot;oo&quot;
     }
   ],
   &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/DiagnosticRequest&quot;,
@@ -139,7 +143,7 @@
     {
       &quot;telecom&quot;: [
         {
-          &quot;system&quot;: &quot;other&quot;,
+          &quot;system&quot;: &quot;url&quot;,
           &quot;value&quot;: &quot;http://hl7.org/fhir&quot;
         }
       ]
@@ -147,15 +151,15 @@
     {
       &quot;telecom&quot;: [
         {
-          &quot;system&quot;: &quot;other&quot;,
+          &quot;system&quot;: &quot;url&quot;,
           &quot;value&quot;: &quot;http://www.hl7.org/Special/committees/orders/index.cfm&quot;
         }
       ]
     }
   ],
-  &quot;date&quot;: &quot;2016-11-28T17:29:55-05:00&quot;,
+  &quot;date&quot;: &quot;2016-12-07T14:18:58-05:00&quot;,
   &quot;description&quot;: &quot;Base StructureDefinition for DiagnosticRequest Resource&quot;,
-  &quot;fhirVersion&quot;: &quot;1.7.0&quot;,
+  &quot;fhirVersion&quot;: &quot;1.8.0&quot;,
   &quot;mapping&quot;: [
     {
       &quot;identity&quot;: &quot;rim&quot;,
@@ -526,8 +530,14 @@
       {
         &quot;id&quot;: &quot;DiagnosticRequest.requisition&quot;,
         &quot;path&quot;: &quot;DiagnosticRequest.requisition&quot;,
-        &quot;short&quot;: &quot;Identifier of composite request&quot;,
-        &quot;definition&quot;: &quot;Composite request this is part of.&quot;,
+        &quot;short&quot;: &quot;Composite Request ID&quot;,
+        &quot;definition&quot;: &quot;A shared identifier common to all diagnostic requests that were authorized more or less simultaneously by a single author, representing the composite or group identifier.&quot;,
+        &quot;comments&quot;: &quot;Requests are linked either by a \&quot;basedOn\&quot; relationship (i.e. one request is fulfilling another) or by having a common requisition. Requests that are part of the same requisition are generally treated independently from the perspective of changing their state or maintaining them after initial creation.&quot;,
+        &quot;requirements&quot;: &quot;Some business processes need to know if multiple items were ordered as part of the same \&quot;requisition\&quot; for billing or other purposes.&quot;,
+        &quot;alias&quot;: [
+          &quot;grouperId&quot;,
+          &quot;groupIdentifier&quot;
+        ],
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
@@ -542,8 +552,8 @@
         &quot;path&quot;: &quot;DiagnosticRequest.status&quot;,
         &quot;short&quot;: &quot;draft | active | suspended | completed | entered-in-error | cancelled&quot;,
         &quot;definition&quot;: &quot;The status of the order.&quot;,
-        &quot;comments&quot;: &quot;Typically the system placing the order sets the status to \&quot;requested\&quot;. Thereafter, the order is maintained by the receiver that updates the status as the request is handled.&quot;,
-        &quot;min&quot;: 0,
+        &quot;comments&quot;: &quot;The status is generally fully in the control of the requester - they determine whether the order is draft or active and, after it has been activated, competed, cancelled or suspended. States relating to the activities of the performer are reflected on either the corresponding event (see [Event Pattern](event.html) for general discussion) or using the [Task](task.html) resource.&quot;,
+        &quot;min&quot;: 1,
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
@@ -571,24 +581,52 @@
         ]
       },
       {
-        &quot;id&quot;: &quot;DiagnosticRequest.stage&quot;,
-        &quot;path&quot;: &quot;DiagnosticRequest.stage&quot;,
+        &quot;id&quot;: &quot;DiagnosticRequest.intent&quot;,
+        &quot;path&quot;: &quot;DiagnosticRequest.intent&quot;,
         &quot;short&quot;: &quot;proposal | plan | original-order | reflex-order&quot;,
         &quot;definition&quot;: &quot;Whether the request is a proposal, plan, an original order or a reflex order.&quot;,
         &quot;min&quot;: 1,
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;CodeableConcept&quot;
+            &quot;code&quot;: &quot;code&quot;
           }
         ],
         &quot;isModifier&quot;: true,
         &quot;isSummary&quot;: true,
         &quot;binding&quot;: {
-          &quot;strength&quot;: &quot;extensible&quot;,
+          &quot;strength&quot;: &quot;required&quot;,
           &quot;description&quot;: &quot;The kind of diagnostic request&quot;,
           &quot;valueSetReference&quot;: {
-            &quot;reference&quot;: &quot;http://hl7.org/fhir/ValueSet/diagnostic-request-stage&quot;
+            &quot;reference&quot;: &quot;http://hl7.org/fhir/ValueSet/request-intent&quot;
+          }
+        },
+        &quot;mapping&quot;: [
+          {
+            &quot;identity&quot;: &quot;w5&quot;,
+            &quot;map&quot;: &quot;class&quot;
+          }
+        ]
+      },
+      {
+        &quot;id&quot;: &quot;DiagnosticRequest.priority&quot;,
+        &quot;path&quot;: &quot;DiagnosticRequest.priority&quot;,
+        &quot;short&quot;: &quot;routine | urgent | asap | stat&quot;,
+        &quot;definition&quot;: &quot;Indicates how quickly the {{title}} should be addressed with respect to other requests.&quot;,
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;1&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;code&quot;
+          }
+        ],
+        &quot;meaningWhenMissing&quot;: &quot;If missing, this task should be performed with normal priority&quot;,
+        &quot;isSummary&quot;: true,
+        &quot;binding&quot;: {
+          &quot;strength&quot;: &quot;required&quot;,
+          &quot;description&quot;: &quot;Identifies the level of importance to be assigned to actioning the request&quot;,
+          &quot;valueSetReference&quot;: {
+            &quot;reference&quot;: &quot;http://hl7.org/fhir/ValueSet/request-priority&quot;
           }
         },
         &quot;mapping&quot;: [
@@ -731,8 +769,8 @@
         ]
       },
       {
-        &quot;id&quot;: &quot;DiagnosticRequest.authored&quot;,
-        &quot;path&quot;: &quot;DiagnosticRequest.authored&quot;,
+        &quot;id&quot;: &quot;DiagnosticRequest.authoredOn&quot;,
+        &quot;path&quot;: &quot;DiagnosticRequest.authoredOn&quot;,
         &quot;short&quot;: &quot;Date request signed&quot;,
         &quot;definition&quot;: &quot;When the request transitioned to being actionable.&quot;,
         &quot;min&quot;: 0,
@@ -855,10 +893,10 @@
         ]
       },
       {
-        &quot;id&quot;: &quot;DiagnosticRequest.reason&quot;,
-        &quot;path&quot;: &quot;DiagnosticRequest.reason&quot;,
+        &quot;id&quot;: &quot;DiagnosticRequest.reasonCode&quot;,
+        &quot;path&quot;: &quot;DiagnosticRequest.reasonCode&quot;,
         &quot;short&quot;: &quot;Explanation/Justification for test&quot;,
-        &quot;definition&quot;: &quot;An explanation or justification for why this diagnostic investigation is being requested.   This is often for billing purposes.  May relate to the resources referred to in supportingInformation.&quot;,
+        &quot;definition&quot;: &quot;An explanation or justification for why this diagnostic investigation is being requested in coded or textual form.   This is often for billing purposes.  May relate to the resources referred to in supportingInformation.&quot;,
         &quot;comments&quot;: &quot;This may be used to decide how the diagnostic investigation will be performed, or even if it will be performed at all.   Use CodeableConcept text element if the data is free (uncoded) text as shown in the [CT Scan example](diagnosticrequest-example-di.html).&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;*&quot;,
@@ -875,6 +913,36 @@
             &quot;reference&quot;: &quot;http://hl7.org/fhir/ValueSet/condition-code&quot;
           }
         },
+        &quot;mapping&quot;: [
+          {
+            &quot;identity&quot;: &quot;rim&quot;,
+            &quot;map&quot;: &quot;.reasonCode&quot;
+          },
+          {
+            &quot;identity&quot;: &quot;w5&quot;,
+            &quot;map&quot;: &quot;why&quot;
+          }
+        ]
+      },
+      {
+        &quot;id&quot;: &quot;DiagnosticRequest.reasonReference&quot;,
+        &quot;path&quot;: &quot;DiagnosticRequest.reasonReference&quot;,
+        &quot;short&quot;: &quot;Explanation/Justification for test&quot;,
+        &quot;definition&quot;: &quot;Indicates another resource that provides a justification for why this diagnostic investigation is being requested.   May relate to the resources referred to in supportingInformation.&quot;,
+        &quot;comments&quot;: &quot;This may be used to decide how the diagnostic investigation will be performed, or even if it will be performed at all.   Use CodeableConcept text element if the data is free (uncoded) text as shown in the [CT Scan example](diagnosticrequest-example-di.html).&quot;,
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;*&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;Reference&quot;,
+            &quot;targetProfile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/Condition&quot;
+          },
+          {
+            &quot;code&quot;: &quot;Reference&quot;,
+            &quot;targetProfile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/Observation&quot;
+          }
+        ],
+        &quot;isSummary&quot;: true,
         &quot;mapping&quot;: [
           {
             &quot;identity&quot;: &quot;rim&quot;,
@@ -1044,8 +1112,14 @@
       {
         &quot;id&quot;: &quot;DiagnosticRequest.requisition&quot;,
         &quot;path&quot;: &quot;DiagnosticRequest.requisition&quot;,
-        &quot;short&quot;: &quot;Identifier of composite request&quot;,
-        &quot;definition&quot;: &quot;Composite request this is part of.&quot;,
+        &quot;short&quot;: &quot;Composite Request ID&quot;,
+        &quot;definition&quot;: &quot;A shared identifier common to all diagnostic requests that were authorized more or less simultaneously by a single author, representing the composite or group identifier.&quot;,
+        &quot;comments&quot;: &quot;Requests are linked either by a \&quot;basedOn\&quot; relationship (i.e. one request is fulfilling another) or by having a common requisition. Requests that are part of the same requisition are generally treated independently from the perspective of changing their state or maintaining them after initial creation.&quot;,
+        &quot;requirements&quot;: &quot;Some business processes need to know if multiple items were ordered as part of the same \&quot;requisition\&quot; for billing or other purposes.&quot;,
+        &quot;alias&quot;: [
+          &quot;grouperId&quot;,
+          &quot;groupIdentifier&quot;
+        ],
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
@@ -1060,8 +1134,8 @@
         &quot;path&quot;: &quot;DiagnosticRequest.status&quot;,
         &quot;short&quot;: &quot;draft | active | suspended | completed | entered-in-error | cancelled&quot;,
         &quot;definition&quot;: &quot;The status of the order.&quot;,
-        &quot;comments&quot;: &quot;Typically the system placing the order sets the status to \&quot;requested\&quot;. Thereafter, the order is maintained by the receiver that updates the status as the request is handled.&quot;,
-        &quot;min&quot;: 0,
+        &quot;comments&quot;: &quot;The status is generally fully in the control of the requester - they determine whether the order is draft or active and, after it has been activated, competed, cancelled or suspended. States relating to the activities of the performer are reflected on either the corresponding event (see [Event Pattern](event.html) for general discussion) or using the [Task](task.html) resource.&quot;,
+        &quot;min&quot;: 1,
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
@@ -1089,24 +1163,52 @@
         ]
       },
       {
-        &quot;id&quot;: &quot;DiagnosticRequest.stage&quot;,
-        &quot;path&quot;: &quot;DiagnosticRequest.stage&quot;,
+        &quot;id&quot;: &quot;DiagnosticRequest.intent&quot;,
+        &quot;path&quot;: &quot;DiagnosticRequest.intent&quot;,
         &quot;short&quot;: &quot;proposal | plan | original-order | reflex-order&quot;,
         &quot;definition&quot;: &quot;Whether the request is a proposal, plan, an original order or a reflex order.&quot;,
         &quot;min&quot;: 1,
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;CodeableConcept&quot;
+            &quot;code&quot;: &quot;code&quot;
           }
         ],
         &quot;isModifier&quot;: true,
         &quot;isSummary&quot;: true,
         &quot;binding&quot;: {
-          &quot;strength&quot;: &quot;extensible&quot;,
+          &quot;strength&quot;: &quot;required&quot;,
           &quot;description&quot;: &quot;The kind of diagnostic request&quot;,
           &quot;valueSetReference&quot;: {
-            &quot;reference&quot;: &quot;http://hl7.org/fhir/ValueSet/diagnostic-request-stage&quot;
+            &quot;reference&quot;: &quot;http://hl7.org/fhir/ValueSet/request-intent&quot;
+          }
+        },
+        &quot;mapping&quot;: [
+          {
+            &quot;identity&quot;: &quot;w5&quot;,
+            &quot;map&quot;: &quot;class&quot;
+          }
+        ]
+      },
+      {
+        &quot;id&quot;: &quot;DiagnosticRequest.priority&quot;,
+        &quot;path&quot;: &quot;DiagnosticRequest.priority&quot;,
+        &quot;short&quot;: &quot;routine | urgent | asap | stat&quot;,
+        &quot;definition&quot;: &quot;Indicates how quickly the {{title}} should be addressed with respect to other requests.&quot;,
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;1&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;code&quot;
+          }
+        ],
+        &quot;meaningWhenMissing&quot;: &quot;If missing, this task should be performed with normal priority&quot;,
+        &quot;isSummary&quot;: true,
+        &quot;binding&quot;: {
+          &quot;strength&quot;: &quot;required&quot;,
+          &quot;description&quot;: &quot;Identifies the level of importance to be assigned to actioning the request&quot;,
+          &quot;valueSetReference&quot;: {
+            &quot;reference&quot;: &quot;http://hl7.org/fhir/ValueSet/request-priority&quot;
           }
         },
         &quot;mapping&quot;: [
@@ -1249,8 +1351,8 @@
         ]
       },
       {
-        &quot;id&quot;: &quot;DiagnosticRequest.authored&quot;,
-        &quot;path&quot;: &quot;DiagnosticRequest.authored&quot;,
+        &quot;id&quot;: &quot;DiagnosticRequest.authoredOn&quot;,
+        &quot;path&quot;: &quot;DiagnosticRequest.authoredOn&quot;,
         &quot;short&quot;: &quot;Date request signed&quot;,
         &quot;definition&quot;: &quot;When the request transitioned to being actionable.&quot;,
         &quot;min&quot;: 0,
@@ -1373,10 +1475,10 @@
         ]
       },
       {
-        &quot;id&quot;: &quot;DiagnosticRequest.reason&quot;,
-        &quot;path&quot;: &quot;DiagnosticRequest.reason&quot;,
+        &quot;id&quot;: &quot;DiagnosticRequest.reasonCode&quot;,
+        &quot;path&quot;: &quot;DiagnosticRequest.reasonCode&quot;,
         &quot;short&quot;: &quot;Explanation/Justification for test&quot;,
-        &quot;definition&quot;: &quot;An explanation or justification for why this diagnostic investigation is being requested.   This is often for billing purposes.  May relate to the resources referred to in supportingInformation.&quot;,
+        &quot;definition&quot;: &quot;An explanation or justification for why this diagnostic investigation is being requested in coded or textual form.   This is often for billing purposes.  May relate to the resources referred to in supportingInformation.&quot;,
         &quot;comments&quot;: &quot;This may be used to decide how the diagnostic investigation will be performed, or even if it will be performed at all.   Use CodeableConcept text element if the data is free (uncoded) text as shown in the [CT Scan example](diagnosticrequest-example-di.html).&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;*&quot;,
@@ -1393,6 +1495,36 @@
             &quot;reference&quot;: &quot;http://hl7.org/fhir/ValueSet/condition-code&quot;
           }
         },
+        &quot;mapping&quot;: [
+          {
+            &quot;identity&quot;: &quot;rim&quot;,
+            &quot;map&quot;: &quot;.reasonCode&quot;
+          },
+          {
+            &quot;identity&quot;: &quot;w5&quot;,
+            &quot;map&quot;: &quot;why&quot;
+          }
+        ]
+      },
+      {
+        &quot;id&quot;: &quot;DiagnosticRequest.reasonReference&quot;,
+        &quot;path&quot;: &quot;DiagnosticRequest.reasonReference&quot;,
+        &quot;short&quot;: &quot;Explanation/Justification for test&quot;,
+        &quot;definition&quot;: &quot;Indicates another resource that provides a justification for why this diagnostic investigation is being requested.   May relate to the resources referred to in supportingInformation.&quot;,
+        &quot;comments&quot;: &quot;This may be used to decide how the diagnostic investigation will be performed, or even if it will be performed at all.   Use CodeableConcept text element if the data is free (uncoded) text as shown in the [CT Scan example](diagnosticrequest-example-di.html).&quot;,
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;*&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;Reference&quot;,
+            &quot;targetProfile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/Condition&quot;
+          },
+          {
+            &quot;code&quot;: &quot;Reference&quot;,
+            &quot;targetProfile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/Observation&quot;
+          }
+        ],
+        &quot;isSummary&quot;: true,
         &quot;mapping&quot;: [
           {
             &quot;identity&quot;: &quot;rim&quot;,
@@ -1494,7 +1626,7 @@ of the specification.
 		<div class="container"><!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:32-0500. <a href="qa.html">QA Page</a>
+        © HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:21-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search</a> | 

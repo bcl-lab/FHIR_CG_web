@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>Contract - FHIR v1.7.0</title>
+  <title>Contract - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -122,6 +122,14 @@
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#Identifier">Identifier</a></td></tr>
   <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
+  <tr><td colspan="2" class="structure"><a name="Contract.status"> </a><b>Contract.status</b></td></tr>
+  <tr><td>Definition</td><td><p>The status of the resource instance.</p>
+</td></tr>
+  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-fm-status.html">Financial Resource Status Codes</a> (<a href="terminologies.html#required">Required</a>)</td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#code">code</a></td></tr>
+  <tr><td><a href="conformance-rules.html#ismodifier">Is Modifier</a></td><td>true</td></tr>
+  <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
   <tr><td colspan="2" class="structure"><a name="Contract.issued"> </a><b>Contract.issued</b></td></tr>
   <tr><td>Definition</td><td><p>When this  Contract was issued.</p>
 </td></tr>
@@ -181,27 +189,27 @@ If the Contract.topic is considered an application or offer, then the policy is 
   <tr><td>Definition</td><td><p>Type of Contract such as an insurance policy, real estate contract, a will, power of attorny, Privacy or Security policy , trust framework agreement, etc.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>Contract Type Codes: <a href="valueset-contract-type.html">List of overall contract codes.</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-contract-type.html">Contract Type Codes</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
   <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
   <tr><td colspan="2" class="structure"><a name="Contract.subType"> </a><b>Contract.subType</b></td></tr>
   <tr><td>Definition</td><td><p>More specific type or specialization of an overarching or more general contract such as auto insurance, home owner  insurance, prenupial agreement, Advanced-Directive, or privacy consent.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..*</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>Contract Subtype Codes: <a href="valueset-contract-subtype.html">Detailed codes within the above.</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-contract-subtype.html">Contract Subtype Codes</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
   <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
   <tr><td colspan="2" class="structure"><a name="Contract.action"> </a><b>Contract.action</b></td></tr>
   <tr><td>Definition</td><td><p>Action stipulated by this Contract.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..*</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>Contract Action Codes: <a href="valueset-contract-action.html">Detailed codes for the contract action.</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-contract-action.html">Contract Action Codes</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
   <tr><td colspan="2" class="structure"><a name="Contract.actionReason"> </a><b>Contract.actionReason</b></td></tr>
   <tr><td>Definition</td><td><p>Reason for action stipulated by this Contract.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..*</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>PurposeOfUse: <a href="v3/PurposeOfUse/vs.html">Detailed codes for the contract action reason.</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="v3/PurposeOfUse/vs.html">PurposeOfUse</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
   <tr><td colspan="2" class="structure"><a name="Contract.agent"> </a><b>Contract.agent</b></td></tr>
   <tr><td>Definition</td><td><p>An actor taking a role in an activity for which it can be assigned some degree of responsibility for the activity taking place.</p>
@@ -221,7 +229,7 @@ For example, in cases of actions initiated by one user for other users, or in ev
   <tr><td>Definition</td><td><p>Role type of agent assigned roles in this Contract.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..*</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>Contract Actor Role Codes: <a href="valueset-contract-actorrole.html">Detailed codes for the contract actor role.</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-contract-actorrole.html">Contract Actor Role Codes</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
   <tr><td colspan="2" class="structure"><a name="Contract.signer"> </a><b>Contract.signer</b></td></tr>
   <tr><td>Definition</td><td><p>Parties with legal standing in the Contract, including the principal parties, the grantor(s) and grantee(s), which are any person or organization bound by the contract, and any ancillary parties, which facilitate the execution of the contract such as a notary or witness.</p>
@@ -236,7 +244,7 @@ For example, specifying how policies or obligations shall constrain actions and 
   <tr><td>Definition</td><td><p>Role of this Contract signer, e.g. notary, grantee.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>1..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>Contract Signer Type Codes: <a href="valueset-contract-signer-type.html">List of parties who may be signing.</a> (<a href="terminologies.html#preferred">Preferred</a>)</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-contract-signer-type.html">Contract Signer Type Codes</a> (<a href="terminologies.html#preferred">Preferred</a>)</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#Coding">Coding</a></td></tr>
   <tr><td colspan="2" class="structure"><a name="Contract.signer.party"> </a><b>Contract.signer.party</b></td></tr>
   <tr><td>Definition</td><td><p>Party which is a signator to this Contract.</p>
@@ -321,13 +329,13 @@ For example, specifying how policies or obligations shall constrain actions and 
   <tr><td>Definition</td><td><p>Type of Contract Provision such as specific requirements, purposes for actions, obligations, prohibitions, e.g. life time maximum benefit.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>Contract Term Type Codes: <a href="valueset-contract-term-type.html">Detailed codes for the types of contract provisions.</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-contract-term-type.html">Contract Term Type Codes</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
   <tr><td colspan="2" class="structure"><a name="Contract.term.subType"> </a><b>Contract.term.subType</b></td></tr>
   <tr><td>Definition</td><td><p>Subtype of this Contract Provision, e.g. life time maximum payment for a contract term for specific valued item, e.g. disability payment.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>Contract Term Type Codes: <a href="valueset-contract-term-subtype.html">Detailed codes for the subtypes of contract provisions.</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-contract-term-subtype.html">Contract Term Type Codes</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
   <tr><td colspan="2" class="structure"><a name="Contract.term.topic"> </a><b>Contract.term.topic</b></td></tr>
   <tr><td>Definition</td><td><p>The matter of concern in the context of this provision of the agrement.</p>
@@ -344,13 +352,13 @@ Contract.term.topic may be described in more detail in the [0..*] Contract.term.
   <tr><td>Definition</td><td><p>Action stipulated by this Contract Provision.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..*</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>Contract Action Codes: <a href="valueset-contract-action.html">Detailed codes for the contract action.</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-contract-action.html">Contract Action Codes</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
   <tr><td colspan="2" class="structure"><a name="Contract.term.actionReason"> </a><b>Contract.term.actionReason</b></td></tr>
   <tr><td>Definition</td><td><p>Reason or purpose for the action stipulated by this Contract Provision.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..*</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>PurposeOfUse: <a href="v3/PurposeOfUse/vs.html">Detailed codes for the contract action reason.</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="v3/PurposeOfUse/vs.html">PurposeOfUse</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
   <tr><td colspan="2" class="structure"><a name="Contract.term.agent"> </a><b>Contract.term.agent</b></td></tr>
   <tr><td>Definition</td><td><p>An actor taking a role in an activity for which it can be assigned some degree of responsibility for the activity taking place.</p>
@@ -370,7 +378,7 @@ For example, in cases of actions initiated by one user for other users, or in ev
   <tr><td>Definition</td><td><p>Role played by the agent assigned this role in the execution of this Contract Provision.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..*</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>Contract Actor Role Codes: <a href="valueset-contract-actorrole.html">Detailed codes for the contract actor role.</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-contract-actorrole.html">Contract Actor Role Codes</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
   <tr><td colspan="2" class="structure"><a name="Contract.term.text"> </a><b>Contract.term.text</b></td></tr>
   <tr><td>Definition</td><td><p>Human readable form of this Contract Provision.</p>
@@ -482,7 +490,7 @@ For example, in cases of actions initiated by one user for other users, or in ev
 		<div class="container">  <!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:32-0500. <a href="qa.html">QA Page</a>
+        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:21-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search <img src="external.png" style="text-align: baseline"/></a> | 

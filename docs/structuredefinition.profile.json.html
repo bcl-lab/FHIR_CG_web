@@ -3,7 +3,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>Structuredefinition.profile.json - FHIR v1.7.0</title>
+  <title>Structuredefinition.profile.json - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -119,7 +119,7 @@
   &quot;resourceType&quot;: &quot;StructureDefinition&quot;,
   &quot;id&quot;: &quot;StructureDefinition&quot;,
   &quot;meta&quot;: {
-    &quot;lastUpdated&quot;: &quot;2016-11-28T17:29:55.664-05:00&quot;
+    &quot;lastUpdated&quot;: &quot;2016-12-07T14:18:58.982-05:00&quot;
   },
   &quot;text&quot;: {
     &quot;status&quot;: &quot;generated&quot;,
@@ -129,6 +129,10 @@
     {
       &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm&quot;,
       &quot;valueInteger&quot;: 2
+    },
+    {
+      &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/structuredefinition-wg&quot;,
+      &quot;valueCode&quot;: &quot;fhir&quot;
     }
   ],
   &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/StructureDefinition&quot;,
@@ -139,7 +143,7 @@
     {
       &quot;telecom&quot;: [
         {
-          &quot;system&quot;: &quot;other&quot;,
+          &quot;system&quot;: &quot;url&quot;,
           &quot;value&quot;: &quot;http://hl7.org/fhir&quot;
         }
       ]
@@ -147,15 +151,15 @@
     {
       &quot;telecom&quot;: [
         {
-          &quot;system&quot;: &quot;other&quot;,
+          &quot;system&quot;: &quot;url&quot;,
           &quot;value&quot;: &quot;http://www.hl7.org/Special/committees/fiwg/index.cfm&quot;
         }
       ]
     }
   ],
-  &quot;date&quot;: &quot;2016-11-28T17:29:55-05:00&quot;,
+  &quot;date&quot;: &quot;2016-12-07T14:18:58-05:00&quot;,
   &quot;description&quot;: &quot;Base StructureDefinition for StructureDefinition Resource&quot;,
-  &quot;fhirVersion&quot;: &quot;1.7.0&quot;,
+  &quot;fhirVersion&quot;: &quot;1.8.0&quot;,
   &quot;mapping&quot;: [
     {
       &quot;identity&quot;: &quot;rim&quot;,
@@ -937,7 +941,7 @@
         &quot;id&quot;: &quot;StructureDefinition.fhirVersion&quot;,
         &quot;path&quot;: &quot;StructureDefinition.fhirVersion&quot;,
         &quot;short&quot;: &quot;FHIR Version this StructureDefinition targets&quot;,
-        &quot;definition&quot;: &quot;The version of the FHIR specification on which this StructureDefinition is based - this is the formal version of the specification, without the revision number, e.g. [publication].[major].[minor], which is 1.7.0 for this version.&quot;,
+        &quot;definition&quot;: &quot;The version of the FHIR specification on which this StructureDefinition is based - this is the formal version of the specification, without the revision number, e.g. [publication].[major].[minor], which is 1.8.0 for this version.&quot;,
         &quot;comments&quot;: &quot;A StructureDefinition does not need to specify the target it applies to,as StructureDefinitions will often be valid across multiple versions of FHIR. FHIR tooling can determine whether a StructureDefinition is consistent with a particular StructureDefinition if desired.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
@@ -972,7 +976,7 @@
           {
             &quot;key&quot;: &quot;sdf-2&quot;,
             &quot;severity&quot;: &quot;error&quot;,
-            &quot;human&quot;: &quot;Must have at a name or a uri (or both)&quot;,
+            &quot;human&quot;: &quot;Must have at least a name or a uri (or both)&quot;,
             &quot;expression&quot;: &quot;name.exists() or uri.exists()&quot;,
             &quot;xpath&quot;: &quot;exists(f:uri) or exists(f:name)&quot;
           }
@@ -1151,8 +1155,8 @@
         &quot;id&quot;: &quot;StructureDefinition.abstract&quot;,
         &quot;path&quot;: &quot;StructureDefinition.abstract&quot;,
         &quot;short&quot;: &quot;Whether the structure is abstract&quot;,
-        &quot;definition&quot;: &quot;Whether structure this definition describes is abstract or not  - that is, whether an actual exchanged item can ever be of this type.&quot;,
-        &quot;comments&quot;: &quot;Abstract Resources cannot be instantiated - a concrete sub-type must be used. Abstract datatypes and extensions cannot be used in an instance. Flagging a constraint structure as abstract conveys design intent but makes no difference to how the structure definition is handled. Note that inline declared elements that are given the type \&quot;Element\&quot; in the profile, but have children described, are anonymous concrete types that specialise Element. Abstract is not relevant for logical models.&quot;,
+        &quot;definition&quot;: &quot;Whether structure this definition describes is abstract or not  - that is, whether the structure is not intended to be instantiated. For Resources and Data types, abstract types will never be exchanged  between systems.&quot;,
+        &quot;comments&quot;: &quot;Abstract Resources cannot be instantiated - a concrete sub-type must be used. Abstract datatypes and extensions cannot be used in an instance. For logical models, the exact implication of \&quot;abstract\&quot; will rest with the author, depending how the logical model is used. Flagging a constraint structure as abstract conveys design intent but makes no difference to how the structure definition is handled. Note that inline declared elements that are given the type \&quot;Element\&quot; in the profile, but have children described, are anonymous concrete types that specialise Element.&quot;,
         &quot;min&quot;: 1,
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
@@ -1480,6 +1484,14 @@
             &quot;human&quot;: &quot;If the first element in a differential has no \&quot;.\&quot; in the path, it has no type&quot;,
             &quot;expression&quot;: &quot;element.first().path.contains('.').not() implies element.first().type.empty()&quot;,
             &quot;xpath&quot;: &quot;not(f:element[1][not(contains(f:path/@value, '.'))]/f:type)&quot;
+          },
+          {
+            &quot;key&quot;: &quot;sdf-20&quot;,
+            &quot;requirements&quot;: &quot;no slicing on root&quot;,
+            &quot;severity&quot;: &quot;error&quot;,
+            &quot;human&quot;: &quot;No slicing on the root element&quot;,
+            &quot;expression&quot;: &quot;element.first().slicing.empty()&quot;,
+            &quot;xpath&quot;: &quot;not(f:element[1]/f:slicing)&quot;
           },
           {
             &quot;key&quot;: &quot;sdf-8a&quot;,
@@ -2092,7 +2104,7 @@
         &quot;id&quot;: &quot;StructureDefinition.fhirVersion&quot;,
         &quot;path&quot;: &quot;StructureDefinition.fhirVersion&quot;,
         &quot;short&quot;: &quot;FHIR Version this StructureDefinition targets&quot;,
-        &quot;definition&quot;: &quot;The version of the FHIR specification on which this StructureDefinition is based - this is the formal version of the specification, without the revision number, e.g. [publication].[major].[minor], which is 1.7.0 for this version.&quot;,
+        &quot;definition&quot;: &quot;The version of the FHIR specification on which this StructureDefinition is based - this is the formal version of the specification, without the revision number, e.g. [publication].[major].[minor], which is 1.8.0 for this version.&quot;,
         &quot;comments&quot;: &quot;A StructureDefinition does not need to specify the target it applies to,as StructureDefinitions will often be valid across multiple versions of FHIR. FHIR tooling can determine whether a StructureDefinition is consistent with a particular StructureDefinition if desired.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
@@ -2119,7 +2131,7 @@
           {
             &quot;key&quot;: &quot;sdf-2&quot;,
             &quot;severity&quot;: &quot;error&quot;,
-            &quot;human&quot;: &quot;Must have at a name or a uri (or both)&quot;,
+            &quot;human&quot;: &quot;Must have at least a name or a uri (or both)&quot;,
             &quot;expression&quot;: &quot;name.exists() or uri.exists()&quot;,
             &quot;xpath&quot;: &quot;exists(f:uri) or exists(f:name)&quot;
           }
@@ -2210,8 +2222,8 @@
         &quot;id&quot;: &quot;StructureDefinition.abstract&quot;,
         &quot;path&quot;: &quot;StructureDefinition.abstract&quot;,
         &quot;short&quot;: &quot;Whether the structure is abstract&quot;,
-        &quot;definition&quot;: &quot;Whether structure this definition describes is abstract or not  - that is, whether an actual exchanged item can ever be of this type.&quot;,
-        &quot;comments&quot;: &quot;Abstract Resources cannot be instantiated - a concrete sub-type must be used. Abstract datatypes and extensions cannot be used in an instance. Flagging a constraint structure as abstract conveys design intent but makes no difference to how the structure definition is handled. Note that inline declared elements that are given the type \&quot;Element\&quot; in the profile, but have children described, are anonymous concrete types that specialise Element. Abstract is not relevant for logical models.&quot;,
+        &quot;definition&quot;: &quot;Whether structure this definition describes is abstract or not  - that is, whether the structure is not intended to be instantiated. For Resources and Data types, abstract types will never be exchanged  between systems.&quot;,
+        &quot;comments&quot;: &quot;Abstract Resources cannot be instantiated - a concrete sub-type must be used. Abstract datatypes and extensions cannot be used in an instance. For logical models, the exact implication of \&quot;abstract\&quot; will rest with the author, depending how the logical model is used. Flagging a constraint structure as abstract conveys design intent but makes no difference to how the structure definition is handled. Note that inline declared elements that are given the type \&quot;Element\&quot; in the profile, but have children described, are anonymous concrete types that specialise Element.&quot;,
         &quot;min&quot;: 1,
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
@@ -2437,6 +2449,14 @@
             &quot;xpath&quot;: &quot;not(f:element[1][not(contains(f:path/@value, '.'))]/f:type)&quot;
           },
           {
+            &quot;key&quot;: &quot;sdf-20&quot;,
+            &quot;requirements&quot;: &quot;no slicing on root&quot;,
+            &quot;severity&quot;: &quot;error&quot;,
+            &quot;human&quot;: &quot;No slicing on the root element&quot;,
+            &quot;expression&quot;: &quot;element.first().slicing.empty()&quot;,
+            &quot;xpath&quot;: &quot;not(f:element[1]/f:slicing)&quot;
+          },
+          {
             &quot;key&quot;: &quot;sdf-8a&quot;,
             &quot;severity&quot;: &quot;error&quot;,
             &quot;human&quot;: &quot;In any differential, all the elements must be in the specified type&quot;,
@@ -2491,7 +2511,7 @@ of the specification.
 		<div class="container"><!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:33-0500. <a href="qa.html">QA Page</a>
+        © HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:28-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search</a> | 

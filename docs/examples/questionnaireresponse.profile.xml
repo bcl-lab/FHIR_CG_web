@@ -3,7 +3,7 @@
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="QuestionnaireResponse"/>
   <meta>
-    <lastUpdated value="2016-11-28T17:29:55.664-05:00"/>
+    <lastUpdated value="2016-12-07T14:18:58.982-05:00"/>
   </meta>
   <text>
     <status value="generated"/>
@@ -69,7 +69,7 @@
             <img src="data: image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAWCAYAAAABxvaqAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3wYeFzIs1vtcMQAAAB1pVFh0Q29tbWVudAAAAAAAQ3JlYXRlZCB3aXRoIEdJTVBkLmUHAAAAE0lEQVQI12P4//8/AxMDAwNdCABMPwMo2ctnoQAAAABJRU5ErkJggg==" alt="." style="background-color: inherit" class="hierarchy"/>
             <img src="data: image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAWCAYAAADJqhx8AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3wYeFzI3XJ6V3QAAAB1pVFh0Q29tbWVudAAAAAAAQ3JlYXRlZCB3aXRoIEdJTVBkLmUHAAAANklEQVQ4y+2RsQ0AIAzDav7/2VzQwoCY4iWbZSmo1QGoUgNMghvWaIejPQW/CrrNCylIwcOCDYfLNRcNer4SAAAAAElFTkSuQmCC" alt="." style="background-color: inherit" class="hierarchy"/>
             <img src="data: image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAadEVYdFNvZnR3YXJlAFBhaW50Lk5FVCB2My41LjEwMPRyoQAAAFxJREFUOE/NjEEOACEIA/0o/38GGw+agoXYeNnDJDCUDnd/gkoFKhWozJiZI3gLwY6rAgxhsPKTPUzycTl8lAryMyMsVQG6TFi6cHULyz8KOjC7OIQKlQpU3uPjAwhX2CCcGsgOAAAAAElFTkSuQmCC" alt="." style="background-color: white; background-color: inherit" title="Reference to another Resource" class="hierarchy"/> 
-            <span title="QuestionnaireResponse.basedOn : Identifies the order, proposal or plan that is fulfilled in whole or in part by this Questionnaire.">basedOn</span>
+            <span title="QuestionnaireResponse.basedOn : Identifies the order, proposal or plan that is fulfilled in whole or in part by this QuestionnaireResponse.">basedOn</span>
             <a name="QuestionnaireResponse.basedOn"> </a>
           </td>
           <td style="vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">
@@ -82,7 +82,7 @@
             <a href="referralrequest.html">ReferralRequest</a> | 
             <a href="careplan.html">CarePlan</a>)
           </td>
-          <td style="vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">Request fulfilled by this Questionnaire</td>
+          <td style="vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">Request fulfilled by this QuestionnaireResponse</td>
         </tr>
 
         <tr style="border: 0px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: white;">
@@ -255,12 +255,17 @@
             <span title="QuestionnaireResponse.item : Corresponds to a group or question item from the original questionnaire.">item</span>
             <a name="QuestionnaireResponse.item"> </a>
           </td>
-          <td style="vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy"/>
+          <td style="vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">
+            <span style="padding: 3px" title="This element has or is affected by some invariants">I</span>
+          </td>
           <td style="vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">0..*</td>
           <td style="vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">
             <a href="backboneelement.html">BackboneElement</a>
           </td>
-          <td style="vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">Groups and questions</td>
+          <td style="vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">Groups and questions
+            <br/>
+            <span style="font-style: italic" title="qrs-1">Nested item can&#39;t be beneath both item and answer</span>
+          </td>
         </tr>
 
         <tr style="border: 0px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: white;">
@@ -273,11 +278,28 @@
             <a name="QuestionnaireResponse.item.linkId"> </a>
           </td>
           <td style="vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy"/>
-          <td style="vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">0..1</td>
+          <td style="vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">1..1</td>
           <td style="vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">
             <a href="datatypes.html#string">string</a>
           </td>
-          <td style="vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">Corresponding item within Questionnaire</td>
+          <td style="vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">Pointer to specific item from Questionnaire</td>
+        </tr>
+
+        <tr style="border: 0px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: white;">
+          <td style="vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px; white-space: nowrap; background-image: url(data: image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAyAAAAACCAYAAACg/LjIAAAALElEQVR42u3QwQkAMAwDsezq/WdIO4XJQwa9DTdJpulv258AAMANIgAAADUPYAVAgAJ//usAAAAASUVORK5CYII=)" class="hierarchy">
+            <img src="data: image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAWCAYAAAABxvaqAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3wYeFzIs1vtcMQAAAB1pVFh0Q29tbWVudAAAAAAAQ3JlYXRlZCB3aXRoIEdJTVBkLmUHAAAAE0lEQVQI12P4//8/AxMDAwNdCABMPwMo2ctnoQAAAABJRU5ErkJggg==" alt="." style="background-color: inherit" class="hierarchy"/>
+            <img src="data: image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAWCAYAAADJqhx8AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3wYeFzIZgEiYEgAAAB1pVFh0Q29tbWVudAAAAAAAQ3JlYXRlZCB3aXRoIEdJTVBkLmUHAAAAIElEQVQ4y2P8//8/AyWAiYFCMGrAqAGjBowaMGoAAgAALL0DKYQ0DPIAAAAASUVORK5CYII=" alt="." style="background-color: inherit" class="hierarchy"/>
+            <img src="data: image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAWCAYAAADJqhx8AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3wYeFzI3XJ6V3QAAAB1pVFh0Q29tbWVudAAAAAAAQ3JlYXRlZCB3aXRoIEdJTVBkLmUHAAAANklEQVQ4y+2RsQ0AIAzDav7/2VzQwoCY4iWbZSmo1QGoUgNMghvWaIejPQW/CrrNCylIwcOCDYfLNRcNer4SAAAAAElFTkSuQmCC" alt="." style="background-color: inherit" class="hierarchy"/>
+            <img src="data: image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3gYBFzI0BrFQCwAAAERJREFUOMtj/P//PwMlgImBQjDwBrCcOnWKokBgYWBgYDCU+06W5i8MUggvnH/EOVJjAW4AuQHJ+O75LYqikXE0LzAAALePEntTkEoSAAAAAElFTkSuQmCC" alt="." style="background-color: white; background-color: inherit" title="Primitive Data Type" class="hierarchy"/> 
+            <span title="QuestionnaireResponse.item.definition : A reference to an [[[ElementDefinition]]] that provides the details for the item.">definition</span>
+            <a name="QuestionnaireResponse.item.definition"> </a>
+          </td>
+          <td style="vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy"/>
+          <td style="vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">0..1</td>
+          <td style="vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">
+            <a href="datatypes.html#uri">uri</a>
+          </td>
+          <td style="vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">ElementDefinition - details for the item</td>
         </tr>
 
         <tr style="border: 0px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: white;">
@@ -631,26 +653,29 @@
   <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm">
     <valueInteger value="2"/>
   </extension>
+  <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-wg">
+    <valueCode value="pc"/>
+  </extension>
   <url value="http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse"/>
   <name value="QuestionnaireResponse"/>
   <status value="draft"/>
   <publisher value="Health Level Seven International (Patient Care)"/>
   <contact>
     <telecom>
-      <system value="other"/>
+      <system value="url"/>
       <value value="http://hl7.org/fhir"/>
     </telecom>
   </contact>
   <contact>
     <telecom>
-      <system value="other"/>
+      <system value="url"/>
       <value value="http://www.hl7.org/Special/committees/patientcare/index.cfm"/>
     </telecom>
   </contact>
-  <date value="2016-11-28T17:29:55-05:00"/>
+  <date value="2016-12-07T14:18:58-05:00"/>
   <description value="Base StructureDefinition for QuestionnaireResponse Resource"/>
   <purpose value="To support structured, hierarchical registration of data gathered using digital forms and other questionnaires."/>
-  <fhirVersion value="1.7.0"/>
+  <fhirVersion value="1.8.0"/>
   <mapping>
     <identity value="rim"/>
     <uri value="http://hl7.org/v3"/>
@@ -914,8 +939,8 @@
     </element>
     <element id="QuestionnaireResponse.basedOn">
       <path value="QuestionnaireResponse.basedOn"/>
-      <short value="Request fulfilled by this Questionnaire"/>
-      <definition value="Identifies the order, proposal or plan that is fulfilled in whole or in part by this Questionnaire."/>
+      <short value="Request fulfilled by this QuestionnaireResponse"/>
+      <definition value="Identifies the order, proposal or plan that is fulfilled in whole or in part by this QuestionnaireResponse."/>
       <requirements value="Supports traceability of authorization and confirmation of action on recommendations."/>
       <alias value="order"/>
       <min value="0"/>
@@ -1001,6 +1026,7 @@
       <path value="QuestionnaireResponse.subject"/>
       <short value="The subject of the questions"/>
       <definition value="The subject of the questionnaire response.  This could be a patient, organization, practitioner, device, etc.  This is who/what the answers apply to, but is not necessarily the source of information."/>
+      <comments value="If the Questionnaire declared a subjectType, the resource pointed to by this element must be an instance of that type."/>
       <requirements value="The subject context must be known."/>
       <alias value="Patient"/>
       <alias value="Focus"/>
@@ -1140,6 +1166,7 @@
       <path value="QuestionnaireResponse.item"/>
       <short value="Groups and questions"/>
       <definition value="Corresponds to a group or question item from the original questionnaire."/>
+      <comments value="Groups cannot have answers and therefore must nest directly within item. When dealing with questions, nesting must occur within each answer because some questions may have multiple answers (and the nesting occurs for each answer)."/>
       <min value="0"/>
       <max value="*"/>
       <type>
@@ -1152,6 +1179,13 @@
         <expression value="children().count() &gt; id.count()"/>
         <xpath value="@value|f:*|h:div"/>
         <source value="Element"/>
+      </constraint>
+      <constraint>
+        <key value="qrs-1"/>
+        <severity value="error"/>
+        <human value="Nested item can&#39;t be beneath both item and answer"/>
+        <expression value="(answer.exists() and item.exists()).not()"/>
+        <xpath value="not(exists(f:answer) and exists(f:item))"/>
       </constraint>
       <mapping>
         <identity value="rim"/>
@@ -1227,10 +1261,10 @@
     </element>
     <element id="QuestionnaireResponse.item.linkId">
       <path value="QuestionnaireResponse.item.linkId"/>
-      <short value="Corresponding item within Questionnaire"/>
+      <short value="Pointer to specific item from Questionnaire"/>
       <definition value="Identifies the item from the Questionnaire that corresponds to this item in the QuestionnaireResponse resource."/>
       <requirements value="Items can repeat in the answers, so a direct 1..1 correspondence may not exist - requiring correspondence by identifier."/>
-      <min value="0"/>
+      <min value="1"/>
       <max value="1"/>
       <type>
         <code value="string"/>
@@ -1238,6 +1272,22 @@
       <mapping>
         <identity value="rim"/>
         <map value=".outboundRelationship[typeCode=DEFN].target[classCode=OBS, moodCode=DEFN]"/>
+      </mapping>
+    </element>
+    <element id="QuestionnaireResponse.item.definition">
+      <path value="QuestionnaireResponse.item.definition"/>
+      <short value="ElementDefinition - details for the item"/>
+      <definition value="A reference to an [ElementDefinition](elementdefinition.html) that provides the details for the item."/>
+      <comments value="The ElementDefinition must be in a [StructureDefinition](structuredefinition.html) or a [DataElement](dataelement.html), and must have a fragment identifier that identifies the specific data element by it\&#39;s id (Element.id). E.g. http://hl7.org/fhir/StructureDefinition/Observation#Observation.value[x]."/>
+      <requirements value="A common pattern is to define a set of data elements, and then build multiple different questionnaires for different circumstances to gather the data. This element provides traceability to the common definition."/>
+      <min value="0"/>
+      <max value="1"/>
+      <type>
+        <code value="uri"/>
+      </type>
+      <mapping>
+        <identity value="rim"/>
+        <map value="Not supported"/>
       </mapping>
     </element>
     <element id="QuestionnaireResponse.item.text">
@@ -1485,8 +1535,8 @@
     </element>
     <element id="QuestionnaireResponse.basedOn">
       <path value="QuestionnaireResponse.basedOn"/>
-      <short value="Request fulfilled by this Questionnaire"/>
-      <definition value="Identifies the order, proposal or plan that is fulfilled in whole or in part by this Questionnaire."/>
+      <short value="Request fulfilled by this QuestionnaireResponse"/>
+      <definition value="Identifies the order, proposal or plan that is fulfilled in whole or in part by this QuestionnaireResponse."/>
       <requirements value="Supports traceability of authorization and confirmation of action on recommendations."/>
       <alias value="order"/>
       <min value="0"/>
@@ -1572,6 +1622,7 @@
       <path value="QuestionnaireResponse.subject"/>
       <short value="The subject of the questions"/>
       <definition value="The subject of the questionnaire response.  This could be a patient, organization, practitioner, device, etc.  This is who/what the answers apply to, but is not necessarily the source of information."/>
+      <comments value="If the Questionnaire declared a subjectType, the resource pointed to by this element must be an instance of that type."/>
       <requirements value="The subject context must be known."/>
       <alias value="Patient"/>
       <alias value="Focus"/>
@@ -1711,11 +1762,19 @@
       <path value="QuestionnaireResponse.item"/>
       <short value="Groups and questions"/>
       <definition value="Corresponds to a group or question item from the original questionnaire."/>
+      <comments value="Groups cannot have answers and therefore must nest directly within item. When dealing with questions, nesting must occur within each answer because some questions may have multiple answers (and the nesting occurs for each answer)."/>
       <min value="0"/>
       <max value="*"/>
       <type>
         <code value="BackboneElement"/>
       </type>
+      <constraint>
+        <key value="qrs-1"/>
+        <severity value="error"/>
+        <human value="Nested item can&#39;t be beneath both item and answer"/>
+        <expression value="(answer.exists() and item.exists()).not()"/>
+        <xpath value="not(exists(f:answer) and exists(f:item))"/>
+      </constraint>
       <mapping>
         <identity value="rim"/>
         <map value=".outboundRelationship[typeCode=COMP].target[classCode=OBS, moodCode=EVN]"/>
@@ -1723,10 +1782,10 @@
     </element>
     <element id="QuestionnaireResponse.item.linkId">
       <path value="QuestionnaireResponse.item.linkId"/>
-      <short value="Corresponding item within Questionnaire"/>
+      <short value="Pointer to specific item from Questionnaire"/>
       <definition value="Identifies the item from the Questionnaire that corresponds to this item in the QuestionnaireResponse resource."/>
       <requirements value="Items can repeat in the answers, so a direct 1..1 correspondence may not exist - requiring correspondence by identifier."/>
-      <min value="0"/>
+      <min value="1"/>
       <max value="1"/>
       <type>
         <code value="string"/>
@@ -1734,6 +1793,22 @@
       <mapping>
         <identity value="rim"/>
         <map value=".outboundRelationship[typeCode=DEFN].target[classCode=OBS, moodCode=DEFN]"/>
+      </mapping>
+    </element>
+    <element id="QuestionnaireResponse.item.definition">
+      <path value="QuestionnaireResponse.item.definition"/>
+      <short value="ElementDefinition - details for the item"/>
+      <definition value="A reference to an [ElementDefinition](elementdefinition.html) that provides the details for the item."/>
+      <comments value="The ElementDefinition must be in a [StructureDefinition](structuredefinition.html) or a [DataElement](dataelement.html), and must have a fragment identifier that identifies the specific data element by it\&#39;s id (Element.id). E.g. http://hl7.org/fhir/StructureDefinition/Observation#Observation.value[x]."/>
+      <requirements value="A common pattern is to define a set of data elements, and then build multiple different questionnaires for different circumstances to gather the data. This element provides traceability to the common definition."/>
+      <min value="0"/>
+      <max value="1"/>
+      <type>
+        <code value="uri"/>
+      </type>
+      <mapping>
+        <identity value="rim"/>
+        <map value="Not supported"/>
       </mapping>
     </element>
     <element id="QuestionnaireResponse.item.text">

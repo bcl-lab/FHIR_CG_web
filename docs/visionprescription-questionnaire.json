@@ -9,8 +9,8 @@
       "status": "active",
       "description": "Type options for VisionPrescription.reason[x]",
       "expansion": {
-        "identifier": "urn:uuid:40eed36f-905e-4bfc-aac9-8573f15991d8",
-        "timestamp": "2016-11-28T17:33:15-05:00",
+        "identifier": "urn:uuid:dec58e6f-2921-4902-bf3d-54a4375444b3",
+        "timestamp": "2016-12-07T14:28:18-05:00",
         "contains": [
           {
             "system": "http://hl7.org/fhir/data-types",
@@ -32,7 +32,7 @@
     }
   ],
   "status": "draft",
-  "date": "2016-11-28T17:29:55-05:00",
+  "date": "2016-12-07T14:18:58-05:00",
   "publisher": "Health Level Seven International (Financial Management)",
   "item": [
     {
@@ -393,10 +393,6 @@
         {
           "extension": [
             {
-              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-minOccurs",
-              "valueInteger": 1
-            },
-            {
               "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs",
               "valueInteger": 1
             },
@@ -407,7 +403,7 @@
           ],
           "linkId": "VisionPrescription.status",
           "type": "group",
-          "required": true,
+          "required": false,
           "repeats": true,
           "item": [
             {
@@ -432,49 +428,6 @@
               "linkId": "VisionPrescription.status.value",
               "text": "status",
               "type": "choice",
-              "required": false,
-              "repeats": false
-            }
-          ]
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs",
-              "valueInteger": 1
-            },
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType",
-              "valueString": "datetime"
-            }
-          ],
-          "linkId": "VisionPrescription.dateWritten",
-          "type": "group",
-          "required": false,
-          "repeats": true,
-          "item": [
-            {
-              "extension": [
-                {
-                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
-                  "valueCodeableConcept": {
-                    "coding": [
-                      {
-                        "system": "http://hl7.org/fhir/questionnaire-item-control",
-                        "code": "flyover",
-                        "display": "Fly-over"
-                      }
-                    ]
-                  }
-                }
-              ],
-              "text": "The date (and perhaps time) when the prescription was written.",
-              "type": "display"
-            },
-            {
-              "linkId": "VisionPrescription.dateWritten.value",
-              "text": "When prescription was authorized",
-              "type": "dateTime",
               "required": false,
               "repeats": false
             }
@@ -544,59 +497,6 @@
               "valueString": "Reference"
             }
           ],
-          "linkId": "VisionPrescription.prescriber",
-          "type": "group",
-          "required": false,
-          "repeats": true,
-          "item": [
-            {
-              "extension": [
-                {
-                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
-                  "valueCodeableConcept": {
-                    "coding": [
-                      {
-                        "system": "http://hl7.org/fhir/questionnaire-item-control",
-                        "code": "flyover",
-                        "display": "Fly-over"
-                      }
-                    ]
-                  }
-                }
-              ],
-              "text": "The healthcare professional responsible for authorizing the prescription.",
-              "type": "display"
-            },
-            {
-              "extension": [
-                {
-                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-allowedResource",
-                  "valueCode": "Practitioner"
-                },
-                {
-                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-referenceFilter",
-                  "valueString": "subject=$subj&patient=$subj&encounter=$encounter"
-                }
-              ],
-              "linkId": "VisionPrescription.prescriber.value",
-              "text": "Who authorizes the vision product",
-              "type": "reference",
-              "required": false,
-              "repeats": false
-            }
-          ]
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs",
-              "valueInteger": 1
-            },
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType",
-              "valueString": "Reference"
-            }
-          ],
           "linkId": "VisionPrescription.encounter",
           "type": "group",
           "required": false,
@@ -633,6 +533,102 @@
               ],
               "linkId": "VisionPrescription.encounter.value",
               "text": "Created during encounter / admission / stay",
+              "type": "reference",
+              "required": false,
+              "repeats": false
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs",
+              "valueInteger": 1
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType",
+              "valueString": "datetime"
+            }
+          ],
+          "linkId": "VisionPrescription.dateWritten",
+          "type": "group",
+          "required": false,
+          "repeats": true,
+          "item": [
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://hl7.org/fhir/questionnaire-item-control",
+                        "code": "flyover",
+                        "display": "Fly-over"
+                      }
+                    ]
+                  }
+                }
+              ],
+              "text": "The date (and perhaps time) when the prescription was written.",
+              "type": "display"
+            },
+            {
+              "linkId": "VisionPrescription.dateWritten.value",
+              "text": "When prescription was authorized",
+              "type": "dateTime",
+              "required": false,
+              "repeats": false
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs",
+              "valueInteger": 1
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType",
+              "valueString": "Reference"
+            }
+          ],
+          "linkId": "VisionPrescription.prescriber",
+          "type": "group",
+          "required": false,
+          "repeats": true,
+          "item": [
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://hl7.org/fhir/questionnaire-item-control",
+                        "code": "flyover",
+                        "display": "Fly-over"
+                      }
+                    ]
+                  }
+                }
+              ],
+              "text": "The healthcare professional responsible for authorizing the prescription.",
+              "type": "display"
+            },
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-allowedResource",
+                  "valueCode": "Practitioner"
+                },
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-referenceFilter",
+                  "valueString": "subject=$subj&patient=$subj&encounter=$encounter"
+                }
+              ],
+              "linkId": "VisionPrescription.prescriber.value",
+              "text": "Who authorizes the vision product",
               "type": "reference",
               "required": false,
               "repeats": false
@@ -865,21 +861,18 @@
             {
               "extension": [
                 {
-                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-minOccurs",
-                  "valueInteger": 1
-                },
-                {
                   "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs",
                   "valueInteger": 1
                 },
                 {
                   "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType",
-                  "valueString": "Coding"
+                  "valueString": "CodeableConcept"
                 }
               ],
               "linkId": "VisionPrescription.dispense.product",
+              "text": "Product to be supplied",
               "type": "group",
-              "required": true,
+              "required": false,
               "repeats": true,
               "item": [
                 {
@@ -901,9 +894,16 @@
                   "type": "display"
                 },
                 {
-                  "linkId": "VisionPrescription.dispense.product.value",
-                  "text": "Product to be supplied",
+                  "linkId": "VisionPrescription.dispense.product.coding",
+                  "text": "code:",
                   "type": "open-choice",
+                  "required": false,
+                  "repeats": false
+                },
+                {
+                  "linkId": "VisionPrescription.dispense.product.text",
+                  "text": "text:",
+                  "type": "string",
                   "required": false,
                   "repeats": false
                 }
@@ -917,10 +917,11 @@
                 },
                 {
                   "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType",
-                  "valueString": "code"
+                  "valueString": "CodeableConcept"
                 }
               ],
               "linkId": "VisionPrescription.dispense.eye",
+              "text": "right | left",
               "type": "group",
               "required": false,
               "repeats": true,
@@ -944,9 +945,16 @@
                   "type": "display"
                 },
                 {
-                  "linkId": "VisionPrescription.dispense.eye.value",
-                  "text": "eye",
+                  "linkId": "VisionPrescription.dispense.eye.coding",
+                  "text": "code:",
                   "type": "choice",
+                  "required": false,
+                  "repeats": false
+                },
+                {
+                  "linkId": "VisionPrescription.dispense.eye.text",
+                  "text": "text:",
+                  "type": "string",
                   "required": false,
                   "repeats": false
                 }
@@ -1132,10 +1140,11 @@
                 },
                 {
                   "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType",
-                  "valueString": "code"
+                  "valueString": "CodeableConcept"
                 }
               ],
               "linkId": "VisionPrescription.dispense.base",
+              "text": "up | down | in | out",
               "type": "group",
               "required": false,
               "repeats": true,
@@ -1159,9 +1168,16 @@
                   "type": "display"
                 },
                 {
-                  "linkId": "VisionPrescription.dispense.base.value",
-                  "text": "base",
+                  "linkId": "VisionPrescription.dispense.base.coding",
+                  "text": "code:",
                   "type": "choice",
+                  "required": false,
+                  "repeats": false
+                },
+                {
+                  "linkId": "VisionPrescription.dispense.base.text",
+                  "text": "text:",
+                  "type": "string",
                   "required": false,
                   "repeats": false
                 }
@@ -1508,7 +1524,7 @@
                   "valueString": "string"
                 }
               ],
-              "linkId": "VisionPrescription.dispense.notes",
+              "linkId": "VisionPrescription.dispense.note",
               "type": "group",
               "required": false,
               "repeats": true,
@@ -1532,7 +1548,7 @@
                   "type": "display"
                 },
                 {
-                  "linkId": "VisionPrescription.dispense.notes.value",
+                  "linkId": "VisionPrescription.dispense.note.value",
                   "text": "Notes for coatings",
                   "type": "string",
                   "required": false,

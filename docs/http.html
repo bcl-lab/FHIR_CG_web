@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>Http - FHIR v1.7.0</title>
+  <title>Http - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -105,7 +105,7 @@
 
 <div class="col-9">
 
-<h2 class="self-link-parent"><span class="sectioncount">2.43.0<a name="2.43.0"> </a></span> RESTful API <a href="http.html#2.43.0" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h2>
+<h2 class="self-link-parent"><span class="sectioncount">2.44.0<a name="2.44.0"> </a></span> RESTful API <a href="http.html#2.44.0" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h2>
 <table class="cols"><tr><td id="wg"><a href="http://www.hl7.org/Special/committees/fiwg/index.cfm" _target="blank">FHIR Infrastructure <img src="external.png" style="text-align: baseline"/></a> Work Group</td><td id="fmm"><a href="resource.html#maturity">Maturity Level</a>: N/A</td><td id="ballot"><a href="help.html#status">Ballot Status</a>: <a href="history.html#pubs">STU 3</a></td></tr></table>
 
 <p>
@@ -163,7 +163,7 @@ The interactions on this page are defined like this:
  <li>The first word is the HTTP verb used for the interaction</li>
  <li>Content surrounded by [] is mandatory, and will be replaced by the string literal identified. Possible insertion values:
    <ul>
-     <li><code>base</code>: The <a href="#root">Service Root URL</a></li>
+     <li><code>base</code>: The <a href="#root">Service Base URL</a></li>
      <li><code>mime-type</code>: The <a href="#mime-type">Mime Type</a></li>
      <li><code>type</code>: The name of a resource type (e.g. &quot;Patient&quot;)</li>
      <li><code>id</code>: The <a href="resource.html#id">Logical Id</a> of a resource</li>
@@ -193,11 +193,11 @@ API defined, either by this specification or by implementers.
 
 <a name="root"> </a>
 <a name="general"> </a>
-<h3 class="self-link-parent"><span class="sectioncount">2.43.0.1</span> Service Root URL <a href="http.html#general" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h3>
+<h3 class="self-link-parent"><span class="sectioncount">2.44.0.1</span> Service Base URL <a href="http.html#general" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h3>
 <p>
-The Service Root URL is the address where all of the
+The Service Base URL is the address where all of the
 resources defined by this interface are found. The Service
-Root URL takes the form of
+Base URL takes the form of
 </p>
 <pre>
 http(s)://server{/path}
@@ -255,7 +255,8 @@ addresses have the same identity, and if both are served, they must both represe
 check that this is true. Note: the identity comparison for protocols other than http:/https: is undefined.
 </p>
 
-<h3 class="self-link-parent"><span class="sectioncount">2.43.0.2<a name="2.43.0.2"> </a></span> Resource Metadata and Versioning <a href="http.html#2.43.0.2" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h3>
+<a name="versioning"> </a>
+<h3 class="self-link-parent"><span class="sectioncount">2.44.0.2</span> Resource Metadata and Versioning <a href="http.html#versioning" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h3>
 <p>
 Each resource has an associated set of <a href="resource.html#metadata">resource metadata elements</a>. These map to the HTTP request and response using the following fields:
 </p>
@@ -270,7 +271,7 @@ Each resource has an associated set of <a href="resource.html#metadata">resource
 <pre>
 ETag: W/&quot;3141&quot;
 </pre>
-<h3 class="self-link-parent"><span class="sectioncount">2.43.0.3<a name="2.43.0.3"> </a></span> Security <a href="http.html#2.43.0.3" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h3>
+<h3 class="self-link-parent"><span class="sectioncount">2.44.0.3<a name="2.44.0.3"> </a></span> Security <a href="http.html#2.44.0.3" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h3>
 <p>
 Using HTTPS is optional, but all production exchange of healthcare data SHOULD use SSL and
 additional security as appropriate. See <a href="security.html#http">HTTP Security</a> for further information.
@@ -286,7 +287,7 @@ Note: to support browser-based client applications, recommend that servers SHOUL
 Experience shows that this is an area where ongoing issues may be expected as security holes are found and closed in an ongoing basis.
 </p>
 
-<h3 class="self-link-parent"><span class="sectioncount">2.43.0.4<a name="2.43.0.4"> </a></span> HTTP Status Codes <a href="http.html#2.43.0.4" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h3>
+<h3 class="self-link-parent"><span class="sectioncount">2.44.0.4<a name="2.44.0.4"> </a></span> HTTP Status Codes <a href="http.html#2.44.0.4" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h3>
 <p>
 This specification makes rules about the use of specific HTTP status codes
 in particular circumstances where the status codes SHALL map to particular
@@ -304,13 +305,13 @@ The OperationOutcome may be returned with any HTTP <code>4xx</code> or <code>5xx
 these errors may be generated by generic server frameworks underlying a FHIR server.
 </p>
 <a name="return"> </a>
-<h3 class="self-link-parent"><span class="sectioncount">2.43.0.5</span> Managing Return Content <a href="http.html#return" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h3>
+<h3 class="self-link-parent"><span class="sectioncount">2.44.0.5</span> Managing Return Content <a href="http.html#return" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h3>
 <p>
 In the interests of managing band-width, this specification allows clients
 to specify what kind of content to return.
 </p>
 <a name="cread"> </a>
-<h4 class="self-link-parent"><span class="sectioncount">2.43.0.5.1</span> conditional read <a href="http.html#cread" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h4>
+<h4 class="self-link-parent"><span class="sectioncount">2.44.0.5.1</span> conditional read <a href="http.html#cread" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h4>
 <p>
 Clients may use the <code>If-Modified-Since</code>, or <code>If-None-Match</code> HTTP header on a <code>read</code> request.
 If so, they MUST accept either a <code>304</code> Not Modified as a valid status code on the response (which means that the
@@ -323,7 +324,7 @@ Servers can return <code>304</code> Not Modified where content is unchanged sinc
 return the full content as normal. This optimisation is relevant in reducing bandwidth for caching purposes and servers are encouraged but
 not required to support this. If servers don't support conditional read, they just return the full content.
 </p>
-<h4 class="self-link-parent"><span class="sectioncount">2.43.0.5.2<a name="2.43.0.5.2"> </a></span> create/update/patch/transaction <a href="http.html#2.43.0.5.2" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h4>
+<h4 class="self-link-parent"><span class="sectioncount">2.44.0.5.2<a name="2.44.0.5.2"> </a></span> create/update/patch/transaction <a href="http.html#2.44.0.5.2" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h4>
 <p>
 These interactions are performed using <code>POST</code>, <code>PUT</code> or <code>PATCH</code>, and
 it may be appropriate for a server to return either only a status
@@ -355,7 +356,7 @@ always return a body that contains an <a href="operationoutcome.html">OperationO
 </p>
 
 <a name="mime-type"> </a>
-<h3 class="self-link-parent"><span class="sectioncount">2.43.0.6</span> Content Types and encodings <a href="http.html#mime-type" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h3>
+<h3 class="self-link-parent"><span class="sectioncount">2.44.0.6</span> Content Types and encodings <a href="http.html#mime-type" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h3>
 <p>
 The formal MIME-type for FHIR resources is <code>application/fhir+xml</code> or <code>application/fhir+json</code>.
 The correct mime type SHALL be used by clients and servers:
@@ -408,7 +409,7 @@ Binary resource</a>).
 </p>
 
 <a name="versioning"> </a>
-<h3 class="self-link-parent"><span class="sectioncount">2.43.0.7</span> Support for Versions <a href="http.html#versioning" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h3>
+<h3 class="self-link-parent"><span class="sectioncount">2.44.0.7</span> Support for Versions <a href="http.html#versioning" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h3>
 <p>
 Servers that support this API SHOULD provide full version support - that is, populate and track
 <code>versionId</code> correctly, support <code>vread</code>, and implement <a href="#versionaware">version aware updates</a>.
@@ -421,7 +422,14 @@ For this reason, servers are allowed to not provide versioning support and this 
 that versioning is supported. Clients may elect to only interact with servers that do provide full
 versioning support. Systems declare their support for versioning
 in their <a href="capabilitystatement-definitions.html#CapabilityStatement.rest.resource.versioning">Capability Statements</a>.
+Where they can indicate one of three levels for versioning support:
 </p>
+<ul>
+ <li><b>no-version</b>: Versioning and meta.version is not supported (server) or used (client)</li>
+ <li><b>versioned</b>: Versioning and meta.version is supported (server) or used (client)</li>
+ <li><b>versioned-update</b>:	Versioning and meta.version is supported, and version aware updates are used - Version ID must be correct for updates (server) or will be specified (If-match header) for updates (client)</li>
+</ul>
+ 
 <p>
 Server should always return the default timezone for <a href="search.html#date">date searches</a>
 in the HTTP Response headers using the Date header. Note: Servers are not required to have a
@@ -429,7 +437,7 @@ default timezone.
 </p>
 
 <a name="read"> </a>
-<h3 class="self-link-parent"><span class="sectioncount">2.43.0.8</span> read <a href="http.html#read" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h3>
+<h3 class="self-link-parent"><span class="sectioncount">2.44.0.8</span> read <a href="http.html#read" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h3>
 <p>
 The <code>read</code> interaction accesses the current contents of a resource. The interaction
 is performed by an HTTP <code>GET</code> command as shown:
@@ -471,7 +479,7 @@ to explicitly mark such resources.
 </p>
 
 <a name="vread"> </a>
-<h3 class="self-link-parent"><span class="sectioncount">2.43.0.9</span> vread <a href="http.html#vread" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h3>
+<h3 class="self-link-parent"><span class="sectioncount">2.44.0.9</span> vread <a href="http.html#vread" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h3>
 <p>
 The <code>vread</code> interaction preforms a version specific read of the resource. The interaction
 is performed by an HTTP <code>GET</code> command as shown:
@@ -503,7 +511,7 @@ history is not supported for the underlying resource type or instance.
 </p>
 
 <a name="update"> </a>
-<h3 class="self-link-parent"><span class="sectioncount">2.43.0.10</span> update <a href="http.html#update" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h3>
+<h3 class="self-link-parent"><span class="sectioncount">2.44.0.10</span> update <a href="http.html#update" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h3>
 <p>
 The <code>update</code> interaction creates a new current version for an existing resource or
 creates an initial version if no resource already exists for the given id.
@@ -564,7 +572,7 @@ Servers can choose whether or not to support client defined ids, and indicate su
 using <a href="capabilitystatement-definitions.html#CapabilityStatement.rest.resource.updateCreate">CapabilityStatement.rest.resource.updateCreate</a>.
 </p>
 
-<h4 class="self-link-parent"><span class="sectioncount">2.43.0.10.1<a name="2.43.0.10.1"> </a></span> Rejecting Updates <a href="http.html#2.43.0.10.1" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h4>
+<h4 class="self-link-parent"><span class="sectioncount">2.44.0.10.1<a name="2.44.0.10.1"> </a></span> Rejecting Updates <a href="http.html#2.44.0.10.1" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h4>
 <p>
 Servers are permitted to reject update interactions because of integrity concerns or other business rules, and return HTTP status codes accordingly (usually a <code>422</code>).
 </p>
@@ -587,7 +595,7 @@ For additional information on how systems may behave when processing updates, re
 </p>
 
 <a name="cond-update"> </a>
-<h4 class="self-link-parent"><span class="sectioncount">2.43.0.10.2</span> Conditional update <a href="http.html#cond-update" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h4>
+<h4 class="self-link-parent"><span class="sectioncount">2.44.0.10.2</span> Conditional update <a href="http.html#cond-update" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h4>
 <p>
 The conditional update interaction allows a client to update an existing resource based on some identification criteria,
 rather than by  <a href="resource.html#meta">logical id</a>. To accomplish this, the client issues a <code>PUT</code> as shown:
@@ -621,12 +629,13 @@ update should return an HTTP <code>400</code> error and an operation outcome.
 <a name="versionaware"> </a>
 <a name="concurrency"> </a>
 
-<h3 class="self-link-parent"><span class="sectioncount">2.43.0.11</span> Managing Resource Contention <a href="http.html#concurrency" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h3>
+<h3 class="self-link-parent"><span class="sectioncount">2.44.0.11</span> Managing Resource Contention <a href="http.html#concurrency" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h3>
 <p>
 <a href="http://www.w3.org/1999/04/Editing/">Lost Updates <img src="external.png" style="text-align: baseline"/></a>, where two clients update the same
 resource, and the second overwrites the updates of the first, can be prevented using a combination
 of the <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.19">ETag <img src="external.png" style="text-align: baseline"/></a> and
 <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.24">If-Match <img src="external.png" style="text-align: baseline"/></a> header.
+This is also known as 'Optimistic Locking'.
 </p>
 <p>
 To support this usage, servers SHOULD always return an <code>ETag</code> header with each resource:
@@ -664,7 +673,7 @@ status codes when no <code>If-Match</code> header is found.
 </p>
 
 <a name="patch"> </a>
-<h3 class="self-link-parent"><span class="sectioncount">2.43.0.12</span> patch <a href="http.html#patch" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h3>
+<h3 class="self-link-parent"><span class="sectioncount">2.44.0.12</span> patch <a href="http.html#patch" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h3>
 <p>
 As an alternative to updating an entire resource, clients can perform a patch operation.
 This can be useful when a client is seeking to minimise it's bandwidth utilization, or 
@@ -718,7 +727,7 @@ Operations. This may be addressed in a future version of the specification.
 </p>
  
 <a name="delete"> </a>
-<h3 class="self-link-parent"><span class="sectioncount">2.43.0.13</span> delete <a href="http.html#delete" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h3>
+<h3 class="self-link-parent"><span class="sectioncount">2.44.0.13</span> delete <a href="http.html#delete" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h3>
 <p>
 The <code>delete</code> interaction removes an existing resource. The interaction
 is performed by an HTTP <code>DELETE</code> command as shown:
@@ -762,7 +771,7 @@ Since deleted resources may be brought back to life, servers MAY include an ETag
 to allow version contention management when a resource is brought back to life.
 </p>
 
-<h4 class="self-link-parent"><span class="sectioncount">2.43.0.13.1<a name="2.43.0.13.1"> </a></span> Conditional delete <a href="http.html#2.43.0.13.1" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h4>
+<h4 class="self-link-parent"><span class="sectioncount">2.44.0.13.1<a name="2.44.0.13.1"> </a></span> Conditional delete <a href="http.html#2.44.0.13.1" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h4>
 <p>
 The conditional delete interaction allows a client to delete an existing resource based on some selection criteria,
 rather than by a specific <a href="resource.html#meta">logical id</a>. To accomplish this, the client issues an HTTP <code>DELETE</code> as shown:
@@ -793,7 +802,7 @@ delete should return an HTTP <code>400</code> error and an operation outcome.
 </p>
 
 <a name="create"> </a>
-<h3 class="self-link-parent"><span class="sectioncount">2.43.0.14</span> create <a href="http.html#create" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h3>
+<h3 class="self-link-parent"><span class="sectioncount">2.44.0.14</span> create <a href="http.html#create" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h3>
 <p>
 The <code>create</code> interaction creates a new resource in a server-assigned location. If the client
 wishes to have control over the id of a newly submitted resource, it should use the <a href="#update">update</a>
@@ -850,7 +859,7 @@ For additional information on how systems may behave when processing updates, re
 </p>
 
 <a name="ccreate"> </a>
-<h4 class="self-link-parent"><span class="sectioncount">2.43.0.14.1</span> Conditional create <a href="http.html#ccreate" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h4>
+<h4 class="self-link-parent"><span class="sectioncount">2.44.0.14.1</span> Conditional create <a href="http.html#ccreate" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h4>
 <p>
 The conditional <code>create</code> interaction allows a client to create a new resource only if some equivalent resource
 does not already exist on the server. The client defines what equivalence means in this case by supplying
@@ -885,7 +894,7 @@ create should return an HTTP <code>412</code> error and an operation outcome.
 
 
 <a name="search"> </a>
-<h3 class="self-link-parent"><span class="sectioncount">2.43.0.15</span> search <a href="http.html#search" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h3>
+<h3 class="self-link-parent"><span class="sectioncount">2.44.0.15</span> search <a href="http.html#search" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h3>
 <p>
 This interaction searches a set of resources based on some filter criteria. The interaction can be performed by several different HTTP commands.
 </p>
@@ -929,7 +938,7 @@ if one is sent it SHALL NOT include any errors, and it shall be marked with an <
 mode</a> of <code>include</code>.
 </p>
 <a name="vsearch"> </a>
-<h4 class="self-link-parent"><span class="sectioncount">2.43.0.15.1</span> Variant Searches <a href="http.html#vsearch" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h4>
+<h4 class="self-link-parent"><span class="sectioncount">2.44.0.15.1</span> Variant Searches <a href="http.html#vsearch" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h4>
 <p>
 To search a <a href="compartmentdefinition.html">compartment</a>, for either all possible resources or for a particular resource type, respectively:
 </p>
@@ -956,9 +965,9 @@ It's also possible to search across multiple resource types:
 <p>
 This is a request to search on both Condition and Observation. In this case,
 the only parameters that can be used are those defined for both Condition and Observation 
-(using <a href="searchparameter-definitions.html#SearchParameter.base">SearchParameter.base</a> - see <a href="searchparameter-registry.html#cross-resource">Cross-resource Search Parameters</a>),
-or the <a href="resource.html#search">parameters defined for all resources</a>. 
-It's also possible to search on all types at once:
+(using <a href="searchparameter-definitions.html#SearchParameter.base">SearchParameter.base</a> - see <a href="searchparameter-registry.html#common">Cross-resource Search Parameters</a>),
+or the <a href="resource.html#search">parameters defined for all resources</a>. If a search lists types not listed <code>SearchParameter.base</code> 
+for any of the parameters, this is an error, and a server SHOULD return a 400 status. It's also possible to search on all types at once:
 </p>
 <pre class="http">
   GET [base]?[parameters]{&amp;_format=[mime-type]}
@@ -969,7 +978,7 @@ can be used.
 </p>
 
 <a name="capabilities"> </a>
-<h3 class="self-link-parent"><span class="sectioncount">2.43.0.16</span> capabilities <a href="http.html#capabilities" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h3>
+<h3 class="self-link-parent"><span class="sectioncount">2.44.0.16</span> capabilities <a href="http.html#capabilities" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h3>
 <p>
 The <code>capabilities</code> interaction retrieves the server's Capability Statement that defines how it supports resources.
 The interaction is performed by an HTTP <code>GET</code> command as shown:
@@ -985,7 +994,7 @@ In addition, there is another method to get the capability statement, using the 
 </pre>
 <p>
 However as of STU3, this method is deprecated, and will be removed in a future version. Using OPTIONS like this
-is not conformant with HTTP, and creates challenges for <a href="http://enable-cors.org/">cross-origin resource sharing <img src="external.png" style="text-align: baseline"/></a> support).
+is not conformant with HTTP, and creates challenges for <a href="http://enable-cors.org/">cross-origin resource sharing <img src="external.png" style="text-align: baseline"/></a> support.
 </p>
 <p>
 Applications SHALL return a <a href="capabilitystatement.html">Capability Statement</a> that specifies which resource types and interactions are supported
@@ -1017,8 +1026,19 @@ All servers are required to support the <code>capabilities</code> interaction, b
 just like any other end-point.
 </p>
 
+<blockquote class="dstu-note">
+<a name="cap-st-note"> </a>
+<p>
+<b>Implementation Note:</b> In DSTU 2 and earlier, the resource that this interaction returned was named &quot;Conformance&quot;.
+Clients often connect to a server, and use the <code>capabilities</code> interaction to check whether they are version 
+and/or feature compatible with the server. Such clients should be able to process either a Conformance or a 
+CapabilityStatement resource.
+</p>
+</blockquote>
+
+
 <a name="transaction"> </a>
-<h3 class="self-link-parent"><span class="sectioncount">2.43.0.17</span> batch/transaction <a href="http.html#transaction" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h3>
+<h3 class="self-link-parent"><span class="sectioncount">2.44.0.17</span> batch/transaction <a href="http.html#transaction" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h3>
 <p>
 The <code>batch</code> and <code>transaction</code> interactions submit a set of actions to perform on a server in a single HTTP request/response.
 The actions may be performed independently as a &quot;batch&quot;, or as a single atomic &quot;transaction&quot; where
@@ -1059,11 +1079,12 @@ and <a href="#transactional-integrity">transactional integrity</a>.
 Examples:
 </p>
 <ul>
- <li><a href="bundle-transaction.html">Transaction</a></li>
- <li><a href="bundle-response.html">Matching Response</a></li>
+ <li><a href="bundle-transaction.html">Transaction Example</a> with <a href="bundle-response.html">Matching Response</a></li>
+ <li><a href="bundle-request-medsallergies.html">Batch request to fetch Meds &amp; Allergies</a> with <a href="bundle-response-medsallergies.html">Response</a></li>
+ <li><a href="bundle-request-simplesummary.html">Batch request to fetch simple Patient Summary</a> with <a href="bundle-response-simplesummary.html">Response</a></li>
 </ul>
 
-<h4 class="self-link-parent"><span class="sectioncount">2.43.0.17.1<a name="2.43.0.17.1"> </a></span> Batch Processing Rules <a href="http.html#2.43.0.17.1" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h4>
+<h4 class="self-link-parent"><span class="sectioncount">2.44.0.17.1<a name="2.44.0.17.1"> </a></span> Batch Processing Rules <a href="http.html#2.44.0.17.1" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h4>
 <p>
 For a <code>batch</code>, there SHALL be no interdependencies between the different entries
 in the Bundle that cause change on the server. The success or failure of one change SHOULD
@@ -1077,7 +1098,7 @@ Static references within a Bundle.entry.resource another to Bundle.entry.resourc
 created within the Batch are be non-conformant.
 </p>
 
-<h4 class="self-link-parent"><span class="sectioncount">2.43.0.17.2<a name="2.43.0.17.2"> </a></span> Transaction Processing Rules <a href="http.html#2.43.0.17.2" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h4>
+<h4 class="self-link-parent"><span class="sectioncount">2.44.0.17.2<a name="2.44.0.17.2"> </a></span> Transaction Processing Rules <a href="http.html#2.44.0.17.2" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h4>
 <p>
 For a <code>transaction</code>, servers SHALL either accept all actions and return a <code>200</code> OK, along with a
 response bundle (see below), or reject all resources and return an HTTP <code>400</code> or <code>500</code> type
@@ -1103,10 +1124,10 @@ then the transaction SHALL fail.
 <blockquote class="dstu-note">
 <a name="dstu-2"> </a>
 <p>
-<b>DSTU Note:</b>  clients are able to request that operations be executed as part of a transaction.
+<b>STU Note:</b>  clients are able to request that operations be executed as part of a transaction.
 Some transactions can cause side effects, such as the creation of new resources or other
 actions that may be difficult to fit into a transaction framework. Input regarding this
-issue is sought during the DSTU period.
+issue is sought during the STU period.
 </p>
 <p>
 Provide feedback <a href="http://wiki.hl7.org/index.php?title=FHIR_Specification_Feedback_(DSTU_2)">here <img src="external.png" style="text-align: baseline"/></a>.
@@ -1149,12 +1170,12 @@ logical <code>id</code> in the resource, or <code>fullUrl</code> on entries in t
 
 <p><b>Conditional References</b></p>
 <p>
-When constructing the batch, the client may not know the logical id of a resource, but it may
+When constructing the bundle, the client may not know the logical id of a resource, but it may
 know identifying information - e.g. an identifier. This situations arises commonly when building
 transactions from v2 messages. The client could resolve that identifier to a logical id using
 a search, but that would mean that the resolution to a logical id does not occur within the
 same transaction as the commit (as well as significantly complicating the client). Because
-of this, in a transaction (and only in a trasaction), references to resources may be replaced
+of this, in a transaction (and only in a transaction), references to resources may be replaced
 by a search URI that describes how to find the correct reference:
 </p>
 <div class="example">
@@ -1192,12 +1213,12 @@ When processing transactions, servers SHALL:
  <li>check all references for search URIs</li>
  <li>For search URIs, use the search to locate matching resources</li>
  <li>if there are no matches, or multiple matches, the transaction fails, and an error is returned to the user</li>
- <li>if there is a single match, the server replaces the search URI wth a reference to the matching resource</li>
+ <li>if there is a single match, the server replaces the search URI with a reference to the matching resource</li>
 </ul>
 
 
 <a name="transaction-response"> </a>
-<h4 class="self-link-parent"><span class="sectioncount">2.43.0.17.3</span> Batch/Transaction Response <a href="http.html#transaction-response" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h4>
+<h4 class="self-link-parent"><span class="sectioncount">2.44.0.17.3</span> Batch/Transaction Response <a href="http.html#transaction-response" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h4>
 
 <p>
 For a batch, or a successful transaction, the response the server SHALL
@@ -1217,7 +1238,7 @@ may be included in the entry, as specified by the <a href="#prefer">Prefer</a> h
 
 
 <a name="other-bundles"> </a>
-<h4 class="self-link-parent"><span class="sectioncount">2.43.0.17.4</span> Accepting Other bundle types <a href="http.html#other-bundles" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h4>
+<h4 class="self-link-parent"><span class="sectioncount">2.44.0.17.4</span> Accepting Other bundle types <a href="http.html#other-bundles" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h4>
 
 <p>
 A server may choose to accept bundle types other than <code>batch</code> or <code>transaction</code> when <code>POST</code>ed to the [base] URL.
@@ -1242,7 +1263,7 @@ the matching process to the server.
 
 
 <a name="history"> </a>
-<h3 class="self-link-parent"><span class="sectioncount">2.43.0.18</span> history <a href="http.html#history" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h3>
+<h3 class="self-link-parent"><span class="sectioncount">2.44.0.18</span> history <a href="http.html#history" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h3>
 <p>
 The history interaction retrieves the history of either a particular resource, all resources of
 a given type, or all resources supported by the system. These three variations of the history
@@ -1332,7 +1353,7 @@ Additional Notes about maintaining a history of resources:
 </ul>
 
 <a name="transactional-integrity"> </a>
-<h3 class="self-link-parent"><span class="sectioncount">2.43.0.19</span> Transactional Integrity <a href="http.html#transactional-integrity" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h3>
+<h3 class="self-link-parent"><span class="sectioncount">2.44.0.19</span> Transactional Integrity <a href="http.html#transactional-integrity" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h3>
 <p>
 When processing <a href="#create">create</a> and <a href="#update">update</a>
 interactions, a FHIR server is not obliged to accept the entire resource as it
@@ -1396,7 +1417,7 @@ a server to determine whether the client omitted the information
 because it wasn't supported (perhaps in this case) or whether it
 wishes to delete the information.
 </p>
-<h4 class="self-link-parent"><span class="sectioncount">2.43.0.19.1<a name="2.43.0.19.1"> </a></span> Conformance <a href="http.html#2.43.0.19.1" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h4>
+<h4 class="self-link-parent"><span class="sectioncount">2.44.0.19.1<a name="2.44.0.19.1"> </a></span> Conformance <a href="http.html#2.44.0.19.1" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h4>
 <p>
 Both client and server systems SHOULD clearly document how transaction
 integrity is handled.
@@ -1404,7 +1425,7 @@ integrity is handled.
 <blockquote class="dstu-note">
 <a name="dstu-4"> </a>
 <p>
-<b>DSTU Note:</b>  For now, the only way to document how transaction integrity
+<b>STU Note:</b>  For now, the only way to document how transaction integrity
 is handled is as text in the narrative portions of the <a href="capabilitystatement.html">CapabilityStatement</a>
 resource. Feedback during the Trial use period on what - if any - of this information
 should be computable is welcome.
@@ -1417,7 +1438,7 @@ Provide feedback <a href="http://wiki.hl7.org/index.php?title=FHIR_Specification
 
 
 <a name="paging"> </a>
-<h3 class="self-link-parent"><span class="sectioncount">2.43.0.20</span> Paging <a href="http.html#paging" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h3>
+<h3 class="self-link-parent"><span class="sectioncount">2.44.0.20</span> Paging <a href="http.html#paging" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h3>
 <p>
 If servers provide paging for the results of a <a href="#search">search</a> or <a href="#history">history</a> interaction,
 they SHALL conform to this method (adapted from <a href="https://tools.ietf.org/html/rfc5005">RFC 5005 (Feed
@@ -1481,7 +1502,7 @@ using  the <a href="bundle-definitions.html#Bundle.total">Bundle.total</a>.
 <p>Note that for search, where _include can be used to return additional related resources, the total number
 of resources in the feed may exceed the number indicated in totalResults.</p>
 
-<h3 class="self-link-parent"><span class="sectioncount">2.43.0.21<a name="2.43.0.21"> </a></span> Intermediaries <a href="http.html#2.43.0.21" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h3>
+<h3 class="self-link-parent"><span class="sectioncount">2.44.0.21<a name="2.44.0.21"> </a></span> Intermediaries <a href="http.html#2.44.0.21" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h3>
 <p>
 The HTTP protocol may be routed through an HTTP proxy such as
 squid. Such proxies are transparent to the applications, though
@@ -1514,7 +1535,7 @@ system troubleshooting.
 </p>
 
 <a name="hdata"> </a>
-<h3 class="self-link-parent"><span class="sectioncount">2.43.0.22</span> OMG hData RESTful Transport <a href="http.html#hdata" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h3>
+<h3 class="self-link-parent"><span class="sectioncount">2.44.0.22</span> OMG hData RESTful Transport <a href="http.html#hdata" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h3>
 
 <p>
 This RESTful specification described here is based on the <a href="http://www.omg.org/spec/HData/">OMG Health RESTful specification (HData) <img src="external.png" style="text-align: baseline"/></a>.
@@ -1530,7 +1551,7 @@ In this regard, FHIR functions as a Record Format Profile as described in that s
 </ul>
 
 <a name="summary"> </a>
-<h3 class="self-link-parent"><span class="sectioncount">2.43.0.23</span> Summary <a href="http.html#summary" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h3>
+<h3 class="self-link-parent"><span class="sectioncount">2.44.0.23</span> Summary <a href="http.html#summary" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h3>
 <p>
 These tables present a summary of the interactions described here.
 
@@ -1547,7 +1568,7 @@ Note that <i>all</i> requests may include an optional <code>Accept</code> header
 <tr><td><code>create</code></td>                     <td><code><code>/[type]</code></code></td>                        <td>POST</td>           <td>R</td>              <td>Resource</td> <td>O</td>         <td>O: <code>If-None-Exist</code></td></tr>
 <tr><td rowspan="2"><code>search</code></td>         <td><code>/[type]?</code></td>                       <td><code>GET</code></td>            <td>N/A</td>            <td>N/A</td>	  <td>N/A</td>			<td>N/A</td></tr>
 <tr><td><code>/[type]/_search?</code></td>               <td><code>POST</code></td>           <td><code>application/x-www-form-urlencoded</code></td>         <td>form data</td> <td>N/A</td>  <td>N/A</td></tr>
-<tr><td><code>search-all</code></td>     <td><code>/_search?</code></td>                      <td><code>GET</code></td>            <td>N/A</td>            <td>N/A</td>              <td>N/A</td>  <td>N/A</td></tr>
+<tr><td><code>search-all</code></td>     <td><code>?</code></td>                      <td><code>GET</code></td>            <td>N/A</td>            <td>N/A</td>              <td>N/A</td>  <td>N/A</td></tr>
 <tr><td><code>capabilities</code></td>               <td><code>/metadata</code></td>                      <td><code>GET</code></td>            <td>N/A</td>           <td>N/A</td>	   <td>N/A</td>			   	<td>N/A</td></tr>
 <tr><td><code>transaction</code></td>                <td><code>/</code></td>                              <td><code>POST</code></td>           <td>R</td>              <td><code>Bundle</code></td>    <td>O</td>        <td>N/A</td></tr>
 <tr><td><code>history</code></td>                    <td><code>/[type]/[id]/_history</code></td>          <td><code>GET</code></td>            <td>N/A</td>            <td>N/A</td>       <td>N/A</td>         <td>N/A</td></tr>
@@ -1605,7 +1626,7 @@ Additional codes that are likely are server errors and various codes associated 
 		<div class="container">  <!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:33-0500. <a href="qa.html">QA Page</a>
+        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:28-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search <img src="external.png" style="text-align: baseline"/></a> | 

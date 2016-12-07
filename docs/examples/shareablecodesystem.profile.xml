@@ -10,9 +10,9 @@
   <name value="Shareable CodeSystem"/>
   <status value="draft"/>
   <publisher value="HL7"/>
-  <date value="2016-11-28T17:29:55-05:00"/>
+  <date value="2016-12-07T14:18:58-05:00"/>
   <description value="Enforces the minimum information set for the value set metadata required by HL7 and other organisations that share and publish value sets"/>
-  <fhirVersion value="1.7.0"/>
+  <fhirVersion value="1.8.0"/>
   <mapping>
     <identity value="rim"/>
     <uri value="http://hl7.org/v3"/>
@@ -638,7 +638,7 @@
     </element>
     <element id="CodeSystem:shareablecodesystem.hierarchyMeaning">
       <path value="CodeSystem.hierarchyMeaning"/>
-      <short value="grouped-by | subsumes | part-of | classified-with"/>
+      <short value="grouped-by | is-a | part-of | classified-with"/>
       <definition value="The meaning of the heirarchy of concepts."/>
       <min value="0"/>
       <max value="1"/>
@@ -1498,7 +1498,7 @@
     <element id="CodeSystem:shareablecodesystem.concept.concept">
       <path value="CodeSystem.concept.concept"/>
       <short value="Child Concepts (is-a/contains/categorizes)"/>
-      <definition value="Defines children of a concept to produce a hierarchy of concepts. The nature of the relationships is variable (is-a/contains/categorizes) and can only be determined by examining the definitions of the concepts."/>
+      <definition value="Defines children of a concept to produce a hierarchy of concepts. The nature of the relationships is variable (is-a/contains/categorizes) - see hierarchyMeaning."/>
       <min value="0"/>
       <max value="*"/>
       <base>

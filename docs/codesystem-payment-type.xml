@@ -3,7 +3,7 @@
 <CodeSystem xmlns="http://hl7.org/fhir">
   <id value="payment-type"/>
   <meta>
-    <lastUpdated value="2016-11-28T17:29:55.664-05:00"/>
+    <lastUpdated value="2016-12-07T14:18:58.982-05:00"/>
     <profile value="http://hl7.org/fhir/StructureDefinition/codesystem-shareable-definition"/>
   </meta>
   <text>
@@ -24,6 +24,9 @@
             <b>Code</b>
           </td>
           <td>
+            <b>Display</b>
+          </td>
+          <td>
             <b>Definition</b>
           </td>
         </tr>
@@ -31,19 +34,22 @@
           <td>payment
             <a name="payment-type-payment"> </a>
           </td>
-          <td/>
+          <td>Payment</td>
+          <td>The amount is partial or complete settlement of the amounts due.</td>
         </tr>
         <tr>
           <td>adjustment
             <a name="payment-type-adjustment"> </a>
           </td>
-          <td/>
+          <td>Adjustment</td>
+          <td>The amount is an adjustment regarding claims already paid.</td>
         </tr>
         <tr>
           <td>advance
             <a name="payment-type-advance"> </a>
           </td>
-          <td/>
+          <td>Advance</td>
+          <td>The amount is an advance against future claims.</td>
         </tr>
       </table>
     </div>
@@ -53,14 +59,14 @@
     <system value="urn:ietf:rfc:3986"/>
     <value value="urn:oid:2.16.840.1.113883.4.642.1.333"/>
   </identifier>
-  <version value="1.7.0"/>
+  <version value="1.8.0"/>
   <name value="Payment Type Codes"/>
   <status value="draft"/>
   <experimental value="true"/>
   <publisher value="Financial Management"/>
   <contact>
     <telecom>
-      <system value="other"/>
+      <system value="url"/>
       <value value="http://hl7.org/fhir"/>
     </telecom>
   </contact>
@@ -71,11 +77,17 @@
   <content value="complete"/>
   <concept>
     <code value="payment"/>
+    <display value="Payment"/>
+    <definition value="The amount is partial or complete settlement of the amounts due."/>
   </concept>
   <concept>
     <code value="adjustment"/>
+    <display value="Adjustment"/>
+    <definition value="The amount is an adjustment regarding claims already paid."/>
   </concept>
   <concept>
     <code value="advance"/>
+    <display value="Advance"/>
+    <definition value="The amount is an advance against future claims."/>
   </concept>
 </CodeSystem>

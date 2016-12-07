@@ -12,13 +12,13 @@
   <publisher value="Health Level Seven International (Clinical Genomics)"/>
   <contact>
     <telecom>
-      <system value="other"/>
+      <system value="url"/>
       <value value="http://www.hl7.org/Special/committees/clingenomics"/>
     </telecom>
   </contact>
   <date value="2015-10-09"/>
   <description value="Describes how the DiagnosticReport resource is used to report structured genetic test results"/>
-  <fhirVersion value="1.7.0"/>
+  <fhirVersion value="1.8.0"/>
   <mapping>
     <identity value="v2"/>
     <uri value="http://hl7.org/v2"/>
@@ -237,7 +237,7 @@
     </element>
     <element id="DiagnosticReport:diagnosticreport-genetics.extension">
       <path value="DiagnosticReport.extension"/>
-      <slicing id="99">
+      <slicing id="93">
         <discriminator value="url"/>
         <ordered value="false"/>
         <rules value="open"/>
@@ -529,11 +529,11 @@
       <definition value="The subject of the report. Usually, but not always, this is a patient. However diagnostic services also perform analyses on specimens collected from a variety of other sources."/>
       <requirements value="SHALL know the subject context."/>
       <alias value="Patient"/>
-      <min value="1"/>
+      <min value="0"/>
       <max value="1"/>
       <base>
         <path value="DiagnosticReport.subject"/>
-        <min value="1"/>
+        <min value="0"/>
         <max value="1"/>
       </base>
       <type>
@@ -603,11 +603,11 @@
       <requirements value="Need to know where in the patient history to file/present this report."/>
       <alias value="Observation time"/>
       <alias value="Effective Time"/>
-      <min value="1"/>
+      <min value="0"/>
       <max value="1"/>
       <base>
         <path value="DiagnosticReport.effective[x]"/>
-        <min value="1"/>
+        <min value="0"/>
         <max value="1"/>
       </base>
       <type>
@@ -639,11 +639,11 @@
       <alias value="Date Created"/>
       <alias value="Date published"/>
       <alias value="Date Issued"/>
-      <min value="1"/>
+      <min value="0"/>
       <max value="1"/>
       <base>
         <path value="DiagnosticReport.issued"/>
-        <min value="1"/>
+        <min value="0"/>
         <max value="1"/>
       </base>
       <type>
@@ -674,11 +674,11 @@
       <alias value="Practitioner"/>
       <alias value="Department"/>
       <alias value="Company"/>
-      <min value="1"/>
+      <min value="0"/>
       <max value="*"/>
       <base>
         <path value="DiagnosticReport.performer"/>
-        <min value="1"/>
+        <min value="0"/>
         <max value="*"/>
       </base>
       <type>

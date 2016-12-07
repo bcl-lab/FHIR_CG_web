@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>RiskAssessment - FHIR v1.7.0</title>
+  <title>RiskAssessment - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -137,7 +137,7 @@
   <tr><td>Definition</td><td><p>The status of the RiskAssessment, using the same statuses as an Observation.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>1..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>ObservationStatus: <a href="valueset-observation-status.html">The status of the risk assessment; e.g. preliminary, final, amended, etc.</a> (<a href="terminologies.html#required">Required</a>)</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-observation-status.html">ObservationStatus</a> (<a href="terminologies.html#required">Required</a>)</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#code">code</a></td></tr>
   <tr><td colspan="2" class="structure"><a name="RiskAssessment.code"> </a><b>RiskAssessment.code</b></td></tr>
   <tr><td>Definition</td><td><p>The type of the risk assessment performed.</p>
@@ -189,7 +189,7 @@
   <tr><td>Definition</td><td><p>The algorithm, process or mechanism used to evaluate the risk.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td><a href="terminologies.html#unbound">RiskAssessmentMethod</a>: The mechanism or algorithm used to make the assessment; e.g. TIMI, PRISM, Cardiff Type 2 diabetes, etc.</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="terminologies.html#unbound">RiskAssessmentMethod</a>: </td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
   <tr><td>Requirements</td><td><p>The method can influence the results of the assessment.</p>
 </td></tr>
@@ -212,13 +212,13 @@
   <tr><td>Definition</td><td><p>One of the potential outcomes for the patient (e.g. remission, death,  a particular condition).</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>1..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td><a href="terminologies.html#unbound">RiskAssessmentOutcome</a>: The condition or other outcome; e.g. death, remission, amputation, infection, etc.</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="terminologies.html#unbound">RiskAssessmentOutcome</a>: </td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
   <tr><td colspan="2" class="structure"><a name="RiskAssessment.prediction.probability_x_"> </a><b>RiskAssessment.prediction.probability[x]</b></td></tr>
   <tr><td>Definition</td><td><p>How likely is the outcome (in the specified timeframe).</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>Risk Probability: <a href="valueset-risk-probability.html">The likelihood of the occurrence of a specified outcome</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-risk-probability.html">Risk Probability</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#decimal">decimal</a>|<a href="datatypes.html#Range">Range</a>|<a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
   <tr><td>[x] Note</td><td>See <a href="formats.html#choice">Choice of Data Types</a> for further information about how to use [x]</td></tr>
   <tr><td>Comments</td><td><p>If range is used, it represents the lower and upper bounds of certainty; e.g. 40-60%  Decimal values are expressed as percentages as well (max = 100).</p>
@@ -276,7 +276,7 @@
 		<div class="container">  <!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:33-0500. <a href="qa.html">QA Page</a>
+        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:28-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search <img src="external.png" style="text-align: baseline"/></a> | 

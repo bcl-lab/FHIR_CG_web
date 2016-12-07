@@ -18,11 +18,11 @@
      fhir:Identifier.value [ fhir:value "15014" ]
   ];
   fhir:VisionPrescription.status [ fhir:value "active"];
-  fhir:VisionPrescription.dateWritten [ fhir:value "2014-06-15"^^xsd:date];
   fhir:VisionPrescription.patient [
      fhir:link <http://hl7.org/fhir/Patient/example>;
      fhir:Reference.reference [ fhir:value "Patient/example" ]
   ];
+  fhir:VisionPrescription.dateWritten [ fhir:value "2014-06-15"^^xsd:date];
   fhir:VisionPrescription.prescriber [
      fhir:link <http://hl7.org/fhir/Practitioner/example>;
      fhir:Reference.reference [ fhir:value "Practitioner/example" ]
@@ -30,10 +30,18 @@
   fhir:VisionPrescription.dispense [
      fhir:index 0;
      fhir:VisionPrescription.dispense.product [
-       fhir:Coding.system [ fhir:value "http://hl7.org/fhir/ex-visionprescriptionproduct" ];
-       fhir:Coding.code [ fhir:value "contact" ]
+       fhir:CodeableConcept.coding [
+         fhir:index 0;
+         fhir:Coding.system [ fhir:value "http://hl7.org/fhir/ex-visionprescriptionproduct" ];
+         fhir:Coding.code [ fhir:value "contact" ]
+       ]
      ];
-     fhir:VisionPrescription.dispense.eye [ fhir:value "right" ];
+     fhir:VisionPrescription.dispense.eye [
+       fhir:CodeableConcept.coding [
+         fhir:index 0;
+         fhir:Coding.code [ fhir:value "right" ]
+       ]
+     ];
      fhir:VisionPrescription.dispense.cylinder [ fhir:value "-2.25"^^xsd:decimal ];
      fhir:VisionPrescription.dispense.axis [ fhir:value "160"^^xsd:int ];
      fhir:VisionPrescription.dispense.add [ fhir:value "1.75"^^xsd:decimal ];
@@ -51,10 +59,18 @@
   ], [
      fhir:index 1;
      fhir:VisionPrescription.dispense.product [
-       fhir:Coding.system [ fhir:value "http://hl7.org/fhir/ex-visionprescriptionproduct" ];
-       fhir:Coding.code [ fhir:value "contact" ]
+       fhir:CodeableConcept.coding [
+         fhir:index 0;
+         fhir:Coding.system [ fhir:value "http://hl7.org/fhir/ex-visionprescriptionproduct" ];
+         fhir:Coding.code [ fhir:value "contact" ]
+       ]
      ];
-     fhir:VisionPrescription.dispense.eye [ fhir:value "left" ];
+     fhir:VisionPrescription.dispense.eye [
+       fhir:CodeableConcept.coding [
+         fhir:index 0;
+         fhir:Coding.code [ fhir:value "left" ]
+       ]
+     ];
      fhir:VisionPrescription.dispense.cylinder [ fhir:value "-3.50"^^xsd:decimal ];
      fhir:VisionPrescription.dispense.axis [ fhir:value "160"^^xsd:int ];
      fhir:VisionPrescription.dispense.add [ fhir:value "1.75"^^xsd:decimal ];

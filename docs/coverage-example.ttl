@@ -18,20 +18,19 @@
      fhir:Identifier.value [ fhir:value "12345" ]
   ];
   fhir:Coverage.status [ fhir:value "active"];
-  fhir:Coverage.issuer [
-     fhir:link <http://hl7.org/fhir/Organization/2>;
-     fhir:Reference.reference [ fhir:value "Organization/2" ]
-  ];
-  fhir:Coverage.period [
-     fhir:Period.start [ fhir:value "2011-05-23"^^xsd:date ];
-     fhir:Period.end [ fhir:value "2012-05-23"^^xsd:date ]
-  ];
   fhir:Coverage.type [
-     fhir:Coding.system [ fhir:value "http://hl7.org/fhir/v3/ActCode" ];
-     fhir:Coding.code [ fhir:value "EHCPOL" ];
-     fhir:Coding.display [ fhir:value "extended healthcare" ]
+     fhir:CodeableConcept.coding [
+       fhir:index 0;
+       fhir:Coding.system [ fhir:value "http://hl7.org/fhir/v3/ActCode" ];
+       fhir:Coding.code [ fhir:value "EHCPOL" ];
+       fhir:Coding.display [ fhir:value "extended healthcare" ]
+     ]
   ];
-  fhir:Coverage.planholder [
+  fhir:Coverage.policyHolder [
+     fhir:link <http://benefitsinc.com/FHIR/Organization/CBI35>;
+     fhir:Reference.reference [ fhir:value "http://benefitsinc.com/FHIR/Organization/CBI35" ]
+  ];
+  fhir:Coverage.subscriber [
      fhir:link <http://hl7.org/fhir/Patient/4>;
      fhir:Reference.reference [ fhir:value "Patient/4" ]
   ];
@@ -40,20 +39,40 @@
      fhir:Reference.reference [ fhir:value "Patient/4" ]
   ];
   fhir:Coverage.relationship [
-     fhir:Coding.code [ fhir:value "self" ]
+     fhir:CodeableConcept.coding [
+       fhir:index 0;
+       fhir:Coding.code [ fhir:value "self" ]
+     ]
+  ];
+  fhir:Coverage.period [
+     fhir:Period.start [ fhir:value "2011-05-23"^^xsd:date ];
+     fhir:Period.end [ fhir:value "2012-05-23"^^xsd:date ]
+  ];
+  fhir:Coverage.payor [
+     fhir:index 0;
+     fhir:link <http://hl7.org/fhir/Organization/2>;
+     fhir:Reference.reference [ fhir:value "Organization/2" ]
   ];
   fhir:Coverage.group [
-     fhir:Coverage.group.plan [ fhir:value "CBI35" ];
-     fhir:Coverage.group.planDisplay [ fhir:value "Corporate Baker's Inc. Plan#35" ];
-     fhir:Coverage.group.subPlan [ fhir:value "123" ];
-     fhir:Coverage.group.subPlanDisplay [ fhir:value "Trainee Part-time Benefits" ]
+     fhir:Coverage.group.group [ fhir:value "CBI35" ];
+     fhir:Coverage.group.groupDisplay [ fhir:value "Corporate Baker's Inc. Local #35" ];
+     fhir:Coverage.group.subGroup [ fhir:value "123" ];
+     fhir:Coverage.group.subGroupDisplay [ fhir:value "Trainee Part-time Benefits" ];
+     fhir:Coverage.group.plan [ fhir:value "B37FC" ];
+     fhir:Coverage.group.planDisplay [ fhir:value "Full Coverage: Medical, Dental, Pharmacy, Vision, EHC" ];
+     fhir:Coverage.group.subPlan [ fhir:value "P7" ];
+     fhir:Coverage.group.subPlanDisplay [ fhir:value "Includes afterlife benefits" ];
+     fhir:Coverage.group.class [ fhir:value "SILVER" ];
+     fhir:Coverage.group.classDisplay [ fhir:value "Silver: Family Plan spouse only" ];
+     fhir:Coverage.group.subClass [ fhir:value "Tier2" ];
+     fhir:Coverage.group.subClassDisplay [ fhir:value "Low deductable, max $20 copay" ]
   ];
-  fhir:Coverage.dependent [ fhir:value "1"^^xsd:positiveInteger];
-  fhir:Coverage.sequence [ fhir:value "1"^^xsd:positiveInteger] .
-
-<http://hl7.org/fhir/Organization/2> a fhir:Organization .
+  fhir:Coverage.dependent [ fhir:value "0"];
+  fhir:Coverage.sequence [ fhir:value "9"] .
 
 <http://hl7.org/fhir/Patient/4> a fhir:Patient, fhir:Patient .
+
+<http://hl7.org/fhir/Organization/2> a fhir:Organization .
 
 # -------------------------------------------------------------------------------------
 

@@ -23,13 +23,13 @@ start=@<VisionPrescription> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
     fhir:VisionPrescription.identifier @<Identifier>*;  # Business identifier
     fhir:VisionPrescription.status @<code> AND
-    	{fhir:value @fhirvs:vision-status};  # active | cancelled | draft | 
+    	{fhir:value @fhirvs:fm-status}?;  # active | cancelled | draft | 
                                             # entered-in-error 
-    fhir:VisionPrescription.dateWritten @<dateTime>?;  # When prescription was authorized
     fhir:VisionPrescription.patient @<Reference>?;  # Who prescription is for
-    fhir:VisionPrescription.prescriber @<Reference>?;  # Who authorizes the vision product
     fhir:VisionPrescription.encounter @<Reference>?;  # Created during encounter / 
                                             # admission / stay 
+    fhir:VisionPrescription.dateWritten @<dateTime>?;  # When prescription was authorized
+    fhir:VisionPrescription.prescriber @<Reference>?;  # Who authorizes the vision product
     (                                       # Reason or indication for writing 
                                             # the prescription 
         fhir:VisionPrescription.reasonCodeableConcept @<CodeableConcept>  |
@@ -45,14 +45,14 @@ start=@<VisionPrescription> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:extension @<Extension>*;           # Additional Content defined by 
                                             # implementations 
     fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    fhir:VisionPrescription.dispense.product @<Coding>;  # Product to be supplied
-    fhir:VisionPrescription.dispense.eye @<code> AND
+    fhir:VisionPrescription.dispense.product @<CodeableConcept>?;  # Product to be supplied
+    fhir:VisionPrescription.dispense.eye @<CodeableConcept> AND
     	{fhir:value @fhirvs:vision-eye-codes}?;  # right | left
     fhir:VisionPrescription.dispense.sphere @<decimal>?;  # Lens sphere
     fhir:VisionPrescription.dispense.cylinder @<decimal>?;  # Lens cylinder
     fhir:VisionPrescription.dispense.axis @<integer>?;  # Lens axis
     fhir:VisionPrescription.dispense.prism @<decimal>?;  # Lens prism
-    fhir:VisionPrescription.dispense.base @<code> AND
+    fhir:VisionPrescription.dispense.base @<CodeableConcept> AND
     	{fhir:value @fhirvs:vision-base-codes}?;  # up | down | in | out
     fhir:VisionPrescription.dispense.add @<decimal>?;  # Lens add
     fhir:VisionPrescription.dispense.power @<decimal>?;  # Contact lens power
@@ -61,7 +61,7 @@ start=@<VisionPrescription> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:VisionPrescription.dispense.duration @<SimpleQuantity>?;  # Lens wear duration
     fhir:VisionPrescription.dispense.color @<string>?;  # Color required
     fhir:VisionPrescription.dispense.brand @<string>?;  # Brand required
-    fhir:VisionPrescription.dispense.notes @<string>?;  # Notes for coatings
+    fhir:VisionPrescription.dispense.note @<string>?;  # Notes for coatings
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -198,23 +198,6 @@ start=@<VisionPrescription> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
-# A reference to a code defined by a terminology system
-<Coding> CLOSED {
-    fhir:concept IRI?;
-    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
-    fhir:extension @<Extension>*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:Coding.system @<uri>?;             # Identity of the terminology system
-    fhir:Coding.version @<string>?;         # Version of the system - if relevant
-    fhir:Coding.code @<code>?;              # Symbol in syntax defined by the 
-                                            # system 
-    fhir:Coding.display @<string>?;         # Representation defined by the 
-                                            # system 
-    fhir:Coding.userSelected @<boolean>?;   # If this coding was chosen directly 
-                                            # by the user 
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
 # Primitive Type id
 <id> CLOSED {
     fhir:extension @<Extension>*;           # Additional Content defined by 
@@ -266,6 +249,23 @@ start=@<VisionPrescription> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
+# A reference to a code defined by a terminology system
+<Coding> CLOSED {
+    fhir:concept IRI?;
+    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
+    fhir:extension @<Extension>*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:Coding.system @<uri>?;             # Identity of the terminology system
+    fhir:Coding.version @<string>?;         # Version of the system - if relevant
+    fhir:Coding.code @<code>?;              # Symbol in syntax defined by the 
+                                            # system 
+    fhir:Coding.display @<string>?;         # Representation defined by the 
+                                            # system 
+    fhir:Coding.userSelected @<boolean>?;   # If this coding was chosen directly 
+                                            # by the user 
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
 # Primitive Type boolean
 <boolean> CLOSED {
     fhir:Element.id @<id>?;                 # xml:id (or equivalent in JSON)
@@ -279,17 +279,17 @@ start=@<VisionPrescription> AND {fhir:nodeRole [fhir:treeRoot]}
 
 #---------------------- Value Sets ------------------------
 
+# This value set includes STatus codes.
+fhirvs:fm-status ["active" "cancelled" "draft" "entered-in-error"]
+
 # A coded concept listing the base codes.
 fhirvs:vision-base-codes ["up" "down" "in" "out"]
 
-# A code specifying the state of the resource instance.
-fhirvs:vision-status ["active" "cancelled" "draft" "entered-in-error"]
+# Identifies the purpose for this identifier, if known .
+fhirvs:identifier-use ["usual" "official" "temp" "secondary"]
 
 # A coded concept listing the eye codes.
 fhirvs:vision-eye-codes ["right" "left"]
-
-# Identifies the purpose for this identifier, if known .
-fhirvs:identifier-use ["usual" "official" "temp" "secondary"]
 
 # The status of a resource narrative
 fhirvs:narrative-status ["generated" "extensions" "additional" "empty"]

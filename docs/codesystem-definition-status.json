@@ -2,18 +2,18 @@
   "resourceType": "CodeSystem",
   "id": "definition-status",
   "meta": {
-    "lastUpdated": "2016-11-28T17:29:55.664-05:00"
+    "lastUpdated": "2016-12-07T14:18:58.982-05:00"
   },
   "text": {
     "status": "generated",
-    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><h2>DefinitionStatus</h2><div><p>Codes identifying the stage lifecycle stage of a definition</p>\n</div><p>This code system http://hl7.org/fhir/definition-status defines the following codes:</p><table class=\"codes\"><tr><td><b>Code</b></td><td><b>Display</b></td><td><b>Definition</b></td></tr><tr><td>draft<a name=\"definition-status-draft\"> </a></td><td>Draft</td><td/></tr><tr><td>active<a name=\"definition-status-active\"> </a></td><td>Active</td><td/></tr><tr><td>withdrawn<a name=\"definition-status-withdrawn\"> </a></td><td>Suspended</td><td/></tr></table></div>"
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><h2>DefinitionStatus</h2><div><p>Codes identifying the stage lifecycle stage of a definition</p>\n</div><p>This code system http://hl7.org/fhir/definition-status defines the following codes:</p><table class=\"codes\"><tr><td><b>Code</b></td><td><b>Display</b></td><td><b>Definition</b></td></tr><tr><td>draft<a name=\"definition-status-draft\"> </a></td><td>Draft</td><td>The definition is in the design stage and is not yet considered to be &quot;ready for use&quot;</td></tr><tr><td>active<a name=\"definition-status-active\"> </a></td><td>Active</td><td>The definition is considered ready for use</td></tr><tr><td>withdrawn<a name=\"definition-status-withdrawn\"> </a></td><td>Withdrawn</td><td>The definition should no longer be used</td></tr><tr><td>unknown<a name=\"definition-status-unknown\"> </a></td><td>Unknown</td><td>The authoring system does not know which of the status values currently applies for this definition.</td></tr></table></div>"
   },
   "url": "http://hl7.org/fhir/definition-status",
   "identifier": {
     "system": "urn:ietf:rfc:3986",
     "value": "urn:oid:2.16.840.1.113883.4.642.1.926"
   },
-  "version": "1.7.0",
+  "version": "1.8.0",
   "name": "DefinitionStatus",
   "status": "draft",
   "experimental": false,
@@ -22,7 +22,7 @@
     {
       "telecom": [
         {
-          "system": "other",
+          "system": "url",
           "value": "http://hl7.org/fhir"
         },
         {
@@ -32,7 +32,7 @@
       ]
     }
   ],
-  "date": "2016-11-28T17:29:55-05:00",
+  "date": "2016-12-07T14:18:58-05:00",
   "description": "Codes identifying the stage lifecycle stage of a definition",
   "caseSensitive": true,
   "valueSet": "http://hl7.org/fhir/ValueSet/definition-status",
@@ -40,15 +40,23 @@
   "concept": [
     {
       "code": "draft",
-      "display": "Draft"
+      "display": "Draft",
+      "definition": "The definition is in the design stage and is not yet considered to be \"ready for use\""
     },
     {
       "code": "active",
-      "display": "Active"
+      "display": "Active",
+      "definition": "The definition is considered ready for use"
     },
     {
       "code": "withdrawn",
-      "display": "Suspended"
+      "display": "Withdrawn",
+      "definition": "The definition should no longer be used"
+    },
+    {
+      "code": "unknown",
+      "display": "Unknown",
+      "definition": "The authoring system does not know which of the status values currently applies for this definition."
     }
   ]
 }

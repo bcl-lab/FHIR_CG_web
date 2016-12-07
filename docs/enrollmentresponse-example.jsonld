@@ -25,14 +25,23 @@
   "EnrollmentResponse.status": {
     "code.value": "active"
   },
-  "EnrollmentResponse.requestReference": {
+  "EnrollmentResponse.request": {
     "Reference.reference": {
       "string.value": "http://www.BenefitsInc.com/fhir/eligibility/225476332402"
     },
     "Resource.reference": "http://www.BenefitsInc.com/fhir/eligibility/225476332402"
   },
   "EnrollmentResponse.outcome": {
-    "code.value": "complete"
+    "CodeableConcept.coding": [
+      {
+        "Coding.system": {
+          "uri.value": "http://hl7.org/fhir/remittance-outcome"
+        },
+        "Coding.code": {
+          "code.value": "complete"
+        }
+      }
+    ]
   },
   "EnrollmentResponse.disposition": {
     "string.value": "Dependant added to policy."
@@ -40,7 +49,7 @@
   "EnrollmentResponse.created": {
     "dateTime.value": "2014-08-16"
   },
-  "EnrollmentResponse.organizationReference": {
+  "EnrollmentResponse.organization": {
     "Reference.reference": {
       "string.value": "Organization/2"
     },

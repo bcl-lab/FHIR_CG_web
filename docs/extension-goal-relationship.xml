@@ -3,19 +3,19 @@
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="goal-relationship"/>
   <url value="http://hl7.org/fhir/StructureDefinition/goal-relationship"/>
-  <name value="Goals related to this one"/>
+  <name value="Goals related to this Goal"/>
   <title value="related goal"/>
   <status value="draft"/>
   <publisher value="Health Level Seven, Inc. - FHIR WG"/>
   <contact>
     <telecom>
-      <system value="other"/>
+      <system value="url"/>
       <value value="http://hl7.org/special/committees/fhir"/>
     </telecom>
   </contact>
   <date value="2014-12-07"/>
   <description value="Establishes a relationship between this goal and other goals."/>
-  <fhirVersion value="1.7.0"/>
+  <fhirVersion value="1.8.0"/>
   <mapping>
     <identity value="rim"/>
     <uri value="http://hl7.org/v3"/>
@@ -29,9 +29,9 @@
   <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Extension"/>
   <derivation value="constraint"/>
   <snapshot>
-    <element id="Extension:goalsrelatedtothisone">
+    <element id="Extension:goalsrelatedtothisgoal">
       <path value="Extension"/>
-      <short value="Goals related to this one"/>
+      <short value="Goals related to this Goal"/>
       <definition value="Establishes a relationship between this goal and other goals."/>
       <min value="0"/>
       <max value="*"/>
@@ -58,7 +58,7 @@
         <source value="Extension"/>
       </constraint>
     </element>
-    <element id="Extension:goalsrelatedtothisone.id">
+    <element id="Extension:goalsrelatedtothisgoal.id">
       <path value="Extension.id"/>
       <representation value="xmlAttr"/>
       <short value="xml:id (or equivalent in JSON)"/>
@@ -78,9 +78,9 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Extension:goalsrelatedtothisone.extension">
+    <element id="Extension:goalsrelatedtothisgoal.extension">
       <path value="Extension.extension"/>
-      <slicing id="79">
+      <slicing id="75">
         <discriminator value="url"/>
         <ordered value="false"/>
         <rules value="open"/>
@@ -98,7 +98,7 @@
         <code value="Extension"/>
       </type>
     </element>
-    <element id="Extension:goalsrelatedtothisone.extension:type">
+    <element id="Extension:goalsrelatedtothisgoal.extension:type">
       <path value="Extension.extension"/>
       <sliceName value="type"/>
       <short value="predecessor | successor | replacement | other"/>
@@ -114,7 +114,7 @@
         <code value="Extension"/>
       </type>
     </element>
-    <element id="Extension:goalsrelatedtothisone.extension:type.id">
+    <element id="Extension:goalsrelatedtothisgoal.extension:type.id">
       <path value="Extension.extension.id"/>
       <representation value="xmlAttr"/>
       <short value="xml:id (or equivalent in JSON)"/>
@@ -134,7 +134,7 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Extension:goalsrelatedtothisone.extension:type.extension:extension">
+    <element id="Extension:goalsrelatedtothisgoal.extension:type.extension:extension">
       <path value="Extension.extension.extension"/>
       <sliceName value="extension"/>
       <short value="Extension"/>
@@ -150,7 +150,7 @@
         <code value="Extension"/>
       </type>
     </element>
-    <element id="Extension:goalsrelatedtothisone.extension:type.url">
+    <element id="Extension:goalsrelatedtothisgoal.extension:type.url">
       <path value="Extension.extension.url"/>
       <representation value="xmlAttr"/>
       <short value="identifies the meaning of the extension"/>
@@ -172,7 +172,7 @@
         <map value="N/A"/>
       </mapping>
     </element>
-    <element id="Extension:goalsrelatedtothisone.extension:type.valueCodeableConcept">
+    <element id="Extension:goalsrelatedtothisgoal.extension:type.valueCodeableConcept">
       <path value="Extension.extension.valueCodeableConcept"/>
       <short value="Value of extension"/>
       <definition value="Value of extension - may be a resource or one of a constrained set of the data types (see Extensibility in the spec for list)."/>
@@ -187,7 +187,7 @@
         <code value="CodeableConcept"/>
       </type>
       <binding>
-        <strength value="required"/>
+        <strength value="extensible"/>
         <description value="Types of relationships between two goals"/>
         <valueSetReference>
           <reference value="http://hl7.org/fhir/ValueSet/goal-relationship-type"/>
@@ -198,7 +198,7 @@
         <map value="N/A"/>
       </mapping>
     </element>
-    <element id="Extension:goalsrelatedtothisone.extension:target">
+    <element id="Extension:goalsrelatedtothisgoal.extension:target">
       <path value="Extension.extension"/>
       <sliceName value="target"/>
       <short value="Related goal"/>
@@ -214,7 +214,7 @@
         <code value="Extension"/>
       </type>
     </element>
-    <element id="Extension:goalsrelatedtothisone.extension:target.id">
+    <element id="Extension:goalsrelatedtothisgoal.extension:target.id">
       <path value="Extension.extension.id"/>
       <representation value="xmlAttr"/>
       <short value="xml:id (or equivalent in JSON)"/>
@@ -234,7 +234,7 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Extension:goalsrelatedtothisone.extension:target.extension:extension">
+    <element id="Extension:goalsrelatedtothisgoal.extension:target.extension:extension">
       <path value="Extension.extension.extension"/>
       <sliceName value="extension"/>
       <short value="Extension"/>
@@ -250,7 +250,7 @@
         <code value="Extension"/>
       </type>
     </element>
-    <element id="Extension:goalsrelatedtothisone.extension:target.url">
+    <element id="Extension:goalsrelatedtothisgoal.extension:target.url">
       <path value="Extension.extension.url"/>
       <representation value="xmlAttr"/>
       <short value="identifies the meaning of the extension"/>
@@ -272,7 +272,7 @@
         <map value="N/A"/>
       </mapping>
     </element>
-    <element id="Extension:goalsrelatedtothisone.extension:target.valueReference">
+    <element id="Extension:goalsrelatedtothisgoal.extension:target.valueReference">
       <path value="Extension.extension.valueReference"/>
       <short value="Value of extension"/>
       <definition value="Value of extension - may be a resource or one of a constrained set of the data types (see Extensibility in the spec for list)."/>
@@ -292,7 +292,7 @@
         <map value="N/A"/>
       </mapping>
     </element>
-    <element id="Extension:goalsrelatedtothisone.url">
+    <element id="Extension:goalsrelatedtothisgoal.url">
       <path value="Extension.url"/>
       <representation value="xmlAttr"/>
       <short value="identifies the meaning of the extension"/>
@@ -314,7 +314,7 @@
         <map value="N/A"/>
       </mapping>
     </element>
-    <element id="Extension:goalsrelatedtothisone.value[x]">
+    <element id="Extension:goalsrelatedtothisgoal.value[x]">
       <path value="Extension.value[x]"/>
       <short value="Value of extension"/>
       <definition value="Value of extension - may be a resource or one of a constrained set of the data types (see Extensibility in the spec for list)."/>
@@ -446,14 +446,14 @@
     </element>
   </snapshot>
   <differential>
-    <element id="Extension:goalsrelatedtothisone">
+    <element id="Extension:goalsrelatedtothisgoal">
       <path value="Extension"/>
-      <short value="Goals related to this one"/>
+      <short value="Goals related to this Goal"/>
       <definition value="Establishes a relationship between this goal and other goals."/>
       <min value="0"/>
       <max value="*"/>
     </element>
-    <element id="Extension:goalsrelatedtothisone.extension:type">
+    <element id="Extension:goalsrelatedtothisgoal.extension:type">
       <path value="Extension.extension"/>
       <sliceName value="type"/>
       <short value="predecessor | successor | replacement | other"/>
@@ -464,33 +464,33 @@
         <code value="Extension"/>
       </type>
     </element>
-    <element id="Extension:goalsrelatedtothisone.extension:type.extension:extension">
+    <element id="Extension:goalsrelatedtothisgoal.extension:type.extension:extension">
       <path value="Extension.extension.extension"/>
       <sliceName value="extension"/>
       <max value="0"/>
     </element>
-    <element id="Extension:goalsrelatedtothisone.extension:type.url">
+    <element id="Extension:goalsrelatedtothisgoal.extension:type.url">
       <path value="Extension.extension.url"/>
       <type>
         <code value="uri"/>
       </type>
       <fixedUri value="type"/>
     </element>
-    <element id="Extension:goalsrelatedtothisone.extension:type.value[x]">
+    <element id="Extension:goalsrelatedtothisgoal.extension:type.value[x]">
       <path value="Extension.extension.value[x]"/>
       <min value="1"/>
       <type>
         <code value="CodeableConcept"/>
       </type>
       <binding>
-        <strength value="required"/>
+        <strength value="extensible"/>
         <description value="Types of relationships between two goals"/>
         <valueSetReference>
           <reference value="http://hl7.org/fhir/ValueSet/goal-relationship-type"/>
         </valueSetReference>
       </binding>
     </element>
-    <element id="Extension:goalsrelatedtothisone.extension:target">
+    <element id="Extension:goalsrelatedtothisgoal.extension:target">
       <path value="Extension.extension"/>
       <sliceName value="target"/>
       <short value="Related goal"/>
@@ -501,19 +501,19 @@
         <code value="Extension"/>
       </type>
     </element>
-    <element id="Extension:goalsrelatedtothisone.extension:target.extension:extension">
+    <element id="Extension:goalsrelatedtothisgoal.extension:target.extension:extension">
       <path value="Extension.extension.extension"/>
       <sliceName value="extension"/>
       <max value="0"/>
     </element>
-    <element id="Extension:goalsrelatedtothisone.extension:target.url">
+    <element id="Extension:goalsrelatedtothisgoal.extension:target.url">
       <path value="Extension.extension.url"/>
       <type>
         <code value="uri"/>
       </type>
       <fixedUri value="target"/>
     </element>
-    <element id="Extension:goalsrelatedtothisone.extension:target.value[x]">
+    <element id="Extension:goalsrelatedtothisgoal.extension:target.value[x]">
       <path value="Extension.extension.value[x]"/>
       <min value="1"/>
       <type>
@@ -521,14 +521,14 @@
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Goal"/>
       </type>
     </element>
-    <element id="Extension:goalsrelatedtothisone.url">
+    <element id="Extension:goalsrelatedtothisgoal.url">
       <path value="Extension.url"/>
       <type>
         <code value="uri"/>
       </type>
       <fixedUri value="http://hl7.org/fhir/StructureDefinition/goal-relationship"/>
     </element>
-    <element id="Extension:goalsrelatedtothisone.value[x]">
+    <element id="Extension:goalsrelatedtothisgoal.value[x]">
       <path value="Extension.value[x]"/>
       <min value="0"/>
       <max value="0"/>

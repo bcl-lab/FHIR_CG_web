@@ -3,7 +3,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>Capabilitystatement-base.json - FHIR v1.7.0</title>
+  <title>Capabilitystatement-base.json - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -123,17 +123,17 @@
     &quot;div&quot;: &quot;&lt;div&gt;!-- Snipped for Brevity --&gt;&lt;/div&gt;&quot;
   },
   &quot;url&quot;: &quot;http://hl7.org/fhir/CapabilityStatement/base&quot;,
-  &quot;version&quot;: &quot;1.7.0-10208&quot;,
+  &quot;version&quot;: &quot;1.8.0-10529&quot;,
   &quot;name&quot;: &quot;Base FHIR Capability Statement (Full)&quot;,
   &quot;status&quot;: &quot;draft&quot;,
   &quot;experimental&quot;: true,
-  &quot;date&quot;: &quot;2016-11-28T17:29:55-05:00&quot;,
+  &quot;date&quot;: &quot;2016-12-07T14:18:58-05:00&quot;,
   &quot;publisher&quot;: &quot;FHIR Project Team&quot;,
   &quot;contact&quot;: [
     {
       &quot;telecom&quot;: [
         {
-          &quot;system&quot;: &quot;other&quot;,
+          &quot;system&quot;: &quot;url&quot;,
           &quot;value&quot;: &quot;http://hl7.org/fhir&quot;
         }
       ]
@@ -144,7 +144,7 @@
   &quot;software&quot;: {
     &quot;name&quot;: &quot;Insert your softwware name here...&quot;
   },
-  &quot;fhirVersion&quot;: &quot;1.7.0&quot;,
+  &quot;fhirVersion&quot;: &quot;1.8.0&quot;,
   &quot;acceptUnknown&quot;: &quot;both&quot;,
   &quot;format&quot;: [
     &quot;xml&quot;,
@@ -324,6 +324,9 @@
           &quot;referencePolicy&quot;: [
             &quot;literal&quot;,
             &quot;logical&quot;
+          ],
+          &quot;searchRevInclude&quot;: [
+            &quot;Task.definition-ref&quot;
           ],
           &quot;searchParam&quot;: [
             {
@@ -1208,6 +1211,12 @@
           ],
           &quot;searchParam&quot;: [
             {
+              &quot;name&quot;: &quot;identifier&quot;,
+              &quot;definition&quot;: &quot;http://hl7.org/fhir/SearchParameter/bundle-identifier&quot;,
+              &quot;type&quot;: &quot;token&quot;,
+              &quot;documentation&quot;: &quot;Persistent identifier for the bundle&quot;
+            },
+            {
               &quot;name&quot;: &quot;composition&quot;,
               &quot;definition&quot;: &quot;http://hl7.org/fhir/SearchParameter/bundle-composition&quot;,
               &quot;type&quot;: &quot;reference&quot;,
@@ -1379,6 +1388,12 @@
               &quot;definition&quot;: &quot;http://hl7.org/fhir/SearchParameter/capabilitystatement-event&quot;,
               &quot;type&quot;: &quot;token&quot;,
               &quot;documentation&quot;: &quot;Event code in a capability statement&quot;
+            },
+            {
+              &quot;name&quot;: &quot;guide&quot;,
+              &quot;definition&quot;: &quot;http://hl7.org/fhir/SearchParameter/capabilitystatement-guide&quot;,
+              &quot;type&quot;: &quot;uri&quot;,
+              &quot;documentation&quot;: &quot;Implementation Guide supported&quot;
             },
             {
               &quot;name&quot;: &quot;status&quot;,
@@ -1807,14 +1822,14 @@
           ],
           &quot;searchInclude&quot;: [
             &quot;ClaimResponse.request&quot;,
-            &quot;ClaimResponse.organization&quot;
+            &quot;ClaimResponse.insurer&quot;
           ],
           &quot;searchParam&quot;: [
             {
               &quot;name&quot;: &quot;identifier&quot;,
               &quot;definition&quot;: &quot;http://hl7.org/fhir/SearchParameter/claimresponse-identifier&quot;,
               &quot;type&quot;: &quot;token&quot;,
-              &quot;documentation&quot;: &quot;The identity of the insurer&quot;
+              &quot;documentation&quot;: &quot;The identity of the claimresponse&quot;
             },
             {
               &quot;name&quot;: &quot;request&quot;,
@@ -1829,10 +1844,10 @@
               &quot;documentation&quot;: &quot;The contents of the disposition message&quot;
             },
             {
-              &quot;name&quot;: &quot;paymentdate&quot;,
-              &quot;definition&quot;: &quot;http://hl7.org/fhir/SearchParameter/claimresponse-paymentdate&quot;,
-              &quot;type&quot;: &quot;date&quot;,
-              &quot;documentation&quot;: &quot;The expected paymentDate&quot;
+              &quot;name&quot;: &quot;insurer&quot;,
+              &quot;definition&quot;: &quot;http://hl7.org/fhir/SearchParameter/claimresponse-insurer&quot;,
+              &quot;type&quot;: &quot;reference&quot;,
+              &quot;documentation&quot;: &quot;The organization who generated this resource&quot;
             },
             {
               &quot;name&quot;: &quot;created&quot;,
@@ -1841,10 +1856,10 @@
               &quot;documentation&quot;: &quot;The creation date&quot;
             },
             {
-              &quot;name&quot;: &quot;organization&quot;,
-              &quot;definition&quot;: &quot;http://hl7.org/fhir/SearchParameter/claimresponse-organization&quot;,
-              &quot;type&quot;: &quot;reference&quot;,
-              &quot;documentation&quot;: &quot;The organization who generated this resource&quot;
+              &quot;name&quot;: &quot;payment-date&quot;,
+              &quot;definition&quot;: &quot;http://hl7.org/fhir/SearchParameter/claimresponse-payment-date&quot;,
+              &quot;type&quot;: &quot;date&quot;,
+              &quot;documentation&quot;: &quot;The expected paymentDate&quot;
             },
             {
               &quot;name&quot;: &quot;outcome&quot;,
@@ -1973,7 +1988,7 @@
               &quot;name&quot;: &quot;action&quot;,
               &quot;definition&quot;: &quot;http://hl7.org/fhir/SearchParameter/clinicalimpression-action&quot;,
               &quot;type&quot;: &quot;reference&quot;,
-              &quot;documentation&quot;: &quot;Actions taken during assessment&quot;
+              &quot;documentation&quot;: &quot;Action taken as part of assessment procedure&quot;
             },
             {
               &quot;name&quot;: &quot;finding-ref&quot;,
@@ -3332,9 +3347,13 @@
             &quot;logical&quot;
           ],
           &quot;searchInclude&quot;: [
-            &quot;Coverage.issuer&quot;,
-            &quot;Coverage.planholder&quot;,
+            &quot;Coverage.policyholder&quot;,
+            &quot;Coverage.subscriber&quot;,
+            &quot;Coverage.payor&quot;,
             &quot;Coverage.beneficiary&quot;
+          ],
+          &quot;searchRevInclude&quot;: [
+            &quot;ExplanationOfBenefit.coverage&quot;
           ],
           &quot;searchParam&quot;: [
             {
@@ -3344,10 +3363,22 @@
               &quot;documentation&quot;: &quot;The primary identifier of the insured and the coverage&quot;
             },
             {
+              &quot;name&quot;: &quot;policyholder&quot;,
+              &quot;definition&quot;: &quot;http://hl7.org/fhir/SearchParameter/coverage-policyholder&quot;,
+              &quot;type&quot;: &quot;reference&quot;,
+              &quot;documentation&quot;: &quot;Reference to the policyholder&quot;
+            },
+            {
               &quot;name&quot;: &quot;subgroup&quot;,
               &quot;definition&quot;: &quot;http://hl7.org/fhir/SearchParameter/coverage-subgroup&quot;,
               &quot;type&quot;: &quot;string&quot;,
               &quot;documentation&quot;: &quot;Sub-group identifier&quot;
+            },
+            {
+              &quot;name&quot;: &quot;subscriber&quot;,
+              &quot;definition&quot;: &quot;http://hl7.org/fhir/SearchParameter/coverage-subscriber&quot;,
+              &quot;type&quot;: &quot;reference&quot;,
+              &quot;documentation&quot;: &quot;Reference to the subscriber&quot;
             },
             {
               &quot;name&quot;: &quot;subplan&quot;,
@@ -3362,22 +3393,16 @@
               &quot;documentation&quot;: &quot;The kind of coverage (health plan, auto, Workers Compensation)&quot;
             },
             {
-              &quot;name&quot;: &quot;issuer&quot;,
-              &quot;definition&quot;: &quot;http://hl7.org/fhir/SearchParameter/coverage-issuer&quot;,
-              &quot;type&quot;: &quot;reference&quot;,
-              &quot;documentation&quot;: &quot;The identity of the insurer&quot;
-            },
-            {
               &quot;name&quot;: &quot;sequence&quot;,
               &quot;definition&quot;: &quot;http://hl7.org/fhir/SearchParameter/coverage-sequence&quot;,
-              &quot;type&quot;: &quot;number&quot;,
+              &quot;type&quot;: &quot;string&quot;,
               &quot;documentation&quot;: &quot;Sequence number&quot;
             },
             {
-              &quot;name&quot;: &quot;planholder&quot;,
-              &quot;definition&quot;: &quot;http://hl7.org/fhir/SearchParameter/coverage-planholder&quot;,
+              &quot;name&quot;: &quot;payor&quot;,
+              &quot;definition&quot;: &quot;http://hl7.org/fhir/SearchParameter/coverage-payor&quot;,
               &quot;type&quot;: &quot;reference&quot;,
-              &quot;documentation&quot;: &quot;Reference to the planholder&quot;
+              &quot;documentation&quot;: &quot;The identity of the insurer or party paying for services&quot;
             },
             {
               &quot;name&quot;: &quot;beneficiary&quot;,
@@ -3406,7 +3431,7 @@
             {
               &quot;name&quot;: &quot;dependent&quot;,
               &quot;definition&quot;: &quot;http://hl7.org/fhir/SearchParameter/coverage-dependent&quot;,
-              &quot;type&quot;: &quot;number&quot;,
+              &quot;type&quot;: &quot;string&quot;,
               &quot;documentation&quot;: &quot;Dependent number&quot;
             },
             {
@@ -3730,6 +3755,7 @@
             &quot;Media.subject&quot;,
             &quot;Media.patient&quot;,
             &quot;MedicationAdministration.device&quot;,
+            &quot;MedicationRequest.requester&quot;,
             &quot;MessageHeader.target&quot;,
             &quot;Observation.subject&quot;,
             &quot;Observation.patient&quot;,
@@ -4020,8 +4046,7 @@
             &quot;DeviceUseRequest.device&quot;
           ],
           &quot;searchRevInclude&quot;: [
-            &quot;CarePlan.activityreference&quot;,
-            &quot;ClinicalImpression.action&quot;
+            &quot;CarePlan.activityreference&quot;
           ],
           &quot;searchParam&quot;: [
             {
@@ -4466,16 +4491,22 @@
               &quot;documentation&quot;: &quot;Encounter or Episode during which request was created&quot;
             },
             {
+              &quot;name&quot;: &quot;priority&quot;,
+              &quot;definition&quot;: &quot;http://hl7.org/fhir/SearchParameter/diagnosticrequest-priority&quot;,
+              &quot;type&quot;: &quot;token&quot;,
+              &quot;documentation&quot;: &quot;routine | urgent | asap | stat&quot;
+            },
+            {
+              &quot;name&quot;: &quot;intent&quot;,
+              &quot;definition&quot;: &quot;http://hl7.org/fhir/SearchParameter/diagnosticrequest-intent&quot;,
+              &quot;type&quot;: &quot;token&quot;,
+              &quot;documentation&quot;: &quot;proposal | plan | original-order |reflex-order&quot;
+            },
+            {
               &quot;name&quot;: &quot;based-on&quot;,
               &quot;definition&quot;: &quot;http://hl7.org/fhir/SearchParameter/diagnosticrequest-based-on&quot;,
               &quot;type&quot;: &quot;reference&quot;,
               &quot;documentation&quot;: &quot;Plan/proposal/order fulfilled by this request&quot;
-            },
-            {
-              &quot;name&quot;: &quot;stage&quot;,
-              &quot;definition&quot;: &quot;http://hl7.org/fhir/SearchParameter/diagnosticrequest-stage&quot;,
-              &quot;type&quot;: &quot;token&quot;,
-              &quot;documentation&quot;: &quot;proposal | plan | original-order |reflex-order&quot;
             },
             {
               &quot;name&quot;: &quot;patient&quot;,
@@ -4999,7 +5030,7 @@
           ],
           &quot;searchInclude&quot;: [
             &quot;EligibilityResponse.request&quot;,
-            &quot;EligibilityResponse.organization&quot;,
+            &quot;EligibilityResponse.insurer&quot;,
             &quot;EligibilityResponse.request-organization&quot;,
             &quot;EligibilityResponse.request-provider&quot;
           ],
@@ -5023,16 +5054,16 @@
               &quot;documentation&quot;: &quot;The contents of the disposition message&quot;
             },
             {
+              &quot;name&quot;: &quot;insurer&quot;,
+              &quot;definition&quot;: &quot;http://hl7.org/fhir/SearchParameter/eligibilityresponse-insurer&quot;,
+              &quot;type&quot;: &quot;reference&quot;,
+              &quot;documentation&quot;: &quot;The organization which generated this resource&quot;
+            },
+            {
               &quot;name&quot;: &quot;created&quot;,
               &quot;definition&quot;: &quot;http://hl7.org/fhir/SearchParameter/eligibilityresponse-created&quot;,
               &quot;type&quot;: &quot;date&quot;,
               &quot;documentation&quot;: &quot;The creation date&quot;
-            },
-            {
-              &quot;name&quot;: &quot;organization&quot;,
-              &quot;definition&quot;: &quot;http://hl7.org/fhir/SearchParameter/eligibilityresponse-organization&quot;,
-              &quot;type&quot;: &quot;reference&quot;,
-              &quot;documentation&quot;: &quot;The organization which generated this resource&quot;
             },
             {
               &quot;name&quot;: &quot;request-organization&quot;,
@@ -5111,6 +5142,7 @@
             &quot;Encounter.condition&quot;,
             &quot;Encounter.patient&quot;,
             &quot;Encounter.location&quot;,
+            &quot;Encounter.service-provider&quot;,
             &quot;Encounter.indication&quot;
           ],
           &quot;searchRevInclude&quot;: [
@@ -5138,6 +5170,7 @@
             &quot;RequestGroup.context&quot;,
             &quot;RequestGroup.encounter&quot;,
             &quot;RiskAssessment.encounter&quot;,
+            &quot;Task.context&quot;,
             &quot;VisionPrescription.encounter&quot;
           ],
           &quot;searchParam&quot;: [
@@ -5244,6 +5277,12 @@
               &quot;documentation&quot;: &quot;Location the encounter takes place&quot;
             },
             {
+              &quot;name&quot;: &quot;service-provider&quot;,
+              &quot;definition&quot;: &quot;http://hl7.org/fhir/SearchParameter/encounter-service-provider&quot;,
+              &quot;type&quot;: &quot;reference&quot;,
+              &quot;documentation&quot;: &quot;The custodian organization of this Encounter record&quot;
+            },
+            {
               &quot;name&quot;: &quot;indication&quot;,
               &quot;definition&quot;: &quot;http://hl7.org/fhir/SearchParameter/encounter-indication&quot;,
               &quot;type&quot;: &quot;reference&quot;,
@@ -5317,6 +5356,13 @@
           ],
           &quot;searchInclude&quot;: [
             &quot;Endpoint.organization&quot;
+          ],
+          &quot;searchRevInclude&quot;: [
+            &quot;HealthcareService.endpoint&quot;,
+            &quot;Location.endpoint&quot;,
+            &quot;Organization.endpoint&quot;,
+            &quot;Practitioner.endpoint&quot;,
+            &quot;PractitionerRole.endpoint&quot;
           ],
           &quot;searchParam&quot;: [
             {
@@ -5404,8 +5450,12 @@
             &quot;logical&quot;
           ],
           &quot;searchInclude&quot;: [
-            &quot;EnrollmentRequest.patient-reference&quot;,
-            &quot;EnrollmentRequest.subject-reference&quot;
+            &quot;EnrollmentRequest.subject&quot;,
+            &quot;EnrollmentRequest.patient&quot;,
+            &quot;EnrollmentRequest.organization&quot;
+          ],
+          &quot;searchRevInclude&quot;: [
+            &quot;EnrollmentResponse.request&quot;
           ],
           &quot;searchParam&quot;: [
             {
@@ -5415,28 +5465,22 @@
               &quot;documentation&quot;: &quot;The business identifier of the Enrollment&quot;
             },
             {
-              &quot;name&quot;: &quot;patient-reference&quot;,
-              &quot;definition&quot;: &quot;http://hl7.org/fhir/SearchParameter/enrollmentrequest-patient-reference&quot;,
+              &quot;name&quot;: &quot;subject&quot;,
+              &quot;definition&quot;: &quot;http://hl7.org/fhir/SearchParameter/enrollmentrequest-subject&quot;,
               &quot;type&quot;: &quot;reference&quot;,
               &quot;documentation&quot;: &quot;The party to be enrolled&quot;
             },
             {
-              &quot;name&quot;: &quot;subject-identifier&quot;,
-              &quot;definition&quot;: &quot;http://hl7.org/fhir/SearchParameter/enrollmentrequest-subject-identifier&quot;,
-              &quot;type&quot;: &quot;token&quot;,
-              &quot;documentation&quot;: &quot;The party to be enrolled&quot;
-            },
-            {
-              &quot;name&quot;: &quot;subject-reference&quot;,
-              &quot;definition&quot;: &quot;http://hl7.org/fhir/SearchParameter/enrollmentrequest-subject-reference&quot;,
+              &quot;name&quot;: &quot;patient&quot;,
+              &quot;definition&quot;: &quot;http://hl7.org/fhir/SearchParameter/enrollmentrequest-patient&quot;,
               &quot;type&quot;: &quot;reference&quot;,
               &quot;documentation&quot;: &quot;The party to be enrolled&quot;
             },
             {
-              &quot;name&quot;: &quot;patient-identifier&quot;,
-              &quot;definition&quot;: &quot;http://hl7.org/fhir/SearchParameter/enrollmentrequest-patient-identifier&quot;,
-              &quot;type&quot;: &quot;token&quot;,
-              &quot;documentation&quot;: &quot;The party to be enrolled&quot;
+              &quot;name&quot;: &quot;organization&quot;,
+              &quot;definition&quot;: &quot;http://hl7.org/fhir/SearchParameter/enrollmentrequest-organization&quot;,
+              &quot;type&quot;: &quot;reference&quot;,
+              &quot;documentation&quot;: &quot;The organization who generated this resource&quot;
             }
           ]
         },
@@ -5486,12 +5530,28 @@
             &quot;literal&quot;,
             &quot;logical&quot;
           ],
+          &quot;searchInclude&quot;: [
+            &quot;EnrollmentResponse.request&quot;,
+            &quot;EnrollmentResponse.organization&quot;
+          ],
           &quot;searchParam&quot;: [
             {
               &quot;name&quot;: &quot;identifier&quot;,
               &quot;definition&quot;: &quot;http://hl7.org/fhir/SearchParameter/enrollmentresponse-identifier&quot;,
               &quot;type&quot;: &quot;token&quot;,
               &quot;documentation&quot;: &quot;The business identifier of the EnrollmentResponse&quot;
+            },
+            {
+              &quot;name&quot;: &quot;request&quot;,
+              &quot;definition&quot;: &quot;http://hl7.org/fhir/SearchParameter/enrollmentresponse-request&quot;,
+              &quot;type&quot;: &quot;reference&quot;,
+              &quot;documentation&quot;: &quot;The reference to the claim&quot;
+            },
+            {
+              &quot;name&quot;: &quot;organization&quot;,
+              &quot;definition&quot;: &quot;http://hl7.org/fhir/SearchParameter/enrollmentresponse-organization&quot;,
+              &quot;type&quot;: &quot;reference&quot;,
+              &quot;documentation&quot;: &quot;The organization who generated this resource&quot;
             }
           ]
         },
@@ -5562,7 +5622,8 @@
             &quot;ReferralRequest.context&quot;,
             &quot;RequestGroup.context&quot;,
             &quot;RequestGroup.encounter&quot;,
-            &quot;RiskAssessment.encounter&quot;
+            &quot;RiskAssessment.encounter&quot;,
+            &quot;Task.context&quot;
           ],
           &quot;searchParam&quot;: [
             {
@@ -5771,6 +5832,7 @@
             &quot;logical&quot;
           ],
           &quot;searchInclude&quot;: [
+            &quot;ExplanationOfBenefit.coverage&quot;,
             &quot;ExplanationOfBenefit.provider&quot;,
             &quot;ExplanationOfBenefit.patient&quot;,
             &quot;ExplanationOfBenefit.organization&quot;,
@@ -5778,6 +5840,12 @@
             &quot;ExplanationOfBenefit.facility&quot;
           ],
           &quot;searchParam&quot;: [
+            {
+              &quot;name&quot;: &quot;coverage&quot;,
+              &quot;definition&quot;: &quot;http://hl7.org/fhir/SearchParameter/explanationofbenefit-coverage&quot;,
+              &quot;type&quot;: &quot;reference&quot;,
+              &quot;documentation&quot;: &quot;The plan under which the claim was adjudicated&quot;
+            },
             {
               &quot;name&quot;: &quot;identifier&quot;,
               &quot;definition&quot;: &quot;http://hl7.org/fhir/SearchParameter/explanationofbenefit-identifier&quot;,
@@ -6181,6 +6249,7 @@
             &quot;List.patient&quot;,
             &quot;Media.subject&quot;,
             &quot;Media.patient&quot;,
+            &quot;MedicationStatement.subject&quot;,
             &quot;Observation.subject&quot;,
             &quot;Observation.patient&quot;,
             &quot;Procedure.subject&quot;,
@@ -6363,6 +6432,7 @@
             &quot;logical&quot;
           ],
           &quot;searchInclude&quot;: [
+            &quot;HealthcareService.endpoint&quot;,
             &quot;HealthcareService.organization&quot;,
             &quot;HealthcareService.location&quot;
           ],
@@ -6397,6 +6467,12 @@
               &quot;definition&quot;: &quot;http://hl7.org/fhir/SearchParameter/healthcareservice-servicetype&quot;,
               &quot;type&quot;: &quot;token&quot;,
               &quot;documentation&quot;: &quot;The type of service provided by this healthcare service&quot;
+            },
+            {
+              &quot;name&quot;: &quot;endpoint&quot;,
+              &quot;definition&quot;: &quot;http://hl7.org/fhir/SearchParameter/healthcareservice-endpoint&quot;,
+              &quot;type&quot;: &quot;reference&quot;,
+              &quot;documentation&quot;: &quot;Technical endpoints providing access to services operated for the location&quot;
             },
             {
               &quot;name&quot;: &quot;organization&quot;,
@@ -7411,6 +7487,7 @@
           ],
           &quot;searchInclude&quot;: [
             &quot;Location.partof&quot;,
+            &quot;Location.endpoint&quot;,
             &quot;Location.organization&quot;
           ],
           &quot;searchRevInclude&quot;: [
@@ -7502,6 +7579,12 @@
               &quot;definition&quot;: &quot;http://hl7.org/fhir/SearchParameter/location-address-country&quot;,
               &quot;type&quot;: &quot;string&quot;,
               &quot;documentation&quot;: &quot;A country specified in an address&quot;
+            },
+            {
+              &quot;name&quot;: &quot;endpoint&quot;,
+              &quot;definition&quot;: &quot;http://hl7.org/fhir/SearchParameter/location-endpoint&quot;,
+              &quot;type&quot;: &quot;reference&quot;,
+              &quot;documentation&quot;: &quot;Technical endpoints providing access to services operated for the location&quot;
             },
             {
               &quot;name&quot;: &quot;organization&quot;,
@@ -8256,7 +8339,7 @@
             &quot;logical&quot;
           ],
           &quot;searchInclude&quot;: [
-            &quot;MedicationRequest.prescriber&quot;,
+            &quot;MedicationRequest.requester&quot;,
             &quot;MedicationRequest.intended-dispenser&quot;,
             &quot;MedicationRequest.patient&quot;,
             &quot;MedicationRequest.context&quot;,
@@ -8270,8 +8353,8 @@
           ],
           &quot;searchParam&quot;: [
             {
-              &quot;name&quot;: &quot;prescriber&quot;,
-              &quot;definition&quot;: &quot;http://hl7.org/fhir/SearchParameter/medicationrequest-prescriber&quot;,
+              &quot;name&quot;: &quot;requester&quot;,
+              &quot;definition&quot;: &quot;http://hl7.org/fhir/SearchParameter/medicationrequest-requester&quot;,
               &quot;type&quot;: &quot;reference&quot;,
               &quot;documentation&quot;: &quot;Returns prescriptions prescribed by this prescriber&quot;
             },
@@ -8378,7 +8461,7 @@
             &quot;logical&quot;
           ],
           &quot;searchInclude&quot;: [
-            &quot;MedicationStatement.patient&quot;,
+            &quot;MedicationStatement.subject&quot;,
             &quot;MedicationStatement.medication&quot;,
             &quot;MedicationStatement.source&quot;
           ],
@@ -8402,10 +8485,10 @@
               &quot;documentation&quot;: &quot;Return statements of this medication code&quot;
             },
             {
-              &quot;name&quot;: &quot;patient&quot;,
-              &quot;definition&quot;: &quot;http://hl7.org/fhir/SearchParameter/medicationstatement-patient&quot;,
+              &quot;name&quot;: &quot;subject&quot;,
+              &quot;definition&quot;: &quot;http://hl7.org/fhir/SearchParameter/medicationstatement-subject&quot;,
               &quot;type&quot;: &quot;reference&quot;,
-              &quot;documentation&quot;: &quot;The identity of a patient to list statements  for&quot;
+              &quot;documentation&quot;: &quot;The identity of a patient, animal or group to list statements for&quot;
             },
             {
               &quot;name&quot;: &quot;medication&quot;,
@@ -8892,8 +8975,7 @@
             &quot;NutritionRequest.encounter&quot;
           ],
           &quot;searchRevInclude&quot;: [
-            &quot;CarePlan.activityreference&quot;,
-            &quot;ClinicalImpression.action&quot;
+            &quot;CarePlan.activityreference&quot;
           ],
           &quot;searchParam&quot;: [
             {
@@ -9042,12 +9124,6 @@
               &quot;documentation&quot;: &quot;The code of the observation type or component type&quot;
             },
             {
-              &quot;name&quot;: &quot;code-value-[x]&quot;,
-              &quot;definition&quot;: &quot;http://hl7.org/fhir/SearchParameter/observation-code-value&quot;,
-              &quot;type&quot;: &quot;composite&quot;,
-              &quot;documentation&quot;: &quot;Code and value parameter pair&quot;
-            },
-            {
               &quot;name&quot;: &quot;performer&quot;,
               &quot;definition&quot;: &quot;http://hl7.org/fhir/SearchParameter/observation-performer&quot;,
               &quot;type&quot;: &quot;reference&quot;,
@@ -9108,10 +9184,28 @@
               &quot;documentation&quot;: &quot;Resource that is related to this one&quot;
             },
             {
+              &quot;name&quot;: &quot;code-value-concept&quot;,
+              &quot;definition&quot;: &quot;http://hl7.org/fhir/SearchParameter/observation-code-value-concept&quot;,
+              &quot;type&quot;: &quot;composite&quot;,
+              &quot;documentation&quot;: &quot;Code and coded value parameter pair, including in components&quot;
+            },
+            {
+              &quot;name&quot;: &quot;code-value-string&quot;,
+              &quot;definition&quot;: &quot;http://hl7.org/fhir/SearchParameter/observation-code-value-string&quot;,
+              &quot;type&quot;: &quot;composite&quot;,
+              &quot;documentation&quot;: &quot;Code and string value parameter pair, including in components&quot;
+            },
+            {
               &quot;name&quot;: &quot;related&quot;,
               &quot;definition&quot;: &quot;http://hl7.org/fhir/SearchParameter/observation-related&quot;,
               &quot;type&quot;: &quot;composite&quot;,
               &quot;documentation&quot;: &quot;Related Observations - search on related-type and related-target together&quot;
+            },
+            {
+              &quot;name&quot;: &quot;code-value-date&quot;,
+              &quot;definition&quot;: &quot;http://hl7.org/fhir/SearchParameter/observation-code-value-date&quot;,
+              &quot;type&quot;: &quot;composite&quot;,
+              &quot;documentation&quot;: &quot;Code and date/time value parameter pair, including in components&quot;
             },
             {
               &quot;name&quot;: &quot;patient&quot;,
@@ -9124,6 +9218,12 @@
               &quot;definition&quot;: &quot;http://hl7.org/fhir/SearchParameter/observation-specimen&quot;,
               &quot;type&quot;: &quot;reference&quot;,
               &quot;documentation&quot;: &quot;Specimen used for this observation&quot;
+            },
+            {
+              &quot;name&quot;: &quot;code-value-quantity&quot;,
+              &quot;definition&quot;: &quot;http://hl7.org/fhir/SearchParameter/observation-code-value-quantity&quot;,
+              &quot;type&quot;: &quot;composite&quot;,
+              &quot;documentation&quot;: &quot;Code and quantity value parameter pair, including in components&quot;
             },
             {
               &quot;name&quot;: &quot;category&quot;,
@@ -9391,7 +9491,8 @@
             &quot;logical&quot;
           ],
           &quot;searchInclude&quot;: [
-            &quot;Organization.partof&quot;
+            &quot;Organization.partof&quot;,
+            &quot;Organization.endpoint&quot;
           ],
           &quot;searchRevInclude&quot;: [
             &quot;Account.owner&quot;,
@@ -9403,7 +9504,7 @@
             &quot;CareTeam.participant&quot;,
             &quot;Claim.insurer&quot;,
             &quot;Claim.organization&quot;,
-            &quot;ClaimResponse.organization&quot;,
+            &quot;ClaimResponse.insurer&quot;,
             &quot;Communication.sender&quot;,
             &quot;Communication.recipient&quot;,
             &quot;CommunicationRequest.sender&quot;,
@@ -9416,8 +9517,8 @@
             &quot;Contract.agent&quot;,
             &quot;Contract.authority&quot;,
             &quot;Contract.signer&quot;,
-            &quot;Coverage.issuer&quot;,
-            &quot;Coverage.planholder&quot;,
+            &quot;Coverage.policyholder&quot;,
+            &quot;Coverage.payor&quot;,
             &quot;Device.organization&quot;,
             &quot;DeviceUseRequest.requester&quot;,
             &quot;DeviceUseRequest.filler&quot;,
@@ -9430,9 +9531,12 @@
             &quot;DocumentReference.custodian&quot;,
             &quot;DocumentReference.author&quot;,
             &quot;EligibilityRequest.organization&quot;,
-            &quot;EligibilityResponse.organization&quot;,
+            &quot;EligibilityResponse.insurer&quot;,
             &quot;EligibilityResponse.request-organization&quot;,
+            &quot;Encounter.service-provider&quot;,
             &quot;Endpoint.organization&quot;,
+            &quot;EnrollmentRequest.organization&quot;,
+            &quot;EnrollmentResponse.organization&quot;,
             &quot;EpisodeOfCare.organization&quot;,
             &quot;ExplanationOfBenefit.organization&quot;,
             &quot;Flag.subject&quot;,
@@ -9446,6 +9550,7 @@
             &quot;Linkage.author&quot;,
             &quot;Location.organization&quot;,
             &quot;Medication.manufacturer&quot;,
+            &quot;MedicationRequest.requester&quot;,
             &quot;MedicationRequest.intended-dispenser&quot;,
             &quot;MedicationStatement.source&quot;,
             &quot;MessageHeader.receiver&quot;,
@@ -9471,7 +9576,8 @@
             &quot;SupplyRequest.supplier&quot;,
             &quot;SupplyRequest.source&quot;,
             &quot;Task.owner&quot;,
-            &quot;Task.requester&quot;
+            &quot;Task.requester&quot;,
+            &quot;Task.organization&quot;
           ],
           &quot;searchParam&quot;: [
             {
@@ -9487,12 +9593,6 @@
               &quot;documentation&quot;: &quot;Search all organizations that are part of the given organization&quot;
             },
             {
-              &quot;name&quot;: &quot;phonetic&quot;,
-              &quot;definition&quot;: &quot;http://hl7.org/fhir/SearchParameter/organization-phonetic&quot;,
-              &quot;type&quot;: &quot;string&quot;,
-              &quot;documentation&quot;: &quot;A portion of the organization's name using some kind of phonetic matching algorithm&quot;
-            },
-            {
               &quot;name&quot;: &quot;address&quot;,
               &quot;definition&quot;: &quot;http://hl7.org/fhir/SearchParameter/organization-address&quot;,
               &quot;type&quot;: &quot;string&quot;,
@@ -9503,18 +9603,6 @@
               &quot;definition&quot;: &quot;http://hl7.org/fhir/SearchParameter/organization-address-state&quot;,
               &quot;type&quot;: &quot;string&quot;,
               &quot;documentation&quot;: &quot;A state specified in an address&quot;
-            },
-            {
-              &quot;name&quot;: &quot;name&quot;,
-              &quot;definition&quot;: &quot;http://hl7.org/fhir/SearchParameter/organization-name&quot;,
-              &quot;type&quot;: &quot;string&quot;,
-              &quot;documentation&quot;: &quot;A portion of the organization's name, or alias&quot;
-            },
-            {
-              &quot;name&quot;: &quot;address-use&quot;,
-              &quot;definition&quot;: &quot;http://hl7.org/fhir/SearchParameter/organization-address-use&quot;,
-              &quot;type&quot;: &quot;token&quot;,
-              &quot;documentation&quot;: &quot;A use code specified in an address&quot;
             },
             {
               &quot;name&quot;: &quot;active&quot;,
@@ -9529,12 +9617,6 @@
               &quot;documentation&quot;: &quot;A code for the type of organization&quot;
             },
             {
-              &quot;name&quot;: &quot;address-city&quot;,
-              &quot;definition&quot;: &quot;http://hl7.org/fhir/SearchParameter/organization-address-city&quot;,
-              &quot;type&quot;: &quot;string&quot;,
-              &quot;documentation&quot;: &quot;A city specified in an address&quot;
-            },
-            {
               &quot;name&quot;: &quot;address-postalcode&quot;,
               &quot;definition&quot;: &quot;http://hl7.org/fhir/SearchParameter/organization-address-postalcode&quot;,
               &quot;type&quot;: &quot;string&quot;,
@@ -9545,6 +9627,36 @@
               &quot;definition&quot;: &quot;http://hl7.org/fhir/SearchParameter/organization-address-country&quot;,
               &quot;type&quot;: &quot;string&quot;,
               &quot;documentation&quot;: &quot;A country specified in an address&quot;
+            },
+            {
+              &quot;name&quot;: &quot;endpoint&quot;,
+              &quot;definition&quot;: &quot;http://hl7.org/fhir/SearchParameter/organization-endpoint&quot;,
+              &quot;type&quot;: &quot;reference&quot;,
+              &quot;documentation&quot;: &quot;Technical endpoints providing access to services operated for the organization&quot;
+            },
+            {
+              &quot;name&quot;: &quot;phonetic&quot;,
+              &quot;definition&quot;: &quot;http://hl7.org/fhir/SearchParameter/organization-phonetic&quot;,
+              &quot;type&quot;: &quot;string&quot;,
+              &quot;documentation&quot;: &quot;A portion of the organization's name using some kind of phonetic matching algorithm&quot;
+            },
+            {
+              &quot;name&quot;: &quot;name&quot;,
+              &quot;definition&quot;: &quot;http://hl7.org/fhir/SearchParameter/organization-name&quot;,
+              &quot;type&quot;: &quot;string&quot;,
+              &quot;documentation&quot;: &quot;A portion of the organization's name, or alias&quot;
+            },
+            {
+              &quot;name&quot;: &quot;address-use&quot;,
+              &quot;definition&quot;: &quot;http://hl7.org/fhir/SearchParameter/organization-address-use&quot;,
+              &quot;type&quot;: &quot;token&quot;,
+              &quot;documentation&quot;: &quot;A use code specified in an address&quot;
+            },
+            {
+              &quot;name&quot;: &quot;address-city&quot;,
+              &quot;definition&quot;: &quot;http://hl7.org/fhir/SearchParameter/organization-address-city&quot;,
+              &quot;type&quot;: &quot;string&quot;,
+              &quot;documentation&quot;: &quot;A city specified in an address&quot;
             }
           ]
         },
@@ -9646,8 +9758,9 @@
             &quot;Consent.consentor&quot;,
             &quot;Contract.agent&quot;,
             &quot;Contract.signer&quot;,
-            &quot;Coverage.issuer&quot;,
-            &quot;Coverage.planholder&quot;,
+            &quot;Coverage.policyholder&quot;,
+            &quot;Coverage.subscriber&quot;,
+            &quot;Coverage.payor&quot;,
             &quot;Coverage.beneficiary&quot;,
             &quot;DetectedIssue.patient&quot;,
             &quot;Device.patient&quot;,
@@ -9670,8 +9783,8 @@
             &quot;DocumentReference.author&quot;,
             &quot;EligibilityRequest.patient&quot;,
             &quot;Encounter.patient&quot;,
-            &quot;EnrollmentRequest.patient-reference&quot;,
-            &quot;EnrollmentRequest.subject-reference&quot;,
+            &quot;EnrollmentRequest.subject&quot;,
+            &quot;EnrollmentRequest.patient&quot;,
             &quot;EpisodeOfCare.patient&quot;,
             &quot;ExplanationOfBenefit.patient&quot;,
             &quot;FamilyMemberHistory.patient&quot;,
@@ -9698,8 +9811,9 @@
             &quot;MedicationAdministration.patient&quot;,
             &quot;MedicationDispense.receiver&quot;,
             &quot;MedicationDispense.patient&quot;,
+            &quot;MedicationRequest.requester&quot;,
             &quot;MedicationRequest.patient&quot;,
-            &quot;MedicationStatement.patient&quot;,
+            &quot;MedicationStatement.subject&quot;,
             &quot;MedicationStatement.source&quot;,
             &quot;NutritionRequest.patient&quot;,
             &quot;Observation.performer&quot;,
@@ -10449,6 +10563,7 @@
             &quot;logical&quot;
           ],
           &quot;searchInclude&quot;: [
+            &quot;Practitioner.endpoint&quot;,
             &quot;Practitioner.organization&quot;,
             &quot;Practitioner.location&quot;
           ],
@@ -10521,7 +10636,7 @@
             &quot;MedicationDispense.receiver&quot;,
             &quot;MedicationDispense.responsibleparty&quot;,
             &quot;MedicationDispense.dispenser&quot;,
-            &quot;MedicationRequest.prescriber&quot;,
+            &quot;MedicationRequest.requester&quot;,
             &quot;MedicationStatement.source&quot;,
             &quot;MessageHeader.receiver&quot;,
             &quot;MessageHeader.author&quot;,
@@ -10548,7 +10663,7 @@
             &quot;ReferralRequest.recipient&quot;,
             &quot;RequestGroup.author&quot;,
             &quot;RequestGroup.participant&quot;,
-            &quot;ResearchStudy.principleinvestigator&quot;,
+            &quot;ResearchStudy.principalinvestigator&quot;,
             &quot;RiskAssessment.performer&quot;,
             &quot;Schedule.actor&quot;,
             &quot;Specimen.collector&quot;,
@@ -10619,6 +10734,12 @@
               &quot;definition&quot;: &quot;http://hl7.org/fhir/SearchParameter/practitioner-address-country&quot;,
               &quot;type&quot;: &quot;string&quot;,
               &quot;documentation&quot;: &quot;A country specified in an address&quot;
+            },
+            {
+              &quot;name&quot;: &quot;endpoint&quot;,
+              &quot;definition&quot;: &quot;http://hl7.org/fhir/SearchParameter/practitioner-endpoint&quot;,
+              &quot;type&quot;: &quot;reference&quot;,
+              &quot;documentation&quot;: &quot;The endpoint of the practitioner for a role at an organization&quot;
             },
             {
               &quot;name&quot;: &quot;phonetic&quot;,
@@ -10735,6 +10856,7 @@
             &quot;logical&quot;
           ],
           &quot;searchInclude&quot;: [
+            &quot;PractitionerRole.endpoint&quot;,
             &quot;PractitionerRole.practitioner&quot;,
             &quot;PractitionerRole.organization&quot;,
             &quot;PractitionerRole.location&quot;
@@ -10751,6 +10873,12 @@
               &quot;definition&quot;: &quot;http://hl7.org/fhir/SearchParameter/practitionerrole-specialty&quot;,
               &quot;type&quot;: &quot;token&quot;,
               &quot;documentation&quot;: &quot;The practitioner has this specialty at an organization&quot;
+            },
+            {
+              &quot;name&quot;: &quot;endpoint&quot;,
+              &quot;definition&quot;: &quot;http://hl7.org/fhir/SearchParameter/practitionerrole-endpoint&quot;,
+              &quot;type&quot;: &quot;reference&quot;,
+              &quot;documentation&quot;: &quot;Technical endpoints providing access to services operated for the practitioner with this role&quot;
             },
             {
               &quot;name&quot;: &quot;role&quot;,
@@ -11467,7 +11595,7 @@
               &quot;name&quot;: &quot;authored&quot;,
               &quot;definition&quot;: &quot;http://hl7.org/fhir/SearchParameter/questionnaireresponse-authored&quot;,
               &quot;type&quot;: &quot;date&quot;,
-              &quot;documentation&quot;: &quot;When the questionnaire was authored&quot;
+              &quot;documentation&quot;: &quot;When the questionnaire response was authored&quot;
             },
             {
               &quot;name&quot;: &quot;identifier&quot;,
@@ -11497,25 +11625,25 @@
               &quot;name&quot;: &quot;subject&quot;,
               &quot;definition&quot;: &quot;http://hl7.org/fhir/SearchParameter/questionnaireresponse-subject&quot;,
               &quot;type&quot;: &quot;reference&quot;,
-              &quot;documentation&quot;: &quot;The subject of the questionnaire&quot;
+              &quot;documentation&quot;: &quot;The subject of the questionnaire response&quot;
             },
             {
               &quot;name&quot;: &quot;author&quot;,
               &quot;definition&quot;: &quot;http://hl7.org/fhir/SearchParameter/questionnaireresponse-author&quot;,
               &quot;type&quot;: &quot;reference&quot;,
-              &quot;documentation&quot;: &quot;The author of the questionnaire&quot;
+              &quot;documentation&quot;: &quot;The author of the questionnaire response&quot;
             },
             {
               &quot;name&quot;: &quot;patient&quot;,
               &quot;definition&quot;: &quot;http://hl7.org/fhir/SearchParameter/questionnaireresponse-patient&quot;,
               &quot;type&quot;: &quot;reference&quot;,
-              &quot;documentation&quot;: &quot;The patient that is the subject of the questionnaire&quot;
+              &quot;documentation&quot;: &quot;The patient that is the subject of the questionnaire response&quot;
             },
             {
               &quot;name&quot;: &quot;context&quot;,
               &quot;definition&quot;: &quot;http://hl7.org/fhir/SearchParameter/questionnaireresponse-context&quot;,
               &quot;type&quot;: &quot;reference&quot;,
-              &quot;documentation&quot;: &quot;Encounter or episode during which questionnaire was authored&quot;
+              &quot;documentation&quot;: &quot;Encounter or episode during which questionnaire response was authored&quot;
             },
             {
               &quot;name&quot;: &quot;source&quot;,
@@ -11745,8 +11873,9 @@
             &quot;Consent.consentor&quot;,
             &quot;Contract.agent&quot;,
             &quot;Contract.signer&quot;,
-            &quot;Coverage.issuer&quot;,
-            &quot;Coverage.planholder&quot;,
+            &quot;Coverage.policyholder&quot;,
+            &quot;Coverage.subscriber&quot;,
+            &quot;Coverage.payor&quot;,
             &quot;DeviceUseRequest.filler&quot;,
             &quot;DiagnosticRequest.filler&quot;,
             &quot;DocumentManifest.author&quot;,
@@ -11756,6 +11885,7 @@
             &quot;Encounter.participant&quot;,
             &quot;ImagingManifest.author&quot;,
             &quot;MedicationAdministration.performer&quot;,
+            &quot;MedicationRequest.requester&quot;,
             &quot;MedicationStatement.source&quot;,
             &quot;Observation.performer&quot;,
             &quot;Patient.link&quot;,
@@ -12014,7 +12144,7 @@
           &quot;searchInclude&quot;: [
             &quot;ResearchStudy.partof&quot;,
             &quot;ResearchStudy.sponsor&quot;,
-            &quot;ResearchStudy.principleinvestigator&quot;,
+            &quot;ResearchStudy.principalinvestigator&quot;,
             &quot;ResearchStudy.protocol&quot;,
             &quot;ResearchStudy.site&quot;
           ],
@@ -12059,8 +12189,8 @@
               &quot;documentation&quot;: &quot;Drugs, devices, conditions, etc. under study&quot;
             },
             {
-              &quot;name&quot;: &quot;principleinvestigator&quot;,
-              &quot;definition&quot;: &quot;http://hl7.org/fhir/SearchParameter/researchstudy-principleinvestigator&quot;,
+              &quot;name&quot;: &quot;principalinvestigator&quot;,
+              &quot;definition&quot;: &quot;http://hl7.org/fhir/SearchParameter/researchstudy-principalinvestigator&quot;,
               &quot;type&quot;: &quot;reference&quot;,
               &quot;documentation&quot;: &quot;Individual responsible for the study&quot;
             },
@@ -12455,6 +12585,12 @@
               &quot;documentation&quot;: &quot;Text search against the description of the search parameter&quot;
             },
             {
+              &quot;name&quot;: &quot;derived-from&quot;,
+              &quot;definition&quot;: &quot;http://hl7.org/fhir/SearchParameter/searchparameter-derived-from&quot;,
+              &quot;type&quot;: &quot;uri&quot;,
+              &quot;documentation&quot;: &quot;Original Definition for the search parameter&quot;
+            },
+            {
               &quot;name&quot;: &quot;type&quot;,
               &quot;definition&quot;: &quot;http://hl7.org/fhir/SearchParameter/searchparameter-type&quot;,
               &quot;type&quot;: &quot;token&quot;,
@@ -12482,7 +12618,7 @@
               &quot;name&quot;: &quot;component&quot;,
               &quot;definition&quot;: &quot;http://hl7.org/fhir/SearchParameter/searchparameter-component&quot;,
               &quot;type&quot;: &quot;reference&quot;,
-              &quot;documentation&quot;: &quot;For Composite resources to define the parts&quot;
+              &quot;documentation&quot;: &quot;Defines how the part works&quot;
             },
             {
               &quot;name&quot;: &quot;name&quot;,
@@ -12573,13 +12709,13 @@
               &quot;name&quot;: &quot;coordinate&quot;,
               &quot;definition&quot;: &quot;http://hl7.org/fhir/SearchParameter/sequence-coordinate&quot;,
               &quot;type&quot;: &quot;composite&quot;,
-              &quot;documentation&quot;: &quot;Search parameter for region of the reference sequence string. This will refer to part of a locus or part of a gene where search region will be represented in 1-based system. Since the coordinateSystem can either be 0-based or 1-based, this search query will include the result of both coordinateSystem that contains the equivalent segment of the gene or whole genome sequence. For example, a search for sequence can be represented as `coordinate=1$lt345$gt123`, this means it will search for the Sequence resource on chromosome 1 and with position &gt;123 and &lt;345, where in 1-based system resource, all strings within region 1:124-344 will be revealed, while in 0-based system resource, all strings within region 1:123-344 will be revealed. You may want to check detail about 0-based v.s. 1-based above.&quot;
+              &quot;documentation&quot;: &quot;Search parameter for region of the reference DNA sequence string. This will refer to part of a locus or part of a gene where search region will be represented in 1-based system. Since the coordinateSystem can either be 0-based or 1-based, this search query will include the result of both coordinateSystem that contains the equivalent segment of the gene or whole genome sequence. For example, a search for sequence can be represented as `coordinate=1$lt345$gt123`, this means it will search for the Sequence resource on chromosome 1 and with position &gt;123 and &lt;345, where in 1-based system resource, all strings within region 1:124-344 will be revealed, while in 0-based system resource, all strings within region 1:123-344 will be revealed. You may want to check detail about 0-based v.s. 1-based above.&quot;
             },
             {
               &quot;name&quot;: &quot;patient&quot;,
               &quot;definition&quot;: &quot;http://hl7.org/fhir/SearchParameter/sequence-patient&quot;,
               &quot;type&quot;: &quot;reference&quot;,
-              &quot;documentation&quot;: &quot;The subject that the observedSeq is originated from&quot;
+              &quot;documentation&quot;: &quot;The subject that the observation is about&quot;
             },
             {
               &quot;name&quot;: &quot;chromosome&quot;,
@@ -12603,7 +12739,7 @@
               &quot;name&quot;: &quot;type&quot;,
               &quot;definition&quot;: &quot;http://hl7.org/fhir/SearchParameter/sequence-type&quot;,
               &quot;type&quot;: &quot;token&quot;,
-              &quot;documentation&quot;: &quot;The type of the sequencing result: Amino Acid Sequence / DNA Sequence / RNA Sequence.&quot;
+              &quot;documentation&quot;: &quot;Amino Acid Sequence/ DNA Sequence / RNA Sequence&quot;
             }
           ]
         },
@@ -13658,12 +13794,17 @@
           &quot;searchInclude&quot;: [
             &quot;Task.owner&quot;,
             &quot;Task.requester&quot;,
-            &quot;Task.parent&quot;,
+            &quot;Task.subject&quot;,
             &quot;Task.focus&quot;,
-            &quot;Task.patient&quot;
+            &quot;Task.part-of&quot;,
+            &quot;Task.based-on&quot;,
+            &quot;Task.patient&quot;,
+            &quot;Task.definition-ref&quot;,
+            &quot;Task.organization&quot;,
+            &quot;Task.context&quot;
           ],
           &quot;searchRevInclude&quot;: [
-            &quot;Task.parent&quot;
+            &quot;Task.part-of&quot;
           ],
           &quot;searchParam&quot;: [
             {
@@ -13685,10 +13826,16 @@
               &quot;documentation&quot;: &quot;Search for a task instance by its business identifier&quot;
             },
             {
-              &quot;name&quot;: &quot;parent&quot;,
-              &quot;definition&quot;: &quot;http://hl7.org/fhir/SearchParameter/task-parent&quot;,
-              &quot;type&quot;: &quot;reference&quot;,
-              &quot;documentation&quot;: &quot;Search by parent task&quot;
+              &quot;name&quot;: &quot;business-status&quot;,
+              &quot;definition&quot;: &quot;http://hl7.org/fhir/SearchParameter/task-business-status&quot;,
+              &quot;type&quot;: &quot;token&quot;,
+              &quot;documentation&quot;: &quot;Search by business status&quot;
+            },
+            {
+              &quot;name&quot;: &quot;period&quot;,
+              &quot;definition&quot;: &quot;http://hl7.org/fhir/SearchParameter/task-period&quot;,
+              &quot;type&quot;: &quot;date&quot;,
+              &quot;documentation&quot;: &quot;Search by period Task is/was underway&quot;
             },
             {
               &quot;name&quot;: &quot;code&quot;,
@@ -13703,10 +13850,10 @@
               &quot;documentation&quot;: &quot;Search by recommended type of performer (e.g., Requester, Performer, Scheduler).&quot;
             },
             {
-              &quot;name&quot;: &quot;created&quot;,
-              &quot;definition&quot;: &quot;http://hl7.org/fhir/SearchParameter/task-created&quot;,
-              &quot;type&quot;: &quot;date&quot;,
-              &quot;documentation&quot;: &quot;Search by creation date&quot;
+              &quot;name&quot;: &quot;subject&quot;,
+              &quot;definition&quot;: &quot;http://hl7.org/fhir/SearchParameter/task-subject&quot;,
+              &quot;type&quot;: &quot;reference&quot;,
+              &quot;documentation&quot;: &quot;Search by subject&quot;
             },
             {
               &quot;name&quot;: &quot;focus&quot;,
@@ -13715,22 +13862,40 @@
               &quot;documentation&quot;: &quot;Search by task focus&quot;
             },
             {
+              &quot;name&quot;: &quot;part-of&quot;,
+              &quot;definition&quot;: &quot;http://hl7.org/fhir/SearchParameter/task-part-of&quot;,
+              &quot;type&quot;: &quot;reference&quot;,
+              &quot;documentation&quot;: &quot;Search by task this task is part of&quot;
+            },
+            {
               &quot;name&quot;: &quot;priority&quot;,
               &quot;definition&quot;: &quot;http://hl7.org/fhir/SearchParameter/task-priority&quot;,
               &quot;type&quot;: &quot;token&quot;,
               &quot;documentation&quot;: &quot;Search by task priority&quot;
             },
             {
-              &quot;name&quot;: &quot;stage&quot;,
-              &quot;definition&quot;: &quot;http://hl7.org/fhir/SearchParameter/task-stage&quot;,
-              &quot;type&quot;: &quot;token&quot;,
-              &quot;documentation&quot;: &quot;Search by task stage&quot;
+              &quot;name&quot;: &quot;authored-on&quot;,
+              &quot;definition&quot;: &quot;http://hl7.org/fhir/SearchParameter/task-authored-on&quot;,
+              &quot;type&quot;: &quot;date&quot;,
+              &quot;documentation&quot;: &quot;Search by creation date&quot;
             },
             {
-              &quot;name&quot;: &quot;statusreason&quot;,
-              &quot;definition&quot;: &quot;http://hl7.org/fhir/SearchParameter/task-statusreason&quot;,
+              &quot;name&quot;: &quot;intent&quot;,
+              &quot;definition&quot;: &quot;http://hl7.org/fhir/SearchParameter/task-intent&quot;,
               &quot;type&quot;: &quot;token&quot;,
-              &quot;documentation&quot;: &quot;Search by status reason&quot;
+              &quot;documentation&quot;: &quot;Search by task intent&quot;
+            },
+            {
+              &quot;name&quot;: &quot;group-identifier&quot;,
+              &quot;definition&quot;: &quot;http://hl7.org/fhir/SearchParameter/task-group-identifier&quot;,
+              &quot;type&quot;: &quot;token&quot;,
+              &quot;documentation&quot;: &quot;Search by group identifier&quot;
+            },
+            {
+              &quot;name&quot;: &quot;based-on&quot;,
+              &quot;definition&quot;: &quot;http://hl7.org/fhir/SearchParameter/task-based-on&quot;,
+              &quot;type&quot;: &quot;reference&quot;,
+              &quot;documentation&quot;: &quot;Search by requests this task is based on&quot;
             },
             {
               &quot;name&quot;: &quot;patient&quot;,
@@ -13739,16 +13904,34 @@
               &quot;documentation&quot;: &quot;Search by patient&quot;
             },
             {
+              &quot;name&quot;: &quot;statusreason&quot;,
+              &quot;definition&quot;: &quot;http://hl7.org/fhir/SearchParameter/task-statusreason&quot;,
+              &quot;type&quot;: &quot;token&quot;,
+              &quot;documentation&quot;: &quot;Search by status reason&quot;
+            },
+            {
+              &quot;name&quot;: &quot;definition-ref&quot;,
+              &quot;definition&quot;: &quot;http://hl7.org/fhir/SearchParameter/task-definition-ref&quot;,
+              &quot;type&quot;: &quot;reference&quot;,
+              &quot;documentation&quot;: &quot;Search by task definition as a Reference&quot;
+            },
+            {
+              &quot;name&quot;: &quot;organization&quot;,
+              &quot;definition&quot;: &quot;http://hl7.org/fhir/SearchParameter/task-organization&quot;,
+              &quot;type&quot;: &quot;reference&quot;,
+              &quot;documentation&quot;: &quot;Search by responsible organization&quot;
+            },
+            {
+              &quot;name&quot;: &quot;context&quot;,
+              &quot;definition&quot;: &quot;http://hl7.org/fhir/SearchParameter/task-context&quot;,
+              &quot;type&quot;: &quot;reference&quot;,
+              &quot;documentation&quot;: &quot;Search by encounter or episode&quot;
+            },
+            {
               &quot;name&quot;: &quot;modified&quot;,
               &quot;definition&quot;: &quot;http://hl7.org/fhir/SearchParameter/task-modified&quot;,
               &quot;type&quot;: &quot;date&quot;,
               &quot;documentation&quot;: &quot;Search by last modification date&quot;
-            },
-            {
-              &quot;name&quot;: &quot;definition&quot;,
-              &quot;definition&quot;: &quot;http://hl7.org/fhir/SearchParameter/task-definition&quot;,
-              &quot;type&quot;: &quot;uri&quot;,
-              &quot;documentation&quot;: &quot;Search by task definition&quot;
             },
             {
               &quot;name&quot;: &quot;status&quot;,
@@ -14553,7 +14736,7 @@ of the specification.
 		<div class="container"><!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:32-0500. <a href="qa.html">QA Page</a>
+        © HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:21-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search</a> | 

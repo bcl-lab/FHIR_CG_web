@@ -3,7 +3,7 @@
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="Patient"/>
   <meta>
-    <lastUpdated value="2016-11-28T17:29:55.664-05:00"/>
+    <lastUpdated value="2016-12-07T14:18:58.982-05:00"/>
   </meta>
   <text>
     <status value="generated"/>
@@ -242,7 +242,7 @@
           <td style="vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">Marital (civil) status of a patient
             <br/>
             <a href="valueset-marital-status.html" title="The domestic partnership status of a person.">Marital Status Codes</a> (
-            <a href="terminologies.html#required" title="To be conformant, instances of this element SHALL include a code from the specified value set.">Required</a>)
+            <a href="terminologies.html#extensible" title="To be conformant, instances of this element SHALL include a code from the specified value set if any of the codes within the value set can apply to the concept being communicated.  If the value set does not cover the concept (based on human review), alternate codings (or, data type allowing, text) may be included instead.">Extensible</a>)
           </td>
         </tr>
 
@@ -718,26 +718,29 @@
   <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm">
     <valueInteger value="3"/>
   </extension>
+  <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-wg">
+    <valueCode value="pa"/>
+  </extension>
   <url value="http://hl7.org/fhir/StructureDefinition/Patient"/>
   <name value="Patient"/>
   <status value="draft"/>
   <publisher value="Health Level Seven International (Patient Administration)"/>
   <contact>
     <telecom>
-      <system value="other"/>
+      <system value="url"/>
       <value value="http://hl7.org/fhir"/>
     </telecom>
   </contact>
   <contact>
     <telecom>
-      <system value="other"/>
+      <system value="url"/>
       <value value="http://www.hl7.org/Special/committees/pafm/index.cfm"/>
     </telecom>
   </contact>
-  <date value="2016-11-28T17:29:55-05:00"/>
+  <date value="2016-12-07T14:18:58-05:00"/>
   <description value="Base StructureDefinition for Patient Resource"/>
   <purpose value="Tracking patient is the center of the healthcare process."/>
-  <fhirVersion value="1.7.0"/>
+  <fhirVersion value="1.8.0"/>
   <mapping>
     <identity value="rim"/>
     <uri value="http://hl7.org/v3"/>
@@ -1228,7 +1231,7 @@
         <code value="CodeableConcept"/>
       </type>
       <binding>
-        <strength value="required"/>
+        <strength value="extensible"/>
         <description value="The domestic partnership status of a person."/>
         <valueSetReference>
           <reference value="http://hl7.org/fhir/ValueSet/marital-status"/>
@@ -2389,7 +2392,7 @@ It is not to be used to record Care Teams, these should be in a CareTeam resourc
         <code value="CodeableConcept"/>
       </type>
       <binding>
-        <strength value="required"/>
+        <strength value="extensible"/>
         <description value="The domestic partnership status of a person."/>
         <valueSetReference>
           <reference value="http://hl7.org/fhir/ValueSet/marital-status"/>

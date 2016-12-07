@@ -6,7 +6,7 @@
     <system value="urn:ietf:rfc:3986"/>
   </identifier>
   <status value="draft"/>
-  <date value="2016-11-28T17:29:55-05:00"/>
+  <date value="2016-12-07T14:18:58-05:00"/>
   <publisher value="Health Level Seven International (Financial Management)"/>
   <item>
     <linkId value="PaymentNotice"/>
@@ -274,9 +274,6 @@
       </item>
     </item>
     <item>
-      <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-minOccurs">
-        <valueInteger value="1"/>
-      </extension>
       <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs">
         <valueInteger value="1"/>
       </extension>
@@ -285,7 +282,7 @@
       </extension>
       <linkId value="PaymentNotice.status"/>
       <type value="group"/>
-      <required value="true"/>
+      <required value="false"/>
       <repeats value="true"/>
       <item>
         <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl">
@@ -313,9 +310,9 @@
         <valueInteger value="1"/>
       </extension>
       <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
-        <valueString value="Coding"/>
+        <valueString value="Reference"/>
       </extension>
-      <linkId value="PaymentNotice.ruleset"/>
+      <linkId value="PaymentNotice.request"/>
       <type value="group"/>
       <required value="false"/>
       <repeats value="true"/>
@@ -329,13 +326,19 @@
             </coding>
           </valueCodeableConcept>
         </extension>
-        <text value="The version of the style of resource contents. This should be mapped to the allowable profiles for this and supporting resources."/>
+        <text value="Reference of resource for which payment is being made."/>
         <type value="display"/>
       </item>
       <item>
-        <linkId value="PaymentNotice.ruleset.value"/>
-        <text value="Resource version"/>
-        <type value="open-choice"/>
+        <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-allowedResource">
+          <valueCode value="Resource"/>
+        </extension>
+        <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-referenceFilter">
+          <valueString value="subject=$subj&amp;patient=$subj&amp;encounter=$encounter"/>
+        </extension>
+        <linkId value="PaymentNotice.request.value"/>
+        <text value="Request reference"/>
+        <type value="reference"/>
         <required value="false"/>
         <repeats value="false"/>
       </item>
@@ -345,9 +348,9 @@
         <valueInteger value="1"/>
       </extension>
       <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
-        <valueString value="Coding"/>
+        <valueString value="Reference"/>
       </extension>
-      <linkId value="PaymentNotice.originalRuleset"/>
+      <linkId value="PaymentNotice.response"/>
       <type value="group"/>
       <required value="false"/>
       <repeats value="true"/>
@@ -361,13 +364,51 @@
             </coding>
           </valueCodeableConcept>
         </extension>
-        <text value="The style (standard) and version of the original material which was converted into this resource."/>
+        <text value="Reference of response to resource for which payment is being made."/>
         <type value="display"/>
       </item>
       <item>
-        <linkId value="PaymentNotice.originalRuleset.value"/>
-        <text value="Original version"/>
-        <type value="open-choice"/>
+        <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-allowedResource">
+          <valueCode value="Resource"/>
+        </extension>
+        <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-referenceFilter">
+          <valueString value="subject=$subj&amp;patient=$subj&amp;encounter=$encounter"/>
+        </extension>
+        <linkId value="PaymentNotice.response.value"/>
+        <text value="Response reference"/>
+        <type value="reference"/>
+        <required value="false"/>
+        <repeats value="false"/>
+      </item>
+    </item>
+    <item>
+      <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs">
+        <valueInteger value="1"/>
+      </extension>
+      <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
+        <valueString value="datetime"/>
+      </extension>
+      <linkId value="PaymentNotice.statusDate"/>
+      <type value="group"/>
+      <required value="false"/>
+      <repeats value="true"/>
+      <item>
+        <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl">
+          <valueCodeableConcept>
+            <coding>
+              <system value="http://hl7.org/fhir/questionnaire-item-control"/>
+              <code value="flyover"/>
+              <display value="Fly-over"/>
+            </coding>
+          </valueCodeableConcept>
+        </extension>
+        <text value="The date when the above payment action occurrred."/>
+        <type value="display"/>
+      </item>
+      <item>
+        <linkId value="PaymentNotice.statusDate.value"/>
+        <text value="Payment or clearing date"/>
+        <type value="dateTime"/>
         <required value="false"/>
         <repeats value="false"/>
       </item>
@@ -523,90 +564,12 @@
         <valueInteger value="1"/>
       </extension>
       <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
-        <valueString value="Reference"/>
-      </extension>
-      <linkId value="PaymentNotice.request"/>
-      <type value="group"/>
-      <required value="false"/>
-      <repeats value="true"/>
-      <item>
-        <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl">
-          <valueCodeableConcept>
-            <coding>
-              <system value="http://hl7.org/fhir/questionnaire-item-control"/>
-              <code value="flyover"/>
-              <display value="Fly-over"/>
-            </coding>
-          </valueCodeableConcept>
-        </extension>
-        <text value="Reference of resource for which payment is being made."/>
-        <type value="display"/>
-      </item>
-      <item>
-        <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-allowedResource">
-          <valueCode value="Resource"/>
-        </extension>
-        <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-referenceFilter">
-          <valueString value="subject=$subj&amp;patient=$subj&amp;encounter=$encounter"/>
-        </extension>
-        <linkId value="PaymentNotice.request.value"/>
-        <text value="Request reference"/>
-        <type value="reference"/>
-        <required value="false"/>
-        <repeats value="false"/>
-      </item>
-    </item>
-    <item>
-      <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs">
-        <valueInteger value="1"/>
-      </extension>
-      <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
-        <valueString value="Reference"/>
-      </extension>
-      <linkId value="PaymentNotice.response"/>
-      <type value="group"/>
-      <required value="false"/>
-      <repeats value="true"/>
-      <item>
-        <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl">
-          <valueCodeableConcept>
-            <coding>
-              <system value="http://hl7.org/fhir/questionnaire-item-control"/>
-              <code value="flyover"/>
-              <display value="Fly-over"/>
-            </coding>
-          </valueCodeableConcept>
-        </extension>
-        <text value="Reference of response to resource for which payment is being made."/>
-        <type value="display"/>
-      </item>
-      <item>
-        <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-allowedResource">
-          <valueCode value="Resource"/>
-        </extension>
-        <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-referenceFilter">
-          <valueString value="subject=$subj&amp;patient=$subj&amp;encounter=$encounter"/>
-        </extension>
-        <linkId value="PaymentNotice.response.value"/>
-        <text value="Response reference"/>
-        <type value="reference"/>
-        <required value="false"/>
-        <repeats value="false"/>
-      </item>
-    </item>
-    <item>
-      <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-minOccurs">
-        <valueInteger value="1"/>
-      </extension>
-      <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs">
-        <valueInteger value="1"/>
-      </extension>
-      <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
-        <valueString value="Coding"/>
+        <valueString value="CodeableConcept"/>
       </extension>
       <linkId value="PaymentNotice.paymentStatus"/>
+      <text value="Status of the payment"/>
       <type value="group"/>
-      <required value="true"/>
+      <required value="false"/>
       <repeats value="true"/>
       <item>
         <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl">
@@ -622,41 +585,16 @@
         <type value="display"/>
       </item>
       <item>
-        <linkId value="PaymentNotice.paymentStatus.value"/>
-        <text value="Status of the payment"/>
+        <linkId value="PaymentNotice.paymentStatus.coding"/>
+        <text value="code:"/>
         <type value="open-choice"/>
         <required value="false"/>
         <repeats value="false"/>
       </item>
-    </item>
-    <item>
-      <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs">
-        <valueInteger value="1"/>
-      </extension>
-      <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
-        <valueString value="datetime"/>
-      </extension>
-      <linkId value="PaymentNotice.statusDate"/>
-      <type value="group"/>
-      <required value="false"/>
-      <repeats value="true"/>
       <item>
-        <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl">
-          <valueCodeableConcept>
-            <coding>
-              <system value="http://hl7.org/fhir/questionnaire-item-control"/>
-              <code value="flyover"/>
-              <display value="Fly-over"/>
-            </coding>
-          </valueCodeableConcept>
-        </extension>
-        <text value="The date when the above payment action occurrred."/>
-        <type value="display"/>
-      </item>
-      <item>
-        <linkId value="PaymentNotice.statusDate.value"/>
-        <text value="Payment or clearing date"/>
-        <type value="dateTime"/>
+        <linkId value="PaymentNotice.paymentStatus.text"/>
+        <text value="text:"/>
+        <type value="string"/>
         <required value="false"/>
         <repeats value="false"/>
       </item>

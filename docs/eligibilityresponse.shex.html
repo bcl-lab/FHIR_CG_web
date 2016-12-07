@@ -3,7 +3,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>Eligibilityresponse.shex - FHIR v1.7.0</title>
+  <title>Eligibilityresponse.shex - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -140,24 +140,33 @@ start=@&lt;EligibilityResponse&gt; AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:modifierExtension @&lt;Extension&gt;*;   # Extensions that cannot be ignored
     fhir:EligibilityResponse.identifier @&lt;Identifier&gt;*;  # Business Identifier
     fhir:EligibilityResponse.status @&lt;code&gt; AND
-    	{fhir:value @fhirvs:eligibilityresponse-status};  # active | cancelled | draft | 
+    	{fhir:value @fhirvs:fm-status}?;  # active | cancelled | draft | 
                                             # entered-in-error 
-    fhir:EligibilityResponse.request @&lt;Reference&gt;?;  # Claim reference
-    fhir:EligibilityResponse.outcome @&lt;code&gt; AND
-    	{fhir:value @fhirvs:remittance-outcome}?;  # complete | error | partial
-    fhir:EligibilityResponse.disposition @&lt;string&gt;?;  # Disposition Message
-    fhir:EligibilityResponse.ruleset @&lt;Coding&gt;?;  # Resource version
-    fhir:EligibilityResponse.originalRuleset @&lt;Coding&gt;?;  # Original version
     fhir:EligibilityResponse.created @&lt;dateTime&gt;?;  # Creation date
-    fhir:EligibilityResponse.organization @&lt;Reference&gt;?;  # Insurer
     fhir:EligibilityResponse.requestProvider @&lt;Reference&gt;?;  # Responsible practitioner
     fhir:EligibilityResponse.requestOrganization @&lt;Reference&gt;?;  # Responsible organization
+    fhir:EligibilityResponse.request @&lt;Reference&gt;?;  # Eligibility reference
+    fhir:EligibilityResponse.outcome @&lt;CodeableConcept&gt; AND
+    	{fhir:value @fhirvs:remittance-outcome}?;  # complete | error | partial
+    fhir:EligibilityResponse.disposition @&lt;string&gt;?;  # Disposition Message
+    fhir:EligibilityResponse.insurer @&lt;Reference&gt;?;  # Insurer
     fhir:EligibilityResponse.inforce @&lt;boolean&gt;?;  # Coverage inforce
-    fhir:EligibilityResponse.contract @&lt;Reference&gt;?;  # Contract details
-    fhir:EligibilityResponse.form @&lt;Coding&gt; AND
+    fhir:EligibilityResponse.insurance @&lt;EligibilityResponse.insurance&gt;*;  # Details by insurance coverage
+    fhir:EligibilityResponse.form @&lt;CodeableConcept&gt; AND
     	{fhir:value @fhirvs:forms}?;  # Printed Form Identifier
-    fhir:EligibilityResponse.benefitBalance @&lt;EligibilityResponse.benefitBalance&gt;*;  # Benefits by Category
     fhir:EligibilityResponse.error @&lt;EligibilityResponse.error&gt;*;  # Processing errors
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
+# Details by insurance coverage
+&lt;EligibilityResponse.insurance&gt; CLOSED {
+    fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
+    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @&lt;Extension&gt;*;   # Extensions that cannot be ignored
+    fhir:EligibilityResponse.insurance.coverage @&lt;Reference&gt;?;  # Updated Coverage details
+    fhir:EligibilityResponse.insurance.contract @&lt;Reference&gt;?;  # Contract details
+    fhir:EligibilityResponse.insurance.benefitBalance @&lt;EligibilityResponse.insurance.benefitBalance&gt;*;  # Benefits by Category
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -167,44 +176,45 @@ start=@&lt;EligibilityResponse&gt; AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
                                             # implementations 
     fhir:modifierExtension @&lt;Extension&gt;*;   # Extensions that cannot be ignored
-    fhir:EligibilityResponse.error.code @&lt;Coding&gt; AND
+    fhir:EligibilityResponse.error.code @&lt;CodeableConcept&gt; AND
     	{fhir:value @fhirvs:adjudication-error};  # Error code detailing processing 
                                             # issues 
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
 # Benefits by Category
-&lt;EligibilityResponse.benefitBalance&gt; CLOSED {
+&lt;EligibilityResponse.insurance.benefitBalance&gt; CLOSED {
     fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
     fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
                                             # implementations 
     fhir:modifierExtension @&lt;Extension&gt;*;   # Extensions that cannot be ignored
-    fhir:EligibilityResponse.benefitBalance.category @&lt;Coding&gt;;  # Benefit Category
-    fhir:EligibilityResponse.benefitBalance.subCategory @&lt;Coding&gt;?;  # Benefit SubCategory
-    fhir:EligibilityResponse.benefitBalance.name @&lt;string&gt;?;  # Short name for the benefit
-    fhir:EligibilityResponse.benefitBalance.description @&lt;string&gt;?;  # Description of the benefit
-    fhir:EligibilityResponse.benefitBalance.network @&lt;Coding&gt;?;  # In or out of network
-    fhir:EligibilityResponse.benefitBalance.unit @&lt;Coding&gt;?;  # Individual or family
-    fhir:EligibilityResponse.benefitBalance.term @&lt;Coding&gt;?;  # Annual or lifetime
-    fhir:EligibilityResponse.benefitBalance.financial @&lt;EligibilityResponse.benefitBalance.financial&gt;*;  # Benefit Summary
+    fhir:EligibilityResponse.insurance.benefitBalance.category @&lt;CodeableConcept&gt;;  # Benefit Category
+    fhir:EligibilityResponse.insurance.benefitBalance.subCategory @&lt;CodeableConcept&gt;?;  # Benefit SubCategory
+    fhir:EligibilityResponse.insurance.benefitBalance.excluded @&lt;boolean&gt;?;  # Excluded from the plan
+    fhir:EligibilityResponse.insurance.benefitBalance.name @&lt;string&gt;?;  # Short name for the benefit
+    fhir:EligibilityResponse.insurance.benefitBalance.description @&lt;string&gt;?;  # Description of the benefit
+    fhir:EligibilityResponse.insurance.benefitBalance.network @&lt;CodeableConcept&gt;?;  # In or out of network
+    fhir:EligibilityResponse.insurance.benefitBalance.unit @&lt;CodeableConcept&gt;?;  # Individual or family
+    fhir:EligibilityResponse.insurance.benefitBalance.term @&lt;CodeableConcept&gt;?;  # Annual or lifetime
+    fhir:EligibilityResponse.insurance.benefitBalance.financial @&lt;EligibilityResponse.insurance.benefitBalance.financial&gt;*;  # Benefit Summary
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
 # Benefit Summary
-&lt;EligibilityResponse.benefitBalance.financial&gt; CLOSED {
+&lt;EligibilityResponse.insurance.benefitBalance.financial&gt; CLOSED {
     fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
     fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
                                             # implementations 
     fhir:modifierExtension @&lt;Extension&gt;*;   # Extensions that cannot be ignored
-    fhir:EligibilityResponse.benefitBalance.financial.type @&lt;Coding&gt;;  # Deductable, visits, benefit amount
+    fhir:EligibilityResponse.insurance.benefitBalance.financial.type @&lt;CodeableConcept&gt;;  # Deductable, visits, benefit amount
     (                                       # Benefits allowed
-        fhir:EligibilityResponse.benefitBalance.financial.benefitUnsignedInt @&lt;unsignedInt&gt;  |
-        fhir:EligibilityResponse.benefitBalance.financial.benefitString @&lt;string&gt;  |
-        fhir:EligibilityResponse.benefitBalance.financial.benefitMoney @&lt;Money&gt; 
+        fhir:EligibilityResponse.insurance.benefitBalance.financial.benefitUnsignedInt @&lt;unsignedInt&gt;  |
+        fhir:EligibilityResponse.insurance.benefitBalance.financial.benefitString @&lt;string&gt;  |
+        fhir:EligibilityResponse.insurance.benefitBalance.financial.benefitMoney @&lt;Money&gt; 
     )?;
     (                                       # Benefits used
-        fhir:EligibilityResponse.benefitBalance.financial.benefitUsedUnsignedInt @&lt;unsignedInt&gt;  |
-        fhir:EligibilityResponse.benefitBalance.financial.benefitUsedMoney @&lt;Money&gt; 
+        fhir:EligibilityResponse.insurance.benefitBalance.financial.benefitUsedUnsignedInt @&lt;unsignedInt&gt;  |
+        fhir:EligibilityResponse.insurance.benefitBalance.financial.benefitUsedMoney @&lt;Money&gt; 
     )?;
     fhir:index xsd:integer?                 # Relative position in a list
 }
@@ -345,23 +355,6 @@ start=@&lt;EligibilityResponse&gt; AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
-# A reference to a code defined by a terminology system
-&lt;Coding&gt; CLOSED {
-    fhir:concept IRI?;
-    fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
-    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:Coding.system @&lt;uri&gt;?;             # Identity of the terminology system
-    fhir:Coding.version @&lt;string&gt;?;         # Version of the system - if relevant
-    fhir:Coding.code @&lt;code&gt;?;              # Symbol in syntax defined by the 
-                                            # system 
-    fhir:Coding.display @&lt;string&gt;?;         # Representation defined by the 
-                                            # system 
-    fhir:Coding.userSelected @&lt;boolean&gt;?;   # If this coding was chosen directly 
-                                            # by the user 
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
 # Primitive Type unsignedInt
 &lt;unsignedInt&gt; CLOSED {
     fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
@@ -375,6 +368,19 @@ start=@&lt;EligibilityResponse&gt; AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
                                             # implementations 
     fhir:value xsd:string?;                 # Primitive value for id
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
+# Concept - reference to a terminology or just  text
+&lt;CodeableConcept&gt; CLOSED {
+    fhir:concept IRI*;
+    fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
+    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:CodeableConcept.coding @&lt;Coding&gt;*;  # Code defined by a terminology 
+                                            # system 
+    fhir:CodeableConcept.text @&lt;string&gt;?;   # Plain text representation of the 
+                                            # concept 
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -399,6 +405,23 @@ start=@&lt;EligibilityResponse&gt; AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
+# A reference to a code defined by a terminology system
+&lt;Coding&gt; CLOSED {
+    fhir:concept IRI?;
+    fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
+    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:Coding.system @&lt;uri&gt;?;             # Identity of the terminology system
+    fhir:Coding.version @&lt;string&gt;?;         # Version of the system - if relevant
+    fhir:Coding.code @&lt;code&gt;?;              # Symbol in syntax defined by the 
+                                            # system 
+    fhir:Coding.display @&lt;string&gt;?;         # Representation defined by the 
+                                            # system 
+    fhir:Coding.userSelected @&lt;boolean&gt;?;   # If this coding was chosen directly 
+                                            # by the user 
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
 # Primitive Type decimal
 &lt;decimal&gt; CLOSED {
     fhir:Element.id @&lt;id&gt;?;                 # xml:id (or equivalent in JSON)
@@ -408,43 +431,30 @@ start=@&lt;EligibilityResponse&gt; AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
-# Concept - reference to a terminology or just  text
-&lt;CodeableConcept&gt; CLOSED {
-    fhir:concept IRI*;
-    fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
-    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:CodeableConcept.coding @&lt;Coding&gt;*;  # Code defined by a terminology 
-                                            # system 
-    fhir:CodeableConcept.text @&lt;string&gt;?;   # Plain text representation of the 
-                                            # concept 
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
 #---------------------- Reference Types -------------------
 
 #---------------------- Value Sets ------------------------
 
-# This value set includes a smattering of adjudication codes.
-fhirvs:adjudication-error [&quot;a001&quot; &quot;a002&quot;]
-
-# A code specifying the state of the resource instance.
-fhirvs:eligibilityresponse-status [&quot;active&quot; &quot;cancelled&quot; &quot;draft&quot; &quot;entered-in-error&quot;]
-
 # This value set includes a Claim Processing Outcome codes.
 fhirvs:remittance-outcome [&quot;complete&quot; &quot;error&quot; &quot;partial&quot;]
-
-# This value set includes a sample set of Forms codes.
-fhirvs:forms [&quot;1&quot; &quot;2&quot;]
 
 # How the Quantity should be understood and represented.
 fhirvs:quantity-comparator [&quot;&lt;&quot; &quot;&lt;=&quot; &quot;&gt;=&quot; &quot;&gt;&quot;]
 
+# This value set includes STatus codes.
+fhirvs:fm-status [&quot;active&quot; &quot;cancelled&quot; &quot;draft&quot; &quot;entered-in-error&quot;]
+
 # Identifies the purpose for this identifier, if known .
 fhirvs:identifier-use [&quot;usual&quot; &quot;official&quot; &quot;temp&quot; &quot;secondary&quot;]
 
+# This value set includes a sample set of Forms codes.
+fhirvs:forms [&quot;1&quot; &quot;2&quot;]
+
 # The status of a resource narrative
 fhirvs:narrative-status [&quot;generated&quot; &quot;extensions&quot; &quot;additional&quot; &quot;empty&quot;]
+
+# This value set includes a smattering of adjudication codes.
+fhirvs:adjudication-error [&quot;a001&quot; &quot;a002&quot;]
 
 </pre>
 </div>
@@ -470,7 +480,7 @@ of the specification.
 		<div class="container"><!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:32-0500. <a href="qa.html">QA Page</a>
+        © HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:21-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search</a> | 

@@ -181,7 +181,7 @@
           "description": "A value set specifies a set of codes drawn from one or more code systems.",
           "properties": {
             "lockedDate": {
-              "description": "If a locked date is defined, then the Content Logical Definition must be evaluated using the current version of all referenced code system(s) and value set instances as of the locked date.",
+              "description": "If a locked date is defined, then the Content Logical Definition must be evaluated using the current version as of the locked date for referenced code system(s) and value set instances where ValueSet.compose.include.version is not defined.",
               "type": "string",
               "pattern": "-?[0-9]{4}(-(0[1-9]|1[0-2])(-(0[0-9]|[1-2][0-9]|3[0-1]))?)?"
             },
@@ -370,7 +370,8 @@
                 "regex",
                 "in",
                 "not-in",
-                "generalizes"
+                "generalizes",
+                "exists"
               ],
               "type": "string"
             },

@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>Datatypes-definitions - FHIR v1.7.0</title>
+  <title>Datatypes-definitions - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -136,8 +136,8 @@
 </table>
 
 
-<a name="Primitive"/>
-<a name="primitive"/>
+<a name="Primitive"> </a>
+<a name="primitive"> </a>
 <h3 style="margin-bottom: 1px" class="self-link-parent"><span class="sectioncount">2.22.2.1</span> Primitive Types <a href="datatypes-definitions.html#primitive" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h3>
 <p style="background-color: gainsboro; padding: 4px; margin-top: 0px">
 See also <a href="datatypes.html#primitive">Base Definition</a>, <a href="datatypes-examples.html#primitive">Examples</a> and <a href="datatypes-mappings.html#primitive">Mappings</a>.
@@ -155,7 +155,7 @@ See also <a href="datatypes.html#primitive">Base Definition</a>, <a href="dataty
 <a name="dateTime"> </a>
 <a name="datetime"> </a>
 <a name="time"> </a>
-<a name="patterns"/>
+<a name="patterns"> </a>
 <a name="code"> </a>
 <a name="oid"> </a>
 <a name="uuid"> </a>
@@ -163,8 +163,8 @@ See also <a href="datatypes.html#primitive">Base Definition</a>, <a href="dataty
 
 <p><i>todo</i></p>
 
-<a name="Attachment"/>
-<a name="attachment"/>
+<a name="Attachment"> </a>
+<a name="attachment"> </a>
 <h3 style="margin-bottom: 1px" class="self-link-parent"><span class="sectioncount">2.22.2.2</span> Attachment <a href="datatypes-definitions.html#attachment" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h3>
 <p style="background-color: gainsboro; padding: 4px; margin-top: 0px">
 See also <a href="datatypes.html#Attachment">Base Definition</a>, <a href="datatypes-examples.html#Attachment">Examples</a> and <a href="datatypes-mappings.html#Attachment">Mappings</a>.
@@ -185,7 +185,7 @@ See also <a href="datatypes.html#Attachment">Base Definition</a>, <a href="datat
   <tr><td>Definition</td><td><p>Identifies the type of the data in the attachment and allows a method to be chosen to interpret or render the data. Includes mime type parameters such as charset where appropriate.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td><a href="http://www.rfc-editor.org/bcp/bcp13.txt">MimeType <img src="external.png" style="text-align: baseline"/></a>: <a href="terminologies.html#required">Required</a>: <a href="http://www.rfc-editor.org/bcp/bcp13.txt">BCP 13 (RFCs 2045, 2046, 2047, 4288, 4289 and 2049) <img src="external.png" style="text-align: baseline"/></a> (The mime type of an attachment. Any valid mime type is allowed.)</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="http://www.rfc-editor.org/bcp/bcp13.txt">MimeType <img src="external.png" style="text-align: baseline"/></a>: </td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#code">code</a></td></tr>
   <tr><td>Requirements</td><td><p>Processors of the data need to be able to know how to interpret the data.</p>
 </td></tr>
@@ -194,7 +194,7 @@ See also <a href="datatypes.html#Attachment">Base Definition</a>, <a href="datat
   <tr><td>Definition</td><td><p>The human language of the content. The value can be any valid value according to BCP 47.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>Common Languages: <a href="valueset-languages.html">A human language.</a> (<a href="terminologies.html#extensible">Extensible</a> but limited to ??)</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-languages.html">Common Languages</a> (<a href="terminologies.html#extensible">Extensible</a> but limited to ??)</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#code">code</a></td></tr>
   <tr><td>Requirements</td><td><p>Users need to be able to choose between the languages in a set of attachments.</p>
 </td></tr>
@@ -219,7 +219,7 @@ See also <a href="datatypes.html#Attachment">Base Definition</a>, <a href="datat
   <tr><td>Comments</td><td><p>If both data and url are provided, the url SHALL point to the same content as the data contains. Urls may be relative references or may reference transient locations such as a wrapping envelope using cid: though this has ramifications for using signatures. Relative URLs are interpreted relative to the service url, like a resource reference, rather than relative to the resource itself. If a URL is provided, it SHALL resolve to actual data.</p>
 </td></tr>
   <tr><td colspan="2" class="structure"><a name="Attachment.size"> </a><b>Attachment.size</b></td></tr>
-  <tr><td>Definition</td><td><p>The number of bytes of data that make up this attachment.</p>
+  <tr><td>Definition</td><td><p>The number of bytes of data that make up this attachment (before base64 encoding, if that is done).</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#unsignedInt">unsignedInt</a></td></tr>
@@ -236,6 +236,8 @@ See also <a href="datatypes.html#Attachment">Base Definition</a>, <a href="datat
   <tr><td>Requirements</td><td><p>Included so that applications can verify that the contents of a location have not changed and so that a signature of the content can implicitly sign the content of an image without having to include the data in the instance or reference the url in the signature.</p>
 </td></tr>
   <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
+  <tr><td>Comments</td><td><p>The hash is calculated on the data prior to base64 encoding, if the data is based64 encoded.</p>
+</td></tr>
   <tr><td colspan="2" class="structure"><a name="Attachment.title"> </a><b>Attachment.title</b></td></tr>
   <tr><td>Definition</td><td><p>A label or set of text to display in place of the data.</p>
 </td></tr>
@@ -257,8 +259,8 @@ See also <a href="datatypes.html#Attachment">Base Definition</a>, <a href="datat
 
 
 
-<a name="Identifier"/>
-<a name="identifier"/>
+<a name="Identifier"> </a>
+<a name="identifier"> </a>
 <h3 style="margin-bottom: 1px" class="self-link-parent"><span class="sectioncount">2.22.2.3</span> Identifier <a href="datatypes-definitions.html#identifier" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h3>
 <p style="background-color: gainsboro; padding: 4px; margin-top: 0px">
 See also <a href="datatypes.html#identifier">Base Definition</a>, <a href="datatypes-examples.html#identifier">Examples</a> and <a href="datatypes-mappings.html#identifier">Mappings</a>.
@@ -276,7 +278,7 @@ See also <a href="datatypes.html#identifier">Base Definition</a>, <a href="datat
   <tr><td>Definition</td><td><p>The purpose of this identifier.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>IdentifierUse: <a href="valueset-identifier-use.html">Identifies the purpose for this identifier, if known .</a> (<a href="terminologies.html#required">Required</a>)</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-identifier-use.html">IdentifierUse</a> (<a href="terminologies.html#required">Required</a>)</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#code">code</a></td></tr>
   <tr><td><a href="conformance-rules.html#ismodifier">Is Modifier</a></td><td>true</td></tr>
   <tr><td>Requirements</td><td><p>Allows the appropriate identifier for a particular context of use to be selected from among a set of identifiers.</p>
@@ -288,7 +290,7 @@ See also <a href="datatypes.html#identifier">Base Definition</a>, <a href="datat
   <tr><td>Definition</td><td><p>A coded type for the identifier that can be used to determine which identifier to use for a specific purpose.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>Identifier Type Codes: <a href="valueset-identifier-type.html">A coded type for an identifier that can be used to determine which identifier to use for a specific purpose.</a> (<a href="terminologies.html#extensible">Extensible</a>)</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-identifier-type.html">Identifier Type Codes</a> (<a href="terminologies.html#extensible">Extensible</a>)</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
   <tr><td>Requirements</td><td><p>Allows users to make use of identifiers when the identifier system is not known.</p>
 </td></tr>
@@ -331,8 +333,8 @@ See also <a href="datatypes.html#identifier">Base Definition</a>, <a href="datat
 
 
 
-<a name="Coding"/>
-<a name="coding"/>
+<a name="Coding"> </a>
+<a name="coding"> </a>
 <h3 style="margin-bottom: 1px" class="self-link-parent"><span class="sectioncount">2.22.2.4</span> Coding <a href="datatypes-definitions.html#coding" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h3>
 <p style="background-color: gainsboro; padding: 4px; margin-top: 0px">
 See also <a href="datatypes.html#Coding">Base Definition</a>, <a href="datatypes-examples.html#Coding">Examples</a> and <a href="datatypes-mappings.html#Coding">Mappings</a>.
@@ -398,8 +400,8 @@ See also <a href="datatypes.html#Coding">Base Definition</a>, <a href="datatypes
 
 
 
-<a name="CodeableConcept"/>
-<a name="codeableconcept"/>
+<a name="CodeableConcept"> </a>
+<a name="codeableconcept"> </a>
 <h3 style="margin-bottom: 1px" class="self-link-parent"><span class="sectioncount">2.22.2.5</span> CodeableConcept <a href="datatypes-definitions.html#codeableconcept" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h3>
 <p style="background-color: gainsboro; padding: 4px; margin-top: 0px">
 See also <a href="datatypes.html#CodeableConcept">Base Definition</a>, <a href="datatypes-examples.html#CodeableConcept">Examples</a> and <a href="datatypes-mappings.html#CodeableConcept">Mappings</a>.
@@ -440,15 +442,15 @@ See also <a href="datatypes.html#CodeableConcept">Base Definition</a>, <a href="
 
 
 
-<a name="Quantity"/>
-<a name="quantity"/>
-<a name="SimpleQuantity"/>
-<a name="simplequantity"/>
-<a name="age"/>
-<a name="distance"/>
-<a name="duration"/>
-<a name="count"/>
-<a name="money"/>
+<a name="Quantity"> </a>
+<a name="quantity"> </a>
+<a name="SimpleQuantity"> </a>
+<a name="simplequantity"> </a>
+<a name="age"> </a>
+<a name="distance"> </a>
+<a name="duration"> </a>
+<a name="count"> </a>
+<a name="money"> </a>
 <h3 style="margin-bottom: 1px" class="self-link-parent"><span class="sectioncount">2.22.2.6</span> Quantity <a href="datatypes-definitions.html#money" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h3>
 <p style="background-color: gainsboro; padding: 4px; margin-top: 0px">
 See also <a href="datatypes.html#Quantity">Base Definition</a>, <a href="datatypes-examples.html#Quantity">Examples</a> and <a href="datatypes-mappings.html#Quantity">Mappings</a>.
@@ -480,7 +482,7 @@ See also <a href="datatypes.html#Quantity">Base Definition</a>, <a href="datatyp
   <tr><td>Definition</td><td><p>How the value should be understood and represented - whether the actual value is greater or less than the stated value due to measurement issues; e.g. if the comparator is &quot;&lt;&quot; , then the real value is &lt; stated value.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>QuantityComparator: <a href="valueset-quantity-comparator.html">How the Quantity should be understood and represented.</a> (<a href="terminologies.html#required">Required</a>)</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-quantity-comparator.html">QuantityComparator</a> (<a href="terminologies.html#required">Required</a>)</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#code">code</a></td></tr>
   <tr><td><a href="conformance-rules.html#ismodifier">Is Modifier</a></td><td>true</td></tr>
   <tr><td>Meaning if Missing</td><td>If there is no comparator, then there is no modification of the value</td></tr>
@@ -522,8 +524,8 @@ See also <a href="datatypes.html#Quantity">Base Definition</a>, <a href="datatyp
 
 
 
-<a name="Range"/>
-<a name="range"/>
+<a name="Range"> </a>
+<a name="range"> </a>
 <h3 style="margin-bottom: 1px" class="self-link-parent"><span class="sectioncount">2.22.2.7</span> Range <a href="datatypes-definitions.html#range" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h3>
 <p style="background-color: gainsboro; padding: 4px; margin-top: 0px">
 See also <a href="datatypes.html#Range">Base Definition</a>, <a href="datatypes-examples.html#Range">Examples</a> and <a href="datatypes-mappings.html#Range">Mappings</a>.
@@ -566,8 +568,8 @@ See also <a href="datatypes.html#Range">Base Definition</a>, <a href="datatypes-
 
 
 
-<a name="Ratio"/>
-<a name="ratio"/>
+<a name="Ratio"> </a>
+<a name="ratio"> </a>
 <h3 style="margin-bottom: 1px" class="self-link-parent"><span class="sectioncount">2.22.2.8</span> Ratio <a href="datatypes-definitions.html#ratio" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h3>
 <p style="background-color: gainsboro; padding: 4px; margin-top: 0px">
 See also <a href="datatypes.html#Ratio">Base Definition</a>, <a href="datatypes-examples.html#Ratio">Examples</a> and <a href="datatypes-mappings.html#Ratio">Mappings</a>.
@@ -600,8 +602,8 @@ See also <a href="datatypes.html#Ratio">Base Definition</a>, <a href="datatypes-
 
 
 
-<a name="Period"/>
-<a name="period"/>
+<a name="Period"> </a>
+<a name="period"> </a>
 <h3 style="margin-bottom: 1px" class="self-link-parent"><span class="sectioncount">2.22.2.9</span> Period <a href="datatypes-definitions.html#period" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h3>
 <p style="background-color: gainsboro; padding: 4px; margin-top: 0px">
 See also <a href="datatypes.html#Period">Base Definition</a>, <a href="datatypes-examples.html#Period">Examples</a> and <a href="datatypes-mappings.html#Period">Mappings</a>.
@@ -643,8 +645,8 @@ See also <a href="datatypes.html#Period">Base Definition</a>, <a href="datatypes
 
 
 
-<a name="SampledData"/>
-<a name="sampleddata"/>
+<a name="SampledData"> </a>
+<a name="sampleddata"> </a>
 <h3 style="margin-bottom: 1px" class="self-link-parent"><span class="sectioncount">2.22.2.10</span> SampledData <a href="datatypes-definitions.html#sampleddata" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h3>
 <p style="background-color: gainsboro; padding: 4px; margin-top: 0px">
 See also <a href="datatypes.html#SampledData">Base Definition</a>, <a href="datatypes-examples.html#SampledData">Examples</a> and <a href="datatypes-mappings.html#SampledData">Mappings</a>.
@@ -710,8 +712,8 @@ See also <a href="datatypes.html#SampledData">Base Definition</a>, <a href="data
 
 
 
-<a name="HumanName"/>
-<a name="humanname"/>
+<a name="HumanName"> </a>
+<a name="humanname"> </a>
 <h3 style="margin-bottom: 1px" class="self-link-parent"><span class="sectioncount">2.22.2.11</span> HumanName <a href="datatypes-definitions.html#humanname" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h3>
 <p style="background-color: gainsboro; padding: 4px; margin-top: 0px">
 See also <a href="datatypes.html#HumanName">Base Definition</a>, <a href="datatypes-examples.html#HumanName">Examples</a> and <a href="datatypes-mappings.html#HumanName">Mappings</a>.
@@ -731,7 +733,7 @@ See also <a href="datatypes.html#HumanName">Base Definition</a>, <a href="dataty
   <tr><td>Definition</td><td><p>Identifies the purpose for this name.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>NameUse: <a href="valueset-name-use.html">The use of a human name</a> (<a href="terminologies.html#required">Required</a>)</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-name-use.html">NameUse</a> (<a href="terminologies.html#required">Required</a>)</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#code">code</a></td></tr>
   <tr><td><a href="conformance-rules.html#ismodifier">Is Modifier</a></td><td>true</td></tr>
   <tr><td>Requirements</td><td><p>Allows the appropriate name for a particular context of use to be selected from among a set of names.</p>
@@ -752,11 +754,11 @@ See also <a href="datatypes.html#HumanName">Base Definition</a>, <a href="dataty
   <tr><td colspan="2" class="structure"><a name="HumanName.family"> </a><b>HumanName.family</b></td></tr>
   <tr><td>Definition</td><td><p>The part of a name that links to the genealogy. In some cultures (e.g. Eritrea) the family name of a son is the first name of his father.</p>
 </td></tr>
-  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..*</td></tr>
+  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#string">string</a></td></tr>
   <tr><td title="Other names by which this resource/element may be known">Alternate Names</td><td>surname</td></tr>
   <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
-  <tr><td>Comments</td><td><p>For family name, hyphenated names such as &quot;Smith-Jones&quot; are a single name, but names with spaces such as &quot;Smith Jones&quot; are broken into multiple parts.</p>
+  <tr><td>Comments</td><td><p>Family Name may be decomposed into specific parts using extensions (de, nl, es related cultures).</p>
 </td></tr>
   <tr><td colspan="2" class="structure"><a name="HumanName.given"> </a><b>HumanName.given</b></td></tr>
   <tr><td>Definition</td><td><p>Given name.</p>
@@ -792,8 +794,8 @@ See also <a href="datatypes.html#HumanName">Base Definition</a>, <a href="dataty
 
 
 
-<a name="Address"/>
-<a name="address"/>
+<a name="Address"> </a>
+<a name="address"> </a>
 <h3 style="margin-bottom: 1px" class="self-link-parent"><span class="sectioncount">2.22.2.12</span> Address <a href="datatypes-definitions.html#address" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h3>
 <p style="background-color: gainsboro; padding: 4px; margin-top: 0px">
 See also <a href="datatypes.html#Address">Base Definition</a>, <a href="datatypes-examples.html#Address">Examples</a> and <a href="datatypes-mappings.html#Address">Mappings</a>.
@@ -813,7 +815,7 @@ See also <a href="datatypes.html#Address">Base Definition</a>, <a href="datatype
   <tr><td>Definition</td><td><p>The purpose of this address.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>AddressUse: <a href="valueset-address-use.html">The use of an address</a> (<a href="terminologies.html#required">Required</a>)</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-address-use.html">AddressUse</a> (<a href="terminologies.html#required">Required</a>)</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#code">code</a></td></tr>
   <tr><td><a href="conformance-rules.html#ismodifier">Is Modifier</a></td><td>true</td></tr>
   <tr><td>Requirements</td><td><p>Allows an appropriate address to be chosen from a list of many.</p>
@@ -825,7 +827,7 @@ See also <a href="datatypes.html#Address">Base Definition</a>, <a href="datatype
   <tr><td>Definition</td><td><p>Distinguishes between physical addresses (those you can visit) and mailing addresses (e.g. PO Boxes and care-of addresses). Most addresses are both.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>AddressType: <a href="valueset-address-type.html">The type of an address (physical / postal)</a> (<a href="terminologies.html#required">Required</a>)</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-address-type.html">AddressType</a> (<a href="terminologies.html#required">Required</a>)</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#code">code</a></td></tr>
   <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
   <tr><td colspan="2" class="structure"><a name="Address.text"> </a><b>Address.text</b></td></tr>
@@ -897,8 +899,8 @@ See also <a href="datatypes.html#Address">Base Definition</a>, <a href="datatype
 
 
 
-<a name="ContactPoint"/>
-<a name="contactpoint"/>
+<a name="ContactPoint"> </a>
+<a name="contactpoint"> </a>
 <h3 style="margin-bottom: 1px" class="self-link-parent"><span class="sectioncount">2.22.2.13</span> ContactPoint <a href="datatypes-definitions.html#contactpoint" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h3>
 <p style="background-color: gainsboro; padding: 4px; margin-top: 0px">
 See also <a href="datatypes.html#ContactPoint">Base Definition</a>, <a href="datatypes-examples.html#ContactPoint">Examples</a> and <a href="datatypes-mappings.html#ContactPoint">Mappings</a>.
@@ -918,7 +920,7 @@ See also <a href="datatypes.html#ContactPoint">Base Definition</a>, <a href="dat
   <tr><td>Definition</td><td><p>Telecommunications form for contact point - what communications system is required to make use of the contact.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>ContactPointSystem: <a href="valueset-contact-point-system.html">Telecommunications form for contact point</a> (<a href="terminologies.html#required">Required</a>)</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-contact-point-system.html">ContactPointSystem</a> (<a href="terminologies.html#required">Required</a>)</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#code">code</a></td></tr>
   <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
   <tr><td>Invariants</td><td><b>Affect this element</b><br/>
@@ -937,7 +939,7 @@ See also <a href="datatypes.html#ContactPoint">Base Definition</a>, <a href="dat
   <tr><td>Definition</td><td><p>Identifies the purpose for the contact point.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>ContactPointUse: <a href="valueset-contact-point-use.html">Use of contact point</a> (<a href="terminologies.html#required">Required</a>)</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-contact-point-use.html">ContactPointUse</a> (<a href="terminologies.html#required">Required</a>)</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#code">code</a></td></tr>
   <tr><td><a href="conformance-rules.html#ismodifier">Is Modifier</a></td><td>true</td></tr>
   <tr><td>Requirements</td><td><p>Need to track the way a person uses this contact, so a user can choose which is appropriate for their purpose.</p>
@@ -964,8 +966,8 @@ See also <a href="datatypes.html#ContactPoint">Base Definition</a>, <a href="dat
 
 
 
-<a name="Timing"/>
-<a name="timing"/>
+<a name="Timing"> </a>
+<a name="timing"> </a>
 <h3 style="margin-bottom: 1px" class="self-link-parent"><span class="sectioncount">2.22.2.14</span> Timing <a href="datatypes-definitions.html#timing" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h3>
 <p style="background-color: gainsboro; padding: 4px; margin-top: 0px">
 See also <a href="datatypes.html#Timing">Base Definition</a>, <a href="datatypes-examples.html#Timing">Examples</a> and <a href="datatypes-mappings.html#Timing">Mappings</a>.
@@ -997,7 +999,7 @@ See also <a href="datatypes.html#Timing">Base Definition</a>, <a href="datatypes
 </td></tr>
   <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
   <tr><td>Invariants</td><td><b>Defined on this element</b><br/>
-<b title="Formal Invariant Identifier">tim-1</b>: if there's a duration, there needs to be duration units (<a href="http://hl7.org/fluentpath">expression <img src="external.png" style="text-align: baseline"/></a>: duration.empty() or durationUnit.exists(), xpath: not(exists(f:duration)) or exists(f:durationUnit))<br/><b title="Formal Invariant Identifier">tim-2</b>: if there's a period, there needs to be period units (<a href="http://hl7.org/fluentpath">expression <img src="external.png" style="text-align: baseline"/></a>: period.empty() or periodUnit.exists(), xpath: not(exists(f:period)) or exists(f:periodUnit))<br/><b title="Formal Invariant Identifier">tim-3</b>: Either frequency or when can exist, not both (<a href="http://hl7.org/fluentpath">expression <img src="external.png" style="text-align: baseline"/></a>: ((period or frequency) and when).not(), xpath: not((f:period or f:frequency) and f:when))<br/><b title="Formal Invariant Identifier">tim-4</b>: duration SHALL be a non-negative value (<a href="http://hl7.org/fluentpath">expression <img src="external.png" style="text-align: baseline"/></a>: duration.exists() implies duration &gt;= 0, xpath: f:duration/@value &gt;= 0 or not(f:duration/@value))<br/><b title="Formal Invariant Identifier">tim-5</b>: period SHALL be a non-negative value (<a href="http://hl7.org/fluentpath">expression <img src="external.png" style="text-align: baseline"/></a>: period.exists() implies period &gt;= 0, xpath: f:period/@value &gt;= 0 or not(f:period/@value))<br/><b title="Formal Invariant Identifier">tim-6</b>: If there's a periodMax, there must be a period (<a href="http://hl7.org/fluentpath">expression <img src="external.png" style="text-align: baseline"/></a>: periodMax.empty() or period.exists(), xpath: not(exists(f:periodMax)) or exists(f:period))<br/><b title="Formal Invariant Identifier">tim-7</b>: If there's a durationMax, there must be a duration (<a href="http://hl7.org/fluentpath">expression <img src="external.png" style="text-align: baseline"/></a>: durationMax.empty() or duration.exists(), xpath: not(exists(f:durationMax)) or exists(f:duration))<br/><b title="Formal Invariant Identifier">tim-8</b>: If there's a countMax, there must be a count (<a href="http://hl7.org/fluentpath">expression <img src="external.png" style="text-align: baseline"/></a>: countMax.empty() or count.exists(), xpath: not(exists(f:countMax)) or exists(f:count))<br/><b title="Formal Invariant Identifier">tim-9</b>: If there's an offset, there must be a when (<a href="http://hl7.org/fluentpath">expression <img src="external.png" style="text-align: baseline"/></a>: offset.empty() or when.exists(), xpath: not(exists(f:offset)) or exists(f:when))</td></tr>
+<b title="Formal Invariant Identifier">tim-1</b>: if there's a duration, there needs to be duration units (<a href="http://hl7.org/fluentpath">expression <img src="external.png" style="text-align: baseline"/></a>: duration.empty() or durationUnit.exists(), xpath: not(exists(f:duration)) or exists(f:durationUnit))<br/><b title="Formal Invariant Identifier">tim-10</b>: If there's a timeOfDay, there cannot be be a when, a frequency, or a period (<a href="http://hl7.org/fluentpath">expression <img src="external.png" style="text-align: baseline"/></a>: timeOfDay.exists() implies (when.empty() and frequency.empty() and period.empty()), xpath: not(exists(f:timeofDay)) or (not(exists(f:when)) and not(exists(f:frequency)) and not (exists(f:period))))<br/><b title="Formal Invariant Identifier">tim-11</b>: If there's a dayOfWeek, there cannot be be a frequency, or a period (<a href="http://hl7.org/fluentpath">expression <img src="external.png" style="text-align: baseline"/></a>: dayOfWeek.exists() implies (frequency.empty() and period.empty()), xpath: not(exists(f:timeofDay)) or (not(exists(f:frequency)) and not (exists(f:period))))<br/><b title="Formal Invariant Identifier">tim-2</b>: if there's a period, there needs to be period units (<a href="http://hl7.org/fluentpath">expression <img src="external.png" style="text-align: baseline"/></a>: period.empty() or periodUnit.exists(), xpath: not(exists(f:period)) or exists(f:periodUnit))<br/><b title="Formal Invariant Identifier">tim-3</b>: Either frequency or when can exist, not both (<a href="http://hl7.org/fluentpath">expression <img src="external.png" style="text-align: baseline"/></a>: ((period or frequency) and when).not(), xpath: not((f:period or f:frequency) and f:when))<br/><b title="Formal Invariant Identifier">tim-4</b>: duration SHALL be a non-negative value (<a href="http://hl7.org/fluentpath">expression <img src="external.png" style="text-align: baseline"/></a>: duration.exists() implies duration &gt;= 0, xpath: f:duration/@value &gt;= 0 or not(f:duration/@value))<br/><b title="Formal Invariant Identifier">tim-5</b>: period SHALL be a non-negative value (<a href="http://hl7.org/fluentpath">expression <img src="external.png" style="text-align: baseline"/></a>: period.exists() implies period &gt;= 0, xpath: f:period/@value &gt;= 0 or not(f:period/@value))<br/><b title="Formal Invariant Identifier">tim-6</b>: If there's a periodMax, there must be a period (<a href="http://hl7.org/fluentpath">expression <img src="external.png" style="text-align: baseline"/></a>: periodMax.empty() or period.exists(), xpath: not(exists(f:periodMax)) or exists(f:period))<br/><b title="Formal Invariant Identifier">tim-7</b>: If there's a durationMax, there must be a duration (<a href="http://hl7.org/fluentpath">expression <img src="external.png" style="text-align: baseline"/></a>: durationMax.empty() or duration.exists(), xpath: not(exists(f:durationMax)) or exists(f:duration))<br/><b title="Formal Invariant Identifier">tim-8</b>: If there's a countMax, there must be a count (<a href="http://hl7.org/fluentpath">expression <img src="external.png" style="text-align: baseline"/></a>: countMax.empty() or count.exists(), xpath: not(exists(f:countMax)) or exists(f:count))<br/><b title="Formal Invariant Identifier">tim-9</b>: If there's an offset, there must be a when (<a href="http://hl7.org/fluentpath">expression <img src="external.png" style="text-align: baseline"/></a>: offset.empty() or when.exists(), xpath: not(exists(f:offset)) or exists(f:when))</td></tr>
   <tr><td colspan="2" class="structure"><a name="Timing.repeat.bounds_x_"> </a><b>Timing.repeat.bounds[x]</b></td></tr>
   <tr><td>Definition</td><td><p>Either a duration for the length of the timing schedule, a range of possible length, or outer bounds for start and/or end limits of the timing schedule.</p>
 </td></tr>
@@ -1045,7 +1047,7 @@ See also <a href="datatypes.html#Timing">Base Definition</a>, <a href="datatypes
   <tr><td>Definition</td><td><p>The units of time for the duration, in UCUM units.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>UnitsOfTime: <a href="valueset-units-of-time.html">A unit of time (units from UCUM).</a> (<a href="terminologies.html#required">Required</a>)</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-units-of-time.html">UnitsOfTime</a> (<a href="terminologies.html#required">Required</a>)</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#code">code</a></td></tr>
   <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
   <tr><td colspan="2" class="structure"><a name="Timing.repeat.frequency"> </a><b>Timing.repeat.frequency</b></td></tr>
@@ -1077,14 +1079,31 @@ See also <a href="datatypes.html#Timing">Base Definition</a>, <a href="datatypes
   <tr><td>Definition</td><td><p>The units of time for the period in UCUM units.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>UnitsOfTime: <a href="valueset-units-of-time.html">A unit of time (units from UCUM).</a> (<a href="terminologies.html#required">Required</a>)</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-units-of-time.html">UnitsOfTime</a> (<a href="terminologies.html#required">Required</a>)</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#code">code</a></td></tr>
   <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
+  <tr><td colspan="2" class="structure"><a name="Timing.repeat.dayOfWeek"> </a><b>Timing.repeat.dayOfWeek</b></td></tr>
+  <tr><td>Definition</td><td><p>If one or more days of week is provided, then the action happens only on the specified day(s).</p>
+</td></tr>
+  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..*</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-days-of-week.html">DaysOfWeek</a> (<a href="terminologies.html#required">Required</a>)</td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#code">code</a></td></tr>
+  <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
+  <tr><td>Comments</td><td><p>If no days are specified, the action is assumed to happen every day as otherwise specified. The elements frequency and period cannot be used as well as dayOfWeek.</p>
+</td></tr>
+  <tr><td colspan="2" class="structure"><a name="Timing.repeat.timeOfDay"> </a><b>Timing.repeat.timeOfDay</b></td></tr>
+  <tr><td>Definition</td><td><p>Specified time of day for action to take place.</p>
+</td></tr>
+  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..*</td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#time">time</a></td></tr>
+  <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
+  <tr><td>Comments</td><td><p>When time of day is speciifed, it is inferred that the action happens every day (as filtered by dayofWeek) on the specified times. The elements when, frequency and period cannot be used as well as timeOfDay.</p>
+</td></tr>
   <tr><td colspan="2" class="structure"><a name="Timing.repeat.when"> </a><b>Timing.repeat.when</b></td></tr>
   <tr><td>Definition</td><td><p>A real world event that the occurrence of the event should be tied to.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>EventTiming: <a href="valueset-event-timing.html">Real world event that the relating to the schedule.</a> (<a href="terminologies.html#required">Required</a>)</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-event-timing.html">EventTiming</a> (<a href="terminologies.html#required">Required</a>)</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#code">code</a></td></tr>
   <tr><td>Requirements</td><td><p>Timings are frequently determined by occurrences such as waking, eating and sleep.</p>
 </td></tr>
@@ -1099,7 +1118,7 @@ See also <a href="datatypes.html#Timing">Base Definition</a>, <a href="datatypes
   <tr><td>Definition</td><td><p>A code for the timing pattern. Some codes such as BID are ubiquitous, but many institutions define their own additional codes. If a code is provided, the code is understood to be a complete statement of whatever is specified in the structured timing data, and either the code or the data may be used to interpret the Timing.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>TimingAbbreviation: <a href="valueset-timing-abbreviation.html">Code for a known / defined timing pattern.</a> (<a href="terminologies.html#preferred">Preferred</a>)</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-timing-abbreviation.html">TimingAbbreviation</a> (<a href="terminologies.html#preferred">Preferred</a>)</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
   <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
   <tr><td>Comments</td><td><p>BID etc are defined as 'at institutionally specified times'. For example, an institution may choose that BID is &quot;always at 7am and 6pm&quot;.  If it is inappropriate for this choice to be made, the code BID should not be used. Instead, a distinct organization-specific code should be used in place of the HL7-defined BID code and/or the a structured representation should be used (in this case, specifying the two event times).</p>
@@ -1109,8 +1128,8 @@ See also <a href="datatypes.html#Timing">Base Definition</a>, <a href="datatypes
 
 
 
-<a name="Signature"/>
-<a name="signature"/>
+<a name="Signature"> </a>
+<a name="signature"> </a>
 <h3 style="margin-bottom: 1px" class="self-link-parent"><span class="sectioncount">2.22.2.15</span> Signature <a href="datatypes-definitions.html#signature" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h3>
 <p style="background-color: gainsboro; padding: 4px; margin-top: 0px">
 See also <a href="datatypes.html#Signature">Base Definition</a>, <a href="datatypes-examples.html#Signature">Examples</a> and <a href="datatypes-mappings.html#Signature">Mappings</a>.
@@ -1129,7 +1148,7 @@ See also <a href="datatypes.html#Signature">Base Definition</a>, <a href="dataty
   <tr><td>Definition</td><td><p>An indication of the reason that the entity signed this document. This may be explicitly included as part of the signature information and can be used when determining accountability for various actions concerning the document.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>1..*</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>Signature Type Codes: <a href="valueset-signature-type.html">An indication of the reason that an entity signed the object</a> (<a href="terminologies.html#preferred">Preferred</a>)</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-signature-type.html">Signature Type Codes</a> (<a href="terminologies.html#preferred">Preferred</a>)</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#Coding">Coding</a></td></tr>
   <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
   <tr><td>Comments</td><td><p>Examples include attesting to: authorship, correct transcription, and witness of specific event. Also known as a &amp;quot;Commitment Type Indication&amp;quot;.</p>
@@ -1166,7 +1185,7 @@ See also <a href="datatypes.html#Signature">Base Definition</a>, <a href="dataty
   <tr><td>Definition</td><td><p>A mime type that indicates the technical format of the signature. Important mime types are application/signature+xml for X ML DigSig, application/jwt for JWT, and image/* for a graphical image of a signature, etc.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td><a href="http://www.rfc-editor.org/bcp/bcp13.txt">MimeType <img src="external.png" style="text-align: baseline"/></a>: <a href="terminologies.html#required">Required</a>: <a href="http://www.rfc-editor.org/bcp/bcp13.txt">BCP 13 (RFCs 2045, 2046, 2047, 4288, 4289 and 2049) <img src="external.png" style="text-align: baseline"/></a> (The mime type of an attachment. Any valid mime type is allowed.)</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="http://www.rfc-editor.org/bcp/bcp13.txt">MimeType <img src="external.png" style="text-align: baseline"/></a>: </td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#code">code</a></td></tr>
   <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
   <tr><td colspan="2" class="structure"><a name="Signature.blob"> </a><b>Signature.blob</b></td></tr>
@@ -1181,8 +1200,8 @@ See also <a href="datatypes.html#Signature">Base Definition</a>, <a href="dataty
 
 
 
-<a name="Annotation"/>
-<a name="annotation"/>
+<a name="Annotation"> </a>
+<a name="annotation"> </a>
 <h3 style="margin-bottom: 1px" class="self-link-parent"><span class="sectioncount">2.22.2.16</span> Annotation <a href="datatypes-definitions.html#annotation" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h3>
 <p style="background-color: gainsboro; padding: 4px; margin-top: 0px">
 See also <a href="datatypes.html#Annotation">Base Definition</a>, <a href="datatypes-examples.html#Annotation">Examples</a> and <a href="datatypes-mappings.html#Annotation">Mappings</a>.
@@ -1232,7 +1251,7 @@ See also <a href="datatypes.html#Annotation">Base Definition</a>, <a href="datat
 		<div class="container">  <!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:33-0500. <a href="qa.html">QA Page</a>
+        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:28-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search <img src="external.png" style="text-align: baseline"/></a> | 

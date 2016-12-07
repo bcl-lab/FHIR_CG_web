@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>MedicationStatement - FHIR v1.7.0</title>
+  <title>MedicationStatement - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -116,7 +116,16 @@
 <p>The primary difference between a medication statement and a medication administration is that the medication administration has complete administration information and is based on actual administration information from the person who administered the medication.  A medication statement is often, if not always, less specific.  There is no required date/time when the medication was administered, in fact we only know that a source has reported the patient is taking this medication, where details such as time, quantity, or rate or even medication product may be incomplete or missing or less precise.  As stated earlier, the medication statement information may come from the patient's memory, from a prescription bottle or from a list of medications the patient, clinician or other party maintains.  Medication administration is more formal and is not missing detailed information.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>1..1</td></tr>
-  <tr><td>Comments</td><td><p>The WG will be updating the MedicationStatement resource  to adjust each affected resource to align with the workflow pattern (see workflow.html).</p>
+  <tr><td>Comments</td><td><p>When interpreting a medicationStatement, the value of the status and NotTaken needed to be considered:
+MedicationStatement.status + MedicationStatement.wasNotTaken
+Status=Active + NotTaken=T = Not currently taking
+Status=Completed + NotTaken=T = Not taken in the past
+Status=Intended + NotTaken=T = No intention of taking
+Status=Active + NotTaken=F = Taking, but not as prescribed
+Status=Active + NotTaken=F = Taking
+Status=Intended +NotTaken= F = Will be taking (not started)
+Status=Completed + NotTaken=F = Taken in past
+Status=In Error + NotTaken=N/A = In Error.</p>
 </td></tr>
   <tr><td>Invariants</td><td><b>Defined on this element</b><br/>
 <b title="Formal Invariant Identifier">mst-1</b>: Reason not taken is only permitted if notTaken is Yes (<a href="http://hl7.org/fluentpath">expression <img src="external.png" style="text-align: baseline"/></a>: reasonNotTaken.empty() or notTaken='y', xpath: not(exists(f:reasonNotTaken) and (f:notTaken/@value='n' or f:notTaken/@value='unk')))</td></tr>
@@ -130,27 +139,27 @@
   <tr><td>Definition</td><td><p>A code representing the patient or other source's judgment about the state of the medication used that this statement is about.  Generally this will be active or completed.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>1..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>MedicationStatementStatus: <a href="valueset-medication-statement-status.html">A coded concept indicating the current status of a MedicationStatement.</a> (<a href="terminologies.html#required">Required</a>)</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-medication-statement-status.html">MedicationStatementStatus</a> (<a href="terminologies.html#required">Required</a>)</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#code">code</a></td></tr>
   <tr><td><a href="conformance-rules.html#ismodifier">Is Modifier</a></td><td>true</td></tr>
   <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
-  <tr><td>Comments</td><td><p>MedicationStatement is a statement at a point in time.  The status is only representative at the point when it was asserted.</p>
+  <tr><td>Comments</td><td><p>MedicationStatement is a statement at a point in time.  The status is only representative at the point when it was asserted.  The value set for MedicationStatement.status contains codes that assert the status of the use of the medication by the patient (for example, stopped or on hold) as well as codes that assert the status of the medication statement itself (for example, entered in error).</p>
 </td></tr>
   <tr><td colspan="2" class="structure"><a name="MedicationStatement.medication_x_"> </a><b>MedicationStatement.medication[x]</b></td></tr>
   <tr><td>Definition</td><td><p>Identifies the medication being administered. This is either a link to a resource representing the details of the medication or a simple attribute carrying a code that identifies the medication from a known list of medications.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>1..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>SNOMED CT Medication Codes: <a href="valueset-medication-codes.html">A coded concept identifying the substance or product being taken.</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-medication-codes.html">SNOMED CT Medication Codes</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a>|<a href="references.html#Reference">Reference</a>(<a href="medication.html">Medication</a>)</td></tr>
   <tr><td>[x] Note</td><td>See <a href="formats.html#choice">Choice of Data Types</a> for further information about how to use [x]</td></tr>
   <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
   <tr><td>Comments</td><td><p>If only a code is specified, then it needs to be a code for a specific product.  If more information is required, then the use of the medication resource is recommended.  Note: do not use Medication.name to describe the medication this statement concerns. When the only available information is a text description of the medication, Medication.code.text should be used.</p>
 </td></tr>
-  <tr><td colspan="2" class="structure"><a name="MedicationStatement.patient"> </a><b>MedicationStatement.patient</b></td></tr>
-  <tr><td>Definition</td><td><p>The person or animal who is/was taking the medication.</p>
+  <tr><td colspan="2" class="structure"><a name="MedicationStatement.subject"> </a><b>MedicationStatement.subject</b></td></tr>
+  <tr><td>Definition</td><td><p>The person, animal or group who is/was taking the medication.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>1..1</td></tr>
-  <tr><td><a href="datatypes.html">Type</a></td><td><a href="references.html#Reference">Reference</a>(<a href="patient.html">Patient</a>)</td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="references.html#Reference">Reference</a>(<a href="patient.html">Patient</a> | <a href="group.html">Group</a>)</td></tr>
   <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
   <tr><td colspan="2" class="structure"><a name="MedicationStatement.effective_x_"> </a><b>MedicationStatement.effective[x]</b></td></tr>
   <tr><td>Definition</td><td><p>The interval of time during which it is being asserted that the patient was taking the medication (or was not taking, when the wasNotGiven element is true).</p>
@@ -183,7 +192,7 @@
   <tr><td>Definition</td><td><p>Indicator of the certainty of whether the medication was taken by the patient.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>MedicationStatementNotTaken: <a href="valueset-medication-statement-nottaken.html">A coded concept identifying level of certainty if patient has taken or has not taken the medication</a> (<a href="terminologies.html#required">Required</a>)</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-medication-statement-nottaken.html">MedicationStatementNotTaken</a> (<a href="terminologies.html#required">Required</a>)</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#code">code</a></td></tr>
   <tr><td><a href="conformance-rules.html#ismodifier">Is Modifier</a></td><td>true</td></tr>
   <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
@@ -191,23 +200,23 @@
   <tr><td>Definition</td><td><p>A code indicating why the medication was not taken.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..*</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>SNOMED CT Drugs not taken/completed Codes: <a href="valueset-reason-medication-not-taken-codes.html">A coded concept indicating the reason why the medication was not taken</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-reason-medication-not-taken-codes.html">SNOMED CT Drugs not taken/completed Codes</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
   <tr><td>Invariants</td><td><b>Affect this element</b><br/>
 <b title="Formal Invariant Identifier">mst-1</b>: Reason not taken is only permitted if notTaken is Yes (<a href="http://hl7.org/fluentpath">expression <img src="external.png" style="text-align: baseline"/></a>: reasonNotTaken.empty() or notTaken='y', xpath: not(exists(f:reasonNotTaken) and (f:notTaken/@value='n' or f:notTaken/@value='unk')))</td></tr>
-  <tr><td colspan="2" class="structure"><a name="MedicationStatement.reasonForUseCode"> </a><b>MedicationStatement.reasonForUseCode</b></td></tr>
+  <tr><td colspan="2" class="structure"><a name="MedicationStatement.reasonForUseCodeableConcept"> </a><b>MedicationStatement.reasonForUseCodeableConcept</b></td></tr>
   <tr><td>Definition</td><td><p>A reason for why the medication is being/was taken.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..*</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>Condition/Problem/Diagnosis Codes: <a href="valueset-condition-code.html">A coded concept identifying why the medication is being taken.</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-condition-code.html">Condition/Problem/Diagnosis Codes</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
   <tr><td>Comments</td><td><p>This could be a diagnosis code. If a full condition record exists or additional detail is needed, use reasonForUseReference.</p>
 </td></tr>
   <tr><td colspan="2" class="structure"><a name="MedicationStatement.reasonForUseReference"> </a><b>MedicationStatement.reasonForUseReference</b></td></tr>
-  <tr><td>Definition</td><td><p>Condition that supports why the medication is being/was taken.</p>
+  <tr><td>Definition</td><td><p>Condition or observation that supports why the medication is being/was taken.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..*</td></tr>
-  <tr><td><a href="datatypes.html">Type</a></td><td><a href="references.html#Reference">Reference</a>(<a href="condition.html">Condition</a>)</td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="references.html#Reference">Reference</a>(<a href="condition.html">Condition</a> | <a href="observation.html">Observation</a>)</td></tr>
   <tr><td>Comments</td><td><p>This is a reference to a condition that is the reason why the medication is being/was taken.  If only a code exists, use reasonForUseCode.</p>
 </td></tr>
   <tr><td colspan="2" class="structure"><a name="MedicationStatement.note"> </a><b>MedicationStatement.note</b></td></tr>
@@ -219,7 +228,7 @@
   <tr><td>Definition</td><td><p>Indicates where type of medication statement and where the medication is expected to be consumed or administered.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>MedicationStatementCategory: <a href="valueset-medication-statement-category.html">A coded concept identifying where the medication included in the medicationstatement is expected to be consumed or administered</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-medication-statement-category.html">MedicationStatementCategory</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#code">code</a></td></tr>
   <tr><td colspan="2" class="structure"><a name="MedicationStatement.dosage"> </a><b>MedicationStatement.dosage</b></td></tr>
   <tr><td>Definition</td><td><p>Indicates how the medication is/was used by the patient.</p>
@@ -244,7 +253,7 @@
 		<div class="container">  <!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:32-0500. <a href="qa.html">QA Page</a>
+        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:27-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search <img src="external.png" style="text-align: baseline"/></a> | 

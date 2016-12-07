@@ -6,7 +6,7 @@
     <system value="urn:ietf:rfc:3986"/>
   </identifier>
   <status value="draft"/>
-  <date value="2016-11-28T17:29:55-05:00"/>
+  <date value="2016-12-07T14:18:58-05:00"/>
   <publisher value="Health Level Seven International (Clinical Genomics)"/>
   <item>
     <linkId value="Sequence"/>
@@ -274,9 +274,6 @@
       </item>
     </item>
     <item>
-      <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-minOccurs">
-        <valueInteger value="1"/>
-      </extension>
       <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs">
         <valueInteger value="1"/>
       </extension>
@@ -285,7 +282,7 @@
       </extension>
       <linkId value="Sequence.type"/>
       <type value="group"/>
-      <required value="true"/>
+      <required value="false"/>
       <repeats value="true"/>
       <item>
         <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl">
@@ -464,7 +461,7 @@
       <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
         <valueString value="Reference"/>
       </extension>
-      <linkId value="Sequence.peformer"/>
+      <linkId value="Sequence.performer"/>
       <type value="group"/>
       <required value="false"/>
       <repeats value="true"/>
@@ -488,7 +485,7 @@
         <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-referenceFilter">
           <valueString value="subject=$subj&amp;patient=$subj&amp;encounter=$encounter"/>
         </extension>
-        <linkId value="Sequence.peformer.value"/>
+        <linkId value="Sequence.performer.value"/>
         <text value="Who should be responsible for test result"/>
         <type value="reference"/>
         <required value="false"/>
@@ -575,7 +572,7 @@
             </coding>
           </valueCodeableConcept>
         </extension>
-        <text value="A sequence file that is used as a reference to describe variants that are present in a sequence analyzed."/>
+        <text value="A sequence that is used as a reference to describe variants that are present in a sequence analyzed."/>
         <type value="display"/>
       </item>
       <item>
@@ -783,7 +780,7 @@
               </coding>
             </valueCodeableConcept>
           </extension>
-          <text value="A Pointer to another Sequence entity as refence sequence."/>
+          <text value="A Pointer to another Sequence entity as reference sequence."/>
           <type value="display"/>
         </item>
         <item>
@@ -794,7 +791,7 @@
             <valueString value="subject=$subj&amp;patient=$subj&amp;encounter=$encounter"/>
           </extension>
           <linkId value="Sequence.referenceSeq.referenceSeqPointer.value"/>
-          <text value="A Pointer to another Sequence entity as refence sequence"/>
+          <text value="A Pointer to another Sequence entity as reference sequence"/>
           <type value="reference"/>
           <required value="false"/>
           <repeats value="false"/>
@@ -951,7 +948,7 @@
             </coding>
           </valueCodeableConcept>
         </extension>
-        <text value="A&#39; is a variant (mutation) of A = definition every instance of A&#39; is either an immediate mutation of some instance of A, or there is a chain of immediate mutation processes linking A&#39; to some instance of A ([variant_of](http://www.sequenceontology.org/browser/current_svn/term/variant_of))."/>
+        <text value="The definition of variant here originates from Sequence ontology ([variant_of](http://www.sequenceontology.org/browser/current_svn/term/variant_of)). This element can represent amino acid or nucleic sequence change(including insertion,deletion,SNP,etc.)  It can represent some complex mutation or segment variation with the assist of CIGAR string."/>
         <type value="display"/>
       </item>
       <item>
@@ -1111,7 +1108,7 @@
               </coding>
             </valueCodeableConcept>
           </extension>
-          <text value="An allele is one of a set of coexisting sequence variants of a gene ([SO:0001023](http://www.sequenceontology.org/browser/current_svn/term/SO:0001023)). Nucleotide(s)/amino acids from start position of sequence to stop position of sequence on the positive (+) strand of the observed sequence. When the sequence  type is DNA, it should be the sequence on the positive (+) strand."/>
+          <text value="An allele is one of a set of coexisting sequence variants of a gene ([SO:0001023](http://www.sequenceontology.org/browser/current_svn/term/SO:0001023)).  Nucleotide(s)/amino acids from start position of sequence to stop position of sequence on the positive (+) strand of the observed  sequence. When the sequence  type is DNA, it should be the sequence on the positive (+) strand. This will lay in the range between variant.start and variant.end."/>
           <type value="display"/>
         </item>
         <item>
@@ -1143,7 +1140,7 @@
               </coding>
             </valueCodeableConcept>
           </extension>
-          <text value="An allele is one of a set of coexisting sequence variants of a gene ([SO:0001023](http://www.sequenceontology.org/browser/current_svn/term/SO:0001023)). Nucleotide(s)/amino acids from start position of sequence to stop position of sequence on the positive (+) strand of the reference sequence. When the sequence  type is DNA, it should be the sequence on the positive (+) strand."/>
+          <text value="An allele is one of a set of coexisting sequence variants of a gene ([SO:0001023](http://www.sequenceontology.org/browser/current_svn/term/SO:0001023)). Nucleotide(s)/amino acids from start position of sequence to stop position of sequence on the positive (+) strand of the reference sequence. When the sequence  type is DNA, it should be the sequence on the positive (+) strand. This will lay in the range between variant.start and variant.end."/>
           <type value="display"/>
         </item>
         <item>
@@ -1246,7 +1243,7 @@
             </coding>
           </valueCodeableConcept>
         </extension>
-        <text value="Sequence string that was observed."/>
+        <text value="Sequence that was observed. It is the result marked by referenceSeq along with variant records on referenceSeq. This shall starts from referenceSeq.windowStart and end by referenceSeq.windowEnd."/>
         <type value="display"/>
       </item>
       <item>
@@ -2197,512 +2194,6 @@
         <type value="reference"/>
         <required value="false"/>
         <repeats value="false"/>
-      </item>
-    </item>
-    <item>
-      <linkId value="Sequence.structureVariant"/>
-      <text value="Sequence Structural Variant"/>
-      <type value="group"/>
-      <required value="false"/>
-      <repeats value="true"/>
-      <item>
-        <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl">
-          <valueCodeableConcept>
-            <coding>
-              <system value="http://hl7.org/fhir/questionnaire-item-control"/>
-              <code value="flyover"/>
-              <display value="Fly-over"/>
-            </coding>
-          </valueCodeableConcept>
-        </extension>
-        <text value="Structural variant."/>
-        <type value="display"/>
-      </item>
-      <item>
-        <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs">
-          <valueInteger value="1"/>
-        </extension>
-        <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
-          <valueString value="string"/>
-        </extension>
-        <linkId value="Sequence.structureVariant.id"/>
-        <type value="group"/>
-        <required value="false"/>
-        <repeats value="true"/>
-        <item>
-          <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl">
-            <valueCodeableConcept>
-              <coding>
-                <system value="http://hl7.org/fhir/questionnaire-item-control"/>
-                <code value="flyover"/>
-                <display value="Fly-over"/>
-              </coding>
-            </valueCodeableConcept>
-          </extension>
-          <text value="unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces."/>
-          <type value="display"/>
-        </item>
-        <item>
-          <linkId value="Sequence.structureVariant.id.value"/>
-          <text value="xml:id (or equivalent in JSON)"/>
-          <type value="string"/>
-          <required value="false"/>
-          <repeats value="false"/>
-        </item>
-      </item>
-      <item>
-        <linkId value="Sequence.structureVariant.extension"/>
-        <text value="Additional Content defined by implementations"/>
-        <type value="group"/>
-        <required value="false"/>
-        <repeats value="true"/>
-        <item>
-          <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl">
-            <valueCodeableConcept>
-              <coding>
-                <system value="http://hl7.org/fhir/questionnaire-item-control"/>
-                <code value="flyover"/>
-                <display value="Fly-over"/>
-              </coding>
-            </valueCodeableConcept>
-          </extension>
-          <text value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone."/>
-          <type value="display"/>
-        </item>
-      </item>
-      <item>
-        <linkId value="Sequence.structureVariant.modifierExtension"/>
-        <text value="Extensions that cannot be ignored"/>
-        <type value="group"/>
-        <required value="false"/>
-        <repeats value="true"/>
-        <item>
-          <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl">
-            <valueCodeableConcept>
-              <coding>
-                <system value="http://hl7.org/fhir/questionnaire-item-control"/>
-                <code value="flyover"/>
-                <display value="Fly-over"/>
-              </coding>
-            </valueCodeableConcept>
-          </extension>
-          <text value="May be used to represent additional information that is not part of the basic definition of the element, and that modifies the understanding of the element that contains it. Usually modifier elements provide negation or qualification. In order to make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions. There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone."/>
-          <type value="display"/>
-        </item>
-      </item>
-      <item>
-        <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs">
-          <valueInteger value="1"/>
-        </extension>
-        <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
-          <valueString value="string"/>
-        </extension>
-        <linkId value="Sequence.structureVariant.precisionOfBoundaries"/>
-        <type value="group"/>
-        <required value="false"/>
-        <repeats value="true"/>
-        <item>
-          <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl">
-            <valueCodeableConcept>
-              <coding>
-                <system value="http://hl7.org/fhir/questionnaire-item-control"/>
-                <code value="flyover"/>
-                <display value="Fly-over"/>
-              </coding>
-            </valueCodeableConcept>
-          </extension>
-          <text value="Precision of boundaries."/>
-          <type value="display"/>
-        </item>
-        <item>
-          <linkId value="Sequence.structureVariant.precisionOfBoundaries.value"/>
-          <text value="Precision of boundaries"/>
-          <type value="string"/>
-          <required value="false"/>
-          <repeats value="false"/>
-        </item>
-      </item>
-      <item>
-        <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs">
-          <valueInteger value="1"/>
-        </extension>
-        <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
-          <valueString value="decimal"/>
-        </extension>
-        <linkId value="Sequence.structureVariant.reportedaCGHRatio"/>
-        <type value="group"/>
-        <required value="false"/>
-        <repeats value="true"/>
-        <item>
-          <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl">
-            <valueCodeableConcept>
-              <coding>
-                <system value="http://hl7.org/fhir/questionnaire-item-control"/>
-                <code value="flyover"/>
-                <display value="Fly-over"/>
-              </coding>
-            </valueCodeableConcept>
-          </extension>
-          <text value="Structural Variant reported aCGH ratio."/>
-          <type value="display"/>
-        </item>
-        <item>
-          <linkId value="Sequence.structureVariant.reportedaCGHRatio.value"/>
-          <text value="Structural Variant reported aCGH ratio"/>
-          <type value="decimal"/>
-          <required value="false"/>
-          <repeats value="false"/>
-        </item>
-      </item>
-      <item>
-        <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs">
-          <valueInteger value="1"/>
-        </extension>
-        <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
-          <valueString value="integer"/>
-        </extension>
-        <linkId value="Sequence.structureVariant.length"/>
-        <type value="group"/>
-        <required value="false"/>
-        <repeats value="true"/>
-        <item>
-          <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl">
-            <valueCodeableConcept>
-              <coding>
-                <system value="http://hl7.org/fhir/questionnaire-item-control"/>
-                <code value="flyover"/>
-                <display value="Fly-over"/>
-              </coding>
-            </valueCodeableConcept>
-          </extension>
-          <text value="Structural Variant Length."/>
-          <type value="display"/>
-        </item>
-        <item>
-          <linkId value="Sequence.structureVariant.length.value"/>
-          <text value="Structural Variant Length"/>
-          <type value="integer"/>
-          <required value="false"/>
-          <repeats value="false"/>
-        </item>
-      </item>
-      <item>
-        <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs">
-          <valueInteger value="1"/>
-        </extension>
-        <linkId value="Sequence.structureVariant.outer"/>
-        <text value="Sequence Structural Variant Outer Position"/>
-        <type value="group"/>
-        <required value="false"/>
-        <repeats value="false"/>
-        <item>
-          <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl">
-            <valueCodeableConcept>
-              <coding>
-                <system value="http://hl7.org/fhir/questionnaire-item-control"/>
-                <code value="flyover"/>
-                <display value="Fly-over"/>
-              </coding>
-            </valueCodeableConcept>
-          </extension>
-          <text value="Structural variant outer."/>
-          <type value="display"/>
-        </item>
-        <item>
-          <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs">
-            <valueInteger value="1"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
-            <valueString value="string"/>
-          </extension>
-          <linkId value="Sequence.structureVariant.outer.id"/>
-          <type value="group"/>
-          <required value="false"/>
-          <repeats value="true"/>
-          <item>
-            <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl">
-              <valueCodeableConcept>
-                <coding>
-                  <system value="http://hl7.org/fhir/questionnaire-item-control"/>
-                  <code value="flyover"/>
-                  <display value="Fly-over"/>
-                </coding>
-              </valueCodeableConcept>
-            </extension>
-            <text value="unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces."/>
-            <type value="display"/>
-          </item>
-          <item>
-            <linkId value="Sequence.structureVariant.outer.id.value"/>
-            <text value="xml:id (or equivalent in JSON)"/>
-            <type value="string"/>
-            <required value="false"/>
-            <repeats value="false"/>
-          </item>
-        </item>
-        <item>
-          <linkId value="Sequence.structureVariant.outer.extension"/>
-          <text value="Additional Content defined by implementations"/>
-          <type value="group"/>
-          <required value="false"/>
-          <repeats value="true"/>
-          <item>
-            <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl">
-              <valueCodeableConcept>
-                <coding>
-                  <system value="http://hl7.org/fhir/questionnaire-item-control"/>
-                  <code value="flyover"/>
-                  <display value="Fly-over"/>
-                </coding>
-              </valueCodeableConcept>
-            </extension>
-            <text value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone."/>
-            <type value="display"/>
-          </item>
-        </item>
-        <item>
-          <linkId value="Sequence.structureVariant.outer.modifierExtension"/>
-          <text value="Extensions that cannot be ignored"/>
-          <type value="group"/>
-          <required value="false"/>
-          <repeats value="true"/>
-          <item>
-            <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl">
-              <valueCodeableConcept>
-                <coding>
-                  <system value="http://hl7.org/fhir/questionnaire-item-control"/>
-                  <code value="flyover"/>
-                  <display value="Fly-over"/>
-                </coding>
-              </valueCodeableConcept>
-            </extension>
-            <text value="May be used to represent additional information that is not part of the basic definition of the element, and that modifies the understanding of the element that contains it. Usually modifier elements provide negation or qualification. In order to make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions. There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone."/>
-            <type value="display"/>
-          </item>
-        </item>
-        <item>
-          <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs">
-            <valueInteger value="1"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
-            <valueString value="integer"/>
-          </extension>
-          <linkId value="Sequence.structureVariant.outer.start"/>
-          <type value="group"/>
-          <required value="false"/>
-          <repeats value="true"/>
-          <item>
-            <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl">
-              <valueCodeableConcept>
-                <coding>
-                  <system value="http://hl7.org/fhir/questionnaire-item-control"/>
-                  <code value="flyover"/>
-                  <display value="Fly-over"/>
-                </coding>
-              </valueCodeableConcept>
-            </extension>
-            <text value="Structural Variant Outer Start-End."/>
-            <type value="display"/>
-          </item>
-          <item>
-            <linkId value="Sequence.structureVariant.outer.start.value"/>
-            <text value="Structural Variant Outer Start-End"/>
-            <type value="integer"/>
-            <required value="false"/>
-            <repeats value="false"/>
-          </item>
-        </item>
-        <item>
-          <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs">
-            <valueInteger value="1"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
-            <valueString value="integer"/>
-          </extension>
-          <linkId value="Sequence.structureVariant.outer.end"/>
-          <type value="group"/>
-          <required value="false"/>
-          <repeats value="true"/>
-          <item>
-            <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl">
-              <valueCodeableConcept>
-                <coding>
-                  <system value="http://hl7.org/fhir/questionnaire-item-control"/>
-                  <code value="flyover"/>
-                  <display value="Fly-over"/>
-                </coding>
-              </valueCodeableConcept>
-            </extension>
-            <text value="Structural Variant Outer Start-End."/>
-            <type value="display"/>
-          </item>
-          <item>
-            <linkId value="Sequence.structureVariant.outer.end.value"/>
-            <text value="Structural Variant Outer Start-End"/>
-            <type value="integer"/>
-            <required value="false"/>
-            <repeats value="false"/>
-          </item>
-        </item>
-      </item>
-      <item>
-        <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs">
-          <valueInteger value="1"/>
-        </extension>
-        <linkId value="Sequence.structureVariant.inner"/>
-        <text value="Sequence Structural Variant Inner Position"/>
-        <type value="group"/>
-        <required value="false"/>
-        <repeats value="false"/>
-        <item>
-          <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl">
-            <valueCodeableConcept>
-              <coding>
-                <system value="http://hl7.org/fhir/questionnaire-item-control"/>
-                <code value="flyover"/>
-                <display value="Fly-over"/>
-              </coding>
-            </valueCodeableConcept>
-          </extension>
-          <text value="Structural variant inner."/>
-          <type value="display"/>
-        </item>
-        <item>
-          <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs">
-            <valueInteger value="1"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
-            <valueString value="string"/>
-          </extension>
-          <linkId value="Sequence.structureVariant.inner.id"/>
-          <type value="group"/>
-          <required value="false"/>
-          <repeats value="true"/>
-          <item>
-            <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl">
-              <valueCodeableConcept>
-                <coding>
-                  <system value="http://hl7.org/fhir/questionnaire-item-control"/>
-                  <code value="flyover"/>
-                  <display value="Fly-over"/>
-                </coding>
-              </valueCodeableConcept>
-            </extension>
-            <text value="unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces."/>
-            <type value="display"/>
-          </item>
-          <item>
-            <linkId value="Sequence.structureVariant.inner.id.value"/>
-            <text value="xml:id (or equivalent in JSON)"/>
-            <type value="string"/>
-            <required value="false"/>
-            <repeats value="false"/>
-          </item>
-        </item>
-        <item>
-          <linkId value="Sequence.structureVariant.inner.extension"/>
-          <text value="Additional Content defined by implementations"/>
-          <type value="group"/>
-          <required value="false"/>
-          <repeats value="true"/>
-          <item>
-            <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl">
-              <valueCodeableConcept>
-                <coding>
-                  <system value="http://hl7.org/fhir/questionnaire-item-control"/>
-                  <code value="flyover"/>
-                  <display value="Fly-over"/>
-                </coding>
-              </valueCodeableConcept>
-            </extension>
-            <text value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone."/>
-            <type value="display"/>
-          </item>
-        </item>
-        <item>
-          <linkId value="Sequence.structureVariant.inner.modifierExtension"/>
-          <text value="Extensions that cannot be ignored"/>
-          <type value="group"/>
-          <required value="false"/>
-          <repeats value="true"/>
-          <item>
-            <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl">
-              <valueCodeableConcept>
-                <coding>
-                  <system value="http://hl7.org/fhir/questionnaire-item-control"/>
-                  <code value="flyover"/>
-                  <display value="Fly-over"/>
-                </coding>
-              </valueCodeableConcept>
-            </extension>
-            <text value="May be used to represent additional information that is not part of the basic definition of the element, and that modifies the understanding of the element that contains it. Usually modifier elements provide negation or qualification. In order to make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions. There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone."/>
-            <type value="display"/>
-          </item>
-        </item>
-        <item>
-          <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs">
-            <valueInteger value="1"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
-            <valueString value="integer"/>
-          </extension>
-          <linkId value="Sequence.structureVariant.inner.start"/>
-          <type value="group"/>
-          <required value="false"/>
-          <repeats value="true"/>
-          <item>
-            <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl">
-              <valueCodeableConcept>
-                <coding>
-                  <system value="http://hl7.org/fhir/questionnaire-item-control"/>
-                  <code value="flyover"/>
-                  <display value="Fly-over"/>
-                </coding>
-              </valueCodeableConcept>
-            </extension>
-            <text value="Structural Variant Inner Start-End."/>
-            <type value="display"/>
-          </item>
-          <item>
-            <linkId value="Sequence.structureVariant.inner.start.value"/>
-            <text value="Structural Variant Inner Start-End"/>
-            <type value="integer"/>
-            <required value="false"/>
-            <repeats value="false"/>
-          </item>
-        </item>
-        <item>
-          <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs">
-            <valueInteger value="1"/>
-          </extension>
-          <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
-            <valueString value="integer"/>
-          </extension>
-          <linkId value="Sequence.structureVariant.inner.end"/>
-          <type value="group"/>
-          <required value="false"/>
-          <repeats value="true"/>
-          <item>
-            <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl">
-              <valueCodeableConcept>
-                <coding>
-                  <system value="http://hl7.org/fhir/questionnaire-item-control"/>
-                  <code value="flyover"/>
-                  <display value="Fly-over"/>
-                </coding>
-              </valueCodeableConcept>
-            </extension>
-            <text value="Structural Variant Inner Start-End."/>
-            <type value="display"/>
-          </item>
-          <item>
-            <linkId value="Sequence.structureVariant.inner.end.value"/>
-            <text value="Structural Variant Inner Start-End"/>
-            <type value="integer"/>
-            <required value="false"/>
-            <repeats value="false"/>
-          </item>
-        </item>
       </item>
     </item>
   </item>

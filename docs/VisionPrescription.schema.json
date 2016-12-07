@@ -28,17 +28,20 @@
             },
             "status": {
               "description": "The status of the resource instance.",
-              "enum": [
-                "active",
-                "cancelled",
-                "draft",
-                "entered-in-error"
-              ],
-              "type": "string"
+              "type": "string",
+              "pattern": "[^\\s]+([\\s]?[^\\s]+)*"
             },
             "_status": {
               "description": "Extensions for status",
               "$ref": "Element.schema.json#/definitions/Element"
+            },
+            "patient": {
+              "description": "A link to a resource representing the person to whom the vision products will be supplied.",
+              "$ref": "Reference.schema.json#/definitions/Reference"
+            },
+            "encounter": {
+              "description": "A link to a resource that identifies the particular occurrence of contact between patient and health care provider.",
+              "$ref": "Reference.schema.json#/definitions/Reference"
             },
             "dateWritten": {
               "description": "The date (and perhaps time) when the prescription was written.",
@@ -49,16 +52,8 @@
               "description": "Extensions for dateWritten",
               "$ref": "Element.schema.json#/definitions/Element"
             },
-            "patient": {
-              "description": "A link to a resource representing the person to whom the vision products will be supplied.",
-              "$ref": "Reference.schema.json#/definitions/Reference"
-            },
             "prescriber": {
               "description": "The healthcare professional responsible for authorizing the prescription.",
-              "$ref": "Reference.schema.json#/definitions/Reference"
-            },
-            "encounter": {
-              "description": "A link to a resource that identifies the particular occurrence of contact between patient and health care provider.",
               "$ref": "Reference.schema.json#/definitions/Reference"
             },
             "reasonCodeableConcept": {
@@ -93,19 +88,11 @@
           "properties": {
             "product": {
               "description": "Identifies the type of vision correction product which is required for the patient.",
-              "$ref": "Coding.schema.json#/definitions/Coding"
+              "$ref": "CodeableConcept.schema.json#/definitions/CodeableConcept"
             },
             "eye": {
               "description": "The eye for which the lens applies.",
-              "enum": [
-                "right",
-                "left"
-              ],
-              "type": "string"
-            },
-            "_eye": {
-              "description": "Extensions for eye",
-              "$ref": "Element.schema.json#/definitions/Element"
+              "$ref": "CodeableConcept.schema.json#/definitions/CodeableConcept"
             },
             "sphere": {
               "description": "Lens power measured in diopters (0.25 units).",
@@ -145,17 +132,7 @@
             },
             "base": {
               "description": "The relative base, or reference lens edge, for the prism.",
-              "enum": [
-                "up",
-                "down",
-                "in",
-                "out"
-              ],
-              "type": "string"
-            },
-            "_base": {
-              "description": "Extensions for base",
-              "$ref": "Element.schema.json#/definitions/Element"
+              "$ref": "CodeableConcept.schema.json#/definitions/CodeableConcept"
             },
             "add": {
               "description": "Power adjustment for multifocal lenses measured in diopters (0.25 units).",
@@ -213,18 +190,15 @@
               "description": "Extensions for brand",
               "$ref": "Element.schema.json#/definitions/Element"
             },
-            "notes": {
+            "note": {
               "description": "Notes for special requirements such as coatings and lens materials.",
               "type": "string"
             },
-            "_notes": {
-              "description": "Extensions for notes",
+            "_note": {
+              "description": "Extensions for note",
               "$ref": "Element.schema.json#/definitions/Element"
             }
-          },
-          "required": [
-            "product"
-          ]
+          }
         }
       ]
     }

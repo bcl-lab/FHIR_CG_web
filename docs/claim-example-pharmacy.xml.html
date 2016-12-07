@@ -2,7 +2,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>Claim-example-pharmacy.xml - FHIR v1.7.0</title>
+  <title>Claim-example-pharmacy.xml - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -131,10 +131,18 @@
   </b><span class="xmltag">&lt;<a href="claim-definitions.html#Claim.status" class="xmltag">status</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">active</span>"</span><span class="xmltag">/&gt;</span><b>
 
   </b><span class="xmltag">&lt;<a href="claim-definitions.html#Claim.type" class="xmltag">type</a></span><span class="xmltag">&gt;</span><b>
+   </b><span class="xmltag">&lt;<a href="datatypes-definitions.html#CodeableConcept.coding" class="xmltag">coding</a></span><span class="xmltag">&gt;</span><b>
     </b><span class="xmltag">&lt;<a href="datatypes-definitions.html#Coding.system" class="xmltag">system</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">http://hl7.org/fhir/ex-claimtype</span>"</span><span class="xmltag">/&gt;</span><b>
     </b><span class="xmltag">&lt;<a href="datatypes-definitions.html#Coding.code" class="xmltag">code</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">pharmacy</span>"</span><span class="xmltag">/&gt;</span><b>
+   </b><span class="xmltag">&lt;/<a href="datatypes-definitions.html#CodeableConcept.coding" class="xmltag">coding</a>&gt;</span><b>  
   </b><span class="xmltag">&lt;/<a href="claim-definitions.html#Claim.type" class="xmltag">type</a>&gt;</span><b>
   
+ </b><span class="xmltag">&lt;<a href="claim-definitions.html#Claim.use" class="xmltag">use</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">complete</span>"</span><span class="xmltag">/&gt;</span><b>
+
+ </b><span class="xmltag">&lt;<a href="claim-definitions.html#Claim.patient" class="xmltag">patient</a></span><span class="xmltag">&gt;</span><b>
+   </b><span class="xmltagred">&lt;reference</span><span class="xmlattr"> value="<span class="xmlattrvalue"><font color="red">Patient/1</font></span>"</span><span class="xmltag">/&gt;</span><b>
+ </b><span class="xmltag">&lt;/<a href="claim-definitions.html#Claim.patient" class="xmltag">patient</a>&gt;</span><b>
+ 
   </b><span class="xmltag">&lt;<a href="claim-definitions.html#Claim.created" class="xmltag">created</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">2014-08-16</span>"</span><span class="xmltag">/&gt;</span><b>
 
  </b><span class="xmltag">&lt;<a href="claim-definitions.html#Claim.insurer" class="xmltag">insurer</a></span><span class="xmltag">&gt;</span><b>
@@ -145,47 +153,52 @@
     </b><span class="xmltagred">&lt;reference</span><span class="xmlattr"> value="<span class="xmlattrvalue"><a href="organization-example-gastro.xml.html">Organization/1</a></span>"</span><span class="xmltag">/&gt;</span><b>
  </b><span class="xmltag">&lt;/<a href="claim-definitions.html#Claim.organization" class="xmltag">organization</a>&gt;</span><b>
 
- </b><span class="xmltag">&lt;<a href="claim-definitions.html#Claim.use" class="xmltag">use</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">complete</span>"</span><span class="xmltag">/&gt;</span><b>
-
  </b><span class="xmltag">&lt;<a href="claim-definitions.html#Claim.priority" class="xmltag">priority</a></span><span class="xmltag">&gt;</span><b>
+   </b><span class="xmltag">&lt;<a href="datatypes-definitions.html#CodeableConcept.coding" class="xmltag">coding</a></span><span class="xmltag">&gt;</span><b>
     </b><span class="xmltag">&lt;<a href="datatypes-definitions.html#Coding.code" class="xmltag">code</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">stat</span>"</span><span class="xmltag">/&gt;</span><b>
+   </b><span class="xmltag">&lt;/<a href="datatypes-definitions.html#CodeableConcept.coding" class="xmltag">coding</a>&gt;</span><b>
  </b><span class="xmltag">&lt;/<a href="claim-definitions.html#Claim.priority" class="xmltag">priority</a>&gt;</span><b>
 
  </b><span class="xmltag">&lt;<a href="claim-definitions.html#Claim.payee" class="xmltag">payee</a></span><span class="xmltag">&gt;</span><b>
    </b><span class="xmltag">&lt;<a href="claim-definitions.html#Claim.payee.type" class="xmltag">type</a></span><span class="xmltag">&gt;</span><b>
+    </b><span class="xmltag">&lt;<a href="datatypes-definitions.html#CodeableConcept.coding" class="xmltag">coding</a></span><span class="xmltag">&gt;</span><b>
      </b><span class="xmltag">&lt;<a href="datatypes-definitions.html#Coding.code" class="xmltag">code</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">provider</span>"</span><span class="xmltag">/&gt;</span><b>
+  </b><span class="xmltag">&lt;/<a href="datatypes-definitions.html#CodeableConcept.coding" class="xmltag">coding</a>&gt;</span><b>
    </b><span class="xmltag">&lt;/<a href="claim-definitions.html#Claim.payee.type" class="xmltag">type</a>&gt;</span><b>
  </b><span class="xmltag">&lt;/<a href="claim-definitions.html#Claim.payee" class="xmltag">payee</a>&gt;</span><b>
+
+   </b><span class="xmltag">&lt;<a href="claim-definitions.html#Claim.careTeam" class="xmltag">careTeam</a></span><span class="xmltag">&gt;</span><b>
+     </b><span class="xmltag">&lt;<a href="claim-definitions.html#Claim.careTeam.sequence" class="xmltag">sequence</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">1</span>"</span><span class="xmltag">/&gt;</span><b>
+     </b><span class="xmltag">&lt;<a href="claim-definitions.html#Claim.careTeam.provider" class="xmltag">provider</a></span><span class="xmltag">&gt;</span><b>
+       </b><span class="xmltagred">&lt;reference</span><span class="xmlattr"> value="<span class="xmlattrvalue"><a href="practitioner-example.xml.html">Practitioner/example</a></span>"</span><span class="xmltag">/&gt;</span><b>
+     </b><span class="xmltag">&lt;/<a href="claim-definitions.html#Claim.careTeam.provider" class="xmltag">provider</a>&gt;</span><b>
+   </b><span class="xmltag">&lt;/<a href="claim-definitions.html#Claim.careTeam" class="xmltag">careTeam</a>&gt;</span><b>
  
   </b><span class="xmltag">&lt;<a href="claim-definitions.html#Claim.diagnosis" class="xmltag">diagnosis</a></span><span class="xmltag">&gt;</span><b>
     </b><span class="xmltag">&lt;<a href="claim-definitions.html#Claim.diagnosis.sequence" class="xmltag">sequence</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">1</span>"</span><span class="xmltag">/&gt;</span><b>
-  </b><span class="xmltag">&lt;<a href="claim-definitions.html#Claim.diagnosis.diagnosis" class="xmltag">diagnosis</a></span><span class="xmltag">&gt;</span><b>
-    </b><span class="xmltag">&lt;<a href="datatypes-definitions.html#Coding.code" class="xmltag">code</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">654456</span>"</span><span class="xmltag">/&gt;</span><b>
-    </b><span class="xmltag">&lt;/<a href="claim-definitions.html#Claim.diagnosis.diagnosis" class="xmltag">diagnosis</a>&gt;</span><b>
+  </b><span class="xmltag">&lt;<a href="claim-definitions.html#Claim.diagnosis.diagnosis[x]" class="xmltag">diagnosisCodeableConcept</a></span><span class="xmltag">&gt;</span><b>
+   </b><span class="xmltagred">&lt;coding</span><span class="xmltag">&gt;</span><b>
+    </b><span class="xmltagred">&lt;code</span><span class="xmlattr"> value="<span class="xmlattrvalue">654456</span>"</span><span class="xmltag">/&gt;</span><b>
+   </b><span class="xmltag">&lt;/coding&gt;</span><b>
+  </b><span class="xmltag">&lt;/<a href="claim-definitions.html#Claim.diagnosis.diagnosis[x]" class="xmltag">diagnosisCodeableConcept</a>&gt;</span><b>
   </b><span class="xmltag">&lt;/<a href="claim-definitions.html#Claim.diagnosis" class="xmltag">diagnosis</a>&gt;</span><b>
  
- </b><span class="xmltag">&lt;<a href="claim-definitions.html#Claim.patient" class="xmltag">patient</a></span><span class="xmltag">&gt;</span><b>
-   </b><span class="xmltagred">&lt;reference</span><span class="xmlattr"> value="<span class="xmlattrvalue"><font color="red">Patient/1</font></span>"</span><span class="xmltag">/&gt;</span><b>
- </b><span class="xmltag">&lt;/<a href="claim-definitions.html#Claim.patient" class="xmltag">patient</a>&gt;</span><b>
- 
- </b><span class="xmltag">&lt;<a href="claim-definitions.html#Claim.coverage" class="xmltag">coverage</a></span><span class="xmltag">&gt;</span><b>
-   </b><span class="xmltag">&lt;<a href="claim-definitions.html#Claim.coverage.sequence" class="xmltag">sequence</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">1</span>"</span><span class="xmltag">/&gt;</span><b>
-   </b><span class="xmltag">&lt;<a href="claim-definitions.html#Claim.coverage.focal" class="xmltag">focal</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">true</span>"</span><span class="xmltag">/&gt;</span><b>
-   </b><span class="xmltag">&lt;<a href="claim-definitions.html#Claim.coverage.coverage" class="xmltag">coverage</a></span><span class="xmltag">&gt;</span><b>
+ </b><span class="xmltag">&lt;<a href="claim-definitions.html#Claim.insurance" class="xmltag">insurance</a></span><span class="xmltag">&gt;</span><b>
+   </b><span class="xmltag">&lt;<a href="claim-definitions.html#Claim.insurance.sequence" class="xmltag">sequence</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">1</span>"</span><span class="xmltag">/&gt;</span><b>
+   </b><span class="xmltag">&lt;<a href="claim-definitions.html#Claim.insurance.focal" class="xmltag">focal</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">true</span>"</span><span class="xmltag">/&gt;</span><b>
+   </b><span class="xmltag">&lt;<a href="claim-definitions.html#Claim.insurance.coverage" class="xmltag">coverage</a></span><span class="xmltag">&gt;</span><b>
      </b><span class="xmltagred">&lt;reference</span><span class="xmlattr"> value="<span class="xmlattrvalue"><a href="coverage-example.xml.html">Coverage/9876B1</a></span>"</span><span class="xmltag">/&gt;</span><b>
-   </b><span class="xmltag">&lt;/<a href="claim-definitions.html#Claim.coverage.coverage" class="xmltag">coverage</a>&gt;</span><b>
- </b><span class="xmltag">&lt;/<a href="claim-definitions.html#Claim.coverage" class="xmltag">coverage</a>&gt;</span><b>
+   </b><span class="xmltag">&lt;/<a href="claim-definitions.html#Claim.insurance.coverage" class="xmltag">coverage</a>&gt;</span><b>
+ </b><span class="xmltag">&lt;/<a href="claim-definitions.html#Claim.insurance" class="xmltag">insurance</a>&gt;</span><b>
   
  </b><span class="xmltag">&lt;<a href="claim-definitions.html#Claim.item" class="xmltag">item</a></span><span class="xmltag">&gt;</span><b>
    </b><span class="xmltag">&lt;<a href="claim-definitions.html#Claim.item.sequence" class="xmltag">sequence</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">1</span>"</span><span class="xmltag">/&gt;</span><b>
-   </b><span class="xmltag">&lt;<a href="claim-definitions.html#Claim.item.careTeam" class="xmltag">careTeam</a></span><span class="xmltag">&gt;</span><b>
-     </b><span class="xmltag">&lt;<a href="claim-definitions.html#Claim.item.careTeam.provider" class="xmltag">provider</a></span><span class="xmltag">&gt;</span><b>
-       </b><span class="xmltagred">&lt;reference</span><span class="xmlattr"> value="<span class="xmlattrvalue"><a href="practitioner-example.xml.html">Practitioner/example</a></span>"</span><span class="xmltag">/&gt;</span><b>
-     </b><span class="xmltag">&lt;/<a href="claim-definitions.html#Claim.item.careTeam.provider" class="xmltag">provider</a>&gt;</span><b>
-   </b><span class="xmltag">&lt;/<a href="claim-definitions.html#Claim.item.careTeam" class="xmltag">careTeam</a>&gt;</span><b>
+   </b><span class="xmltag">&lt;<a href="claim-definitions.html#Claim.item.careTeamLinkId" class="xmltag">careTeamLinkId</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">1</span>"</span><span class="xmltag">/&gt;</span><b>
    </b><span class="xmltag">&lt;<a href="claim-definitions.html#Claim.item.service" class="xmltag">service</a></span><span class="xmltag">&gt;</span><b>
+    </b><span class="xmltag">&lt;<a href="datatypes-definitions.html#CodeableConcept.coding" class="xmltag">coding</a></span><span class="xmltag">&gt;</span><b>
      </b><span class="xmltag">&lt;<a href="datatypes-definitions.html#Coding.system" class="xmltag">system</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">http://hl7.org/fhir/ex-pharmaservice</span>"</span><span class="xmltag">/&gt;</span><b>
      </b><span class="xmltag">&lt;<a href="datatypes-definitions.html#Coding.code" class="xmltag">code</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">smokecess</span>"</span><span class="xmltag">/&gt;</span><b> </b><span class="xmlcomment">&lt;!--   smoking cessation consult   --&gt;</span><b>
+  </b><span class="xmltag">&lt;/<a href="datatypes-definitions.html#CodeableConcept.coding" class="xmltag">coding</a>&gt;</span><b> 
    </b><span class="xmltag">&lt;/<a href="claim-definitions.html#Claim.item.service" class="xmltag">service</a>&gt;</span><b>
    </b><span class="xmltag">&lt;<a href="claim-definitions.html#Claim.item.serviced[x]" class="xmltag">servicedDate</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">2014-08-16</span>"</span><span class="xmltag">/&gt;</span><b>
    </b><span class="xmltag">&lt;<a href="claim-definitions.html#Claim.item.unitPrice" class="xmltag">unitPrice</a></span><span class="xmltag">&gt;</span><b>
@@ -224,7 +237,7 @@ of the specification.
 		<div class="container"><!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:32-0500. <a href="qa.html">QA Page</a>
+        © HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:21-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search</a> | 

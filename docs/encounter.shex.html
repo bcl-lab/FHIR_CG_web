@@ -3,7 +3,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>Encounter.shex - FHIR v1.7.0</title>
+  <title>Encounter.shex - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -186,21 +186,6 @@ start=@&lt;Encounter&gt; AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
-# List of past encounter statuses
-&lt;Encounter.statusHistory&gt; CLOSED {
-    fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
-    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @&lt;Extension&gt;*;   # Extensions that cannot be ignored
-    fhir:Encounter.statusHistory.status @&lt;code&gt; AND
-    	{fhir:value @fhirvs:encounter-status};  # planned | arrived | in-progress | 
-                                            # onleave | finished | cancelled | 
-                                            # entered-in-error 
-    fhir:Encounter.statusHistory.period @&lt;Period&gt;;  # The time that the episode was in 
-                                            # the specified status 
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
 # List of participants involved in the encounter
 &lt;Encounter.participant&gt; CLOSED {
     fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
@@ -216,6 +201,37 @@ start=@&lt;Encounter&gt; AND {fhir:nodeRole [fhir:treeRoot]}
     (   @&lt;PractitionerReference&gt; OR
         @&lt;RelatedPersonReference&gt;
     )?;
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
+# List of locations where the patient has been
+&lt;Encounter.location&gt; CLOSED {
+    fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
+    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @&lt;Extension&gt;*;   # Extensions that cannot be ignored
+    fhir:Encounter.location.location @&lt;Reference&gt;;  # Location the encounter takes place
+    fhir:Encounter.location.status @&lt;code&gt; AND
+    	{fhir:value @fhirvs:encounter-location-status}?;  # planned | active | reserved | 
+                                            # completed 
+    fhir:Encounter.location.period @&lt;Period&gt;?;  # Time period during which the 
+                                            # patient was present at the 
+                                            # location 
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
+# List of past encounter statuses
+&lt;Encounter.statusHistory&gt; CLOSED {
+    fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
+    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @&lt;Extension&gt;*;   # Extensions that cannot be ignored
+    fhir:Encounter.statusHistory.status @&lt;code&gt; AND
+    	{fhir:value @fhirvs:encounter-status};  # planned | arrived | in-progress | 
+                                            # onleave | finished | cancelled | 
+                                            # entered-in-error 
+    fhir:Encounter.statusHistory.period @&lt;Period&gt;;  # The time that the episode was in 
+                                            # the specified status 
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -250,22 +266,6 @@ start=@&lt;Encounter&gt; AND {fhir:nodeRole [fhir:treeRoot]}
                                             # patient before release from the 
                                             # hospital after all testing, 
                                             # surgery, and workup are complete 
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
-# List of locations where the patient has been
-&lt;Encounter.location&gt; CLOSED {
-    fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
-    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @&lt;Extension&gt;*;   # Extensions that cannot be ignored
-    fhir:Encounter.location.location @&lt;Reference&gt;;  # Location the encounter takes place
-    fhir:Encounter.location.status @&lt;code&gt; AND
-    	{fhir:value @fhirvs:encounter-location-status}?;  # planned | active | reserved | 
-                                            # completed 
-    fhir:Encounter.location.period @&lt;Period&gt;?;  # Time period during which the 
-                                            # patient was present at the 
-                                            # location 
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -533,11 +533,11 @@ start=@&lt;Encounter&gt; AND {fhir:nodeRole [fhir:treeRoot]}
 
 #---------------------- Value Sets ------------------------
 
-# Current state of the encounter
-fhirvs:encounter-status [&quot;planned&quot; &quot;arrived&quot; &quot;in-progress&quot; &quot;onleave&quot; &quot;finished&quot; &quot;cancelled&quot; &quot;entered-in-error&quot;]
-
 # How the Quantity should be understood and represented.
 fhirvs:quantity-comparator [&quot;&lt;&quot; &quot;&lt;=&quot; &quot;&gt;=&quot; &quot;&gt;&quot;]
+
+# Current state of the encounter
+fhirvs:encounter-status [&quot;planned&quot; &quot;arrived&quot; &quot;in-progress&quot; &quot;onleave&quot; &quot;finished&quot; &quot;cancelled&quot; &quot;entered-in-error&quot;]
 
 # Identifies the purpose for this identifier, if known .
 fhirvs:identifier-use [&quot;usual&quot; &quot;official&quot; &quot;temp&quot; &quot;secondary&quot;]
@@ -572,7 +572,7 @@ of the specification.
 		<div class="container"><!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:32-0500. <a href="qa.html">QA Page</a>
+        © HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:21-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search</a> | 

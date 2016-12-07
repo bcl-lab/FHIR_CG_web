@@ -12,13 +12,15 @@
       "xhtml.value": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative with Details</b></p><p><b>id</b>: example-genetics-1</p><p><b>status</b>: final</p><p><b>code</b>: Genetic analysis master panel-- This is the parent OBR for the panel holding all of the associated observations that can be reported with a molecular genetics analysis result. <span>(Details : {LOINC code '55233-1' = 'Genetic analysis master panel - Blood or Tissue by Molecular genetics method', given as 'Genetic analysis master panel-- This is the parent OBR for the panel holding all of the associated observations that can be reported with a molecular genetics analysis result.'})</span></p><p><b>subject</b>: <a>Molecular Lab Patient ID: HOSP-23456</a></p><p><b>issued</b>: 2013-4-3 15:30:10</p><p><b>performer</b>: <a>Molecular Diagnostics Laboratory</a></p><p><b>value</b>: Positive <span>(Details : {SNOMED CT code '10828004' = 'Positive (qualifier value)', given as 'Positive'})</span></p><p><b>specimen</b>: <a>Molecular Specimen ID: MLD45-Z4-1234</a></p></div>"
     }
   },
-  "DomainResource.extension": [
+  "Observation.extension": [
     {
       "Extension.url": {
-        "uri.value": "http://hl7.org/fhir/StructureDefinition/observation-geneticsDNASequenceVariant"
+        "uri.value": "http://hl7.org/fhir/StructureDefinition/observation-geneticsDNASequenceVariantName"
       },
-      "Extension.valueString": {
-        "string.value": "NG_007726.3:g.146252T>G"
+      "Extension.valueCodeableConcept": {
+        "CodeableConcept.text": {
+          "string.value": "NG_007726.3:g.146252T>G"
+        }
       }
     },
     {
@@ -57,7 +59,7 @@
         "CodeableConcept.coding": [
           {
             "Coding.system": {
-              "uri.value": "http://hl7.org/fhir/LOINC-48002-0-answerlist"
+              "uri.value": "http://loinc.org"
             },
             "Coding.code": {
               "code.value": "LA6684-0"
@@ -66,7 +68,8 @@
               "string.value": "somatic"
             }
           }
-        ]
+        ],
+        "Resource.concept": "http://loinc.org/owl#LA6684-0"
       }
     }
   ],

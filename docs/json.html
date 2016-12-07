@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>Json - FHIR v1.7.0</title>
+  <title>Json - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -118,7 +118,7 @@ The JSON representation for a resource is described using this format:
 </p>
 
 <pre class="spec">{
-  &quot;resourceType&quot; : &quot;<a href="element-definitions.html#Element" title="Base definition for all elements in a resource." class="dict"><b>Element</b></a>&quot;,
+  &quot;resourceType&quot; : &quot;<a href="resourcelist.html" title="The resource type being referenced" class="dict"><b>[Resource Type]</b></a>&quot;,
   // from <a href="json.html">Source</a>: <a href="json.html">element #1</a>
   &quot;<a href="json.html" title="long description" class="dict">property1</a>&quot; : &quot;&lt;<span style="color: darkgreen"><a href="datatypes.html">[primitive]</a></span>&gt;&quot;, <span style="color: Gray">//</span> <span style="color: navy; opacity: 0.8">short description</span>
   &quot;<a href="json.html" title="long description" class="dict">property2</a>&quot; : { <span style="color: darkgreen"><a href="datatypes.html">[Data Type]</a></span> }, <span style="color: Gray">//</span> <span style="color: navy; opacity: 0.8">short description</span>
@@ -142,8 +142,8 @@ Using this format:
      <li><code>property2</code> has a complex data type; the value of the property is an object that has the content as described for the stated type</li>
      <li><code>property3</code> is an object property that contains additional properties (e.g. propertyA; the allowable properties are listed (but also include extensions as appropriate)</li>
      <li><code>property4</code> is an array property that contains items which are objects themselves. The items may have any of the types already encountered in points 1-3</li>
-     <li><code>propertyA</code> has a binding to a value set - the Short description is a link to the value set. In addition, the binding strength is shown </li>
-     <li><code>propertyB</code> is a reference to a particular kind of resource </li>
+     <li><code>propertyA</code> is an example of an object property that has a binding to a value set - the Short description is a link to the value set. In addition, the binding strength is shown </li>
+     <li><code>propertyB</code> is an example of an object property that has a reference to a particular kind of resource </li>
    </ol>
  </li>
  <li>Property names are case-sensitive (though duplicates that differ only in case are never defined)</li>
@@ -445,11 +445,15 @@ following additional canonicalization URLS are also defined:
  </tr>
  <tr>
   <td>http://hl7.org/fhir/canonicalization/json#narrative</td>
-  <td>The method only covers the <code>Resource.id</code> and Narrative is retained</td>
+  <td>This method only retains the <code>Resource.id</code> and <code>Narrative</code> elements</td>
+ </tr>
+ <tr>
+  <td>http://hl7.org/fhir/canonicalization/json#document</td>
+  <td>The signs everything in a Bundle, except for the Bundle.id and Bundle.metadata on the root Bundle (allows for a document to copied from server to server)</td>
  </tr>
 </table>
 <p>
-These canonicalization methods allow system the flexiibility to sign the various portions of
+These canonicalization methods allow system the flexibility to sign the various portions of
 the resource that matter for the workflow the signature serves.
 </p>
 
@@ -476,7 +480,7 @@ use of digital signatures.
 		<div class="container">  <!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:33-0500. <a href="qa.html">QA Page</a>
+        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:28-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search <img src="external.png" style="text-align: baseline"/></a> | 

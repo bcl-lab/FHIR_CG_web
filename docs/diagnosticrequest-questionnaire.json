@@ -9,8 +9,8 @@
       "status": "active",
       "description": "Type options for DiagnosticRequest.subject",
       "expansion": {
-        "identifier": "urn:uuid:393d5e29-bdca-42a5-a2ed-c54c44e26dfb",
-        "timestamp": "2016-11-28T17:32:36-05:00",
+        "identifier": "urn:uuid:e7749e64-31c5-4661-8190-f3fb8f3ac3f8",
+        "timestamp": "2016-12-07T14:21:44-05:00",
         "contains": [
           {
             "system": "http://hl7.org/fhir/resource-types",
@@ -42,8 +42,8 @@
       "status": "active",
       "description": "Type options for DiagnosticRequest.context",
       "expansion": {
-        "identifier": "urn:uuid:cbfbc12c-79fe-43f6-bff2-c764e725aee2",
-        "timestamp": "2016-11-28T17:32:36-05:00",
+        "identifier": "urn:uuid:f9a5c65c-4130-4172-9231-0a743c649740",
+        "timestamp": "2016-12-07T14:21:44-05:00",
         "contains": [
           {
             "system": "http://hl7.org/fhir/resource-types",
@@ -65,8 +65,8 @@
       "status": "active",
       "description": "Type options for DiagnosticRequest.occurrence[x]",
       "expansion": {
-        "identifier": "urn:uuid:039c1946-21e2-4d06-80ba-ab2728f20f17",
-        "timestamp": "2016-11-28T17:32:36-05:00",
+        "identifier": "urn:uuid:441ff7f4-00bf-424e-8687-8cfbc5b03516",
+        "timestamp": "2016-12-07T14:21:44-05:00",
         "contains": [
           {
             "system": "http://hl7.org/fhir/data-types",
@@ -93,8 +93,8 @@
       "status": "active",
       "description": "Type options for DiagnosticRequest.requester",
       "expansion": {
-        "identifier": "urn:uuid:ab868a76-35fe-4b2f-9a8c-43be5901fccf",
-        "timestamp": "2016-11-28T17:32:36-05:00",
+        "identifier": "urn:uuid:f4120ed7-5000-4ef0-89b3-81f2e46ea9f0",
+        "timestamp": "2016-12-07T14:21:44-05:00",
         "contains": [
           {
             "system": "http://hl7.org/fhir/resource-types",
@@ -121,8 +121,8 @@
       "status": "active",
       "description": "Type options for DiagnosticRequest.performer",
       "expansion": {
-        "identifier": "urn:uuid:983aed04-0237-4b1a-903a-0b3881413846",
-        "timestamp": "2016-11-28T17:32:36-05:00",
+        "identifier": "urn:uuid:15ce48d2-a7f9-4734-a49b-ed25c380eb59",
+        "timestamp": "2016-12-07T14:21:44-05:00",
         "contains": [
           {
             "system": "http://hl7.org/fhir/resource-types",
@@ -151,6 +151,29 @@
           }
         ]
       }
+    },
+    {
+      "resourceType": "ValueSet",
+      "id": "vs7",
+      "name": "Type options for DiagnosticRequest.reasonReference",
+      "status": "active",
+      "description": "Type options for DiagnosticRequest.reasonReference",
+      "expansion": {
+        "identifier": "urn:uuid:c0a77bf5-74e8-4f82-a7dc-bded763014e0",
+        "timestamp": "2016-12-07T14:21:44-05:00",
+        "contains": [
+          {
+            "system": "http://hl7.org/fhir/resource-types",
+            "code": "Condition",
+            "display": "Condition"
+          },
+          {
+            "system": "http://hl7.org/fhir/resource-types",
+            "code": "Observation",
+            "display": "Observation"
+          }
+        ]
+      }
     }
   ],
   "identifier": [
@@ -159,7 +182,7 @@
     }
   ],
   "status": "draft",
-  "date": "2016-11-28T17:29:55-05:00",
+  "date": "2016-12-07T14:18:58-05:00",
   "publisher": "Health Level Seven International (Orders and Observations)",
   "item": [
     {
@@ -676,7 +699,7 @@
             }
           ],
           "linkId": "DiagnosticRequest.requisition",
-          "text": "Identifier of composite request",
+          "text": "Composite Request ID",
           "type": "group",
           "required": false,
           "repeats": true,
@@ -696,7 +719,7 @@
                   }
                 }
               ],
-              "text": "Composite request this is part of.",
+              "text": "A shared identifier common to all diagnostic requests that were authorized more or less simultaneously by a single author, representing the composite or group identifier. Requests are linked either by a \"basedOn\" relationship (i.e. one request is fulfilling another) or by having a common requisition. Requests that are part of the same requisition are generally treated independently from the perspective of changing their state or maintaining them after initial creation.",
               "type": "display"
             },
             {
@@ -725,6 +748,10 @@
         {
           "extension": [
             {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-minOccurs",
+              "valueInteger": 1
+            },
+            {
               "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs",
               "valueInteger": 1
             },
@@ -735,7 +762,7 @@
           ],
           "linkId": "DiagnosticRequest.status",
           "type": "group",
-          "required": false,
+          "required": true,
           "repeats": true,
           "item": [
             {
@@ -753,7 +780,7 @@
                   }
                 }
               ],
-              "text": "The status of the order. Typically the system placing the order sets the status to \"requested\". Thereafter, the order is maintained by the receiver that updates the status as the request is handled.",
+              "text": "The status of the order. The status is generally fully in the control of the requester - they determine whether the order is draft or active and, after it has been activated, competed, cancelled or suspended. States relating to the activities of the performer are reflected on either the corresponding event (see [Event Pattern](event.html) for general discussion) or using the [Task](task.html) resource.",
               "type": "display"
             },
             {
@@ -777,11 +804,10 @@
             },
             {
               "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType",
-              "valueString": "CodeableConcept"
+              "valueString": "code"
             }
           ],
-          "linkId": "DiagnosticRequest.stage",
-          "text": "proposal | plan | original-order | reflex-order",
+          "linkId": "DiagnosticRequest.intent",
           "type": "group",
           "required": true,
           "repeats": true,
@@ -805,16 +831,52 @@
               "type": "display"
             },
             {
-              "linkId": "DiagnosticRequest.stage.coding",
-              "text": "code:",
-              "type": "open-choice",
+              "linkId": "DiagnosticRequest.intent.value",
+              "text": "intent",
+              "type": "choice",
               "required": false,
               "repeats": false
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs",
+              "valueInteger": 1
             },
             {
-              "linkId": "DiagnosticRequest.stage.text",
-              "text": "text:",
-              "type": "string",
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType",
+              "valueString": "code"
+            }
+          ],
+          "linkId": "DiagnosticRequest.priority",
+          "type": "group",
+          "required": false,
+          "repeats": true,
+          "item": [
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://hl7.org/fhir/questionnaire-item-control",
+                        "code": "flyover",
+                        "display": "Fly-over"
+                      }
+                    ]
+                  }
+                }
+              ],
+              "text": "Indicates how quickly the {{title}} should be addressed with respect to other requests.",
+              "type": "display"
+            },
+            {
+              "linkId": "DiagnosticRequest.priority.value",
+              "text": "priority",
+              "type": "choice",
               "required": false,
               "repeats": false
             }
@@ -1293,7 +1355,7 @@
               "valueString": "datetime"
             }
           ],
-          "linkId": "DiagnosticRequest.authored",
+          "linkId": "DiagnosticRequest.authoredOn",
           "type": "group",
           "required": false,
           "repeats": true,
@@ -1317,7 +1379,7 @@
               "type": "display"
             },
             {
-              "linkId": "DiagnosticRequest.authored.value",
+              "linkId": "DiagnosticRequest.authoredOn.value",
               "text": "Date request signed",
               "type": "dateTime",
               "required": false,
@@ -1705,7 +1767,7 @@
               "valueString": "CodeableConcept"
             }
           ],
-          "linkId": "DiagnosticRequest.reason",
+          "linkId": "DiagnosticRequest.reasonCode",
           "text": "Explanation/Justification for test",
           "type": "group",
           "required": false,
@@ -1726,22 +1788,119 @@
                   }
                 }
               ],
-              "text": "An explanation or justification for why this diagnostic investigation is being requested.   This is often for billing purposes.  May relate to the resources referred to in supportingInformation. This may be used to decide how the diagnostic investigation will be performed, or even if it will be performed at all.   Use CodeableConcept text element if the data is free (uncoded) text as shown in the [CT Scan example](diagnosticrequest-example-di.html).",
+              "text": "An explanation or justification for why this diagnostic investigation is being requested in coded or textual form.   This is often for billing purposes.  May relate to the resources referred to in supportingInformation. This may be used to decide how the diagnostic investigation will be performed, or even if it will be performed at all.   Use CodeableConcept text element if the data is free (uncoded) text as shown in the [CT Scan example](diagnosticrequest-example-di.html).",
               "type": "display"
             },
             {
-              "linkId": "DiagnosticRequest.reason.coding",
+              "linkId": "DiagnosticRequest.reasonCode.coding",
               "text": "code:",
               "type": "open-choice",
               "required": false,
               "repeats": false
             },
             {
-              "linkId": "DiagnosticRequest.reason.text",
+              "linkId": "DiagnosticRequest.reasonCode.text",
               "text": "text:",
               "type": "string",
               "required": false,
               "repeats": false
+            }
+          ]
+        },
+        {
+          "linkId": "DiagnosticRequest.reasonReference",
+          "text": "Explanation/Justification for test",
+          "type": "group",
+          "required": false,
+          "repeats": true,
+          "item": [
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://hl7.org/fhir/questionnaire-item-control",
+                        "code": "flyover",
+                        "display": "Fly-over"
+                      }
+                    ]
+                  }
+                }
+              ],
+              "text": "Indicates another resource that provides a justification for why this diagnostic investigation is being requested.   May relate to the resources referred to in supportingInformation. This may be used to decide how the diagnostic investigation will be performed, or even if it will be performed at all.   Use CodeableConcept text element if the data is free (uncoded) text as shown in the [CT Scan example](diagnosticrequest-example-di.html).",
+              "type": "display"
+            },
+            {
+              "linkId": "DiagnosticRequest.reasonReference._type",
+              "text": "type",
+              "type": "choice",
+              "required": false,
+              "repeats": false,
+              "options": {
+                "reference": "#vs7"
+              },
+              "item": [
+                {
+                  "extension": [
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType",
+                      "valueString": "Reference"
+                    }
+                  ],
+                  "linkId": "DiagnosticRequest.reasonReference._Condition",
+                  "type": "group",
+                  "item": [
+                    {
+                      "extension": [
+                        {
+                          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-allowedResource",
+                          "valueCode": "Condition"
+                        },
+                        {
+                          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-referenceFilter",
+                          "valueString": "subject=$subj&patient=$subj&encounter=$encounter"
+                        }
+                      ],
+                      "linkId": "DiagnosticRequest.reasonReference._Condition.value",
+                      "text": "Condition",
+                      "type": "reference",
+                      "required": false,
+                      "repeats": false
+                    }
+                  ]
+                },
+                {
+                  "extension": [
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType",
+                      "valueString": "Reference"
+                    }
+                  ],
+                  "linkId": "DiagnosticRequest.reasonReference._Observation",
+                  "type": "group",
+                  "item": [
+                    {
+                      "extension": [
+                        {
+                          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-allowedResource",
+                          "valueCode": "Observation"
+                        },
+                        {
+                          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-referenceFilter",
+                          "valueString": "subject=$subj&patient=$subj&encounter=$encounter"
+                        }
+                      ],
+                      "linkId": "DiagnosticRequest.reasonReference._Observation.value",
+                      "text": "Observation",
+                      "type": "reference",
+                      "required": false,
+                      "repeats": false
+                    }
+                  ]
+                }
+              ]
             }
           ]
         },

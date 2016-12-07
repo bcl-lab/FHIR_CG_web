@@ -3,7 +3,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>V3-ObservationInterpretation.cs.json - FHIR v1.7.0</title>
+  <title>V3-ObservationInterpretation.cs.json - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -120,7 +120,7 @@ Description copied from Concept Domain of same name.  Must be verified.  Note al
   &quot;resourceType&quot;: &quot;CodeSystem&quot;,
   &quot;id&quot;: &quot;v3-ObservationInterpretation&quot;,
   &quot;meta&quot;: {
-    &quot;lastUpdated&quot;: &quot;2016-03-23T00:00:00.000-04:00&quot;
+    &quot;lastUpdated&quot;: &quot;2016-11-11T00:00:00.000-05:00&quot;
   },
   &quot;text&quot;: {
     &quot;status&quot;: &quot;generated&quot;,
@@ -131,7 +131,7 @@ Description copied from Concept Domain of same name.  Must be verified.  Note al
     &quot;system&quot;: &quot;urn:ietf:rfc:3986&quot;,
     &quot;value&quot;: &quot;urn:oid:2.16.840.1.113883.5.83&quot;
   },
-  &quot;version&quot;: &quot;2016-03-23&quot;,
+  &quot;version&quot;: &quot;2016-11-11&quot;,
   &quot;name&quot;: &quot;v3 Code System ObservationInterpretation&quot;,
   &quot;status&quot;: &quot;active&quot;,
   &quot;experimental&quot;: false,
@@ -140,17 +140,17 @@ Description copied from Concept Domain of same name.  Must be verified.  Note al
     {
       &quot;telecom&quot;: [
         {
-          &quot;system&quot;: &quot;other&quot;,
+          &quot;system&quot;: &quot;url&quot;,
           &quot;value&quot;: &quot;http://hl7.org&quot;
         }
       ]
     }
   ],
-  &quot;date&quot;: &quot;2016-03-23T00:00:00-04:00&quot;,
+  &quot;date&quot;: &quot;2016-11-11T00:00:00-05:00&quot;,
   &quot;description&quot;: &quot; One or more codes specifying a rough qualitative interpretation of the observation, such as \&quot;normal\&quot;, \&quot;abnormal\&quot;, \&quot;below normal\&quot;, \&quot;change up\&quot;, \&quot;resistant\&quot;, \&quot;susceptible\&quot;, etc.  OpenIssue:\r\nDescription copied from Concept Domain of same name.  Must be verified.  Note also that this might be identical to the V2 code system of interpretation codes (formerly Abnormal Flags in older versions).&quot;,
   &quot;caseSensitive&quot;: true,
   &quot;valueSet&quot;: &quot;http://hl7.org/fhir/ValueSet/v3-ObservationInterpretation&quot;,
-  &quot;hierarchyMeaning&quot;: &quot;subsumes&quot;,
+  &quot;hierarchyMeaning&quot;: &quot;is-a&quot;,
   &quot;content&quot;: &quot;complete&quot;,
   &quot;property&quot;: [
     {
@@ -253,7 +253,13 @@ Description copied from Concept Domain of same name.  Must be verified.  Note al
         {
           &quot;code&quot;: &quot;AC&quot;,
           &quot;display&quot;: &quot;Anti-complementary substances present&quot;,
-          &quot;definition&quot;: &quot;A valid result cannot be obtained for the specified component / analyte due to the presence of anti-complementary substances in the sample.&quot;
+          &quot;definition&quot;: &quot;A valid result cannot be obtained for the specified component / analyte due to the presence of anti-complementary substances in the sample.\r\n\n                        \n                           \n                              Deprecation Comment: \n                           This code is being deprecated to match the status in V2 Table 0078 \&quot;Interpretation Codes.&quot;,
+          &quot;property&quot;: [
+            {
+              &quot;code&quot;: &quot;deprecated&quot;,
+              &quot;valueDateTime&quot;: &quot;2016-11-10&quot;
+            }
+          ]
         },
         {
           &quot;code&quot;: &quot;IE&quot;,
@@ -263,12 +269,24 @@ Description copied from Concept Domain of same name.  Must be verified.  Note al
         {
           &quot;code&quot;: &quot;QCF&quot;,
           &quot;display&quot;: &quot;Quality control failure&quot;,
-          &quot;definition&quot;: &quot;A result cannot be considered valid for the specified component / analyte or organism due to failure in the quality control testing component.&quot;
+          &quot;definition&quot;: &quot;A result cannot be considered valid for the specified component / analyte or organism due to failure in the quality control testing component.\r\n\n                        \n                           \n                              Deprecation Comment: \n                           This code is being deprecated to match the status in V2 Table 0078 \&quot;Interpretation Codes.&quot;,
+          &quot;property&quot;: [
+            {
+              &quot;code&quot;: &quot;deprecated&quot;,
+              &quot;valueDateTime&quot;: &quot;2016-11-10&quot;
+            }
+          ]
         },
         {
           &quot;code&quot;: &quot;TOX&quot;,
           &quot;display&quot;: &quot;Cytotoxic substance present&quot;,
-          &quot;definition&quot;: &quot;A valid result cannot be obtained for the specified organism or cell line due to the presence of cytotoxic substances in the sample or culture.&quot;
+          &quot;definition&quot;: &quot;A valid result cannot be obtained for the specified organism or cell line due to the presence of cytotoxic substances in the sample or culture.\r\n\n                        \n                           \n                              Deprecation Comment: \n                           This code is being deprecated to match the status in V2 Table 0078 \&quot;Interpretation Codes.&quot;,
+          &quot;property&quot;: [
+            {
+              &quot;code&quot;: &quot;deprecated&quot;,
+              &quot;valueDateTime&quot;: &quot;2016-11-10&quot;
+            }
+          ]
         }
       ]
     },
@@ -482,6 +500,17 @@ Description copied from Concept Domain of same name.  Must be verified.  Note al
       ]
     },
     {
+      &quot;code&quot;: &quot;HM&quot;,
+      &quot;display&quot;: &quot;Hold for Medical Review&quot;,
+      &quot;definition&quot;: &quot;Hold for Medical Review\r\n\n                        \n                           Usage Note: This code is not intended for use in V3 artifacts.  It is included in the code system to maintain alignment with the V2 Table 0078 \&quot;Interpretation Codes.\&quot;&quot;,
+      &quot;property&quot;: [
+        {
+          &quot;code&quot;: &quot;deprecated&quot;,
+          &quot;valueDateTime&quot;: &quot;2016-11-10&quot;
+        }
+      ]
+    },
+    {
       &quot;code&quot;: &quot;ObservationInterpretationDetection&quot;,
       &quot;display&quot;: &quot;ObservationInterpretationDetection&quot;,
       &quot;definition&quot;: &quot;Interpretations of the presence or absence of a component / analyte or organism in a test or of a sign in a clinical observation. In keeping with laboratory data processing practice, these concepts provide a categorical interpretation of the \&quot;meaning\&quot; of the quantitative value for the same observation.&quot;,
@@ -554,6 +583,17 @@ Description copied from Concept Domain of same name.  Must be verified.  Note al
       ]
     },
     {
+      &quot;code&quot;: &quot;OBX&quot;,
+      &quot;display&quot;: &quot;Interpretation qualifiers in separate OBX segments&quot;,
+      &quot;definition&quot;: &quot;Interpretation qualifiers in separate OBX segments\r\n\n                        \n                           Usage Note: This code is not intended for use in V3 artifacts.  It is included in the code system to maintain alignment with the V2 Table 0078 \&quot;Interpretation Codes.\&quot;&quot;,
+      &quot;property&quot;: [
+        {
+          &quot;code&quot;: &quot;deprecated&quot;,
+          &quot;valueDateTime&quot;: &quot;2016-11-10&quot;
+        }
+      ]
+    },
+    {
       &quot;code&quot;: &quot;ReactivityObservationInterpretation&quot;,
       &quot;display&quot;: &quot;ReactivityObservationInterpretation&quot;,
       &quot;definition&quot;: &quot;Interpretations of the presence and level of reactivity of the specified component / analyte with the reagent in the performed laboratory test.&quot;,
@@ -609,7 +649,7 @@ of the specification.
 		<div class="container"><!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:33-0500. <a href="../../qa.html">QA Page</a>
+        © HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:28-0500. <a href="../../qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search</a> | 

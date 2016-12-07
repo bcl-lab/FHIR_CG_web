@@ -2,99 +2,11 @@
 
 <Questionnaire xmlns="http://hl7.org/fhir">
   <id value="qs1"/>
-  <contained>
-    <ValueSet>
-      <id value="vs2"/>
-      <name value="Type options for EnrollmentResponse.request[x]"/>
-      <status value="active"/>
-      <description value="Type options for EnrollmentResponse.request[x]"/>
-      <expansion>
-        <identifier value="urn:uuid:8f8e776d-d127-49ab-8a55-7b0745bb3617"/>
-        <timestamp value="2016-11-28T17:32:39-05:00"/>
-        <contains>
-          <system value="http://hl7.org/fhir/data-types"/>
-          <code value="Identifier"/>
-          <display value="Identifier"/>
-        </contains>
-        <contains>
-          <system value="http://hl7.org/fhir/resource-types"/>
-          <code value="EnrollmentRequest"/>
-          <display value="EnrollmentRequest"/>
-        </contains>
-      </expansion>
-    </ValueSet>
-  </contained>
-  <contained>
-    <ValueSet>
-      <id value="vs3"/>
-      <name value="Type options for EnrollmentResponse.organization[x]"/>
-      <status value="active"/>
-      <description value="Type options for EnrollmentResponse.organization[x]"/>
-      <expansion>
-        <identifier value="urn:uuid:4904a0de-e025-42ef-894d-d693c9355c9c"/>
-        <timestamp value="2016-11-28T17:32:39-05:00"/>
-        <contains>
-          <system value="http://hl7.org/fhir/data-types"/>
-          <code value="Identifier"/>
-          <display value="Identifier"/>
-        </contains>
-        <contains>
-          <system value="http://hl7.org/fhir/resource-types"/>
-          <code value="Organization"/>
-          <display value="Organization"/>
-        </contains>
-      </expansion>
-    </ValueSet>
-  </contained>
-  <contained>
-    <ValueSet>
-      <id value="vs4"/>
-      <name value="Type options for EnrollmentResponse.requestProvider[x]"/>
-      <status value="active"/>
-      <description value="Type options for EnrollmentResponse.requestProvider[x]"/>
-      <expansion>
-        <identifier value="urn:uuid:ab06fd0c-3b80-4fb7-ae5e-93730fe253d6"/>
-        <timestamp value="2016-11-28T17:32:39-05:00"/>
-        <contains>
-          <system value="http://hl7.org/fhir/data-types"/>
-          <code value="Identifier"/>
-          <display value="Identifier"/>
-        </contains>
-        <contains>
-          <system value="http://hl7.org/fhir/resource-types"/>
-          <code value="Practitioner"/>
-          <display value="Practitioner"/>
-        </contains>
-      </expansion>
-    </ValueSet>
-  </contained>
-  <contained>
-    <ValueSet>
-      <id value="vs5"/>
-      <name value="Type options for EnrollmentResponse.requestOrganization[x]"/>
-      <status value="active"/>
-      <description value="Type options for EnrollmentResponse.requestOrganization[x]"/>
-      <expansion>
-        <identifier value="urn:uuid:8eb225a6-cb58-49df-b902-16b04dd5f833"/>
-        <timestamp value="2016-11-28T17:32:39-05:00"/>
-        <contains>
-          <system value="http://hl7.org/fhir/data-types"/>
-          <code value="Identifier"/>
-          <display value="Identifier"/>
-        </contains>
-        <contains>
-          <system value="http://hl7.org/fhir/resource-types"/>
-          <code value="Organization"/>
-          <display value="Organization"/>
-        </contains>
-      </expansion>
-    </ValueSet>
-  </contained>
   <identifier>
     <system value="urn:ietf:rfc:3986"/>
   </identifier>
   <status value="draft"/>
-  <date value="2016-11-28T17:29:55-05:00"/>
+  <date value="2016-12-07T14:18:58-05:00"/>
   <publisher value="Health Level Seven International (Financial Management)"/>
   <item>
     <linkId value="EnrollmentResponse"/>
@@ -362,9 +274,6 @@
       </item>
     </item>
     <item>
-      <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-minOccurs">
-        <valueInteger value="1"/>
-      </extension>
       <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs">
         <valueInteger value="1"/>
       </extension>
@@ -373,7 +282,7 @@
       </extension>
       <linkId value="EnrollmentResponse.status"/>
       <type value="group"/>
-      <required value="true"/>
+      <required value="false"/>
       <repeats value="true"/>
       <item>
         <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl">
@@ -400,8 +309,10 @@
       <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs">
         <valueInteger value="1"/>
       </extension>
-      <linkId value="EnrollmentResponse.request[x]"/>
-      <text value="Claim reference"/>
+      <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
+        <valueString value="Reference"/>
+      </extension>
+      <linkId value="EnrollmentResponse.request"/>
       <type value="group"/>
       <required value="false"/>
       <repeats value="true"/>
@@ -419,63 +330,17 @@
         <type value="display"/>
       </item>
       <item>
-        <linkId value="EnrollmentResponse.request[x]._type"/>
-        <text value="type"/>
-        <type value="choice"/>
+        <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-allowedResource">
+          <valueCode value="EnrollmentRequest"/>
+        </extension>
+        <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-referenceFilter">
+          <valueString value="subject=$subj&amp;patient=$subj&amp;encounter=$encounter"/>
+        </extension>
+        <linkId value="EnrollmentResponse.request.value"/>
+        <text value="Claim reference"/>
+        <type value="reference"/>
         <required value="false"/>
         <repeats value="false"/>
-        <options>
-          <reference value="#vs2"/>
-        </options>
-        <item>
-          <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
-            <valueString value="Identifier"/>
-          </extension>
-          <linkId value="EnrollmentResponse.request[x]._Identifier"/>
-          <text value="Identifier"/>
-          <type value="group"/>
-          <item>
-            <linkId value="EnrollmentResponse.request[x]._Identifier.label"/>
-            <text value="label:"/>
-            <type value="string"/>
-            <required value="false"/>
-            <repeats value="false"/>
-          </item>
-          <item>
-            <linkId value="EnrollmentResponse.request[x]._Identifier.system"/>
-            <text value="system:"/>
-            <type value="string"/>
-            <required value="false"/>
-            <repeats value="false"/>
-          </item>
-          <item>
-            <linkId value="EnrollmentResponse.request[x]._Identifier.value"/>
-            <text value="value:"/>
-            <type value="string"/>
-            <required value="false"/>
-            <repeats value="false"/>
-          </item>
-        </item>
-        <item>
-          <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
-            <valueString value="Reference"/>
-          </extension>
-          <linkId value="EnrollmentResponse.request[x]._EnrollmentRequest"/>
-          <type value="group"/>
-          <item>
-            <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-allowedResource">
-              <valueCode value="EnrollmentRequest"/>
-            </extension>
-            <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-referenceFilter">
-              <valueString value="subject=$subj&amp;patient=$subj&amp;encounter=$encounter"/>
-            </extension>
-            <linkId value="EnrollmentResponse.request[x]._EnrollmentRequest.value"/>
-            <text value="EnrollmentRequest"/>
-            <type value="reference"/>
-            <required value="false"/>
-            <repeats value="false"/>
-          </item>
-        </item>
       </item>
     </item>
     <item>
@@ -483,9 +348,10 @@
         <valueInteger value="1"/>
       </extension>
       <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
-        <valueString value="code"/>
+        <valueString value="CodeableConcept"/>
       </extension>
       <linkId value="EnrollmentResponse.outcome"/>
+      <text value="complete | error | partial"/>
       <type value="group"/>
       <required value="false"/>
       <repeats value="true"/>
@@ -503,9 +369,16 @@
         <type value="display"/>
       </item>
       <item>
-        <linkId value="EnrollmentResponse.outcome.value"/>
-        <text value="outcome"/>
+        <linkId value="EnrollmentResponse.outcome.coding"/>
+        <text value="code:"/>
         <type value="choice"/>
+        <required value="false"/>
+        <repeats value="false"/>
+      </item>
+      <item>
+        <linkId value="EnrollmentResponse.outcome.text"/>
+        <text value="text:"/>
+        <type value="string"/>
         <required value="false"/>
         <repeats value="false"/>
       </item>
@@ -547,70 +420,6 @@
         <valueInteger value="1"/>
       </extension>
       <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
-        <valueString value="Coding"/>
-      </extension>
-      <linkId value="EnrollmentResponse.ruleset"/>
-      <type value="group"/>
-      <required value="false"/>
-      <repeats value="true"/>
-      <item>
-        <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl">
-          <valueCodeableConcept>
-            <coding>
-              <system value="http://hl7.org/fhir/questionnaire-item-control"/>
-              <code value="flyover"/>
-              <display value="Fly-over"/>
-            </coding>
-          </valueCodeableConcept>
-        </extension>
-        <text value="The version of the style of resource contents. This should be mapped to the allowable profiles for this and supporting resources."/>
-        <type value="display"/>
-      </item>
-      <item>
-        <linkId value="EnrollmentResponse.ruleset.value"/>
-        <text value="Resource version"/>
-        <type value="open-choice"/>
-        <required value="false"/>
-        <repeats value="false"/>
-      </item>
-    </item>
-    <item>
-      <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs">
-        <valueInteger value="1"/>
-      </extension>
-      <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
-        <valueString value="Coding"/>
-      </extension>
-      <linkId value="EnrollmentResponse.originalRuleset"/>
-      <type value="group"/>
-      <required value="false"/>
-      <repeats value="true"/>
-      <item>
-        <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl">
-          <valueCodeableConcept>
-            <coding>
-              <system value="http://hl7.org/fhir/questionnaire-item-control"/>
-              <code value="flyover"/>
-              <display value="Fly-over"/>
-            </coding>
-          </valueCodeableConcept>
-        </extension>
-        <text value="The style (standard) and version of the original material which was converted into this resource."/>
-        <type value="display"/>
-      </item>
-      <item>
-        <linkId value="EnrollmentResponse.originalRuleset.value"/>
-        <text value="Original version"/>
-        <type value="open-choice"/>
-        <required value="false"/>
-        <repeats value="false"/>
-      </item>
-    </item>
-    <item>
-      <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs">
-        <valueInteger value="1"/>
-      </extension>
-      <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
         <valueString value="datetime"/>
       </extension>
       <linkId value="EnrollmentResponse.created"/>
@@ -642,8 +451,10 @@
       <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs">
         <valueInteger value="1"/>
       </extension>
-      <linkId value="EnrollmentResponse.organization[x]"/>
-      <text value="Insurer"/>
+      <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
+        <valueString value="Reference"/>
+      </extension>
+      <linkId value="EnrollmentResponse.organization"/>
       <type value="group"/>
       <required value="false"/>
       <repeats value="true"/>
@@ -661,71 +472,27 @@
         <type value="display"/>
       </item>
       <item>
-        <linkId value="EnrollmentResponse.organization[x]._type"/>
-        <text value="type"/>
-        <type value="choice"/>
+        <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-allowedResource">
+          <valueCode value="Organization"/>
+        </extension>
+        <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-referenceFilter">
+          <valueString value="subject=$subj&amp;patient=$subj&amp;encounter=$encounter"/>
+        </extension>
+        <linkId value="EnrollmentResponse.organization.value"/>
+        <text value="Insurer"/>
+        <type value="reference"/>
         <required value="false"/>
         <repeats value="false"/>
-        <options>
-          <reference value="#vs3"/>
-        </options>
-        <item>
-          <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
-            <valueString value="Identifier"/>
-          </extension>
-          <linkId value="EnrollmentResponse.organization[x]._Identifier"/>
-          <text value="Identifier"/>
-          <type value="group"/>
-          <item>
-            <linkId value="EnrollmentResponse.organization[x]._Identifier.label"/>
-            <text value="label:"/>
-            <type value="string"/>
-            <required value="false"/>
-            <repeats value="false"/>
-          </item>
-          <item>
-            <linkId value="EnrollmentResponse.organization[x]._Identifier.system"/>
-            <text value="system:"/>
-            <type value="string"/>
-            <required value="false"/>
-            <repeats value="false"/>
-          </item>
-          <item>
-            <linkId value="EnrollmentResponse.organization[x]._Identifier.value"/>
-            <text value="value:"/>
-            <type value="string"/>
-            <required value="false"/>
-            <repeats value="false"/>
-          </item>
-        </item>
-        <item>
-          <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
-            <valueString value="Reference"/>
-          </extension>
-          <linkId value="EnrollmentResponse.organization[x]._Organization"/>
-          <type value="group"/>
-          <item>
-            <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-allowedResource">
-              <valueCode value="Organization"/>
-            </extension>
-            <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-referenceFilter">
-              <valueString value="subject=$subj&amp;patient=$subj&amp;encounter=$encounter"/>
-            </extension>
-            <linkId value="EnrollmentResponse.organization[x]._Organization.value"/>
-            <text value="Organization"/>
-            <type value="reference"/>
-            <required value="false"/>
-            <repeats value="false"/>
-          </item>
-        </item>
       </item>
     </item>
     <item>
       <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs">
         <valueInteger value="1"/>
       </extension>
-      <linkId value="EnrollmentResponse.requestProvider[x]"/>
-      <text value="Responsible practitioner"/>
+      <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
+        <valueString value="Reference"/>
+      </extension>
+      <linkId value="EnrollmentResponse.requestProvider"/>
       <type value="group"/>
       <required value="false"/>
       <repeats value="true"/>
@@ -743,71 +510,27 @@
         <type value="display"/>
       </item>
       <item>
-        <linkId value="EnrollmentResponse.requestProvider[x]._type"/>
-        <text value="type"/>
-        <type value="choice"/>
+        <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-allowedResource">
+          <valueCode value="Practitioner"/>
+        </extension>
+        <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-referenceFilter">
+          <valueString value="subject=$subj&amp;patient=$subj&amp;encounter=$encounter"/>
+        </extension>
+        <linkId value="EnrollmentResponse.requestProvider.value"/>
+        <text value="Responsible practitioner"/>
+        <type value="reference"/>
         <required value="false"/>
         <repeats value="false"/>
-        <options>
-          <reference value="#vs4"/>
-        </options>
-        <item>
-          <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
-            <valueString value="Identifier"/>
-          </extension>
-          <linkId value="EnrollmentResponse.requestProvider[x]._Identifier"/>
-          <text value="Identifier"/>
-          <type value="group"/>
-          <item>
-            <linkId value="EnrollmentResponse.requestProvider[x]._Identifier.label"/>
-            <text value="label:"/>
-            <type value="string"/>
-            <required value="false"/>
-            <repeats value="false"/>
-          </item>
-          <item>
-            <linkId value="EnrollmentResponse.requestProvider[x]._Identifier.system"/>
-            <text value="system:"/>
-            <type value="string"/>
-            <required value="false"/>
-            <repeats value="false"/>
-          </item>
-          <item>
-            <linkId value="EnrollmentResponse.requestProvider[x]._Identifier.value"/>
-            <text value="value:"/>
-            <type value="string"/>
-            <required value="false"/>
-            <repeats value="false"/>
-          </item>
-        </item>
-        <item>
-          <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
-            <valueString value="Reference"/>
-          </extension>
-          <linkId value="EnrollmentResponse.requestProvider[x]._Practitioner"/>
-          <type value="group"/>
-          <item>
-            <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-allowedResource">
-              <valueCode value="Practitioner"/>
-            </extension>
-            <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-referenceFilter">
-              <valueString value="subject=$subj&amp;patient=$subj&amp;encounter=$encounter"/>
-            </extension>
-            <linkId value="EnrollmentResponse.requestProvider[x]._Practitioner.value"/>
-            <text value="Practitioner"/>
-            <type value="reference"/>
-            <required value="false"/>
-            <repeats value="false"/>
-          </item>
-        </item>
       </item>
     </item>
     <item>
       <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs">
         <valueInteger value="1"/>
       </extension>
-      <linkId value="EnrollmentResponse.requestOrganization[x]"/>
-      <text value="Responsible organization"/>
+      <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
+        <valueString value="Reference"/>
+      </extension>
+      <linkId value="EnrollmentResponse.requestOrganization"/>
       <type value="group"/>
       <required value="false"/>
       <repeats value="true"/>
@@ -825,63 +548,17 @@
         <type value="display"/>
       </item>
       <item>
-        <linkId value="EnrollmentResponse.requestOrganization[x]._type"/>
-        <text value="type"/>
-        <type value="choice"/>
+        <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-allowedResource">
+          <valueCode value="Organization"/>
+        </extension>
+        <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-referenceFilter">
+          <valueString value="subject=$subj&amp;patient=$subj&amp;encounter=$encounter"/>
+        </extension>
+        <linkId value="EnrollmentResponse.requestOrganization.value"/>
+        <text value="Responsible organization"/>
+        <type value="reference"/>
         <required value="false"/>
         <repeats value="false"/>
-        <options>
-          <reference value="#vs5"/>
-        </options>
-        <item>
-          <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
-            <valueString value="Identifier"/>
-          </extension>
-          <linkId value="EnrollmentResponse.requestOrganization[x]._Identifier"/>
-          <text value="Identifier"/>
-          <type value="group"/>
-          <item>
-            <linkId value="EnrollmentResponse.requestOrganization[x]._Identifier.label"/>
-            <text value="label:"/>
-            <type value="string"/>
-            <required value="false"/>
-            <repeats value="false"/>
-          </item>
-          <item>
-            <linkId value="EnrollmentResponse.requestOrganization[x]._Identifier.system"/>
-            <text value="system:"/>
-            <type value="string"/>
-            <required value="false"/>
-            <repeats value="false"/>
-          </item>
-          <item>
-            <linkId value="EnrollmentResponse.requestOrganization[x]._Identifier.value"/>
-            <text value="value:"/>
-            <type value="string"/>
-            <required value="false"/>
-            <repeats value="false"/>
-          </item>
-        </item>
-        <item>
-          <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
-            <valueString value="Reference"/>
-          </extension>
-          <linkId value="EnrollmentResponse.requestOrganization[x]._Organization"/>
-          <type value="group"/>
-          <item>
-            <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-allowedResource">
-              <valueCode value="Organization"/>
-            </extension>
-            <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-referenceFilter">
-              <valueString value="subject=$subj&amp;patient=$subj&amp;encounter=$encounter"/>
-            </extension>
-            <linkId value="EnrollmentResponse.requestOrganization[x]._Organization.value"/>
-            <text value="Organization"/>
-            <type value="reference"/>
-            <required value="false"/>
-            <repeats value="false"/>
-          </item>
-        </item>
       </item>
     </item>
   </item>

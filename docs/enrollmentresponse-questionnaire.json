@@ -1,107 +1,13 @@
 {
   "resourceType": "Questionnaire",
   "id": "qs1",
-  "contained": [
-    {
-      "resourceType": "ValueSet",
-      "id": "vs2",
-      "name": "Type options for EnrollmentResponse.request[x]",
-      "status": "active",
-      "description": "Type options for EnrollmentResponse.request[x]",
-      "expansion": {
-        "identifier": "urn:uuid:8f8e776d-d127-49ab-8a55-7b0745bb3617",
-        "timestamp": "2016-11-28T17:32:39-05:00",
-        "contains": [
-          {
-            "system": "http://hl7.org/fhir/data-types",
-            "code": "Identifier",
-            "display": "Identifier"
-          },
-          {
-            "system": "http://hl7.org/fhir/resource-types",
-            "code": "EnrollmentRequest",
-            "display": "EnrollmentRequest"
-          }
-        ]
-      }
-    },
-    {
-      "resourceType": "ValueSet",
-      "id": "vs3",
-      "name": "Type options for EnrollmentResponse.organization[x]",
-      "status": "active",
-      "description": "Type options for EnrollmentResponse.organization[x]",
-      "expansion": {
-        "identifier": "urn:uuid:4904a0de-e025-42ef-894d-d693c9355c9c",
-        "timestamp": "2016-11-28T17:32:39-05:00",
-        "contains": [
-          {
-            "system": "http://hl7.org/fhir/data-types",
-            "code": "Identifier",
-            "display": "Identifier"
-          },
-          {
-            "system": "http://hl7.org/fhir/resource-types",
-            "code": "Organization",
-            "display": "Organization"
-          }
-        ]
-      }
-    },
-    {
-      "resourceType": "ValueSet",
-      "id": "vs4",
-      "name": "Type options for EnrollmentResponse.requestProvider[x]",
-      "status": "active",
-      "description": "Type options for EnrollmentResponse.requestProvider[x]",
-      "expansion": {
-        "identifier": "urn:uuid:ab06fd0c-3b80-4fb7-ae5e-93730fe253d6",
-        "timestamp": "2016-11-28T17:32:39-05:00",
-        "contains": [
-          {
-            "system": "http://hl7.org/fhir/data-types",
-            "code": "Identifier",
-            "display": "Identifier"
-          },
-          {
-            "system": "http://hl7.org/fhir/resource-types",
-            "code": "Practitioner",
-            "display": "Practitioner"
-          }
-        ]
-      }
-    },
-    {
-      "resourceType": "ValueSet",
-      "id": "vs5",
-      "name": "Type options for EnrollmentResponse.requestOrganization[x]",
-      "status": "active",
-      "description": "Type options for EnrollmentResponse.requestOrganization[x]",
-      "expansion": {
-        "identifier": "urn:uuid:8eb225a6-cb58-49df-b902-16b04dd5f833",
-        "timestamp": "2016-11-28T17:32:39-05:00",
-        "contains": [
-          {
-            "system": "http://hl7.org/fhir/data-types",
-            "code": "Identifier",
-            "display": "Identifier"
-          },
-          {
-            "system": "http://hl7.org/fhir/resource-types",
-            "code": "Organization",
-            "display": "Organization"
-          }
-        ]
-      }
-    }
-  ],
   "identifier": [
     {
       "system": "urn:ietf:rfc:3986"
     }
   ],
   "status": "draft",
-  "date": "2016-11-28T17:29:55-05:00",
+  "date": "2016-12-07T14:18:58-05:00",
   "publisher": "Health Level Seven International (Financial Management)",
   "item": [
     {
@@ -462,10 +368,6 @@
         {
           "extension": [
             {
-              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-minOccurs",
-              "valueInteger": 1
-            },
-            {
               "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs",
               "valueInteger": 1
             },
@@ -476,7 +378,7 @@
           ],
           "linkId": "EnrollmentResponse.status",
           "type": "group",
-          "required": true,
+          "required": false,
           "repeats": true,
           "item": [
             {
@@ -511,10 +413,13 @@
             {
               "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs",
               "valueInteger": 1
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType",
+              "valueString": "Reference"
             }
           ],
-          "linkId": "EnrollmentResponse.request[x]",
-          "text": "Claim reference",
+          "linkId": "EnrollmentResponse.request",
           "type": "group",
           "required": false,
           "repeats": true,
@@ -538,79 +443,21 @@
               "type": "display"
             },
             {
-              "linkId": "EnrollmentResponse.request[x]._type",
-              "text": "type",
-              "type": "choice",
-              "required": false,
-              "repeats": false,
-              "options": {
-                "reference": "#vs2"
-              },
-              "item": [
+              "extension": [
                 {
-                  "extension": [
-                    {
-                      "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType",
-                      "valueString": "Identifier"
-                    }
-                  ],
-                  "linkId": "EnrollmentResponse.request[x]._Identifier",
-                  "text": "Identifier",
-                  "type": "group",
-                  "item": [
-                    {
-                      "linkId": "EnrollmentResponse.request[x]._Identifier.label",
-                      "text": "label:",
-                      "type": "string",
-                      "required": false,
-                      "repeats": false
-                    },
-                    {
-                      "linkId": "EnrollmentResponse.request[x]._Identifier.system",
-                      "text": "system:",
-                      "type": "string",
-                      "required": false,
-                      "repeats": false
-                    },
-                    {
-                      "linkId": "EnrollmentResponse.request[x]._Identifier.value",
-                      "text": "value:",
-                      "type": "string",
-                      "required": false,
-                      "repeats": false
-                    }
-                  ]
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-allowedResource",
+                  "valueCode": "EnrollmentRequest"
                 },
                 {
-                  "extension": [
-                    {
-                      "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType",
-                      "valueString": "Reference"
-                    }
-                  ],
-                  "linkId": "EnrollmentResponse.request[x]._EnrollmentRequest",
-                  "type": "group",
-                  "item": [
-                    {
-                      "extension": [
-                        {
-                          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-allowedResource",
-                          "valueCode": "EnrollmentRequest"
-                        },
-                        {
-                          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-referenceFilter",
-                          "valueString": "subject=$subj&patient=$subj&encounter=$encounter"
-                        }
-                      ],
-                      "linkId": "EnrollmentResponse.request[x]._EnrollmentRequest.value",
-                      "text": "EnrollmentRequest",
-                      "type": "reference",
-                      "required": false,
-                      "repeats": false
-                    }
-                  ]
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-referenceFilter",
+                  "valueString": "subject=$subj&patient=$subj&encounter=$encounter"
                 }
-              ]
+              ],
+              "linkId": "EnrollmentResponse.request.value",
+              "text": "Claim reference",
+              "type": "reference",
+              "required": false,
+              "repeats": false
             }
           ]
         },
@@ -622,10 +469,11 @@
             },
             {
               "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType",
-              "valueString": "code"
+              "valueString": "CodeableConcept"
             }
           ],
           "linkId": "EnrollmentResponse.outcome",
+          "text": "complete | error | partial",
           "type": "group",
           "required": false,
           "repeats": true,
@@ -649,9 +497,16 @@
               "type": "display"
             },
             {
-              "linkId": "EnrollmentResponse.outcome.value",
-              "text": "outcome",
+              "linkId": "EnrollmentResponse.outcome.coding",
+              "text": "code:",
               "type": "choice",
+              "required": false,
+              "repeats": false
+            },
+            {
+              "linkId": "EnrollmentResponse.outcome.text",
+              "text": "text:",
+              "type": "string",
               "required": false,
               "repeats": false
             }
@@ -708,92 +563,6 @@
             },
             {
               "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType",
-              "valueString": "Coding"
-            }
-          ],
-          "linkId": "EnrollmentResponse.ruleset",
-          "type": "group",
-          "required": false,
-          "repeats": true,
-          "item": [
-            {
-              "extension": [
-                {
-                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
-                  "valueCodeableConcept": {
-                    "coding": [
-                      {
-                        "system": "http://hl7.org/fhir/questionnaire-item-control",
-                        "code": "flyover",
-                        "display": "Fly-over"
-                      }
-                    ]
-                  }
-                }
-              ],
-              "text": "The version of the style of resource contents. This should be mapped to the allowable profiles for this and supporting resources.",
-              "type": "display"
-            },
-            {
-              "linkId": "EnrollmentResponse.ruleset.value",
-              "text": "Resource version",
-              "type": "open-choice",
-              "required": false,
-              "repeats": false
-            }
-          ]
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs",
-              "valueInteger": 1
-            },
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType",
-              "valueString": "Coding"
-            }
-          ],
-          "linkId": "EnrollmentResponse.originalRuleset",
-          "type": "group",
-          "required": false,
-          "repeats": true,
-          "item": [
-            {
-              "extension": [
-                {
-                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
-                  "valueCodeableConcept": {
-                    "coding": [
-                      {
-                        "system": "http://hl7.org/fhir/questionnaire-item-control",
-                        "code": "flyover",
-                        "display": "Fly-over"
-                      }
-                    ]
-                  }
-                }
-              ],
-              "text": "The style (standard) and version of the original material which was converted into this resource.",
-              "type": "display"
-            },
-            {
-              "linkId": "EnrollmentResponse.originalRuleset.value",
-              "text": "Original version",
-              "type": "open-choice",
-              "required": false,
-              "repeats": false
-            }
-          ]
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs",
-              "valueInteger": 1
-            },
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType",
               "valueString": "datetime"
             }
           ],
@@ -834,10 +603,13 @@
             {
               "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs",
               "valueInteger": 1
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType",
+              "valueString": "Reference"
             }
           ],
-          "linkId": "EnrollmentResponse.organization[x]",
-          "text": "Insurer",
+          "linkId": "EnrollmentResponse.organization",
           "type": "group",
           "required": false,
           "repeats": true,
@@ -861,79 +633,21 @@
               "type": "display"
             },
             {
-              "linkId": "EnrollmentResponse.organization[x]._type",
-              "text": "type",
-              "type": "choice",
-              "required": false,
-              "repeats": false,
-              "options": {
-                "reference": "#vs3"
-              },
-              "item": [
+              "extension": [
                 {
-                  "extension": [
-                    {
-                      "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType",
-                      "valueString": "Identifier"
-                    }
-                  ],
-                  "linkId": "EnrollmentResponse.organization[x]._Identifier",
-                  "text": "Identifier",
-                  "type": "group",
-                  "item": [
-                    {
-                      "linkId": "EnrollmentResponse.organization[x]._Identifier.label",
-                      "text": "label:",
-                      "type": "string",
-                      "required": false,
-                      "repeats": false
-                    },
-                    {
-                      "linkId": "EnrollmentResponse.organization[x]._Identifier.system",
-                      "text": "system:",
-                      "type": "string",
-                      "required": false,
-                      "repeats": false
-                    },
-                    {
-                      "linkId": "EnrollmentResponse.organization[x]._Identifier.value",
-                      "text": "value:",
-                      "type": "string",
-                      "required": false,
-                      "repeats": false
-                    }
-                  ]
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-allowedResource",
+                  "valueCode": "Organization"
                 },
                 {
-                  "extension": [
-                    {
-                      "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType",
-                      "valueString": "Reference"
-                    }
-                  ],
-                  "linkId": "EnrollmentResponse.organization[x]._Organization",
-                  "type": "group",
-                  "item": [
-                    {
-                      "extension": [
-                        {
-                          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-allowedResource",
-                          "valueCode": "Organization"
-                        },
-                        {
-                          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-referenceFilter",
-                          "valueString": "subject=$subj&patient=$subj&encounter=$encounter"
-                        }
-                      ],
-                      "linkId": "EnrollmentResponse.organization[x]._Organization.value",
-                      "text": "Organization",
-                      "type": "reference",
-                      "required": false,
-                      "repeats": false
-                    }
-                  ]
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-referenceFilter",
+                  "valueString": "subject=$subj&patient=$subj&encounter=$encounter"
                 }
-              ]
+              ],
+              "linkId": "EnrollmentResponse.organization.value",
+              "text": "Insurer",
+              "type": "reference",
+              "required": false,
+              "repeats": false
             }
           ]
         },
@@ -942,10 +656,13 @@
             {
               "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs",
               "valueInteger": 1
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType",
+              "valueString": "Reference"
             }
           ],
-          "linkId": "EnrollmentResponse.requestProvider[x]",
-          "text": "Responsible practitioner",
+          "linkId": "EnrollmentResponse.requestProvider",
           "type": "group",
           "required": false,
           "repeats": true,
@@ -969,79 +686,21 @@
               "type": "display"
             },
             {
-              "linkId": "EnrollmentResponse.requestProvider[x]._type",
-              "text": "type",
-              "type": "choice",
-              "required": false,
-              "repeats": false,
-              "options": {
-                "reference": "#vs4"
-              },
-              "item": [
+              "extension": [
                 {
-                  "extension": [
-                    {
-                      "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType",
-                      "valueString": "Identifier"
-                    }
-                  ],
-                  "linkId": "EnrollmentResponse.requestProvider[x]._Identifier",
-                  "text": "Identifier",
-                  "type": "group",
-                  "item": [
-                    {
-                      "linkId": "EnrollmentResponse.requestProvider[x]._Identifier.label",
-                      "text": "label:",
-                      "type": "string",
-                      "required": false,
-                      "repeats": false
-                    },
-                    {
-                      "linkId": "EnrollmentResponse.requestProvider[x]._Identifier.system",
-                      "text": "system:",
-                      "type": "string",
-                      "required": false,
-                      "repeats": false
-                    },
-                    {
-                      "linkId": "EnrollmentResponse.requestProvider[x]._Identifier.value",
-                      "text": "value:",
-                      "type": "string",
-                      "required": false,
-                      "repeats": false
-                    }
-                  ]
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-allowedResource",
+                  "valueCode": "Practitioner"
                 },
                 {
-                  "extension": [
-                    {
-                      "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType",
-                      "valueString": "Reference"
-                    }
-                  ],
-                  "linkId": "EnrollmentResponse.requestProvider[x]._Practitioner",
-                  "type": "group",
-                  "item": [
-                    {
-                      "extension": [
-                        {
-                          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-allowedResource",
-                          "valueCode": "Practitioner"
-                        },
-                        {
-                          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-referenceFilter",
-                          "valueString": "subject=$subj&patient=$subj&encounter=$encounter"
-                        }
-                      ],
-                      "linkId": "EnrollmentResponse.requestProvider[x]._Practitioner.value",
-                      "text": "Practitioner",
-                      "type": "reference",
-                      "required": false,
-                      "repeats": false
-                    }
-                  ]
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-referenceFilter",
+                  "valueString": "subject=$subj&patient=$subj&encounter=$encounter"
                 }
-              ]
+              ],
+              "linkId": "EnrollmentResponse.requestProvider.value",
+              "text": "Responsible practitioner",
+              "type": "reference",
+              "required": false,
+              "repeats": false
             }
           ]
         },
@@ -1050,10 +709,13 @@
             {
               "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs",
               "valueInteger": 1
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType",
+              "valueString": "Reference"
             }
           ],
-          "linkId": "EnrollmentResponse.requestOrganization[x]",
-          "text": "Responsible organization",
+          "linkId": "EnrollmentResponse.requestOrganization",
           "type": "group",
           "required": false,
           "repeats": true,
@@ -1077,79 +739,21 @@
               "type": "display"
             },
             {
-              "linkId": "EnrollmentResponse.requestOrganization[x]._type",
-              "text": "type",
-              "type": "choice",
-              "required": false,
-              "repeats": false,
-              "options": {
-                "reference": "#vs5"
-              },
-              "item": [
+              "extension": [
                 {
-                  "extension": [
-                    {
-                      "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType",
-                      "valueString": "Identifier"
-                    }
-                  ],
-                  "linkId": "EnrollmentResponse.requestOrganization[x]._Identifier",
-                  "text": "Identifier",
-                  "type": "group",
-                  "item": [
-                    {
-                      "linkId": "EnrollmentResponse.requestOrganization[x]._Identifier.label",
-                      "text": "label:",
-                      "type": "string",
-                      "required": false,
-                      "repeats": false
-                    },
-                    {
-                      "linkId": "EnrollmentResponse.requestOrganization[x]._Identifier.system",
-                      "text": "system:",
-                      "type": "string",
-                      "required": false,
-                      "repeats": false
-                    },
-                    {
-                      "linkId": "EnrollmentResponse.requestOrganization[x]._Identifier.value",
-                      "text": "value:",
-                      "type": "string",
-                      "required": false,
-                      "repeats": false
-                    }
-                  ]
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-allowedResource",
+                  "valueCode": "Organization"
                 },
                 {
-                  "extension": [
-                    {
-                      "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType",
-                      "valueString": "Reference"
-                    }
-                  ],
-                  "linkId": "EnrollmentResponse.requestOrganization[x]._Organization",
-                  "type": "group",
-                  "item": [
-                    {
-                      "extension": [
-                        {
-                          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-allowedResource",
-                          "valueCode": "Organization"
-                        },
-                        {
-                          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-referenceFilter",
-                          "valueString": "subject=$subj&patient=$subj&encounter=$encounter"
-                        }
-                      ],
-                      "linkId": "EnrollmentResponse.requestOrganization[x]._Organization.value",
-                      "text": "Organization",
-                      "type": "reference",
-                      "required": false,
-                      "repeats": false
-                    }
-                  ]
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-referenceFilter",
+                  "valueString": "subject=$subj&patient=$subj&encounter=$encounter"
                 }
-              ]
+              ],
+              "linkId": "EnrollmentResponse.requestOrganization.value",
+              "text": "Responsible organization",
+              "type": "reference",
+              "required": false,
+              "repeats": false
             }
           ]
         }

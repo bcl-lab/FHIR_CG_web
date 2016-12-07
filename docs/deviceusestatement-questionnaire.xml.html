@@ -2,7 +2,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>Deviceusestatement-questionnaire.xml - FHIR v1.7.0</title>
+  <title>Deviceusestatement-questionnaire.xml - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -122,34 +122,12 @@
   &lt;contained&gt;
     &lt;ValueSet&gt;
       &lt;id value=&quot;vs2&quot;/&gt;
-      &lt;name value=&quot;Type options for DeviceUseStatement.bodySite[x]&quot;/&gt;
-      &lt;status value=&quot;active&quot;/&gt;
-      &lt;description value=&quot;Type options for DeviceUseStatement.bodySite[x]&quot;/&gt;
-      &lt;expansion&gt;
-        &lt;identifier value=&quot;urn:uuid:8daf6c55-9767-4793-8389-53458b82878e&quot;/&gt;
-        &lt;timestamp value=&quot;2016-11-28T17:32:32-05:00&quot;/&gt;
-        &lt;contains&gt;
-          &lt;system value=&quot;http://hl7.org/fhir/data-types&quot;/&gt;
-          &lt;code value=&quot;CodeableConcept&quot;/&gt;
-          &lt;display value=&quot;CodeableConcept&quot;/&gt;
-        &lt;/contains&gt;
-        &lt;contains&gt;
-          &lt;system value=&quot;http://hl7.org/fhir/resource-types&quot;/&gt;
-          &lt;code value=&quot;BodySite&quot;/&gt;
-          &lt;display value=&quot;BodySite&quot;/&gt;
-        &lt;/contains&gt;
-      &lt;/expansion&gt;
-    &lt;/ValueSet&gt;
-  &lt;/contained&gt;
-  &lt;contained&gt;
-    &lt;ValueSet&gt;
-      &lt;id value=&quot;vs3&quot;/&gt;
       &lt;name value=&quot;Type options for DeviceUseStatement.timing[x]&quot;/&gt;
       &lt;status value=&quot;active&quot;/&gt;
       &lt;description value=&quot;Type options for DeviceUseStatement.timing[x]&quot;/&gt;
       &lt;expansion&gt;
-        &lt;identifier value=&quot;urn:uuid:38e3e21d-62eb-42b8-ab3f-18f833c4271c&quot;/&gt;
-        &lt;timestamp value=&quot;2016-11-28T17:32:32-05:00&quot;/&gt;
+        &lt;identifier value=&quot;urn:uuid:a507ff78-bdc8-4af9-9760-c38022381569&quot;/&gt;
+        &lt;timestamp value=&quot;2016-12-07T14:21:40-05:00&quot;/&gt;
         &lt;contains&gt;
           &lt;system value=&quot;http://hl7.org/fhir/data-types&quot;/&gt;
           &lt;code value=&quot;Timing&quot;/&gt;
@@ -172,7 +150,7 @@
     &lt;system value=&quot;urn:ietf:rfc:3986&quot;/&gt;
   &lt;/identifier&gt;
   &lt;status value=&quot;draft&quot;/&gt;
-  &lt;date value=&quot;2016-11-28T17:29:55-05:00&quot;/&gt;
+  &lt;date value=&quot;2016-12-07T14:18:58-05:00&quot;/&gt;
   &lt;publisher value=&quot;Health Level Seven International (Orders and Observations)&quot;/&gt;
   &lt;item&gt;
     &lt;linkId value=&quot;DeviceUseStatement&quot;/&gt;
@@ -399,7 +377,10 @@
       &lt;extension url=&quot;http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs&quot;&gt;
         &lt;valueInteger value=&quot;1&quot;/&gt;
       &lt;/extension&gt;
-      &lt;linkId value=&quot;DeviceUseStatement.bodySite[x]&quot;/&gt;
+      &lt;extension url=&quot;http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType&quot;&gt;
+        &lt;valueString value=&quot;CodeableConcept&quot;/&gt;
+      &lt;/extension&gt;
+      &lt;linkId value=&quot;DeviceUseStatement.bodySite&quot;/&gt;
       &lt;text value=&quot;Target body site&quot;/&gt;
       &lt;type value=&quot;group&quot;/&gt;
       &lt;required value=&quot;false&quot;/&gt;
@@ -418,56 +399,18 @@
         &lt;type value=&quot;display&quot;/&gt;
       &lt;/item&gt;
       &lt;item&gt;
-        &lt;linkId value=&quot;DeviceUseStatement.bodySite[x]._type&quot;/&gt;
-        &lt;text value=&quot;type&quot;/&gt;
-        &lt;type value=&quot;choice&quot;/&gt;
+        &lt;linkId value=&quot;DeviceUseStatement.bodySite.coding&quot;/&gt;
+        &lt;text value=&quot;code:&quot;/&gt;
+        &lt;type value=&quot;open-choice&quot;/&gt;
         &lt;required value=&quot;false&quot;/&gt;
         &lt;repeats value=&quot;false&quot;/&gt;
-        &lt;options&gt;
-          &lt;reference value=&quot;#vs2&quot;/&gt;
-        &lt;/options&gt;
-        &lt;item&gt;
-          &lt;extension url=&quot;http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType&quot;&gt;
-            &lt;valueString value=&quot;CodeableConcept&quot;/&gt;
-          &lt;/extension&gt;
-          &lt;linkId value=&quot;DeviceUseStatement.bodySite[x]._CodeableConcept&quot;/&gt;
-          &lt;text value=&quot;CodeableConcept&quot;/&gt;
-          &lt;type value=&quot;group&quot;/&gt;
-          &lt;item&gt;
-            &lt;linkId value=&quot;DeviceUseStatement.bodySite[x]._CodeableConcept.coding&quot;/&gt;
-            &lt;text value=&quot;code:&quot;/&gt;
-            &lt;type value=&quot;open-choice&quot;/&gt;
-            &lt;required value=&quot;false&quot;/&gt;
-            &lt;repeats value=&quot;false&quot;/&gt;
-          &lt;/item&gt;
-          &lt;item&gt;
-            &lt;linkId value=&quot;DeviceUseStatement.bodySite[x]._CodeableConcept.text&quot;/&gt;
-            &lt;text value=&quot;text:&quot;/&gt;
-            &lt;type value=&quot;string&quot;/&gt;
-            &lt;required value=&quot;false&quot;/&gt;
-            &lt;repeats value=&quot;false&quot;/&gt;
-          &lt;/item&gt;
-        &lt;/item&gt;
-        &lt;item&gt;
-          &lt;extension url=&quot;http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType&quot;&gt;
-            &lt;valueString value=&quot;Reference&quot;/&gt;
-          &lt;/extension&gt;
-          &lt;linkId value=&quot;DeviceUseStatement.bodySite[x]._BodySite&quot;/&gt;
-          &lt;type value=&quot;group&quot;/&gt;
-          &lt;item&gt;
-            &lt;extension url=&quot;http://hl7.org/fhir/StructureDefinition/questionnaire-allowedResource&quot;&gt;
-              &lt;valueCode value=&quot;BodySite&quot;/&gt;
-            &lt;/extension&gt;
-            &lt;extension url=&quot;http://hl7.org/fhir/StructureDefinition/questionnaire-referenceFilter&quot;&gt;
-              &lt;valueString value=&quot;subject=$subj&amp;amp;patient=$subj&amp;amp;encounter=$encounter&quot;/&gt;
-            &lt;/extension&gt;
-            &lt;linkId value=&quot;DeviceUseStatement.bodySite[x]._BodySite.value&quot;/&gt;
-            &lt;text value=&quot;BodySite&quot;/&gt;
-            &lt;type value=&quot;reference&quot;/&gt;
-            &lt;required value=&quot;false&quot;/&gt;
-            &lt;repeats value=&quot;false&quot;/&gt;
-          &lt;/item&gt;
-        &lt;/item&gt;
+      &lt;/item&gt;
+      &lt;item&gt;
+        &lt;linkId value=&quot;DeviceUseStatement.bodySite.text&quot;/&gt;
+        &lt;text value=&quot;text:&quot;/&gt;
+        &lt;type value=&quot;string&quot;/&gt;
+        &lt;required value=&quot;false&quot;/&gt;
+        &lt;repeats value=&quot;false&quot;/&gt;
       &lt;/item&gt;
     &lt;/item&gt;
     &lt;item&gt;
@@ -763,7 +706,7 @@
         &lt;required value=&quot;false&quot;/&gt;
         &lt;repeats value=&quot;false&quot;/&gt;
         &lt;options&gt;
-          &lt;reference value=&quot;#vs3&quot;/&gt;
+          &lt;reference value=&quot;#vs2&quot;/&gt;
         &lt;/options&gt;
         &lt;item&gt;
           &lt;extension url=&quot;http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType&quot;&gt;
@@ -867,7 +810,7 @@ of the specification.
 		<div class="container"><!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:32-0500. <a href="qa.html">QA Page</a>
+        © HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:21-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search</a> | 

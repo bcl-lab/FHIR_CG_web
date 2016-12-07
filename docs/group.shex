@@ -36,6 +36,24 @@ start=@<Group> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
+# Who or what is in group
+<Group.member> CLOSED {
+    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
+    fhir:extension @<Extension>*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
+    fhir:Group.member.entity                # Reference to the group member
+    (   @<PatientReference> OR
+        @<PractitionerReference> OR
+        @<DeviceReference> OR
+        @<MedicationReference> OR
+        @<SubstanceReference>
+    );
+    fhir:Group.member.period @<Period>?;    # Period member belonged to the group
+    fhir:Group.member.inactive @<boolean>?;  # If member is no longer in group
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
 # Trait of group members
 <Group.characteristic> CLOSED {
     fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
@@ -52,24 +70,6 @@ start=@<Group> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:Group.characteristic.exclude @<boolean>;  # Group includes or excludes
     fhir:Group.characteristic.period @<Period>?;  # Period over which characteristic 
                                             # is tested 
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
-# Who or what is in group
-<Group.member> CLOSED {
-    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
-    fhir:extension @<Extension>*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    fhir:Group.member.entity                # Reference to the group member
-    (   @<PatientReference> OR
-        @<PractitionerReference> OR
-        @<DeviceReference> OR
-        @<MedicationReference> OR
-        @<SubstanceReference>
-    );
-    fhir:Group.member.period @<Period>?;    # Period member belonged to the group
-    fhir:Group.member.inactive @<boolean>?;  # If member is no longer in group
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -118,6 +118,18 @@ start=@<Group> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?
 }
 
+# Time range defined by start and end date/time
+<Period> CLOSED {
+    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
+    fhir:extension @<Extension>*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:Period.start @<dateTime>?;         # Starting time with inclusive 
+                                            # boundary 
+    fhir:Period.end @<dateTime>?;           # End time with inclusive boundary, 
+                                            # if not ongoing 
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
 # A measured or measurable amount
 <Quantity> CLOSED {
     fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
@@ -131,18 +143,6 @@ start=@<Group> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:Quantity.unit @<string>?;          # Unit representation
     fhir:Quantity.system @<uri>?;           # System that defines coded unit form
     fhir:Quantity.code @<code>?;            # Coded form of the unit
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
-# Time range defined by start and end date/time
-<Period> CLOSED {
-    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
-    fhir:extension @<Extension>*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:Period.start @<dateTime>?;         # Starting time with inclusive 
-                                            # boundary 
-    fhir:Period.end @<dateTime>?;           # End time with inclusive boundary, 
-                                            # if not ongoing 
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -382,11 +382,11 @@ start=@<Group> AND {fhir:nodeRole [fhir:treeRoot]}
 
 #---------------------- Value Sets ------------------------
 
-# Types of resources that are part of group
-fhirvs:group-type ["person" "animal" "practitioner" "device" "medication" "substance"]
-
 # How the Quantity should be understood and represented.
 fhirvs:quantity-comparator ["<" "<=" ">=" ">"]
+
+# Types of resources that are part of group
+fhirvs:group-type ["person" "animal" "practitioner" "device" "medication" "substance"]
 
 # Identifies the purpose for this identifier, if known .
 fhirvs:identifier-use ["usual" "official" "temp" "secondary"]

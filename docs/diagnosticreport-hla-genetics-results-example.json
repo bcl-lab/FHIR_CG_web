@@ -2,49 +2,10 @@
   "resourceType": "DiagnosticReport",
   "id": "hla-1",
   "text": {
+    "status": "extensions",
     "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n        <h3>HLA-A,-B,-C Genotyping Report for Marry Chalmers (MRN: 12345) </h3>\n        <pre>\n        Gene      Allele 1          Allele 2\n        HLA-A     HLA-A*01:01:01:01     HLA-A*01:02\n        HLA-B     HLA-B*15:01:01:01     HLA-B*57:01:01\n        HLA-C     HLA-C*01:02:01        HLA-C*03:04:01:01\n        </pre>\n        <p>Allele assignments based on IMGT/HLA 3.23</p>\n        <p>Issued: 2015-05-26T15:30:10+01:00</p>\n        <p>Method: Next-Generation Sequencing of exons 2 and 3 of HLA Class I genes</p>\n        <p>Lab: ACME labs, Inc</p>\n        <p>Please refer the <a href=\"genomics.html#hla\">implementation guide </a> for this usage example.</p>\n      </div>"
   },
-  "code": {
-    "coding": [
-      {
-        "system": "http://loinc.org",
-        "code": "53767-0",
-        "display": "HLA-A+B+C SBT [Interpretation] by High resolution"
-      }
-    ]
-  },
-  "category": {
-    "coding": [
-      {
-        "system": "http://hl7.org/fhir/ValueSet/diagnostic-service-sections",
-        "code": "GE",
-        "display": "Genetics"
-      }
-    ]
-  },
-  "subject": {
-    "reference": "Patient/123",
-    "display": "Mary Chalmers"
-  },
-  "specimen": [
-    {
-      "reference": "Specimen/456",
-      "display": "buccal swab"
-    }
-  ],
-  "request": [
-    {
-      "reference": "DiagnosticRequest/789",
-      "display": "Order for HLA-A,-B,-C genotyping"
-    }
-  ],
-  "effectiveDateTime": "2015-05-26T15:30:10+01:00",
-  "issued": "2014-05-16T10:28:00+01:00",
   "extension": [
-    {
-      "url": "http://hl7.org/fhir/StructureDefinition/hla-genotyping-resultsAlleleAsignmentDate",
-      "valueDate": "2014-05-16T10:28:00+01:00"
-    },
     {
       "url": "http://hl7.org/fhir/StructureDefinition/hla-genotyping-resultsAlleleDatabase",
       "valueCodeableConcept": {
@@ -81,6 +42,43 @@
         ],
         "text": "Next Generation Sequencing of exons 2 and 3 of HLA Class I genes"
       }
+    }
+  ],
+  "status": "final",
+  "category": {
+    "coding": [
+      {
+        "system": "http://hl7.org/fhir/ValueSet/diagnostic-service-sections",
+        "code": "GE",
+        "display": "Genetics"
+      }
+    ]
+  },
+  "code": {
+    "coding": [
+      {
+        "system": "http://loinc.org",
+        "code": "53767-0",
+        "display": "HLA-A+B+C SBT [Interpretation] by High resolution"
+      }
+    ]
+  },
+  "subject": {
+    "reference": "Patient/123",
+    "display": "Mary Chalmers"
+  },
+  "effectiveDateTime": "2015-05-26T15:30:10+01:00",
+  "issued": "2014-05-16T10:28:00+01:00",
+  "request": [
+    {
+      "reference": "DiagnosticRequest/789",
+      "display": "Order for HLA-A,-B,-C genotyping"
+    }
+  ],
+  "specimen": [
+    {
+      "reference": "Specimen/456",
+      "display": "buccal swab"
     }
   ],
   "result": [

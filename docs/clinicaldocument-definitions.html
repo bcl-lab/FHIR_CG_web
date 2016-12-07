@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>StructureDefinition: ClinicalDocument - FHIR v1.7.0</title>
+  <title>StructureDefinition: ClinicalDocument - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -106,7 +106,7 @@
 
 <ul class="nav nav-tabs"><li><a href="clinicaldocument.html">Content</a></li><li class="active"><a href="#">Detailed Descriptions</a></li><li><a href="clinicaldocument-mappings.html">Mappings</a></li><li><a href="clinicaldocument.profile.xml.html">XML</a></li><li><a href="clinicaldocument.profile.json.html">JSON</a></li></ul>
 
-<h4 class="self-link-parent"><span class="sectioncount">2.36.12.2.4<a name="2.36.12.2.4"> </a></span> StructureDefinition: ClinicalDocument - Detailed Descriptions <a href="clinicaldocument-definitions.html#2.36.12.2.4" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h4>
+<h4 class="self-link-parent"><span class="sectioncount">2.37.12.2.4<a name="2.37.12.2.4"> </a></span> StructureDefinition: ClinicalDocument - Detailed Descriptions <a href="clinicaldocument-definitions.html#2.37.12.2.4" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h4>
 
 <p>Definitions for the clinicaldocument Profile.</p>
 
@@ -143,7 +143,7 @@
   <tr><td>Definition</td><td><p>The base language in which the resource is written.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>A human language.<br/>The codes SHALL be taken from <a href="valueset-languages.html">Common Languages</a>; other codes may be used where these codes are not suitable</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td>A human language.<br/>The codes SHALL be taken from <a href="valueset-languages.html">Common Languages</a>; other codes may be used where these codes are not suitable</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#code">code</a></td></tr>
   <tr><td>Comments</td><td><p>Language is provided to support indexing and accessibility (typically, services such as text to speech use the language tag). The html language tag in the narrative applies  to the narrative. The language tag on the resource may be used to specify the language of other presentations generated from the data in the resource  Not all the content has to be in the base language. The Resource.language should not be assumed to apply to the narrative automatically. If a language is specified, it should it also be specified on the div element in the html (see rules in HTML5 for information about the relationship between xml:lang and the html lang attribute).</p>
 </td></tr>
@@ -200,7 +200,7 @@
   <tr><td>Definition</td><td><p>Specifies the particular kind of composition (e.g. History and Physical, Discharge Summary, Progress Note). This usually equates to the purpose of making the composition.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>1..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>Type of a composition.<br/>The codes SHOULD be taken from <a href="valueset-doc-typecodes.html">FHIR Document Type Codes</a></td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td>Type of a composition.<br/>The codes SHOULD be taken from <a href="valueset-doc-typecodes.html">FHIR Document Type Codes</a></td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
   <tr><td>Requirements</td><td><p>Key metadata element describing the composition, used in searching/filtering.</p>
 </td></tr>
@@ -210,7 +210,7 @@
   <tr><td>Definition</td><td><p>A categorization for the type of the composition - helps for indexing and searching. This may be implied by or derived from the code specified in the Composition Type.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>High-level kind of a clinical document at a macro level.<br/>For example codes, see <a href="valueset-doc-classcodes.html">FHIR Document Class Codes</a></td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td>High-level kind of a clinical document at a macro level.<br/>For example codes, see <a href="valueset-doc-classcodes.html">FHIR Document Class Codes</a></td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
   <tr><td>Requirements</td><td><p>Helps humans to assess whether the composition is of interest when viewing an index of compositions or documents.</p>
 </td></tr>
@@ -227,7 +227,7 @@
   <tr><td>Definition</td><td><p>The workflow/clinical status of this composition. The status is a marker for the clinical standing of the document.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>1..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>The workflow/clinical status of the composition.<br/>The codes SHALL be taken from <a href="valueset-composition-status.html">CompositionStatus</a></td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td>The workflow/clinical status of the composition.<br/>The codes SHALL be taken from <a href="valueset-composition-status.html">CompositionStatus</a></td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#code">code</a></td></tr>
   <tr><td><a href="conformance-rules.html#ismodifier">Is Modifier</a></td><td>true</td></tr>
   <tr><td>Requirements</td><td><p>Need to be able to mark interim, amended, or withdrawn compositions or documents.</p>
@@ -239,7 +239,7 @@
   <tr><td>Definition</td><td><p>The code specifying the level of confidentiality of the Composition.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>Codes specifying the level of confidentiality of the composition.<br/>The codes SHALL be taken from <a href="v3/ConfidentialityClassification/vs.html">ConfidentialityClassification</a></td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td>Codes specifying the level of confidentiality of the composition.<br/>The codes SHALL be taken from <a href="v3/ConfidentialityClassification/vs.html">ConfidentialityClassification</a></td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#code">code</a></td></tr>
   <tr><td><a href="conformance-rules.html#ismodifier">Is Modifier</a></td><td>true</td></tr>
   <tr><td>Comments</td><td><p>The exact use of this element, and enforcement and issues related to highly sensitive documents are out of scope for the base specification, and delegated to implementation profiles (see security section).</p>
@@ -297,7 +297,7 @@
   <tr><td>Definition</td><td><p>The type of attestation the authenticator offers.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>1..*</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>The way in which a person authenticated a composition.<br/>The codes SHALL be taken from <a href="valueset-composition-attestation-mode.html">CompositionAttestationMode</a></td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td>The way in which a person authenticated a composition.<br/>The codes SHALL be taken from <a href="valueset-composition-attestation-mode.html">CompositionAttestationMode</a></td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#code">code</a></td></tr>
   <tr><td>Requirements</td><td><p>Indicates the level of authority of the attestation.</p>
 </td></tr>
@@ -363,7 +363,7 @@
   <tr><td>Definition</td><td><p>This list of codes represents the main clinical acts, such as a colonoscopy or an appendectomy, being documented. In some cases, the event is inherent in the typeCode, such as a &quot;History and Physical Report&quot; in which the procedure being documented is necessarily a &quot;History and Physical&quot; act.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..*</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>This list of codes represents the main clinical acts being documented.<br/>For example codes, see <a href="v3/ActCode/vs.html">v3 Code System ActCode</a></td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td>This list of codes represents the main clinical acts being documented.<br/>For example codes, see <a href="v3/ActCode/vs.html">v3 Code System ActCode</a></td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
   <tr><td>Comments</td><td><p>An event can further specialize the act inherent in the typeCode, such as where it is simply &quot;Procedure Report&quot; and the procedure was a &quot;colonoscopy&quot;. If one or more eventCodes are included, they SHALL NOT conflict with the values inherent in the classCode, practiceSettingCode or typeCode, as such a conflict would create an ambiguous situation. This short list of codes is provided to be used as key words for certain types of queries.</p>
 </td></tr>
@@ -427,7 +427,7 @@
   <tr><td>Definition</td><td><p>A code identifying the kind of content contained within the section. This must be consistent with the section title.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>Classification of a section of a composition/document.<br/>For example codes, see <a href="valueset-doc-section-codes.html">Document Section Codes</a></td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td>Classification of a section of a composition/document.<br/>For example codes, see <a href="valueset-doc-section-codes.html">Document Section Codes</a></td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
   <tr><td>Requirements</td><td><p>Provides computable standardized labels to topics within the document.</p>
 </td></tr>
@@ -444,7 +444,7 @@
   <tr><td>Definition</td><td><p>How the entry list was prepared - whether it is a working list that is suitable for being maintained on an ongoing basis, or if it represents a snapshot of a list of items from another source, or whether it is a prepared list where items may be marked as added, modified or deleted.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>The processing mode that applies to this section.<br/>The codes SHALL be taken from <a href="valueset-list-mode.html">ListMode</a></td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td>The processing mode that applies to this section.<br/>The codes SHALL be taken from <a href="valueset-list-mode.html">ListMode</a></td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#code">code</a></td></tr>
   <tr><td><a href="conformance-rules.html#ismodifier">Is Modifier</a></td><td>true</td></tr>
   <tr><td>Requirements</td><td><p>Sections are used in various ways, and it must be known in what way it is safe to use the entries in them.</p>
@@ -453,7 +453,7 @@
   <tr><td>Definition</td><td><p>Specifies the order applied to the items in the section entries.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>What order applies to the items in the entry.<br/>The codes SHOULD be taken from <a href="valueset-list-order.html">List Order Codes</a></td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td>What order applies to the items in the entry.<br/>The codes SHOULD be taken from <a href="valueset-list-order.html">List Order Codes</a></td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
   <tr><td>Requirements</td><td><p>Important for presentation and rendering.  Lists may be sorted to place more important information first or to group related entries.</p>
 </td></tr>
@@ -470,7 +470,7 @@
   <tr><td>Definition</td><td><p>If the section is empty, why the list is empty. An empty section typically has some text explaining the empty reason.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1 This element is affected by the following invariants: cmp-2</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>If a section is empty, why it is empty.<br/>The codes SHOULD be taken from <a href="valueset-list-empty-reason.html">List Empty Reasons</a></td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td>If a section is empty, why it is empty.<br/>The codes SHOULD be taken from <a href="valueset-list-empty-reason.html">List Empty Reasons</a></td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
   <tr><td>Requirements</td><td><p>Allows capturing things like &quot;none exist&quot; or &quot;not asked&quot; which can be important for most lists.</p>
 </td></tr>
@@ -500,7 +500,7 @@
 		<div class="container">  <!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:32-0500. <a href="qa.html">QA Page</a>
+        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:21-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search <img src="external.png" style="text-align: baseline"/></a> | 

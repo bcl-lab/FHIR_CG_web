@@ -3,7 +3,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>Questionnaireresponse.shex - FHIR v1.7.0</title>
+  <title>Questionnaireresponse.shex - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -140,7 +140,7 @@ start=@&lt;QuestionnaireResponse&gt; AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:modifierExtension @&lt;Extension&gt;*;   # Extensions that cannot be ignored
     fhir:QuestionnaireResponse.identifier @&lt;Identifier&gt;?;  # Unique id for this set of answers
     fhir:QuestionnaireResponse.basedOn      # Request fulfilled by this 
-                                            # Questionnaire 
+                                            # QuestionnaireResponse 
     (   @&lt;DiagnosticRequestReference&gt; OR
         @&lt;ReferralRequestReference&gt; OR
         @&lt;CarePlanReference&gt;
@@ -183,8 +183,10 @@ start=@&lt;QuestionnaireResponse&gt; AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
                                             # implementations 
     fhir:modifierExtension @&lt;Extension&gt;*;   # Extensions that cannot be ignored
-    fhir:QuestionnaireResponse.item.linkId @&lt;string&gt;?;  # Corresponding item within 
+    fhir:QuestionnaireResponse.item.linkId @&lt;string&gt;;  # Pointer to specific item from 
                                             # Questionnaire 
+    fhir:QuestionnaireResponse.item.definition @&lt;uri&gt;?;  # ElementDefinition - details for 
+                                            # the item 
     fhir:QuestionnaireResponse.item.text @&lt;string&gt;?;  # Name for group or question text
     fhir:QuestionnaireResponse.item.subject @&lt;Reference&gt;?;  # The subject this group's answers 
                                             # are about 
@@ -681,7 +683,7 @@ of the specification.
 		<div class="container"><!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:33-0500. <a href="qa.html">QA Page</a>
+        © HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:28-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search</a> | 

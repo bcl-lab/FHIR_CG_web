@@ -3,7 +3,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>Capabilitystatement-questionnaire.json - FHIR v1.7.0</title>
+  <title>Capabilitystatement-questionnaire.json - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -124,7 +124,7 @@
     }
   ],
   &quot;status&quot;: &quot;draft&quot;,
-  &quot;date&quot;: &quot;2016-11-28T17:29:55-05:00&quot;,
+  &quot;date&quot;: &quot;2016-12-07T14:18:58-05:00&quot;,
   &quot;publisher&quot;: &quot;Health Level Seven International (FHIR Infrastructure)&quot;,
   &quot;item&quot;: [
     {
@@ -1102,12 +1102,12 @@
                   }
                 }
               ],
-              &quot;text&quot;: &quot;Reference to a canonical URL of another CapabilityStatement that this software implements or uses. This capability statement is a published API description that corresponds to a business service. The rest of the capability statement does not need to repeat the details of the referenced resource, but can do so. HL7 defines the following Services: [[[Terminology Service]]]\n\nMany [Implementation Guides](http://fhir.org/guides/registry) define additional services.&quot;,
+              &quot;text&quot;: &quot;Reference to a canonical URL of another CapabilityStatement that this software implements or uses. This capability statement is a published API description that corresponds to a business service. The rest of the capability statement does not need to repeat the details of the referenced resource, but can do so. HL7 defines the following Services: [Terminology Service](terminology-service.html)\n\nMany [Implementation Guides](http://fhir.org/guides/registry) define additional services.&quot;,
               &quot;type&quot;: &quot;display&quot;
             },
             {
               &quot;linkId&quot;: &quot;CapabilityStatement.instantiates.value&quot;,
-              &quot;text&quot;: &quot;Canonical URL of service implemented/used by software&quot;,
+              &quot;text&quot;: &quot;Canonical URL of another capability statement this implements&quot;,
               &quot;type&quot;: &quot;string&quot;,
               &quot;required&quot;: false,
               &quot;repeats&quot;: false
@@ -1777,6 +1777,45 @@
           &quot;extension&quot;: [
             {
               &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType&quot;,
+              &quot;valueString&quot;: &quot;uri&quot;
+            }
+          ],
+          &quot;linkId&quot;: &quot;CapabilityStatement.implementationGuide&quot;,
+          &quot;type&quot;: &quot;group&quot;,
+          &quot;required&quot;: false,
+          &quot;repeats&quot;: true,
+          &quot;item&quot;: [
+            {
+              &quot;extension&quot;: [
+                {
+                  &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl&quot;,
+                  &quot;valueCodeableConcept&quot;: {
+                    &quot;coding&quot;: [
+                      {
+                        &quot;system&quot;: &quot;http://hl7.org/fhir/questionnaire-item-control&quot;,
+                        &quot;code&quot;: &quot;flyover&quot;,
+                        &quot;display&quot;: &quot;Fly-over&quot;
+                      }
+                    ]
+                  }
+                }
+              ],
+              &quot;text&quot;: &quot;A list of implementation guides that the server does (or should) support in their entirety.&quot;,
+              &quot;type&quot;: &quot;display&quot;
+            },
+            {
+              &quot;linkId&quot;: &quot;CapabilityStatement.implementationGuide.value&quot;,
+              &quot;text&quot;: &quot;Implementation Guide supported&quot;,
+              &quot;type&quot;: &quot;string&quot;,
+              &quot;required&quot;: false,
+              &quot;repeats&quot;: false
+            }
+          ]
+        },
+        {
+          &quot;extension&quot;: [
+            {
+              &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType&quot;,
               &quot;valueString&quot;: &quot;Reference&quot;
             }
           ],
@@ -1800,7 +1839,7 @@
                   }
                 }
               ],
-              &quot;text&quot;: &quot;A list of profiles that represent different use cases supported by the system. For a server, \&quot;supported by the system\&quot; means the system hosts/produces a set of resources that are conformant to a particular profile, and allows clients that use its services to search using this profile and to find appropriate data. For a client, it means the system will search by this profile and process data according to the guidance implicit in the profile. See further discussion in [Using Profiles]{profiling.html#profile-uses}. Supported profiles are different to the profiles that apply to a particular resource in rest.resource.profile. The resource profile is a general statement of what features of the resource are supported overall by the system - the sum total of the facilities it supports. A supported profile is a deeper statement about the functionality of the data and services provided by the server (or used by the client). A typical case is a laboratory system that produces a set of different reports - this is the list of types of data that it publishes. A key aspect of declaring profiles here is the question of how the client converts knowledge that the server publishes this data into working with the data; the client can inspect individual resources to determine whether they conform to a particular profile, but how does it find the ones that does? It does so by searching using the _profile parameter, so any resources listed here must be valid values for the _profile resource (using the identifier in the target profile).  Typical supported profiles cross resource types to describe a network of related resources, so they are listed here rather than by resource. However, they do not need to describe more than one resource.&quot;,
+              &quot;text&quot;: &quot;A list of profiles that represent different use cases supported by the system. For a server, \&quot;supported by the system\&quot; means the system hosts/produces a set of resources that are conformant to a particular profile, and allows clients that use its services to search using this profile and to find appropriate data. For a client, it means the system will search by this profile and process data according to the guidance implicit in the profile. See further discussion in [Using Profiles](profiling.html#profile-uses). Supported profiles are different to the profiles that apply to a particular resource in rest.resource.profile. The resource profile is a general statement of what features of the resource are supported overall by the system - the sum total of the facilities it supports. A supported profile is a deeper statement about the functionality of the data and services provided by the server (or used by the client). A typical case is a laboratory system that produces a set of different reports - this is the list of types of data that it publishes. A key aspect of declaring profiles here is the question of how the client converts knowledge that the server publishes this data into working with the data; the client can inspect individual resources to determine whether they conform to a particular profile, but how does it find the ones that does? It does so by searching using the _profile parameter, so any resources listed here must be valid values for the _profile resource (using the identifier in the target profile).  Typical supported profiles cross resource types to describe a network of related resources, so they are listed here rather than by resource. However, they do not need to describe more than one resource.&quot;,
               &quot;type&quot;: &quot;display&quot;
             },
             {
@@ -3612,7 +3651,7 @@
                               }
                             }
                           ],
-                          &quot;text&quot;: &quot;An absolute URI that is a formal reference to where this parameter was first defined, so that a client can be confident of the meaning of the search parameter (a reference to [[[SearchParameter.url]]]). This SHOULD be present, and matches SearchParameter.url.&quot;,
+                          &quot;text&quot;: &quot;An absolute URI that is a formal reference to where this parameter was first defined, so that a client can be confident of the meaning of the search parameter (a reference to [SearchParameter.url]()). This SHOULD be present, and matches refers to a SearchParameter by it's canonical url. If systems wish to document their support for modifiers, comparators, target resource types, and chained parameters, they should do using a search parameter resource.&quot;,
                           &quot;type&quot;: &quot;display&quot;
                         },
                         {
@@ -3708,123 +3747,6 @@
                         {
                           &quot;linkId&quot;: &quot;CapabilityStatement.rest.resource.searchParam.documentation.value&quot;,
                           &quot;text&quot;: &quot;Server-specific usage&quot;,
-                          &quot;type&quot;: &quot;string&quot;,
-                          &quot;required&quot;: false,
-                          &quot;repeats&quot;: false
-                        }
-                      ]
-                    },
-                    {
-                      &quot;extension&quot;: [
-                        {
-                          &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType&quot;,
-                          &quot;valueString&quot;: &quot;code&quot;
-                        }
-                      ],
-                      &quot;linkId&quot;: &quot;CapabilityStatement.rest.resource.searchParam.target&quot;,
-                      &quot;type&quot;: &quot;group&quot;,
-                      &quot;required&quot;: false,
-                      &quot;repeats&quot;: true,
-                      &quot;item&quot;: [
-                        {
-                          &quot;extension&quot;: [
-                            {
-                              &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl&quot;,
-                              &quot;valueCodeableConcept&quot;: {
-                                &quot;coding&quot;: [
-                                  {
-                                    &quot;system&quot;: &quot;http://hl7.org/fhir/questionnaire-item-control&quot;,
-                                    &quot;code&quot;: &quot;flyover&quot;,
-                                    &quot;display&quot;: &quot;Fly-over&quot;
-                                  }
-                                ]
-                              }
-                            }
-                          ],
-                          &quot;text&quot;: &quot;Types of resource (if a resource is referenced). This SHALL be the same as or a proper subset of the resources listed in the search parameter definition.&quot;,
-                          &quot;type&quot;: &quot;display&quot;
-                        },
-                        {
-                          &quot;linkId&quot;: &quot;CapabilityStatement.rest.resource.searchParam.target.value&quot;,
-                          &quot;text&quot;: &quot;target&quot;,
-                          &quot;type&quot;: &quot;choice&quot;,
-                          &quot;required&quot;: false,
-                          &quot;repeats&quot;: false
-                        }
-                      ]
-                    },
-                    {
-                      &quot;extension&quot;: [
-                        {
-                          &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType&quot;,
-                          &quot;valueString&quot;: &quot;code&quot;
-                        }
-                      ],
-                      &quot;linkId&quot;: &quot;CapabilityStatement.rest.resource.searchParam.modifier&quot;,
-                      &quot;type&quot;: &quot;group&quot;,
-                      &quot;required&quot;: false,
-                      &quot;repeats&quot;: true,
-                      &quot;item&quot;: [
-                        {
-                          &quot;extension&quot;: [
-                            {
-                              &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl&quot;,
-                              &quot;valueCodeableConcept&quot;: {
-                                &quot;coding&quot;: [
-                                  {
-                                    &quot;system&quot;: &quot;http://hl7.org/fhir/questionnaire-item-control&quot;,
-                                    &quot;code&quot;: &quot;flyover&quot;,
-                                    &quot;display&quot;: &quot;Fly-over&quot;
-                                  }
-                                ]
-                              }
-                            }
-                          ],
-                          &quot;text&quot;: &quot;A modifier supported for the search parameter.&quot;,
-                          &quot;type&quot;: &quot;display&quot;
-                        },
-                        {
-                          &quot;linkId&quot;: &quot;CapabilityStatement.rest.resource.searchParam.modifier.value&quot;,
-                          &quot;text&quot;: &quot;modifier&quot;,
-                          &quot;type&quot;: &quot;choice&quot;,
-                          &quot;required&quot;: false,
-                          &quot;repeats&quot;: false
-                        }
-                      ]
-                    },
-                    {
-                      &quot;extension&quot;: [
-                        {
-                          &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType&quot;,
-                          &quot;valueString&quot;: &quot;string&quot;
-                        }
-                      ],
-                      &quot;linkId&quot;: &quot;CapabilityStatement.rest.resource.searchParam.chain&quot;,
-                      &quot;type&quot;: &quot;group&quot;,
-                      &quot;required&quot;: false,
-                      &quot;repeats&quot;: true,
-                      &quot;item&quot;: [
-                        {
-                          &quot;extension&quot;: [
-                            {
-                              &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl&quot;,
-                              &quot;valueCodeableConcept&quot;: {
-                                &quot;coding&quot;: [
-                                  {
-                                    &quot;system&quot;: &quot;http://hl7.org/fhir/questionnaire-item-control&quot;,
-                                    &quot;code&quot;: &quot;flyover&quot;,
-                                    &quot;display&quot;: &quot;Fly-over&quot;
-                                  }
-                                ]
-                              }
-                            }
-                          ],
-                          &quot;text&quot;: &quot;Contains the names of any search parameters which may be chained to the containing search parameter. Chained parameters may be added to search parameters of type reference, and specify that resources will only be returned if they contain a reference to a resource which matches the chained parameter value. Values for this field should be drawn from CapabilityStatement.rest.resource.searchParam.name on the target resource type. Systems are not required to list all the chain names they support, but if they don't list them, clients may not know to use them.&quot;,
-                          &quot;type&quot;: &quot;display&quot;
-                        },
-                        {
-                          &quot;linkId&quot;: &quot;CapabilityStatement.rest.resource.searchParam.chain.value&quot;,
-                          &quot;text&quot;: &quot;Chained names supported&quot;,
                           &quot;type&quot;: &quot;string&quot;,
                           &quot;required&quot;: false,
                           &quot;repeats&quot;: false
@@ -5555,7 +5477,7 @@ of the specification.
 		<div class="container"><!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:32-0500. <a href="qa.html">QA Page</a>
+        © HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:21-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search</a> | 

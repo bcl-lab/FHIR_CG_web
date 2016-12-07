@@ -377,10 +377,7 @@ start=@<ActivityDefinition> AND {fhir:nodeRole [fhir:treeRoot]}
         fhir:DosageInstruction.asNeededBoolean @<boolean>  |
         fhir:DosageInstruction.asNeededCodeableConcept @<CodeableConcept> 
     )?;
-    (                                       # Body site to administer to
-        fhir:DosageInstruction.siteCodeableConcept @<CodeableConcept>  |
-        fhir:DosageInstruction.siteReference @<Reference> 
-    )?;
+    fhir:DosageInstruction.site @<CodeableConcept>?;  # Body site to administer to
     fhir:DosageInstruction.route @<CodeableConcept>?;  # How drug should enter body
     fhir:DosageInstruction.method @<CodeableConcept>?;  # Technique for administering 
                                             # medication 
@@ -447,7 +444,8 @@ start=@<ActivityDefinition> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:extension @<Extension>*;           # Additional Content defined by 
                                             # implementations 
     fhir:ContactPoint.system @<code> AND
-    	{fhir:value @fhirvs:contact-point-system}?;  # phone | fax | email | pager | other
+    	{fhir:value @fhirvs:contact-point-system}?;  # phone | fax | email | pager | url 
+                                            # | other 
     fhir:ContactPoint.value @<string>?;     # The actual contact point details
     fhir:ContactPoint.use @<code> AND
     	{fhir:value @fhirvs:contact-point-use}?;  # home | work | temp | old | mobile 
@@ -574,6 +572,10 @@ start=@<ActivityDefinition> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:Timing.repeat.periodUnit @<code> AND
     	{fhir:value @fhirvs:units-of-time}?;  # s | min | h | d | wk | mo | a - 
                                             # unit of time (UCUM) 
+    fhir:Timing.repeat.dayOfWeek @<code> AND
+    	{fhir:value @fhirvs:days-of-week}*;  # mon | tue | wed | thu | fri | sat 
+                                            # | sun 
+    fhir:Timing.repeat.timeOfDay @<time>*;  # Time of day for action
     fhir:Timing.repeat.when @<code> AND
     	{fhir:value @fhirvs:event-timing}?;  # Regular life events the event is 
                                             # tied to 
@@ -598,42 +600,54 @@ start=@<ActivityDefinition> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
+# Primitive Type time
+<time> CLOSED {
+    fhir:Element.id @<id>?;                 # xml:id (or equivalent in JSON)
+    fhir:extension @<Extension>*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:value xsd:time?;                   # Primitive value for time
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
 #---------------------- Reference Types -------------------
 
 #---------------------- Value Sets ------------------------
 
+# Use of contact point
+fhirvs:contact-point-use ["home" "work" "temp" "old" "mobile"]
+
 # The type of contributor
 fhirvs:contributor-type ["author" "editor" "reviewer" "endorser"]
 
-# High-level categorization of the type of activity in a protocol.
-fhirvs:activity-definition-category ["communication" "device" "diagnostic" "diet" "drug" "encounter" "immunization" "observation" "procedure" "referral" "supply" "vision" "other"]
-
-# The type of relationship to the related artifact
-fhirvs:related-artifact-type ["documentation" "justification" "citation" "predecessor" "successor" "derived-from" "depends-on" "composed-of"]
-
-# The lifecycle status of a Value Set or Concept Map.
-fhirvs:publication-status ["draft" "active" "retired"]
-
-# Real world event that the relating to the schedule.
-fhirvs:event-timing ["HS" "WAKE" "C" "CM" "CD" "CV" "AC" "ACM" "ACD" "ACV" "PC" "PCM" "PCD" "PCV"]
-
 # Telecommunications form for contact point
-fhirvs:contact-point-system ["phone" "fax" "email" "pager" "other"]
+fhirvs:contact-point-system ["phone" "fax" "email" "pager" "url" "other"]
 
-# The type of participant for the action
-fhirvs:action-participant-type ["patient" "practitioner" "related-person"]
+# The days of the week.
+fhirvs:days-of-week ["mon" "tue" "wed" "thu" "fri" "sat" "sun"]
 
 # Identifies the purpose for this identifier, if known .
 fhirvs:identifier-use ["usual" "official" "temp" "secondary"]
 
-# The status of a resource narrative
-fhirvs:narrative-status ["generated" "extensions" "additional" "empty"]
-
-# Use of contact point
-fhirvs:contact-point-use ["home" "work" "temp" "old" "mobile"]
+# The type of relationship to the related artifact
+fhirvs:related-artifact-type ["documentation" "justification" "citation" "predecessor" "successor" "derived-from" "depends-on" "composed-of"]
 
 # How the Quantity should be understood and represented.
 fhirvs:quantity-comparator ["<" "<=" ">=" ">"]
 
+# Real world event that the relating to the schedule.
+fhirvs:event-timing ["MORN" "AFT" "EVE" "NIGHT" "HS" "WAKE" "C" "CM" "CD" "CV" "AC" "ACM" "ACD" "ACV" "PC" "PCM" "PCD" "PCV"]
+
 # A unit of time (units from UCUM).
 fhirvs:units-of-time ["s" "min" "h" "d" "wk" "mo" "a"]
+
+# The lifecycle status of a Value Set or Concept Map.
+fhirvs:publication-status ["draft" "active" "retired"]
+
+# The type of participant for the action
+fhirvs:action-participant-type ["patient" "practitioner" "related-person"]
+
+# The status of a resource narrative
+fhirvs:narrative-status ["generated" "extensions" "additional" "empty"]
+
+# High-level categorization of the type of activity in a protocol.
+fhirvs:activity-definition-category ["communication" "device" "diagnostic" "diet" "drug" "encounter" "immunization" "observation" "procedure" "referral" "supply" "vision" "other"]

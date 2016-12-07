@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>Dosageinstruction-definitions - FHIR v1.7.0</title>
+  <title>Dosageinstruction-definitions - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -104,36 +104,141 @@
 
 
 <div class="col-9">
-<ul class="nav nav-tabs"><li><a href="contactdetail.html">Contact Detail</a></li><li><a href="contactdetail-examples.html">Examples</a></li><li class="active"><a href="#">Detailed Descriptions</a></li><li><a href="contactdetail-mappings.html">Mappings</a></li></ul>
+<ul class="nav nav-tabs"><li><a href="dosageinstruction.html">Dosage Instruction Detail</a></li><li><a href="dosageinstruction-examples.html">Examples</a></li><li class="active"><a href="#">Detailed Descriptions</a></li><li><a href="dosageinstruction-mappings.html">Mappings</a></li></ul>
 
 <h2 class="self-link-parent"><span class="sectioncount">?.?<a name="?.?"> </a></span> DosageInstruction Detailed Descriptions <a href="dosageinstruction-definitions.html#?.?" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h2>
 <table class="cols"><tr><td id="wg"><a href="http://www.hl7.org/Special/committees/dss/index.cfm" _target="blank">Clinical Decision Support <img src="external.png" style="text-align: baseline"/></a> Work Group</td><td id="fmm"><a href="resource.html#maturity">Maturity Level</a>: N/A</td><td id="ballot"><a href="help.html#status">Ballot Status</a>: <a href="history.html#pubs">STU 3</a></td></tr></table>
 
-<a name="def"/>
+<a name="def"> </a>
 <h3 style="margin-bottom: 1px" class="self-link-parent"><span class="sectioncount">?.?.1</span> DosageInstruction <a href="dosageinstruction-definitions.html#def" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h3>
 
 <table class="dict">
-  <tr><td colspan="2" class="structure"><a name="ContactDetail"> </a><b>ContactDetail</b></td></tr>
-  <tr><td>Definition</td><td><p>Specifies contact information for a person or organization.</p>
+  <tr><td colspan="2" class="structure"><a name="DosageInstruction"> </a><b>DosageInstruction</b></td></tr>
+  <tr><td>Definition</td><td><p>Indicates how the medication is to be used by the patient.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>1..1</td></tr>
-  <tr><td>Requirements</td><td><p>Need to track contact information in the same way across multiple resources.</p>
+  <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
+  <tr><td colspan="2" class="structure"><a name="DosageInstruction.sequence"> </a><b>DosageInstruction.sequence</b></td></tr>
+  <tr><td>Definition</td><td><p>Indicates the order in which the dosage instructions should be applied or interpreted.</p>
+</td></tr>
+  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#integer">integer</a></td></tr>
+  <tr><td>Requirements</td><td><p>If the sequence number of multiple dosageInstructions is the same, then it is implied that the instructions are to be treated as concurrent.  If the sequence number is different, then the dosageInstructions are intended to be sequential.</p>
 </td></tr>
   <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
-  <tr><td colspan="2" class="structure"><a name="ContactDetail.name"> </a><b>ContactDetail.name</b></td></tr>
-  <tr><td>Definition</td><td><p>The name of an individual to contact.</p>
+  <tr><td colspan="2" class="structure"><a name="DosageInstruction.text"> </a><b>DosageInstruction.text</b></td></tr>
+  <tr><td>Definition</td><td><p>Free text dosage instructions e.g. SIG.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#string">string</a></td></tr>
-  <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
-  <tr><td>Comments</td><td><p>If there is no named individual, the telecom information is for the organization as a whole.</p>
+  <tr><td>Requirements</td><td><p>Free text dosage instructions can be used for cases where the instructions are too complex to code.  The content of this attribute does not include the name or description of the medication. When coded instructions are present, the free text instructions may still be present for display to humans taking or administering the medication. It is expected that the text instructions will always be populated.  If the dosage.timing attribute is also populated, then the dosage.text should reflect the same information as the timing.</p>
 </td></tr>
-  <tr><td colspan="2" class="structure"><a name="ContactDetail.telecom"> </a><b>ContactDetail.telecom</b></td></tr>
-  <tr><td>Definition</td><td><p>The contact details for the individual (if a name was provided) or the organization.</p>
+  <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
+  <tr><td colspan="2" class="structure"><a name="DosageInstruction.additionalInstructions"> </a><b>DosageInstruction.additionalInstructions</b></td></tr>
+  <tr><td>Definition</td><td><p>Supplemental instructions - e.g. &quot;with meals&quot;.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..*</td></tr>
-  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#ContactPoint">ContactPoint</a></td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-additional-instructions-codes.html">SNOMED CT Additional Dosage Instructions</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
+  <tr><td>Requirements</td><td><p>Additional instructions such as &quot;Swallow with plenty of water&quot; which may or may not be coded.</p>
+</td></tr>
   <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
+  <tr><td colspan="2" class="structure"><a name="DosageInstruction.timing"> </a><b>DosageInstruction.timing</b></td></tr>
+  <tr><td>Definition</td><td><p>When medication should be administered.</p>
+</td></tr>
+  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#Timing">Timing</a></td></tr>
+  <tr><td>Requirements</td><td><p>The timing schedule for giving the medication to the patient. The Schedule data type allows many different expressions. For example: &quot;Every 8 hours&quot;; &quot;Three times a day&quot;; &quot;1/2 an hour before breakfast for 10 days from 23-Dec 2011:&quot;; &quot;15 Oct 2013, 17 Oct 2013 and 1 Nov 2013&quot;.  Sometimes, a rate can imply duration when expressed as total volume / duration (e.g.  500mL/2 hours implies a duration of 2 hours).  However, when rate doesn't imply duration (e.g. 250mL/hour), then the timing.repeat.duration is needed to convey the infuse over time period.</p>
+</td></tr>
+  <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
+  <tr><td>To Do</td><td>This attribute may not always be populated while the DosageInstruction.text is expected to be populated.  If both are populated, then the DosageInstruction.text should reflect the content of the Dosage.timing.</td></tr>
+  <tr><td colspan="2" class="structure"><a name="DosageInstruction.asNeeded_x_"> </a><b>DosageInstruction.asNeeded[x]</b></td></tr>
+  <tr><td>Definition</td><td><p>Take &quot;as needed&quot; (for x).</p>
+</td></tr>
+  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-medication-as-needed-reason.html">SNOMED CT Medication As Needed Reason Codes</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#boolean">boolean</a>|<a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
+  <tr><td>[x] Note</td><td>See <a href="formats.html#choice">Choice of Data Types</a> for further information about how to use [x]</td></tr>
+  <tr><td>Requirements</td><td><p>Indicates whether the Medication is only taken when needed within a specific dosing schedule (Boolean option), or it indicates the precondition for taking the Medication (CodeableConcept).</p>
+</td></tr>
+  <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
+  <tr><td>To Do</td><td>Specifically if 'boolean' datatype is selected, then the following logic applies:  If set to True, this indicates that the medication is only taken when needed, within the specified schedule.</td></tr>
+  <tr><td colspan="2" class="structure"><a name="DosageInstruction.site"> </a><b>DosageInstruction.site</b></td></tr>
+  <tr><td>Definition</td><td><p>Body site to administer to.</p>
+</td></tr>
+  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-approach-site-codes.html">SNOMED CT Anatomical Structure for Administration Site Codes</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
+  <tr><td>Requirements</td><td><p>A coded specification of the anatomic site where the medication first enters the body.</p>
+</td></tr>
+  <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
+  <tr><td>Comments</td><td><p>If the use case requires attributes from the BodySite resource (e.g. to identify and track separately) then use the standard extension <a href="extension-body-site-instance.html">body-site-instance</a>.  May be a summary code, or a reference to a very precise definition of the location, or both.</p>
+</td></tr>
+  <tr><td colspan="2" class="structure"><a name="DosageInstruction.route"> </a><b>DosageInstruction.route</b></td></tr>
+  <tr><td>Definition</td><td><p>How drug should enter body.</p>
+</td></tr>
+  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-route-codes.html">SNOMED CT Route Codes</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
+  <tr><td>Requirements</td><td><p>A code specifying the route or physiological path of administration of a therapeutic agent into or onto a patient's body.</p>
+</td></tr>
+  <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
+  <tr><td colspan="2" class="structure"><a name="DosageInstruction.method"> </a><b>DosageInstruction.method</b></td></tr>
+  <tr><td>Definition</td><td><p>Technique for administering medication.</p>
+</td></tr>
+  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-administration-method-codes.html">SNOMED CT Administration Method Codes</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
+  <tr><td>Requirements</td><td><p>A coded value indicating the method by which the medication is introduced into or onto the body. Most commonly used for injections.  For examples, Slow Push; Deep IV.</p>
+</td></tr>
+  <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
+  <tr><td>To Do</td><td>Terminologies used often pre-coordinate this term with the route and or form of administration.</td></tr>
+  <tr><td colspan="2" class="structure"><a name="DosageInstruction.dose_x_"> </a><b>DosageInstruction.dose[x]</b></td></tr>
+  <tr><td>Definition</td><td><p>Amount of medication per dose.</p>
+</td></tr>
+  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#Range">Range</a>|<a href="datatypes.html#SimpleQuantity">SimpleQuantity</a></td></tr>
+  <tr><td>[x] Note</td><td>See <a href="formats.html#choice">Choice of Data Types</a> for further information about how to use [x]</td></tr>
+  <tr><td>Requirements</td><td><p>The amount of therapeutic or other substance given at one administration event.</p>
+</td></tr>
+  <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
+  <tr><td>To Do</td><td>Note that this specifies the quantity of the specified medication, not the quantity for each active ingredient(s). Each ingredient amount can be communicated in the Medication resource. For example, if one wants to communicate that a tablet was 375 mg, where the dose was one tablet, you can use the Medication resource to document that the tablet was comprised of 375 mg of drug XYZ. Alternatively if the dose was 375 mg, then you may only need to use the Medication resource to indicate this was a tablet. If the example were an IV such as dopamine and you wanted to communicate that 400mg of dopamine was mixed in 500 ml of some IV solution, then this would all be communicated in the Medication resource. If the administration is not intended to be instantaneous (rate is present or timing has a duration), this can be specified to convey the total amount to be administered over the period of time as indicated by the schedule e.g. 500 ml in dose, with timing used to convey that this should be done over 4 hours.</td></tr>
+  <tr><td colspan="2" class="structure"><a name="DosageInstruction.maxDosePerPeriod"> </a><b>DosageInstruction.maxDosePerPeriod</b></td></tr>
+  <tr><td>Definition</td><td><p>Upper limit on medication per unit of time.</p>
+</td></tr>
+  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#Ratio">Ratio</a></td></tr>
+  <tr><td>Requirements</td><td><p>The maximum total quantity of a therapeutic substance that may be administered to a subject over the period of time.  For example, 1000mg in 24 hours.</p>
+</td></tr>
+  <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
+  <tr><td>To Do</td><td>This is intended for use as an adjunct to the dosage when there is an upper cap.  For example &quot;2 tablets every 4 hours to a maximum of 8/day&quot;.</td></tr>
+  <tr><td colspan="2" class="structure"><a name="DosageInstruction.maxDosePerAdministration"> </a><b>DosageInstruction.maxDosePerAdministration</b></td></tr>
+  <tr><td>Definition</td><td><p>Upper limit on medication per administration.</p>
+</td></tr>
+  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#SimpleQuantity">SimpleQuantity</a></td></tr>
+  <tr><td>Requirements</td><td><p>The maximum total quantity of a therapeutic substance that may be administered to a subject per administration.</p>
+</td></tr>
+  <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
+  <tr><td>To Do</td><td>This is intended for use as an adjunct to the dosage when there is an upper cap.  For example, a body surface area related dose with a maximum amount, such as 1.5 mg/m2 (maximum 2 mg) IV over 5 – 10 minutes would have doseQuantity of 1.5 mg/m2 and maxDosePerAdministration of 2 mg.</td></tr>
+  <tr><td colspan="2" class="structure"><a name="DosageInstruction.maxDosePerLifetime"> </a><b>DosageInstruction.maxDosePerLifetime</b></td></tr>
+  <tr><td>Definition</td><td><p>Upper limit on medication per lifetime of the patient.</p>
+</td></tr>
+  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#SimpleQuantity">SimpleQuantity</a></td></tr>
+  <tr><td>Requirements</td><td><p>The maximum total quantity of a therapeutic substance that may be administered per lifetime of the subject.</p>
+</td></tr>
+  <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
+  <tr><td colspan="2" class="structure"><a name="DosageInstruction.rate_x_"> </a><b>DosageInstruction.rate[x]</b></td></tr>
+  <tr><td>Definition</td><td><p>Amount of medication per unit of time.</p>
+</td></tr>
+  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#Ratio">Ratio</a>|<a href="datatypes.html#Range">Range</a>|<a href="datatypes.html#SimpleQuantity">SimpleQuantity</a></td></tr>
+  <tr><td>[x] Note</td><td>See <a href="formats.html#choice">Choice of Data Types</a> for further information about how to use [x]</td></tr>
+  <tr><td>Requirements</td><td><p>Identifies the speed with which the medication was or will be introduced into the patient. Typically the rate for an infusion e.g. 100 ml per 1 hour or 100 ml/hr.  May also be expressed as a rate per unit of time e.g. 500 ml per 2 hours.   Other examples: 200 mcg/min or 200 mcg/1 minute; 1 liter/8 hours.  Sometimes, a rate can imply duration when expressed as total volume / duration (e.g.  500mL/2 hours implies a duration of 2 hours).  However, when rate doesn't imply duration (e.g. 250mL/hour), then the timing.repeat.duration is needed to convey the infuse over time period.</p>
+</td></tr>
+  <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
+  <tr><td>To Do</td><td>It is possible to supply both a rate and a doseQuantity to provide full details about how the medication is to be administered and supplied. If the rate is intended to change over time, depending on local rules/regulations, each change should be captured as a new version of the MedicationRequest with an updated rate, or captured with a new MedicationRequest with the new rate.</td></tr>
 </table>
 
 
@@ -153,7 +258,7 @@
 		<div class="container">  <!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:33-0500. <a href="qa.html">QA Page</a>
+        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:28-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search <img src="external.png" style="text-align: baseline"/></a> | 

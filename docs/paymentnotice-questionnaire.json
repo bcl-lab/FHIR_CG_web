@@ -7,7 +7,7 @@
     }
   ],
   "status": "draft",
-  "date": "2016-11-28T17:29:55-05:00",
+  "date": "2016-12-07T14:18:58-05:00",
   "publisher": "Health Level Seven International (Financial Management)",
   "item": [
     {
@@ -368,10 +368,6 @@
         {
           "extension": [
             {
-              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-minOccurs",
-              "valueInteger": 1
-            },
-            {
               "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs",
               "valueInteger": 1
             },
@@ -382,7 +378,7 @@
           ],
           "linkId": "PaymentNotice.status",
           "type": "group",
-          "required": true,
+          "required": false,
           "repeats": true,
           "item": [
             {
@@ -420,10 +416,10 @@
             },
             {
               "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType",
-              "valueString": "Coding"
+              "valueString": "Reference"
             }
           ],
-          "linkId": "PaymentNotice.ruleset",
+          "linkId": "PaymentNotice.request",
           "type": "group",
           "required": false,
           "repeats": true,
@@ -443,13 +439,23 @@
                   }
                 }
               ],
-              "text": "The version of the style of resource contents. This should be mapped to the allowable profiles for this and supporting resources.",
+              "text": "Reference of resource for which payment is being made.",
               "type": "display"
             },
             {
-              "linkId": "PaymentNotice.ruleset.value",
-              "text": "Resource version",
-              "type": "open-choice",
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-allowedResource",
+                  "valueCode": "Resource"
+                },
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-referenceFilter",
+                  "valueString": "subject=$subj&patient=$subj&encounter=$encounter"
+                }
+              ],
+              "linkId": "PaymentNotice.request.value",
+              "text": "Request reference",
+              "type": "reference",
               "required": false,
               "repeats": false
             }
@@ -463,10 +469,10 @@
             },
             {
               "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType",
-              "valueString": "Coding"
+              "valueString": "Reference"
             }
           ],
-          "linkId": "PaymentNotice.originalRuleset",
+          "linkId": "PaymentNotice.response",
           "type": "group",
           "required": false,
           "repeats": true,
@@ -486,13 +492,66 @@
                   }
                 }
               ],
-              "text": "The style (standard) and version of the original material which was converted into this resource.",
+              "text": "Reference of response to resource for which payment is being made.",
               "type": "display"
             },
             {
-              "linkId": "PaymentNotice.originalRuleset.value",
-              "text": "Original version",
-              "type": "open-choice",
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-allowedResource",
+                  "valueCode": "Resource"
+                },
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-referenceFilter",
+                  "valueString": "subject=$subj&patient=$subj&encounter=$encounter"
+                }
+              ],
+              "linkId": "PaymentNotice.response.value",
+              "text": "Response reference",
+              "type": "reference",
+              "required": false,
+              "repeats": false
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs",
+              "valueInteger": 1
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType",
+              "valueString": "datetime"
+            }
+          ],
+          "linkId": "PaymentNotice.statusDate",
+          "type": "group",
+          "required": false,
+          "repeats": true,
+          "item": [
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://hl7.org/fhir/questionnaire-item-control",
+                        "code": "flyover",
+                        "display": "Fly-over"
+                      }
+                    ]
+                  }
+                }
+              ],
+              "text": "The date when the above payment action occurrred.",
+              "type": "display"
+            },
+            {
+              "linkId": "PaymentNotice.statusDate.value",
+              "text": "Payment or clearing date",
+              "type": "dateTime",
               "required": false,
               "repeats": false
             }
@@ -708,122 +767,13 @@
             },
             {
               "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType",
-              "valueString": "Reference"
-            }
-          ],
-          "linkId": "PaymentNotice.request",
-          "type": "group",
-          "required": false,
-          "repeats": true,
-          "item": [
-            {
-              "extension": [
-                {
-                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
-                  "valueCodeableConcept": {
-                    "coding": [
-                      {
-                        "system": "http://hl7.org/fhir/questionnaire-item-control",
-                        "code": "flyover",
-                        "display": "Fly-over"
-                      }
-                    ]
-                  }
-                }
-              ],
-              "text": "Reference of resource for which payment is being made.",
-              "type": "display"
-            },
-            {
-              "extension": [
-                {
-                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-allowedResource",
-                  "valueCode": "Resource"
-                },
-                {
-                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-referenceFilter",
-                  "valueString": "subject=$subj&patient=$subj&encounter=$encounter"
-                }
-              ],
-              "linkId": "PaymentNotice.request.value",
-              "text": "Request reference",
-              "type": "reference",
-              "required": false,
-              "repeats": false
-            }
-          ]
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs",
-              "valueInteger": 1
-            },
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType",
-              "valueString": "Reference"
-            }
-          ],
-          "linkId": "PaymentNotice.response",
-          "type": "group",
-          "required": false,
-          "repeats": true,
-          "item": [
-            {
-              "extension": [
-                {
-                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
-                  "valueCodeableConcept": {
-                    "coding": [
-                      {
-                        "system": "http://hl7.org/fhir/questionnaire-item-control",
-                        "code": "flyover",
-                        "display": "Fly-over"
-                      }
-                    ]
-                  }
-                }
-              ],
-              "text": "Reference of response to resource for which payment is being made.",
-              "type": "display"
-            },
-            {
-              "extension": [
-                {
-                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-allowedResource",
-                  "valueCode": "Resource"
-                },
-                {
-                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-referenceFilter",
-                  "valueString": "subject=$subj&patient=$subj&encounter=$encounter"
-                }
-              ],
-              "linkId": "PaymentNotice.response.value",
-              "text": "Response reference",
-              "type": "reference",
-              "required": false,
-              "repeats": false
-            }
-          ]
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-minOccurs",
-              "valueInteger": 1
-            },
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs",
-              "valueInteger": 1
-            },
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType",
-              "valueString": "Coding"
+              "valueString": "CodeableConcept"
             }
           ],
           "linkId": "PaymentNotice.paymentStatus",
+          "text": "Status of the payment",
           "type": "group",
-          "required": true,
+          "required": false,
           "repeats": true,
           "item": [
             {
@@ -845,52 +795,16 @@
               "type": "display"
             },
             {
-              "linkId": "PaymentNotice.paymentStatus.value",
-              "text": "Status of the payment",
+              "linkId": "PaymentNotice.paymentStatus.coding",
+              "text": "code:",
               "type": "open-choice",
               "required": false,
               "repeats": false
-            }
-          ]
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs",
-              "valueInteger": 1
             },
             {
-              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType",
-              "valueString": "datetime"
-            }
-          ],
-          "linkId": "PaymentNotice.statusDate",
-          "type": "group",
-          "required": false,
-          "repeats": true,
-          "item": [
-            {
-              "extension": [
-                {
-                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
-                  "valueCodeableConcept": {
-                    "coding": [
-                      {
-                        "system": "http://hl7.org/fhir/questionnaire-item-control",
-                        "code": "flyover",
-                        "display": "Fly-over"
-                      }
-                    ]
-                  }
-                }
-              ],
-              "text": "The date when the above payment action occurrred.",
-              "type": "display"
-            },
-            {
-              "linkId": "PaymentNotice.statusDate.value",
-              "text": "Payment or clearing date",
-              "type": "dateTime",
+              "linkId": "PaymentNotice.paymentStatus.text",
+              "text": "text:",
+              "type": "string",
               "required": false,
               "repeats": false
             }

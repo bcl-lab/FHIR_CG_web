@@ -23,7 +23,7 @@ start=@<QuestionnaireResponse> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
     fhir:QuestionnaireResponse.identifier @<Identifier>?;  # Unique id for this set of answers
     fhir:QuestionnaireResponse.basedOn      # Request fulfilled by this 
-                                            # Questionnaire 
+                                            # QuestionnaireResponse 
     (   @<DiagnosticRequestReference> OR
         @<ReferralRequestReference> OR
         @<CarePlanReference>
@@ -66,8 +66,10 @@ start=@<QuestionnaireResponse> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:extension @<Extension>*;           # Additional Content defined by 
                                             # implementations 
     fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    fhir:QuestionnaireResponse.item.linkId @<string>?;  # Corresponding item within 
+    fhir:QuestionnaireResponse.item.linkId @<string>;  # Pointer to specific item from 
                                             # Questionnaire 
+    fhir:QuestionnaireResponse.item.definition @<uri>?;  # ElementDefinition - details for 
+                                            # the item 
     fhir:QuestionnaireResponse.item.text @<string>?;  # Name for group or question text
     fhir:QuestionnaireResponse.item.subject @<Reference>?;  # The subject this group's answers 
                                             # are about 

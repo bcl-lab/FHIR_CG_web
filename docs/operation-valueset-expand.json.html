@@ -3,7 +3,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>Operation-valueset-expand.json - FHIR v1.7.0</title>
+  <title>Operation-valueset-expand.json - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -126,13 +126,13 @@
   &quot;name&quot;: &quot;Value Set Expansion&quot;,
   &quot;status&quot;: &quot;draft&quot;,
   &quot;kind&quot;: &quot;operation&quot;,
-  &quot;date&quot;: &quot;2016-11-28T17:29:55-05:00&quot;,
+  &quot;date&quot;: &quot;2016-12-07T14:18:58-05:00&quot;,
   &quot;publisher&quot;: &quot;HL7 (FHIR Project)&quot;,
   &quot;contact&quot;: [
     {
       &quot;telecom&quot;: [
         {
-          &quot;system&quot;: &quot;other&quot;,
+          &quot;system&quot;: &quot;url&quot;,
           &quot;value&quot;: &quot;http://hl7.org/fhir&quot;
         },
         {
@@ -144,7 +144,7 @@
   ],
   &quot;description&quot;: &quot;The definition of a value set is used to create a simple collection of codes suitable for use for data entry or validation.   If the operation is not called at the instance level, one of the in parameters identifier, context or valueset must be provided.  An expanded value set will be returned, or an OperationOutcome with an error message.&quot;,
   &quot;code&quot;: &quot;expand&quot;,
-  &quot;comment&quot;: &quot;The value set expansion returned by this query should be treated as a transient result that will change over time (whether it does or not depends on how the value set is specified), so applications should repeat the operation each time the value set is used.   Clients can work through large flat expansions in a set of pages (partial views of the full expansion) instead of just getting the full expansion in a single exchange by using offset and count parameters. Servers are not obliged to support paging, but if they do, SHALL support both the offset and count parameters. Hierarchical expansions are not subject to paging and servers simply return the entire expansion.  Different servers may return different results from expanding a value set for the following reasons:  * The underlying code systems are different (e.g. different versions, possibly with different defined behavior) * The server optimizes filter includes differently, such as sorting by code frequency * Servers introduce arbitrary groups to assist a user to navigate the lists based either on extensions in the definition, or additional knowledge available to the server\n\nWhen a server cannot correctly expand a value set because it does not fully understand the code systems (e.g. it has the wrong version, or incomplete definitions) then it SHALL return an error. If the value set itself is unbounded due to the inclusion of post-coordinated value sets (e.g. SNOMED CT, UCUM), then the extension [[[http://hl7.org/fhir/StructureDefinition/valueset-unclosed]]] can be used to indicate that the expansion is incomplete&quot;,
+  &quot;comment&quot;: &quot;The value set expansion returned by this query should be treated as a transient result that will change over time (whether it does or not depends on how the value set is specified), so applications should repeat the operation each time the value set is used.  \n\nIf the expansion is too large (at the discretion of the server), the server will return an error (OperationOutcome with code too-costly). Clients can work through large flat expansions in a set of pages (partial views of the full expansion) instead of just getting the full expansion in a single exchange by using offset and count parameters. Servers are not obliged to support paging, but if they do, SHALL support both the offset and count parameters. Hierarchical expansions are not subject to paging and servers simply return the entire expansion.  \n\nDifferent servers may return different results from expanding a value set for the following reasons:  \n\n* The underlying code systems are different (e.g. different versions, possibly with different defined behavior) \n* The server optimizes filter includes differently, such as sorting by code frequency \n* Servers introduce arbitrary groups to assist a user to navigate the lists based either on extensions in the definition, or additional knowledge available to the server\n\nWhen a server cannot correctly expand a value set because it does not fully understand the code systems (e.g. it has the wrong version, or incomplete definitions) then it SHALL return an error. If the value set itself is unbounded due to the inclusion of post-coordinated value sets (e.g. SNOMED CT, UCUM), then the extension [http://hl7.org/fhir/StructureDefinition/valueset-unclosed](extension-valueset-unclosed.html) can be used to indicate that the expansion is incomplete&quot;,
   &quot;resource&quot;: [
     &quot;ValueSet&quot;
   ],
@@ -205,7 +205,7 @@
       &quot;use&quot;: &quot;in&quot;,
       &quot;min&quot;: 0,
       &quot;max&quot;: &quot;1&quot;,
-      &quot;documentation&quot;: &quot;Paging support - where to start if a subset is desired (default = 0)&quot;,
+      &quot;documentation&quot;: &quot;Paging support - where to start if a subset is desired (default = 0). Offset is number of records (not number of pages)&quot;,
       &quot;type&quot;: &quot;integer&quot;
     },
     {
@@ -213,7 +213,7 @@
       &quot;use&quot;: &quot;in&quot;,
       &quot;min&quot;: 0,
       &quot;max&quot;: &quot;1&quot;,
-      &quot;documentation&quot;: &quot;Paging support - how many codes should be provided in a partial view. Paging only applies to flat expansions - servers ignore paging if the expansion is not flat.  If count = 0, the client is asking how large the expansion is. Servers SHOULD honor this request for hierarchical expansions as well, and simply return the overall count&quot;,
+      &quot;documentation&quot;: &quot;Paging support - how many codes should be provided in a partial page view. Paging only applies to flat expansions - servers ignore paging if the expansion is not flat.  If count = 0, the client is asking how large the expansion is. Servers SHOULD honor this request for hierarchical expansions as well, and simply return the overall count&quot;,
       &quot;type&quot;: &quot;integer&quot;
     },
     {
@@ -245,7 +245,7 @@
       &quot;use&quot;: &quot;in&quot;,
       &quot;min&quot;: 0,
       &quot;max&quot;: &quot;1&quot;,
-      &quot;documentation&quot;: &quot;Controls whether or not the value set expansion includes nested codes (i.e. ValueSet.expansion.contains.contains). Overrides the value in the expansion profile if there is one&quot;,
+      &quot;documentation&quot;: &quot;Controls whether or not the value set expansion nests codes or not (i.e. ValueSet.expansion.contains.contains). Overrides the value in the expansion profile if there is one&quot;,
       &quot;type&quot;: &quot;boolean&quot;
     },
     {
@@ -314,7 +314,7 @@ of the specification.
 		<div class="container"><!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:31-0500. <a href="qa.html">QA Page</a>
+        © HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:20-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search</a> | 

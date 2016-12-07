@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>Comparison-v2 - FHIR v1.7.0</title>
+  <title>Comparison-v2 - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -132,7 +132,7 @@ roughly correspond to FHIR's idea of <a href="resource.html">resources</a>.  How
 segments can't be independently manipulated.  Additionally, not all segments have the characteristics 
 of independent identity held by FHIR resources.  Due to differences in scope and approach to 
 extensibility, HL7 v2 segments and data types are frequently cluttered with data elements that are not 
-used by (or even understood by) the majority of implementations
+used by (or even understood by) the majority of implementations.
 </p>
 <p>
 Segments can be composed into repeating and/or optional collections called &quot;groups&quot; to represent 
@@ -174,7 +174,7 @@ systems won't collide. (This can be an issue with Z-segments.)
 compatibility.  Content can only be added to the end of existing fields, components, etc.  Applications are 
 expected to ignore unexpected content or repetitions.  FHIR promises similar compatibility rules.  The path 
 to an element within a FHIR instance will remain unchanged in future versions.  Specific rules on handling 
-&quot;new&quot; elements (ignoring, checking for &quot;must understand&quot; indicators, etc. will be developed during the DSTU 
+&quot;new&quot; elements (ignoring, checking for &quot;must understand&quot; indicators, etc. will be developed during the STU 
 period.
 </p>
 <p>
@@ -287,8 +287,8 @@ whether particular segments represent information to be added, updated or delete
 populated with &quot;null&quot; (two consecutive double-quotes with no other characters) to note a field is 
 to be deleted.  An omitted element or repetition is generally interpreted as &quot;retain existing data 
 unchanged&quot;.  This contrasts with the FHIR approach of requiring all data to be present as a snapshot.  
-Systems will either need to build in logic to generate a full snapshot of each resource or will need 
-to introduce modifier extensions to allow similar behavior to HL7 v2.
+Systems will either need to build in logic to generate a full snapshot of each resource or consider
+using the <a href="http.html#patch">Patch Operation</a> instead.
 </p>
 
 </div>
@@ -305,7 +305,7 @@ to introduce modifier extensions to allow similar behavior to HL7 v2.
 		<div class="container">  <!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:33-0500. <a href="qa.html">QA Page</a>
+        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:28-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search <img src="external.png" style="text-align: baseline"/></a> | 

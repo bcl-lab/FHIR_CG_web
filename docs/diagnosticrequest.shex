@@ -25,13 +25,16 @@ start=@<DiagnosticRequest> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:DiagnosticRequest.definition @<Reference>*;  # Protocol or definition
     fhir:DiagnosticRequest.basedOn @<Reference>*;  # What request fulfills
     fhir:DiagnosticRequest.replaces @<Reference>*;  # What request replaces
-    fhir:DiagnosticRequest.requisition @<Identifier>?;  # Identifier of composite request
+    fhir:DiagnosticRequest.requisition @<Identifier>?;  # Composite Request ID
     fhir:DiagnosticRequest.status @<code> AND
-    	{fhir:value @fhirvs:request-status}?;  # draft | active | suspended | 
+    	{fhir:value @fhirvs:request-status};  # draft | active | suspended | 
                                             # completed | entered-in-error | 
                                             # cancelled 
-    fhir:DiagnosticRequest.stage @<CodeableConcept>;  # proposal | plan | original-order | 
+    fhir:DiagnosticRequest.intent @<code> AND
+    	{fhir:value @fhirvs:request-intent};  # proposal | plan | original-order | 
                                             # reflex-order 
+    fhir:DiagnosticRequest.priority @<code> AND
+    	{fhir:value @fhirvs:request-priority}?;  # routine | urgent | asap | stat
     fhir:DiagnosticRequest.code @<CodeableConcept>;  # What’s being requested/ordered
     fhir:DiagnosticRequest.subject          # Individual the test is ordered for
     (   @<PatientReference> OR
@@ -49,7 +52,7 @@ start=@<DiagnosticRequest> AND {fhir:nodeRole [fhir:treeRoot]}
         fhir:DiagnosticRequest.occurrencePeriod @<Period>  |
         fhir:DiagnosticRequest.occurrenceTiming @<Timing> 
     )?;
-    fhir:DiagnosticRequest.authored @<dateTime>?;  # Date request signed
+    fhir:DiagnosticRequest.authoredOn @<dateTime>?;  # Date request signed
     fhir:DiagnosticRequest.requester        # Who/what is requesting diagnostics
     (   @<DeviceReference> OR
         @<PractitionerReference> OR
@@ -63,7 +66,11 @@ start=@<DiagnosticRequest> AND {fhir:nodeRole [fhir:treeRoot]}
         @<DeviceReference> OR
         @<RelatedPersonReference>
     )?;
-    fhir:DiagnosticRequest.reason @<CodeableConcept>*;  # Explanation/Justification for test
+    fhir:DiagnosticRequest.reasonCode @<CodeableConcept>*;  # Explanation/Justification for test
+    fhir:DiagnosticRequest.reasonReference  # Explanation/Justification for test
+    (   @<ConditionReference> OR
+        @<ObservationReference>
+    )*;
     fhir:DiagnosticRequest.supportingInformation @<Reference>*;  # Additional clinical information
     fhir:DiagnosticRequest.note @<Annotation>*;  # Comments
     fhir:DiagnosticRequest.relevantHistory @<Reference>*;  # Request provenance
@@ -306,11 +313,24 @@ start=@<DiagnosticRequest> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:Timing.repeat.periodUnit @<code> AND
     	{fhir:value @fhirvs:units-of-time}?;  # s | min | h | d | wk | mo | a - 
                                             # unit of time (UCUM) 
+    fhir:Timing.repeat.dayOfWeek @<code> AND
+    	{fhir:value @fhirvs:days-of-week}*;  # mon | tue | wed | thu | fri | sat 
+                                            # | sun 
+    fhir:Timing.repeat.timeOfDay @<time>*;  # Time of day for action
     fhir:Timing.repeat.when @<code> AND
     	{fhir:value @fhirvs:event-timing}?;  # Regular life events the event is 
                                             # tied to 
     fhir:Timing.repeat.offset @<unsignedInt>?;  # Minutes from event (before or 
                                             # after) 
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
+# Primitive Type integer
+<integer> CLOSED {
+    fhir:Element.id @<id>?;                 # xml:id (or equivalent in JSON)
+    fhir:extension @<Extension>*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:value xsd:int MININCLUSIVE "-2147483648"^^xsd:int MAXINCLUSIVE "2147483647"^^xsd:int?;  # Primitive value for integer
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -330,15 +350,6 @@ start=@<DiagnosticRequest> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
-# Primitive Type integer
-<integer> CLOSED {
-    fhir:Element.id @<id>?;                 # xml:id (or equivalent in JSON)
-    fhir:extension @<Extension>*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:value xsd:int MININCLUSIVE "-2147483648"^^xsd:int MAXINCLUSIVE "2147483647"^^xsd:int?;  # Primitive value for integer
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
 # Set of values bounded by low and high
 <Range> CLOSED {
     fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
@@ -354,6 +365,15 @@ start=@<DiagnosticRequest> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:extension @<Extension>*;           # Additional Content defined by 
                                             # implementations 
     fhir:value xsd:nonNegativeInteger?;     # Primitive value for unsignedInt
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
+# Primitive Type time
+<time> CLOSED {
+    fhir:Element.id @<id>?;                 # xml:id (or equivalent in JSON)
+    fhir:extension @<Extension>*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:value xsd:time?;                   # Primitive value for time
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -392,6 +412,20 @@ start=@<DiagnosticRequest> AND {fhir:nodeRole [fhir:treeRoot]}
 
 <Practitioner> {
     a [fhir:Practitioner];
+    fhir:nodeRole [fhir:treeRoot]?
+}
+
+<ConditionReference> CLOSED {
+    fhir:Element.id @<id>?;
+    fhir:extension @<Extension>*;
+    fhir:link @<Condition> OR CLOSED {a fhir:Condition}?;
+    fhir:Reference.reference @<string>?;
+    fhir:Reference.display @<string>?;
+    fhir:index xsd:integer?
+}
+
+<Condition> {
+    a [fhir:Condition];
     fhir:nodeRole [fhir:treeRoot]?
 }
 
@@ -448,6 +482,20 @@ start=@<DiagnosticRequest> AND {fhir:nodeRole [fhir:treeRoot]}
 
 <Device> {
     a [fhir:Device];
+    fhir:nodeRole [fhir:treeRoot]?
+}
+
+<ObservationReference> CLOSED {
+    fhir:Element.id @<id>?;
+    fhir:extension @<Extension>*;
+    fhir:link @<Observation> OR CLOSED {a fhir:Observation}?;
+    fhir:Reference.reference @<string>?;
+    fhir:Reference.display @<string>?;
+    fhir:index xsd:integer?
+}
+
+<Observation> {
+    a [fhir:Observation];
     fhir:nodeRole [fhir:treeRoot]?
 }
 
@@ -509,8 +557,23 @@ start=@<DiagnosticRequest> AND {fhir:nodeRole [fhir:treeRoot]}
 
 #---------------------- Value Sets ------------------------
 
+# How the Quantity should be understood and represented.
+fhirvs:quantity-comparator ["<" "<=" ">=" ">"]
+
 # Real world event that the relating to the schedule.
-fhirvs:event-timing ["HS" "WAKE" "C" "CM" "CD" "CV" "AC" "ACM" "ACD" "ACV" "PC" "PCM" "PCD" "PCV"]
+fhirvs:event-timing ["MORN" "AFT" "EVE" "NIGHT" "HS" "WAKE" "C" "CM" "CD" "CV" "AC" "ACM" "ACD" "ACV" "PC" "PCM" "PCD" "PCV"]
+
+# The clinical priority of a diagnostic order.
+fhirvs:request-priority ["routine" "urgent" "stat" "asap"]
+
+# A unit of time (units from UCUM).
+fhirvs:units-of-time ["s" "min" "h" "d" "wk" "mo" "a"]
+
+# Codes indicating the degree of authority/intentionality associated with a request
+fhirvs:request-intent ["proposal" "plan" "order" "original-order" "reflex-order" "filler-order" "instance-order" "option"]
+
+# The days of the week.
+fhirvs:days-of-week ["mon" "tue" "wed" "thu" "fri" "sat" "sun"]
 
 # Identifies the purpose for this identifier, if known .
 fhirvs:identifier-use ["usual" "official" "temp" "secondary"]
@@ -518,11 +581,5 @@ fhirvs:identifier-use ["usual" "official" "temp" "secondary"]
 # The status of a resource narrative
 fhirvs:narrative-status ["generated" "extensions" "additional" "empty"]
 
-# How the Quantity should be understood and represented.
-fhirvs:quantity-comparator ["<" "<=" ">=" ">"]
-
-# A unit of time (units from UCUM).
-fhirvs:units-of-time ["s" "min" "h" "d" "wk" "mo" "a"]
-
-# The status of a request
-fhirvs:request-status ["draft" "active" "suspended" "completed" "entered-in-error" "cancelled"]
+# Codes identifying the stage lifecycle stage of a request
+fhirvs:request-status ["draft" "active" "suspended" "cancelled" "completed" "entered-in-error" "unknown"]

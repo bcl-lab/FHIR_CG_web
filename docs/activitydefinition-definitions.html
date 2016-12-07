@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>ActivityDefinition - FHIR v1.7.0</title>
+  <title>ActivityDefinition - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -167,7 +167,7 @@
   <tr><td>Definition</td><td><p>The status of this activity definition. Enables tracking the life-cycle of the content.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>1..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>PublicationStatus: <a href="valueset-publication-status.html">The lifecycle status of a Value Set or Concept Map.</a> (<a href="terminologies.html#required">Required</a>)</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-publication-status.html">PublicationStatus</a> (<a href="terminologies.html#required">Required</a>)</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#code">code</a></td></tr>
   <tr><td><a href="conformance-rules.html#ismodifier">Is Modifier</a></td><td>true</td></tr>
   <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
@@ -237,7 +237,7 @@
   <tr><td>Definition</td><td><p>The content was developed with a focus and intent of supporting the contexts that are listed. These terms may be used to assist with indexing and searching of code system definitions.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..*</td></tr>
-  <tr><td><a href="datatypes.html">Type</a></td><td><a href="usagecontext.html">UsageContext</a></td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="metadatatypes.html#UsageContext">UsageContext</a></td></tr>
   <tr><td>Requirements</td><td><p>Assist in searching for appropriate content.</p>
 </td></tr>
   <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
@@ -247,7 +247,7 @@
   <tr><td>Definition</td><td><p>A jurisdiction in which the activity definition is intended to be used.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..*</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>Jurisdiction ValueSet: <a href="valueset-jurisdiction.html">Countries and regions within which this artifact is targeted for use</a> (<a href="terminologies.html#extensible">Extensible</a>)</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-jurisdiction.html">Jurisdiction ValueSet</a> (<a href="terminologies.html#extensible">Extensible</a>)</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
   <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
   <tr><td colspan="2" class="structure"><a name="ActivityDefinition.topic"> </a><b>ActivityDefinition.topic</b></td></tr>
@@ -261,7 +261,7 @@
   <tr><td>Definition</td><td><p>A contributor to the content of the asset, including authors, editors, reviewers, and endorsers.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..*</td></tr>
-  <tr><td><a href="datatypes.html">Type</a></td><td><a href="contributor.html">Contributor</a></td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="metadatatypes.html#Contributor">Contributor</a></td></tr>
   <tr><td>Requirements</td><td><p>Consumers of the content must be able to quickly determine who contributed to the content of the knowledge asset.</p>
 </td></tr>
   <tr><td colspan="2" class="structure"><a name="ActivityDefinition.publisher"> </a><b>ActivityDefinition.publisher</b></td></tr>
@@ -279,7 +279,7 @@
   <tr><td>Definition</td><td><p>Contact details to assist a user in finding and communicating with the publisher.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..*</td></tr>
-  <tr><td><a href="datatypes.html">Type</a></td><td><a href="contactdetail.html">ContactDetail</a></td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="metadatatypes.html#ContactDetail">ContactDetail</a></td></tr>
   <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
   <tr><td>Comments</td><td><p>May be a web site, an email address, a telephone number, etc.</p>
 </td></tr>
@@ -295,7 +295,7 @@
   <tr><td>Definition</td><td><p>Related artifacts such as additional documentation, justification, or bibliographic references.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..*</td></tr>
-  <tr><td><a href="datatypes.html">Type</a></td><td><a href="relatedartifact.html">RelatedArtifact</a></td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="metadatatypes.html#RelatedArtifact">RelatedArtifact</a></td></tr>
   <tr><td>Requirements</td><td><p>Assets must be able to provide enough information for consumers of the content (and/or interventions or results produced by the content) to be able to determine and understand the justification for and evidence in support of the content.</p>
 </td></tr>
   <tr><td>Comments</td><td><p>Each related artifact is either an attachment, or a reference to another resource, but not both.</p>
@@ -309,7 +309,7 @@
   <tr><td>Definition</td><td><p>High-level categorization of the type of activity.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>ActivityDefinitionCategory: <a href="valueset-activity-definition-category.html">High-level categorization of the type of activity in a protocol.</a> (<a href="terminologies.html#required">Required</a>)</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-activity-definition-category.html">ActivityDefinitionCategory</a> (<a href="terminologies.html#required">Required</a>)</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#code">code</a></td></tr>
   <tr><td>Requirements</td><td><p>May determine what types of extensions are permitted.</p>
 </td></tr>
@@ -317,7 +317,7 @@
   <tr><td>Definition</td><td><p>Detailed description of the type of activity; e.g. What lab test, what procedure, what kind of encounter.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td><a href="terminologies.html#unbound">ActivityDefinitionType</a>: Detailed type of planned activity; e.g. CBC</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="terminologies.html#unbound">ActivityDefinitionType</a>: </td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
   <tr><td>Requirements</td><td><p>Allows matching performed to planned as well as validation against protocols.</p>
 </td></tr>
@@ -327,7 +327,7 @@
   <tr><td>Definition</td><td><p>The period, timing or frequency upon which the described activity is to occur.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td><a href="terminologies.html#unbound">ActivityTiming</a>: Code describing the timing of an activity; e.g. BID, QD</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="terminologies.html#unbound">ActivityTiming</a>: </td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a>|<a href="datatypes.html#Timing">Timing</a></td></tr>
   <tr><td>[x] Note</td><td>See <a href="formats.html#choice">Choice of Data Types</a> for further information about how to use [x]</td></tr>
   <tr><td>Requirements</td><td><p>Allows prompting for activities and detection of missed planned activities.</p>
@@ -346,13 +346,13 @@
   <tr><td>Definition</td><td><p>The type of participant in the action.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..*</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>PlanActionParticipantType: <a href="valueset-action-participant-type.html">The type of participant for an action in the orderset</a> (<a href="terminologies.html#required">Required</a>)</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-action-participant-type.html">PlanActionParticipantType</a> (<a href="terminologies.html#required">Required</a>)</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#code">code</a></td></tr>
   <tr><td colspan="2" class="structure"><a name="ActivityDefinition.product_x_"> </a><b>ActivityDefinition.product[x]</b></td></tr>
   <tr><td>Definition</td><td><p>Identifies the food, drug or other product being consumed or supplied in the activity.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td><a href="terminologies.html#unbound">ActivityProduct</a>: Code describing the type of substance or medication</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="terminologies.html#unbound">ActivityProduct</a>: </td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="references.html#Reference">Reference</a>(<a href="medication.html">Medication</a> | <a href="substance.html">Substance</a>)|<a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
   <tr><td>[x] Note</td><td>See <a href="formats.html#choice">Choice of Data Types</a> for further information about how to use [x]</td></tr>
   <tr><td colspan="2" class="structure"><a name="ActivityDefinition.quantity"> </a><b>ActivityDefinition.quantity</b></td></tr>
@@ -372,7 +372,7 @@
   <tr><td>Definition</td><td><p>Indicates the sites on the subject's body where the procedure should be performed (I.e. the target sites).</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..*</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>SNOMED CT Body Structures: <a href="valueset-body-site.html">A code that identifies the anatomical location.</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-body-site.html">SNOMED CT Body Structures</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
   <tr><td>Requirements</td><td><p>Knowing where the procedure is made is important for tracking if multiple sites are possible.</p>
 </td></tr>
@@ -427,7 +427,7 @@
 		<div class="container">  <!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:32-0500. <a href="qa.html">QA Page</a>
+        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:21-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search <img src="external.png" style="text-align: baseline"/></a> | 

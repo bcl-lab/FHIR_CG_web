@@ -12,13 +12,13 @@
   fhir:OperationDefinition.name [ fhir:value "Value Set Expansion"];
   fhir:OperationDefinition.status [ fhir:value "draft"];
   fhir:OperationDefinition.kind [ fhir:value "operation"];
-  fhir:OperationDefinition.date [ fhir:value "2016-11-28T17:29:55-05:00"];
+  fhir:OperationDefinition.date [ fhir:value "2016-12-07T14:18:58-05:00"];
   fhir:OperationDefinition.publisher [ fhir:value "HL7 (FHIR Project)"];
   fhir:OperationDefinition.contact [
      fhir:index 0;
      fhir:ContactDetail.telecom [
        fhir:index 0;
-       fhir:ContactPoint.system [ fhir:value "other" ];
+       fhir:ContactPoint.system [ fhir:value "url" ];
        fhir:ContactPoint.value [ fhir:value "http://hl7.org/fhir" ]
      ], [
        fhir:index 1;
@@ -28,7 +28,7 @@
   ];
   fhir:OperationDefinition.description [ fhir:value "The definition of a value set is used to create a simple collection of codes suitable for use for data entry or validation.   If the operation is not called at the instance level, one of the in parameters identifier, context or valueset must be provided.  An expanded value set will be returned, or an OperationOutcome with an error message."];
   fhir:OperationDefinition.code [ fhir:value "expand"];
-  fhir:OperationDefinition.comment [ fhir:value "The value set expansion returned by this query should be treated as a transient result that will change over time (whether it does or not depends on how the value set is specified), so applications should repeat the operation each time the value set is used.   Clients can work through large flat expansions in a set of pages (partial views of the full expansion) instead of just getting the full expansion in a single exchange by using offset and count parameters. Servers are not obliged to support paging, but if they do, SHALL support both the offset and count parameters. Hierarchical expansions are not subject to paging and servers simply return the entire expansion.  Different servers may return different results from expanding a value set for the following reasons:  * The underlying code systems are different (e.g. different versions, possibly with different defined behavior) * The server optimizes filter includes differently, such as sorting by code frequency * Servers introduce arbitrary groups to assist a user to navigate the lists based either on extensions in the definition, or additional knowledge available to the server\n\nWhen a server cannot correctly expand a value set because it does not fully understand the code systems (e.g. it has the wrong version, or incomplete definitions) then it SHALL return an error. If the value set itself is unbounded due to the inclusion of post-coordinated value sets (e.g. SNOMED CT, UCUM), then the extension [[[http://hl7.org/fhir/StructureDefinition/valueset-unclosed]]] can be used to indicate that the expansion is incomplete"];
+  fhir:OperationDefinition.comment [ fhir:value "The value set expansion returned by this query should be treated as a transient result that will change over time (whether it does or not depends on how the value set is specified), so applications should repeat the operation each time the value set is used.  \n\nIf the expansion is too large (at the discretion of the server), the server will return an error (OperationOutcome with code too-costly). Clients can work through large flat expansions in a set of pages (partial views of the full expansion) instead of just getting the full expansion in a single exchange by using offset and count parameters. Servers are not obliged to support paging, but if they do, SHALL support both the offset and count parameters. Hierarchical expansions are not subject to paging and servers simply return the entire expansion.  \n\nDifferent servers may return different results from expanding a value set for the following reasons:  \n\n* The underlying code systems are different (e.g. different versions, possibly with different defined behavior) \n* The server optimizes filter includes differently, such as sorting by code frequency \n* Servers introduce arbitrary groups to assist a user to navigate the lists based either on extensions in the definition, or additional knowledge available to the server\n\nWhen a server cannot correctly expand a value set because it does not fully understand the code systems (e.g. it has the wrong version, or incomplete definitions) then it SHALL return an error. If the value set itself is unbounded due to the inclusion of post-coordinated value sets (e.g. SNOMED CT, UCUM), then the extension [http://hl7.org/fhir/StructureDefinition/valueset-unclosed](extension-valueset-unclosed.html) can be used to indicate that the expansion is incomplete"];
   fhir:OperationDefinition.resource [
      fhir:value "ValueSet";
      fhir:index 0
@@ -90,7 +90,7 @@
      fhir:OperationDefinition.use [ fhir:value "in" ];
      fhir:OperationDefinition.min [ fhir:value "0" ];
      fhir:OperationDefinition.max [ fhir:value "1" ];
-     fhir:OperationDefinition.documentation [ fhir:value "Paging support - where to start if a subset is desired (default = 0)" ];
+     fhir:OperationDefinition.documentation [ fhir:value "Paging support - where to start if a subset is desired (default = 0). Offset is number of records (not number of pages)" ];
      fhir:OperationDefinition.type [ fhir:value "integer" ]
   ], [
      fhir:index 7;
@@ -98,7 +98,7 @@
      fhir:OperationDefinition.use [ fhir:value "in" ];
      fhir:OperationDefinition.min [ fhir:value "0" ];
      fhir:OperationDefinition.max [ fhir:value "1" ];
-     fhir:OperationDefinition.documentation [ fhir:value "Paging support - how many codes should be provided in a partial view. Paging only applies to flat expansions - servers ignore paging if the expansion is not flat.  If count = 0, the client is asking how large the expansion is. Servers SHOULD honor this request for hierarchical expansions as well, and simply return the overall count" ];
+     fhir:OperationDefinition.documentation [ fhir:value "Paging support - how many codes should be provided in a partial page view. Paging only applies to flat expansions - servers ignore paging if the expansion is not flat.  If count = 0, the client is asking how large the expansion is. Servers SHOULD honor this request for hierarchical expansions as well, and simply return the overall count" ];
      fhir:OperationDefinition.type [ fhir:value "integer" ]
   ], [
      fhir:index 8;
@@ -130,7 +130,7 @@
      fhir:OperationDefinition.use [ fhir:value "in" ];
      fhir:OperationDefinition.min [ fhir:value "0" ];
      fhir:OperationDefinition.max [ fhir:value "1" ];
-     fhir:OperationDefinition.documentation [ fhir:value "Controls whether or not the value set expansion includes nested codes (i.e. ValueSet.expansion.contains.contains). Overrides the value in the expansion profile if there is one" ];
+     fhir:OperationDefinition.documentation [ fhir:value "Controls whether or not the value set expansion nests codes or not (i.e. ValueSet.expansion.contains.contains). Overrides the value in the expansion profile if there is one" ];
      fhir:OperationDefinition.type [ fhir:value "boolean" ]
   ], [
      fhir:index 12;

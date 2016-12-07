@@ -3,7 +3,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>Condition.shex - FHIR v1.7.0</title>
+  <title>Condition.shex - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -140,10 +140,10 @@ start=@&lt;Condition&gt; AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:modifierExtension @&lt;Extension&gt;*;   # Extensions that cannot be ignored
     fhir:Condition.identifier @&lt;Identifier&gt;*;  # External Ids for this condition
     fhir:Condition.clinicalStatus @&lt;code&gt; AND
-    	{fhir:value @fhirvs:condition-clinical}?;  # active | relapse | remission | 
-                                            # resolved 
+    	{fhir:value @fhirvs:condition-clinical}?;  # active | recurrence | inactive | 
+                                            # remission | resolved 
     fhir:Condition.verificationStatus @&lt;code&gt; AND
-    	{fhir:value @fhirvs:condition-ver-status};  # provisional | differential | 
+    	{fhir:value @fhirvs:condition-ver-status}?;  # provisional | differential | 
                                             # confirmed | refuted | 
                                             # entered-in-error | unknown 
     fhir:Condition.category @&lt;CodeableConcept&gt;*;  # problem-list-item | 
@@ -601,17 +601,17 @@ start=@&lt;Condition&gt; AND {fhir:nodeRole [fhir:treeRoot]}
 
 #---------------------- Value Sets ------------------------
 
+# How the Quantity should be understood and represented.
+fhirvs:quantity-comparator [&quot;&lt;&quot; &quot;&lt;=&quot; &quot;&gt;=&quot; &quot;&gt;&quot;]
+
 # Preferred value set for Condition Clinical Status.
-fhirvs:condition-clinical [&quot;active&quot; &quot;relapse&quot; &quot;remission&quot; &quot;resolved&quot;]
+fhirvs:condition-clinical [&quot;active&quot; &quot;recurrence&quot; &quot;inactive&quot; &quot;remission&quot; &quot;resolved&quot;]
 
 # Identifies the purpose for this identifier, if known .
 fhirvs:identifier-use [&quot;usual&quot; &quot;official&quot; &quot;temp&quot; &quot;secondary&quot;]
 
 # The status of a resource narrative
 fhirvs:narrative-status [&quot;generated&quot; &quot;extensions&quot; &quot;additional&quot; &quot;empty&quot;]
-
-# How the Quantity should be understood and represented.
-fhirvs:quantity-comparator [&quot;&lt;&quot; &quot;&lt;=&quot; &quot;&gt;=&quot; &quot;&gt;&quot;]
 
 # The verification status to support or decline the clinical status of the condition or diagnosis.
 fhirvs:condition-ver-status [&quot;provisional&quot; &quot;differential&quot; &quot;confirmed&quot; &quot;refuted&quot; &quot;entered-in-error&quot; &quot;unknown&quot;]
@@ -640,7 +640,7 @@ of the specification.
 		<div class="container"><!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:32-0500. <a href="qa.html">QA Page</a>
+        © HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:21-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search</a> | 

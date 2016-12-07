@@ -28,50 +28,12 @@
             },
             "status": {
               "description": "The status of the resource instance.",
-              "enum": [
-                "active",
-                "cancelled",
-                "draft",
-                "entered-in-error"
-              ],
-              "type": "string"
+              "type": "string",
+              "pattern": "[^\\s]+([\\s]?[^\\s]+)*"
             },
             "_status": {
               "description": "Extensions for status",
               "$ref": "Element.schema.json#/definitions/Element"
-            },
-            "request": {
-              "description": "Original request resource reference.",
-              "$ref": "Reference.schema.json#/definitions/Reference"
-            },
-            "outcome": {
-              "description": "Transaction status: error, complete.",
-              "enum": [
-                "complete",
-                "error",
-                "partial"
-              ],
-              "type": "string"
-            },
-            "_outcome": {
-              "description": "Extensions for outcome",
-              "$ref": "Element.schema.json#/definitions/Element"
-            },
-            "disposition": {
-              "description": "A description of the status of the adjudication.",
-              "type": "string"
-            },
-            "_disposition": {
-              "description": "Extensions for disposition",
-              "$ref": "Element.schema.json#/definitions/Element"
-            },
-            "ruleset": {
-              "description": "The version of the style of resource contents. This should be mapped to the allowable profiles for this and supporting resources.",
-              "$ref": "Coding.schema.json#/definitions/Coding"
-            },
-            "originalRuleset": {
-              "description": "The style (standard) and version of the original material which was converted into this resource.",
-              "$ref": "Coding.schema.json#/definitions/Coding"
             },
             "created": {
               "description": "The date when the enclosed suite of services were performed or completed.",
@@ -82,16 +44,32 @@
               "description": "Extensions for created",
               "$ref": "Element.schema.json#/definitions/Element"
             },
-            "organization": {
-              "description": "The Insurer who produced this adjudicated response.",
-              "$ref": "Reference.schema.json#/definitions/Reference"
-            },
             "requestProvider": {
               "description": "The practitioner who is responsible for the services rendered to the patient.",
               "$ref": "Reference.schema.json#/definitions/Reference"
             },
             "requestOrganization": {
               "description": "The organization which is responsible for the services rendered to the patient.",
+              "$ref": "Reference.schema.json#/definitions/Reference"
+            },
+            "request": {
+              "description": "Original request resource reference.",
+              "$ref": "Reference.schema.json#/definitions/Reference"
+            },
+            "outcome": {
+              "description": "Transaction status: error, complete.",
+              "$ref": "CodeableConcept.schema.json#/definitions/CodeableConcept"
+            },
+            "disposition": {
+              "description": "A description of the status of the adjudication.",
+              "type": "string"
+            },
+            "_disposition": {
+              "description": "Extensions for disposition",
+              "$ref": "Element.schema.json#/definitions/Element"
+            },
+            "insurer": {
+              "description": "The Insurer who produced this adjudicated response.",
               "$ref": "Reference.schema.json#/definitions/Reference"
             },
             "inforce": {
@@ -102,20 +80,16 @@
               "description": "Extensions for inforce",
               "$ref": "Element.schema.json#/definitions/Element"
             },
-            "contract": {
-              "description": "The contract resource which may provide more detailed information.",
-              "$ref": "Reference.schema.json#/definitions/Reference"
+            "insurance": {
+              "description": "The insurer may provide both the details for the requested coverage as well as details for additional coverages known to the insurer.",
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/EligibilityResponse_Insurance"
+              }
             },
             "form": {
               "description": "The form to be used for printing the content.",
-              "$ref": "Coding.schema.json#/definitions/Coding"
-            },
-            "benefitBalance": {
-              "description": "Benefits and optionally current balances by Category.",
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/EligibilityResponse_BenefitBalance"
-              }
+              "$ref": "CodeableConcept.schema.json#/definitions/CodeableConcept"
             },
             "error": {
               "description": "Mutually exclusive with Services Provided (Item).",
@@ -131,6 +105,33 @@
         }
       ]
     },
+    "EligibilityResponse_Insurance": {
+      "allOf": [
+        {
+          "$ref": "BackboneElement.schema.json#/definitions/BackboneElement"
+        },
+        {
+          "description": "This resource provides eligibility and plan details from the processing of an Eligibility resource.",
+          "properties": {
+            "coverage": {
+              "description": "A suite of updated or additional Coverages from the Insurer.",
+              "$ref": "Reference.schema.json#/definitions/Reference"
+            },
+            "contract": {
+              "description": "The contract resource which may provide more detailed information.",
+              "$ref": "Reference.schema.json#/definitions/Reference"
+            },
+            "benefitBalance": {
+              "description": "Benefits and optionally current balances by Category.",
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/EligibilityResponse_BenefitBalance"
+              }
+            }
+          }
+        }
+      ]
+    },
     "EligibilityResponse_BenefitBalance": {
       "allOf": [
         {
@@ -141,11 +142,19 @@
           "properties": {
             "category": {
               "description": "Dental, Vision, Medical, Pharmacy, Rehab etc.",
-              "$ref": "Coding.schema.json#/definitions/Coding"
+              "$ref": "CodeableConcept.schema.json#/definitions/CodeableConcept"
             },
             "subCategory": {
               "description": "Dental: basic, major, ortho; Vision exam, glasses, contacts; etc.",
-              "$ref": "Coding.schema.json#/definitions/Coding"
+              "$ref": "CodeableConcept.schema.json#/definitions/CodeableConcept"
+            },
+            "excluded": {
+              "description": "True if the indicated class of service is excluded from the plan, missing or False indicated the service is included in the coverage.",
+              "type": "boolean"
+            },
+            "_excluded": {
+              "description": "Extensions for excluded",
+              "$ref": "Element.schema.json#/definitions/Element"
             },
             "name": {
               "description": "A short name or tag for the benefit, for example MED01, or DENT2.",
@@ -165,15 +174,15 @@
             },
             "network": {
               "description": "Network designation.",
-              "$ref": "Coding.schema.json#/definitions/Coding"
+              "$ref": "CodeableConcept.schema.json#/definitions/CodeableConcept"
             },
             "unit": {
               "description": "Unit designation: individual or family.",
-              "$ref": "Coding.schema.json#/definitions/Coding"
+              "$ref": "CodeableConcept.schema.json#/definitions/CodeableConcept"
             },
             "term": {
               "description": "The term or period of the values such as \u0027maximum lifetime benefit\u0027 or \u0027maximum annual vistis\u0027.",
-              "$ref": "Coding.schema.json#/definitions/Coding"
+              "$ref": "CodeableConcept.schema.json#/definitions/CodeableConcept"
             },
             "financial": {
               "description": "Benefits Used to date.",
@@ -199,7 +208,7 @@
           "properties": {
             "type": {
               "description": "Deductable, visits, benefit amount.",
-              "$ref": "Coding.schema.json#/definitions/Coding"
+              "$ref": "CodeableConcept.schema.json#/definitions/CodeableConcept"
             },
             "benefitUnsignedInt": {
               "description": "Benefits allowed.",
@@ -252,7 +261,7 @@
           "properties": {
             "code": {
               "description": "An error code,from a specified code system, which details why the eligibility check could not be performed.",
-              "$ref": "Coding.schema.json#/definitions/Coding"
+              "$ref": "CodeableConcept.schema.json#/definitions/CodeableConcept"
             }
           },
           "required": [

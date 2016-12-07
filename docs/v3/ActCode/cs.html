@@ -2,7 +2,7 @@
 <!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>ActCode - FHIR v1.7.0</title>
+  <title>ActCode - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -156,7 +156,7 @@ Per OASIS XACML, an obligation is an operation specified in a policy or policy t
 <a name="definition"> </a>
 <h2 class="self-link-parent"><span class="sectioncount">4.3.2.4.1</span> Code System Content <a href="cs.html#definition" title="link to here" class="self-link"><img src="../../assets/images/link.svg" width="20" class="self-link" height="20"/></a></h2>
 
-<div xmlns="http://www.w3.org/1999/xhtml"><p>Release Date: 2016-03-23</p>
+<div xmlns="http://www.w3.org/1999/xhtml"><p>Release Date: 2016-11-11</p>
 <table class="grid">
  <tr><td><b>Level</b></td><td><b>Code</b></td><td><b>Display</b></td><td><b>Definition</b></td></tr>
  <tr><td>1</td><td><span style="color: grey"><i>(_ActAccountCode)</i></span> <b><i>Abstract</i></b></td><td><a name="_ActAccountCode">&nbsp;</a></td><td>
@@ -1055,7 +1055,7 @@ Per OASIS XACML, an obligation is an operation specified in a policy or policy t
                         Criteria that are applicable to the authorized coverage.<br/>
 
                      </td></tr>
- <tr><td>2</td><td>&nbsp;&nbsp;<span style="color: grey"><i>(_ActCoverageAgeLimitCode)</i></span> <b><i>Abstract</i></b></td><td><a name="_ActCoverageAgeLimitCode">&nbsp;</a></td><td>
+ <tr><td>2</td><td>&nbsp;&nbsp;<span style="color: grey"><i>(_ActCoverageQuantityLimitCode)</i></span> <b><i>Abstract</i></b></td><td><a name="_ActCoverageQuantityLimitCode">&nbsp;</a></td><td>
                         Maximum amount paid or maximum number of services/products covered; or maximum amount or number covered during a specified time period under the policy or program.<br/>
 
                      </td></tr>
@@ -3238,18 +3238,18 @@ Per OASIS XACML, an obligation is an operation specified in a policy or policy t
                            Usage Note: If there is a jurisdictional mandate, then use the applicable ActPrivacyLaw code system, and specify the law rather than or in addition to this more generic code.<br/>
 
                      </td></tr>
- <tr><td>5</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SOC<a name="SOC"> </a></td><td>social services sensitivity</td><td>
-                        Information about provision of social services.<br/>
-
-                        
-                           Usage Note: This is a temporary addition to FHIR to be proposed in harmonization.<br/>
-
-                     </td></tr>
  <tr><td>5</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SCA<a name="SCA"> </a></td><td>sickle cell anemia</td><td>
                         Policy for handling sickle cell disease information, which is afforded heightened confidentiality.  Information handling protocols are based on organizational policies related to sickle cell disease information, which is deemed sensitive.<br/>
 
                         
                            Usage Note: If there is a jurisdictional mandate, then the Act valued with this ActCode should be associated with an Act valued with any applicable laws from the ActPrivacyLaw code system.<br/>
+
+                     </td></tr>
+ <tr><td>5</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SOC<a name="SOC"> </a></td><td>social services sensitivity</td><td>
+                        Information about provision of social services.<br/>
+
+                        
+                           Usage Note: This is a temporary addition to FHIR to be proposed in harmonization.<br/>
 
                      </td></tr>
  <tr><td>5</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SDV<a name="SDV"> </a></td><td>sexual assault, abuse, or domestic violence information sensitivity</td><td>
@@ -4354,6 +4354,14 @@ Per OASIS XACML, an obligation is an operation specified in a policy or policy t
                      </td></tr>
  <tr><td>3</td><td>&nbsp;&nbsp;&nbsp;&nbsp;AGGREGATE<a name="AGGREGATE"> </a></td><td>aggregate measure observation</td><td>
                         Indicates that the observation is carrying out an aggregation calculation, contained in the value element.<br/>
+
+                     </td></tr>
+ <tr><td>3</td><td>&nbsp;&nbsp;&nbsp;&nbsp;CMPMSRMTH<a name="CMPMSRMTH"> </a></td><td>composite measure method</td><td>
+                        Indicates what method is used in a quality measure to combine the component measure results included in an composite measure.<br/>
+
+                     </td></tr>
+ <tr><td>3</td><td>&nbsp;&nbsp;&nbsp;&nbsp;CMPMSRSCRWGHT<a name="CMPMSRSCRWGHT"> </a></td><td>component measure scoring weight</td><td>
+                        An attribute of a quality measure describing the weight this component measure score is to carry in determining the overall composite measure final score. The value is real value greater than 0 and less than 1.0. Each component measure score will be multiplied by its CMPMSRSCRWGHT and then summed with the other component measures to determine the final overall composite measure score. The sum across all CMPMSRSCRWGHT values within a single composite measure SHALL be 1.0. The value assigned is scoped to the composite measure referencing this component measure only.<br/>
 
                      </td></tr>
  <tr><td>3</td><td>&nbsp;&nbsp;&nbsp;&nbsp;COPY<a name="COPY"> </a></td><td>copyright</td><td>
@@ -5566,7 +5574,7 @@ the measure population as a narrative description (e.g., all patients seen in th
 		<div class="container">  <!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:33-0500. <a href="../../qa.html">QA Page</a>
+        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:28-0500. <a href="../../qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search <img src="../../external.png" style="text-align: baseline"/></a> | 

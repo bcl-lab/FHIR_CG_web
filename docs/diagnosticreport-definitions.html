@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>DiagnosticReport - FHIR v1.7.0</title>
+  <title>DiagnosticReport - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -134,7 +134,7 @@
   <tr><td>Definition</td><td><p>The status of the diagnostic report as a whole.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>1..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>DiagnosticReportStatus: <a href="valueset-diagnostic-report-status.html">The status of the diagnostic report as a whole.</a> (<a href="terminologies.html#required">Required</a>)</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-diagnostic-report-status.html">DiagnosticReportStatus</a> (<a href="terminologies.html#required">Required</a>)</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#code">code</a></td></tr>
   <tr><td><a href="conformance-rules.html#ismodifier">Is Modifier</a></td><td>true</td></tr>
   <tr><td>Requirements</td><td><p>Diagnostic services routinely issue provisional/incomplete reports, and sometimes withdraw previously released reports.</p>
@@ -146,7 +146,7 @@
   <tr><td>Definition</td><td><p>A code that classifies the clinical discipline, department or diagnostic service that created the report (e.g. cardiology, biochemistry, hematology, MRI). This is used for searching, sorting and display purposes.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>Diagnostic Service Section Codes: <a href="valueset-diagnostic-service-sections.html">Codes for diagnostic service sections.</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-diagnostic-service-sections.html">Diagnostic Service Section Codes</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
   <tr><td title="Other names by which this resource/element may be known">Alternate Names</td><td>Department; Sub-department; service; discipline</td></tr>
   <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
@@ -156,13 +156,13 @@
   <tr><td>Definition</td><td><p>A code or name that describes this diagnostic report.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>1..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>LOINC Diagnostic Report Codes: <a href="valueset-report-codes.html">Codes that describe Diagnostic Reports.</a> (<a href="terminologies.html#preferred">Preferred</a>)</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-report-codes.html">LOINC Diagnostic Report Codes</a> (<a href="terminologies.html#preferred">Preferred</a>)</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
   <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
   <tr><td colspan="2" class="structure"><a name="DiagnosticReport.subject"> </a><b>DiagnosticReport.subject</b></td></tr>
   <tr><td>Definition</td><td><p>The subject of the report. Usually, but not always, this is a patient. However diagnostic services also perform analyses on specimens collected from a variety of other sources.</p>
 </td></tr>
-  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>1..1</td></tr>
+  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="references.html#Reference">Reference</a>(<a href="patient.html">Patient</a> | <a href="group.html">Group</a> | <a href="device.html">Device</a> | <a href="location.html">Location</a>)</td></tr>
   <tr><td>Requirements</td><td><p>SHALL know the subject context.</p>
 </td></tr>
@@ -177,7 +177,7 @@
   <tr><td colspan="2" class="structure"><a name="DiagnosticReport.effective_x_"> </a><b>DiagnosticReport.effective[x]</b></td></tr>
   <tr><td>Definition</td><td><p>The time or time-period the observed values are related to. When the subject of the report is a patient, this is usually either the time of the procedure or of specimen collection(s), but very often the source of the date/time is not known, only the date/time itself.</p>
 </td></tr>
-  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>1..1</td></tr>
+  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#dateTime">dateTime</a>|<a href="datatypes.html#Period">Period</a></td></tr>
   <tr><td>[x] Note</td><td>See <a href="formats.html#choice">Choice of Data Types</a> for further information about how to use [x]</td></tr>
   <tr><td>Requirements</td><td><p>Need to know where in the patient history to file/present this report.</p>
@@ -189,7 +189,7 @@
   <tr><td colspan="2" class="structure"><a name="DiagnosticReport.issued"> </a><b>DiagnosticReport.issued</b></td></tr>
   <tr><td>Definition</td><td><p>The date and time that this version of the report was released from the source diagnostic service.</p>
 </td></tr>
-  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>1..1</td></tr>
+  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#instant">instant</a></td></tr>
   <tr><td>Requirements</td><td><p>Clinicians need to be able to check the date that the report was released.</p>
 </td></tr>
@@ -200,7 +200,7 @@
   <tr><td colspan="2" class="structure"><a name="DiagnosticReport.performer"> </a><b>DiagnosticReport.performer</b></td></tr>
   <tr><td>Definition</td><td><p>The diagnostic service that is responsible for issuing the report.</p>
 </td></tr>
-  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>1..*</td></tr>
+  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..*</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="references.html#Reference">Reference</a>(<a href="practitioner.html">Practitioner</a> | <a href="organization.html">Organization</a>)</td></tr>
   <tr><td>Requirements</td><td><p>Need to know whom to contact if there are queries about the results. Also may need to track the source of reports for secondary data analysis.</p>
 </td></tr>
@@ -276,7 +276,7 @@
   <tr><td>Definition</td><td><p>Codes for the conclusion.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..*</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>SNOMED CT Clinical Findings: <a href="valueset-clinical-findings.html">Diagnoses codes provided as adjuncts to the report.</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-clinical-findings.html">SNOMED CT Clinical Findings</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
   <tr><td colspan="2" class="structure"><a name="DiagnosticReport.presentedForm"> </a><b>DiagnosticReport.presentedForm</b></td></tr>
   <tr><td>Definition</td><td><p>Rich text representation of the entire result as issued by the diagnostic service. Multiple formats are allowed but they SHALL be semantically equivalent.</p>
@@ -305,7 +305,7 @@
 		<div class="container">  <!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:32-0500. <a href="qa.html">QA Page</a>
+        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:21-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search <img src="external.png" style="text-align: baseline"/></a> | 

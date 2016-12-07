@@ -116,8 +116,8 @@ start=@<Location> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:Address.state @<string>?;          # Sub-unit of country (abbreviations 
                                             # ok) 
     fhir:Address.postalCode @<string>?;     # Postal code for area
-    fhir:Address.country @<string>?;        # Country (can be ISO 3166 3 letter 
-                                            # code) 
+    fhir:Address.country @<string>?;        # Country (e.g. can be ISO 3166 2 or 
+                                            # 3 letter code) 
     fhir:Address.period @<Period>?;         # Time period when address was/is in 
                                             # use 
     fhir:index xsd:integer?                 # Relative position in a list
@@ -166,7 +166,8 @@ start=@<Location> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:extension @<Extension>*;           # Additional Content defined by 
                                             # implementations 
     fhir:ContactPoint.system @<code> AND
-    	{fhir:value @fhirvs:contact-point-system}?;  # phone | fax | email | pager | other
+    	{fhir:value @fhirvs:contact-point-system}?;  # phone | fax | email | pager | url 
+                                            # | other 
     fhir:ContactPoint.value @<string>?;     # The actual contact point details
     fhir:ContactPoint.use @<code> AND
     	{fhir:value @fhirvs:contact-point-use}?;  # home | work | temp | old | mobile 
@@ -309,20 +310,20 @@ start=@<Location> AND {fhir:nodeRole [fhir:treeRoot]}
 # The use of an address
 fhirvs:address-use ["home" "work" "temp" "old"]
 
-# Indicates whether the location is still in use.
-fhirvs:location-status ["active" "suspended" "inactive"]
-
-# Indicates whether a resource instance represents a specific location or a class of locations.
-fhirvs:location-mode ["instance" "kind"]
-
-# Telecommunications form for contact point
-fhirvs:contact-point-system ["phone" "fax" "email" "pager" "other"]
-
 # The type of an address (physical / postal)
 fhirvs:address-type ["postal" "physical" "both"]
 
 # Use of contact point
 fhirvs:contact-point-use ["home" "work" "temp" "old" "mobile"]
+
+# Indicates whether the location is still in use.
+fhirvs:location-status ["active" "suspended" "inactive"]
+
+# Telecommunications form for contact point
+fhirvs:contact-point-system ["phone" "fax" "email" "pager" "url" "other"]
+
+# Indicates whether a resource instance represents a specific location or a class of locations.
+fhirvs:location-mode ["instance" "kind"]
 
 # Identifies the purpose for this identifier, if known .
 fhirvs:identifier-use ["usual" "official" "temp" "secondary"]

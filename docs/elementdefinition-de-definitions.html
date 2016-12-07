@@ -3,7 +3,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>StructureDefinition: elementdefinition-de - FHIR v1.7.0</title>
+  <title>StructureDefinition: elementdefinition-de - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -157,7 +157,7 @@
   <tr><td>Definition</td><td><p>Codes that define how this element is represented in instances, when the deviation varies from the normal case.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..0</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>How a property is represented on the wire.<br/>The codes SHALL be taken from <a href="valueset-property-representation.html">PropertyRepresentation</a></td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td>How a property is represented on the wire.<br/>The codes SHALL be taken from <a href="valueset-property-representation.html">PropertyRepresentation</a></td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#code">code</a></td></tr>
   <tr><td>Comments</td><td><p>In resources, this is rarely used except for special cases where the representation deviates from the normal, and can only be done in the base standard (and profiles must reproduce what the base standard does). This element is used quite commonly in Logical models when the logical models represent a specific wire format (e.g. CDA, v2 etc).</p>
 </td></tr>
@@ -181,7 +181,7 @@
   <tr><td>Definition</td><td><p>A code that provides the meaning for the element according to a particular terminology.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..*</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>Codes that indicate the meaning of a data element.<br/>For example codes, see <a href="valueset-observation-codes.html">LOINC Codes</a></td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td>Codes that indicate the meaning of a data element.<br/>For example codes, see <a href="valueset-observation-codes.html">LOINC Codes</a></td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#Coding">Coding</a></td></tr>
   <tr><td>Requirements</td><td><p>Links the meaning of an element to an external terminology.</p>
 </td></tr>
@@ -236,7 +236,7 @@
   <tr><td>Definition</td><td><p>Whether additional slices are allowed or not. When the slices are ordered, profile authors can also say that additional slices are only allowed at the end.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>1..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>How slices are interpreted when evaluating an instance.<br/>The codes SHALL be taken from <a href="valueset-resource-slicing-rules.html">SlicingRules</a></td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td>How slices are interpreted when evaluating an instance.<br/>The codes SHALL be taken from <a href="valueset-resource-slicing-rules.html">SlicingRules</a></td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#code">code</a></td></tr>
   <tr><td>Comments</td><td><p>Allowing additional elements makes for a much for flexible template - it's open for use in wider contexts, but also means that the content of the resource is not closed, and applications have to decide how to handle content not described by the profile.</p>
 </td></tr>
@@ -318,7 +318,7 @@
   <tr><td>Comments</td><td><p>There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone.</p>
 </td></tr>
   <tr><td colspan="2" class="structure"><a name="elementdefinition-de.ElementDefinition:elementdefinition-de.base.path"> </a><b>ElementDefinition.base.path</b></td></tr>
-  <tr><td>Definition</td><td><p>The Path that identifies the base element - this matches the ElementDefinition.path for that element. Across FHIR, there is only one base definition of any element - that is, an element definition on a <a href="structuredefinition.html">StructureDefinition</a> without a StructureDefinition.base.</p>
+  <tr><td>Definition</td><td><p>The Path that identifies the base element - this matches the ElementDefinition.path for that element. Across FHIR, there is only one base definition of any element - that is, an element definition on a <a href="structuredefinition.html#">StructureDefinition</a> without a StructureDefinition.base.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>1..1</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#string">string</a></td></tr>
@@ -368,7 +368,7 @@
   <tr><td>Definition</td><td><p>URL of Data type or Resource that is a(or the) type used for this element. References are URLs that are relative to http://hl7.org/fhir/StructureDefinition e.g. &quot;string&quot; is a reference to http://hl7.org/fhir/StructureDefinition/string. Absolute URLs are only allowed in logical models.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>1..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>Either a resource or a data type, including logical model types<br/>The codes SHALL be taken from <a href="valueset-defined-types.html">FHIRDefinedType</a>; other codes may be used where these codes are not suitable</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td>Either a resource or a data type, including logical model types<br/>The codes SHALL be taken from <a href="valueset-defined-types.html">FHIRDefinedType</a>; other codes may be used where these codes are not suitable</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#uri">uri</a></td></tr>
   <tr><td>Comments</td><td><p>If the element is a reference to another resource, this element contains &quot;Reference&quot;, and the targetProfile element defines what resources can be referenced. The targetProfile may be a reference to the general definition of a resource (e.g. http://hl7.org/fhir/StructureDefinition/Patient). There would be one pair of type/code for each allowed target resource type.</p>
 </td></tr>
@@ -389,13 +389,13 @@
   <tr><td>Definition</td><td><p>If the type is a reference to another resource, how the resource is or can be aggregated - is it a contained resource, or a reference, and if the context is a bundle, is it included in the bundle.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..0 This element is affected by the following invariants: eld-4</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>How resource references can be aggregated.<br/>The codes SHALL be taken from <a href="valueset-resource-aggregation-mode.html">AggregationMode</a></td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td>How resource references can be aggregated.<br/>The codes SHALL be taken from <a href="valueset-resource-aggregation-mode.html">AggregationMode</a></td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#code">code</a></td></tr>
   <tr><td colspan="2" class="structure"><a name="elementdefinition-de.ElementDefinition:elementdefinition-de.type.versioning"> </a><b>ElementDefinition.type.versioning</b></td></tr>
   <tr><td>Definition</td><td><p>Whether this reference needs to be version specific or version independent, or whetehr either can be used.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>Whether a reference needs to be version specific or version independent, or whetehr either can be used<br/>The codes SHALL be taken from <a href="valueset-reference-version-rules.html">ReferenceVersionRules</a></td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td>Whether a reference needs to be version specific or version independent, or whetehr either can be used<br/>The codes SHALL be taken from <a href="valueset-reference-version-rules.html">ReferenceVersionRules</a></td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#code">code</a></td></tr>
   <tr><td>Comments</td><td><p>The base specification never makes a rule as to which form is allowed, but implementation guides may do this.</p>
 </td></tr>
@@ -431,16 +431,41 @@ This element should only be used on child elements of complex data elements.</p>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..0 This element is affected by the following invariants: eld-5, eld-7, eld-8</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td>Choice of: <a href="datatypes.html#base64Binary">base64Binary</a>, <a href="datatypes.html#boolean">boolean</a>, <a href="datatypes.html#code">code</a>, <a href="datatypes.html#date">date</a>, <a href="datatypes.html#dateTime">dateTime</a>, <a href="datatypes.html#decimal">decimal</a>, <a href="datatypes.html#id">id</a>, <a href="datatypes.html#instant">instant</a>, <a href="datatypes.html#integer">integer</a>, <a href="datatypes.html#markdown">markdown</a>, <a href="datatypes.html#oid">oid</a>, <a href="datatypes.html#positiveInt">positiveInt</a>, <a href="datatypes.html#string">string</a>, <a href="datatypes.html#time">time</a>, <a href="datatypes.html#unsignedInt">unsignedInt</a>, <a href="datatypes.html#uri">uri</a>, <a href="datatypes.html#Address">Address</a>, <a href="datatypes.html#Age">Age</a>, <a href="datatypes.html#Annotation">Annotation</a>, <a href="datatypes.html#Attachment">Attachment</a>, <a href="datatypes.html#CodeableConcept">CodeableConcept</a>, <a href="datatypes.html#Coding">Coding</a>, <a href="datatypes.html#ContactPoint">ContactPoint</a>, <a href="datatypes.html#Count">Count</a>, <a href="datatypes.html#Distance">Distance</a>, <a href="datatypes.html#Duration">Duration</a>, <a href="datatypes.html#HumanName">HumanName</a>, <a href="datatypes.html#Identifier">Identifier</a>, <a href="datatypes.html#Money">Money</a>, <a href="datatypes.html#Period">Period</a>, <a href="datatypes.html#Quantity">Quantity</a>, <a href="datatypes.html#Range">Range</a>, <a href="datatypes.html#Ratio">Ratio</a>, <a href="references.html#Reference">Reference</a>, <a href="datatypes.html#SampledData">SampledData</a>, <a href="datatypes.html#Signature">Signature</a>, <a href="datatypes.html#Timing">Timing</a>, <a href="resource.html#Meta">Meta</a></td></tr>
   <tr><td>[x] Note</td><td>See <a href="formats.html#choice">Choice of Data Types</a> for further information about how to use [x]</td></tr>
-  <tr><td>Comments</td><td><p>Mostly used for fixing values of CodeableConcept. At present, pattern[x] is not recommended as a basis for slicing while issues related to this are investigated during the DSTU period.</p>
+  <tr><td>Comments</td><td><p>Mostly used for fixing values of CodeableConcept. At present, pattern[x] is not recommended as a basis for slicing while issues related to this are investigated during the STU period.</p>
 </td></tr>
-  <tr><td colspan="2" class="structure"><a name="elementdefinition-de.ElementDefinition:elementdefinition-de.example[x]"> </a><b>ElementDefinition.example[x]</b></td></tr>
-  <tr><td>Definition</td><td><p>A sample value for this element demonstrating the type of information that would typically be captured.</p>
+  <tr><td colspan="2" class="structure"><a name="elementdefinition-de.ElementDefinition:elementdefinition-de.example"> </a><b>ElementDefinition.example</b></td></tr>
+  <tr><td>Definition</td><td><p>A sample value for this element demonstrating the type of information that would typically be found in the element.</p>
+</td></tr>
+  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..*</td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="element.html#Element">Element</a></td></tr>
+  <tr><td>Comments</td><td><p>Examples will most commonly be present for data where it's not implicitly obvious from either the data type or value set what the values might be.  (I.e. Example values for dates or quantities would generally be unnecessary.)  If the example value is fully populated, the publication tool can generate an instance automatically.</p>
+</td></tr>
+  <tr><td>Invariants</td><td><b>Defined on this element</b><br/>
+<b title="Formal Invariant Identifier">ele-1</b>: All FHIR elements must have a @value or children (xpath: @value|f:*|h:div)</td></tr>
+  <tr><td colspan="2" class="structure"><a name="elementdefinition-de.ElementDefinition:elementdefinition-de.example.id"> </a><b>ElementDefinition.example.id</b></td></tr>
+  <tr><td>Definition</td><td><p>unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#string">string</a></td></tr>
+  <tr><td colspan="2" class="structure"><a name="elementdefinition-de.ElementDefinition:elementdefinition-de.example.extension"> </a><b>ElementDefinition.example.extension</b></td></tr>
+  <tr><td>Definition</td><td><p>May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.</p>
+</td></tr>
+  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..*</td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="extensibility.html#Extension">Extension</a></td></tr>
+  <tr><td title="Other names by which this resource/element may be known">Alternate Names</td><td>extensions, user content</td></tr>
+  <tr><td>Comments</td><td><p>There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone.</p>
+</td></tr>
+  <tr><td colspan="2" class="structure"><a name="elementdefinition-de.ElementDefinition:elementdefinition-de.example.label"> </a><b>ElementDefinition.example.label</b></td></tr>
+  <tr><td>Definition</td><td><p>Describes the purpose of this example amoung the set of examples.</p>
+</td></tr>
+  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>1..1</td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#string">string</a></td></tr>
+  <tr><td colspan="2" class="structure"><a name="elementdefinition-de.ElementDefinition:elementdefinition-de.example.value[x]"> </a><b>ElementDefinition.example.value[x]</b></td></tr>
+  <tr><td>Definition</td><td><p>The actual value for the element, which must be one of the types allowed for this element.</p>
+</td></tr>
+  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>1..1</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td>Choice of: <a href="datatypes.html#base64Binary">base64Binary</a>, <a href="datatypes.html#boolean">boolean</a>, <a href="datatypes.html#code">code</a>, <a href="datatypes.html#date">date</a>, <a href="datatypes.html#dateTime">dateTime</a>, <a href="datatypes.html#decimal">decimal</a>, <a href="datatypes.html#id">id</a>, <a href="datatypes.html#instant">instant</a>, <a href="datatypes.html#integer">integer</a>, <a href="datatypes.html#markdown">markdown</a>, <a href="datatypes.html#oid">oid</a>, <a href="datatypes.html#positiveInt">positiveInt</a>, <a href="datatypes.html#string">string</a>, <a href="datatypes.html#time">time</a>, <a href="datatypes.html#unsignedInt">unsignedInt</a>, <a href="datatypes.html#uri">uri</a>, <a href="datatypes.html#Address">Address</a>, <a href="datatypes.html#Age">Age</a>, <a href="datatypes.html#Annotation">Annotation</a>, <a href="datatypes.html#Attachment">Attachment</a>, <a href="datatypes.html#CodeableConcept">CodeableConcept</a>, <a href="datatypes.html#Coding">Coding</a>, <a href="datatypes.html#ContactPoint">ContactPoint</a>, <a href="datatypes.html#Count">Count</a>, <a href="datatypes.html#Distance">Distance</a>, <a href="datatypes.html#Duration">Duration</a>, <a href="datatypes.html#HumanName">HumanName</a>, <a href="datatypes.html#Identifier">Identifier</a>, <a href="datatypes.html#Money">Money</a>, <a href="datatypes.html#Period">Period</a>, <a href="datatypes.html#Quantity">Quantity</a>, <a href="datatypes.html#Range">Range</a>, <a href="datatypes.html#Ratio">Ratio</a>, <a href="references.html#Reference">Reference</a>, <a href="datatypes.html#SampledData">SampledData</a>, <a href="datatypes.html#Signature">Signature</a>, <a href="datatypes.html#Timing">Timing</a>, <a href="resource.html#Meta">Meta</a></td></tr>
   <tr><td>[x] Note</td><td>See <a href="formats.html#choice">Choice of Data Types</a> for further information about how to use [x]</td></tr>
-  <tr><td>Comments</td><td><p>This will most commonly be present for data where it's not implicitly obvious from either the data type or value set what the values might be.  (I.e. Example values for dates or quantities would generally be unnecessary.)  If the example value is fully populated, the publication tool can generate an instance automatically.</p>
-</td></tr>
   <tr><td>LOINC Code</td><td>EXMPL_ANSWERS</td></tr>
   <tr><td colspan="2" class="structure"><a name="elementdefinition-de.ElementDefinition:elementdefinition-de.minValue[x]"> </a><b>ElementDefinition.minValue[x]</b></td></tr>
   <tr><td>Definition</td><td><p>The minimum allowed value for the element. The value is inclusive. This is allowed for the types date, dateTime, instant, time, decimal, integer, and Quantity.</p>
@@ -508,7 +533,7 @@ This element should only be used on child elements of complex data elements.</p>
   <tr><td>Definition</td><td><p>Identifies the impact constraint violation has on the conformance of the instance.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>1..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>SHALL applications comply with this constraint?<br/>The codes SHALL be taken from <a href="valueset-constraint-severity.html">ConstraintSeverity</a></td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td>SHALL applications comply with this constraint?<br/>The codes SHALL be taken from <a href="valueset-constraint-severity.html">ConstraintSeverity</a></td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#code">code</a></td></tr>
   <tr><td>Comments</td><td><p>This allows constraints to be asserted as &quot;shall&quot; (error) and &quot;should&quot; (warning).</p>
 </td></tr>
@@ -583,7 +608,7 @@ This element should only be used on child elements of complex data elements.</p>
   <tr><td>Comments</td><td><p>For a CodeableConcept, when no codes are allowed - only text, use a binding of strength &quot;required&quot; with a description explaining that no coded values are allowed and what sort of information to put in the &quot;text&quot; element.</p>
 </td></tr>
   <tr><td>Invariants</td><td><b>Defined on this element</b><br/>
-<b title="Formal Invariant Identifier">eld-10</b>: provide either a reference or a description (or both) (xpath: (exists(f:valueSetUri) or exists(f:valueSetReference)) or exists(f:description))<br/><b title="Formal Invariant Identifier">eld-12</b>: ValueSet as a URI SHALL start with http:// or https:// urn: (xpath: not(exists(f:valueSetUri)) or (starts-with(string(f:valueSetUri/@value), 'http:') or starts-with(string(f:valueSetUri/@value), 'https:') or starts-with(string(f:valueSetUri/@value), 'urn:')))<br/><b title="Formal Invariant Identifier">ele-1</b>: All FHIR elements must have a @value or children (xpath: @value|f:*|h:div)</td></tr>
+<b title="Formal Invariant Identifier">eld-10</b>: provide either a reference or a description (or both) (xpath: (exists(f:valueSetUri) or exists(f:valueSetReference)) or exists(f:description))<br/><b title="Formal Invariant Identifier">eld-12</b>: ValueSet as a URI SHALL start with http:// or https:// or urn: (xpath: not(exists(f:valueSetUri)) or (starts-with(string(f:valueSetUri/@value), 'http:') or starts-with(string(f:valueSetUri/@value), 'https:') or starts-with(string(f:valueSetUri/@value), 'urn:')))<br/><b title="Formal Invariant Identifier">ele-1</b>: All FHIR elements must have a @value or children (xpath: @value|f:*|h:div)</td></tr>
   <tr><td>LOINC Code</td><td>ANSWER LIST, NORMATIVE ANSWER LIST</td></tr>
   <tr><td colspan="2" class="structure"><a name="elementdefinition-de.ElementDefinition:elementdefinition-de.binding.id"> </a><b>ElementDefinition.binding.id</b></td></tr>
   <tr><td>Definition</td><td><p>unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.</p>
@@ -602,7 +627,7 @@ This element should only be used on child elements of complex data elements.</p>
   <tr><td>Definition</td><td><p>Indicates the degree of conformance expectations associated with this binding - that is, the degree to which the provided value set must be adhered to in the instances.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>1..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>Indication of the degree of conformance expectations associated with a binding.<br/>The codes SHALL be taken from <a href="valueset-binding-strength.html">BindingStrength</a></td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td>Indication of the degree of conformance expectations associated with a binding.<br/>The codes SHALL be taken from <a href="valueset-binding-strength.html">BindingStrength</a></td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#code">code</a></td></tr>
   <tr><td title="Other names by which this resource/element may be known">Alternate Names</td><td>conformance, extensibility</td></tr>
   <tr><td>Comments</td><td><p>For further discussion, see <a href="terminologies.html">Using Terminologies</a>.</p>
@@ -655,7 +680,7 @@ This element should only be used on child elements of complex data elements.</p>
   <tr><td>Definition</td><td><p>Identifies the computable language in which mapping.map is expressed.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>The mime type of an attachment. Any valid mime type is allowed.<br/>The codes SHALL be taken from  <a href="http://www.rfc-editor.org/bcp/bcp13.txt">http://www.rfc-editor.org/bcp/bcp13.txt</a></td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td>The mime type of an attachment. Any valid mime type is allowed.<br/>The codes SHALL be taken from  <a href="http://www.rfc-editor.org/bcp/bcp13.txt">http://www.rfc-editor.org/bcp/bcp13.txt</a></td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#code">code</a></td></tr>
   <tr><td>Comments</td><td><p>If omitted, then there can be no expectation of computational interpretation of the mapping.</p>
 </td></tr>
@@ -683,7 +708,7 @@ This element should only be used on child elements of complex data elements.</p>
 		<div class="container"><!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:33-0500. <a href="qa.html">QA Page</a>
+        © HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:28-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search</a> | 

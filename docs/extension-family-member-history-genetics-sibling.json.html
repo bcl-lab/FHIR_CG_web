@@ -3,7 +3,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>Extension-family-member-history-genetics-sibling.json - FHIR v1.7.0</title>
+  <title>Extension-family-member-history-genetics-sibling.json - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -127,15 +127,15 @@
     {
       &quot;telecom&quot;: [
         {
-          &quot;system&quot;: &quot;other&quot;,
+          &quot;system&quot;: &quot;url&quot;,
           &quot;value&quot;: &quot;http://www.hl7.org/Special/committees/clingenomics&quot;
         }
       ]
     }
   ],
   &quot;date&quot;: &quot;2013-10-02&quot;,
-  &quot;description&quot;: &quot;Identifies a parent of the relative.&quot;,
-  &quot;fhirVersion&quot;: &quot;1.7.0&quot;,
+  &quot;description&quot;: &quot;Identifies a sibling of the relative.&quot;,
+  &quot;fhirVersion&quot;: &quot;1.8.0&quot;,
   &quot;mapping&quot;: [
     {
       &quot;identity&quot;: &quot;rim&quot;,
@@ -158,8 +158,8 @@
         &quot;id&quot;: &quot;Extension:naturalbrothersnaturalsisters-geneticother&quot;,
         &quot;path&quot;: &quot;Extension&quot;,
         &quot;short&quot;: &quot;natural brother(s) &amp; natural sister(s) - genetic &amp; other&quot;,
-        &quot;definition&quot;: &quot;Identifies a parent of the relative.&quot;,
-        &quot;comments&quot;: &quot;Some rare cases may have complex inner-pedigree-tree relationship. For instance, double cousin relationship need two extra link with In pedigree tree itself. This can't be revealed by relationship to subject.&quot;,
+        &quot;definition&quot;: &quot;Identifies a sibling of the relative.&quot;,
+        &quot;comments&quot;: &quot;Some cases may have complex inner-pedigree-tree relationship. For instance, double cousin relationship need two extra link with In pedigree tree itself. This can't be revealed by relationship to subject.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;*&quot;,
         &quot;base&quot;: {
@@ -221,7 +221,7 @@
         &quot;id&quot;: &quot;Extension:naturalbrothersnaturalsisters-geneticother.extension&quot;,
         &quot;path&quot;: &quot;Extension.extension&quot;,
         &quot;slicing&quot;: {
-          &quot;id&quot;: &quot;75&quot;,
+          &quot;id&quot;: &quot;71&quot;,
           &quot;discriminator&quot;: [
             &quot;url&quot;
           ],
@@ -356,10 +356,10 @@
           }
         ],
         &quot;binding&quot;: {
-          &quot;strength&quot;: &quot;example&quot;,
-          &quot;description&quot;: &quot;The nature of the relationship between the patient and the related person being described in the family member history.&quot;,
+          &quot;strength&quot;: &quot;required&quot;,
+          &quot;description&quot;: &quot;Sibling relationship types&quot;,
           &quot;valueSetReference&quot;: {
-            &quot;reference&quot;: &quot;http://hl7.org/fhir/ValueSet/v3-FamilyMember&quot;
+            &quot;reference&quot;: &quot;http://hl7.org/fhir/ValueSet/sibling-relationship-codes&quot;
           }
         },
         &quot;mapping&quot;: [
@@ -370,12 +370,12 @@
         ]
       },
       {
-        &quot;id&quot;: &quot;Extension:naturalbrothersnaturalsisters-geneticother.extension:identifier&quot;,
+        &quot;id&quot;: &quot;Extension:naturalbrothersnaturalsisters-geneticother.extension:reference&quot;,
         &quot;path&quot;: &quot;Extension.extension&quot;,
-        &quot;sliceName&quot;: &quot;identifier&quot;,
+        &quot;sliceName&quot;: &quot;reference&quot;,
         &quot;short&quot;: &quot;Link to sibling relative(s)&quot;,
-        &quot;definition&quot;: &quot;Identifies a sibling of the relative.&quot;,
-        &quot;min&quot;: 0,
+        &quot;definition&quot;: &quot;Points to the FamilyMemberHistory record of the relation who is the sibling of this relation.&quot;,
+        &quot;min&quot;: 1,
         &quot;max&quot;: &quot;1&quot;,
         &quot;base&quot;: {
           &quot;path&quot;: &quot;Element.extension&quot;,
@@ -390,7 +390,7 @@
         &quot;isModifier&quot;: false
       },
       {
-        &quot;id&quot;: &quot;Extension:naturalbrothersnaturalsisters-geneticother.extension:identifier.id&quot;,
+        &quot;id&quot;: &quot;Extension:naturalbrothersnaturalsisters-geneticother.extension:reference.id&quot;,
         &quot;path&quot;: &quot;Extension.extension.id&quot;,
         &quot;representation&quot;: [
           &quot;xmlAttr&quot;
@@ -417,7 +417,7 @@
         ]
       },
       {
-        &quot;id&quot;: &quot;Extension:naturalbrothersnaturalsisters-geneticother.extension:identifier.extension:extension&quot;,
+        &quot;id&quot;: &quot;Extension:naturalbrothersnaturalsisters-geneticother.extension:reference.extension:extension&quot;,
         &quot;path&quot;: &quot;Extension.extension.extension&quot;,
         &quot;sliceName&quot;: &quot;extension&quot;,
         &quot;short&quot;: &quot;Extension&quot;,
@@ -436,7 +436,7 @@
         ]
       },
       {
-        &quot;id&quot;: &quot;Extension:naturalbrothersnaturalsisters-geneticother.extension:identifier.url&quot;,
+        &quot;id&quot;: &quot;Extension:naturalbrothersnaturalsisters-geneticother.extension:reference.url&quot;,
         &quot;path&quot;: &quot;Extension.extension.url&quot;,
         &quot;representation&quot;: [
           &quot;xmlAttr&quot;
@@ -456,7 +456,7 @@
             &quot;code&quot;: &quot;uri&quot;
           }
         ],
-        &quot;fixedUri&quot;: &quot;identifier&quot;,
+        &quot;fixedUri&quot;: &quot;reference&quot;,
         &quot;mapping&quot;: [
           {
             &quot;identity&quot;: &quot;rim&quot;,
@@ -465,7 +465,7 @@
         ]
       },
       {
-        &quot;id&quot;: &quot;Extension:naturalbrothersnaturalsisters-geneticother.extension:identifier.valueReference&quot;,
+        &quot;id&quot;: &quot;Extension:naturalbrothersnaturalsisters-geneticother.extension:reference.valueReference&quot;,
         &quot;path&quot;: &quot;Extension.extension.valueReference&quot;,
         &quot;short&quot;: &quot;Value of extension&quot;,
         &quot;definition&quot;: &quot;Value of extension - may be a resource or one of a constrained set of the data types (see Extensibility in the spec for list).&quot;,
@@ -661,8 +661,8 @@
         &quot;id&quot;: &quot;Extension:naturalbrothersnaturalsisters-geneticother&quot;,
         &quot;path&quot;: &quot;Extension&quot;,
         &quot;short&quot;: &quot;natural brother(s) &amp; natural sister(s) - genetic &amp; other&quot;,
-        &quot;definition&quot;: &quot;Identifies a parent of the relative.&quot;,
-        &quot;comments&quot;: &quot;Some rare cases may have complex inner-pedigree-tree relationship. For instance, double cousin relationship need two extra link with In pedigree tree itself. This can't be revealed by relationship to subject.&quot;,
+        &quot;definition&quot;: &quot;Identifies a sibling of the relative.&quot;,
+        &quot;comments&quot;: &quot;Some cases may have complex inner-pedigree-tree relationship. For instance, double cousin relationship need two extra link with In pedigree tree itself. This can't be revealed by relationship to subject.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;*&quot;,
         &quot;isModifier&quot;: false
@@ -708,20 +708,20 @@
           }
         ],
         &quot;binding&quot;: {
-          &quot;strength&quot;: &quot;example&quot;,
-          &quot;description&quot;: &quot;The nature of the relationship between the patient and the related person being described in the family member history.&quot;,
+          &quot;strength&quot;: &quot;required&quot;,
+          &quot;description&quot;: &quot;Sibling relationship types&quot;,
           &quot;valueSetReference&quot;: {
-            &quot;reference&quot;: &quot;http://hl7.org/fhir/ValueSet/v3-FamilyMember&quot;
+            &quot;reference&quot;: &quot;http://hl7.org/fhir/ValueSet/sibling-relationship-codes&quot;
           }
         }
       },
       {
-        &quot;id&quot;: &quot;Extension:naturalbrothersnaturalsisters-geneticother.extension:identifier&quot;,
+        &quot;id&quot;: &quot;Extension:naturalbrothersnaturalsisters-geneticother.extension:reference&quot;,
         &quot;path&quot;: &quot;Extension.extension&quot;,
-        &quot;sliceName&quot;: &quot;identifier&quot;,
+        &quot;sliceName&quot;: &quot;reference&quot;,
         &quot;short&quot;: &quot;Link to sibling relative(s)&quot;,
-        &quot;definition&quot;: &quot;Identifies a sibling of the relative.&quot;,
-        &quot;min&quot;: 0,
+        &quot;definition&quot;: &quot;Points to the FamilyMemberHistory record of the relation who is the sibling of this relation.&quot;,
+        &quot;min&quot;: 1,
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
@@ -731,23 +731,23 @@
         &quot;isModifier&quot;: false
       },
       {
-        &quot;id&quot;: &quot;Extension:naturalbrothersnaturalsisters-geneticother.extension:identifier.extension:extension&quot;,
+        &quot;id&quot;: &quot;Extension:naturalbrothersnaturalsisters-geneticother.extension:reference.extension:extension&quot;,
         &quot;path&quot;: &quot;Extension.extension.extension&quot;,
         &quot;sliceName&quot;: &quot;extension&quot;,
         &quot;max&quot;: &quot;0&quot;
       },
       {
-        &quot;id&quot;: &quot;Extension:naturalbrothersnaturalsisters-geneticother.extension:identifier.url&quot;,
+        &quot;id&quot;: &quot;Extension:naturalbrothersnaturalsisters-geneticother.extension:reference.url&quot;,
         &quot;path&quot;: &quot;Extension.extension.url&quot;,
         &quot;type&quot;: [
           {
             &quot;code&quot;: &quot;uri&quot;
           }
         ],
-        &quot;fixedUri&quot;: &quot;identifier&quot;
+        &quot;fixedUri&quot;: &quot;reference&quot;
       },
       {
-        &quot;id&quot;: &quot;Extension:naturalbrothersnaturalsisters-geneticother.extension:identifier.value[x]&quot;,
+        &quot;id&quot;: &quot;Extension:naturalbrothersnaturalsisters-geneticother.extension:reference.value[x]&quot;,
         &quot;path&quot;: &quot;Extension.extension.value[x]&quot;,
         &quot;min&quot;: 1,
         &quot;type&quot;: [
@@ -800,7 +800,7 @@ of the specification.
 		<div class="container"><!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:32-0500. <a href="qa.html">QA Page</a>
+        © HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:21-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search</a> | 

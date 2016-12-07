@@ -3,7 +3,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>Coverage-example.json - FHIR v1.7.0</title>
+  <title>Coverage-example.json - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -129,35 +129,56 @@
     }
   ],
   &quot;status&quot;: &quot;active&quot;,
-  &quot;issuer&quot;: {
-    &quot;reference&quot;: &quot;Organization/2&quot;
-  },
-  &quot;period&quot;: {
-    &quot;start&quot;: &quot;2011-05-23&quot;,
-    &quot;end&quot;: &quot;2012-05-23&quot;
-  },
   &quot;type&quot;: {
-    &quot;system&quot;: &quot;http://hl7.org/fhir/v3/ActCode&quot;,
-    &quot;code&quot;: &quot;EHCPOL&quot;,
-    &quot;display&quot;: &quot;extended healthcare&quot;
+    &quot;coding&quot;: [
+      {
+        &quot;system&quot;: &quot;http://hl7.org/fhir/v3/ActCode&quot;,
+        &quot;code&quot;: &quot;EHCPOL&quot;,
+        &quot;display&quot;: &quot;extended healthcare&quot;
+      }
+    ]
   },
-  &quot;planholder&quot;: {
+  &quot;policyHolder&quot;: {
+    &quot;reference&quot;: &quot;http://benefitsinc.com/FHIR/Organization/CBI35&quot;
+  },
+  &quot;subscriber&quot;: {
     &quot;reference&quot;: &quot;Patient/4&quot;
   },
   &quot;beneficiary&quot;: {
     &quot;reference&quot;: &quot;Patient/4&quot;
   },
   &quot;relationship&quot;: {
-    &quot;code&quot;: &quot;self&quot;
+    &quot;coding&quot;: [
+      {
+        &quot;code&quot;: &quot;self&quot;
+      }
+    ]
   },
+  &quot;period&quot;: {
+    &quot;start&quot;: &quot;2011-05-23&quot;,
+    &quot;end&quot;: &quot;2012-05-23&quot;
+  },
+  &quot;payor&quot;: [
+    {
+      &quot;reference&quot;: &quot;Organization/2&quot;
+    }
+  ],
   &quot;group&quot;: {
-    &quot;plan&quot;: &quot;CBI35&quot;,
-    &quot;planDisplay&quot;: &quot;Corporate Baker's Inc. Plan#35&quot;,
-    &quot;subPlan&quot;: &quot;123&quot;,
-    &quot;subPlanDisplay&quot;: &quot;Trainee Part-time Benefits&quot;
+    &quot;group&quot;: &quot;CBI35&quot;,
+    &quot;groupDisplay&quot;: &quot;Corporate Baker's Inc. Local #35&quot;,
+    &quot;subGroup&quot;: &quot;123&quot;,
+    &quot;subGroupDisplay&quot;: &quot;Trainee Part-time Benefits&quot;,
+    &quot;plan&quot;: &quot;B37FC&quot;,
+    &quot;planDisplay&quot;: &quot;Full Coverage: Medical, Dental, Pharmacy, Vision, EHC&quot;,
+    &quot;subPlan&quot;: &quot;P7&quot;,
+    &quot;subPlanDisplay&quot;: &quot;Includes afterlife benefits&quot;,
+    &quot;class&quot;: &quot;SILVER&quot;,
+    &quot;classDisplay&quot;: &quot;Silver: Family Plan spouse only&quot;,
+    &quot;subClass&quot;: &quot;Tier2&quot;,
+    &quot;subClassDisplay&quot;: &quot;Low deductable, max $20 copay&quot;
   },
-  &quot;dependent&quot;: 1,
-  &quot;sequence&quot;: 1
+  &quot;dependent&quot;: &quot;0&quot;,
+  &quot;sequence&quot;: &quot;9&quot;
 }
 </pre>
 </div>
@@ -183,7 +204,7 @@ of the specification.
 		<div class="container"><!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:32-0500. <a href="qa.html">QA Page</a>
+        © HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:21-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search</a> | 

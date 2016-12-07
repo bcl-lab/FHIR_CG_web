@@ -3,7 +3,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>Capabilitystatement-base.ttl - FHIR v1.7.0</title>
+  <title>Capabilitystatement-base.ttl - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -127,17 +127,17 @@
      fhir:Narrative.status [ fhir:value &quot;generated&quot; ]
   ];
   fhir:CapabilityStatement.url [ fhir:value &quot;http://hl7.org/fhir/CapabilityStatement/base&quot;];
-  fhir:CapabilityStatement.version [ fhir:value &quot;1.7.0-10208&quot;];
+  fhir:CapabilityStatement.version [ fhir:value &quot;1.8.0-10529&quot;];
   fhir:CapabilityStatement.name [ fhir:value &quot;Base FHIR Capability Statement (Full)&quot;];
   fhir:CapabilityStatement.status [ fhir:value &quot;draft&quot;];
   fhir:CapabilityStatement.experimental [ fhir:value &quot;true&quot;];
-  fhir:CapabilityStatement.date [ fhir:value &quot;2016-11-28T17:29:55-05:00&quot;];
+  fhir:CapabilityStatement.date [ fhir:value &quot;2016-12-07T14:18:58-05:00&quot;];
   fhir:CapabilityStatement.publisher [ fhir:value &quot;FHIR Project Team&quot;];
   fhir:CapabilityStatement.contact [
      fhir:index 0;
      fhir:ContactDetail.telecom [
        fhir:index 0;
-       fhir:ContactPoint.system [ fhir:value &quot;other&quot; ];
+       fhir:ContactPoint.system [ fhir:value &quot;url&quot; ];
        fhir:ContactPoint.value [ fhir:value &quot;http://hl7.org/fhir&quot; ]
      ]
   ];
@@ -146,7 +146,7 @@
   fhir:CapabilityStatement.software [
      fhir:CapabilityStatement.name [ fhir:value &quot;Insert your softwware name here...&quot; ]
   ];
-  fhir:CapabilityStatement.fhirVersion [ fhir:value &quot;1.7.0&quot;];
+  fhir:CapabilityStatement.fhirVersion [ fhir:value &quot;1.8.0&quot;];
   fhir:CapabilityStatement.acceptUnknown [ fhir:value &quot;both&quot;];
   fhir:CapabilityStatement.format [
      fhir:value &quot;xml&quot;;
@@ -335,6 +335,10 @@
        ], [
          fhir:value &quot;logical&quot;;
          fhir:index 1
+       ];
+       fhir:CapabilityStatement.searchRevInclude [
+         fhir:value &quot;Task.definition-ref&quot;;
+         fhir:index 0
        ];
        fhir:CapabilityStatement.searchParam [
          fhir:index 0;
@@ -1272,18 +1276,24 @@
        ];
        fhir:CapabilityStatement.searchParam [
          fhir:index 0;
+         fhir:CapabilityStatement.name [ fhir:value &quot;identifier&quot; ];
+         fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/bundle-identifier&quot; ];
+         fhir:CapabilityStatement.type [ fhir:value &quot;token&quot; ];
+         fhir:CapabilityStatement.documentation [ fhir:value &quot;Persistent identifier for the bundle&quot; ]
+       ], [
+         fhir:index 1;
          fhir:CapabilityStatement.name [ fhir:value &quot;composition&quot; ];
          fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/bundle-composition&quot; ];
          fhir:CapabilityStatement.type [ fhir:value &quot;reference&quot; ];
          fhir:CapabilityStatement.documentation [ fhir:value &quot;The first resource in the bundle, if the bundle type is \&quot;document\&quot; - this is a composition, and this parameter provides access to searches its contents&quot; ]
        ], [
-         fhir:index 1;
+         fhir:index 2;
          fhir:CapabilityStatement.name [ fhir:value &quot;type&quot; ];
          fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/bundle-type&quot; ];
          fhir:CapabilityStatement.type [ fhir:value &quot;token&quot; ];
          fhir:CapabilityStatement.documentation [ fhir:value &quot;document | message | transaction | transaction-response | batch | batch-response | history | searchset | collection&quot; ]
        ], [
-         fhir:index 2;
+         fhir:index 3;
          fhir:CapabilityStatement.name [ fhir:value &quot;message&quot; ];
          fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/bundle-message&quot; ];
          fhir:CapabilityStatement.type [ fhir:value &quot;reference&quot; ];
@@ -1449,6 +1459,12 @@
          fhir:CapabilityStatement.documentation [ fhir:value &quot;Event code in a capability statement&quot; ]
        ], [
          fhir:index 17;
+         fhir:CapabilityStatement.name [ fhir:value &quot;guide&quot; ];
+         fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/capabilitystatement-guide&quot; ];
+         fhir:CapabilityStatement.type [ fhir:value &quot;uri&quot; ];
+         fhir:CapabilityStatement.documentation [ fhir:value &quot;Implementation Guide supported&quot; ]
+       ], [
+         fhir:index 18;
          fhir:CapabilityStatement.name [ fhir:value &quot;status&quot; ];
          fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/capabilitystatement-status&quot; ];
          fhir:CapabilityStatement.type [ fhir:value &quot;token&quot; ];
@@ -1927,7 +1943,7 @@
          fhir:value &quot;ClaimResponse.request&quot;;
          fhir:index 0
        ], [
-         fhir:value &quot;ClaimResponse.organization&quot;;
+         fhir:value &quot;ClaimResponse.insurer&quot;;
          fhir:index 1
        ];
        fhir:CapabilityStatement.searchParam [
@@ -1935,7 +1951,7 @@
          fhir:CapabilityStatement.name [ fhir:value &quot;identifier&quot; ];
          fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/claimresponse-identifier&quot; ];
          fhir:CapabilityStatement.type [ fhir:value &quot;token&quot; ];
-         fhir:CapabilityStatement.documentation [ fhir:value &quot;The identity of the insurer&quot; ]
+         fhir:CapabilityStatement.documentation [ fhir:value &quot;The identity of the claimresponse&quot; ]
        ], [
          fhir:index 1;
          fhir:CapabilityStatement.name [ fhir:value &quot;request&quot; ];
@@ -1950,10 +1966,10 @@
          fhir:CapabilityStatement.documentation [ fhir:value &quot;The contents of the disposition message&quot; ]
        ], [
          fhir:index 3;
-         fhir:CapabilityStatement.name [ fhir:value &quot;paymentdate&quot; ];
-         fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/claimresponse-paymentdate&quot; ];
-         fhir:CapabilityStatement.type [ fhir:value &quot;date&quot; ];
-         fhir:CapabilityStatement.documentation [ fhir:value &quot;The expected paymentDate&quot; ]
+         fhir:CapabilityStatement.name [ fhir:value &quot;insurer&quot; ];
+         fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/claimresponse-insurer&quot; ];
+         fhir:CapabilityStatement.type [ fhir:value &quot;reference&quot; ];
+         fhir:CapabilityStatement.documentation [ fhir:value &quot;The organization who generated this resource&quot; ]
        ], [
          fhir:index 4;
          fhir:CapabilityStatement.name [ fhir:value &quot;created&quot; ];
@@ -1962,10 +1978,10 @@
          fhir:CapabilityStatement.documentation [ fhir:value &quot;The creation date&quot; ]
        ], [
          fhir:index 5;
-         fhir:CapabilityStatement.name [ fhir:value &quot;organization&quot; ];
-         fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/claimresponse-organization&quot; ];
-         fhir:CapabilityStatement.type [ fhir:value &quot;reference&quot; ];
-         fhir:CapabilityStatement.documentation [ fhir:value &quot;The organization who generated this resource&quot; ]
+         fhir:CapabilityStatement.name [ fhir:value &quot;payment-date&quot; ];
+         fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/claimresponse-payment-date&quot; ];
+         fhir:CapabilityStatement.type [ fhir:value &quot;date&quot; ];
+         fhir:CapabilityStatement.documentation [ fhir:value &quot;The expected paymentDate&quot; ]
        ], [
          fhir:index 6;
          fhir:CapabilityStatement.name [ fhir:value &quot;outcome&quot; ];
@@ -2113,7 +2129,7 @@
          fhir:CapabilityStatement.name [ fhir:value &quot;action&quot; ];
          fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/clinicalimpression-action&quot; ];
          fhir:CapabilityStatement.type [ fhir:value &quot;reference&quot; ];
-         fhir:CapabilityStatement.documentation [ fhir:value &quot;Actions taken during assessment&quot; ]
+         fhir:CapabilityStatement.documentation [ fhir:value &quot;Action taken as part of assessment procedure&quot; ]
        ], [
          fhir:index 10;
          fhir:CapabilityStatement.name [ fhir:value &quot;finding-ref&quot; ];
@@ -3577,14 +3593,21 @@
          fhir:index 1
        ];
        fhir:CapabilityStatement.searchInclude [
-         fhir:value &quot;Coverage.issuer&quot;;
+         fhir:value &quot;Coverage.policyholder&quot;;
          fhir:index 0
        ], [
-         fhir:value &quot;Coverage.planholder&quot;;
+         fhir:value &quot;Coverage.subscriber&quot;;
          fhir:index 1
        ], [
-         fhir:value &quot;Coverage.beneficiary&quot;;
+         fhir:value &quot;Coverage.payor&quot;;
          fhir:index 2
+       ], [
+         fhir:value &quot;Coverage.beneficiary&quot;;
+         fhir:index 3
+       ];
+       fhir:CapabilityStatement.searchRevInclude [
+         fhir:value &quot;ExplanationOfBenefit.coverage&quot;;
+         fhir:index 0
        ];
        fhir:CapabilityStatement.searchParam [
          fhir:index 0;
@@ -3594,72 +3617,78 @@
          fhir:CapabilityStatement.documentation [ fhir:value &quot;The primary identifier of the insured and the coverage&quot; ]
        ], [
          fhir:index 1;
+         fhir:CapabilityStatement.name [ fhir:value &quot;policyholder&quot; ];
+         fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/coverage-policyholder&quot; ];
+         fhir:CapabilityStatement.type [ fhir:value &quot;reference&quot; ];
+         fhir:CapabilityStatement.documentation [ fhir:value &quot;Reference to the policyholder&quot; ]
+       ], [
+         fhir:index 2;
          fhir:CapabilityStatement.name [ fhir:value &quot;subgroup&quot; ];
          fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/coverage-subgroup&quot; ];
          fhir:CapabilityStatement.type [ fhir:value &quot;string&quot; ];
          fhir:CapabilityStatement.documentation [ fhir:value &quot;Sub-group identifier&quot; ]
        ], [
-         fhir:index 2;
+         fhir:index 3;
+         fhir:CapabilityStatement.name [ fhir:value &quot;subscriber&quot; ];
+         fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/coverage-subscriber&quot; ];
+         fhir:CapabilityStatement.type [ fhir:value &quot;reference&quot; ];
+         fhir:CapabilityStatement.documentation [ fhir:value &quot;Reference to the subscriber&quot; ]
+       ], [
+         fhir:index 4;
          fhir:CapabilityStatement.name [ fhir:value &quot;subplan&quot; ];
          fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/coverage-subplan&quot; ];
          fhir:CapabilityStatement.type [ fhir:value &quot;string&quot; ];
          fhir:CapabilityStatement.documentation [ fhir:value &quot;Sub-plan identifier&quot; ]
        ], [
-         fhir:index 3;
+         fhir:index 5;
          fhir:CapabilityStatement.name [ fhir:value &quot;type&quot; ];
          fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/coverage-type&quot; ];
          fhir:CapabilityStatement.type [ fhir:value &quot;token&quot; ];
          fhir:CapabilityStatement.documentation [ fhir:value &quot;The kind of coverage (health plan, auto, Workers Compensation)&quot; ]
        ], [
-         fhir:index 4;
-         fhir:CapabilityStatement.name [ fhir:value &quot;issuer&quot; ];
-         fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/coverage-issuer&quot; ];
-         fhir:CapabilityStatement.type [ fhir:value &quot;reference&quot; ];
-         fhir:CapabilityStatement.documentation [ fhir:value &quot;The identity of the insurer&quot; ]
-       ], [
-         fhir:index 5;
+         fhir:index 6;
          fhir:CapabilityStatement.name [ fhir:value &quot;sequence&quot; ];
          fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/coverage-sequence&quot; ];
-         fhir:CapabilityStatement.type [ fhir:value &quot;number&quot; ];
+         fhir:CapabilityStatement.type [ fhir:value &quot;string&quot; ];
          fhir:CapabilityStatement.documentation [ fhir:value &quot;Sequence number&quot; ]
        ], [
-         fhir:index 6;
-         fhir:CapabilityStatement.name [ fhir:value &quot;planholder&quot; ];
-         fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/coverage-planholder&quot; ];
-         fhir:CapabilityStatement.type [ fhir:value &quot;reference&quot; ];
-         fhir:CapabilityStatement.documentation [ fhir:value &quot;Reference to the planholder&quot; ]
-       ], [
          fhir:index 7;
+         fhir:CapabilityStatement.name [ fhir:value &quot;payor&quot; ];
+         fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/coverage-payor&quot; ];
+         fhir:CapabilityStatement.type [ fhir:value &quot;reference&quot; ];
+         fhir:CapabilityStatement.documentation [ fhir:value &quot;The identity of the insurer or party paying for services&quot; ]
+       ], [
+         fhir:index 8;
          fhir:CapabilityStatement.name [ fhir:value &quot;beneficiary&quot; ];
          fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/coverage-beneficiary&quot; ];
          fhir:CapabilityStatement.type [ fhir:value &quot;reference&quot; ];
          fhir:CapabilityStatement.documentation [ fhir:value &quot;Covered party&quot; ]
        ], [
-         fhir:index 8;
+         fhir:index 9;
          fhir:CapabilityStatement.name [ fhir:value &quot;subclass&quot; ];
          fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/coverage-subclass&quot; ];
          fhir:CapabilityStatement.type [ fhir:value &quot;string&quot; ];
          fhir:CapabilityStatement.documentation [ fhir:value &quot;Sub-class identifier&quot; ]
        ], [
-         fhir:index 9;
+         fhir:index 10;
          fhir:CapabilityStatement.name [ fhir:value &quot;plan&quot; ];
          fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/coverage-plan&quot; ];
          fhir:CapabilityStatement.type [ fhir:value &quot;string&quot; ];
          fhir:CapabilityStatement.documentation [ fhir:value &quot;A plan or policy identifier&quot; ]
        ], [
-         fhir:index 10;
+         fhir:index 11;
          fhir:CapabilityStatement.name [ fhir:value &quot;class&quot; ];
          fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/coverage-class&quot; ];
          fhir:CapabilityStatement.type [ fhir:value &quot;string&quot; ];
          fhir:CapabilityStatement.documentation [ fhir:value &quot;Class identifier&quot; ]
        ], [
-         fhir:index 11;
+         fhir:index 12;
          fhir:CapabilityStatement.name [ fhir:value &quot;dependent&quot; ];
          fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/coverage-dependent&quot; ];
-         fhir:CapabilityStatement.type [ fhir:value &quot;number&quot; ];
+         fhir:CapabilityStatement.type [ fhir:value &quot;string&quot; ];
          fhir:CapabilityStatement.documentation [ fhir:value &quot;Dependent number&quot; ]
        ], [
-         fhir:index 12;
+         fhir:index 13;
          fhir:CapabilityStatement.name [ fhir:value &quot;group&quot; ];
          fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/coverage-group&quot; ];
          fhir:CapabilityStatement.type [ fhir:value &quot;string&quot; ];
@@ -4093,44 +4122,47 @@
          fhir:value &quot;MedicationAdministration.device&quot;;
          fhir:index 49
        ], [
-         fhir:value &quot;MessageHeader.target&quot;;
+         fhir:value &quot;MedicationRequest.requester&quot;;
          fhir:index 50
        ], [
-         fhir:value &quot;Observation.subject&quot;;
+         fhir:value &quot;MessageHeader.target&quot;;
          fhir:index 51
        ], [
-         fhir:value &quot;Observation.patient&quot;;
+         fhir:value &quot;Observation.subject&quot;;
          fhir:index 52
        ], [
-         fhir:value &quot;Observation.device&quot;;
+         fhir:value &quot;Observation.patient&quot;;
          fhir:index 53
        ], [
-         fhir:value &quot;ProcedureRequest.orderer&quot;;
+         fhir:value &quot;Observation.device&quot;;
          fhir:index 54
        ], [
-         fhir:value &quot;QuestionnaireResponse.author&quot;;
+         fhir:value &quot;ProcedureRequest.orderer&quot;;
          fhir:index 55
        ], [
-         fhir:value &quot;RequestGroup.author&quot;;
+         fhir:value &quot;QuestionnaireResponse.author&quot;;
          fhir:index 56
        ], [
-         fhir:value &quot;RiskAssessment.performer&quot;;
+         fhir:value &quot;RequestGroup.author&quot;;
          fhir:index 57
        ], [
-         fhir:value &quot;Schedule.actor&quot;;
+         fhir:value &quot;RiskAssessment.performer&quot;;
          fhir:index 58
        ], [
-         fhir:value &quot;Specimen.subject&quot;;
+         fhir:value &quot;Schedule.actor&quot;;
          fhir:index 59
        ], [
-         fhir:value &quot;Specimen.patient&quot;;
+         fhir:value &quot;Specimen.subject&quot;;
          fhir:index 60
        ], [
-         fhir:value &quot;Task.owner&quot;;
+         fhir:value &quot;Specimen.patient&quot;;
          fhir:index 61
        ], [
-         fhir:value &quot;Task.requester&quot;;
+         fhir:value &quot;Task.owner&quot;;
          fhir:index 62
+       ], [
+         fhir:value &quot;Task.requester&quot;;
+         fhir:index 63
        ];
        fhir:CapabilityStatement.searchParam [
          fhir:index 0;
@@ -4440,9 +4472,6 @@
        fhir:CapabilityStatement.searchRevInclude [
          fhir:value &quot;CarePlan.activityreference&quot;;
          fhir:index 0
-       ], [
-         fhir:value &quot;ClinicalImpression.action&quot;;
-         fhir:index 1
        ];
        fhir:CapabilityStatement.searchParam [
          fhir:index 0;
@@ -4937,36 +4966,42 @@
          fhir:CapabilityStatement.documentation [ fhir:value &quot;Encounter or Episode during which request was created&quot; ]
        ], [
          fhir:index 9;
+         fhir:CapabilityStatement.name [ fhir:value &quot;priority&quot; ];
+         fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/diagnosticrequest-priority&quot; ];
+         fhir:CapabilityStatement.type [ fhir:value &quot;token&quot; ];
+         fhir:CapabilityStatement.documentation [ fhir:value &quot;routine | urgent | asap | stat&quot; ]
+       ], [
+         fhir:index 10;
+         fhir:CapabilityStatement.name [ fhir:value &quot;intent&quot; ];
+         fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/diagnosticrequest-intent&quot; ];
+         fhir:CapabilityStatement.type [ fhir:value &quot;token&quot; ];
+         fhir:CapabilityStatement.documentation [ fhir:value &quot;proposal | plan | original-order |reflex-order&quot; ]
+       ], [
+         fhir:index 11;
          fhir:CapabilityStatement.name [ fhir:value &quot;based-on&quot; ];
          fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/diagnosticrequest-based-on&quot; ];
          fhir:CapabilityStatement.type [ fhir:value &quot;reference&quot; ];
          fhir:CapabilityStatement.documentation [ fhir:value &quot;Plan/proposal/order fulfilled by this request&quot; ]
        ], [
-         fhir:index 10;
-         fhir:CapabilityStatement.name [ fhir:value &quot;stage&quot; ];
-         fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/diagnosticrequest-stage&quot; ];
-         fhir:CapabilityStatement.type [ fhir:value &quot;token&quot; ];
-         fhir:CapabilityStatement.documentation [ fhir:value &quot;proposal | plan | original-order |reflex-order&quot; ]
-       ], [
-         fhir:index 11;
+         fhir:index 12;
          fhir:CapabilityStatement.name [ fhir:value &quot;patient&quot; ];
          fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/diagnosticrequest-patient&quot; ];
          fhir:CapabilityStatement.type [ fhir:value &quot;reference&quot; ];
          fhir:CapabilityStatement.documentation [ fhir:value &quot;Individual the service is ordered for&quot; ]
        ], [
-         fhir:index 12;
+         fhir:index 13;
          fhir:CapabilityStatement.name [ fhir:value &quot;filler&quot; ];
          fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/diagnosticrequest-filler&quot; ];
          fhir:CapabilityStatement.type [ fhir:value &quot;reference&quot; ];
          fhir:CapabilityStatement.documentation [ fhir:value &quot;Desired performer for service&quot; ]
        ], [
-         fhir:index 13;
+         fhir:index 14;
          fhir:CapabilityStatement.name [ fhir:value &quot;definition&quot; ];
          fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/diagnosticrequest-definition&quot; ];
          fhir:CapabilityStatement.type [ fhir:value &quot;reference&quot; ];
          fhir:CapabilityStatement.documentation [ fhir:value &quot;Protocol or definition followed by this request&quot; ]
        ], [
-         fhir:index 14;
+         fhir:index 15;
          fhir:CapabilityStatement.name [ fhir:value &quot;status&quot; ];
          fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/diagnosticrequest-status&quot; ];
          fhir:CapabilityStatement.type [ fhir:value &quot;token&quot; ];
@@ -5513,7 +5548,7 @@
          fhir:value &quot;EligibilityResponse.request&quot;;
          fhir:index 0
        ], [
-         fhir:value &quot;EligibilityResponse.organization&quot;;
+         fhir:value &quot;EligibilityResponse.insurer&quot;;
          fhir:index 1
        ], [
          fhir:value &quot;EligibilityResponse.request-organization&quot;;
@@ -5542,16 +5577,16 @@
          fhir:CapabilityStatement.documentation [ fhir:value &quot;The contents of the disposition message&quot; ]
        ], [
          fhir:index 3;
+         fhir:CapabilityStatement.name [ fhir:value &quot;insurer&quot; ];
+         fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/eligibilityresponse-insurer&quot; ];
+         fhir:CapabilityStatement.type [ fhir:value &quot;reference&quot; ];
+         fhir:CapabilityStatement.documentation [ fhir:value &quot;The organization which generated this resource&quot; ]
+       ], [
+         fhir:index 4;
          fhir:CapabilityStatement.name [ fhir:value &quot;created&quot; ];
          fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/eligibilityresponse-created&quot; ];
          fhir:CapabilityStatement.type [ fhir:value &quot;date&quot; ];
          fhir:CapabilityStatement.documentation [ fhir:value &quot;The creation date&quot; ]
-       ], [
-         fhir:index 4;
-         fhir:CapabilityStatement.name [ fhir:value &quot;organization&quot; ];
-         fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/eligibilityresponse-organization&quot; ];
-         fhir:CapabilityStatement.type [ fhir:value &quot;reference&quot; ];
-         fhir:CapabilityStatement.documentation [ fhir:value &quot;The organization which generated this resource&quot; ]
        ], [
          fhir:index 5;
          fhir:CapabilityStatement.name [ fhir:value &quot;request-organization&quot; ];
@@ -5651,8 +5686,11 @@
          fhir:value &quot;Encounter.location&quot;;
          fhir:index 9
        ], [
-         fhir:value &quot;Encounter.indication&quot;;
+         fhir:value &quot;Encounter.service-provider&quot;;
          fhir:index 10
+       ], [
+         fhir:value &quot;Encounter.indication&quot;;
+         fhir:index 11
        ];
        fhir:CapabilityStatement.searchRevInclude [
          fhir:value &quot;ClinicalImpression.context&quot;;
@@ -5727,8 +5765,11 @@
          fhir:value &quot;RiskAssessment.encounter&quot;;
          fhir:index 23
        ], [
-         fhir:value &quot;VisionPrescription.encounter&quot;;
+         fhir:value &quot;Task.context&quot;;
          fhir:index 24
+       ], [
+         fhir:value &quot;VisionPrescription.encounter&quot;;
+         fhir:index 25
        ];
        fhir:CapabilityStatement.searchParam [
          fhir:index 0;
@@ -5834,24 +5875,30 @@
          fhir:CapabilityStatement.documentation [ fhir:value &quot;Location the encounter takes place&quot; ]
        ], [
          fhir:index 17;
+         fhir:CapabilityStatement.name [ fhir:value &quot;service-provider&quot; ];
+         fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/encounter-service-provider&quot; ];
+         fhir:CapabilityStatement.type [ fhir:value &quot;reference&quot; ];
+         fhir:CapabilityStatement.documentation [ fhir:value &quot;The custodian organization of this Encounter record&quot; ]
+       ], [
+         fhir:index 18;
          fhir:CapabilityStatement.name [ fhir:value &quot;indication&quot; ];
          fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/encounter-indication&quot; ];
          fhir:CapabilityStatement.type [ fhir:value &quot;reference&quot; ];
          fhir:CapabilityStatement.documentation [ fhir:value &quot;Reason the encounter takes place (resource)&quot; ]
        ], [
-         fhir:index 18;
+         fhir:index 19;
          fhir:CapabilityStatement.name [ fhir:value &quot;special-arrangement&quot; ];
          fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/encounter-special-arrangement&quot; ];
          fhir:CapabilityStatement.type [ fhir:value &quot;token&quot; ];
          fhir:CapabilityStatement.documentation [ fhir:value &quot;Wheelchair, translator, stretcher, etc.&quot; ]
        ], [
-         fhir:index 19;
+         fhir:index 20;
          fhir:CapabilityStatement.name [ fhir:value &quot;class&quot; ];
          fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/encounter-class&quot; ];
          fhir:CapabilityStatement.type [ fhir:value &quot;token&quot; ];
          fhir:CapabilityStatement.documentation [ fhir:value &quot;inpatient | outpatient | ambulatory | emergency +&quot; ]
        ], [
-         fhir:index 20;
+         fhir:index 21;
          fhir:CapabilityStatement.name [ fhir:value &quot;status&quot; ];
          fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/encounter-status&quot; ];
          fhir:CapabilityStatement.type [ fhir:value &quot;token&quot; ];
@@ -5909,6 +5956,22 @@
        fhir:CapabilityStatement.searchInclude [
          fhir:value &quot;Endpoint.organization&quot;;
          fhir:index 0
+       ];
+       fhir:CapabilityStatement.searchRevInclude [
+         fhir:value &quot;HealthcareService.endpoint&quot;;
+         fhir:index 0
+       ], [
+         fhir:value &quot;Location.endpoint&quot;;
+         fhir:index 1
+       ], [
+         fhir:value &quot;Organization.endpoint&quot;;
+         fhir:index 2
+       ], [
+         fhir:value &quot;Practitioner.endpoint&quot;;
+         fhir:index 3
+       ], [
+         fhir:value &quot;PractitionerRole.endpoint&quot;;
+         fhir:index 4
        ];
        fhir:CapabilityStatement.searchParam [
          fhir:index 0;
@@ -5997,11 +6060,18 @@
          fhir:index 1
        ];
        fhir:CapabilityStatement.searchInclude [
-         fhir:value &quot;EnrollmentRequest.patient-reference&quot;;
+         fhir:value &quot;EnrollmentRequest.subject&quot;;
          fhir:index 0
        ], [
-         fhir:value &quot;EnrollmentRequest.subject-reference&quot;;
+         fhir:value &quot;EnrollmentRequest.patient&quot;;
          fhir:index 1
+       ], [
+         fhir:value &quot;EnrollmentRequest.organization&quot;;
+         fhir:index 2
+       ];
+       fhir:CapabilityStatement.searchRevInclude [
+         fhir:value &quot;EnrollmentResponse.request&quot;;
+         fhir:index 0
        ];
        fhir:CapabilityStatement.searchParam [
          fhir:index 0;
@@ -6011,28 +6081,22 @@
          fhir:CapabilityStatement.documentation [ fhir:value &quot;The business identifier of the Enrollment&quot; ]
        ], [
          fhir:index 1;
-         fhir:CapabilityStatement.name [ fhir:value &quot;patient-reference&quot; ];
-         fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/enrollmentrequest-patient-reference&quot; ];
+         fhir:CapabilityStatement.name [ fhir:value &quot;subject&quot; ];
+         fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/enrollmentrequest-subject&quot; ];
          fhir:CapabilityStatement.type [ fhir:value &quot;reference&quot; ];
          fhir:CapabilityStatement.documentation [ fhir:value &quot;The party to be enrolled&quot; ]
        ], [
          fhir:index 2;
-         fhir:CapabilityStatement.name [ fhir:value &quot;subject-identifier&quot; ];
-         fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/enrollmentrequest-subject-identifier&quot; ];
-         fhir:CapabilityStatement.type [ fhir:value &quot;token&quot; ];
-         fhir:CapabilityStatement.documentation [ fhir:value &quot;The party to be enrolled&quot; ]
-       ], [
-         fhir:index 3;
-         fhir:CapabilityStatement.name [ fhir:value &quot;subject-reference&quot; ];
-         fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/enrollmentrequest-subject-reference&quot; ];
+         fhir:CapabilityStatement.name [ fhir:value &quot;patient&quot; ];
+         fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/enrollmentrequest-patient&quot; ];
          fhir:CapabilityStatement.type [ fhir:value &quot;reference&quot; ];
          fhir:CapabilityStatement.documentation [ fhir:value &quot;The party to be enrolled&quot; ]
        ], [
-         fhir:index 4;
-         fhir:CapabilityStatement.name [ fhir:value &quot;patient-identifier&quot; ];
-         fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/enrollmentrequest-patient-identifier&quot; ];
-         fhir:CapabilityStatement.type [ fhir:value &quot;token&quot; ];
-         fhir:CapabilityStatement.documentation [ fhir:value &quot;The party to be enrolled&quot; ]
+         fhir:index 3;
+         fhir:CapabilityStatement.name [ fhir:value &quot;organization&quot; ];
+         fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/enrollmentrequest-organization&quot; ];
+         fhir:CapabilityStatement.type [ fhir:value &quot;reference&quot; ];
+         fhir:CapabilityStatement.documentation [ fhir:value &quot;The organization who generated this resource&quot; ]
        ]
      ], [
        fhir:index 42;
@@ -6083,12 +6147,31 @@
          fhir:value &quot;logical&quot;;
          fhir:index 1
        ];
+       fhir:CapabilityStatement.searchInclude [
+         fhir:value &quot;EnrollmentResponse.request&quot;;
+         fhir:index 0
+       ], [
+         fhir:value &quot;EnrollmentResponse.organization&quot;;
+         fhir:index 1
+       ];
        fhir:CapabilityStatement.searchParam [
          fhir:index 0;
          fhir:CapabilityStatement.name [ fhir:value &quot;identifier&quot; ];
          fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/enrollmentresponse-identifier&quot; ];
          fhir:CapabilityStatement.type [ fhir:value &quot;token&quot; ];
          fhir:CapabilityStatement.documentation [ fhir:value &quot;The business identifier of the EnrollmentResponse&quot; ]
+       ], [
+         fhir:index 1;
+         fhir:CapabilityStatement.name [ fhir:value &quot;request&quot; ];
+         fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/enrollmentresponse-request&quot; ];
+         fhir:CapabilityStatement.type [ fhir:value &quot;reference&quot; ];
+         fhir:CapabilityStatement.documentation [ fhir:value &quot;The reference to the claim&quot; ]
+       ], [
+         fhir:index 2;
+         fhir:CapabilityStatement.name [ fhir:value &quot;organization&quot; ];
+         fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/enrollmentresponse-organization&quot; ];
+         fhir:CapabilityStatement.type [ fhir:value &quot;reference&quot; ];
+         fhir:CapabilityStatement.documentation [ fhir:value &quot;The organization who generated this resource&quot; ]
        ]
      ], [
        fhir:index 43;
@@ -6197,6 +6280,9 @@
        ], [
          fhir:value &quot;RiskAssessment.encounter&quot;;
          fhir:index 13
+       ], [
+         fhir:value &quot;Task.context&quot;;
+         fhir:index 14
        ];
        fhir:CapabilityStatement.searchParam [
          fhir:index 0;
@@ -6407,65 +6493,74 @@
          fhir:index 1
        ];
        fhir:CapabilityStatement.searchInclude [
-         fhir:value &quot;ExplanationOfBenefit.provider&quot;;
+         fhir:value &quot;ExplanationOfBenefit.coverage&quot;;
          fhir:index 0
        ], [
-         fhir:value &quot;ExplanationOfBenefit.patient&quot;;
+         fhir:value &quot;ExplanationOfBenefit.provider&quot;;
          fhir:index 1
        ], [
-         fhir:value &quot;ExplanationOfBenefit.organization&quot;;
+         fhir:value &quot;ExplanationOfBenefit.patient&quot;;
          fhir:index 2
        ], [
-         fhir:value &quot;ExplanationOfBenefit.claim&quot;;
+         fhir:value &quot;ExplanationOfBenefit.organization&quot;;
          fhir:index 3
        ], [
-         fhir:value &quot;ExplanationOfBenefit.facility&quot;;
+         fhir:value &quot;ExplanationOfBenefit.claim&quot;;
          fhir:index 4
+       ], [
+         fhir:value &quot;ExplanationOfBenefit.facility&quot;;
+         fhir:index 5
        ];
        fhir:CapabilityStatement.searchParam [
          fhir:index 0;
+         fhir:CapabilityStatement.name [ fhir:value &quot;coverage&quot; ];
+         fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/explanationofbenefit-coverage&quot; ];
+         fhir:CapabilityStatement.type [ fhir:value &quot;reference&quot; ];
+         fhir:CapabilityStatement.documentation [ fhir:value &quot;The plan under which the claim was adjudicated&quot; ]
+       ], [
+         fhir:index 1;
          fhir:CapabilityStatement.name [ fhir:value &quot;identifier&quot; ];
          fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/explanationofbenefit-identifier&quot; ];
          fhir:CapabilityStatement.type [ fhir:value &quot;token&quot; ];
          fhir:CapabilityStatement.documentation [ fhir:value &quot;The business identifier of the Explanation of Benefit&quot; ]
        ], [
-         fhir:index 1;
+         fhir:index 2;
          fhir:CapabilityStatement.name [ fhir:value &quot;disposition&quot; ];
          fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/explanationofbenefit-disposition&quot; ];
          fhir:CapabilityStatement.type [ fhir:value &quot;string&quot; ];
          fhir:CapabilityStatement.documentation [ fhir:value &quot;The contents of the disposition message&quot; ]
        ], [
-         fhir:index 2;
+         fhir:index 3;
          fhir:CapabilityStatement.name [ fhir:value &quot;provider&quot; ];
          fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/explanationofbenefit-provider&quot; ];
          fhir:CapabilityStatement.type [ fhir:value &quot;reference&quot; ];
          fhir:CapabilityStatement.documentation [ fhir:value &quot;The reference to the provider&quot; ]
        ], [
-         fhir:index 3;
+         fhir:index 4;
          fhir:CapabilityStatement.name [ fhir:value &quot;patient&quot; ];
          fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/explanationofbenefit-patient&quot; ];
          fhir:CapabilityStatement.type [ fhir:value &quot;reference&quot; ];
          fhir:CapabilityStatement.documentation [ fhir:value &quot;The reference to the patient&quot; ]
        ], [
-         fhir:index 4;
+         fhir:index 5;
          fhir:CapabilityStatement.name [ fhir:value &quot;created&quot; ];
          fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/explanationofbenefit-created&quot; ];
          fhir:CapabilityStatement.type [ fhir:value &quot;date&quot; ];
          fhir:CapabilityStatement.documentation [ fhir:value &quot;The creation date for the EOB&quot; ]
        ], [
-         fhir:index 5;
+         fhir:index 6;
          fhir:CapabilityStatement.name [ fhir:value &quot;organization&quot; ];
          fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/explanationofbenefit-organization&quot; ];
          fhir:CapabilityStatement.type [ fhir:value &quot;reference&quot; ];
          fhir:CapabilityStatement.documentation [ fhir:value &quot;The reference to the providing organization&quot; ]
        ], [
-         fhir:index 6;
+         fhir:index 7;
          fhir:CapabilityStatement.name [ fhir:value &quot;claim&quot; ];
          fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/explanationofbenefit-claim&quot; ];
          fhir:CapabilityStatement.type [ fhir:value &quot;reference&quot; ];
          fhir:CapabilityStatement.documentation [ fhir:value &quot;The reference to the claim&quot; ]
        ], [
-         fhir:index 7;
+         fhir:index 8;
          fhir:CapabilityStatement.name [ fhir:value &quot;facility&quot; ];
          fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/explanationofbenefit-facility&quot; ];
          fhir:CapabilityStatement.type [ fhir:value &quot;reference&quot; ];
@@ -6914,41 +7009,44 @@
          fhir:value &quot;Media.patient&quot;;
          fhir:index 34
        ], [
-         fhir:value &quot;Observation.subject&quot;;
+         fhir:value &quot;MedicationStatement.subject&quot;;
          fhir:index 35
        ], [
-         fhir:value &quot;Observation.patient&quot;;
+         fhir:value &quot;Observation.subject&quot;;
          fhir:index 36
        ], [
-         fhir:value &quot;Procedure.subject&quot;;
+         fhir:value &quot;Observation.patient&quot;;
          fhir:index 37
        ], [
-         fhir:value &quot;Procedure.patient&quot;;
+         fhir:value &quot;Procedure.subject&quot;;
          fhir:index 38
        ], [
-         fhir:value &quot;ProcedureRequest.subject&quot;;
+         fhir:value &quot;Procedure.patient&quot;;
          fhir:index 39
        ], [
-         fhir:value &quot;ProcedureRequest.patient&quot;;
+         fhir:value &quot;ProcedureRequest.subject&quot;;
          fhir:index 40
        ], [
-         fhir:value &quot;RequestGroup.patient&quot;;
+         fhir:value &quot;ProcedureRequest.patient&quot;;
          fhir:index 41
        ], [
-         fhir:value &quot;RequestGroup.subject&quot;;
+         fhir:value &quot;RequestGroup.patient&quot;;
          fhir:index 42
        ], [
-         fhir:value &quot;RiskAssessment.subject&quot;;
+         fhir:value &quot;RequestGroup.subject&quot;;
          fhir:index 43
        ], [
-         fhir:value &quot;RiskAssessment.patient&quot;;
+         fhir:value &quot;RiskAssessment.subject&quot;;
          fhir:index 44
        ], [
-         fhir:value &quot;Specimen.subject&quot;;
+         fhir:value &quot;RiskAssessment.patient&quot;;
          fhir:index 45
        ], [
-         fhir:value &quot;Specimen.patient&quot;;
+         fhir:value &quot;Specimen.subject&quot;;
          fhir:index 46
+       ], [
+         fhir:value &quot;Specimen.patient&quot;;
+         fhir:index 47
        ];
        fhir:CapabilityStatement.searchParam [
          fhir:index 0;
@@ -7124,11 +7222,14 @@
          fhir:index 1
        ];
        fhir:CapabilityStatement.searchInclude [
-         fhir:value &quot;HealthcareService.organization&quot;;
+         fhir:value &quot;HealthcareService.endpoint&quot;;
          fhir:index 0
        ], [
-         fhir:value &quot;HealthcareService.location&quot;;
+         fhir:value &quot;HealthcareService.organization&quot;;
          fhir:index 1
+       ], [
+         fhir:value &quot;HealthcareService.location&quot;;
+         fhir:index 2
        ];
        fhir:CapabilityStatement.searchRevInclude [
          fhir:value &quot;Account.subject&quot;;
@@ -7184,36 +7285,42 @@
          fhir:CapabilityStatement.documentation [ fhir:value &quot;The type of service provided by this healthcare service&quot; ]
        ], [
          fhir:index 3;
+         fhir:CapabilityStatement.name [ fhir:value &quot;endpoint&quot; ];
+         fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/healthcareservice-endpoint&quot; ];
+         fhir:CapabilityStatement.type [ fhir:value &quot;reference&quot; ];
+         fhir:CapabilityStatement.documentation [ fhir:value &quot;Technical endpoints providing access to services operated for the location&quot; ]
+       ], [
+         fhir:index 4;
          fhir:CapabilityStatement.name [ fhir:value &quot;organization&quot; ];
          fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/healthcareservice-organization&quot; ];
          fhir:CapabilityStatement.type [ fhir:value &quot;reference&quot; ];
          fhir:CapabilityStatement.documentation [ fhir:value &quot;The organization that provides this Healthcare Service&quot; ]
        ], [
-         fhir:index 4;
+         fhir:index 5;
          fhir:CapabilityStatement.name [ fhir:value &quot;name&quot; ];
          fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/healthcareservice-name&quot; ];
          fhir:CapabilityStatement.type [ fhir:value &quot;string&quot; ];
          fhir:CapabilityStatement.documentation [ fhir:value &quot;A portion of the Healthcare service name&quot; ]
        ], [
-         fhir:index 5;
+         fhir:index 6;
          fhir:CapabilityStatement.name [ fhir:value &quot;programname&quot; ];
          fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/healthcareservice-programname&quot; ];
          fhir:CapabilityStatement.type [ fhir:value &quot;string&quot; ];
          fhir:CapabilityStatement.documentation [ fhir:value &quot;One of the Program Names serviced by this HealthcareService&quot; ]
        ], [
-         fhir:index 6;
+         fhir:index 7;
          fhir:CapabilityStatement.name [ fhir:value &quot;active&quot; ];
          fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/healthcareservice-active&quot; ];
          fhir:CapabilityStatement.type [ fhir:value &quot;token&quot; ];
          fhir:CapabilityStatement.documentation [ fhir:value &quot;The Healthcare Service is currently marked as active&quot; ]
        ], [
-         fhir:index 7;
+         fhir:index 8;
          fhir:CapabilityStatement.name [ fhir:value &quot;location&quot; ];
          fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/healthcareservice-location&quot; ];
          fhir:CapabilityStatement.type [ fhir:value &quot;reference&quot; ];
          fhir:CapabilityStatement.documentation [ fhir:value &quot;The location of the Healthcare Service&quot; ]
        ], [
-         fhir:index 8;
+         fhir:index 9;
          fhir:CapabilityStatement.name [ fhir:value &quot;characteristic&quot; ];
          fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/healthcareservice-characteristic&quot; ];
          fhir:CapabilityStatement.type [ fhir:value &quot;token&quot; ];
@@ -8248,8 +8355,11 @@
          fhir:value &quot;Location.partof&quot;;
          fhir:index 0
        ], [
-         fhir:value &quot;Location.organization&quot;;
+         fhir:value &quot;Location.endpoint&quot;;
          fhir:index 1
+       ], [
+         fhir:value &quot;Location.organization&quot;;
+         fhir:index 2
        ];
        fhir:CapabilityStatement.searchRevInclude [
          fhir:value &quot;Account.subject&quot;;
@@ -8419,36 +8529,42 @@
          fhir:CapabilityStatement.documentation [ fhir:value &quot;A country specified in an address&quot; ]
        ], [
          fhir:index 8;
+         fhir:CapabilityStatement.name [ fhir:value &quot;endpoint&quot; ];
+         fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/location-endpoint&quot; ];
+         fhir:CapabilityStatement.type [ fhir:value &quot;reference&quot; ];
+         fhir:CapabilityStatement.documentation [ fhir:value &quot;Technical endpoints providing access to services operated for the location&quot; ]
+       ], [
+         fhir:index 9;
          fhir:CapabilityStatement.name [ fhir:value &quot;organization&quot; ];
          fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/location-organization&quot; ];
          fhir:CapabilityStatement.type [ fhir:value &quot;reference&quot; ];
          fhir:CapabilityStatement.documentation [ fhir:value &quot;Searches for locations that are managed by the provided organization&quot; ]
        ], [
-         fhir:index 9;
+         fhir:index 10;
          fhir:CapabilityStatement.name [ fhir:value &quot;name&quot; ];
          fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/location-name&quot; ];
          fhir:CapabilityStatement.type [ fhir:value &quot;string&quot; ];
          fhir:CapabilityStatement.documentation [ fhir:value &quot;A (portion of the) name of the location or alias&quot; ]
        ], [
-         fhir:index 10;
+         fhir:index 11;
          fhir:CapabilityStatement.name [ fhir:value &quot;address-use&quot; ];
          fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/location-address-use&quot; ];
          fhir:CapabilityStatement.type [ fhir:value &quot;token&quot; ];
          fhir:CapabilityStatement.documentation [ fhir:value &quot;A use code specified in an address&quot; ]
        ], [
-         fhir:index 11;
+         fhir:index 12;
          fhir:CapabilityStatement.name [ fhir:value &quot;near&quot; ];
          fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/location-near&quot; ];
          fhir:CapabilityStatement.type [ fhir:value &quot;token&quot; ];
          fhir:CapabilityStatement.documentation [ fhir:value &quot;The coordinates expressed as [latitude]:[longitude] (using the WGS84 datum, see notes) to find locations near to (servers may search using a square rather than a circle for efficiency). \n\nRequires the near-distance parameter to be provided also&quot; ]
        ], [
-         fhir:index 12;
+         fhir:index 13;
          fhir:CapabilityStatement.name [ fhir:value &quot;address-city&quot; ];
          fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/location-address-city&quot; ];
          fhir:CapabilityStatement.type [ fhir:value &quot;string&quot; ];
          fhir:CapabilityStatement.documentation [ fhir:value &quot;A city specified in an address&quot; ]
        ], [
-         fhir:index 13;
+         fhir:index 14;
          fhir:CapabilityStatement.name [ fhir:value &quot;status&quot; ];
          fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/location-status&quot; ];
          fhir:CapabilityStatement.type [ fhir:value &quot;token&quot; ];
@@ -9231,7 +9347,7 @@
          fhir:index 1
        ];
        fhir:CapabilityStatement.searchInclude [
-         fhir:value &quot;MedicationRequest.prescriber&quot;;
+         fhir:value &quot;MedicationRequest.requester&quot;;
          fhir:index 0
        ], [
          fhir:value &quot;MedicationRequest.intended-dispenser&quot;;
@@ -9261,8 +9377,8 @@
        ];
        fhir:CapabilityStatement.searchParam [
          fhir:index 0;
-         fhir:CapabilityStatement.name [ fhir:value &quot;prescriber&quot; ];
-         fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/medicationrequest-prescriber&quot; ];
+         fhir:CapabilityStatement.name [ fhir:value &quot;requester&quot; ];
+         fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/medicationrequest-requester&quot; ];
          fhir:CapabilityStatement.type [ fhir:value &quot;reference&quot; ];
          fhir:CapabilityStatement.documentation [ fhir:value &quot;Returns prescriptions prescribed by this prescriber&quot; ]
        ], [
@@ -9370,7 +9486,7 @@
          fhir:index 1
        ];
        fhir:CapabilityStatement.searchInclude [
-         fhir:value &quot;MedicationStatement.patient&quot;;
+         fhir:value &quot;MedicationStatement.subject&quot;;
          fhir:index 0
        ], [
          fhir:value &quot;MedicationStatement.medication&quot;;
@@ -9399,10 +9515,10 @@
          fhir:CapabilityStatement.documentation [ fhir:value &quot;Return statements of this medication code&quot; ]
        ], [
          fhir:index 3;
-         fhir:CapabilityStatement.name [ fhir:value &quot;patient&quot; ];
-         fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/medicationstatement-patient&quot; ];
+         fhir:CapabilityStatement.name [ fhir:value &quot;subject&quot; ];
+         fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/medicationstatement-subject&quot; ];
          fhir:CapabilityStatement.type [ fhir:value &quot;reference&quot; ];
-         fhir:CapabilityStatement.documentation [ fhir:value &quot;The identity of a patient to list statements  for&quot; ]
+         fhir:CapabilityStatement.documentation [ fhir:value &quot;The identity of a patient, animal or group to list statements for&quot; ]
        ], [
          fhir:index 4;
          fhir:CapabilityStatement.name [ fhir:value &quot;medication&quot; ];
@@ -9913,9 +10029,6 @@
        fhir:CapabilityStatement.searchRevInclude [
          fhir:value &quot;CarePlan.activityreference&quot;;
          fhir:index 0
-       ], [
-         fhir:value &quot;ClinicalImpression.action&quot;;
-         fhir:index 1
        ];
        fhir:CapabilityStatement.searchParam [
          fhir:index 0;
@@ -10091,108 +10204,126 @@
          fhir:CapabilityStatement.documentation [ fhir:value &quot;The code of the observation type or component type&quot; ]
        ], [
          fhir:index 3;
-         fhir:CapabilityStatement.name [ fhir:value &quot;code-value-[x]&quot; ];
-         fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/observation-code-value&quot; ];
-         fhir:CapabilityStatement.type [ fhir:value &quot;composite&quot; ];
-         fhir:CapabilityStatement.documentation [ fhir:value &quot;Code and value parameter pair&quot; ]
-       ], [
-         fhir:index 4;
          fhir:CapabilityStatement.name [ fhir:value &quot;performer&quot; ];
          fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/observation-performer&quot; ];
          fhir:CapabilityStatement.type [ fhir:value &quot;reference&quot; ];
          fhir:CapabilityStatement.documentation [ fhir:value &quot;Who performed the observation&quot; ]
        ], [
-         fhir:index 5;
+         fhir:index 4;
          fhir:CapabilityStatement.name [ fhir:value &quot;method&quot; ];
          fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/observation-method&quot; ];
          fhir:CapabilityStatement.type [ fhir:value &quot;token&quot; ];
          fhir:CapabilityStatement.documentation [ fhir:value &quot;The method used for the observation&quot; ]
        ], [
-         fhir:index 6;
+         fhir:index 5;
          fhir:CapabilityStatement.name [ fhir:value &quot;value-quantity&quot; ];
          fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/observation-value-quantity&quot; ];
          fhir:CapabilityStatement.type [ fhir:value &quot;quantity&quot; ];
          fhir:CapabilityStatement.documentation [ fhir:value &quot;The value or component value of the observation, if the value is a Quantity, or a SampledData (just search on the bounds of the values in sampled data)&quot; ]
        ], [
-         fhir:index 7;
+         fhir:index 6;
          fhir:CapabilityStatement.name [ fhir:value &quot;subject&quot; ];
          fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/observation-subject&quot; ];
          fhir:CapabilityStatement.type [ fhir:value &quot;reference&quot; ];
          fhir:CapabilityStatement.documentation [ fhir:value &quot;The subject that the observation is about&quot; ]
        ], [
-         fhir:index 8;
+         fhir:index 7;
          fhir:CapabilityStatement.name [ fhir:value &quot;value-concept&quot; ];
          fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/observation-value-concept&quot; ];
          fhir:CapabilityStatement.type [ fhir:value &quot;token&quot; ];
          fhir:CapabilityStatement.documentation [ fhir:value &quot;The value or component value of the observation, if the value is a CodeableConcept&quot; ]
        ], [
-         fhir:index 9;
+         fhir:index 8;
          fhir:CapabilityStatement.name [ fhir:value &quot;value-date&quot; ];
          fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/observation-value-date&quot; ];
          fhir:CapabilityStatement.type [ fhir:value &quot;date&quot; ];
          fhir:CapabilityStatement.documentation [ fhir:value &quot;The value of the observation, if the value is a date or period of time&quot; ]
        ], [
-         fhir:index 10;
+         fhir:index 9;
          fhir:CapabilityStatement.name [ fhir:value &quot;data-absent-reason&quot; ];
          fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/observation-data-absent-reason&quot; ];
          fhir:CapabilityStatement.type [ fhir:value &quot;token&quot; ];
          fhir:CapabilityStatement.documentation [ fhir:value &quot;The reason why the expected value in the element Observation.value[x] is missing.&quot; ]
        ], [
-         fhir:index 11;
+         fhir:index 10;
          fhir:CapabilityStatement.name [ fhir:value &quot;encounter&quot; ];
          fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/observation-encounter&quot; ];
          fhir:CapabilityStatement.type [ fhir:value &quot;reference&quot; ];
          fhir:CapabilityStatement.documentation [ fhir:value &quot;Healthcare event related to the observation&quot; ]
        ], [
-         fhir:index 12;
+         fhir:index 11;
          fhir:CapabilityStatement.name [ fhir:value &quot;related-type&quot; ];
          fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/observation-related-type&quot; ];
          fhir:CapabilityStatement.type [ fhir:value &quot;token&quot; ];
          fhir:CapabilityStatement.documentation [ fhir:value &quot;has-member | derived-from | sequel-to | replaces | qualified-by | interfered-by&quot; ]
        ], [
-         fhir:index 13;
+         fhir:index 12;
          fhir:CapabilityStatement.name [ fhir:value &quot;related-target&quot; ];
          fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/observation-related-target&quot; ];
          fhir:CapabilityStatement.type [ fhir:value &quot;reference&quot; ];
          fhir:CapabilityStatement.documentation [ fhir:value &quot;Resource that is related to this one&quot; ]
        ], [
+         fhir:index 13;
+         fhir:CapabilityStatement.name [ fhir:value &quot;code-value-concept&quot; ];
+         fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/observation-code-value-concept&quot; ];
+         fhir:CapabilityStatement.type [ fhir:value &quot;composite&quot; ];
+         fhir:CapabilityStatement.documentation [ fhir:value &quot;Code and coded value parameter pair, including in components&quot; ]
+       ], [
          fhir:index 14;
+         fhir:CapabilityStatement.name [ fhir:value &quot;code-value-string&quot; ];
+         fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/observation-code-value-string&quot; ];
+         fhir:CapabilityStatement.type [ fhir:value &quot;composite&quot; ];
+         fhir:CapabilityStatement.documentation [ fhir:value &quot;Code and string value parameter pair, including in components&quot; ]
+       ], [
+         fhir:index 15;
          fhir:CapabilityStatement.name [ fhir:value &quot;related&quot; ];
          fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/observation-related&quot; ];
          fhir:CapabilityStatement.type [ fhir:value &quot;composite&quot; ];
          fhir:CapabilityStatement.documentation [ fhir:value &quot;Related Observations - search on related-type and related-target together&quot; ]
        ], [
-         fhir:index 15;
+         fhir:index 16;
+         fhir:CapabilityStatement.name [ fhir:value &quot;code-value-date&quot; ];
+         fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/observation-code-value-date&quot; ];
+         fhir:CapabilityStatement.type [ fhir:value &quot;composite&quot; ];
+         fhir:CapabilityStatement.documentation [ fhir:value &quot;Code and date/time value parameter pair, including in components&quot; ]
+       ], [
+         fhir:index 17;
          fhir:CapabilityStatement.name [ fhir:value &quot;patient&quot; ];
          fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/observation-patient&quot; ];
          fhir:CapabilityStatement.type [ fhir:value &quot;reference&quot; ];
          fhir:CapabilityStatement.documentation [ fhir:value &quot;The subject that the observation is about (if patient)&quot; ]
        ], [
-         fhir:index 16;
+         fhir:index 18;
          fhir:CapabilityStatement.name [ fhir:value &quot;specimen&quot; ];
          fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/observation-specimen&quot; ];
          fhir:CapabilityStatement.type [ fhir:value &quot;reference&quot; ];
          fhir:CapabilityStatement.documentation [ fhir:value &quot;Specimen used for this observation&quot; ]
        ], [
-         fhir:index 17;
+         fhir:index 19;
+         fhir:CapabilityStatement.name [ fhir:value &quot;code-value-quantity&quot; ];
+         fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/observation-code-value-quantity&quot; ];
+         fhir:CapabilityStatement.type [ fhir:value &quot;composite&quot; ];
+         fhir:CapabilityStatement.documentation [ fhir:value &quot;Code and quantity value parameter pair, including in components&quot; ]
+       ], [
+         fhir:index 20;
          fhir:CapabilityStatement.name [ fhir:value &quot;category&quot; ];
          fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/observation-category&quot; ];
          fhir:CapabilityStatement.type [ fhir:value &quot;token&quot; ];
          fhir:CapabilityStatement.documentation [ fhir:value &quot;The classification of the type of observation&quot; ]
        ], [
-         fhir:index 18;
+         fhir:index 21;
          fhir:CapabilityStatement.name [ fhir:value &quot;value-string&quot; ];
          fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/observation-value-string&quot; ];
          fhir:CapabilityStatement.type [ fhir:value &quot;string&quot; ];
          fhir:CapabilityStatement.documentation [ fhir:value &quot;The value or component value of the observation, if the value is a string, and also searches in CodeableConcept.text&quot; ]
        ], [
-         fhir:index 19;
+         fhir:index 22;
          fhir:CapabilityStatement.name [ fhir:value &quot;device&quot; ];
          fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/observation-device&quot; ];
          fhir:CapabilityStatement.type [ fhir:value &quot;reference&quot; ];
          fhir:CapabilityStatement.documentation [ fhir:value &quot;The Device that generated the observation data.&quot; ]
        ], [
-         fhir:index 20;
+         fhir:index 23;
          fhir:CapabilityStatement.name [ fhir:value &quot;status&quot; ];
          fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/observation-status&quot; ];
          fhir:CapabilityStatement.type [ fhir:value &quot;token&quot; ];
@@ -10450,6 +10581,9 @@
        fhir:CapabilityStatement.searchInclude [
          fhir:value &quot;Organization.partof&quot;;
          fhir:index 0
+       ], [
+         fhir:value &quot;Organization.endpoint&quot;;
+         fhir:index 1
        ];
        fhir:CapabilityStatement.searchRevInclude [
          fhir:value &quot;Account.owner&quot;;
@@ -10479,7 +10613,7 @@
          fhir:value &quot;Claim.organization&quot;;
          fhir:index 8
        ], [
-         fhir:value &quot;ClaimResponse.organization&quot;;
+         fhir:value &quot;ClaimResponse.insurer&quot;;
          fhir:index 9
        ], [
          fhir:value &quot;Communication.sender&quot;;
@@ -10518,10 +10652,10 @@
          fhir:value &quot;Contract.signer&quot;;
          fhir:index 21
        ], [
-         fhir:value &quot;Coverage.issuer&quot;;
+         fhir:value &quot;Coverage.policyholder&quot;;
          fhir:index 22
        ], [
-         fhir:value &quot;Coverage.planholder&quot;;
+         fhir:value &quot;Coverage.payor&quot;;
          fhir:index 23
        ], [
          fhir:value &quot;Device.organization&quot;;
@@ -10560,131 +10694,146 @@
          fhir:value &quot;EligibilityRequest.organization&quot;;
          fhir:index 35
        ], [
-         fhir:value &quot;EligibilityResponse.organization&quot;;
+         fhir:value &quot;EligibilityResponse.insurer&quot;;
          fhir:index 36
        ], [
          fhir:value &quot;EligibilityResponse.request-organization&quot;;
          fhir:index 37
        ], [
-         fhir:value &quot;Endpoint.organization&quot;;
+         fhir:value &quot;Encounter.service-provider&quot;;
          fhir:index 38
        ], [
-         fhir:value &quot;EpisodeOfCare.organization&quot;;
+         fhir:value &quot;Endpoint.organization&quot;;
          fhir:index 39
        ], [
-         fhir:value &quot;ExplanationOfBenefit.organization&quot;;
+         fhir:value &quot;EnrollmentRequest.organization&quot;;
          fhir:index 40
        ], [
-         fhir:value &quot;Flag.subject&quot;;
+         fhir:value &quot;EnrollmentResponse.organization&quot;;
          fhir:index 41
        ], [
-         fhir:value &quot;Flag.patient&quot;;
+         fhir:value &quot;EpisodeOfCare.organization&quot;;
          fhir:index 42
        ], [
-         fhir:value &quot;Flag.author&quot;;
+         fhir:value &quot;ExplanationOfBenefit.organization&quot;;
          fhir:index 43
        ], [
-         fhir:value &quot;Goal.patient&quot;;
+         fhir:value &quot;Flag.subject&quot;;
          fhir:index 44
        ], [
-         fhir:value &quot;Goal.subject&quot;;
+         fhir:value &quot;Flag.patient&quot;;
          fhir:index 45
        ], [
-         fhir:value &quot;HealthcareService.organization&quot;;
+         fhir:value &quot;Flag.author&quot;;
          fhir:index 46
        ], [
-         fhir:value &quot;ImagingManifest.author&quot;;
+         fhir:value &quot;Goal.patient&quot;;
          fhir:index 47
        ], [
-         fhir:value &quot;Immunization.manufacturer&quot;;
+         fhir:value &quot;Goal.subject&quot;;
          fhir:index 48
        ], [
-         fhir:value &quot;Linkage.author&quot;;
+         fhir:value &quot;HealthcareService.organization&quot;;
          fhir:index 49
        ], [
-         fhir:value &quot;Location.organization&quot;;
+         fhir:value &quot;ImagingManifest.author&quot;;
          fhir:index 50
        ], [
-         fhir:value &quot;Medication.manufacturer&quot;;
+         fhir:value &quot;Immunization.manufacturer&quot;;
          fhir:index 51
        ], [
-         fhir:value &quot;MedicationRequest.intended-dispenser&quot;;
+         fhir:value &quot;Linkage.author&quot;;
          fhir:index 52
        ], [
-         fhir:value &quot;MedicationStatement.source&quot;;
+         fhir:value &quot;Location.organization&quot;;
          fhir:index 53
        ], [
-         fhir:value &quot;MessageHeader.receiver&quot;;
+         fhir:value &quot;Medication.manufacturer&quot;;
          fhir:index 54
        ], [
-         fhir:value &quot;MessageHeader.responsible&quot;;
+         fhir:value &quot;MedicationRequest.requester&quot;;
          fhir:index 55
        ], [
-         fhir:value &quot;Observation.performer&quot;;
+         fhir:value &quot;MedicationRequest.intended-dispenser&quot;;
          fhir:index 56
        ], [
-         fhir:value &quot;Organization.partof&quot;;
+         fhir:value &quot;MedicationStatement.source&quot;;
          fhir:index 57
        ], [
-         fhir:value &quot;Patient.general-practitioner&quot;;
+         fhir:value &quot;MessageHeader.receiver&quot;;
          fhir:index 58
        ], [
-         fhir:value &quot;Patient.organization&quot;;
+         fhir:value &quot;MessageHeader.responsible&quot;;
          fhir:index 59
        ], [
-         fhir:value &quot;PaymentNotice.organization&quot;;
+         fhir:value &quot;Observation.performer&quot;;
          fhir:index 60
        ], [
-         fhir:value &quot;PaymentReconciliation.organization&quot;;
+         fhir:value &quot;Organization.partof&quot;;
          fhir:index 61
        ], [
-         fhir:value &quot;PaymentReconciliation.request-organization&quot;;
+         fhir:value &quot;Patient.general-practitioner&quot;;
          fhir:index 62
        ], [
-         fhir:value &quot;Person.organization&quot;;
+         fhir:value &quot;Patient.organization&quot;;
          fhir:index 63
        ], [
-         fhir:value &quot;Practitioner.organization&quot;;
+         fhir:value &quot;PaymentNotice.organization&quot;;
          fhir:index 64
        ], [
-         fhir:value &quot;PractitionerRole.organization&quot;;
+         fhir:value &quot;PaymentReconciliation.organization&quot;;
          fhir:index 65
        ], [
-         fhir:value &quot;Procedure.performer&quot;;
+         fhir:value &quot;PaymentReconciliation.request-organization&quot;;
          fhir:index 66
        ], [
-         fhir:value &quot;ProcedureRequest.performer&quot;;
+         fhir:value &quot;Person.organization&quot;;
          fhir:index 67
        ], [
-         fhir:value &quot;ProcessRequest.organization&quot;;
+         fhir:value &quot;Practitioner.organization&quot;;
          fhir:index 68
        ], [
-         fhir:value &quot;ProcessResponse.organization&quot;;
+         fhir:value &quot;PractitionerRole.organization&quot;;
          fhir:index 69
        ], [
-         fhir:value &quot;ProcessResponse.request-organization&quot;;
+         fhir:value &quot;Procedure.performer&quot;;
          fhir:index 70
        ], [
-         fhir:value &quot;ReferralRequest.requester&quot;;
+         fhir:value &quot;ProcedureRequest.performer&quot;;
          fhir:index 71
        ], [
-         fhir:value &quot;ReferralRequest.recipient&quot;;
+         fhir:value &quot;ProcessRequest.organization&quot;;
          fhir:index 72
        ], [
-         fhir:value &quot;ResearchStudy.sponsor&quot;;
+         fhir:value &quot;ProcessResponse.organization&quot;;
          fhir:index 73
        ], [
-         fhir:value &quot;SupplyRequest.supplier&quot;;
+         fhir:value &quot;ProcessResponse.request-organization&quot;;
          fhir:index 74
        ], [
-         fhir:value &quot;SupplyRequest.source&quot;;
+         fhir:value &quot;ReferralRequest.requester&quot;;
          fhir:index 75
        ], [
-         fhir:value &quot;Task.owner&quot;;
+         fhir:value &quot;ReferralRequest.recipient&quot;;
          fhir:index 76
        ], [
-         fhir:value &quot;Task.requester&quot;;
+         fhir:value &quot;ResearchStudy.sponsor&quot;;
          fhir:index 77
+       ], [
+         fhir:value &quot;SupplyRequest.supplier&quot;;
+         fhir:index 78
+       ], [
+         fhir:value &quot;SupplyRequest.source&quot;;
+         fhir:index 79
+       ], [
+         fhir:value &quot;Task.owner&quot;;
+         fhir:index 80
+       ], [
+         fhir:value &quot;Task.requester&quot;;
+         fhir:index 81
+       ], [
+         fhir:value &quot;Task.organization&quot;;
+         fhir:index 82
        ];
        fhir:CapabilityStatement.searchParam [
          fhir:index 0;
@@ -10700,64 +10849,70 @@
          fhir:CapabilityStatement.documentation [ fhir:value &quot;Search all organizations that are part of the given organization&quot; ]
        ], [
          fhir:index 2;
-         fhir:CapabilityStatement.name [ fhir:value &quot;phonetic&quot; ];
-         fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/organization-phonetic&quot; ];
-         fhir:CapabilityStatement.type [ fhir:value &quot;string&quot; ];
-         fhir:CapabilityStatement.documentation [ fhir:value &quot;A portion of the organization's name using some kind of phonetic matching algorithm&quot; ]
-       ], [
-         fhir:index 3;
          fhir:CapabilityStatement.name [ fhir:value &quot;address&quot; ];
          fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/organization-address&quot; ];
          fhir:CapabilityStatement.type [ fhir:value &quot;string&quot; ];
          fhir:CapabilityStatement.documentation [ fhir:value &quot;A (part of the) address of the Organization&quot; ]
        ], [
-         fhir:index 4;
+         fhir:index 3;
          fhir:CapabilityStatement.name [ fhir:value &quot;address-state&quot; ];
          fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/organization-address-state&quot; ];
          fhir:CapabilityStatement.type [ fhir:value &quot;string&quot; ];
          fhir:CapabilityStatement.documentation [ fhir:value &quot;A state specified in an address&quot; ]
        ], [
-         fhir:index 5;
-         fhir:CapabilityStatement.name [ fhir:value &quot;name&quot; ];
-         fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/organization-name&quot; ];
-         fhir:CapabilityStatement.type [ fhir:value &quot;string&quot; ];
-         fhir:CapabilityStatement.documentation [ fhir:value &quot;A portion of the organization's name, or alias&quot; ]
-       ], [
-         fhir:index 6;
-         fhir:CapabilityStatement.name [ fhir:value &quot;address-use&quot; ];
-         fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/organization-address-use&quot; ];
-         fhir:CapabilityStatement.type [ fhir:value &quot;token&quot; ];
-         fhir:CapabilityStatement.documentation [ fhir:value &quot;A use code specified in an address&quot; ]
-       ], [
-         fhir:index 7;
+         fhir:index 4;
          fhir:CapabilityStatement.name [ fhir:value &quot;active&quot; ];
          fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/organization-active&quot; ];
          fhir:CapabilityStatement.type [ fhir:value &quot;token&quot; ];
          fhir:CapabilityStatement.documentation [ fhir:value &quot;A server defined search that may match any of the string fields in the Address, including line, city, state, country, postalCode, and/or text&quot; ]
        ], [
-         fhir:index 8;
+         fhir:index 5;
          fhir:CapabilityStatement.name [ fhir:value &quot;type&quot; ];
          fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/organization-type&quot; ];
          fhir:CapabilityStatement.type [ fhir:value &quot;token&quot; ];
          fhir:CapabilityStatement.documentation [ fhir:value &quot;A code for the type of organization&quot; ]
        ], [
-         fhir:index 9;
-         fhir:CapabilityStatement.name [ fhir:value &quot;address-city&quot; ];
-         fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/organization-address-city&quot; ];
-         fhir:CapabilityStatement.type [ fhir:value &quot;string&quot; ];
-         fhir:CapabilityStatement.documentation [ fhir:value &quot;A city specified in an address&quot; ]
-       ], [
-         fhir:index 10;
+         fhir:index 6;
          fhir:CapabilityStatement.name [ fhir:value &quot;address-postalcode&quot; ];
          fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/organization-address-postalcode&quot; ];
          fhir:CapabilityStatement.type [ fhir:value &quot;string&quot; ];
          fhir:CapabilityStatement.documentation [ fhir:value &quot;A postal code specified in an address&quot; ]
        ], [
-         fhir:index 11;
+         fhir:index 7;
          fhir:CapabilityStatement.name [ fhir:value &quot;address-country&quot; ];
          fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/organization-address-country&quot; ];
          fhir:CapabilityStatement.type [ fhir:value &quot;string&quot; ];
          fhir:CapabilityStatement.documentation [ fhir:value &quot;A country specified in an address&quot; ]
+       ], [
+         fhir:index 8;
+         fhir:CapabilityStatement.name [ fhir:value &quot;endpoint&quot; ];
+         fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/organization-endpoint&quot; ];
+         fhir:CapabilityStatement.type [ fhir:value &quot;reference&quot; ];
+         fhir:CapabilityStatement.documentation [ fhir:value &quot;Technical endpoints providing access to services operated for the organization&quot; ]
+       ], [
+         fhir:index 9;
+         fhir:CapabilityStatement.name [ fhir:value &quot;phonetic&quot; ];
+         fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/organization-phonetic&quot; ];
+         fhir:CapabilityStatement.type [ fhir:value &quot;string&quot; ];
+         fhir:CapabilityStatement.documentation [ fhir:value &quot;A portion of the organization's name using some kind of phonetic matching algorithm&quot; ]
+       ], [
+         fhir:index 10;
+         fhir:CapabilityStatement.name [ fhir:value &quot;name&quot; ];
+         fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/organization-name&quot; ];
+         fhir:CapabilityStatement.type [ fhir:value &quot;string&quot; ];
+         fhir:CapabilityStatement.documentation [ fhir:value &quot;A portion of the organization's name, or alias&quot; ]
+       ], [
+         fhir:index 11;
+         fhir:CapabilityStatement.name [ fhir:value &quot;address-use&quot; ];
+         fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/organization-address-use&quot; ];
+         fhir:CapabilityStatement.type [ fhir:value &quot;token&quot; ];
+         fhir:CapabilityStatement.documentation [ fhir:value &quot;A use code specified in an address&quot; ]
+       ], [
+         fhir:index 12;
+         fhir:CapabilityStatement.name [ fhir:value &quot;address-city&quot; ];
+         fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/organization-address-city&quot; ];
+         fhir:CapabilityStatement.type [ fhir:value &quot;string&quot; ];
+         fhir:CapabilityStatement.documentation [ fhir:value &quot;A city specified in an address&quot; ]
        ]
      ], [
        fhir:index 77;
@@ -10957,284 +11112,290 @@
          fhir:value &quot;Contract.signer&quot;;
          fhir:index 45
        ], [
-         fhir:value &quot;Coverage.issuer&quot;;
+         fhir:value &quot;Coverage.policyholder&quot;;
          fhir:index 46
        ], [
-         fhir:value &quot;Coverage.planholder&quot;;
+         fhir:value &quot;Coverage.subscriber&quot;;
          fhir:index 47
        ], [
-         fhir:value &quot;Coverage.beneficiary&quot;;
+         fhir:value &quot;Coverage.payor&quot;;
          fhir:index 48
        ], [
-         fhir:value &quot;DetectedIssue.patient&quot;;
+         fhir:value &quot;Coverage.beneficiary&quot;;
          fhir:index 49
        ], [
-         fhir:value &quot;Device.patient&quot;;
+         fhir:value &quot;DetectedIssue.patient&quot;;
          fhir:index 50
        ], [
-         fhir:value &quot;DeviceUseRequest.subject&quot;;
+         fhir:value &quot;Device.patient&quot;;
          fhir:index 51
        ], [
-         fhir:value &quot;DeviceUseRequest.patient&quot;;
+         fhir:value &quot;DeviceUseRequest.subject&quot;;
          fhir:index 52
        ], [
-         fhir:value &quot;DeviceUseRequest.filler&quot;;
+         fhir:value &quot;DeviceUseRequest.patient&quot;;
          fhir:index 53
        ], [
-         fhir:value &quot;DeviceUseStatement.subject&quot;;
+         fhir:value &quot;DeviceUseRequest.filler&quot;;
          fhir:index 54
        ], [
-         fhir:value &quot;DeviceUseStatement.patient&quot;;
+         fhir:value &quot;DeviceUseStatement.subject&quot;;
          fhir:index 55
        ], [
-         fhir:value &quot;DiagnosticReport.subject&quot;;
+         fhir:value &quot;DeviceUseStatement.patient&quot;;
          fhir:index 56
        ], [
-         fhir:value &quot;DiagnosticReport.patient&quot;;
+         fhir:value &quot;DiagnosticReport.subject&quot;;
          fhir:index 57
        ], [
-         fhir:value &quot;DiagnosticRequest.subject&quot;;
+         fhir:value &quot;DiagnosticReport.patient&quot;;
          fhir:index 58
        ], [
-         fhir:value &quot;DiagnosticRequest.patient&quot;;
+         fhir:value &quot;DiagnosticRequest.subject&quot;;
          fhir:index 59
        ], [
-         fhir:value &quot;DiagnosticRequest.filler&quot;;
+         fhir:value &quot;DiagnosticRequest.patient&quot;;
          fhir:index 60
        ], [
-         fhir:value &quot;DocumentManifest.subject&quot;;
+         fhir:value &quot;DiagnosticRequest.filler&quot;;
          fhir:index 61
        ], [
-         fhir:value &quot;DocumentManifest.author&quot;;
+         fhir:value &quot;DocumentManifest.subject&quot;;
          fhir:index 62
        ], [
-         fhir:value &quot;DocumentManifest.patient&quot;;
+         fhir:value &quot;DocumentManifest.author&quot;;
          fhir:index 63
        ], [
-         fhir:value &quot;DocumentManifest.recipient&quot;;
+         fhir:value &quot;DocumentManifest.patient&quot;;
          fhir:index 64
        ], [
-         fhir:value &quot;DocumentReference.subject&quot;;
+         fhir:value &quot;DocumentManifest.recipient&quot;;
          fhir:index 65
        ], [
-         fhir:value &quot;DocumentReference.patient&quot;;
+         fhir:value &quot;DocumentReference.subject&quot;;
          fhir:index 66
        ], [
-         fhir:value &quot;DocumentReference.author&quot;;
+         fhir:value &quot;DocumentReference.patient&quot;;
          fhir:index 67
        ], [
-         fhir:value &quot;EligibilityRequest.patient&quot;;
+         fhir:value &quot;DocumentReference.author&quot;;
          fhir:index 68
        ], [
-         fhir:value &quot;Encounter.patient&quot;;
+         fhir:value &quot;EligibilityRequest.patient&quot;;
          fhir:index 69
        ], [
-         fhir:value &quot;EnrollmentRequest.patient-reference&quot;;
+         fhir:value &quot;Encounter.patient&quot;;
          fhir:index 70
        ], [
-         fhir:value &quot;EnrollmentRequest.subject-reference&quot;;
+         fhir:value &quot;EnrollmentRequest.subject&quot;;
          fhir:index 71
        ], [
-         fhir:value &quot;EpisodeOfCare.patient&quot;;
+         fhir:value &quot;EnrollmentRequest.patient&quot;;
          fhir:index 72
        ], [
-         fhir:value &quot;ExplanationOfBenefit.patient&quot;;
+         fhir:value &quot;EpisodeOfCare.patient&quot;;
          fhir:index 73
        ], [
-         fhir:value &quot;FamilyMemberHistory.patient&quot;;
+         fhir:value &quot;ExplanationOfBenefit.patient&quot;;
          fhir:index 74
        ], [
-         fhir:value &quot;Flag.subject&quot;;
+         fhir:value &quot;FamilyMemberHistory.patient&quot;;
          fhir:index 75
        ], [
-         fhir:value &quot;Flag.patient&quot;;
+         fhir:value &quot;Flag.subject&quot;;
          fhir:index 76
        ], [
-         fhir:value &quot;Flag.author&quot;;
+         fhir:value &quot;Flag.patient&quot;;
          fhir:index 77
        ], [
-         fhir:value &quot;Goal.patient&quot;;
+         fhir:value &quot;Flag.author&quot;;
          fhir:index 78
        ], [
-         fhir:value &quot;Goal.subject&quot;;
+         fhir:value &quot;Goal.patient&quot;;
          fhir:index 79
        ], [
-         fhir:value &quot;Group.member&quot;;
+         fhir:value &quot;Goal.subject&quot;;
          fhir:index 80
        ], [
-         fhir:value &quot;GuidanceResponse.patient&quot;;
+         fhir:value &quot;Group.member&quot;;
          fhir:index 81
        ], [
-         fhir:value &quot;GuidanceResponse.subject&quot;;
+         fhir:value &quot;GuidanceResponse.patient&quot;;
          fhir:index 82
        ], [
-         fhir:value &quot;ImagingManifest.author&quot;;
+         fhir:value &quot;GuidanceResponse.subject&quot;;
          fhir:index 83
        ], [
-         fhir:value &quot;ImagingManifest.patient&quot;;
+         fhir:value &quot;ImagingManifest.author&quot;;
          fhir:index 84
        ], [
-         fhir:value &quot;ImagingStudy.patient&quot;;
+         fhir:value &quot;ImagingManifest.patient&quot;;
          fhir:index 85
        ], [
-         fhir:value &quot;Immunization.patient&quot;;
+         fhir:value &quot;ImagingStudy.patient&quot;;
          fhir:index 86
        ], [
-         fhir:value &quot;ImmunizationRecommendation.patient&quot;;
+         fhir:value &quot;Immunization.patient&quot;;
          fhir:index 87
        ], [
-         fhir:value &quot;List.subject&quot;;
+         fhir:value &quot;ImmunizationRecommendation.patient&quot;;
          fhir:index 88
        ], [
-         fhir:value &quot;List.patient&quot;;
+         fhir:value &quot;List.subject&quot;;
          fhir:index 89
        ], [
-         fhir:value &quot;List.source&quot;;
+         fhir:value &quot;List.patient&quot;;
          fhir:index 90
        ], [
-         fhir:value &quot;MeasureReport.patient&quot;;
+         fhir:value &quot;List.source&quot;;
          fhir:index 91
        ], [
-         fhir:value &quot;Media.subject&quot;;
+         fhir:value &quot;MeasureReport.patient&quot;;
          fhir:index 92
        ], [
-         fhir:value &quot;Media.patient&quot;;
+         fhir:value &quot;Media.subject&quot;;
          fhir:index 93
        ], [
-         fhir:value &quot;MedicationAdministration.performer&quot;;
+         fhir:value &quot;Media.patient&quot;;
          fhir:index 94
        ], [
-         fhir:value &quot;MedicationAdministration.patient&quot;;
+         fhir:value &quot;MedicationAdministration.performer&quot;;
          fhir:index 95
        ], [
-         fhir:value &quot;MedicationDispense.receiver&quot;;
+         fhir:value &quot;MedicationAdministration.patient&quot;;
          fhir:index 96
        ], [
-         fhir:value &quot;MedicationDispense.patient&quot;;
+         fhir:value &quot;MedicationDispense.receiver&quot;;
          fhir:index 97
        ], [
-         fhir:value &quot;MedicationRequest.patient&quot;;
+         fhir:value &quot;MedicationDispense.patient&quot;;
          fhir:index 98
        ], [
-         fhir:value &quot;MedicationStatement.patient&quot;;
+         fhir:value &quot;MedicationRequest.requester&quot;;
          fhir:index 99
        ], [
-         fhir:value &quot;MedicationStatement.source&quot;;
+         fhir:value &quot;MedicationRequest.patient&quot;;
          fhir:index 100
        ], [
-         fhir:value &quot;NutritionRequest.patient&quot;;
+         fhir:value &quot;MedicationStatement.subject&quot;;
          fhir:index 101
        ], [
-         fhir:value &quot;Observation.performer&quot;;
+         fhir:value &quot;MedicationStatement.source&quot;;
          fhir:index 102
        ], [
-         fhir:value &quot;Observation.subject&quot;;
+         fhir:value &quot;NutritionRequest.patient&quot;;
          fhir:index 103
        ], [
-         fhir:value &quot;Observation.patient&quot;;
+         fhir:value &quot;Observation.performer&quot;;
          fhir:index 104
        ], [
-         fhir:value &quot;Patient.link&quot;;
+         fhir:value &quot;Observation.subject&quot;;
          fhir:index 105
        ], [
-         fhir:value &quot;Person.practitioner&quot;;
+         fhir:value &quot;Observation.patient&quot;;
          fhir:index 106
        ], [
-         fhir:value &quot;Person.link&quot;;
+         fhir:value &quot;Patient.link&quot;;
          fhir:index 107
        ], [
-         fhir:value &quot;Person.relatedperson&quot;;
+         fhir:value &quot;Person.practitioner&quot;;
          fhir:index 108
        ], [
-         fhir:value &quot;Person.patient&quot;;
+         fhir:value &quot;Person.link&quot;;
          fhir:index 109
        ], [
-         fhir:value &quot;Procedure.performer&quot;;
+         fhir:value &quot;Person.relatedperson&quot;;
          fhir:index 110
        ], [
-         fhir:value &quot;Procedure.subject&quot;;
+         fhir:value &quot;Person.patient&quot;;
          fhir:index 111
        ], [
-         fhir:value &quot;Procedure.patient&quot;;
+         fhir:value &quot;Procedure.performer&quot;;
          fhir:index 112
        ], [
-         fhir:value &quot;ProcedureRequest.performer&quot;;
+         fhir:value &quot;Procedure.subject&quot;;
          fhir:index 113
        ], [
-         fhir:value &quot;ProcedureRequest.subject&quot;;
+         fhir:value &quot;Procedure.patient&quot;;
          fhir:index 114
        ], [
-         fhir:value &quot;ProcedureRequest.patient&quot;;
+         fhir:value &quot;ProcedureRequest.performer&quot;;
          fhir:index 115
        ], [
-         fhir:value &quot;ProcedureRequest.orderer&quot;;
+         fhir:value &quot;ProcedureRequest.subject&quot;;
          fhir:index 116
        ], [
-         fhir:value &quot;QuestionnaireResponse.author&quot;;
+         fhir:value &quot;ProcedureRequest.patient&quot;;
          fhir:index 117
        ], [
-         fhir:value &quot;QuestionnaireResponse.source&quot;;
+         fhir:value &quot;ProcedureRequest.orderer&quot;;
          fhir:index 118
        ], [
-         fhir:value &quot;ReferralRequest.requester&quot;;
+         fhir:value &quot;QuestionnaireResponse.author&quot;;
          fhir:index 119
        ], [
-         fhir:value &quot;ReferralRequest.patient&quot;;
+         fhir:value &quot;QuestionnaireResponse.source&quot;;
          fhir:index 120
        ], [
-         fhir:value &quot;RelatedPerson.patient&quot;;
+         fhir:value &quot;ReferralRequest.requester&quot;;
          fhir:index 121
        ], [
-         fhir:value &quot;RequestGroup.patient&quot;;
+         fhir:value &quot;ReferralRequest.patient&quot;;
          fhir:index 122
        ], [
-         fhir:value &quot;RequestGroup.subject&quot;;
+         fhir:value &quot;RelatedPerson.patient&quot;;
          fhir:index 123
        ], [
-         fhir:value &quot;RequestGroup.participant&quot;;
+         fhir:value &quot;RequestGroup.patient&quot;;
          fhir:index 124
        ], [
-         fhir:value &quot;ResearchSubject.individual&quot;;
+         fhir:value &quot;RequestGroup.subject&quot;;
          fhir:index 125
        ], [
-         fhir:value &quot;ResearchSubject.patient&quot;;
+         fhir:value &quot;RequestGroup.participant&quot;;
          fhir:index 126
        ], [
-         fhir:value &quot;RiskAssessment.subject&quot;;
+         fhir:value &quot;ResearchSubject.individual&quot;;
          fhir:index 127
        ], [
-         fhir:value &quot;RiskAssessment.patient&quot;;
+         fhir:value &quot;ResearchSubject.patient&quot;;
          fhir:index 128
        ], [
-         fhir:value &quot;Schedule.actor&quot;;
+         fhir:value &quot;RiskAssessment.subject&quot;;
          fhir:index 129
        ], [
-         fhir:value &quot;Sequence.patient&quot;;
+         fhir:value &quot;RiskAssessment.patient&quot;;
          fhir:index 130
        ], [
-         fhir:value &quot;Specimen.subject&quot;;
+         fhir:value &quot;Schedule.actor&quot;;
          fhir:index 131
        ], [
-         fhir:value &quot;Specimen.patient&quot;;
+         fhir:value &quot;Sequence.patient&quot;;
          fhir:index 132
        ], [
-         fhir:value &quot;SupplyDelivery.patient&quot;;
+         fhir:value &quot;Specimen.subject&quot;;
          fhir:index 133
        ], [
-         fhir:value &quot;SupplyRequest.patient&quot;;
+         fhir:value &quot;Specimen.patient&quot;;
          fhir:index 134
        ], [
-         fhir:value &quot;SupplyRequest.source&quot;;
+         fhir:value &quot;SupplyDelivery.patient&quot;;
          fhir:index 135
        ], [
-         fhir:value &quot;Task.owner&quot;;
+         fhir:value &quot;SupplyRequest.patient&quot;;
          fhir:index 136
        ], [
-         fhir:value &quot;Task.requester&quot;;
+         fhir:value &quot;SupplyRequest.source&quot;;
          fhir:index 137
        ], [
-         fhir:value &quot;VisionPrescription.patient&quot;;
+         fhir:value &quot;Task.owner&quot;;
          fhir:index 138
+       ], [
+         fhir:value &quot;Task.requester&quot;;
+         fhir:index 139
+       ], [
+         fhir:value &quot;VisionPrescription.patient&quot;;
+         fhir:index 140
        ];
        fhir:CapabilityStatement.searchParam [
          fhir:index 0;
@@ -11987,11 +12148,14 @@
          fhir:index 1
        ];
        fhir:CapabilityStatement.searchInclude [
-         fhir:value &quot;Practitioner.organization&quot;;
+         fhir:value &quot;Practitioner.endpoint&quot;;
          fhir:index 0
        ], [
-         fhir:value &quot;Practitioner.location&quot;;
+         fhir:value &quot;Practitioner.organization&quot;;
          fhir:index 1
+       ], [
+         fhir:value &quot;Practitioner.location&quot;;
+         fhir:index 2
        ];
        fhir:CapabilityStatement.searchRevInclude [
          fhir:value &quot;Account.subject&quot;;
@@ -12198,7 +12362,7 @@
          fhir:value &quot;MedicationDispense.dispenser&quot;;
          fhir:index 67
        ], [
-         fhir:value &quot;MedicationRequest.prescriber&quot;;
+         fhir:value &quot;MedicationRequest.requester&quot;;
          fhir:index 68
        ], [
          fhir:value &quot;MedicationStatement.source&quot;;
@@ -12279,7 +12443,7 @@
          fhir:value &quot;RequestGroup.participant&quot;;
          fhir:index 94
        ], [
-         fhir:value &quot;ResearchStudy.principleinvestigator&quot;;
+         fhir:value &quot;ResearchStudy.principalinvestigator&quot;;
          fhir:index 95
        ], [
          fhir:value &quot;RiskAssessment.performer&quot;;
@@ -12371,66 +12535,72 @@
          fhir:CapabilityStatement.documentation [ fhir:value &quot;A country specified in an address&quot; ]
        ], [
          fhir:index 10;
+         fhir:CapabilityStatement.name [ fhir:value &quot;endpoint&quot; ];
+         fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/practitioner-endpoint&quot; ];
+         fhir:CapabilityStatement.type [ fhir:value &quot;reference&quot; ];
+         fhir:CapabilityStatement.documentation [ fhir:value &quot;The endpoint of the practitioner for a role at an organization&quot; ]
+       ], [
+         fhir:index 11;
          fhir:CapabilityStatement.name [ fhir:value &quot;phonetic&quot; ];
          fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/practitioner-phonetic&quot; ];
          fhir:CapabilityStatement.type [ fhir:value &quot;string&quot; ];
          fhir:CapabilityStatement.documentation [ fhir:value &quot;A portion of either family or given name using some kind of phonetic matching algorithm&quot; ]
        ], [
-         fhir:index 11;
+         fhir:index 12;
          fhir:CapabilityStatement.name [ fhir:value &quot;phone&quot; ];
          fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/practitioner-phone&quot; ];
          fhir:CapabilityStatement.type [ fhir:value &quot;token&quot; ];
          fhir:CapabilityStatement.documentation [ fhir:value &quot;A value in a phone contact&quot; ]
        ], [
-         fhir:index 12;
+         fhir:index 13;
          fhir:CapabilityStatement.name [ fhir:value &quot;organization&quot; ];
          fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/practitioner-organization&quot; ];
          fhir:CapabilityStatement.type [ fhir:value &quot;reference&quot; ];
          fhir:CapabilityStatement.documentation [ fhir:value &quot;The identity of the organization the practitioner represents / acts on behalf of&quot; ]
        ], [
-         fhir:index 13;
+         fhir:index 14;
          fhir:CapabilityStatement.name [ fhir:value &quot;name&quot; ];
          fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/practitioner-name&quot; ];
          fhir:CapabilityStatement.type [ fhir:value &quot;string&quot; ];
          fhir:CapabilityStatement.documentation [ fhir:value &quot;A server defined search that may match any of the string fields in the HumanName, including family, give, prefix, suffix, suffix, and/or text&quot; ]
        ], [
-         fhir:index 14;
+         fhir:index 15;
          fhir:CapabilityStatement.name [ fhir:value &quot;address-use&quot; ];
          fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/practitioner-address-use&quot; ];
          fhir:CapabilityStatement.type [ fhir:value &quot;token&quot; ];
          fhir:CapabilityStatement.documentation [ fhir:value &quot;A use code specified in an address&quot; ]
        ], [
-         fhir:index 15;
+         fhir:index 16;
          fhir:CapabilityStatement.name [ fhir:value &quot;telecom&quot; ];
          fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/practitioner-telecom&quot; ];
          fhir:CapabilityStatement.type [ fhir:value &quot;token&quot; ];
          fhir:CapabilityStatement.documentation [ fhir:value &quot;The value in any kind of contact&quot; ]
        ], [
-         fhir:index 16;
+         fhir:index 17;
          fhir:CapabilityStatement.name [ fhir:value &quot;location&quot; ];
          fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/practitioner-location&quot; ];
          fhir:CapabilityStatement.type [ fhir:value &quot;reference&quot; ];
          fhir:CapabilityStatement.documentation [ fhir:value &quot;One of the locations at which this practitioner provides care&quot; ]
        ], [
-         fhir:index 17;
+         fhir:index 18;
          fhir:CapabilityStatement.name [ fhir:value &quot;family&quot; ];
          fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/practitioner-family&quot; ];
          fhir:CapabilityStatement.type [ fhir:value &quot;string&quot; ];
          fhir:CapabilityStatement.documentation [ fhir:value &quot;A portion of the family name&quot; ]
        ], [
-         fhir:index 18;
+         fhir:index 19;
          fhir:CapabilityStatement.name [ fhir:value &quot;address-city&quot; ];
          fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/practitioner-address-city&quot; ];
          fhir:CapabilityStatement.type [ fhir:value &quot;string&quot; ];
          fhir:CapabilityStatement.documentation [ fhir:value &quot;A city specified in an address&quot; ]
        ], [
-         fhir:index 19;
+         fhir:index 20;
          fhir:CapabilityStatement.name [ fhir:value &quot;communication&quot; ];
          fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/practitioner-communication&quot; ];
          fhir:CapabilityStatement.type [ fhir:value &quot;token&quot; ];
          fhir:CapabilityStatement.documentation [ fhir:value &quot;One of the languages that the practitioner can communicate with&quot; ]
        ], [
-         fhir:index 20;
+         fhir:index 21;
          fhir:CapabilityStatement.name [ fhir:value &quot;email&quot; ];
          fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/practitioner-email&quot; ];
          fhir:CapabilityStatement.type [ fhir:value &quot;token&quot; ];
@@ -12486,14 +12656,17 @@
          fhir:index 1
        ];
        fhir:CapabilityStatement.searchInclude [
-         fhir:value &quot;PractitionerRole.practitioner&quot;;
+         fhir:value &quot;PractitionerRole.endpoint&quot;;
          fhir:index 0
        ], [
-         fhir:value &quot;PractitionerRole.organization&quot;;
+         fhir:value &quot;PractitionerRole.practitioner&quot;;
          fhir:index 1
        ], [
-         fhir:value &quot;PractitionerRole.location&quot;;
+         fhir:value &quot;PractitionerRole.organization&quot;;
          fhir:index 2
+       ], [
+         fhir:value &quot;PractitionerRole.location&quot;;
+         fhir:index 3
        ];
        fhir:CapabilityStatement.searchParam [
          fhir:index 0;
@@ -12509,42 +12682,48 @@
          fhir:CapabilityStatement.documentation [ fhir:value &quot;The practitioner has this specialty at an organization&quot; ]
        ], [
          fhir:index 2;
+         fhir:CapabilityStatement.name [ fhir:value &quot;endpoint&quot; ];
+         fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/practitionerrole-endpoint&quot; ];
+         fhir:CapabilityStatement.type [ fhir:value &quot;reference&quot; ];
+         fhir:CapabilityStatement.documentation [ fhir:value &quot;Technical endpoints providing access to services operated for the practitioner with this role&quot; ]
+       ], [
+         fhir:index 3;
          fhir:CapabilityStatement.name [ fhir:value &quot;role&quot; ];
          fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/practitionerrole-role&quot; ];
          fhir:CapabilityStatement.type [ fhir:value &quot;token&quot; ];
          fhir:CapabilityStatement.documentation [ fhir:value &quot;The practitioner can perform this role at for the organization&quot; ]
        ], [
-         fhir:index 3;
+         fhir:index 4;
          fhir:CapabilityStatement.name [ fhir:value &quot;practitioner&quot; ];
          fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/practitionerrole-practitioner&quot; ];
          fhir:CapabilityStatement.type [ fhir:value &quot;reference&quot; ];
          fhir:CapabilityStatement.documentation [ fhir:value &quot;Practitioner that is able to provide the defined services for the organation&quot; ]
        ], [
-         fhir:index 4;
+         fhir:index 5;
          fhir:CapabilityStatement.name [ fhir:value &quot;phone&quot; ];
          fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/practitionerrole-phone&quot; ];
          fhir:CapabilityStatement.type [ fhir:value &quot;token&quot; ];
          fhir:CapabilityStatement.documentation [ fhir:value &quot;A value in a phone contact&quot; ]
        ], [
-         fhir:index 5;
+         fhir:index 6;
          fhir:CapabilityStatement.name [ fhir:value &quot;organization&quot; ];
          fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/practitionerrole-organization&quot; ];
          fhir:CapabilityStatement.type [ fhir:value &quot;reference&quot; ];
          fhir:CapabilityStatement.documentation [ fhir:value &quot;The identity of the organization the practitioner represents / acts on behalf of&quot; ]
        ], [
-         fhir:index 6;
+         fhir:index 7;
          fhir:CapabilityStatement.name [ fhir:value &quot;telecom&quot; ];
          fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/practitionerrole-telecom&quot; ];
          fhir:CapabilityStatement.type [ fhir:value &quot;token&quot; ];
          fhir:CapabilityStatement.documentation [ fhir:value &quot;The value in any kind of contact&quot; ]
        ], [
-         fhir:index 7;
+         fhir:index 8;
          fhir:CapabilityStatement.name [ fhir:value &quot;location&quot; ];
          fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/practitionerrole-location&quot; ];
          fhir:CapabilityStatement.type [ fhir:value &quot;reference&quot; ];
          fhir:CapabilityStatement.documentation [ fhir:value &quot;One of the locations at which this practitioner provides care&quot; ]
        ], [
-         fhir:index 8;
+         fhir:index 9;
          fhir:CapabilityStatement.name [ fhir:value &quot;email&quot; ];
          fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/practitionerrole-email&quot; ];
          fhir:CapabilityStatement.type [ fhir:value &quot;token&quot; ];
@@ -13311,7 +13490,7 @@
          fhir:CapabilityStatement.name [ fhir:value &quot;authored&quot; ];
          fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/questionnaireresponse-authored&quot; ];
          fhir:CapabilityStatement.type [ fhir:value &quot;date&quot; ];
-         fhir:CapabilityStatement.documentation [ fhir:value &quot;When the questionnaire was authored&quot; ]
+         fhir:CapabilityStatement.documentation [ fhir:value &quot;When the questionnaire response was authored&quot; ]
        ], [
          fhir:index 1;
          fhir:CapabilityStatement.name [ fhir:value &quot;identifier&quot; ];
@@ -13341,25 +13520,25 @@
          fhir:CapabilityStatement.name [ fhir:value &quot;subject&quot; ];
          fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/questionnaireresponse-subject&quot; ];
          fhir:CapabilityStatement.type [ fhir:value &quot;reference&quot; ];
-         fhir:CapabilityStatement.documentation [ fhir:value &quot;The subject of the questionnaire&quot; ]
+         fhir:CapabilityStatement.documentation [ fhir:value &quot;The subject of the questionnaire response&quot; ]
        ], [
          fhir:index 6;
          fhir:CapabilityStatement.name [ fhir:value &quot;author&quot; ];
          fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/questionnaireresponse-author&quot; ];
          fhir:CapabilityStatement.type [ fhir:value &quot;reference&quot; ];
-         fhir:CapabilityStatement.documentation [ fhir:value &quot;The author of the questionnaire&quot; ]
+         fhir:CapabilityStatement.documentation [ fhir:value &quot;The author of the questionnaire response&quot; ]
        ], [
          fhir:index 7;
          fhir:CapabilityStatement.name [ fhir:value &quot;patient&quot; ];
          fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/questionnaireresponse-patient&quot; ];
          fhir:CapabilityStatement.type [ fhir:value &quot;reference&quot; ];
-         fhir:CapabilityStatement.documentation [ fhir:value &quot;The patient that is the subject of the questionnaire&quot; ]
+         fhir:CapabilityStatement.documentation [ fhir:value &quot;The patient that is the subject of the questionnaire response&quot; ]
        ], [
          fhir:index 8;
          fhir:CapabilityStatement.name [ fhir:value &quot;context&quot; ];
          fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/questionnaireresponse-context&quot; ];
          fhir:CapabilityStatement.type [ fhir:value &quot;reference&quot; ];
-         fhir:CapabilityStatement.documentation [ fhir:value &quot;Encounter or episode during which questionnaire was authored&quot; ]
+         fhir:CapabilityStatement.documentation [ fhir:value &quot;Encounter or episode during which questionnaire response was authored&quot; ]
        ], [
          fhir:index 9;
          fhir:CapabilityStatement.name [ fhir:value &quot;source&quot; ];
@@ -13668,86 +13847,92 @@
          fhir:value &quot;Contract.signer&quot;;
          fhir:index 25
        ], [
-         fhir:value &quot;Coverage.issuer&quot;;
+         fhir:value &quot;Coverage.policyholder&quot;;
          fhir:index 26
        ], [
-         fhir:value &quot;Coverage.planholder&quot;;
+         fhir:value &quot;Coverage.subscriber&quot;;
          fhir:index 27
        ], [
-         fhir:value &quot;DeviceUseRequest.filler&quot;;
+         fhir:value &quot;Coverage.payor&quot;;
          fhir:index 28
        ], [
-         fhir:value &quot;DiagnosticRequest.filler&quot;;
+         fhir:value &quot;DeviceUseRequest.filler&quot;;
          fhir:index 29
        ], [
-         fhir:value &quot;DocumentManifest.author&quot;;
+         fhir:value &quot;DiagnosticRequest.filler&quot;;
          fhir:index 30
        ], [
-         fhir:value &quot;DocumentManifest.recipient&quot;;
+         fhir:value &quot;DocumentManifest.author&quot;;
          fhir:index 31
        ], [
-         fhir:value &quot;DocumentReference.author&quot;;
+         fhir:value &quot;DocumentManifest.recipient&quot;;
          fhir:index 32
        ], [
-         fhir:value &quot;Encounter.practitioner&quot;;
+         fhir:value &quot;DocumentReference.author&quot;;
          fhir:index 33
        ], [
-         fhir:value &quot;Encounter.participant&quot;;
+         fhir:value &quot;Encounter.practitioner&quot;;
          fhir:index 34
        ], [
-         fhir:value &quot;ImagingManifest.author&quot;;
+         fhir:value &quot;Encounter.participant&quot;;
          fhir:index 35
        ], [
-         fhir:value &quot;MedicationAdministration.performer&quot;;
+         fhir:value &quot;ImagingManifest.author&quot;;
          fhir:index 36
        ], [
-         fhir:value &quot;MedicationStatement.source&quot;;
+         fhir:value &quot;MedicationAdministration.performer&quot;;
          fhir:index 37
        ], [
-         fhir:value &quot;Observation.performer&quot;;
+         fhir:value &quot;MedicationRequest.requester&quot;;
          fhir:index 38
        ], [
-         fhir:value &quot;Patient.link&quot;;
+         fhir:value &quot;MedicationStatement.source&quot;;
          fhir:index 39
        ], [
-         fhir:value &quot;Person.practitioner&quot;;
+         fhir:value &quot;Observation.performer&quot;;
          fhir:index 40
        ], [
-         fhir:value &quot;Person.link&quot;;
+         fhir:value &quot;Patient.link&quot;;
          fhir:index 41
        ], [
-         fhir:value &quot;Person.relatedperson&quot;;
+         fhir:value &quot;Person.practitioner&quot;;
          fhir:index 42
        ], [
-         fhir:value &quot;Person.patient&quot;;
+         fhir:value &quot;Person.link&quot;;
          fhir:index 43
        ], [
-         fhir:value &quot;Procedure.performer&quot;;
+         fhir:value &quot;Person.relatedperson&quot;;
          fhir:index 44
        ], [
-         fhir:value &quot;ProcedureRequest.performer&quot;;
+         fhir:value &quot;Person.patient&quot;;
          fhir:index 45
        ], [
-         fhir:value &quot;ProcedureRequest.orderer&quot;;
+         fhir:value &quot;Procedure.performer&quot;;
          fhir:index 46
        ], [
-         fhir:value &quot;QuestionnaireResponse.author&quot;;
+         fhir:value &quot;ProcedureRequest.performer&quot;;
          fhir:index 47
        ], [
-         fhir:value &quot;QuestionnaireResponse.source&quot;;
+         fhir:value &quot;ProcedureRequest.orderer&quot;;
          fhir:index 48
        ], [
-         fhir:value &quot;RequestGroup.participant&quot;;
+         fhir:value &quot;QuestionnaireResponse.author&quot;;
          fhir:index 49
        ], [
-         fhir:value &quot;Schedule.actor&quot;;
+         fhir:value &quot;QuestionnaireResponse.source&quot;;
          fhir:index 50
        ], [
-         fhir:value &quot;Task.owner&quot;;
+         fhir:value &quot;RequestGroup.participant&quot;;
          fhir:index 51
        ], [
-         fhir:value &quot;Task.requester&quot;;
+         fhir:value &quot;Schedule.actor&quot;;
          fhir:index 52
+       ], [
+         fhir:value &quot;Task.owner&quot;;
+         fhir:index 53
+       ], [
+         fhir:value &quot;Task.requester&quot;;
+         fhir:index 54
        ];
        fhir:CapabilityStatement.searchParam [
          fhir:index 0;
@@ -14007,7 +14192,7 @@
          fhir:value &quot;ResearchStudy.sponsor&quot;;
          fhir:index 1
        ], [
-         fhir:value &quot;ResearchStudy.principleinvestigator&quot;;
+         fhir:value &quot;ResearchStudy.principalinvestigator&quot;;
          fhir:index 2
        ], [
          fhir:value &quot;ResearchStudy.protocol&quot;;
@@ -14058,8 +14243,8 @@
          fhir:CapabilityStatement.documentation [ fhir:value &quot;Drugs, devices, conditions, etc. under study&quot; ]
        ], [
          fhir:index 6;
-         fhir:CapabilityStatement.name [ fhir:value &quot;principleinvestigator&quot; ];
-         fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/researchstudy-principleinvestigator&quot; ];
+         fhir:CapabilityStatement.name [ fhir:value &quot;principalinvestigator&quot; ];
+         fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/researchstudy-principalinvestigator&quot; ];
          fhir:CapabilityStatement.type [ fhir:value &quot;reference&quot; ];
          fhir:CapabilityStatement.documentation [ fhir:value &quot;Individual responsible for the study&quot; ]
        ], [
@@ -14475,54 +14660,60 @@
          fhir:CapabilityStatement.documentation [ fhir:value &quot;Text search against the description of the search parameter&quot; ]
        ], [
          fhir:index 4;
+         fhir:CapabilityStatement.name [ fhir:value &quot;derived-from&quot; ];
+         fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/searchparameter-derived-from&quot; ];
+         fhir:CapabilityStatement.type [ fhir:value &quot;uri&quot; ];
+         fhir:CapabilityStatement.documentation [ fhir:value &quot;Original Definition for the search parameter&quot; ]
+       ], [
+         fhir:index 5;
          fhir:CapabilityStatement.name [ fhir:value &quot;type&quot; ];
          fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/searchparameter-type&quot; ];
          fhir:CapabilityStatement.type [ fhir:value &quot;token&quot; ];
          fhir:CapabilityStatement.documentation [ fhir:value &quot;number | date | string | token | reference | composite | quantity | uri&quot; ]
        ], [
-         fhir:index 5;
+         fhir:index 6;
          fhir:CapabilityStatement.name [ fhir:value &quot;version&quot; ];
          fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/searchparameter-version&quot; ];
          fhir:CapabilityStatement.type [ fhir:value &quot;token&quot; ];
          fhir:CapabilityStatement.documentation [ fhir:value &quot;The version identifier of the search parameter&quot; ]
        ], [
-         fhir:index 6;
+         fhir:index 7;
          fhir:CapabilityStatement.name [ fhir:value &quot;url&quot; ];
          fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/searchparameter-url&quot; ];
          fhir:CapabilityStatement.type [ fhir:value &quot;uri&quot; ];
          fhir:CapabilityStatement.documentation [ fhir:value &quot;The uri that identifies the search parameter&quot; ]
        ], [
-         fhir:index 7;
+         fhir:index 8;
          fhir:CapabilityStatement.name [ fhir:value &quot;target&quot; ];
          fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/searchparameter-target&quot; ];
          fhir:CapabilityStatement.type [ fhir:value &quot;token&quot; ];
          fhir:CapabilityStatement.documentation [ fhir:value &quot;Types of resource (if a resource reference)&quot; ]
        ], [
-         fhir:index 8;
+         fhir:index 9;
          fhir:CapabilityStatement.name [ fhir:value &quot;component&quot; ];
          fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/searchparameter-component&quot; ];
          fhir:CapabilityStatement.type [ fhir:value &quot;reference&quot; ];
-         fhir:CapabilityStatement.documentation [ fhir:value &quot;For Composite resources to define the parts&quot; ]
+         fhir:CapabilityStatement.documentation [ fhir:value &quot;Defines how the part works&quot; ]
        ], [
-         fhir:index 9;
+         fhir:index 10;
          fhir:CapabilityStatement.name [ fhir:value &quot;name&quot; ];
          fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/searchparameter-name&quot; ];
          fhir:CapabilityStatement.type [ fhir:value &quot;string&quot; ];
          fhir:CapabilityStatement.documentation [ fhir:value &quot;Name of the search parameter&quot; ]
        ], [
-         fhir:index 10;
+         fhir:index 11;
          fhir:CapabilityStatement.name [ fhir:value &quot;publisher&quot; ];
          fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/searchparameter-publisher&quot; ];
          fhir:CapabilityStatement.type [ fhir:value &quot;string&quot; ];
          fhir:CapabilityStatement.documentation [ fhir:value &quot;Name of the publisher of the search parameter&quot; ]
        ], [
-         fhir:index 11;
+         fhir:index 12;
          fhir:CapabilityStatement.name [ fhir:value &quot;status&quot; ];
          fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/searchparameter-status&quot; ];
          fhir:CapabilityStatement.type [ fhir:value &quot;token&quot; ];
          fhir:CapabilityStatement.documentation [ fhir:value &quot;The current status of the search parameter&quot; ]
        ], [
-         fhir:index 12;
+         fhir:index 13;
          fhir:CapabilityStatement.name [ fhir:value &quot;base&quot; ];
          fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/searchparameter-base&quot; ];
          fhir:CapabilityStatement.type [ fhir:value &quot;token&quot; ];
@@ -14596,13 +14787,13 @@
          fhir:CapabilityStatement.name [ fhir:value &quot;coordinate&quot; ];
          fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/sequence-coordinate&quot; ];
          fhir:CapabilityStatement.type [ fhir:value &quot;composite&quot; ];
-         fhir:CapabilityStatement.documentation [ fhir:value &quot;Search parameter for region of the reference sequence string. This will refer to part of a locus or part of a gene where search region will be represented in 1-based system. Since the coordinateSystem can either be 0-based or 1-based, this search query will include the result of both coordinateSystem that contains the equivalent segment of the gene or whole genome sequence. For example, a search for sequence can be represented as `coordinate=1$lt345$gt123`, this means it will search for the Sequence resource on chromosome 1 and with position &gt;123 and &lt;345, where in 1-based system resource, all strings within region 1:124-344 will be revealed, while in 0-based system resource, all strings within region 1:123-344 will be revealed. You may want to check detail about 0-based v.s. 1-based above.&quot; ]
+         fhir:CapabilityStatement.documentation [ fhir:value &quot;Search parameter for region of the reference DNA sequence string. This will refer to part of a locus or part of a gene where search region will be represented in 1-based system. Since the coordinateSystem can either be 0-based or 1-based, this search query will include the result of both coordinateSystem that contains the equivalent segment of the gene or whole genome sequence. For example, a search for sequence can be represented as `coordinate=1$lt345$gt123`, this means it will search for the Sequence resource on chromosome 1 and with position &gt;123 and &lt;345, where in 1-based system resource, all strings within region 1:124-344 will be revealed, while in 0-based system resource, all strings within region 1:123-344 will be revealed. You may want to check detail about 0-based v.s. 1-based above.&quot; ]
        ], [
          fhir:index 2;
          fhir:CapabilityStatement.name [ fhir:value &quot;patient&quot; ];
          fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/sequence-patient&quot; ];
          fhir:CapabilityStatement.type [ fhir:value &quot;reference&quot; ];
-         fhir:CapabilityStatement.documentation [ fhir:value &quot;The subject that the observedSeq is originated from&quot; ]
+         fhir:CapabilityStatement.documentation [ fhir:value &quot;The subject that the observation is about&quot; ]
        ], [
          fhir:index 3;
          fhir:CapabilityStatement.name [ fhir:value &quot;chromosome&quot; ];
@@ -14626,7 +14817,7 @@
          fhir:CapabilityStatement.name [ fhir:value &quot;type&quot; ];
          fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/sequence-type&quot; ];
          fhir:CapabilityStatement.type [ fhir:value &quot;token&quot; ];
-         fhir:CapabilityStatement.documentation [ fhir:value &quot;The type of the sequencing result: Amino Acid Sequence / DNA Sequence / RNA Sequence.&quot; ]
+         fhir:CapabilityStatement.documentation [ fhir:value &quot;Amino Acid Sequence/ DNA Sequence / RNA Sequence&quot; ]
        ]
      ], [
        fhir:index 100;
@@ -15740,17 +15931,32 @@
          fhir:value &quot;Task.requester&quot;;
          fhir:index 1
        ], [
-         fhir:value &quot;Task.parent&quot;;
+         fhir:value &quot;Task.subject&quot;;
          fhir:index 2
        ], [
          fhir:value &quot;Task.focus&quot;;
          fhir:index 3
        ], [
-         fhir:value &quot;Task.patient&quot;;
+         fhir:value &quot;Task.part-of&quot;;
          fhir:index 4
+       ], [
+         fhir:value &quot;Task.based-on&quot;;
+         fhir:index 5
+       ], [
+         fhir:value &quot;Task.patient&quot;;
+         fhir:index 6
+       ], [
+         fhir:value &quot;Task.definition-ref&quot;;
+         fhir:index 7
+       ], [
+         fhir:value &quot;Task.organization&quot;;
+         fhir:index 8
+       ], [
+         fhir:value &quot;Task.context&quot;;
+         fhir:index 9
        ];
        fhir:CapabilityStatement.searchRevInclude [
-         fhir:value &quot;Task.parent&quot;;
+         fhir:value &quot;Task.part-of&quot;;
          fhir:index 0
        ];
        fhir:CapabilityStatement.searchParam [
@@ -15773,72 +15979,114 @@
          fhir:CapabilityStatement.documentation [ fhir:value &quot;Search for a task instance by its business identifier&quot; ]
        ], [
          fhir:index 3;
-         fhir:CapabilityStatement.name [ fhir:value &quot;parent&quot; ];
-         fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/task-parent&quot; ];
-         fhir:CapabilityStatement.type [ fhir:value &quot;reference&quot; ];
-         fhir:CapabilityStatement.documentation [ fhir:value &quot;Search by parent task&quot; ]
+         fhir:CapabilityStatement.name [ fhir:value &quot;business-status&quot; ];
+         fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/task-business-status&quot; ];
+         fhir:CapabilityStatement.type [ fhir:value &quot;token&quot; ];
+         fhir:CapabilityStatement.documentation [ fhir:value &quot;Search by business status&quot; ]
        ], [
          fhir:index 4;
+         fhir:CapabilityStatement.name [ fhir:value &quot;period&quot; ];
+         fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/task-period&quot; ];
+         fhir:CapabilityStatement.type [ fhir:value &quot;date&quot; ];
+         fhir:CapabilityStatement.documentation [ fhir:value &quot;Search by period Task is/was underway&quot; ]
+       ], [
+         fhir:index 5;
          fhir:CapabilityStatement.name [ fhir:value &quot;code&quot; ];
          fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/task-code&quot; ];
          fhir:CapabilityStatement.type [ fhir:value &quot;token&quot; ];
          fhir:CapabilityStatement.documentation [ fhir:value &quot;Search by task code&quot; ]
        ], [
-         fhir:index 5;
+         fhir:index 6;
          fhir:CapabilityStatement.name [ fhir:value &quot;performer&quot; ];
          fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/task-performer&quot; ];
          fhir:CapabilityStatement.type [ fhir:value &quot;token&quot; ];
          fhir:CapabilityStatement.documentation [ fhir:value &quot;Search by recommended type of performer (e.g., Requester, Performer, Scheduler).&quot; ]
        ], [
-         fhir:index 6;
-         fhir:CapabilityStatement.name [ fhir:value &quot;created&quot; ];
-         fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/task-created&quot; ];
-         fhir:CapabilityStatement.type [ fhir:value &quot;date&quot; ];
-         fhir:CapabilityStatement.documentation [ fhir:value &quot;Search by creation date&quot; ]
-       ], [
          fhir:index 7;
+         fhir:CapabilityStatement.name [ fhir:value &quot;subject&quot; ];
+         fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/task-subject&quot; ];
+         fhir:CapabilityStatement.type [ fhir:value &quot;reference&quot; ];
+         fhir:CapabilityStatement.documentation [ fhir:value &quot;Search by subject&quot; ]
+       ], [
+         fhir:index 8;
          fhir:CapabilityStatement.name [ fhir:value &quot;focus&quot; ];
          fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/task-focus&quot; ];
          fhir:CapabilityStatement.type [ fhir:value &quot;reference&quot; ];
          fhir:CapabilityStatement.documentation [ fhir:value &quot;Search by task focus&quot; ]
        ], [
-         fhir:index 8;
+         fhir:index 9;
+         fhir:CapabilityStatement.name [ fhir:value &quot;part-of&quot; ];
+         fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/task-part-of&quot; ];
+         fhir:CapabilityStatement.type [ fhir:value &quot;reference&quot; ];
+         fhir:CapabilityStatement.documentation [ fhir:value &quot;Search by task this task is part of&quot; ]
+       ], [
+         fhir:index 10;
          fhir:CapabilityStatement.name [ fhir:value &quot;priority&quot; ];
          fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/task-priority&quot; ];
          fhir:CapabilityStatement.type [ fhir:value &quot;token&quot; ];
          fhir:CapabilityStatement.documentation [ fhir:value &quot;Search by task priority&quot; ]
        ], [
-         fhir:index 9;
-         fhir:CapabilityStatement.name [ fhir:value &quot;stage&quot; ];
-         fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/task-stage&quot; ];
-         fhir:CapabilityStatement.type [ fhir:value &quot;token&quot; ];
-         fhir:CapabilityStatement.documentation [ fhir:value &quot;Search by task stage&quot; ]
-       ], [
-         fhir:index 10;
-         fhir:CapabilityStatement.name [ fhir:value &quot;statusreason&quot; ];
-         fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/task-statusreason&quot; ];
-         fhir:CapabilityStatement.type [ fhir:value &quot;token&quot; ];
-         fhir:CapabilityStatement.documentation [ fhir:value &quot;Search by status reason&quot; ]
-       ], [
          fhir:index 11;
+         fhir:CapabilityStatement.name [ fhir:value &quot;authored-on&quot; ];
+         fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/task-authored-on&quot; ];
+         fhir:CapabilityStatement.type [ fhir:value &quot;date&quot; ];
+         fhir:CapabilityStatement.documentation [ fhir:value &quot;Search by creation date&quot; ]
+       ], [
+         fhir:index 12;
+         fhir:CapabilityStatement.name [ fhir:value &quot;intent&quot; ];
+         fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/task-intent&quot; ];
+         fhir:CapabilityStatement.type [ fhir:value &quot;token&quot; ];
+         fhir:CapabilityStatement.documentation [ fhir:value &quot;Search by task intent&quot; ]
+       ], [
+         fhir:index 13;
+         fhir:CapabilityStatement.name [ fhir:value &quot;group-identifier&quot; ];
+         fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/task-group-identifier&quot; ];
+         fhir:CapabilityStatement.type [ fhir:value &quot;token&quot; ];
+         fhir:CapabilityStatement.documentation [ fhir:value &quot;Search by group identifier&quot; ]
+       ], [
+         fhir:index 14;
+         fhir:CapabilityStatement.name [ fhir:value &quot;based-on&quot; ];
+         fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/task-based-on&quot; ];
+         fhir:CapabilityStatement.type [ fhir:value &quot;reference&quot; ];
+         fhir:CapabilityStatement.documentation [ fhir:value &quot;Search by requests this task is based on&quot; ]
+       ], [
+         fhir:index 15;
          fhir:CapabilityStatement.name [ fhir:value &quot;patient&quot; ];
          fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/task-patient&quot; ];
          fhir:CapabilityStatement.type [ fhir:value &quot;reference&quot; ];
          fhir:CapabilityStatement.documentation [ fhir:value &quot;Search by patient&quot; ]
        ], [
-         fhir:index 12;
+         fhir:index 16;
+         fhir:CapabilityStatement.name [ fhir:value &quot;statusreason&quot; ];
+         fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/task-statusreason&quot; ];
+         fhir:CapabilityStatement.type [ fhir:value &quot;token&quot; ];
+         fhir:CapabilityStatement.documentation [ fhir:value &quot;Search by status reason&quot; ]
+       ], [
+         fhir:index 17;
+         fhir:CapabilityStatement.name [ fhir:value &quot;definition-ref&quot; ];
+         fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/task-definition-ref&quot; ];
+         fhir:CapabilityStatement.type [ fhir:value &quot;reference&quot; ];
+         fhir:CapabilityStatement.documentation [ fhir:value &quot;Search by task definition as a Reference&quot; ]
+       ], [
+         fhir:index 18;
+         fhir:CapabilityStatement.name [ fhir:value &quot;organization&quot; ];
+         fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/task-organization&quot; ];
+         fhir:CapabilityStatement.type [ fhir:value &quot;reference&quot; ];
+         fhir:CapabilityStatement.documentation [ fhir:value &quot;Search by responsible organization&quot; ]
+       ], [
+         fhir:index 19;
+         fhir:CapabilityStatement.name [ fhir:value &quot;context&quot; ];
+         fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/task-context&quot; ];
+         fhir:CapabilityStatement.type [ fhir:value &quot;reference&quot; ];
+         fhir:CapabilityStatement.documentation [ fhir:value &quot;Search by encounter or episode&quot; ]
+       ], [
+         fhir:index 20;
          fhir:CapabilityStatement.name [ fhir:value &quot;modified&quot; ];
          fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/task-modified&quot; ];
          fhir:CapabilityStatement.type [ fhir:value &quot;date&quot; ];
          fhir:CapabilityStatement.documentation [ fhir:value &quot;Search by last modification date&quot; ]
        ], [
-         fhir:index 13;
-         fhir:CapabilityStatement.name [ fhir:value &quot;definition&quot; ];
-         fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/task-definition&quot; ];
-         fhir:CapabilityStatement.type [ fhir:value &quot;uri&quot; ];
-         fhir:CapabilityStatement.documentation [ fhir:value &quot;Search by task definition&quot; ]
-       ], [
-         fhir:index 14;
+         fhir:index 21;
          fhir:CapabilityStatement.name [ fhir:value &quot;status&quot; ];
          fhir:CapabilityStatement.definition [ fhir:value &quot;http://hl7.org/fhir/SearchParameter/task-status&quot; ];
          fhir:CapabilityStatement.type [ fhir:value &quot;token&quot; ];
@@ -16659,7 +16907,7 @@ of the specification.
 		<div class="container"><!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:32-0500. <a href="qa.html">QA Page</a>
+        © HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:21-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search</a> | 

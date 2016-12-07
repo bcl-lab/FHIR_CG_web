@@ -3,7 +3,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>Request.json - FHIR v1.7.0</title>
+  <title>Request.json - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -131,15 +131,15 @@
     {
       &quot;telecom&quot;: [
         {
-          &quot;system&quot;: &quot;other&quot;,
+          &quot;system&quot;: &quot;url&quot;,
           &quot;value&quot;: &quot;http://hl7.org/fhir&quot;
         }
       ]
     }
   ],
-  &quot;date&quot;: &quot;2016-11-28T17:29:55-05:00&quot;,
+  &quot;date&quot;: &quot;2016-12-07T14:18:58-05:00&quot;,
   &quot;description&quot;: &quot;Logical Model: A pattern to be followed by resources that represent a specific proposal, plan and/or order for some sort of action or service.&quot;,
-  &quot;fhirVersion&quot;: &quot;1.7.0&quot;,
+  &quot;fhirVersion&quot;: &quot;1.8.0&quot;,
   &quot;mapping&quot;: [
     {
       &quot;identity&quot;: &quot;rim&quot;,
@@ -301,9 +301,9 @@
       {
         &quot;id&quot;: &quot;Request.status&quot;,
         &quot;path&quot;: &quot;Request.status&quot;,
-        &quot;short&quot;: &quot;draft | active | suspended | cancelled | completed | entered-in-error&quot;,
+        &quot;short&quot;: &quot;draft | active | suspended | cancelled | completed | entered-in-error | unknown&quot;,
         &quot;definition&quot;: &quot;The current state of the request.&quot;,
-        &quot;comments&quot;: &quot;The status is generally fully in the control of the requester - they determine whether the order is draft or active and, after it has been activated, completed, cancelled or suspended. States relating to the activities of the performer are reflected on either the corresponding [[[Event]]](s) or using the [[[Task]]] resource.&quot;,
+        &quot;comments&quot;: &quot;The status is generally fully in the control of the requester - they determine whether the order is draft or active and, after it has been activated, completed, cancelled or suspended. States relating to the activities of the performer are reflected on either the corresponding [Event](event.html)(s) or using the [Task](task.html) resource.\n\nA nominal state-transition diagram can be found in the [[request.html#statemachine | Request pattern]] documentation\n\nUnknown does not represent \&quot;other\&quot; - one of the defined statuses must apply.  Unknown is used when the authoring system is not sure what the current status is.&quot;,
         &quot;min&quot;: 1,
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
@@ -365,6 +365,34 @@
           {
             &quot;identity&quot;: &quot;w5&quot;,
             &quot;map&quot;: &quot;class&quot;
+          }
+        ]
+      },
+      {
+        &quot;id&quot;: &quot;Request.priority&quot;,
+        &quot;path&quot;: &quot;Request.priority&quot;,
+        &quot;short&quot;: &quot;routine | urgent | asap | stat&quot;,
+        &quot;definition&quot;: &quot;Indicates how quickly the {{title}} should be addressed with respect to other requests.&quot;,
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;1&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;code&quot;
+          }
+        ],
+        &quot;meaningWhenMissing&quot;: &quot;If missing, this task should be performed with normal priority&quot;,
+        &quot;isSummary&quot;: true,
+        &quot;binding&quot;: {
+          &quot;strength&quot;: &quot;required&quot;,
+          &quot;description&quot;: &quot;Identifies the level of importance to be assigned to actioning the request&quot;,
+          &quot;valueSetReference&quot;: {
+            &quot;reference&quot;: &quot;http://hl7.org/fhir/ValueSet/request-priority&quot;
+          }
+        },
+        &quot;mapping&quot;: [
+          {
+            &quot;identity&quot;: &quot;w5&quot;,
+            &quot;map&quot;: &quot;grade&quot;
           }
         ]
       },
@@ -502,12 +530,13 @@
         ]
       },
       {
-        &quot;id&quot;: &quot;Request.authored&quot;,
-        &quot;path&quot;: &quot;Request.authored&quot;,
+        &quot;id&quot;: &quot;Request.authoredOn&quot;,
+        &quot;path&quot;: &quot;Request.authoredOn&quot;,
         &quot;short&quot;: &quot;When request transitioned to being actionable&quot;,
         &quot;definition&quot;: &quot;For draft requests, indicates the date of initial creation.  For requests with other statuses, indicates the date of activation.&quot;,
         &quot;alias&quot;: [
-          &quot;created&quot;
+          &quot;createdOn&quot;,
+          &quot;signedOn&quot;
         ],
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
@@ -533,10 +562,40 @@
         &quot;path&quot;: &quot;Request.requester&quot;,
         &quot;short&quot;: &quot;Who/what is requesting service&quot;,
         &quot;definition&quot;: &quot;The individual who initiated the request and has responsibility for its activation.&quot;,
+        &quot;comments&quot;: &quot;[Resources may choose to replace this with just a single requester where there's no need to responsible organization].&quot;,
         &quot;alias&quot;: [
           &quot;author&quot;
         ],
         &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;1&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;Element&quot;
+          }
+        ],
+        &quot;constraint&quot;: [
+          {
+            &quot;key&quot;: &quot;inv-1&quot;,
+            &quot;severity&quot;: &quot;error&quot;,
+            &quot;human&quot;: &quot;onBehalfOf can only be specified if agent is practitioner or device&quot;,
+            &quot;expression&quot;: &quot;(agent is Practitioner) or (agent is Device) or onBehalfOf.exists().not()&quot;,
+            &quot;xpath&quot;: &quot;contains(f:agent, '/Practitioner') or contains(f:agent, '/Device') or not(exists(f:onBehalfOf))&quot;
+          }
+        ],
+        &quot;isSummary&quot;: true,
+        &quot;mapping&quot;: [
+          {
+            &quot;identity&quot;: &quot;rim&quot;,
+            &quot;map&quot;: &quot;.participation[typeCode=AUT].role&quot;
+          }
+        ]
+      },
+      {
+        &quot;id&quot;: &quot;Request.requester.agent&quot;,
+        &quot;path&quot;: &quot;Request.requester.agent&quot;,
+        &quot;short&quot;: &quot;Individual making the request&quot;,
+        &quot;definition&quot;: &quot;The device, practitioner, etc. who initiated the request.&quot;,
+        &quot;min&quot;: 1,
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
@@ -564,7 +623,7 @@
         &quot;mapping&quot;: [
           {
             &quot;identity&quot;: &quot;rim&quot;,
-            &quot;map&quot;: &quot;.participation[typeCode=AUT].role&quot;
+            &quot;map&quot;: &quot;.player&quot;
           },
           {
             &quot;identity&quot;: &quot;w5&quot;,
@@ -573,11 +632,36 @@
         ]
       },
       {
+        &quot;id&quot;: &quot;Request.requester.onBehalfOf&quot;,
+        &quot;path&quot;: &quot;Request.requester.onBehalfOf&quot;,
+        &quot;short&quot;: &quot;Organization agent is acting for&quot;,
+        &quot;definition&quot;: &quot;The organization the device or practitioner was acting on behalf of.&quot;,
+        &quot;requirements&quot;: &quot;Practitioners and Devices can be associated with multiple organizations.  This element indicates which organization they were acting on behalf of when authoring the request.&quot;,
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;1&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;Reference&quot;,
+            &quot;targetProfile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/Organization&quot;
+          }
+        ],
+        &quot;condition&quot;: [
+          &quot;inv-1&quot;
+        ],
+        &quot;isSummary&quot;: true,
+        &quot;mapping&quot;: [
+          {
+            &quot;identity&quot;: &quot;rim&quot;,
+            &quot;map&quot;: &quot;.scoper&quot;
+          }
+        ]
+      },
+      {
         &quot;id&quot;: &quot;Request.performerType&quot;,
         &quot;path&quot;: &quot;Request.performerType&quot;,
         &quot;short&quot;: &quot;Desired kind of service performer&quot;,
         &quot;definition&quot;: &quot;The type of individual that is desired to act upon the request.&quot;,
-        &quot;comments&quot;: &quot;If performer is also specified, this indicates what type of performer is desired in the event the requested performer is not available.&quot;,
+        &quot;comments&quot;: &quot;If performer is also specified, this indicates what type of performer is desired in the event the requested performer is not available.\n\nIf specified without indicating a performer, this indicates that the performer must be of the specified type.  If specified with a performer then it indicates the requirements of the performer if the designated performer is not available.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
@@ -791,7 +875,7 @@ of the specification.
 		<div class="container"><!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:31-0500. <a href="qa.html">QA Page</a>
+        © HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:20-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search</a> | 

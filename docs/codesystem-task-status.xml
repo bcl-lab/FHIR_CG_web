@@ -3,7 +3,7 @@
 <CodeSystem xmlns="http://hl7.org/fhir">
   <id value="task-status"/>
   <meta>
-    <lastUpdated value="2016-11-28T17:29:55.664-05:00"/>
+    <lastUpdated value="2016-12-07T14:18:58.982-05:00"/>
   </meta>
   <text>
     <status value="generated"/>
@@ -38,7 +38,7 @@
             <a name="task-status-requested"> </a>
           </td>
           <td>Requested</td>
-          <td>The task is ready to be acted upon</td>
+          <td>The task is ready to be acted upon and action is sought</td>
         </tr>
         <tr>
           <td>received
@@ -69,6 +69,13 @@
           <td>Task is ready to be performed, but no action has yet been taken.  Used in place of requested/received/accepted/rejected when request assignment and acceptance is a given.</td>
         </tr>
         <tr>
+          <td>cancelled
+            <a name="task-status-cancelled"> </a>
+          </td>
+          <td>Cancelled</td>
+          <td>the task was not completed (more or less) as requested</td>
+        </tr>
+        <tr>
           <td>in-progress
             <a name="task-status-in-progress"> </a>
           </td>
@@ -96,6 +103,13 @@
           <td>Completed</td>
           <td>The task has been completed (more or less) as requested.</td>
         </tr>
+        <tr>
+          <td>entered-in-error
+            <a name="task-status-entered-in-error"> </a>
+          </td>
+          <td>Entered in Error</td>
+          <td>The task should never have existed and is retained only because of the possibility it may have used</td>
+        </tr>
       </table>
     </div>
   </text>
@@ -104,14 +118,14 @@
     <system value="urn:ietf:rfc:3986"/>
     <value value="urn:oid:2.16.840.1.113883.4.642.1.562"/>
   </identifier>
-  <version value="1.7.0"/>
+  <version value="1.8.0"/>
   <name value="TaskStatus"/>
   <status value="draft"/>
   <experimental value="false"/>
   <publisher value="HL7 (FHIR Project)"/>
   <contact>
     <telecom>
-      <system value="other"/>
+      <system value="url"/>
       <value value="http://hl7.org/fhir"/>
     </telecom>
     <telecom>
@@ -119,7 +133,7 @@
       <value value="fhir@lists.hl7.org"/>
     </telecom>
   </contact>
-  <date value="2016-11-28T17:29:55-05:00"/>
+  <date value="2016-12-07T14:18:58-05:00"/>
   <description value="The current status of the task."/>
   <caseSensitive value="true"/>
   <valueSet value="http://hl7.org/fhir/ValueSet/task-status"/>
@@ -132,7 +146,7 @@
   <concept>
     <code value="requested"/>
     <display value="Requested"/>
-    <definition value="The task is ready to be acted upon"/>
+    <definition value="The task is ready to be acted upon and action is sought"/>
   </concept>
   <concept>
     <code value="received"/>
@@ -155,6 +169,11 @@
     <definition value="Task is ready to be performed, but no action has yet been taken.  Used in place of requested/received/accepted/rejected when request assignment and acceptance is a given."/>
   </concept>
   <concept>
+    <code value="cancelled"/>
+    <display value="Cancelled"/>
+    <definition value="the task was not completed (more or less) as requested"/>
+  </concept>
+  <concept>
     <code value="in-progress"/>
     <display value="In Progress"/>
     <definition value="Task has been started but is not yet complete."/>
@@ -173,5 +192,10 @@
     <code value="completed"/>
     <display value="Completed"/>
     <definition value="The task has been completed (more or less) as requested."/>
+  </concept>
+  <concept>
+    <code value="entered-in-error"/>
+    <display value="Entered in Error"/>
+    <definition value="The task should never have existed and is retained only because of the possibility it may have used"/>
   </concept>
 </CodeSystem>

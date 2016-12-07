@@ -21,20 +21,25 @@ start=@<Task> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:extension @<Extension>*;           # Additional Content defined by 
                                             # implementations 
     fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    fhir:Task.identifier @<Identifier>?;    # Task Instance Identifier
+    fhir:Task.identifier @<Identifier>*;    # Task Instance Identifier
+    (                                       # Formal definition of task
+        fhir:Task.definitionUri @<uri>  |
+        fhir:Task.definitionReference @<Reference> 
+    )?;
     fhir:Task.basedOn @<Reference>*;        # Request fulfilled by this task
-    fhir:Task.requisition @<Identifier>?;   # Requisition or grouper id
-    fhir:Task.parent @<Reference>*;         # Composite task
+    fhir:Task.groupIdentifier @<Identifier>?;  # Requisition or grouper id
+    fhir:Task.partOf @<Reference>*;         # Composite task
     fhir:Task.status @<code> AND
     	{fhir:value @fhirvs:task-status};  # draft | requested | received | 
                                             # accepted | + 
     fhir:Task.statusReason @<CodeableConcept>?;  # Reason for current status
     fhir:Task.businessStatus @<CodeableConcept>?;  # E.g. "Specimen collected", "IV 
                                             # prepped" 
-    fhir:Task.stage @<CodeableConcept>;     # proposed | planned | actionable +
-    fhir:Task.code @<CodeableConcept>?;     # Task Type
+    fhir:Task.intent @<code> AND
+    	{fhir:value @fhirvs:request-intent};  # proposed | planned | actionable +
     fhir:Task.priority @<code> AND
-    	{fhir:value @fhirvs:task-priority}?;  # low | normal | high
+    	{fhir:value @fhirvs:request-priority}?;  # normal | urgent | asap | stat
+    fhir:Task.code @<CodeableConcept>?;     # Task Type
     fhir:Task.description @<string>?;       # Human-readable explanation of task
     fhir:Task.focus @<Reference>?;          # What task is acting on
     fhir:Task.for @<Reference>?;            # Beneficiary of the Task
@@ -43,15 +48,13 @@ start=@<Task> AND {fhir:nodeRole [fhir:treeRoot]}
     (   @<EncounterReference> OR
         @<EpisodeOfCareReference>
     )?;
-    fhir:Task.created @<dateTime>;          # Task Creation Date
-    fhir:Task.lastModified @<dateTime>;     # Task Last Modified Date
-    fhir:Task.requester                     # Task Creator
-    (   @<DeviceReference> OR
-        @<OrganizationReference> OR
-        @<PatientReference> OR
-        @<PractitionerReference> OR
-        @<RelatedPersonReference>
-    );
+    fhir:Task.executionPeriod @<Period>?;   # Start and end time of execution
+    fhir:Task.authoredOn @<dateTime>?;      # Task Creation Date
+    fhir:Task.lastModified @<dateTime>?;    # Task Last Modified Date
+    fhir:Task.requester @<Task.requester>?;  # Who is asking for task to be done
+    fhir:Task.performerType @<CodeableConcept>*;  # requester | dispatcher | scheduler 
+                                            # | performer | monitor | manager | 
+                                            # acquirer | reviewer 
     fhir:Task.owner                         # Task Owner
     (   @<DeviceReference> OR
         @<OrganizationReference> OR
@@ -59,78 +62,44 @@ start=@<Task> AND {fhir:nodeRole [fhir:treeRoot]}
         @<PractitionerReference> OR
         @<RelatedPersonReference>
     )?;
-    fhir:Task.performerType @<CodeableConcept>*;  # requester | dispatcher | scheduler 
-                                            # | performer | monitor | manager | 
-                                            # acquirer | reviewer 
     fhir:Task.reason @<CodeableConcept>?;   # Why task is needed
     fhir:Task.note @<Annotation>*;          # Comments made about the task
-    fhir:Task.fulfillment @<Task.fulfillment>?;  # Constraints on fulfillment tasks
-    fhir:Task.definition @<uri>?;           # Task Definition
-    fhir:Task.input @<Task.input>*;         # Supporting information
-    fhir:Task.output @<Task.output>*;       # Task Output
+    fhir:Task.relevantHistory @<Reference>*;  # Key events in history of the Task
+    fhir:Task.restriction @<Task.restriction>?;  # Constraints on fulfillment tasks
+    fhir:Task.input @<Task.input>*;         # Information used to perform task
+    fhir:Task.output @<Task.output>*;       # Information produced as part of 
+                                            # task 
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
-# Supporting information
-<Task.input> CLOSED {
+# Who is asking for task to be done
+<Task.requester> CLOSED {
     fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
     fhir:extension @<Extension>*;           # Additional Content defined by 
                                             # implementations 
     fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    fhir:Task.input.type @<CodeableConcept>;  # Label for the input
-    (                                       # Input Value
-        fhir:Task.input.valueBase64Binary @<base64Binary>  |
-        fhir:Task.input.valueBoolean @<boolean>  |
-        fhir:Task.input.valueCode @<code>  |
-        fhir:Task.input.valueDate @<date>  |
-        fhir:Task.input.valueDateTime @<dateTime>  |
-        fhir:Task.input.valueDecimal @<decimal>  |
-        fhir:Task.input.valueId @<id>  |
-        fhir:Task.input.valueInstant @<instant>  |
-        fhir:Task.input.valueInteger @<integer>  |
-        fhir:Task.input.valueMarkdown @<markdown>  |
-        fhir:Task.input.valueOid @<oid>  |
-        fhir:Task.input.valuePositiveInt @<positiveInt>  |
-        fhir:Task.input.valueString @<string>  |
-        fhir:Task.input.valueTime @<time>  |
-        fhir:Task.input.valueUnsignedInt @<unsignedInt>  |
-        fhir:Task.input.valueUri @<uri>  |
-        fhir:Task.input.valueAddress @<Address>  |
-        fhir:Task.input.valueAge @<Age>  |
-        fhir:Task.input.valueAnnotation @<Annotation>  |
-        fhir:Task.input.valueAttachment @<Attachment>  |
-        fhir:Task.input.valueCodeableConcept @<CodeableConcept>  |
-        fhir:Task.input.valueCoding @<Coding>  |
-        fhir:Task.input.valueContactPoint @<ContactPoint>  |
-        fhir:Task.input.valueCount @<Count>  |
-        fhir:Task.input.valueDistance @<Distance>  |
-        fhir:Task.input.valueDuration @<Duration>  |
-        fhir:Task.input.valueHumanName @<HumanName>  |
-        fhir:Task.input.valueIdentifier @<Identifier>  |
-        fhir:Task.input.valueMoney @<Money>  |
-        fhir:Task.input.valuePeriod @<Period>  |
-        fhir:Task.input.valueQuantity @<Quantity>  |
-        fhir:Task.input.valueRange @<Range>  |
-        fhir:Task.input.valueRatio @<Ratio>  |
-        fhir:Task.input.valueReference @<Reference>  |
-        fhir:Task.input.valueSampledData @<SampledData>  |
-        fhir:Task.input.valueSignature @<Signature>  |
-        fhir:Task.input.valueTiming @<Timing>  |
-        fhir:Task.input.valueMeta @<Meta> 
+    fhir:Task.requester.agent               # Individual asking for task
+    (   @<DeviceReference> OR
+        @<OrganizationReference> OR
+        @<PatientReference> OR
+        @<PractitionerReference> OR
+        @<RelatedPersonReference>
     );
+    fhir:Task.requester.onBehalfOf @<Reference>?;  # Organization individual is acting 
+                                            # for 
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
 # Constraints on fulfillment tasks
-<Task.fulfillment> CLOSED {
+<Task.restriction> CLOSED {
     fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
     fhir:extension @<Extension>*;           # Additional Content defined by 
                                             # implementations 
     fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    fhir:Task.fulfillment.repetitions @<positiveInt>?;  # How many times to repeat
-    fhir:Task.fulfillment.period @<Period>?;  # Over what time-period is 
+    fhir:Task.restriction.repetitions @<positiveInt>?;  # How many times to repeat
+    fhir:Task.restriction.period @<Period>?;  # Over what time-period is 
                                             # fulfillment sought 
-    fhir:Task.fulfillment.recipients        # For whom is fulfillment sought?
+    fhir:Task.restriction.recipient         # For whom is fulfillment sought?
     (   @<PatientReference> OR
         @<PractitionerReference> OR
         @<RelatedPersonReference> OR
@@ -140,14 +109,14 @@ start=@<Task> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
-# Task Output
+# Information produced as part of task
 <Task.output> CLOSED {
     fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
     fhir:extension @<Extension>*;           # Additional Content defined by 
                                             # implementations 
     fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    fhir:Task.output.type @<CodeableConcept>;  # Output Name
-    (                                       # Output Value
+    fhir:Task.output.type @<CodeableConcept>;  # Label for output
+    (                                       # Result of output
         fhir:Task.output.valueBase64Binary @<base64Binary>  |
         fhir:Task.output.valueBoolean @<boolean>  |
         fhir:Task.output.valueCode @<code>  |
@@ -186,6 +155,57 @@ start=@<Task> AND {fhir:nodeRole [fhir:treeRoot]}
         fhir:Task.output.valueSignature @<Signature>  |
         fhir:Task.output.valueTiming @<Timing>  |
         fhir:Task.output.valueMeta @<Meta> 
+    );
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
+# Information used to perform task
+<Task.input> CLOSED {
+    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
+    fhir:extension @<Extension>*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
+    fhir:Task.input.type @<CodeableConcept>;  # Label for the input
+    (                                       # Content to use in performing the 
+                                            # task 
+        fhir:Task.input.valueBase64Binary @<base64Binary>  |
+        fhir:Task.input.valueBoolean @<boolean>  |
+        fhir:Task.input.valueCode @<code>  |
+        fhir:Task.input.valueDate @<date>  |
+        fhir:Task.input.valueDateTime @<dateTime>  |
+        fhir:Task.input.valueDecimal @<decimal>  |
+        fhir:Task.input.valueId @<id>  |
+        fhir:Task.input.valueInstant @<instant>  |
+        fhir:Task.input.valueInteger @<integer>  |
+        fhir:Task.input.valueMarkdown @<markdown>  |
+        fhir:Task.input.valueOid @<oid>  |
+        fhir:Task.input.valuePositiveInt @<positiveInt>  |
+        fhir:Task.input.valueString @<string>  |
+        fhir:Task.input.valueTime @<time>  |
+        fhir:Task.input.valueUnsignedInt @<unsignedInt>  |
+        fhir:Task.input.valueUri @<uri>  |
+        fhir:Task.input.valueAddress @<Address>  |
+        fhir:Task.input.valueAge @<Age>  |
+        fhir:Task.input.valueAnnotation @<Annotation>  |
+        fhir:Task.input.valueAttachment @<Attachment>  |
+        fhir:Task.input.valueCodeableConcept @<CodeableConcept>  |
+        fhir:Task.input.valueCoding @<Coding>  |
+        fhir:Task.input.valueContactPoint @<ContactPoint>  |
+        fhir:Task.input.valueCount @<Count>  |
+        fhir:Task.input.valueDistance @<Distance>  |
+        fhir:Task.input.valueDuration @<Duration>  |
+        fhir:Task.input.valueHumanName @<HumanName>  |
+        fhir:Task.input.valueIdentifier @<Identifier>  |
+        fhir:Task.input.valueMoney @<Money>  |
+        fhir:Task.input.valuePeriod @<Period>  |
+        fhir:Task.input.valueQuantity @<Quantity>  |
+        fhir:Task.input.valueRange @<Range>  |
+        fhir:Task.input.valueRatio @<Ratio>  |
+        fhir:Task.input.valueReference @<Reference>  |
+        fhir:Task.input.valueSampledData @<SampledData>  |
+        fhir:Task.input.valueSignature @<Signature>  |
+        fhir:Task.input.valueTiming @<Timing>  |
+        fhir:Task.input.valueMeta @<Meta> 
     );
     fhir:index xsd:integer?                 # Relative position in a list
 }
@@ -261,8 +281,8 @@ start=@<Task> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:Address.state @<string>?;          # Sub-unit of country (abbreviations 
                                             # ok) 
     fhir:Address.postalCode @<string>?;     # Postal code for area
-    fhir:Address.country @<string>?;        # Country (can be ISO 3166 3 letter 
-                                            # code) 
+    fhir:Address.country @<string>?;        # Country (e.g. can be ISO 3166 2 or 
+                                            # 3 letter code) 
     fhir:Address.period @<Period>?;         # Time period when address was/is in 
                                             # use 
     fhir:index xsd:integer?                 # Relative position in a list
@@ -336,7 +356,8 @@ start=@<Task> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:extension @<Extension>*;           # Additional Content defined by 
                                             # implementations 
     fhir:ContactPoint.system @<code> AND
-    	{fhir:value @fhirvs:contact-point-system}?;  # phone | fax | email | pager | other
+    	{fhir:value @fhirvs:contact-point-system}?;  # phone | fax | email | pager | url 
+                                            # | other 
     fhir:ContactPoint.value @<string>?;     # The actual contact point details
     fhir:ContactPoint.use @<code> AND
     	{fhir:value @fhirvs:contact-point-use}?;  # home | work | temp | old | mobile 
@@ -358,7 +379,7 @@ start=@<Task> AND {fhir:nodeRole [fhir:treeRoot]}
                                             # | anonymous | old | maiden 
     fhir:HumanName.text @<string>?;         # Text representation of the full 
                                             # name 
-    fhir:HumanName.family @<string>*;       # Family name (often called 
+    fhir:HumanName.family @<string>?;       # Family name (often called 
                                             # 'Surname') 
     fhir:HumanName.given @<string>*;        # Given names (not always 'first'). 
                                             # Includes middle names 
@@ -765,6 +786,10 @@ start=@<Task> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:Timing.repeat.periodUnit @<code> AND
     	{fhir:value @fhirvs:units-of-time}?;  # s | min | h | d | wk | mo | a - 
                                             # unit of time (UCUM) 
+    fhir:Timing.repeat.dayOfWeek @<code> AND
+    	{fhir:value @fhirvs:days-of-week}*;  # mon | tue | wed | thu | fri | sat 
+                                            # | sun 
+    fhir:Timing.repeat.timeOfDay @<time>*;  # Time of day for action
     fhir:Timing.repeat.when @<code> AND
     	{fhir:value @fhirvs:event-timing}?;  # Regular life events the event is 
                                             # tied to 
@@ -889,38 +914,44 @@ start=@<Task> AND {fhir:nodeRole [fhir:treeRoot]}
 
 #---------------------- Value Sets ------------------------
 
-# The current status of the task.
-fhirvs:task-status ["draft" "requested" "received" "accepted" "rejected" "ready" "in-progress" "on-hold" "failed" "completed"]
-
 # The use of an address
 fhirvs:address-use ["home" "work" "temp" "old"]
-
-# The use of a human name
-fhirvs:name-use ["usual" "official" "temp" "nickname" "anonymous" "old" "maiden"]
-
-# The task's priority
-fhirvs:task-priority ["low" "normal" "high"]
-
-# Real world event that the relating to the schedule.
-fhirvs:event-timing ["HS" "WAKE" "C" "CM" "CD" "CV" "AC" "ACM" "ACD" "ACV" "PC" "PCM" "PCD" "PCV"]
-
-# Telecommunications form for contact point
-fhirvs:contact-point-system ["phone" "fax" "email" "pager" "other"]
 
 # The type of an address (physical / postal)
 fhirvs:address-type ["postal" "physical" "both"]
 
-# How the Quantity should be understood and represented.
-fhirvs:quantity-comparator ["<" "<=" ">=" ">"]
-
 # Use of contact point
 fhirvs:contact-point-use ["home" "work" "temp" "old" "mobile"]
+
+# The clinical priority of a diagnostic order.
+fhirvs:request-priority ["routine" "urgent" "stat" "asap"]
+
+# Codes indicating the degree of authority/intentionality associated with a request
+fhirvs:request-intent ["proposal" "plan" "order" "original-order" "reflex-order" "filler-order" "instance-order" "option"]
+
+# The current status of the task.
+fhirvs:task-status ["draft" "requested" "received" "accepted" "rejected" "ready" "cancelled" "in-progress" "on-hold" "failed" "completed" "entered-in-error"]
+
+# Telecommunications form for contact point
+fhirvs:contact-point-system ["phone" "fax" "email" "pager" "url" "other"]
+
+# The days of the week.
+fhirvs:days-of-week ["mon" "tue" "wed" "thu" "fri" "sat" "sun"]
 
 # Identifies the purpose for this identifier, if known .
 fhirvs:identifier-use ["usual" "official" "temp" "secondary"]
 
-# The status of a resource narrative
-fhirvs:narrative-status ["generated" "extensions" "additional" "empty"]
+# How the Quantity should be understood and represented.
+fhirvs:quantity-comparator ["<" "<=" ">=" ">"]
+
+# Real world event that the relating to the schedule.
+fhirvs:event-timing ["MORN" "AFT" "EVE" "NIGHT" "HS" "WAKE" "C" "CM" "CD" "CV" "AC" "ACM" "ACD" "ACV" "PC" "PCM" "PCD" "PCV"]
 
 # A unit of time (units from UCUM).
 fhirvs:units-of-time ["s" "min" "h" "d" "wk" "mo" "a"]
+
+# The use of a human name
+fhirvs:name-use ["usual" "official" "temp" "nickname" "anonymous" "old" "maiden"]
+
+# The status of a resource narrative
+fhirvs:narrative-status ["generated" "extensions" "additional" "empty"]

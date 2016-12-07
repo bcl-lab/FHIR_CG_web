@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>StructureDefinition: ShareableValueSet - FHIR v1.7.0</title>
+  <title>StructureDefinition: ShareableValueSet - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -141,7 +141,7 @@
   <tr><td>Definition</td><td><p>The base language in which the resource is written.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>A human language.<br/>The codes SHALL be taken from <a href="valueset-languages.html">Common Languages</a>; other codes may be used where these codes are not suitable</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td>A human language.<br/>The codes SHALL be taken from <a href="valueset-languages.html">Common Languages</a>; other codes may be used where these codes are not suitable</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#code">code</a></td></tr>
   <tr><td>Comments</td><td><p>Language is provided to support indexing and accessibility (typically, services such as text to speech use the language tag). The html language tag in the narrative applies  to the narrative. The language tag on the resource may be used to specify the language of other presentations generated from the data in the resource  Not all the content has to be in the base language. The Resource.language should not be assumed to apply to the narrative automatically. If a language is specified, it should it also be specified on the div element in the html (see rules in HTML5 for information about the relationship between xml:lang and the html lang attribute).</p>
 </td></tr>
@@ -221,7 +221,7 @@
   <tr><td>Definition</td><td><p>The status of this value set. Enables tracking the life-cycle of the content.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>1..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>The lifecycle status of a Value Set or Concept Map.<br/>The codes SHALL be taken from <a href="valueset-publication-status.html">PublicationStatus</a></td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td>The lifecycle status of a Value Set or Concept Map.<br/>The codes SHALL be taken from <a href="valueset-publication-status.html">PublicationStatus</a></td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#code">code</a></td></tr>
   <tr><td><a href="conformance-rules.html#ismodifier">Is Modifier</a></td><td>true</td></tr>
   <tr><td>Comments</td><td><p>Allows filtering of value set that are appropriate for use vs. not.</p>
@@ -250,7 +250,7 @@
   <tr><td>Definition</td><td><p>Contact details to assist a user in finding and communicating with the publisher.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..*</td></tr>
-  <tr><td><a href="datatypes.html">Type</a></td><td><a href="contactdetail.html#ContactDetail">ContactDetail</a></td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="metadatatypes.html#ContactDetail">ContactDetail</a></td></tr>
   <tr><td>Comments</td><td><p>May be a web site, an email address, a telephone number, etc.</p>
 </td></tr>
   <tr><td colspan="2" class="structure"><a name="shareablevalueset.ValueSet:shareablevalueset.date"> </a><b>ValueSet.date</b></td></tr>
@@ -272,7 +272,7 @@
   <tr><td>Definition</td><td><p>The content was developed with a focus and intent of supporting the contexts that are listed. These terms may be used to assist with indexing and searching of code system definitions.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..*</td></tr>
-  <tr><td><a href="datatypes.html">Type</a></td><td><a href="usagecontext.html#UsageContext">UsageContext</a></td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="metadatatypes.html#UsageContext">UsageContext</a></td></tr>
   <tr><td>Requirements</td><td><p>Assist in searching for appropriate content.</p>
 </td></tr>
   <tr><td>Comments</td><td><p>When multiple usageContexts are specified, there is no expectation for whether all or any of the contexts apply.</p>
@@ -281,7 +281,7 @@
   <tr><td>Definition</td><td><p>A jurisdiction in which the value set is intended to be used.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..*</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>Countries and regions within which this artifact is targeted for use<br/>The codes SHALL be taken from <a href="valueset-jurisdiction.html">Jurisdiction ValueSet</a>; other codes may be used where these codes are not suitable</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td>Countries and regions within which this artifact is targeted for use<br/>The codes SHALL be taken from <a href="valueset-jurisdiction.html">Jurisdiction ValueSet</a>; other codes may be used where these codes are not suitable</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
   <tr><td colspan="2" class="structure"><a name="shareablevalueset.ValueSet:shareablevalueset.immutable"> </a><b>ValueSet.immutable</b></td></tr>
   <tr><td>Definition</td><td><p>If this is set to 'true', then no new versions of the content logical definition can be created.  Note: Other metadata might still change.</p>
@@ -345,7 +345,7 @@
   <tr><td>Comments</td><td><p>There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone.</p>
 </td></tr>
   <tr><td colspan="2" class="structure"><a name="shareablevalueset.ValueSet:shareablevalueset.compose.lockedDate"> </a><b>ValueSet.compose.lockedDate</b></td></tr>
-  <tr><td>Definition</td><td><p>If a locked date is defined, then the Content Logical Definition must be evaluated using the current version of all referenced code system(s) and value set instances as of the locked date.</p>
+  <tr><td>Definition</td><td><p>If a locked date is defined, then the Content Logical Definition must be evaluated using the current version as of the locked date for referenced code system(s) and value set instances where ValueSet.compose.include.version is not defined.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#date">date</a></td></tr>
@@ -481,7 +481,7 @@
   <tr><td>Definition</td><td><p>The language this designation is defined for.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>A human language.<br/>The codes SHALL be taken from <a href="valueset-languages.html">Common Languages</a>; other codes may be used where these codes are not suitable</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td>A human language.<br/>The codes SHALL be taken from <a href="valueset-languages.html">Common Languages</a>; other codes may be used where these codes are not suitable</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#code">code</a></td></tr>
   <tr><td>Comments</td><td><p>In the absence of a language, the resource language applies.</p>
 </td></tr>
@@ -489,7 +489,7 @@
   <tr><td>Definition</td><td><p>A code that details how this designation would be used.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>Details of how a designation would be used.<br/>The codes SHALL be taken from <a href="valueset-designation-use.html">Designation Use</a>; other codes may be used where these codes are not suitable</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td>Details of how a designation would be used.<br/>The codes SHALL be taken from <a href="valueset-designation-use.html">Designation Use</a>; other codes may be used where these codes are not suitable</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#Coding">Coding</a></td></tr>
   <tr><td>Comments</td><td><p>If no use is provided, the designation can be assumed to be suitable for general display to a human user.</p>
 </td></tr>
@@ -538,8 +538,9 @@
   <tr><td>Definition</td><td><p>The kind of operation to perform as a part of the filter criteria.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>1..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>The kind of operation to perform as a part of a property based filter.<br/>The codes SHALL be taken from <a href="valueset-filter-operator.html">FilterOperator</a></td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td>The kind of operation to perform as a part of a property based filter.<br/>The codes SHALL be taken from <a href="valueset-filter-operator.html">FilterOperator</a></td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#code">code</a></td></tr>
+  <tr><td><a href="conformance-rules.html#ismodifier">Is Modifier</a></td><td>true</td></tr>
   <tr><td colspan="2" class="structure"><a name="shareablevalueset.ValueSet:shareablevalueset.compose.include.filter.value"> </a><b>ValueSet.compose.include.filter.value</b></td></tr>
   <tr><td>Definition</td><td><p>The match value may be either a code defined by the system, or a string value, which is a regex match on the literal string of the property value.</p>
 </td></tr>
@@ -763,7 +764,7 @@
 		<div class="container">  <!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:31-0500. <a href="qa.html">QA Page</a>
+        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:20-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search <img src="external.png" style="text-align: baseline"/></a> | 

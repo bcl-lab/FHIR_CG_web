@@ -3,7 +3,7 @@
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="RequestGroup"/>
   <meta>
-    <lastUpdated value="2016-11-28T17:29:55.664-05:00"/>
+    <lastUpdated value="2016-12-07T14:18:58.982-05:00"/>
   </meta>
   <text>
     <status value="generated"/>
@@ -204,12 +204,17 @@
             <span title="RequestGroup.action : The actions, if any, produced by the evaluation of the artifact.">action</span>
             <a name="RequestGroup.action"> </a>
           </td>
-          <td style="vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy"/>
+          <td style="vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">
+            <span style="padding: 3px" title="This element has or is affected by some invariants">I</span>
+          </td>
           <td style="vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">0..*</td>
           <td style="vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">
             <a href="backboneelement.html">BackboneElement</a>
           </td>
-          <td style="vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">Proposed actions, if any</td>
+          <td style="vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">Proposed actions, if any
+            <br/>
+            <span style="font-style: italic" title="rqg-1">Must have resource or action but not both</span>
+          </td>
         </tr>
 
         <tr style="border: 0px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: white;">
@@ -326,7 +331,7 @@
           <td style="vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy"/>
           <td style="vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">0..*</td>
           <td style="vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">
-            <a href="relatedartifact.html#RelatedArtifact">RelatedArtifact</a>
+            <a href="metadatatypes.html#RelatedArtifact">RelatedArtifact</a>
           </td>
           <td style="vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">Supporting documentation for the intended performer of the action</td>
         </tr>
@@ -788,7 +793,9 @@
             <span title="RequestGroup.action.resource : The resource that is the target of the action (e.g. CommunicationRequest).">resource</span>
             <a name="RequestGroup.action.resource"> </a>
           </td>
-          <td style="vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy"/>
+          <td style="vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">
+            <span style="padding: 3px" title="This element has or is affected by some invariants">I</span>
+          </td>
           <td style="vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">0..1</td>
           <td style="vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">
             <a href="references.html">Reference</a>(
@@ -806,7 +813,9 @@
             <span title="RequestGroup.action.action : Sub actions.">action</span>
             <a name="RequestGroup.action.action"> </a>
           </td>
-          <td style="vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy"/>
+          <td style="vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">
+            <span style="padding: 3px" title="This element has or is affected by some invariants">I</span>
+          </td>
           <td style="vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">0..*</td>
           <td style="vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">see 
             <a href="#RequestGroup.action" title="RequestGroup.action">action</a>
@@ -828,25 +837,28 @@
   <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm">
     <valueInteger value="0"/>
   </extension>
+  <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-wg">
+    <valueCode value="cds"/>
+  </extension>
   <url value="http://hl7.org/fhir/StructureDefinition/RequestGroup"/>
   <name value="RequestGroup"/>
   <status value="draft"/>
   <publisher value="Health Level Seven International (Clinical Decision Support)"/>
   <contact>
     <telecom>
-      <system value="other"/>
+      <system value="url"/>
       <value value="http://hl7.org/fhir"/>
     </telecom>
   </contact>
   <contact>
     <telecom>
-      <system value="other"/>
+      <system value="url"/>
       <value value="http://www.hl7.org/Special/committees/dss/index.cfm"/>
     </telecom>
   </contact>
-  <date value="2016-11-28T17:29:55-05:00"/>
+  <date value="2016-12-07T14:18:58-05:00"/>
   <description value="Base StructureDefinition for RequestGroup Resource"/>
-  <fhirVersion value="1.7.0"/>
+  <fhirVersion value="1.8.0"/>
   <mapping>
     <identity value="w5"/>
     <uri value="http://hl7.org/fhir/w5"/>
@@ -1208,6 +1220,13 @@
         <expression value="children().count() &gt; id.count()"/>
         <xpath value="@value|f:*|h:div"/>
         <source value="Element"/>
+      </constraint>
+      <constraint>
+        <key value="rqg-1"/>
+        <severity value="error"/>
+        <human value="Must have resource or action but not both"/>
+        <expression value="resource.exists() != action.exists()"/>
+        <xpath value="exists(f:resource) != exists(f:action)"/>
       </constraint>
     </element>
     <element id="RequestGroup.action.id">
@@ -1761,12 +1780,14 @@
       <path value="RequestGroup.action.resource"/>
       <short value="The target of the action"/>
       <definition value="The resource that is the target of the action (e.g. CommunicationRequest)."/>
+      <comments value="The target resource SHALL be a [Request](request.html) resource with a Request.intent set to &quot;option&quot;."/>
       <min value="0"/>
       <max value="1"/>
       <type>
         <code value="Reference"/>
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Resource"/>
       </type>
+      <condition value="rqg-1"/>
     </element>
     <element id="RequestGroup.action.action">
       <path value="RequestGroup.action.action"/>
@@ -1775,6 +1796,7 @@
       <min value="0"/>
       <max value="*"/>
       <contentReference value="#RequestGroup.action"/>
+      <condition value="rqg-1"/>
     </element>
   </snapshot>
   <differential>
@@ -1908,6 +1930,13 @@
       <type>
         <code value="BackboneElement"/>
       </type>
+      <constraint>
+        <key value="rqg-1"/>
+        <severity value="error"/>
+        <human value="Must have resource or action but not both"/>
+        <expression value="resource.exists() != action.exists()"/>
+        <xpath value="exists(f:resource) != exists(f:action)"/>
+      </constraint>
     </element>
     <element id="RequestGroup.action.actionIdentifier">
       <path value="RequestGroup.action.actionIdentifier"/>
@@ -2243,12 +2272,14 @@
       <path value="RequestGroup.action.resource"/>
       <short value="The target of the action"/>
       <definition value="The resource that is the target of the action (e.g. CommunicationRequest)."/>
+      <comments value="The target resource SHALL be a [Request](request.html) resource with a Request.intent set to &quot;option&quot;."/>
       <min value="0"/>
       <max value="1"/>
       <type>
         <code value="Reference"/>
         <targetProfile value="http://hl7.org/fhir/StructureDefinition/Resource"/>
       </type>
+      <condition value="rqg-1"/>
     </element>
     <element id="RequestGroup.action.action">
       <path value="RequestGroup.action.action"/>
@@ -2257,6 +2288,7 @@
       <min value="0"/>
       <max value="*"/>
       <contentReference value="#RequestGroup.action"/>
+      <condition value="rqg-1"/>
     </element>
   </differential>
 </StructureDefinition>

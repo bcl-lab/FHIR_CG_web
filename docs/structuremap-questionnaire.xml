@@ -9,8 +9,8 @@
       <status value="active"/>
       <description value="Type options for StructureMap.group.rule.target.parameter.value[x]"/>
       <expansion>
-        <identifier value="urn:uuid:ccc75499-080c-4e62-8954-34dae1f4434a"/>
-        <timestamp value="2016-11-28T17:33:11-05:00"/>
+        <identifier value="urn:uuid:5b9fc9dc-4804-41f0-a22d-4337c5e55259"/>
+        <timestamp value="2016-12-07T14:28:15-05:00"/>
         <contains>
           <system value="http://hl7.org/fhir/data-types"/>
           <code value="id"/>
@@ -43,7 +43,7 @@
     <system value="urn:ietf:rfc:3986"/>
   </identifier>
   <status value="draft"/>
-  <date value="2016-11-28T17:29:55-05:00"/>
+  <date value="2016-12-07T14:18:58-05:00"/>
   <publisher value="Health Level Seven International (FHIR Infrastructure)"/>
   <item>
     <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-minOccurs">
@@ -1739,6 +1739,102 @@
               <linkId value="StructureMap.group.rule.source.contextType.value"/>
               <text value="context type"/>
               <type value="choice"/>
+              <required value="false"/>
+              <repeats value="false"/>
+            </item>
+          </item>
+          <item>
+            <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs">
+              <valueInteger value="1"/>
+            </extension>
+            <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
+              <valueString value="integer"/>
+            </extension>
+            <linkId value="StructureMap.group.rule.source.min"/>
+            <type value="group"/>
+            <required value="false"/>
+            <repeats value="true"/>
+            <item>
+              <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl">
+                <valueCodeableConcept>
+                  <coding>
+                    <system value="http://hl7.org/fhir/questionnaire-item-control"/>
+                    <code value="flyover"/>
+                    <display value="Fly-over"/>
+                  </coding>
+                </valueCodeableConcept>
+              </extension>
+              <text value="Specified minimum cardinality for the element. This is optional; if present, it acts an implicit check on the input content."/>
+              <type value="display"/>
+            </item>
+            <item>
+              <linkId value="StructureMap.group.rule.source.min.value"/>
+              <text value="Specified minimum cardinality"/>
+              <type value="integer"/>
+              <required value="false"/>
+              <repeats value="false"/>
+            </item>
+          </item>
+          <item>
+            <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs">
+              <valueInteger value="1"/>
+            </extension>
+            <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
+              <valueString value="string"/>
+            </extension>
+            <linkId value="StructureMap.group.rule.source.max"/>
+            <type value="group"/>
+            <required value="false"/>
+            <repeats value="true"/>
+            <item>
+              <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl">
+                <valueCodeableConcept>
+                  <coding>
+                    <system value="http://hl7.org/fhir/questionnaire-item-control"/>
+                    <code value="flyover"/>
+                    <display value="Fly-over"/>
+                  </coding>
+                </valueCodeableConcept>
+              </extension>
+              <text value="Specified maximum cardinality for the element - a number or a &quot;*&quot;. This is optional; if present, it acts an implicit check on the input content (* just serves as documentation; it&#39;s the default value)."/>
+              <type value="display"/>
+            </item>
+            <item>
+              <linkId value="StructureMap.group.rule.source.max.value"/>
+              <text value="Specified maximum cardinality (number or *)"/>
+              <type value="string"/>
+              <required value="false"/>
+              <repeats value="false"/>
+            </item>
+          </item>
+          <item>
+            <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs">
+              <valueInteger value="1"/>
+            </extension>
+            <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
+              <valueString value="string"/>
+            </extension>
+            <linkId value="StructureMap.group.rule.source.type"/>
+            <type value="group"/>
+            <required value="false"/>
+            <repeats value="true"/>
+            <item>
+              <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl">
+                <valueCodeableConcept>
+                  <coding>
+                    <system value="http://hl7.org/fhir/questionnaire-item-control"/>
+                    <code value="flyover"/>
+                    <display value="Fly-over"/>
+                  </coding>
+                </valueCodeableConcept>
+              </extension>
+              <text value="Specified type for the element. This works as a condition on the mapping - use for polymorphic elements."/>
+              <type value="display"/>
+            </item>
+            <item>
+              <linkId value="StructureMap.group.rule.source.type.value"/>
+              <text value="Type for this source"/>
+              <type value="string"/>
               <required value="false"/>
               <repeats value="false"/>
             </item>

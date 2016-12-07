@@ -21,7 +21,7 @@ start=@<ResearchStudy> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:extension @<Extension>*;           # Additional Content defined by 
                                             # implementations 
     fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    fhir:ResearchStudy.identifier @<Identifier>?;  # Business Identifer for study
+    fhir:ResearchStudy.identifier @<Identifier>*;  # Business Identifer for study
     fhir:ResearchStudy.title @<string>?;    # Name for this study
     fhir:ResearchStudy.protocol @<Reference>*;  # Steps followed in executing study
     fhir:ResearchStudy.partOf @<Reference>*;  # Part of larger study
@@ -41,7 +41,7 @@ start=@<ResearchStudy> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:ResearchStudy.period @<Period>?;   # When the study began and ended
     fhir:ResearchStudy.sponsor @<Reference>?;  # Organization responsible for the 
                                             # study 
-    fhir:ResearchStudy.principleInvestigator @<Reference>?;  # Individual responsible for the 
+    fhir:ResearchStudy.principalInvestigator @<Reference>?;  # Individual responsible for the 
                                             # study 
     fhir:ResearchStudy.site @<Reference>*;  # Location involved in study 
                                             # execution 
@@ -299,7 +299,8 @@ start=@<ResearchStudy> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:extension @<Extension>*;           # Additional Content defined by 
                                             # implementations 
     fhir:ContactPoint.system @<code> AND
-    	{fhir:value @fhirvs:contact-point-system}?;  # phone | fax | email | pager | other
+    	{fhir:value @fhirvs:contact-point-system}?;  # phone | fax | email | pager | url 
+                                            # | other 
     fhir:ContactPoint.value @<string>?;     # The actual contact point details
     fhir:ContactPoint.use @<code> AND
     	{fhir:value @fhirvs:contact-point-use}?;  # home | work | temp | old | mobile 
@@ -366,20 +367,20 @@ start=@<ResearchStudy> AND {fhir:nodeRole [fhir:treeRoot]}
 
 #---------------------- Value Sets ------------------------
 
-# The type of relationship to the related artifact
-fhirvs:related-artifact-type ["documentation" "justification" "citation" "predecessor" "successor" "derived-from" "depends-on" "composed-of"]
-
-# Telecommunications form for contact point
-fhirvs:contact-point-system ["phone" "fax" "email" "pager" "other"]
-
-# Identifies the purpose for this identifier, if known .
-fhirvs:identifier-use ["usual" "official" "temp" "secondary"]
-
-# The status of a resource narrative
-fhirvs:narrative-status ["generated" "extensions" "additional" "empty"]
+# Codes that convey the current status of the research study
+fhirvs:research-study-status ["draft" "in-progress" "suspended" "stopped" "completed" "entered-in-error"]
 
 # Use of contact point
 fhirvs:contact-point-use ["home" "work" "temp" "old" "mobile"]
 
-# Codes that convey the current status of the research study
-fhirvs:research-study-status ["draft" "in-progress" "suspended" "stopped" "completed" "entered-in-error"]
+# Telecommunications form for contact point
+fhirvs:contact-point-system ["phone" "fax" "email" "pager" "url" "other"]
+
+# Identifies the purpose for this identifier, if known .
+fhirvs:identifier-use ["usual" "official" "temp" "secondary"]
+
+# The type of relationship to the related artifact
+fhirvs:related-artifact-type ["documentation" "justification" "citation" "predecessor" "successor" "derived-from" "depends-on" "composed-of"]
+
+# The status of a resource narrative
+fhirvs:narrative-status ["generated" "extensions" "additional" "empty"]

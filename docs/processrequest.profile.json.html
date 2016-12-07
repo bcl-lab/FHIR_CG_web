@@ -3,7 +3,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>Processrequest.profile.json - FHIR v1.7.0</title>
+  <title>Processrequest.profile.json - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -119,7 +119,7 @@
   &quot;resourceType&quot;: &quot;StructureDefinition&quot;,
   &quot;id&quot;: &quot;ProcessRequest&quot;,
   &quot;meta&quot;: {
-    &quot;lastUpdated&quot;: &quot;2016-11-28T17:29:55.664-05:00&quot;
+    &quot;lastUpdated&quot;: &quot;2016-12-07T14:18:58.982-05:00&quot;
   },
   &quot;text&quot;: {
     &quot;status&quot;: &quot;generated&quot;,
@@ -129,6 +129,10 @@
     {
       &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm&quot;,
       &quot;valueInteger&quot;: 1
+    },
+    {
+      &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/structuredefinition-wg&quot;,
+      &quot;valueCode&quot;: &quot;fm&quot;
     }
   ],
   &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/ProcessRequest&quot;,
@@ -139,7 +143,7 @@
     {
       &quot;telecom&quot;: [
         {
-          &quot;system&quot;: &quot;other&quot;,
+          &quot;system&quot;: &quot;url&quot;,
           &quot;value&quot;: &quot;http://hl7.org/fhir&quot;
         }
       ]
@@ -147,15 +151,15 @@
     {
       &quot;telecom&quot;: [
         {
-          &quot;system&quot;: &quot;other&quot;,
+          &quot;system&quot;: &quot;url&quot;,
           &quot;value&quot;: &quot;http://www.hl7.org/Special/committees/fm/index.cfm&quot;
         }
       ]
     }
   ],
-  &quot;date&quot;: &quot;2016-11-28T17:29:55-05:00&quot;,
+  &quot;date&quot;: &quot;2016-12-07T14:18:58-05:00&quot;,
   &quot;description&quot;: &quot;Base StructureDefinition for ProcessRequest Resource&quot;,
-  &quot;fhirVersion&quot;: &quot;1.7.0&quot;,
+  &quot;fhirVersion&quot;: &quot;1.8.0&quot;,
   &quot;mapping&quot;: [
     {
       &quot;identity&quot;: &quot;w5&quot;,
@@ -473,7 +477,7 @@
         &quot;path&quot;: &quot;ProcessRequest.status&quot;,
         &quot;short&quot;: &quot;active | cancelled | draft | entered-in-error&quot;,
         &quot;definition&quot;: &quot;The status of the resource instance.&quot;,
-        &quot;min&quot;: 1,
+        &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
@@ -486,7 +490,7 @@
           &quot;strength&quot;: &quot;required&quot;,
           &quot;description&quot;: &quot;A code specifying the state of the resource instance.&quot;,
           &quot;valueSetReference&quot;: {
-            &quot;reference&quot;: &quot;http://hl7.org/fhir/ValueSet/processrequest-status&quot;
+            &quot;reference&quot;: &quot;http://hl7.org/fhir/ValueSet/fm-status&quot;
           }
         },
         &quot;mapping&quot;: [
@@ -497,58 +501,11 @@
         ]
       },
       {
-        &quot;id&quot;: &quot;ProcessRequest.ruleset&quot;,
-        &quot;path&quot;: &quot;ProcessRequest.ruleset&quot;,
-        &quot;short&quot;: &quot;Resource version&quot;,
-        &quot;definition&quot;: &quot;The version of the style of resource contents. This should be mapped to the allowable profiles for this and supporting resources.&quot;,
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;Coding&quot;
-          }
-        ],
-        &quot;binding&quot;: {
-          &quot;strength&quot;: &quot;example&quot;,
-          &quot;description&quot;: &quot;The static and dynamic model to which contents conform, which may be business version or standard/version.&quot;,
-          &quot;valueSetReference&quot;: {
-            &quot;reference&quot;: &quot;http://hl7.org/fhir/ValueSet/ruleset&quot;
-          }
-        },
-        &quot;mapping&quot;: [
-          {
-            &quot;identity&quot;: &quot;w5&quot;,
-            &quot;map&quot;: &quot;id.version&quot;
-          }
-        ]
-      },
-      {
-        &quot;id&quot;: &quot;ProcessRequest.originalRuleset&quot;,
-        &quot;path&quot;: &quot;ProcessRequest.originalRuleset&quot;,
-        &quot;short&quot;: &quot;Original version&quot;,
-        &quot;definition&quot;: &quot;The style (standard) and version of the original material which was converted into this resource.&quot;,
-        &quot;requirements&quot;: &quot;Knowledge of the original version can inform the processing of this instance so that information which is processable by the originating system may be generated.&quot;,
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;Coding&quot;
-          }
-        ],
-        &quot;binding&quot;: {
-          &quot;strength&quot;: &quot;example&quot;,
-          &quot;description&quot;: &quot;The static and dynamic model to which contents conform, which may be business version or standard/version.&quot;,
-          &quot;valueSetReference&quot;: {
-            &quot;reference&quot;: &quot;http://hl7.org/fhir/ValueSet/ruleset&quot;
-          }
-        }
-      },
-      {
         &quot;id&quot;: &quot;ProcessRequest.action&quot;,
         &quot;path&quot;: &quot;ProcessRequest.action&quot;,
         &quot;short&quot;: &quot;cancel | poll | reprocess | status&quot;,
         &quot;definition&quot;: &quot;The type of processing action being requested, for example Reversal, Readjudication, StatusRequest,PendedRequest.&quot;,
-        &quot;min&quot;: 1,
+        &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
@@ -570,25 +527,6 @@
         ]
       },
       {
-        &quot;id&quot;: &quot;ProcessRequest.created&quot;,
-        &quot;path&quot;: &quot;ProcessRequest.created&quot;,
-        &quot;short&quot;: &quot;Creation date&quot;,
-        &quot;definition&quot;: &quot;The date when this resource was created.&quot;,
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;dateTime&quot;
-          }
-        ],
-        &quot;mapping&quot;: [
-          {
-            &quot;identity&quot;: &quot;w5&quot;,
-            &quot;map&quot;: &quot;when.recorded&quot;
-          }
-        ]
-      },
-      {
         &quot;id&quot;: &quot;ProcessRequest.target&quot;,
         &quot;path&quot;: &quot;ProcessRequest.target&quot;,
         &quot;short&quot;: &quot;Target of the request&quot;,
@@ -605,6 +543,25 @@
           {
             &quot;identity&quot;: &quot;w5&quot;,
             &quot;map&quot;: &quot;who.focus&quot;
+          }
+        ]
+      },
+      {
+        &quot;id&quot;: &quot;ProcessRequest.created&quot;,
+        &quot;path&quot;: &quot;ProcessRequest.created&quot;,
+        &quot;short&quot;: &quot;Creation date&quot;,
+        &quot;definition&quot;: &quot;The date when this resource was created.&quot;,
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;1&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;dateTime&quot;
+          }
+        ],
+        &quot;mapping&quot;: [
+          {
+            &quot;identity&quot;: &quot;w5&quot;,
+            &quot;map&quot;: &quot;when.recorded&quot;
           }
         ]
       },
@@ -918,7 +875,7 @@
         &quot;path&quot;: &quot;ProcessRequest.status&quot;,
         &quot;short&quot;: &quot;active | cancelled | draft | entered-in-error&quot;,
         &quot;definition&quot;: &quot;The status of the resource instance.&quot;,
-        &quot;min&quot;: 1,
+        &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
@@ -931,7 +888,7 @@
           &quot;strength&quot;: &quot;required&quot;,
           &quot;description&quot;: &quot;A code specifying the state of the resource instance.&quot;,
           &quot;valueSetReference&quot;: {
-            &quot;reference&quot;: &quot;http://hl7.org/fhir/ValueSet/processrequest-status&quot;
+            &quot;reference&quot;: &quot;http://hl7.org/fhir/ValueSet/fm-status&quot;
           }
         },
         &quot;mapping&quot;: [
@@ -942,58 +899,11 @@
         ]
       },
       {
-        &quot;id&quot;: &quot;ProcessRequest.ruleset&quot;,
-        &quot;path&quot;: &quot;ProcessRequest.ruleset&quot;,
-        &quot;short&quot;: &quot;Resource version&quot;,
-        &quot;definition&quot;: &quot;The version of the style of resource contents. This should be mapped to the allowable profiles for this and supporting resources.&quot;,
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;Coding&quot;
-          }
-        ],
-        &quot;binding&quot;: {
-          &quot;strength&quot;: &quot;example&quot;,
-          &quot;description&quot;: &quot;The static and dynamic model to which contents conform, which may be business version or standard/version.&quot;,
-          &quot;valueSetReference&quot;: {
-            &quot;reference&quot;: &quot;http://hl7.org/fhir/ValueSet/ruleset&quot;
-          }
-        },
-        &quot;mapping&quot;: [
-          {
-            &quot;identity&quot;: &quot;w5&quot;,
-            &quot;map&quot;: &quot;id.version&quot;
-          }
-        ]
-      },
-      {
-        &quot;id&quot;: &quot;ProcessRequest.originalRuleset&quot;,
-        &quot;path&quot;: &quot;ProcessRequest.originalRuleset&quot;,
-        &quot;short&quot;: &quot;Original version&quot;,
-        &quot;definition&quot;: &quot;The style (standard) and version of the original material which was converted into this resource.&quot;,
-        &quot;requirements&quot;: &quot;Knowledge of the original version can inform the processing of this instance so that information which is processable by the originating system may be generated.&quot;,
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;Coding&quot;
-          }
-        ],
-        &quot;binding&quot;: {
-          &quot;strength&quot;: &quot;example&quot;,
-          &quot;description&quot;: &quot;The static and dynamic model to which contents conform, which may be business version or standard/version.&quot;,
-          &quot;valueSetReference&quot;: {
-            &quot;reference&quot;: &quot;http://hl7.org/fhir/ValueSet/ruleset&quot;
-          }
-        }
-      },
-      {
         &quot;id&quot;: &quot;ProcessRequest.action&quot;,
         &quot;path&quot;: &quot;ProcessRequest.action&quot;,
         &quot;short&quot;: &quot;cancel | poll | reprocess | status&quot;,
         &quot;definition&quot;: &quot;The type of processing action being requested, for example Reversal, Readjudication, StatusRequest,PendedRequest.&quot;,
-        &quot;min&quot;: 1,
+        &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
@@ -1015,25 +925,6 @@
         ]
       },
       {
-        &quot;id&quot;: &quot;ProcessRequest.created&quot;,
-        &quot;path&quot;: &quot;ProcessRequest.created&quot;,
-        &quot;short&quot;: &quot;Creation date&quot;,
-        &quot;definition&quot;: &quot;The date when this resource was created.&quot;,
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;dateTime&quot;
-          }
-        ],
-        &quot;mapping&quot;: [
-          {
-            &quot;identity&quot;: &quot;w5&quot;,
-            &quot;map&quot;: &quot;when.recorded&quot;
-          }
-        ]
-      },
-      {
         &quot;id&quot;: &quot;ProcessRequest.target&quot;,
         &quot;path&quot;: &quot;ProcessRequest.target&quot;,
         &quot;short&quot;: &quot;Target of the request&quot;,
@@ -1050,6 +941,25 @@
           {
             &quot;identity&quot;: &quot;w5&quot;,
             &quot;map&quot;: &quot;who.focus&quot;
+          }
+        ]
+      },
+      {
+        &quot;id&quot;: &quot;ProcessRequest.created&quot;,
+        &quot;path&quot;: &quot;ProcessRequest.created&quot;,
+        &quot;short&quot;: &quot;Creation date&quot;,
+        &quot;definition&quot;: &quot;The date when this resource was created.&quot;,
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;1&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;dateTime&quot;
+          }
+        ],
+        &quot;mapping&quot;: [
+          {
+            &quot;identity&quot;: &quot;w5&quot;,
+            &quot;map&quot;: &quot;when.recorded&quot;
           }
         ]
       },
@@ -1250,7 +1160,7 @@ of the specification.
 		<div class="container"><!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:33-0500. <a href="qa.html">QA Page</a>
+        © HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:28-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search</a> | 

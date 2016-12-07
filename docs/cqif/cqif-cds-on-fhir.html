@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>Cqif\cqif-cds-on-fhir - FHIR v1.7.0</title>
+  <title>Cqif\cqif-cds-on-fhir - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -106,11 +106,11 @@
 
 <div class="col-9">
 
-<a name="clinical-decision-support"/>
+<a name="clinical-decision-support"> </a>
 <h3 class="self-link-parent"><span class="sectioncount">G.6</span> Clinical Decision Support <a href="cqif-cds-on-fhir.html#clinical-decision-support" title="link to here" class="self-link"><img src="../assets/images/link.svg" width="20" class="self-link" height="20"/></a></h3>
 <p>This section of the clinical reasoning module discusses the evaluation use case for clinical decision support and how the various knowledge artifacts can be integrated into clinical workflow.</p>
 
-<a name="service-definitions"/>
+<a name="service-definitions"> </a>
 <h4 class="self-link-parent"><span class="sectioncount">G.6.1</span> Service Definitions <a href="cqif-cds-on-fhir.html#service-definitions" title="link to here" class="self-link"><img src="../assets/images/link.svg" width="20" class="self-link" height="20"/></a></h4>
 
 <p>The <a href="../servicedefinition.html">ServiceDefinition</a> resource provides a mechanism for describing the functionality made available by a particular service. For example, a service may provide an immunization forecasting module or a drug-drug interaction checking module. From the perspective of the consumer, how this functionality is performed is irrelevant; the only aspect of interest is a description of what the service module does, the required inputs and the outputs it produces.</p>
@@ -185,7 +185,7 @@
 &lt;/ServiceDefinition&gt;
 </code></pre>
 
-<a name="guidance-request"/>
+<a name="guidance-request"> </a>
 <h4 class="self-link-parent"><span class="sectioncount">G.6.2</span> Guidance Request <a href="cqif-cds-on-fhir.html#guidance-request" title="link to here" class="self-link"><img src="../assets/images/link.svg" width="20" class="self-link" height="20"/></a></h4>
 
 <p>The ServiceDefinition resource defines an <a href="../servicedefinition-operations.html#evaluate">$evaluate</a> operation that allows for consistent invocation of decision support functionality across a broad range of decision support artifacts. This consistency enables consumers to implement the request/response pipeline once to enable access to any decision support functionality provided by the service.</p>
@@ -366,7 +366,7 @@
 
 <p>Note that this example is incomplete and reproduced here for illustration purposes only. Refer to the Guideline Appropriate Ordering Implementation Guide for a more complete description of GAO.</p>
 
-<a name="evaluation-context"/>
+<a name="evaluation-context"> </a>
 <h4 class="self-link-parent"><span class="sectioncount">G.6.3</span> Evaluation Context <a href="cqif-cds-on-fhir.html#evaluation-context" title="link to here" class="self-link"><img src="../assets/images/link.svg" width="20" class="self-link" height="20"/></a></h4>
 
 <p>There are three types of data that can be provided as part of a decision support service module evaluation request:</p>
@@ -379,7 +379,7 @@
 
 <p>In the same way that parameters and data requirements are both supported for expressions in general (see the <a href="cqif-topics-using-expressions.html#parameters">Parameters</a> and <a href="cqif-topics-using-expressions.html#data-requirements">Data Requirements</a> topics in the Using Expressions section), decision support service modules can describe data inputs as input parameters, or as data requirements.</p>
 
-<a name="evaluation-context-contextual-information"/>
+<a name="evaluation-context-contextual-information"> </a>
 <h5 class="self-link-parent"><span class="sectioncount">G.6.3.1</span> Contextual Information <a href="cqif-cds-on-fhir.html#evaluation-context-contextual-information" title="link to here" class="self-link"><img src="../assets/images/link.svg" width="20" class="self-link" height="20"/></a></h5>
 
 <p>Contextual information for every decision support service module is defined by the parameters on the base <a href="../servicedefinition-operations.html#evaluate">$evaluate</a> operation. This contextual information includes the patient, the encounter, and workflow information.</p>
@@ -388,21 +388,21 @@
 
 <p>Note that contextual information is defined as completely optional on the base $evaluate operation definition. However, specific service modules may override this behavior by redefining a contextual parameter, providing constraints on its use. This approach may only be used to apply cardinality and profile constraints. The type of a parameter may not be changed.</p>
 
-<a name="evaluation-context-parameters"/>
+<a name="evaluation-context-parameters"> </a>
 <h5 class="self-link-parent"><span class="sectioncount">G.6.3.2</span> Parameters <a href="cqif-cds-on-fhir.html#evaluation-context-parameters" title="link to here" class="self-link"><img src="../assets/images/link.svg" width="20" class="self-link" height="20"/></a></h5>
 
 <p>Input parameters allow the service module to declare specific data, usually patient-independent, such as configuration parameters. For example, a Diabetes Control service module may expose an A1C threshold as a parameter to allow for institutional and practitioner variance.</p>
 
 <p>The client provides this information in the same way as the contextual parameters (i.e. additional parameter elements in the Parameters resource for the request), but these parameters are provided in addition to the ones defined by the $evaluate operation definition. This means that the set of parameters provided to the request may vary based on the service module being invoked.</p>
 
-<a name="evaluation-context-data-requirements"/>
+<a name="evaluation-context-data-requirements"> </a>
 <h5 class="self-link-parent"><span class="sectioncount">G.6.3.3</span> Data Requirements <a href="cqif-cds-on-fhir.html#evaluation-context-data-requirements" title="link to here" class="self-link"><img src="../assets/images/link.svg" width="20" class="self-link" height="20"/></a></h5>
 
 <p>Data requirements, on the other hand, allow the service module to declare input requirements in terms of the type of data involved, as well as constraints on that data. For example, a service module may declare that it requires A1C Observations for the past year in order to perform a successful evaluation.</p>
 
 <p>Both options are provided to support a broad variety of service modules. However, note that declaring specific input parameters requires that a client build implementation logic specific to each service module. The data requirements approach allows for a generic data retrieval mechanism, independent of the specific service module being invoked.</p>
 
-<a name="Evaluation Results"/>
+<a name="Evaluation Results"> </a>
 <h4 class="self-link-parent"><span class="sectioncount">G.6.4</span> Evaluation Results <a href="cqif-cds-on-fhir.html#Evaluation Results" title="link to here" class="self-link"><img src="../assets/images/link.svg" width="20" class="self-link" height="20"/></a></h4>
 
 <p>Similar to the mechanism for any FHIR operation, evaluation results may be provided by defining specific output parameters on the service module. This is the approach taken by the GAO example provided above, where the results of the evaluation are provided as output parameters. However, as with the input parameters, defining specific output parameters on the service module requires that consumers build implementation logic specific to each service module.</p>
@@ -411,14 +411,14 @@
 
 <p>Again, both options are provided to support a broad variety of service modules and implementation approaches.</p>
 
-<a name="asynchronous-evaluation"/>
+<a name="asynchronous-evaluation"> </a>
 <h4 class="self-link-parent"><span class="sectioncount">G.6.5</span> Asynchronous Evaluation <a href="cqif-cds-on-fhir.html#asynchronous-evaluation" title="link to here" class="self-link"><img src="../assets/images/link.svg" width="20" class="self-link" height="20"/></a></h4>
 
 <p>To enable asynchronous request/response, the GuidanceResponse supports a status of <code>in-progress</code>. For this result, the HTTP response SHOULD include the <code>Retry After</code> header with an appropriate indication for the expected wait time.</p>
 
 <p>In this case, the client is expected to reissue the request with the same <code>requestId</code>. To reduce bandwidth requirements, when reissuing a request the client need not send the input information. If the request is complete, a GuidanceResponse with an appropriate completion status (<code>success</code>, <code>failure</code>, or one of the data statuses) will be returned. If the request is still pending, a GuidanceResponse with a status of <code>in-progress</code> is returned.</p>
 
-<a name="conversational-evaluation"/>
+<a name="conversational-evaluation"> </a>
 <h4 class="self-link-parent"><span class="sectioncount">G.6.6</span> Conversational Request/Response <a href="cqif-cds-on-fhir.html#conversational-evaluation" title="link to here" class="self-link"><img src="../assets/images/link.svg" width="20" class="self-link" height="20"/></a></h4>
 <p>In some cases, the decision support service may determine that additional information is required in order to continue processing, or that additional information may result in a more accurate or more appropriate result:</p>
 
@@ -432,14 +432,14 @@
 
 <p>Both these statuses may be used to coordinate conversational request/response.</p>
 
-<a name="bundling-multiple-requests"/>
+<a name="bundling-multiple-requests"> </a>
 <h4 class="self-link-parent"><span class="sectioncount">G.6.7</span> Bundling Multiple Requests <a href="cqif-cds-on-fhir.html#bundling-multiple-requests" title="link to here" class="self-link"><img src="../assets/images/link.svg" width="20" class="self-link" height="20"/></a></h4>
 
 <p>To support the ability to issue multiple requests, use a <a href="../bundle.html">Bundle</a> of type <code>batch</code>. In this case, the input data is provided as resource entries in the bundle, with the operations specified as request entries.</p>
 
 <p>The response to posting a batch Bundle containing $evaluate requests is a batch Bundle containing the GuidanceResponse resource results of each $evaluate, as though each request had been submitted independently. Note that this does not imply that the requests must be performed serially; the service is free to implement the requests in any order, including parallelizing the requests.</p>
 
-<a name="service-integration"/>
+<a name="service-integration"> </a>
 <h4 class="self-link-parent"><span class="sectioncount">G.6.8</span> Service Integration <a href="cqif-cds-on-fhir.html#service-integration" title="link to here" class="self-link"><img src="../assets/images/link.svg" width="20" class="self-link" height="20"/></a></h4>
 
 <p>In addition to direct integration, the $evaluate operation can be used as a component within a larger infrastructure. For example:</p>
@@ -463,7 +463,7 @@
 		<div class="container">  <!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:33-0500. <a href="../qa.html">QA Page</a>
+        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:28-0500. <a href="../qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search <img src="../external.png" style="text-align: baseline"/></a> | 

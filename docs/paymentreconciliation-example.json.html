@@ -3,7 +3,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>Paymentreconciliation-example.json - FHIR v1.7.0</title>
+  <title>Paymentreconciliation-example.json - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -129,23 +129,34 @@
     }
   ],
   &quot;status&quot;: &quot;active&quot;,
-  &quot;request&quot;: {
-    &quot;reference&quot;: &quot;http://www.BenefitsInc.com/fhir/eligibility/225476332402&quot;
-  },
-  &quot;outcome&quot;: &quot;complete&quot;,
-  &quot;disposition&quot;: &quot;2014 August mid-month settlement.&quot;,
   &quot;created&quot;: &quot;2014-08-16&quot;,
   &quot;organization&quot;: {
     &quot;reference&quot;: &quot;Organization/2&quot;
   },
+  &quot;request&quot;: {
+    &quot;reference&quot;: &quot;http://www.BenefitsInc.com/fhir/eligibility/225476332402&quot;
+  },
+  &quot;outcome&quot;: {
+    &quot;coding&quot;: [
+      {
+        &quot;system&quot;: &quot;http://hl7.org/fhir/remittance-outcome&quot;,
+        &quot;code&quot;: &quot;complete&quot;
+      }
+    ]
+  },
+  &quot;disposition&quot;: &quot;2014 August mid-month settlement.&quot;,
   &quot;requestOrganization&quot;: {
     &quot;reference&quot;: &quot;Organization/1&quot;
   },
   &quot;detail&quot;: [
     {
       &quot;type&quot;: {
-        &quot;system&quot;: &quot;http://hl7.org/fhir/paymenttype&quot;,
-        &quot;code&quot;: &quot;payment&quot;
+        &quot;coding&quot;: [
+          {
+            &quot;system&quot;: &quot;http://hl7.org/fhir/paymenttype&quot;,
+            &quot;code&quot;: &quot;payment&quot;
+          }
+        ]
       },
       &quot;request&quot;: {
         &quot;reference&quot;: &quot;http://www.BenefitsInc.com/fhir/oralhealthclaim/225476332402&quot;
@@ -159,8 +170,12 @@
     },
     {
       &quot;type&quot;: {
-        &quot;system&quot;: &quot;http://hl7.org/fhir/paymenttype&quot;,
-        &quot;code&quot;: &quot;payment&quot;
+        &quot;coding&quot;: [
+          {
+            &quot;system&quot;: &quot;http://hl7.org/fhir/paymenttype&quot;,
+            &quot;code&quot;: &quot;payment&quot;
+          }
+        ]
       },
       &quot;request&quot;: {
         &quot;reference&quot;: &quot;http://www.BenefitsInc.com/fhir/oralhealthclaim/225476332699&quot;
@@ -174,8 +189,12 @@
     },
     {
       &quot;type&quot;: {
-        &quot;system&quot;: &quot;http://hl7.org/fhir/paymenttype&quot;,
-        &quot;code&quot;: &quot;advance&quot;
+        &quot;coding&quot;: [
+          {
+            &quot;system&quot;: &quot;http://hl7.org/fhir/paymenttype&quot;,
+            &quot;code&quot;: &quot;advance&quot;
+          }
+        ]
       },
       &quot;date&quot;: &quot;2014-08-16&quot;,
       &quot;amount&quot;: {
@@ -215,7 +234,7 @@ of the specification.
 		<div class="container"><!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:33-0500. <a href="qa.html">QA Page</a>
+        © HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:28-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search</a> | 

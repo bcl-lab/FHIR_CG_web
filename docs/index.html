@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>Index - FHIR v1.7.0</title>
+  <title>Index - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -115,21 +115,94 @@ This is the Continuous Integration Build of FHIR (will be incorrect/inconsistent
 <h1 class="self-link-parent"><span class="sectioncount">0<a name="0"> </a></span> Welcome to FHIR&reg; <a href="index.html#0" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h1>
 
 <p>
-First time here? See the <a href="summary.html">executive summary</a>, the <a href="overview-dev.html">developer's introduction</a>,
- <a href="overview-clinical.html">clinical introduction</a>, or <a href="overview-arch.html">architect's introduction</a>, and then the <a href="overview.html">FHIR overview / roadmap</a>.
+<b>First time here?</b><br/>See the <a href="summary.html">executive summary</a>, the <a href="overview-dev.html">developer's introduction</a>,
+ <a href="overview-clinical.html">clinical introduction</a>, or <a href="overview-arch.html">architect's introduction</a>, and then the FHIR <a href="overview.html">overview / roadmap</a> &amp; <a href="timelines.html">Timelines</a>.
 See also the <a href="license.html">open license</a> (and don't miss the full <a href="toc.html">Table of Contents</a> or you can <a href="search.cfm">search this specification</a>).
 </p>
 
 <div id="diagram">
- <div id="reasoning" class="box box_row box_one">
+
+ <p class="level-text"><b>Level 1</b> Basic framework on which the specification is build</p>
+ <div id="foundation" class="box box_row box_one">
   <p class="head">
-   <a style="background-image: url('reasoning.png');" href="clinicalreasoning-module.html">
-    <span>Clinical Reasoning</span>
+   <a style="background-image: url('foundation.png');" href="foundation-module.html">
+   <span>Foundation</span>
    </a>
   </p>
-  <p class="content"><span>Decision Support, Clinical Quality Measures</span></p>
+  <p class="content"><span>
+   <a href="documentation.html">Base Documentation</a>, <a href="xml.html">XML</a>, <a href="json.html">JSON</a>, <a href="http.html">REST API</a> + <a href="search.html">Search</a>, <a href="datatypes.html">Data Types</a>, <a href="extensibility.html">Extensions</a></span>
+  </p>
  </div>
 
+  <p class="level-text"><b>Level 2</b> Supporting Implementation, and binding to external specifications</p>
+ <div class="box_row box_more">
+  <div id="implsupport" class="box">
+   <p class="head">
+    <a style="background-image: url('implsupport.png');" href="implsupport-module.html">
+    <span>Implementer Support</span>
+   </a>
+   </p>
+   <p class="content">
+    <a href="downloads.html">Downloads</a>,<br/><a href="usecases.html">Common Use Cases</a>,<br/><a href="testing.html">Testing</a>
+   </p>
+  </div>
+  <div id="secpriv" class="box">
+   <p class="head">
+    <a style="background-image: url('secpriv.jpg');" href="secpriv-module.html">
+    <span>Security &amp; Privacy</span>
+   </a>
+   </p>
+   <p class="content">
+    <a href="security.html">Security</a>,<br/>
+    <a href="consent.html">Consent</a>
+   </p>
+  </div>
+  <div id="conformance" class="box">
+   <p class="head">
+    <a style="background-image: url('conformance.jpg');" href="conformance-module.html">
+    <span>Conformance</span>
+   </a>
+   </p>
+   <p class="content">
+    <a href="structuredefinition.html">StructureDefinition</a>,<br/><a href="capabilitystatement.html">CapabilityStatement</a>,<br/><a href="profiling.html">Profiling</a>
+   </p>
+  </div>
+  <div id="terminology" class="box">
+   <p class="head">
+    <a style="background-image: url('terminology.png');" href="terminology-module.html">
+    <span>Terminology</span>
+   </a>
+   </p>
+   <p class="content">
+    <a href="codesystem.html">CodeSystem</a>,<br/><a href="valueset.html">ValueSet</a>,<br/><a href="conceptmap.html">ConceptMap</a>,<br/><a href="terminology-service.html">Terminology Svc</a>
+   </p>
+  </div>
+  <div id="linked-data" class="box">
+   <p class="head">
+    <a style="background-image: url('linked-data.png');" href="linked-data-module.html">
+    <span>Linked Data</span>
+   </a>
+   </p>
+   <p class="content">
+    <a href="rdf.html">RDF</a>
+   </p>
+  </div>
+ </div>
+
+  <p class="level-text"><b>Level 3</b> Linking to real world concepts in the healthcare system</p>
+ <div id="administration" class="box box_row box_one">
+  <p class="head">
+   <a style="background-image: url('administration.jpg');" href="administration-module.html">
+   <span>Administration</span>
+   </a>
+  </p>
+  <p class="content"><span>
+   <a href="patient.html">Patient</a>, <a href="practitioner.html">Practitioner</a>, <a href="device.html">Device</a>, <a href="organization.html">Organization</a>, <a href="location.html">Location</a>, <a href="healthcareservice.html">Healthcare Service</a></span>
+  </p>
+ </div>
+
+ <p class="level-text"><b>Level 4</b> Record-keeping and Data Exchange for the healthcare process</p>
+ 
  <div class="box_row box_more">
   <div id="clinical" class="box">
    <p class="head">
@@ -183,80 +256,14 @@ See also the <a href="license.html">open license</a> (and don't miss the full <a
   </div>
  </div>
 
- <div id="administration" class="box box_row box_one">
+ <p class="level-text"><b>Level 5</b> Providing the ability to reason about the healthcare process</p>
+ <div id="reasoning" class="box box_row box_one">
   <p class="head">
-   <a style="background-image: url('administration.jpg');" href="administration-module.html">
-   <span>Administration</span>
+   <a style="background-image: url('reasoning.png');" href="clinicalreasoning-module.html">
+    <span>Clinical Reasoning</span>
    </a>
   </p>
-  <p class="content"><span>
-   <a href="patient.html">Patient</a>, <a href="practitioner.html">Practitioner</a>, <a href="device.html">Device</a>, <a href="organization.html">Organization</a>, <a href="location.html">Location</a>, <a href="healthcareservice.html">Healthcare Service</a></span>
-  </p>
- </div>
-
- <div class="box_row box_more">
-  <div id="implsupport" class="box">
-   <p class="head">
-    <a style="background-image: url('implsupport.png');" href="implsupport-module.html">
-    <span>Implementer Support</span>
-   </a>
-   </p>
-   <p class="content">
-    <a href="downloads.html">Downloads</a>,<br/><a href="usecases.html">Common Use Cases</a>,<br/><a href="testing.html">Testing</a>
-   </p>
-  </div>
-  <div id="secpriv" class="box">
-   <p class="head">
-    <a style="background-image: url('secpriv.jpg');" href="secpriv-module.html">
-    <span>Security &amp; Privacy</span>
-   </a>
-   </p>
-   <p class="content">
-    <a href="security.html">Security</a>,<br/>
-    <a href="consent.html">Consent</a>
-   </p>
-  </div>
-  <div id="conformance" class="box">
-   <p class="head">
-    <a style="background-image: url('conformance.jpg');" href="conformance-module.html">
-    <span>Conformance</span>
-   </a>
-   </p>
-   <p class="content">
-    <a href="structuredefinition.html">StructureDefn</a>,<br/><a href="capabilitystatement.html">CapabilityStatement</a>,<br/><a href="profiling.html">Profiling</a>
-   </p>
-  </div>
-  <div id="terminology" class="box">
-   <p class="head">
-    <a style="background-image: url('terminology.png');" href="terminology-module.html">
-    <span>Terminology</span>
-   </a>
-   </p>
-   <p class="content">
-    <a href="codesystem.html">CodeSystem</a>,<br/><a href="valueset.html">ValueSet</a>,<br/><a href="conceptmap.html">ConceptMap</a>,<br/><a href="terminology-service.html">Terminology Svc</a>
-   </p>
-  </div>
-  <div id="ontology" class="box">
-   <p class="head">
-    <a style="background-image: url('ontology.png');" href="ontology-module.html">
-    <span>Ontology</span>
-   </a>
-   </p>
-   <p class="content">
-    <a href="rdf.html">RDF</a>
-   </p>
-  </div>
- </div>
-
- <div id="foundation" class="box box_row box_one">
-  <p class="head">
-   <a style="background-image: url('foundation.png');" href="foundation-module.html">
-   <span>Foundation</span>
-   </a>
-  </p>
-  <p class="content"><span>
-   <a href="documentation.html">Base Documentation</a>, <a href="xml.html">XML</a>, <a href="json.html">JSON</a>, <a href="http.html">REST API</a> + <a href="search.html">Search</a>, <a href="datatypes.html">Data Types</a>, <a href="extensibility.html">Extensions</a></span>
-  </p>
+  <p class="content"><span>Decision Support, Clinical Quality Measures</span></p>
  </div>
 </div>
 
@@ -310,7 +317,7 @@ See also the <a href="license.html">open license</a> (and don't miss the full <a
 		<div class="container">  <!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:33-0500. <a href="qa.html">QA Page</a>
+        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:28-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search <img src="external.png" style="text-align: baseline"/></a> | 

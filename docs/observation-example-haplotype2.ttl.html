@@ -3,7 +3,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>Observation-example-haplotype2.ttl - FHIR v1.7.0</title>
+  <title>Observation-example-haplotype2.ttl - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -117,6 +117,7 @@
 <p>Example of another haplotype data that is basis of a diplotype data</p>
 <pre class="json">
 @prefix fhir: &lt;http://hl7.org/fhir/&gt; .
+@prefix loinc: &lt;http://loinc.org/owl#&gt; .
 @prefix owl: &lt;http://www.w3.org/2002/07/owl#&gt; .
 @prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .
 @prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .
@@ -128,9 +129,8 @@
   fhir:Resource.id [ fhir:value &quot;example-haplotype2&quot;];
   fhir:DomainResource.text [
      fhir:Narrative.status [ fhir:value &quot;generated&quot; ];
-     fhir:Narrative.div &quot;&lt;div xmlns=\&quot;http://www.w3.org/1999/xhtml\&quot;&gt;&lt;p&gt;&lt;b&gt;Generated Narrative with Details&lt;/b&gt;&lt;/p&gt;&lt;p&gt;&lt;b&gt;id&lt;/b&gt;: example-haplotype2&lt;/p&gt;&lt;p&gt;&lt;b&gt;status&lt;/b&gt;: unknown&lt;/p&gt;&lt;p&gt;&lt;b&gt;subject&lt;/b&gt;: &lt;a&gt;J*********** C***********&lt;/a&gt;&lt;/p&gt;&lt;p&gt;&lt;b&gt;issued&lt;/b&gt;: 2013-4-3 15:30:10&lt;/p&gt;&lt;p&gt;&lt;b&gt;value&lt;/b&gt;: *4 &lt;span&gt;(Details : {http://pharmakb.org code 'PA16581679' = 'PA16581679', given as '*4'})&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;b&gt;specimen&lt;/b&gt;: &lt;a&gt;Molecular Specimen ID: MLD45-Z4-1234&lt;/a&gt;&lt;/p&gt;&lt;blockquote&gt;&lt;p&gt;&lt;b&gt;related&lt;/b&gt;&lt;/p&gt;&lt;p&gt;&lt;b&gt;type&lt;/b&gt;: derived-from&lt;/p&gt;&lt;p&gt;&lt;b&gt;target&lt;/b&gt;: &lt;a&gt;Sequence/example-pgx-1&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;&lt;blockquote&gt;&lt;p&gt;&lt;b&gt;related&lt;/b&gt;&lt;/p&gt;&lt;p&gt;&lt;b&gt;type&lt;/b&gt;: derived-from&lt;/p&gt;&lt;p&gt;&lt;b&gt;target&lt;/b&gt;: &lt;a&gt;Sequence/example-pgx-2&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;&lt;/div&gt;&quot;
+     fhir:Narrative.div &quot;&lt;div xmlns=\&quot;http://www.w3.org/1999/xhtml\&quot;&gt;&lt;p&gt;&lt;b&gt;Generated Narrative with Details&lt;/b&gt;&lt;/p&gt;&lt;p&gt;&lt;b&gt;id&lt;/b&gt;: example-haplotype2&lt;/p&gt;&lt;p&gt;&lt;b&gt;status&lt;/b&gt;: unknown&lt;/p&gt;&lt;p&gt;&lt;b&gt;code&lt;/b&gt;: Genetic analysis master panel-- This is the parent OBR for the panel holding all of the associated observations that can be reported with a molecular genetics analysis result. &lt;span&gt;(Details : {LOINC code '55233-1' = 'Genetic analysis master panel - Blood or Tissue by Molecular genetics method', given as 'Genetic analysis master panel-- This is the parent OBR for the panel holding all of the associated observations that can be reported with a molecular genetics analysis result.'})&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;b&gt;subject&lt;/b&gt;: &lt;a&gt;J*********** C***********&lt;/a&gt;&lt;/p&gt;&lt;p&gt;&lt;b&gt;issued&lt;/b&gt;: 2013-4-3 15:30:10&lt;/p&gt;&lt;p&gt;&lt;b&gt;value&lt;/b&gt;: *4 &lt;span&gt;(Details : {http://pharmakb.org code 'PA16581679' = 'PA16581679', given as '*4'})&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;b&gt;specimen&lt;/b&gt;: &lt;a&gt;Molecular Specimen ID: MLD45-Z4-1234&lt;/a&gt;&lt;/p&gt;&lt;blockquote&gt;&lt;p&gt;&lt;b&gt;related&lt;/b&gt;&lt;/p&gt;&lt;p&gt;&lt;b&gt;type&lt;/b&gt;: derived-from&lt;/p&gt;&lt;p&gt;&lt;b&gt;target&lt;/b&gt;: &lt;a&gt;Sequence/example-pgx-1&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;&lt;blockquote&gt;&lt;p&gt;&lt;b&gt;related&lt;/b&gt;&lt;/p&gt;&lt;p&gt;&lt;b&gt;type&lt;/b&gt;: derived-from&lt;/p&gt;&lt;p&gt;&lt;b&gt;target&lt;/b&gt;: &lt;a&gt;Sequence/example-pgx-2&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;&lt;/div&gt;&quot;
   ];
-  fhir:Observation.status [ fhir:value &quot;unknown&quot;];
   fhir:extension [
      fhir:index 0;
      fhir:Extension.url [ fhir:value &quot;http://hl7.org/fhir/StructureDefinition/observation-geneticsGene&quot; ];
@@ -155,6 +155,16 @@
      fhir:Extension.valueReference [
        fhir:link &lt;http://hl7.org/fhir/Sequence/example-sequence2&gt;;
        fhir:Reference.reference [ fhir:value &quot;Sequence/example-sequence2&quot; ]
+     ]
+  ];
+  fhir:Observation.status [ fhir:value &quot;unknown&quot;];
+  fhir:Observation.code [
+     fhir:CodeableConcept.coding [
+       fhir:index 0;
+       fhir:concept loinc:55233-1;
+       fhir:Coding.system [ fhir:value &quot;http://loinc.org&quot; ];
+       fhir:Coding.code [ fhir:value &quot;55233-1&quot; ];
+       fhir:Coding.display [ fhir:value &quot;Genetic analysis master panel-- This is the parent OBR for the panel holding all of the associated observations that can be reported with a molecular genetics analysis result.&quot; ]
      ]
   ];
   fhir:Observation.subject [
@@ -231,7 +241,7 @@ of the specification.
 		<div class="container"><!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:32-0500. <a href="qa.html">QA Page</a>
+        © HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:28-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search</a> | 

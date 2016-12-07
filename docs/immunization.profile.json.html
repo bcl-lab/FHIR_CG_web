@@ -3,7 +3,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>Immunization.profile.json - FHIR v1.7.0</title>
+  <title>Immunization.profile.json - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -119,7 +119,7 @@
   &quot;resourceType&quot;: &quot;StructureDefinition&quot;,
   &quot;id&quot;: &quot;Immunization&quot;,
   &quot;meta&quot;: {
-    &quot;lastUpdated&quot;: &quot;2016-11-28T17:29:55.664-05:00&quot;
+    &quot;lastUpdated&quot;: &quot;2016-12-07T14:18:58.982-05:00&quot;
   },
   &quot;text&quot;: {
     &quot;status&quot;: &quot;generated&quot;,
@@ -129,6 +129,10 @@
     {
       &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm&quot;,
       &quot;valueInteger&quot;: 1
+    },
+    {
+      &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/structuredefinition-wg&quot;,
+      &quot;valueCode&quot;: &quot;pher&quot;
     }
   ],
   &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/Immunization&quot;,
@@ -139,7 +143,7 @@
     {
       &quot;telecom&quot;: [
         {
-          &quot;system&quot;: &quot;other&quot;,
+          &quot;system&quot;: &quot;url&quot;,
           &quot;value&quot;: &quot;http://hl7.org/fhir&quot;
         }
       ]
@@ -147,15 +151,15 @@
     {
       &quot;telecom&quot;: [
         {
-          &quot;system&quot;: &quot;other&quot;,
+          &quot;system&quot;: &quot;url&quot;,
           &quot;value&quot;: &quot;http://www.hl7.org/Special/committees/pher/index.cfm&quot;
         }
       ]
     }
   ],
-  &quot;date&quot;: &quot;2016-11-28T17:29:55-05:00&quot;,
+  &quot;date&quot;: &quot;2016-12-07T14:18:58-05:00&quot;,
   &quot;description&quot;: &quot;Base StructureDefinition for Immunization Resource&quot;,
-  &quot;fhirVersion&quot;: &quot;1.7.0&quot;,
+  &quot;fhirVersion&quot;: &quot;1.8.0&quot;,
   &quot;mapping&quot;: [
     {
       &quot;identity&quot;: &quot;v2&quot;,
@@ -660,11 +664,11 @@
         ]
       },
       {
-        &quot;id&quot;: &quot;Immunization.reported&quot;,
-        &quot;path&quot;: &quot;Immunization.reported&quot;,
-        &quot;short&quot;: &quot;Indicates a self-reported record&quot;,
-        &quot;definition&quot;: &quot;True if this administration was reported rather than directly administered.&quot;,
-        &quot;comments&quot;: &quot;May need source of reported info (e.g. parent), but leave out for now.&quot;,
+        &quot;id&quot;: &quot;Immunization.primarySource&quot;,
+        &quot;path&quot;: &quot;Immunization.primarySource&quot;,
+        &quot;short&quot;: &quot;Indicates context the data was recorded in&quot;,
+        &quot;definition&quot;: &quot;An indication that the content of the record is based on information from the person who administered the vaccine. This reflects the context under which the data was originally recorded.&quot;,
+        &quot;comments&quot;: &quot;Reflects the “reliability” of the content.&quot;,
         &quot;min&quot;: 1,
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
@@ -679,7 +683,42 @@
           },
           {
             &quot;identity&quot;: &quot;rim&quot;,
-            &quot;map&quot;: &quot;.participation[typeCode=INF].role[classCode=PAT] (this syntax for self-reported=true)&quot;
+            &quot;map&quot;: &quot;immunization.uncertaintycode (if primary source=false, uncertainty=U)&quot;
+          },
+          {
+            &quot;identity&quot;: &quot;w5&quot;,
+            &quot;map&quot;: &quot;who.source&quot;
+          }
+        ]
+      },
+      {
+        &quot;id&quot;: &quot;Immunization.reportOrigin&quot;,
+        &quot;path&quot;: &quot;Immunization.reportOrigin&quot;,
+        &quot;short&quot;: &quot;Indicates the source of a secondarily reported record&quot;,
+        &quot;definition&quot;: &quot;The source of the data when the report of the immunization event is not based on information from the person who administered the vaccine.&quot;,
+        &quot;comments&quot;: &quot;Should not be populated if primarySource = True, will not be required even if primarySource = False.&quot;,
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;1&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;CodeableConcept&quot;
+          }
+        ],
+        &quot;binding&quot;: {
+          &quot;strength&quot;: &quot;example&quot;,
+          &quot;description&quot;: &quot;The source of the data for a record which is not from a primary source.&quot;,
+          &quot;valueSetReference&quot;: {
+            &quot;reference&quot;: &quot;http://hl7.org/fhir/ValueSet/immunization-origin&quot;
+          }
+        },
+        &quot;mapping&quot;: [
+          {
+            &quot;identity&quot;: &quot;v2&quot;,
+            &quot;map&quot;: &quot;RXA-9&quot;
+          },
+          {
+            &quot;identity&quot;: &quot;rim&quot;,
+            &quot;map&quot;: &quot;.participation[typeCode=INF].role[classCode=PAT] (this syntax for self-reported)\n.participation[typeCode=INF].role[classCode=LIC] (this syntax for health care professional)\n.participation[typeCode=INF].role[classCode=PRS] (this syntax for family member)&quot;
           },
           {
             &quot;identity&quot;: &quot;w5&quot;,
@@ -1172,7 +1211,7 @@
         &quot;path&quot;: &quot;Immunization.reaction&quot;,
         &quot;short&quot;: &quot;Details of a reaction that follows immunization&quot;,
         &quot;definition&quot;: &quot;Categorical data indicating that an adverse event is associated in time to an immunization.&quot;,
-        &quot;comments&quot;: &quot;A reaction may be an indication of an allergy or intolerance and, if this is determined to be the case,  it should be recorded as a new [[[AllergyIntolerance]]] resource instance as most systems will not query against  past Immunization.reaction elements.&quot;,
+        &quot;comments&quot;: &quot;A reaction may be an indication of an allergy or intolerance and, if this is determined to be the case,  it should be recorded as a new [AllergyIntolerance](allergyintolerance.html) resource instance as most systems will not query against  past Immunization.reaction elements.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;*&quot;,
         &quot;type&quot;: [
@@ -1881,11 +1920,11 @@
         ]
       },
       {
-        &quot;id&quot;: &quot;Immunization.reported&quot;,
-        &quot;path&quot;: &quot;Immunization.reported&quot;,
-        &quot;short&quot;: &quot;Indicates a self-reported record&quot;,
-        &quot;definition&quot;: &quot;True if this administration was reported rather than directly administered.&quot;,
-        &quot;comments&quot;: &quot;May need source of reported info (e.g. parent), but leave out for now.&quot;,
+        &quot;id&quot;: &quot;Immunization.primarySource&quot;,
+        &quot;path&quot;: &quot;Immunization.primarySource&quot;,
+        &quot;short&quot;: &quot;Indicates context the data was recorded in&quot;,
+        &quot;definition&quot;: &quot;An indication that the content of the record is based on information from the person who administered the vaccine. This reflects the context under which the data was originally recorded.&quot;,
+        &quot;comments&quot;: &quot;Reflects the “reliability” of the content.&quot;,
         &quot;min&quot;: 1,
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
@@ -1900,7 +1939,42 @@
           },
           {
             &quot;identity&quot;: &quot;rim&quot;,
-            &quot;map&quot;: &quot;.participation[typeCode=INF].role[classCode=PAT] (this syntax for self-reported=true)&quot;
+            &quot;map&quot;: &quot;immunization.uncertaintycode (if primary source=false, uncertainty=U)&quot;
+          },
+          {
+            &quot;identity&quot;: &quot;w5&quot;,
+            &quot;map&quot;: &quot;who.source&quot;
+          }
+        ]
+      },
+      {
+        &quot;id&quot;: &quot;Immunization.reportOrigin&quot;,
+        &quot;path&quot;: &quot;Immunization.reportOrigin&quot;,
+        &quot;short&quot;: &quot;Indicates the source of a secondarily reported record&quot;,
+        &quot;definition&quot;: &quot;The source of the data when the report of the immunization event is not based on information from the person who administered the vaccine.&quot;,
+        &quot;comments&quot;: &quot;Should not be populated if primarySource = True, will not be required even if primarySource = False.&quot;,
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;1&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;CodeableConcept&quot;
+          }
+        ],
+        &quot;binding&quot;: {
+          &quot;strength&quot;: &quot;example&quot;,
+          &quot;description&quot;: &quot;The source of the data for a record which is not from a primary source.&quot;,
+          &quot;valueSetReference&quot;: {
+            &quot;reference&quot;: &quot;http://hl7.org/fhir/ValueSet/immunization-origin&quot;
+          }
+        },
+        &quot;mapping&quot;: [
+          {
+            &quot;identity&quot;: &quot;v2&quot;,
+            &quot;map&quot;: &quot;RXA-9&quot;
+          },
+          {
+            &quot;identity&quot;: &quot;rim&quot;,
+            &quot;map&quot;: &quot;.participation[typeCode=INF].role[classCode=PAT] (this syntax for self-reported)\n.participation[typeCode=INF].role[classCode=LIC] (this syntax for health care professional)\n.participation[typeCode=INF].role[classCode=PRS] (this syntax for family member)&quot;
           },
           {
             &quot;identity&quot;: &quot;w5&quot;,
@@ -2295,7 +2369,7 @@
         &quot;path&quot;: &quot;Immunization.reaction&quot;,
         &quot;short&quot;: &quot;Details of a reaction that follows immunization&quot;,
         &quot;definition&quot;: &quot;Categorical data indicating that an adverse event is associated in time to an immunization.&quot;,
-        &quot;comments&quot;: &quot;A reaction may be an indication of an allergy or intolerance and, if this is determined to be the case,  it should be recorded as a new [[[AllergyIntolerance]]] resource instance as most systems will not query against  past Immunization.reaction elements.&quot;,
+        &quot;comments&quot;: &quot;A reaction may be an indication of an allergy or intolerance and, if this is determined to be the case,  it should be recorded as a new [AllergyIntolerance](allergyintolerance.html) resource instance as most systems will not query against  past Immunization.reaction elements.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;*&quot;,
         &quot;type&quot;: [
@@ -2609,7 +2683,7 @@ of the specification.
 		<div class="container"><!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:32-0500. <a href="qa.html">QA Page</a>
+        © HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:21-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search</a> | 

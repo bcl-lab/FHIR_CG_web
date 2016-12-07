@@ -30,7 +30,10 @@ start=@<MedicationStatement> AND {fhir:nodeRole [fhir:treeRoot]}
         fhir:MedicationStatement.medicationCodeableConcept @<CodeableConcept>  |
         fhir:MedicationStatement.medicationReference @<Reference> 
     );
-    fhir:MedicationStatement.patient @<Reference>;  # Who is/was taking  the medication
+    fhir:MedicationStatement.subject        # Who is/was taking  the medication
+    (   @<PatientReference> OR
+        @<GroupReference>
+    );
     (                                       # Over what period was medication 
                                             # consumed? 
         fhir:MedicationStatement.effectiveDateTime @<dateTime>  |
@@ -50,10 +53,14 @@ start=@<MedicationStatement> AND {fhir:nodeRole [fhir:treeRoot]}
     	{fhir:value @fhirvs:medication-statement-nottaken}?;  # y | n | unk
     fhir:MedicationStatement.reasonNotTaken @<CodeableConcept>*;  # True if asserting medication was 
                                             # not given 
-    fhir:MedicationStatement.reasonForUseCode @<CodeableConcept>*;  # Reason for why the medication is 
+    fhir:MedicationStatement.reasonForUseCodeableConcept @<CodeableConcept>*;  # Reason for why the medication is 
                                             # being/was taken 
-    fhir:MedicationStatement.reasonForUseReference @<Reference>*;  # Condition that supports why the 
-                                            # medication is being/was taken 
+    fhir:MedicationStatement.reasonForUseReference  # Condition or observation that 
+                                            # supports why the medication is 
+                                            # being/was taken 
+    (   @<ConditionReference> OR
+        @<ObservationReference>
+    )*;
     fhir:MedicationStatement.note @<Annotation>*;  # Further information about the 
                                             # statement 
     fhir:MedicationStatement.category @<code>?;  # Type of medication usage
@@ -230,10 +237,7 @@ start=@<MedicationStatement> AND {fhir:nodeRole [fhir:treeRoot]}
         fhir:DosageInstruction.asNeededBoolean @<boolean>  |
         fhir:DosageInstruction.asNeededCodeableConcept @<CodeableConcept> 
     )?;
-    (                                       # Body site to administer to
-        fhir:DosageInstruction.siteCodeableConcept @<CodeableConcept>  |
-        fhir:DosageInstruction.siteReference @<Reference> 
-    )?;
+    fhir:DosageInstruction.site @<CodeableConcept>?;  # Body site to administer to
     fhir:DosageInstruction.route @<CodeableConcept>?;  # How drug should enter body
     fhir:DosageInstruction.method @<CodeableConcept>?;  # Technique for administering 
                                             # medication 
@@ -407,6 +411,10 @@ start=@<MedicationStatement> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:Timing.repeat.periodUnit @<code> AND
     	{fhir:value @fhirvs:units-of-time}?;  # s | min | h | d | wk | mo | a - 
                                             # unit of time (UCUM) 
+    fhir:Timing.repeat.dayOfWeek @<code> AND
+    	{fhir:value @fhirvs:days-of-week}*;  # mon | tue | wed | thu | fri | sat 
+                                            # | sun 
+    fhir:Timing.repeat.timeOfDay @<time>*;  # Time of day for action
     fhir:Timing.repeat.when @<code> AND
     	{fhir:value @fhirvs:event-timing}?;  # Regular life events the event is 
                                             # tied to 
@@ -439,6 +447,15 @@ start=@<MedicationStatement> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
+# Primitive Type time
+<time> CLOSED {
+    fhir:Element.id @<id>?;                 # xml:id (or equivalent in JSON)
+    fhir:extension @<Extension>*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:value xsd:time?;                   # Primitive value for time
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
 #---------------------- Reference Types -------------------
 
 <PractitionerReference> CLOSED {
@@ -455,6 +472,34 @@ start=@<MedicationStatement> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:nodeRole [fhir:treeRoot]?
 }
 
+<ConditionReference> CLOSED {
+    fhir:Element.id @<id>?;
+    fhir:extension @<Extension>*;
+    fhir:link @<Condition> OR CLOSED {a fhir:Condition}?;
+    fhir:Reference.reference @<string>?;
+    fhir:Reference.display @<string>?;
+    fhir:index xsd:integer?
+}
+
+<Condition> {
+    a [fhir:Condition];
+    fhir:nodeRole [fhir:treeRoot]?
+}
+
+<GroupReference> CLOSED {
+    fhir:Element.id @<id>?;
+    fhir:extension @<Extension>*;
+    fhir:link @<Group> OR CLOSED {a fhir:Group}?;
+    fhir:Reference.reference @<string>?;
+    fhir:Reference.display @<string>?;
+    fhir:index xsd:integer?
+}
+
+<Group> {
+    a [fhir:Group];
+    fhir:nodeRole [fhir:treeRoot]?
+}
+
 <OrganizationReference> CLOSED {
     fhir:Element.id @<id>?;
     fhir:extension @<Extension>*;
@@ -466,6 +511,20 @@ start=@<MedicationStatement> AND {fhir:nodeRole [fhir:treeRoot]}
 
 <Organization> {
     a [fhir:Organization];
+    fhir:nodeRole [fhir:treeRoot]?
+}
+
+<ObservationReference> CLOSED {
+    fhir:Element.id @<id>?;
+    fhir:extension @<Extension>*;
+    fhir:link @<Observation> OR CLOSED {a fhir:Observation}?;
+    fhir:Reference.reference @<string>?;
+    fhir:Reference.display @<string>?;
+    fhir:index xsd:integer?
+}
+
+<Observation> {
+    a [fhir:Observation];
     fhir:nodeRole [fhir:treeRoot]?
 }
 
@@ -499,11 +558,17 @@ start=@<MedicationStatement> AND {fhir:nodeRole [fhir:treeRoot]}
 
 #---------------------- Value Sets ------------------------
 
-# A coded concept identifying level of certainty if patient has taken or has not taken the medication
-fhirvs:medication-statement-nottaken ["y" "n" "unk"]
+# How the Quantity should be understood and represented.
+fhirvs:quantity-comparator ["<" "<=" ">=" ">"]
 
 # Real world event that the relating to the schedule.
-fhirvs:event-timing ["HS" "WAKE" "C" "CM" "CD" "CV" "AC" "ACM" "ACD" "ACV" "PC" "PCM" "PCD" "PCV"]
+fhirvs:event-timing ["MORN" "AFT" "EVE" "NIGHT" "HS" "WAKE" "C" "CM" "CD" "CV" "AC" "ACM" "ACD" "ACV" "PC" "PCM" "PCD" "PCV"]
+
+# A unit of time (units from UCUM).
+fhirvs:units-of-time ["s" "min" "h" "d" "wk" "mo" "a"]
+
+# The days of the week.
+fhirvs:days-of-week ["mon" "tue" "wed" "thu" "fri" "sat" "sun"]
 
 # Identifies the purpose for this identifier, if known .
 fhirvs:identifier-use ["usual" "official" "temp" "secondary"]
@@ -511,11 +576,8 @@ fhirvs:identifier-use ["usual" "official" "temp" "secondary"]
 # The status of a resource narrative
 fhirvs:narrative-status ["generated" "extensions" "additional" "empty"]
 
-# How the Quantity should be understood and represented.
-fhirvs:quantity-comparator ["<" "<=" ">=" ">"]
+# A coded concept identifying level of certainty if patient has taken or has not taken the medication
+fhirvs:medication-statement-nottaken ["y" "n" "unk"]
 
 # A coded concept indicating the current status of a MedicationStatement.
 fhirvs:medication-statement-status ["active" "completed" "entered-in-error" "intended" "stopped" "on-hold"]
-
-# A unit of time (units from UCUM).
-fhirvs:units-of-time ["s" "min" "h" "d" "wk" "mo" "a"]

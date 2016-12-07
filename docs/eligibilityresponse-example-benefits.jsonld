@@ -25,6 +25,9 @@
   "EligibilityResponse.status": {
     "code.value": "active"
   },
+  "EligibilityResponse.created": {
+    "dateTime.value": "2014-08-16"
+  },
   "EligibilityResponse.request": {
     "Reference.reference": {
       "string.value": "http://www.BenefitsInc.com/fhir/eligibility/225476332402"
@@ -32,15 +35,21 @@
     "Resource.reference": "http://www.BenefitsInc.com/fhir/eligibility/225476332402"
   },
   "EligibilityResponse.outcome": {
-    "code.value": "complete"
+    "CodeableConcept.coding": [
+      {
+        "Coding.system": {
+          "uri.value": "http://hl7.org/fhir/remittance-outcome"
+        },
+        "Coding.code": {
+          "code.value": "complete"
+        }
+      }
+    ]
   },
   "EligibilityResponse.disposition": {
     "string.value": "Policy is currently in-force."
   },
-  "EligibilityResponse.created": {
-    "dateTime.value": "2014-08-16"
-  },
-  "EligibilityResponse.organization": {
+  "EligibilityResponse.insurer": {
     "Reference.reference": {
       "string.value": "Organization/2"
     },
@@ -49,367 +58,503 @@
   "EligibilityResponse.inforce": {
     "boolean.value": true
   },
-  "EligibilityResponse.benefitBalance": [
+  "EligibilityResponse.insurance": [
     {
-      "EligibilityResponse.benefitBalance.category": {
-        "Coding.system": {
-          "uri.value": "http://hl7.org/fhir/benefit-category"
-        },
-        "Coding.code": {
-          "code.value": "medical"
-        }
-      },
-      "EligibilityResponse.benefitBalance.subCategory": {
-        "Coding.system": {
-          "uri.value": "http://hl7.org/fhir/benefit-subcategory"
-        },
-        "Coding.code": {
-          "code.value": "30"
-        },
-        "Coding.display": {
-          "string.value": "Health Benefit Plan Coverage"
-        }
-      },
-      "EligibilityResponse.benefitBalance.network": {
-        "Coding.system": {
-          "uri.value": "http://hl7.org/fhir/benefit-network"
-        },
-        "Coding.code": {
-          "code.value": "in"
-        }
-      },
-      "EligibilityResponse.benefitBalance.unit": {
-        "Coding.system": {
-          "uri.value": "http://hl7.org/fhir/benefit-unit"
-        },
-        "Coding.code": {
-          "code.value": "individual"
-        }
-      },
-      "EligibilityResponse.benefitBalance.term": {
-        "Coding.system": {
-          "uri.value": "http://hl7.org/fhir/benefit-term"
-        },
-        "Coding.code": {
-          "code.value": "annual"
-        }
-      },
-      "EligibilityResponse.benefitBalance.financial": [
+      "EligibilityResponse.insurance.benefitBalance": [
         {
-          "EligibilityResponse.benefitBalance.financial.type": {
-            "Coding.code": {
-              "code.value": "benefit"
-            }
+          "EligibilityResponse.insurance.benefitBalance.category": {
+            "CodeableConcept.coding": [
+              {
+                "Coding.system": {
+                  "uri.value": "http://hl7.org/fhir/benefit-category"
+                },
+                "Coding.code": {
+                  "code.value": "medical"
+                }
+              }
+            ]
           },
-          "EligibilityResponse.benefitBalance.financial.benefitMoney": {
-            "Quantity.value": {
-              "decimal.value": 500000
-            },
-            "Quantity.system": {
-              "uri.value": "urn:iso:std:iso:4217"
-            },
-            "Quantity.code": {
-              "code.value": "SAR"
-            }
-          }
-        },
-        {
-          "EligibilityResponse.benefitBalance.financial.type": {
-            "Coding.code": {
-              "code.value": "copay-maximum"
-            }
+          "EligibilityResponse.insurance.benefitBalance.subCategory": {
+            "CodeableConcept.coding": [
+              {
+                "Coding.system": {
+                  "uri.value": "http://hl7.org/fhir/benefit-subcategory"
+                },
+                "Coding.code": {
+                  "code.value": "30"
+                },
+                "Coding.display": {
+                  "string.value": "Health Benefit Plan Coverage"
+                }
+              }
+            ]
           },
-          "EligibilityResponse.benefitBalance.financial.benefitMoney": {
-            "Quantity.value": {
-              "decimal.value": 100
-            },
-            "Quantity.system": {
-              "uri.value": "urn:iso:std:iso:4217"
-            },
-            "Quantity.code": {
-              "code.value": "SAR"
-            }
-          }
-        },
-        {
-          "EligibilityResponse.benefitBalance.financial.type": {
-            "Coding.code": {
-              "code.value": "copay-percent"
-            }
+          "EligibilityResponse.insurance.benefitBalance.network": {
+            "CodeableConcept.coding": [
+              {
+                "Coding.system": {
+                  "uri.value": "http://hl7.org/fhir/benefit-network"
+                },
+                "Coding.code": {
+                  "code.value": "in"
+                }
+              }
+            ]
           },
-          "EligibilityResponse.benefitBalance.financial.benefitUnsignedInt": {
-            "unsignedInt.value": 20
-          }
-        }
-      ]
-    },
-    {
-      "EligibilityResponse.benefitBalance.category": {
-        "Coding.system": {
-          "uri.value": "http://hl7.org/fhir/benefit-category"
-        },
-        "Coding.code": {
-          "code.value": "medical"
-        }
-      },
-      "EligibilityResponse.benefitBalance.subCategory": {
-        "Coding.system": {
-          "uri.value": "http://hl7.org/fhir/benefit-subcategory"
-        },
-        "Coding.code": {
-          "code.value": "69"
-        },
-        "Coding.display": {
-          "string.value": "Maternity"
-        }
-      },
-      "EligibilityResponse.benefitBalance.network": {
-        "Coding.system": {
-          "uri.value": "http://hl7.org/fhir/benefit-network"
-        },
-        "Coding.code": {
-          "code.value": "in"
-        }
-      },
-      "EligibilityResponse.benefitBalance.unit": {
-        "Coding.system": {
-          "uri.value": "http://hl7.org/fhir/benefit-unit"
-        },
-        "Coding.code": {
-          "code.value": "individual"
-        }
-      },
-      "EligibilityResponse.benefitBalance.term": {
-        "Coding.system": {
-          "uri.value": "http://hl7.org/fhir/benefit-term"
-        },
-        "Coding.code": {
-          "code.value": "annual"
-        }
-      },
-      "EligibilityResponse.benefitBalance.financial": [
-        {
-          "EligibilityResponse.benefitBalance.financial.type": {
-            "Coding.code": {
-              "code.value": "benefit"
-            }
+          "EligibilityResponse.insurance.benefitBalance.unit": {
+            "CodeableConcept.coding": [
+              {
+                "Coding.system": {
+                  "uri.value": "http://hl7.org/fhir/benefit-unit"
+                },
+                "Coding.code": {
+                  "code.value": "individual"
+                }
+              }
+            ]
           },
-          "EligibilityResponse.benefitBalance.financial.benefitMoney": {
-            "Quantity.value": {
-              "decimal.value": 15000
-            },
-            "Quantity.system": {
-              "uri.value": "urn:iso:std:iso:4217"
-            },
-            "Quantity.code": {
-              "code.value": "SAR"
-            }
-          }
-        }
-      ]
-    },
-    {
-      "EligibilityResponse.benefitBalance.category": {
-        "Coding.system": {
-          "uri.value": "http://hl7.org/fhir/benefit-category"
-        },
-        "Coding.code": {
-          "code.value": "oral"
-        }
-      },
-      "EligibilityResponse.benefitBalance.subCategory": {
-        "Coding.system": {
-          "uri.value": "http://hl7.org/fhir/benefit-subcategory"
-        },
-        "Coding.code": {
-          "code.value": "F3"
-        },
-        "Coding.display": {
-          "string.value": "Dental Coverage"
-        }
-      },
-      "EligibilityResponse.benefitBalance.network": {
-        "Coding.system": {
-          "uri.value": "http://hl7.org/fhir/benefit-network"
-        },
-        "Coding.code": {
-          "code.value": "in"
-        }
-      },
-      "EligibilityResponse.benefitBalance.unit": {
-        "Coding.system": {
-          "uri.value": "http://hl7.org/fhir/benefit-unit"
-        },
-        "Coding.code": {
-          "code.value": "individual"
-        }
-      },
-      "EligibilityResponse.benefitBalance.term": {
-        "Coding.system": {
-          "uri.value": "http://hl7.org/fhir/benefit-term"
-        },
-        "Coding.code": {
-          "code.value": "annual"
-        }
-      },
-      "EligibilityResponse.benefitBalance.financial": [
-        {
-          "EligibilityResponse.benefitBalance.financial.type": {
-            "Coding.code": {
-              "code.value": "benefit"
-            }
+          "EligibilityResponse.insurance.benefitBalance.term": {
+            "CodeableConcept.coding": [
+              {
+                "Coding.system": {
+                  "uri.value": "http://hl7.org/fhir/benefit-term"
+                },
+                "Coding.code": {
+                  "code.value": "annual"
+                }
+              }
+            ]
           },
-          "EligibilityResponse.benefitBalance.financial.benefitMoney": {
-            "Quantity.value": {
-              "decimal.value": 2000
+          "EligibilityResponse.insurance.benefitBalance.financial": [
+            {
+              "EligibilityResponse.insurance.benefitBalance.financial.type": {
+                "CodeableConcept.coding": [
+                  {
+                    "Coding.code": {
+                      "code.value": "benefit"
+                    }
+                  }
+                ]
+              },
+              "EligibilityResponse.insurance.benefitBalance.financial.benefitMoney": {
+                "Quantity.value": {
+                  "decimal.value": 500000
+                },
+                "Quantity.system": {
+                  "uri.value": "urn:iso:std:iso:4217"
+                },
+                "Quantity.code": {
+                  "code.value": "SAR"
+                }
+              }
             },
-            "Quantity.system": {
-              "uri.value": "urn:iso:std:iso:4217"
+            {
+              "EligibilityResponse.insurance.benefitBalance.financial.type": {
+                "CodeableConcept.coding": [
+                  {
+                    "Coding.code": {
+                      "code.value": "copay-maximum"
+                    }
+                  }
+                ]
+              },
+              "EligibilityResponse.insurance.benefitBalance.financial.benefitMoney": {
+                "Quantity.value": {
+                  "decimal.value": 100
+                },
+                "Quantity.system": {
+                  "uri.value": "urn:iso:std:iso:4217"
+                },
+                "Quantity.code": {
+                  "code.value": "SAR"
+                }
+              }
             },
-            "Quantity.code": {
-              "code.value": "SAR"
+            {
+              "EligibilityResponse.insurance.benefitBalance.financial.type": {
+                "CodeableConcept.coding": [
+                  {
+                    "Coding.code": {
+                      "code.value": "copay-percent"
+                    }
+                  }
+                ]
+              },
+              "EligibilityResponse.insurance.benefitBalance.financial.benefitUnsignedInt": {
+                "unsignedInt.value": 20
+              }
             }
-          }
-        }
-      ]
-    },
-    {
-      "EligibilityResponse.benefitBalance.category": {
-        "Coding.system": {
-          "uri.value": "http://hl7.org/fhir/benefit-category"
-        },
-        "Coding.code": {
-          "code.value": "vision"
-        }
-      },
-      "EligibilityResponse.benefitBalance.subCategory": {
-        "Coding.system": {
-          "uri.value": "http://hl7.org/fhir/benefit-subcategory"
-        },
-        "Coding.code": {
-          "code.value": "F6"
-        },
-        "Coding.display": {
-          "string.value": "Vision Coverage"
-        }
-      },
-      "EligibilityResponse.benefitBalance.network": {
-        "Coding.system": {
-          "uri.value": "http://hl7.org/fhir/benefit-network"
-        },
-        "Coding.code": {
-          "code.value": "in"
-        }
-      },
-      "EligibilityResponse.benefitBalance.unit": {
-        "Coding.system": {
-          "uri.value": "http://hl7.org/fhir/benefit-unit"
-        },
-        "Coding.code": {
-          "code.value": "individual"
-        }
-      },
-      "EligibilityResponse.benefitBalance.term": {
-        "Coding.system": {
-          "uri.value": "http://hl7.org/fhir/benefit-term"
-        },
-        "Coding.code": {
-          "code.value": "annual"
-        }
-      },
-      "EligibilityResponse.benefitBalance.financial": [
-        {
-          "EligibilityResponse.benefitBalance.financial.type": {
-            "Coding.code": {
-              "code.value": "benefit"
-            }
-          },
-          "EligibilityResponse.benefitBalance.financial.benefitMoney": {
-            "Quantity.value": {
-              "decimal.value": 400
-            },
-            "Quantity.system": {
-              "uri.value": "urn:iso:std:iso:4217"
-            },
-            "Quantity.code": {
-              "code.value": "SAR"
-            }
-          }
-        }
-      ]
-    },
-    {
-      "EligibilityResponse.benefitBalance.category": {
-        "Coding.system": {
-          "uri.value": "http://hl7.org/fhir/benefit-category"
-        },
-        "Coding.code": {
-          "code.value": "vision"
-        }
-      },
-      "EligibilityResponse.benefitBalance.subCategory": {
-        "Coding.system": {
-          "uri.value": "http://hl7.org/fhir/benefit-subcategory"
-        },
-        "Coding.code": {
-          "code.value": "49"
-        },
-        "Coding.display": {
-          "string.value": "Hospital Room and Board"
-        }
-      },
-      "EligibilityResponse.benefitBalance.network": {
-        "Coding.system": {
-          "uri.value": "http://hl7.org/fhir/benefit-network"
-        },
-        "Coding.code": {
-          "code.value": "in"
-        }
-      },
-      "EligibilityResponse.benefitBalance.unit": {
-        "Coding.system": {
-          "uri.value": "http://hl7.org/fhir/benefit-unit"
-        },
-        "Coding.code": {
-          "code.value": "individual"
-        }
-      },
-      "EligibilityResponse.benefitBalance.term": {
-        "Coding.system": {
-          "uri.value": "http://hl7.org/fhir/benefit-term"
-        },
-        "Coding.code": {
-          "code.value": "day"
-        }
-      },
-      "EligibilityResponse.benefitBalance.financial": [
-        {
-          "EligibilityResponse.benefitBalance.financial.type": {
-            "Coding.code": {
-              "code.value": "room"
-            }
-          },
-          "EligibilityResponse.benefitBalance.financial.benefitString": {
-            "string.value": "shared"
-          }
+          ]
         },
         {
-          "EligibilityResponse.benefitBalance.financial.type": {
-            "Coding.code": {
-              "code.value": "benefit"
-            }
+          "EligibilityResponse.insurance.benefitBalance.category": {
+            "CodeableConcept.coding": [
+              {
+                "Coding.system": {
+                  "uri.value": "http://hl7.org/fhir/benefit-category"
+                },
+                "Coding.code": {
+                  "code.value": "medical"
+                }
+              }
+            ]
           },
-          "EligibilityResponse.benefitBalance.financial.benefitMoney": {
-            "Quantity.value": {
-              "decimal.value": 600
-            },
-            "Quantity.system": {
-              "uri.value": "urn:iso:std:iso:4217"
-            },
-            "Quantity.code": {
-              "code.value": "SAR"
+          "EligibilityResponse.insurance.benefitBalance.subCategory": {
+            "CodeableConcept.coding": [
+              {
+                "Coding.system": {
+                  "uri.value": "http://hl7.org/fhir/benefit-subcategory"
+                },
+                "Coding.code": {
+                  "code.value": "69"
+                },
+                "Coding.display": {
+                  "string.value": "Maternity"
+                }
+              }
+            ]
+          },
+          "EligibilityResponse.insurance.benefitBalance.network": {
+            "CodeableConcept.coding": [
+              {
+                "Coding.system": {
+                  "uri.value": "http://hl7.org/fhir/benefit-network"
+                },
+                "Coding.code": {
+                  "code.value": "in"
+                }
+              }
+            ]
+          },
+          "EligibilityResponse.insurance.benefitBalance.unit": {
+            "CodeableConcept.coding": [
+              {
+                "Coding.system": {
+                  "uri.value": "http://hl7.org/fhir/benefit-unit"
+                },
+                "Coding.code": {
+                  "code.value": "individual"
+                }
+              }
+            ]
+          },
+          "EligibilityResponse.insurance.benefitBalance.term": {
+            "CodeableConcept.coding": [
+              {
+                "Coding.system": {
+                  "uri.value": "http://hl7.org/fhir/benefit-term"
+                },
+                "Coding.code": {
+                  "code.value": "annual"
+                }
+              }
+            ]
+          },
+          "EligibilityResponse.insurance.benefitBalance.financial": [
+            {
+              "EligibilityResponse.insurance.benefitBalance.financial.type": {
+                "CodeableConcept.coding": [
+                  {
+                    "Coding.code": {
+                      "code.value": "benefit"
+                    }
+                  }
+                ]
+              },
+              "EligibilityResponse.insurance.benefitBalance.financial.benefitMoney": {
+                "Quantity.value": {
+                  "decimal.value": 15000
+                },
+                "Quantity.system": {
+                  "uri.value": "urn:iso:std:iso:4217"
+                },
+                "Quantity.code": {
+                  "code.value": "SAR"
+                }
+              }
             }
-          }
+          ]
+        },
+        {
+          "EligibilityResponse.insurance.benefitBalance.category": {
+            "CodeableConcept.coding": [
+              {
+                "Coding.system": {
+                  "uri.value": "http://hl7.org/fhir/benefit-category"
+                },
+                "Coding.code": {
+                  "code.value": "oral"
+                }
+              }
+            ]
+          },
+          "EligibilityResponse.insurance.benefitBalance.subCategory": {
+            "CodeableConcept.coding": [
+              {
+                "Coding.system": {
+                  "uri.value": "http://hl7.org/fhir/benefit-subcategory"
+                },
+                "Coding.code": {
+                  "code.value": "F3"
+                },
+                "Coding.display": {
+                  "string.value": "Dental Coverage"
+                }
+              }
+            ]
+          },
+          "EligibilityResponse.insurance.benefitBalance.network": {
+            "CodeableConcept.coding": [
+              {
+                "Coding.system": {
+                  "uri.value": "http://hl7.org/fhir/benefit-network"
+                },
+                "Coding.code": {
+                  "code.value": "in"
+                }
+              }
+            ]
+          },
+          "EligibilityResponse.insurance.benefitBalance.unit": {
+            "CodeableConcept.coding": [
+              {
+                "Coding.system": {
+                  "uri.value": "http://hl7.org/fhir/benefit-unit"
+                },
+                "Coding.code": {
+                  "code.value": "individual"
+                }
+              }
+            ]
+          },
+          "EligibilityResponse.insurance.benefitBalance.term": {
+            "CodeableConcept.coding": [
+              {
+                "Coding.system": {
+                  "uri.value": "http://hl7.org/fhir/benefit-term"
+                },
+                "Coding.code": {
+                  "code.value": "annual"
+                }
+              }
+            ]
+          },
+          "EligibilityResponse.insurance.benefitBalance.financial": [
+            {
+              "EligibilityResponse.insurance.benefitBalance.financial.type": {
+                "CodeableConcept.coding": [
+                  {
+                    "Coding.code": {
+                      "code.value": "benefit"
+                    }
+                  }
+                ]
+              },
+              "EligibilityResponse.insurance.benefitBalance.financial.benefitMoney": {
+                "Quantity.value": {
+                  "decimal.value": 2000
+                },
+                "Quantity.system": {
+                  "uri.value": "urn:iso:std:iso:4217"
+                },
+                "Quantity.code": {
+                  "code.value": "SAR"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "EligibilityResponse.insurance.benefitBalance.category": {
+            "CodeableConcept.coding": [
+              {
+                "Coding.system": {
+                  "uri.value": "http://hl7.org/fhir/benefit-category"
+                },
+                "Coding.code": {
+                  "code.value": "vision"
+                }
+              }
+            ]
+          },
+          "EligibilityResponse.insurance.benefitBalance.subCategory": {
+            "CodeableConcept.coding": [
+              {
+                "Coding.system": {
+                  "uri.value": "http://hl7.org/fhir/benefit-subcategory"
+                },
+                "Coding.code": {
+                  "code.value": "F6"
+                },
+                "Coding.display": {
+                  "string.value": "Vision Coverage"
+                }
+              }
+            ]
+          },
+          "EligibilityResponse.insurance.benefitBalance.network": {
+            "CodeableConcept.coding": [
+              {
+                "Coding.system": {
+                  "uri.value": "http://hl7.org/fhir/benefit-network"
+                },
+                "Coding.code": {
+                  "code.value": "in"
+                }
+              }
+            ]
+          },
+          "EligibilityResponse.insurance.benefitBalance.unit": {
+            "CodeableConcept.coding": [
+              {
+                "Coding.system": {
+                  "uri.value": "http://hl7.org/fhir/benefit-unit"
+                },
+                "Coding.code": {
+                  "code.value": "individual"
+                }
+              }
+            ]
+          },
+          "EligibilityResponse.insurance.benefitBalance.term": {
+            "CodeableConcept.coding": [
+              {
+                "Coding.system": {
+                  "uri.value": "http://hl7.org/fhir/benefit-term"
+                },
+                "Coding.code": {
+                  "code.value": "annual"
+                }
+              }
+            ]
+          },
+          "EligibilityResponse.insurance.benefitBalance.financial": [
+            {
+              "EligibilityResponse.insurance.benefitBalance.financial.type": {
+                "CodeableConcept.coding": [
+                  {
+                    "Coding.code": {
+                      "code.value": "benefit"
+                    }
+                  }
+                ]
+              },
+              "EligibilityResponse.insurance.benefitBalance.financial.benefitMoney": {
+                "Quantity.value": {
+                  "decimal.value": 400
+                },
+                "Quantity.system": {
+                  "uri.value": "urn:iso:std:iso:4217"
+                },
+                "Quantity.code": {
+                  "code.value": "SAR"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "EligibilityResponse.insurance.benefitBalance.category": {
+            "CodeableConcept.coding": [
+              {
+                "Coding.system": {
+                  "uri.value": "http://hl7.org/fhir/benefit-category"
+                },
+                "Coding.code": {
+                  "code.value": "vision"
+                }
+              }
+            ]
+          },
+          "EligibilityResponse.insurance.benefitBalance.subCategory": {
+            "CodeableConcept.coding": [
+              {
+                "Coding.system": {
+                  "uri.value": "http://hl7.org/fhir/benefit-subcategory"
+                },
+                "Coding.code": {
+                  "code.value": "49"
+                },
+                "Coding.display": {
+                  "string.value": "Hospital Room and Board"
+                }
+              }
+            ]
+          },
+          "EligibilityResponse.insurance.benefitBalance.network": {
+            "CodeableConcept.coding": [
+              {
+                "Coding.system": {
+                  "uri.value": "http://hl7.org/fhir/benefit-network"
+                },
+                "Coding.code": {
+                  "code.value": "in"
+                }
+              }
+            ]
+          },
+          "EligibilityResponse.insurance.benefitBalance.unit": {
+            "CodeableConcept.coding": [
+              {
+                "Coding.system": {
+                  "uri.value": "http://hl7.org/fhir/benefit-unit"
+                },
+                "Coding.code": {
+                  "code.value": "individual"
+                }
+              }
+            ]
+          },
+          "EligibilityResponse.insurance.benefitBalance.term": {
+            "CodeableConcept.coding": [
+              {
+                "Coding.system": {
+                  "uri.value": "http://hl7.org/fhir/benefit-term"
+                },
+                "Coding.code": {
+                  "code.value": "day"
+                }
+              }
+            ]
+          },
+          "EligibilityResponse.insurance.benefitBalance.financial": [
+            {
+              "EligibilityResponse.insurance.benefitBalance.financial.type": {
+                "CodeableConcept.coding": [
+                  {
+                    "Coding.code": {
+                      "code.value": "room"
+                    }
+                  }
+                ]
+              },
+              "EligibilityResponse.insurance.benefitBalance.financial.benefitString": {
+                "string.value": "shared"
+              }
+            },
+            {
+              "EligibilityResponse.insurance.benefitBalance.financial.type": {
+                "CodeableConcept.coding": [
+                  {
+                    "Coding.code": {
+                      "code.value": "benefit"
+                    }
+                  }
+                ]
+              },
+              "EligibilityResponse.insurance.benefitBalance.financial.benefitMoney": {
+                "Quantity.value": {
+                  "decimal.value": 600
+                },
+                "Quantity.system": {
+                  "uri.value": "urn:iso:std:iso:4217"
+                },
+                "Quantity.code": {
+                  "code.value": "SAR"
+                }
+              }
+            }
+          ]
         }
       ]
     }

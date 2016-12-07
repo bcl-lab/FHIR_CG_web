@@ -9,9 +9,9 @@
   "name": "Shareable ValueSet",
   "status": "draft",
   "publisher": "HL7",
-  "date": "2016-11-28T17:29:55-05:00",
+  "date": "2016-12-07T14:18:58-05:00",
   "description": "Enforces the minimum information set for the value set metadata required by HL7 and other organisations that share and publish value sets",
-  "fhirVersion": "1.7.0",
+  "fhirVersion": "1.8.0",
   "mapping": [
     {
       "identity": "rim",
@@ -907,8 +907,8 @@
       {
         "id": "ValueSet:shareablevalueset.compose.lockedDate",
         "path": "ValueSet.compose.lockedDate",
-        "short": "Fixed date for all referenced code systems and value sets",
-        "definition": "If a locked date is defined, then the Content Logical Definition must be evaluated using the current version of all referenced code system(s) and value set instances as of the locked date.",
+        "short": "Fixed date for version-less references (transitive)",
+        "definition": "If a locked date is defined, then the Content Logical Definition must be evaluated using the current version as of the locked date for referenced code system(s) and value set instances where ValueSet.compose.include.version is not defined.",
         "comments": "With a defined lockedDate the value set is considered \"Locked\". Otherwise, the value set may have different expansions as underlying code systems and/or value sets evolve.  The interpretation of lockedDate is often dependent on the context - e.g. a SNOMED CT derived value set with a lockedDate will have a different expansion in USA than in UK.  If a value set specifies a version for include and exclude statements, and also specifies a locked date, the specified versions need to be available that date, or the value set will not be usable.",
         "min": 0,
         "max": "1",
@@ -1694,7 +1694,7 @@
       {
         "id": "ValueSet:shareablevalueset.compose.include.filter.op",
         "path": "ValueSet.compose.include.filter.op",
-        "short": "= | is-a | descendent-of | is-not-a | regex | in | not-in | generalizes",
+        "short": "= | is-a | descendent-of | is-not-a | regex | in | not-in | generalizes | exists",
         "definition": "The kind of operation to perform as a part of the filter criteria.",
         "min": 1,
         "max": "1",
@@ -1708,6 +1708,7 @@
             "code": "code"
           }
         ],
+        "isModifier": true,
         "binding": {
           "strength": "required",
           "description": "The kind of operation to perform as a part of a property based filter.",

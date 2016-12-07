@@ -3,7 +3,7 @@
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="FamilyMemberHistory"/>
   <meta>
-    <lastUpdated value="2016-11-28T17:29:55.664-05:00"/>
+    <lastUpdated value="2016-12-07T14:18:58.982-05:00"/>
   </meta>
   <text>
     <status value="generated"/>
@@ -47,7 +47,7 @@
           </td>
           <td style="vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">Information about patient&#39;s relatives, relevant for patient
             <br/>
-            <span style="font-style: italic" title="fhs-2">Can only have estimatedAge is age[x] is present</span>
+            <span style="font-style: italic" title="fhs-2">Can only have estimatedAge if age[x] is present</span>
             <br/>
             <span style="font-style: italic" title="fhs-1">Can have age[x] or born[x], but not both</span>
           </td>
@@ -624,25 +624,28 @@
   <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm">
     <valueInteger value="1"/>
   </extension>
+  <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-wg">
+    <valueCode value="pc"/>
+  </extension>
   <url value="http://hl7.org/fhir/StructureDefinition/FamilyMemberHistory"/>
   <name value="FamilyMemberHistory"/>
   <status value="draft"/>
   <publisher value="Health Level Seven International (Patient Care)"/>
   <contact>
     <telecom>
-      <system value="other"/>
+      <system value="url"/>
       <value value="http://hl7.org/fhir"/>
     </telecom>
   </contact>
   <contact>
     <telecom>
-      <system value="other"/>
+      <system value="url"/>
       <value value="http://www.hl7.org/Special/committees/patientcare/index.cfm"/>
     </telecom>
   </contact>
-  <date value="2016-11-28T17:29:55-05:00"/>
+  <date value="2016-12-07T14:18:58-05:00"/>
   <description value="Base StructureDefinition for FamilyMemberHistory Resource"/>
-  <fhirVersion value="1.7.0"/>
+  <fhirVersion value="1.8.0"/>
   <mapping>
     <identity value="v2"/>
     <uri value="http://hl7.org/v2"/>
@@ -705,7 +708,7 @@
       <constraint>
         <key value="fhs-2"/>
         <severity value="error"/>
-        <human value="Can only have estimatedAge is age[x] is present"/>
+        <human value="Can only have estimatedAge if age[x] is present"/>
         <expression value="age.exists() or estimatedAge.empty()"/>
         <xpath value="exists(*[starts-with(local-name(.), &#39;age&#39;)]) or not(exists(f:estimatedAge))"/>
       </constraint>
@@ -1329,7 +1332,7 @@
       <constraint>
         <key value="fhs-2"/>
         <severity value="error"/>
-        <human value="Can only have estimatedAge is age[x] is present"/>
+        <human value="Can only have estimatedAge if age[x] is present"/>
         <expression value="age.exists() or estimatedAge.empty()"/>
         <xpath value="exists(*[starts-with(local-name(.), &#39;age&#39;)]) or not(exists(f:estimatedAge))"/>
       </constraint>

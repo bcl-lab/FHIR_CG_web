@@ -3,7 +3,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>Searchparameter.profile.json - FHIR v1.7.0</title>
+  <title>Searchparameter.profile.json - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -119,7 +119,7 @@
   &quot;resourceType&quot;: &quot;StructureDefinition&quot;,
   &quot;id&quot;: &quot;SearchParameter&quot;,
   &quot;meta&quot;: {
-    &quot;lastUpdated&quot;: &quot;2016-11-28T17:29:55.664-05:00&quot;
+    &quot;lastUpdated&quot;: &quot;2016-12-07T14:18:58.982-05:00&quot;
   },
   &quot;text&quot;: {
     &quot;status&quot;: &quot;generated&quot;,
@@ -129,6 +129,10 @@
     {
       &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm&quot;,
       &quot;valueInteger&quot;: 1
+    },
+    {
+      &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/structuredefinition-wg&quot;,
+      &quot;valueCode&quot;: &quot;fhir&quot;
     }
   ],
   &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/SearchParameter&quot;,
@@ -139,7 +143,7 @@
     {
       &quot;telecom&quot;: [
         {
-          &quot;system&quot;: &quot;other&quot;,
+          &quot;system&quot;: &quot;url&quot;,
           &quot;value&quot;: &quot;http://hl7.org/fhir&quot;
         }
       ]
@@ -147,15 +151,15 @@
     {
       &quot;telecom&quot;: [
         {
-          &quot;system&quot;: &quot;other&quot;,
+          &quot;system&quot;: &quot;url&quot;,
           &quot;value&quot;: &quot;http://www.hl7.org/Special/committees/fiwg/index.cfm&quot;
         }
       ]
     }
   ],
-  &quot;date&quot;: &quot;2016-11-28T17:29:55-05:00&quot;,
+  &quot;date&quot;: &quot;2016-12-07T14:18:58-05:00&quot;,
   &quot;description&quot;: &quot;Base StructureDefinition for SearchParameter Resource&quot;,
-  &quot;fhirVersion&quot;: &quot;1.7.0&quot;,
+  &quot;fhirVersion&quot;: &quot;1.8.0&quot;,
   &quot;mapping&quot;: [
     {
       &quot;identity&quot;: &quot;v2&quot;,
@@ -240,6 +244,13 @@
             &quot;human&quot;: &quot;If an xpath is present, there SHALL be an xpathUsage&quot;,
             &quot;expression&quot;: &quot;xpath.empty() or xpathUsage.exists()&quot;,
             &quot;xpath&quot;: &quot;not(exists(f:xpath)) or exists(f:xpathUsage)&quot;
+          },
+          {
+            &quot;key&quot;: &quot;spd-2&quot;,
+            &quot;severity&quot;: &quot;error&quot;,
+            &quot;human&quot;: &quot;Search parameters can only have chain names when the search parameter type is 'reference'&quot;,
+            &quot;expression&quot;: &quot;chain.empty() or type = 'reference'&quot;,
+            &quot;xpath&quot;: &quot;not(exists(f:chain)) or (f:type/@value = 'reference')&quot;
           }
         ],
         &quot;mapping&quot;: [
@@ -767,6 +778,20 @@
         }
       },
       {
+        &quot;id&quot;: &quot;SearchParameter.derivedFrom&quot;,
+        &quot;path&quot;: &quot;SearchParameter.derivedFrom&quot;,
+        &quot;short&quot;: &quot;Original Definition for the search parameter&quot;,
+        &quot;definition&quot;: &quot;Where this search parameter is originally defined. If a derivedFrom is provided, then the details in the search parameter must be consistent with the definition from which it is defined. I.e. the parameter should have the same meaning, and (usually) the functionality should be a proper subset of the underlying search parameter.&quot;,
+        &quot;comments&quot;: &quot;The intent of this is that a server can designate that it provides support for E.g. the \&quot;value-quantity\&quot; search parameter defined in the specification itself (http://hl7.org/fhir/SearchParameter/Observation-value-quantity), but detail how it is supported by the server.&quot;,
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;1&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;uri&quot;
+          }
+        ]
+      },
+      {
         &quot;id&quot;: &quot;SearchParameter.description&quot;,
         &quot;path&quot;: &quot;SearchParameter.description&quot;,
         &quot;short&quot;: &quot;Natural language description of the search parameter&quot;,
@@ -786,7 +811,7 @@
         &quot;path&quot;: &quot;SearchParameter.expression&quot;,
         &quot;short&quot;: &quot;FluentPath expression that extracts the values&quot;,
         &quot;definition&quot;: &quot;A FluentPath expression that returns a set of elements for the search parameter.&quot;,
-        &quot;comments&quot;: &quot;Note that the elements returned by the expression are sometimes complex elements where logic is required to determine quite how to handle them; e.g. CodeableConcepts may contain text and/or multiple codings, where the codings themselves contain a code and a system.&quot;,
+        &quot;comments&quot;: &quot;Note that the elements returned by the expression are sometimes complex elements where logic is required to determine quite how to handle them; e.g. CodeableConcepts may contain text and/or multiple codings, where the codings themselves contain a code and a system. For composite search parameters, the outcome of the expression must a collection of base elements from which the composites are derived.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
@@ -859,6 +884,61 @@
         }
       },
       {
+        &quot;id&quot;: &quot;SearchParameter.comparator&quot;,
+        &quot;path&quot;: &quot;SearchParameter.comparator&quot;,
+        &quot;short&quot;: &quot;eq | ne | gt | lt | ge | le | sa | eb | ap&quot;,
+        &quot;definition&quot;: &quot;Comparators supported for the search parameter.&quot;,
+        &quot;comments&quot;: &quot;If no comparators are listed, clients should not expect servers to support any comparators.&quot;,
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;*&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;code&quot;
+          }
+        ],
+        &quot;binding&quot;: {
+          &quot;strength&quot;: &quot;required&quot;,
+          &quot;description&quot;: &quot;What Search Comparator Codes are supported in search&quot;,
+          &quot;valueSetReference&quot;: {
+            &quot;reference&quot;: &quot;http://hl7.org/fhir/ValueSet/search-comparator&quot;
+          }
+        }
+      },
+      {
+        &quot;id&quot;: &quot;SearchParameter.modifier&quot;,
+        &quot;path&quot;: &quot;SearchParameter.modifier&quot;,
+        &quot;short&quot;: &quot;missing | exact | contains | not | text | in | not-in | below | above | type&quot;,
+        &quot;definition&quot;: &quot;A modifier supported for the search parameter.&quot;,
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;*&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;code&quot;
+          }
+        ],
+        &quot;binding&quot;: {
+          &quot;strength&quot;: &quot;required&quot;,
+          &quot;description&quot;: &quot;A supported modifier for a search parameter.&quot;,
+          &quot;valueSetReference&quot;: {
+            &quot;reference&quot;: &quot;http://hl7.org/fhir/ValueSet/search-modifier-code&quot;
+          }
+        }
+      },
+      {
+        &quot;id&quot;: &quot;SearchParameter.chain&quot;,
+        &quot;path&quot;: &quot;SearchParameter.chain&quot;,
+        &quot;short&quot;: &quot;Chained names supported&quot;,
+        &quot;definition&quot;: &quot;Contains the names of any search parameters which may be chained to the containing search parameter. Chained parameters may be added to search parameters of type reference, and specify that resources will only be returned if they contain a reference to a resource which matches the chained parameter value. Values for this field should be drawn from SearchParameter.code for a parameter on the target resource type.&quot;,
+        &quot;comments&quot;: &quot;Systems are not required to list all the chain names they support, but if they don't list them, clients may not know to use them.&quot;,
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;*&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;string&quot;
+          }
+        ]
+      },
+      {
         &quot;id&quot;: &quot;SearchParameter.component&quot;,
         &quot;path&quot;: &quot;SearchParameter.component&quot;,
         &quot;short&quot;: &quot;For Composite resources to define the parts&quot;,
@@ -867,8 +947,133 @@
         &quot;max&quot;: &quot;*&quot;,
         &quot;type&quot;: [
           {
+            &quot;code&quot;: &quot;BackboneElement&quot;
+          }
+        ],
+        &quot;constraint&quot;: [
+          {
+            &quot;key&quot;: &quot;ele-1&quot;,
+            &quot;severity&quot;: &quot;error&quot;,
+            &quot;human&quot;: &quot;All FHIR elements must have a @value or children&quot;,
+            &quot;expression&quot;: &quot;children().count() &gt; id.count()&quot;,
+            &quot;xpath&quot;: &quot;@value|f:*|h:div&quot;,
+            &quot;source&quot;: &quot;Element&quot;
+          }
+        ]
+      },
+      {
+        &quot;id&quot;: &quot;SearchParameter.component.id&quot;,
+        &quot;path&quot;: &quot;SearchParameter.component.id&quot;,
+        &quot;representation&quot;: [
+          &quot;xmlAttr&quot;
+        ],
+        &quot;short&quot;: &quot;xml:id (or equivalent in JSON)&quot;,
+        &quot;definition&quot;: &quot;unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.&quot;,
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;1&quot;,
+        &quot;base&quot;: {
+          &quot;path&quot;: &quot;Element.id&quot;,
+          &quot;min&quot;: 0,
+          &quot;max&quot;: &quot;1&quot;
+        },
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;string&quot;
+          }
+        ],
+        &quot;mapping&quot;: [
+          {
+            &quot;identity&quot;: &quot;rim&quot;,
+            &quot;map&quot;: &quot;n/a&quot;
+          }
+        ]
+      },
+      {
+        &quot;id&quot;: &quot;SearchParameter.component.extension&quot;,
+        &quot;path&quot;: &quot;SearchParameter.component.extension&quot;,
+        &quot;short&quot;: &quot;Additional Content defined by implementations&quot;,
+        &quot;definition&quot;: &quot;May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.&quot;,
+        &quot;comments&quot;: &quot;There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone.&quot;,
+        &quot;alias&quot;: [
+          &quot;extensions&quot;,
+          &quot;user content&quot;
+        ],
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;*&quot;,
+        &quot;base&quot;: {
+          &quot;path&quot;: &quot;Element.extension&quot;,
+          &quot;min&quot;: 0,
+          &quot;max&quot;: &quot;*&quot;
+        },
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;Extension&quot;
+          }
+        ],
+        &quot;mapping&quot;: [
+          {
+            &quot;identity&quot;: &quot;rim&quot;,
+            &quot;map&quot;: &quot;n/a&quot;
+          }
+        ]
+      },
+      {
+        &quot;id&quot;: &quot;SearchParameter.component.modifierExtension&quot;,
+        &quot;path&quot;: &quot;SearchParameter.component.modifierExtension&quot;,
+        &quot;short&quot;: &quot;Extensions that cannot be ignored&quot;,
+        &quot;definition&quot;: &quot;May be used to represent additional information that is not part of the basic definition of the element, and that modifies the understanding of the element that contains it. Usually modifier elements provide negation or qualification. In order to make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.&quot;,
+        &quot;comments&quot;: &quot;There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone.&quot;,
+        &quot;alias&quot;: [
+          &quot;extensions&quot;,
+          &quot;user content&quot;,
+          &quot;modifiers&quot;
+        ],
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;*&quot;,
+        &quot;base&quot;: {
+          &quot;path&quot;: &quot;BackboneElement.modifierExtension&quot;,
+          &quot;min&quot;: 0,
+          &quot;max&quot;: &quot;*&quot;
+        },
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;Extension&quot;
+          }
+        ],
+        &quot;isModifier&quot;: true,
+        &quot;isSummary&quot;: true,
+        &quot;mapping&quot;: [
+          {
+            &quot;identity&quot;: &quot;rim&quot;,
+            &quot;map&quot;: &quot;N/A&quot;
+          }
+        ]
+      },
+      {
+        &quot;id&quot;: &quot;SearchParameter.component.definition&quot;,
+        &quot;path&quot;: &quot;SearchParameter.component.definition&quot;,
+        &quot;short&quot;: &quot;Defines how the part works&quot;,
+        &quot;definition&quot;: &quot;The definition of the search parameter that describes this part.&quot;,
+        &quot;min&quot;: 1,
+        &quot;max&quot;: &quot;1&quot;,
+        &quot;type&quot;: [
+          {
             &quot;code&quot;: &quot;Reference&quot;,
             &quot;targetProfile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/SearchParameter&quot;
+          }
+        ]
+      },
+      {
+        &quot;id&quot;: &quot;SearchParameter.component.expression&quot;,
+        &quot;path&quot;: &quot;SearchParameter.component.expression&quot;,
+        &quot;short&quot;: &quot;Subexpression relative to main expression&quot;,
+        &quot;definition&quot;: &quot;A sub-expression that defines how to extract values for this component from the output of the main SearchParameter.expression.&quot;,
+        &quot;comments&quot;: &quot;This expression overrides the expression in the definition, and extracts the index values from the outcome of the composite expression.&quot;,
+        &quot;min&quot;: 1,
+        &quot;max&quot;: &quot;1&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;string&quot;
           }
         ]
       }
@@ -891,6 +1096,13 @@
             &quot;human&quot;: &quot;If an xpath is present, there SHALL be an xpathUsage&quot;,
             &quot;expression&quot;: &quot;xpath.empty() or xpathUsage.exists()&quot;,
             &quot;xpath&quot;: &quot;not(exists(f:xpath)) or exists(f:xpathUsage)&quot;
+          },
+          {
+            &quot;key&quot;: &quot;spd-2&quot;,
+            &quot;severity&quot;: &quot;error&quot;,
+            &quot;human&quot;: &quot;Search parameters can only have chain names when the search parameter type is 'reference'&quot;,
+            &quot;expression&quot;: &quot;chain.empty() or type = 'reference'&quot;,
+            &quot;xpath&quot;: &quot;not(exists(f:chain)) or (f:type/@value = 'reference')&quot;
           }
         ],
         &quot;mapping&quot;: [
@@ -1197,6 +1409,20 @@
         }
       },
       {
+        &quot;id&quot;: &quot;SearchParameter.derivedFrom&quot;,
+        &quot;path&quot;: &quot;SearchParameter.derivedFrom&quot;,
+        &quot;short&quot;: &quot;Original Definition for the search parameter&quot;,
+        &quot;definition&quot;: &quot;Where this search parameter is originally defined. If a derivedFrom is provided, then the details in the search parameter must be consistent with the definition from which it is defined. I.e. the parameter should have the same meaning, and (usually) the functionality should be a proper subset of the underlying search parameter.&quot;,
+        &quot;comments&quot;: &quot;The intent of this is that a server can designate that it provides support for E.g. the \&quot;value-quantity\&quot; search parameter defined in the specification itself (http://hl7.org/fhir/SearchParameter/Observation-value-quantity), but detail how it is supported by the server.&quot;,
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;1&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;uri&quot;
+          }
+        ]
+      },
+      {
         &quot;id&quot;: &quot;SearchParameter.description&quot;,
         &quot;path&quot;: &quot;SearchParameter.description&quot;,
         &quot;short&quot;: &quot;Natural language description of the search parameter&quot;,
@@ -1216,7 +1442,7 @@
         &quot;path&quot;: &quot;SearchParameter.expression&quot;,
         &quot;short&quot;: &quot;FluentPath expression that extracts the values&quot;,
         &quot;definition&quot;: &quot;A FluentPath expression that returns a set of elements for the search parameter.&quot;,
-        &quot;comments&quot;: &quot;Note that the elements returned by the expression are sometimes complex elements where logic is required to determine quite how to handle them; e.g. CodeableConcepts may contain text and/or multiple codings, where the codings themselves contain a code and a system.&quot;,
+        &quot;comments&quot;: &quot;Note that the elements returned by the expression are sometimes complex elements where logic is required to determine quite how to handle them; e.g. CodeableConcepts may contain text and/or multiple codings, where the codings themselves contain a code and a system. For composite search parameters, the outcome of the expression must a collection of base elements from which the composites are derived.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
@@ -1289,6 +1515,61 @@
         }
       },
       {
+        &quot;id&quot;: &quot;SearchParameter.comparator&quot;,
+        &quot;path&quot;: &quot;SearchParameter.comparator&quot;,
+        &quot;short&quot;: &quot;eq | ne | gt | lt | ge | le | sa | eb | ap&quot;,
+        &quot;definition&quot;: &quot;Comparators supported for the search parameter.&quot;,
+        &quot;comments&quot;: &quot;If no comparators are listed, clients should not expect servers to support any comparators.&quot;,
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;*&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;code&quot;
+          }
+        ],
+        &quot;binding&quot;: {
+          &quot;strength&quot;: &quot;required&quot;,
+          &quot;description&quot;: &quot;What Search Comparator Codes are supported in search&quot;,
+          &quot;valueSetReference&quot;: {
+            &quot;reference&quot;: &quot;http://hl7.org/fhir/ValueSet/search-comparator&quot;
+          }
+        }
+      },
+      {
+        &quot;id&quot;: &quot;SearchParameter.modifier&quot;,
+        &quot;path&quot;: &quot;SearchParameter.modifier&quot;,
+        &quot;short&quot;: &quot;missing | exact | contains | not | text | in | not-in | below | above | type&quot;,
+        &quot;definition&quot;: &quot;A modifier supported for the search parameter.&quot;,
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;*&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;code&quot;
+          }
+        ],
+        &quot;binding&quot;: {
+          &quot;strength&quot;: &quot;required&quot;,
+          &quot;description&quot;: &quot;A supported modifier for a search parameter.&quot;,
+          &quot;valueSetReference&quot;: {
+            &quot;reference&quot;: &quot;http://hl7.org/fhir/ValueSet/search-modifier-code&quot;
+          }
+        }
+      },
+      {
+        &quot;id&quot;: &quot;SearchParameter.chain&quot;,
+        &quot;path&quot;: &quot;SearchParameter.chain&quot;,
+        &quot;short&quot;: &quot;Chained names supported&quot;,
+        &quot;definition&quot;: &quot;Contains the names of any search parameters which may be chained to the containing search parameter. Chained parameters may be added to search parameters of type reference, and specify that resources will only be returned if they contain a reference to a resource which matches the chained parameter value. Values for this field should be drawn from SearchParameter.code for a parameter on the target resource type.&quot;,
+        &quot;comments&quot;: &quot;Systems are not required to list all the chain names they support, but if they don't list them, clients may not know to use them.&quot;,
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;*&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;string&quot;
+          }
+        ]
+      },
+      {
         &quot;id&quot;: &quot;SearchParameter.component&quot;,
         &quot;path&quot;: &quot;SearchParameter.component&quot;,
         &quot;short&quot;: &quot;For Composite resources to define the parts&quot;,
@@ -1297,8 +1578,35 @@
         &quot;max&quot;: &quot;*&quot;,
         &quot;type&quot;: [
           {
+            &quot;code&quot;: &quot;BackboneElement&quot;
+          }
+        ]
+      },
+      {
+        &quot;id&quot;: &quot;SearchParameter.component.definition&quot;,
+        &quot;path&quot;: &quot;SearchParameter.component.definition&quot;,
+        &quot;short&quot;: &quot;Defines how the part works&quot;,
+        &quot;definition&quot;: &quot;The definition of the search parameter that describes this part.&quot;,
+        &quot;min&quot;: 1,
+        &quot;max&quot;: &quot;1&quot;,
+        &quot;type&quot;: [
+          {
             &quot;code&quot;: &quot;Reference&quot;,
             &quot;targetProfile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/SearchParameter&quot;
+          }
+        ]
+      },
+      {
+        &quot;id&quot;: &quot;SearchParameter.component.expression&quot;,
+        &quot;path&quot;: &quot;SearchParameter.component.expression&quot;,
+        &quot;short&quot;: &quot;Subexpression relative to main expression&quot;,
+        &quot;definition&quot;: &quot;A sub-expression that defines how to extract values for this component from the output of the main SearchParameter.expression.&quot;,
+        &quot;comments&quot;: &quot;This expression overrides the expression in the definition, and extracts the index values from the outcome of the composite expression.&quot;,
+        &quot;min&quot;: 1,
+        &quot;max&quot;: &quot;1&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;string&quot;
           }
         ]
       }
@@ -1329,7 +1637,7 @@ of the specification.
 		<div class="container"><!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:33-0500. <a href="qa.html">QA Page</a>
+        © HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:28-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search</a> | 

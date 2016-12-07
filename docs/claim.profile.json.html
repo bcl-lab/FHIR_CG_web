@@ -3,7 +3,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>Claim.profile.json - FHIR v1.7.0</title>
+  <title>Claim.profile.json - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -119,7 +119,7 @@
   &quot;resourceType&quot;: &quot;StructureDefinition&quot;,
   &quot;id&quot;: &quot;Claim&quot;,
   &quot;meta&quot;: {
-    &quot;lastUpdated&quot;: &quot;2016-11-28T17:29:55.664-05:00&quot;
+    &quot;lastUpdated&quot;: &quot;2016-12-07T14:18:58.982-05:00&quot;
   },
   &quot;text&quot;: {
     &quot;status&quot;: &quot;generated&quot;,
@@ -129,6 +129,10 @@
     {
       &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm&quot;,
       &quot;valueInteger&quot;: 1
+    },
+    {
+      &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/structuredefinition-wg&quot;,
+      &quot;valueCode&quot;: &quot;fm&quot;
     }
   ],
   &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/Claim&quot;,
@@ -139,7 +143,7 @@
     {
       &quot;telecom&quot;: [
         {
-          &quot;system&quot;: &quot;other&quot;,
+          &quot;system&quot;: &quot;url&quot;,
           &quot;value&quot;: &quot;http://hl7.org/fhir&quot;
         }
       ]
@@ -147,15 +151,15 @@
     {
       &quot;telecom&quot;: [
         {
-          &quot;system&quot;: &quot;other&quot;,
+          &quot;system&quot;: &quot;url&quot;,
           &quot;value&quot;: &quot;http://www.hl7.org/Special/committees/fm/index.cfm&quot;
         }
       ]
     }
   ],
-  &quot;date&quot;: &quot;2016-11-28T17:29:55-05:00&quot;,
+  &quot;date&quot;: &quot;2016-12-07T14:18:58-05:00&quot;,
   &quot;description&quot;: &quot;Base StructureDefinition for Claim Resource&quot;,
-  &quot;fhirVersion&quot;: &quot;1.7.0&quot;,
+  &quot;fhirVersion&quot;: &quot;1.8.0&quot;,
   &quot;mapping&quot;: [
     {
       &quot;identity&quot;: &quot;w5&quot;,
@@ -468,7 +472,7 @@
         &quot;path&quot;: &quot;Claim.status&quot;,
         &quot;short&quot;: &quot;active | cancelled | draft | entered-in-error&quot;,
         &quot;definition&quot;: &quot;The status of the resource instance.&quot;,
-        &quot;min&quot;: 1,
+        &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
@@ -481,7 +485,7 @@
           &quot;strength&quot;: &quot;required&quot;,
           &quot;description&quot;: &quot;A code specifying the state of the resource instance.&quot;,
           &quot;valueSetReference&quot;: {
-            &quot;reference&quot;: &quot;http://hl7.org/fhir/ValueSet/claim-status&quot;
+            &quot;reference&quot;: &quot;http://hl7.org/fhir/ValueSet/fm-status&quot;
           }
         },
         &quot;mapping&quot;: [
@@ -497,11 +501,11 @@
         &quot;short&quot;: &quot;Type or discipline&quot;,
         &quot;definition&quot;: &quot;The category of claim, eg, oral, pharmacy, vision, insitutional, professional.&quot;,
         &quot;comments&quot;: &quot;Affects which fields and value sets are used.&quot;,
-        &quot;min&quot;: 1,
+        &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -528,7 +532,7 @@
         &quot;max&quot;: &quot;*&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -546,73 +550,48 @@
         ]
       },
       {
-        &quot;id&quot;: &quot;Claim.ruleset&quot;,
-        &quot;path&quot;: &quot;Claim.ruleset&quot;,
-        &quot;short&quot;: &quot;Current specification followed&quot;,
-        &quot;definition&quot;: &quot;The version of the specification on which this instance relies.&quot;,
-        &quot;alias&quot;: [
-          &quot;BusinessVersion&quot;
-        ],
+        &quot;id&quot;: &quot;Claim.use&quot;,
+        &quot;path&quot;: &quot;Claim.use&quot;,
+        &quot;short&quot;: &quot;complete | proposed | exploratory | other&quot;,
+        &quot;definition&quot;: &quot;Complete (Bill or Claim), Proposed (Pre-Authorization), Exploratory (Pre-determination).&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;code&quot;
           }
         ],
         &quot;binding&quot;: {
-          &quot;strength&quot;: &quot;example&quot;,
-          &quot;description&quot;: &quot;The static and dynamic model to which contents conform, which may be business version or standard/version.&quot;,
+          &quot;strength&quot;: &quot;required&quot;,
+          &quot;description&quot;: &quot;Complete, proposed, exploratory, other&quot;,
           &quot;valueSetReference&quot;: {
-            &quot;reference&quot;: &quot;http://hl7.org/fhir/ValueSet/ruleset&quot;
+            &quot;reference&quot;: &quot;http://hl7.org/fhir/ValueSet/claim-use&quot;
           }
         },
         &quot;mapping&quot;: [
           {
             &quot;identity&quot;: &quot;w5&quot;,
-            &quot;map&quot;: &quot;id.version&quot;
+            &quot;map&quot;: &quot;class&quot;
           }
         ]
       },
       {
-        &quot;id&quot;: &quot;Claim.originalRuleset&quot;,
-        &quot;path&quot;: &quot;Claim.originalRuleset&quot;,
-        &quot;short&quot;: &quot;Original specification followed&quot;,
-        &quot;definition&quot;: &quot;The version of the specification from which the original instance was created.&quot;,
-        &quot;alias&quot;: [
-          &quot;OriginalBusinessVersion&quot;
-        ],
+        &quot;id&quot;: &quot;Claim.patient&quot;,
+        &quot;path&quot;: &quot;Claim.patient&quot;,
+        &quot;short&quot;: &quot;The subject of the Products and Services&quot;,
+        &quot;definition&quot;: &quot;Patient Resource.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
-          }
-        ],
-        &quot;binding&quot;: {
-          &quot;strength&quot;: &quot;example&quot;,
-          &quot;description&quot;: &quot;The static and dynamic model to which contents conform, which may be business version or standard/version.&quot;,
-          &quot;valueSetReference&quot;: {
-            &quot;reference&quot;: &quot;http://hl7.org/fhir/ValueSet/ruleset&quot;
-          }
-        }
-      },
-      {
-        &quot;id&quot;: &quot;Claim.created&quot;,
-        &quot;path&quot;: &quot;Claim.created&quot;,
-        &quot;short&quot;: &quot;Creation date&quot;,
-        &quot;definition&quot;: &quot;The date when the enclosed suite of services were performed or completed.&quot;,
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;dateTime&quot;
+            &quot;code&quot;: &quot;Reference&quot;,
+            &quot;targetProfile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/Patient&quot;
           }
         ],
         &quot;mapping&quot;: [
           {
             &quot;identity&quot;: &quot;w5&quot;,
-            &quot;map&quot;: &quot;when.recorded&quot;
+            &quot;map&quot;: &quot;who.focus&quot;
           }
         ]
       },
@@ -636,10 +615,49 @@
         ]
       },
       {
+        &quot;id&quot;: &quot;Claim.created&quot;,
+        &quot;path&quot;: &quot;Claim.created&quot;,
+        &quot;short&quot;: &quot;Creation date&quot;,
+        &quot;definition&quot;: &quot;The date when the enclosed suite of services were performed or completed.&quot;,
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;1&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;dateTime&quot;
+          }
+        ],
+        &quot;mapping&quot;: [
+          {
+            &quot;identity&quot;: &quot;w5&quot;,
+            &quot;map&quot;: &quot;when.recorded&quot;
+          }
+        ]
+      },
+      {
+        &quot;id&quot;: &quot;Claim.enterer&quot;,
+        &quot;path&quot;: &quot;Claim.enterer&quot;,
+        &quot;short&quot;: &quot;Author&quot;,
+        &quot;definition&quot;: &quot;Person who created the invoice/claim/pre-determination or pre-authorization.&quot;,
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;1&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;Reference&quot;,
+            &quot;targetProfile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/Practitioner&quot;
+          }
+        ],
+        &quot;mapping&quot;: [
+          {
+            &quot;identity&quot;: &quot;w5&quot;,
+            &quot;map&quot;: &quot;who.author&quot;
+          }
+        ]
+      },
+      {
         &quot;id&quot;: &quot;Claim.insurer&quot;,
         &quot;path&quot;: &quot;Claim.insurer&quot;,
         &quot;short&quot;: &quot;Target&quot;,
-        &quot;definition&quot;: &quot;The Insurer who is target  of the request.&quot;,
+        &quot;definition&quot;: &quot;The Insurer who is target of the request.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
@@ -690,32 +708,6 @@
         ]
       },
       {
-        &quot;id&quot;: &quot;Claim.use&quot;,
-        &quot;path&quot;: &quot;Claim.use&quot;,
-        &quot;short&quot;: &quot;complete | proposed | exploratory | other&quot;,
-        &quot;definition&quot;: &quot;Complete (Bill or Claim), Proposed (Pre-Authorization), Exploratory (Pre-determination).&quot;,
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;code&quot;
-          }
-        ],
-        &quot;binding&quot;: {
-          &quot;strength&quot;: &quot;required&quot;,
-          &quot;description&quot;: &quot;Complete, proposed, exploratory, other&quot;,
-          &quot;valueSetReference&quot;: {
-            &quot;reference&quot;: &quot;http://hl7.org/fhir/ValueSet/claim-use&quot;
-          }
-        },
-        &quot;mapping&quot;: [
-          {
-            &quot;identity&quot;: &quot;w5&quot;,
-            &quot;map&quot;: &quot;class&quot;
-          }
-        ]
-      },
-      {
         &quot;id&quot;: &quot;Claim.priority&quot;,
         &quot;path&quot;: &quot;Claim.priority&quot;,
         &quot;short&quot;: &quot;Desired processing priority&quot;,
@@ -724,7 +716,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -744,7 +736,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -754,46 +746,6 @@
             &quot;reference&quot;: &quot;http://hl7.org/fhir/ValueSet/fundsreserve&quot;
           }
         }
-      },
-      {
-        &quot;id&quot;: &quot;Claim.enterer&quot;,
-        &quot;path&quot;: &quot;Claim.enterer&quot;,
-        &quot;short&quot;: &quot;Author&quot;,
-        &quot;definition&quot;: &quot;Person who created the invoice/claim/pre-determination or pre-authorization.&quot;,
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;Reference&quot;,
-            &quot;targetProfile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/Practitioner&quot;
-          }
-        ],
-        &quot;mapping&quot;: [
-          {
-            &quot;identity&quot;: &quot;w5&quot;,
-            &quot;map&quot;: &quot;who.author&quot;
-          }
-        ]
-      },
-      {
-        &quot;id&quot;: &quot;Claim.facility&quot;,
-        &quot;path&quot;: &quot;Claim.facility&quot;,
-        &quot;short&quot;: &quot;Servicing Facility&quot;,
-        &quot;definition&quot;: &quot;Facility where the services were provided.&quot;,
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;Reference&quot;,
-            &quot;targetProfile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/Location&quot;
-          }
-        ],
-        &quot;mapping&quot;: [
-          {
-            &quot;identity&quot;: &quot;w5&quot;,
-            &quot;map&quot;: &quot;where&quot;
-          }
-        ]
       },
       {
         &quot;id&quot;: &quot;Claim.related&quot;,
@@ -936,7 +888,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -984,7 +936,7 @@
         &quot;id&quot;: &quot;Claim.originalPrescription&quot;,
         &quot;path&quot;: &quot;Claim.originalPrescription&quot;,
         &quot;short&quot;: &quot;Original Prescription&quot;,
-        &quot;definition&quot;: &quot;Original prescription which has been superceded by this prescription to support the dispensing of pharmacy services, medications or products.&quot;,
+        &quot;definition&quot;: &quot;Original prescription which has been superceded by this prescription to support the dispensing of pharmacy services, medications or products. For example, a physician may prescribe a medication which the pharmacy determines is contraindicated, or for which the patient has an intolerance, and therefor issues a new precription for an alternate medication which has the same theraputic intent. The prescription from the pharmacy becomes the 'prescription' and that from the physician becomes the 'original prescription'.&quot;,
         &quot;comments&quot;: &quot;as above.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
@@ -1121,7 +1073,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -1197,6 +1149,235 @@
             &quot;map&quot;: &quot;who.cause&quot;
           }
         ]
+      },
+      {
+        &quot;id&quot;: &quot;Claim.facility&quot;,
+        &quot;path&quot;: &quot;Claim.facility&quot;,
+        &quot;short&quot;: &quot;Servicing Facility&quot;,
+        &quot;definition&quot;: &quot;Facility where the services were provided.&quot;,
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;1&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;Reference&quot;,
+            &quot;targetProfile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/Location&quot;
+          }
+        ],
+        &quot;mapping&quot;: [
+          {
+            &quot;identity&quot;: &quot;w5&quot;,
+            &quot;map&quot;: &quot;where&quot;
+          }
+        ]
+      },
+      {
+        &quot;id&quot;: &quot;Claim.careTeam&quot;,
+        &quot;extension&quot;: [
+          {
+            &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/structuredefinition-explicit-type-name&quot;,
+            &quot;valueString&quot;: &quot;CareTeam&quot;
+          }
+        ],
+        &quot;path&quot;: &quot;Claim.careTeam&quot;,
+        &quot;short&quot;: &quot;Members of the care team&quot;,
+        &quot;definition&quot;: &quot;The members of the team who provided the overall service as well as their role and whether responsible and qualifications.&quot;,
+        &quot;requirements&quot;: &quot;Role and Responsible may not be required when there is only a single provider listed.&quot;,
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;*&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;BackboneElement&quot;
+          }
+        ],
+        &quot;constraint&quot;: [
+          {
+            &quot;key&quot;: &quot;ele-1&quot;,
+            &quot;severity&quot;: &quot;error&quot;,
+            &quot;human&quot;: &quot;All FHIR elements must have a @value or children&quot;,
+            &quot;expression&quot;: &quot;children().count() &gt; id.count()&quot;,
+            &quot;xpath&quot;: &quot;@value|f:*|h:div&quot;,
+            &quot;source&quot;: &quot;Element&quot;
+          }
+        ]
+      },
+      {
+        &quot;id&quot;: &quot;Claim.careTeam.id&quot;,
+        &quot;path&quot;: &quot;Claim.careTeam.id&quot;,
+        &quot;representation&quot;: [
+          &quot;xmlAttr&quot;
+        ],
+        &quot;short&quot;: &quot;xml:id (or equivalent in JSON)&quot;,
+        &quot;definition&quot;: &quot;unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.&quot;,
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;1&quot;,
+        &quot;base&quot;: {
+          &quot;path&quot;: &quot;Element.id&quot;,
+          &quot;min&quot;: 0,
+          &quot;max&quot;: &quot;1&quot;
+        },
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;string&quot;
+          }
+        ],
+        &quot;mapping&quot;: [
+          {
+            &quot;identity&quot;: &quot;rim&quot;,
+            &quot;map&quot;: &quot;n/a&quot;
+          }
+        ]
+      },
+      {
+        &quot;id&quot;: &quot;Claim.careTeam.extension&quot;,
+        &quot;path&quot;: &quot;Claim.careTeam.extension&quot;,
+        &quot;short&quot;: &quot;Additional Content defined by implementations&quot;,
+        &quot;definition&quot;: &quot;May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.&quot;,
+        &quot;comments&quot;: &quot;There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone.&quot;,
+        &quot;alias&quot;: [
+          &quot;extensions&quot;,
+          &quot;user content&quot;
+        ],
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;*&quot;,
+        &quot;base&quot;: {
+          &quot;path&quot;: &quot;Element.extension&quot;,
+          &quot;min&quot;: 0,
+          &quot;max&quot;: &quot;*&quot;
+        },
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;Extension&quot;
+          }
+        ],
+        &quot;mapping&quot;: [
+          {
+            &quot;identity&quot;: &quot;rim&quot;,
+            &quot;map&quot;: &quot;n/a&quot;
+          }
+        ]
+      },
+      {
+        &quot;id&quot;: &quot;Claim.careTeam.modifierExtension&quot;,
+        &quot;path&quot;: &quot;Claim.careTeam.modifierExtension&quot;,
+        &quot;short&quot;: &quot;Extensions that cannot be ignored&quot;,
+        &quot;definition&quot;: &quot;May be used to represent additional information that is not part of the basic definition of the element, and that modifies the understanding of the element that contains it. Usually modifier elements provide negation or qualification. In order to make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.&quot;,
+        &quot;comments&quot;: &quot;There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone.&quot;,
+        &quot;alias&quot;: [
+          &quot;extensions&quot;,
+          &quot;user content&quot;,
+          &quot;modifiers&quot;
+        ],
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;*&quot;,
+        &quot;base&quot;: {
+          &quot;path&quot;: &quot;BackboneElement.modifierExtension&quot;,
+          &quot;min&quot;: 0,
+          &quot;max&quot;: &quot;*&quot;
+        },
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;Extension&quot;
+          }
+        ],
+        &quot;isModifier&quot;: true,
+        &quot;isSummary&quot;: true,
+        &quot;mapping&quot;: [
+          {
+            &quot;identity&quot;: &quot;rim&quot;,
+            &quot;map&quot;: &quot;N/A&quot;
+          }
+        ]
+      },
+      {
+        &quot;id&quot;: &quot;Claim.careTeam.sequence&quot;,
+        &quot;path&quot;: &quot;Claim.careTeam.sequence&quot;,
+        &quot;short&quot;: &quot;Number to covey order of careTeam&quot;,
+        &quot;definition&quot;: &quot;Sequence of the careTeam which serves to order and provide a link.&quot;,
+        &quot;requirements&quot;: &quot;Required to maintain order of the careTeam.&quot;,
+        &quot;min&quot;: 1,
+        &quot;max&quot;: &quot;1&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;positiveInt&quot;
+          }
+        ]
+      },
+      {
+        &quot;id&quot;: &quot;Claim.careTeam.provider&quot;,
+        &quot;path&quot;: &quot;Claim.careTeam.provider&quot;,
+        &quot;short&quot;: &quot;Provider individual or organization&quot;,
+        &quot;definition&quot;: &quot;Member of the team who provided the overall service.&quot;,
+        &quot;min&quot;: 1,
+        &quot;max&quot;: &quot;1&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;Reference&quot;,
+            &quot;targetProfile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/Practitioner&quot;
+          },
+          {
+            &quot;code&quot;: &quot;Reference&quot;,
+            &quot;targetProfile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/Organization&quot;
+          }
+        ],
+        &quot;mapping&quot;: [
+          {
+            &quot;identity&quot;: &quot;w5&quot;,
+            &quot;map&quot;: &quot;who.actor&quot;
+          }
+        ]
+      },
+      {
+        &quot;id&quot;: &quot;Claim.careTeam.responsible&quot;,
+        &quot;path&quot;: &quot;Claim.careTeam.responsible&quot;,
+        &quot;short&quot;: &quot;Billing provider&quot;,
+        &quot;definition&quot;: &quot;The party who is billing and responsible for the claimed good or service rendered to the patient.&quot;,
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;1&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;boolean&quot;
+          }
+        ]
+      },
+      {
+        &quot;id&quot;: &quot;Claim.careTeam.role&quot;,
+        &quot;path&quot;: &quot;Claim.careTeam.role&quot;,
+        &quot;short&quot;: &quot;Role on the team&quot;,
+        &quot;definition&quot;: &quot;The lead, assisting or supervising practitioner and their discipline if a multidisiplinary team.&quot;,
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;1&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;CodeableConcept&quot;
+          }
+        ],
+        &quot;binding&quot;: {
+          &quot;strength&quot;: &quot;example&quot;,
+          &quot;description&quot;: &quot;The role codes for the care team members.&quot;,
+          &quot;valueSetReference&quot;: {
+            &quot;reference&quot;: &quot;http://hl7.org/fhir/ValueSet/claim-careteamrole&quot;
+          }
+        }
+      },
+      {
+        &quot;id&quot;: &quot;Claim.careTeam.qualification&quot;,
+        &quot;path&quot;: &quot;Claim.careTeam.qualification&quot;,
+        &quot;short&quot;: &quot;Type, classification or Specialization&quot;,
+        &quot;definition&quot;: &quot;The qualification which is applicable for this service.&quot;,
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;1&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;CodeableConcept&quot;
+          }
+        ],
+        &quot;binding&quot;: {
+          &quot;strength&quot;: &quot;example&quot;,
+          &quot;description&quot;: &quot;Provider professional qualifications&quot;,
+          &quot;valueSetReference&quot;: {
+            &quot;reference&quot;: &quot;http://hl7.org/fhir/ValueSet/provider-qualification&quot;
+          }
+        }
       },
       {
         &quot;id&quot;: &quot;Claim.information&quot;,
@@ -1326,7 +1507,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -1347,7 +1528,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -1377,8 +1558,8 @@
       {
         &quot;id&quot;: &quot;Claim.information.value[x]&quot;,
         &quot;path&quot;: &quot;Claim.information.value[x]&quot;,
-        &quot;short&quot;: &quot;Additional Data&quot;,
-        &quot;definition&quot;: &quot;Additional data.&quot;,
+        &quot;short&quot;: &quot;Additional Data or supporting information&quot;,
+        &quot;definition&quot;: &quot;Additional data or information such as resources, documents, images etc. including references to the data or the actual inclusion of the data.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
@@ -1387,8 +1568,35 @@
           },
           {
             &quot;code&quot;: &quot;Quantity&quot;
+          },
+          {
+            &quot;code&quot;: &quot;Attachment&quot;
+          },
+          {
+            &quot;code&quot;: &quot;Reference&quot;,
+            &quot;targetProfile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/Resource&quot;
           }
         ]
+      },
+      {
+        &quot;id&quot;: &quot;Claim.information.reason&quot;,
+        &quot;path&quot;: &quot;Claim.information.reason&quot;,
+        &quot;short&quot;: &quot;Reason associated with the information&quot;,
+        &quot;definition&quot;: &quot;For example, provides the reason for: the additional stay, or missing tooth or any other situation where a reason code is required in addition to the content.&quot;,
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;1&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;CodeableConcept&quot;
+          }
+        ],
+        &quot;binding&quot;: {
+          &quot;strength&quot;: &quot;example&quot;,
+          &quot;description&quot;: &quot;Reason codes for the missing teeth&quot;,
+          &quot;valueSetReference&quot;: {
+            &quot;reference&quot;: &quot;http://hl7.org/fhir/ValueSet/missing-tooth-reason&quot;
+          }
+        }
       },
       {
         &quot;id&quot;: &quot;Claim.diagnosis&quot;,
@@ -1522,8 +1730,8 @@
         ]
       },
       {
-        &quot;id&quot;: &quot;Claim.diagnosis.diagnosis&quot;,
-        &quot;path&quot;: &quot;Claim.diagnosis.diagnosis&quot;,
+        &quot;id&quot;: &quot;Claim.diagnosis.diagnosis[x]&quot;,
+        &quot;path&quot;: &quot;Claim.diagnosis.diagnosis[x]&quot;,
         &quot;short&quot;: &quot;Patient's diagnosis&quot;,
         &quot;definition&quot;: &quot;The diagnosis.&quot;,
         &quot;requirements&quot;: &quot;Required to adjudicate services rendered to condition presented.&quot;,
@@ -1531,7 +1739,11 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
+          },
+          {
+            &quot;code&quot;: &quot;Reference&quot;,
+            &quot;targetProfile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/Condition&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -1553,7 +1765,7 @@
         &quot;max&quot;: &quot;*&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -1565,16 +1777,16 @@
         }
       },
       {
-        &quot;id&quot;: &quot;Claim.diagnosis.drg&quot;,
-        &quot;path&quot;: &quot;Claim.diagnosis.drg&quot;,
-        &quot;short&quot;: &quot;Diagnosis Related Group&quot;,
-        &quot;definition&quot;: &quot;The Diagnosis Related Group (DRG) code based on the assigned grouping code system.&quot;,
-        &quot;requirements&quot;: &quot;Required to adjudicate services rendered to the mandated diagnosis grouping system.&quot;,
+        &quot;id&quot;: &quot;Claim.diagnosis.packageCode&quot;,
+        &quot;path&quot;: &quot;Claim.diagnosis.packageCode&quot;,
+        &quot;short&quot;: &quot;Package billing code&quot;,
+        &quot;definition&quot;: &quot;The package billing code, for example DRG, based on the assigned grouping code system.&quot;,
+        &quot;requirements&quot;: &quot;Required to adjudicate services rendered to the mandated grouping system.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -1741,7 +1953,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           },
           {
             &quot;code&quot;: &quot;Reference&quot;,
@@ -1757,34 +1969,14 @@
         }
       },
       {
-        &quot;id&quot;: &quot;Claim.patient&quot;,
-        &quot;path&quot;: &quot;Claim.patient&quot;,
-        &quot;short&quot;: &quot;The subject of the Products and Services&quot;,
-        &quot;definition&quot;: &quot;Patient Resource.&quot;,
-        &quot;min&quot;: 1,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;Reference&quot;,
-            &quot;targetProfile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/Patient&quot;
-          }
-        ],
-        &quot;mapping&quot;: [
-          {
-            &quot;identity&quot;: &quot;w5&quot;,
-            &quot;map&quot;: &quot;who.focus&quot;
-          }
-        ]
-      },
-      {
-        &quot;id&quot;: &quot;Claim.coverage&quot;,
+        &quot;id&quot;: &quot;Claim.insurance&quot;,
         &quot;extension&quot;: [
           {
             &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/structuredefinition-explicit-type-name&quot;,
-            &quot;valueString&quot;: &quot;Coverage&quot;
+            &quot;valueString&quot;: &quot;Insurance&quot;
           }
         ],
-        &quot;path&quot;: &quot;Claim.coverage&quot;,
+        &quot;path&quot;: &quot;Claim.insurance&quot;,
         &quot;short&quot;: &quot;Insurance or medical plan&quot;,
         &quot;definition&quot;: &quot;Financial instrument by which payment information for health care.&quot;,
         &quot;requirements&quot;: &quot;Health care programs and insurers are significant payors of health service costs.&quot;,
@@ -1813,8 +2005,8 @@
         ]
       },
       {
-        &quot;id&quot;: &quot;Claim.coverage.id&quot;,
-        &quot;path&quot;: &quot;Claim.coverage.id&quot;,
+        &quot;id&quot;: &quot;Claim.insurance.id&quot;,
+        &quot;path&quot;: &quot;Claim.insurance.id&quot;,
         &quot;representation&quot;: [
           &quot;xmlAttr&quot;
         ],
@@ -1840,8 +2032,8 @@
         ]
       },
       {
-        &quot;id&quot;: &quot;Claim.coverage.extension&quot;,
-        &quot;path&quot;: &quot;Claim.coverage.extension&quot;,
+        &quot;id&quot;: &quot;Claim.insurance.extension&quot;,
+        &quot;path&quot;: &quot;Claim.insurance.extension&quot;,
         &quot;short&quot;: &quot;Additional Content defined by implementations&quot;,
         &quot;definition&quot;: &quot;May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.&quot;,
         &quot;comments&quot;: &quot;There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone.&quot;,
@@ -1869,8 +2061,8 @@
         ]
       },
       {
-        &quot;id&quot;: &quot;Claim.coverage.modifierExtension&quot;,
-        &quot;path&quot;: &quot;Claim.coverage.modifierExtension&quot;,
+        &quot;id&quot;: &quot;Claim.insurance.modifierExtension&quot;,
+        &quot;path&quot;: &quot;Claim.insurance.modifierExtension&quot;,
         &quot;short&quot;: &quot;Extensions that cannot be ignored&quot;,
         &quot;definition&quot;: &quot;May be used to represent additional information that is not part of the basic definition of the element, and that modifies the understanding of the element that contains it. Usually modifier elements provide negation or qualification. In order to make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.&quot;,
         &quot;comments&quot;: &quot;There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone.&quot;,
@@ -1901,8 +2093,8 @@
         ]
       },
       {
-        &quot;id&quot;: &quot;Claim.coverage.sequence&quot;,
-        &quot;path&quot;: &quot;Claim.coverage.sequence&quot;,
+        &quot;id&quot;: &quot;Claim.insurance.sequence&quot;,
+        &quot;path&quot;: &quot;Claim.insurance.sequence&quot;,
         &quot;short&quot;: &quot;Service instance identifier&quot;,
         &quot;definition&quot;: &quot;A service line item.&quot;,
         &quot;requirements&quot;: &quot;To maintain order of the coverages.&quot;,
@@ -1915,10 +2107,10 @@
         ]
       },
       {
-        &quot;id&quot;: &quot;Claim.coverage.focal&quot;,
-        &quot;path&quot;: &quot;Claim.coverage.focal&quot;,
+        &quot;id&quot;: &quot;Claim.insurance.focal&quot;,
+        &quot;path&quot;: &quot;Claim.insurance.focal&quot;,
         &quot;short&quot;: &quot;Is the focal Coverage&quot;,
-        &quot;definition&quot;: &quot;The instance number of the Coverage which is the focus for adjudication. The Coverage against which the claim is to be adjudicated.&quot;,
+        &quot;definition&quot;: &quot;A flag to indicate that this Coverage is the focus for adjudication. The Coverage against which the claim is to be adjudicated.&quot;,
         &quot;requirements&quot;: &quot;To identify which coverage is being adjudicated.&quot;,
         &quot;min&quot;: 1,
         &quot;max&quot;: &quot;1&quot;,
@@ -1929,8 +2121,8 @@
         ]
       },
       {
-        &quot;id&quot;: &quot;Claim.coverage.coverage&quot;,
-        &quot;path&quot;: &quot;Claim.coverage.coverage&quot;,
+        &quot;id&quot;: &quot;Claim.insurance.coverage&quot;,
+        &quot;path&quot;: &quot;Claim.insurance.coverage&quot;,
         &quot;short&quot;: &quot;Insurance information&quot;,
         &quot;definition&quot;: &quot;Reference to the program or plan identification, underwriter or payor.&quot;,
         &quot;requirements&quot;: &quot;Need to identify the issuer to target for processing and for coordination of benefit processing.&quot;,
@@ -1944,8 +2136,8 @@
         ]
       },
       {
-        &quot;id&quot;: &quot;Claim.coverage.businessArrangement&quot;,
-        &quot;path&quot;: &quot;Claim.coverage.businessArrangement&quot;,
+        &quot;id&quot;: &quot;Claim.insurance.businessArrangement&quot;,
+        &quot;path&quot;: &quot;Claim.insurance.businessArrangement&quot;,
         &quot;short&quot;: &quot;Business agreement&quot;,
         &quot;definition&quot;: &quot;The contract number of a business agreement which describes the terms and conditions.&quot;,
         &quot;min&quot;: 0,
@@ -1957,8 +2149,8 @@
         ]
       },
       {
-        &quot;id&quot;: &quot;Claim.coverage.preAuthRef&quot;,
-        &quot;path&quot;: &quot;Claim.coverage.preAuthRef&quot;,
+        &quot;id&quot;: &quot;Claim.insurance.preAuthRef&quot;,
+        &quot;path&quot;: &quot;Claim.insurance.preAuthRef&quot;,
         &quot;short&quot;: &quot;Pre-Authorization/Determination Reference&quot;,
         &quot;definition&quot;: &quot;A list of references from the Insurer to which these services pertain.&quot;,
         &quot;requirements&quot;: &quot;To provide any pre=determination or prior authorization reference.&quot;,
@@ -1971,8 +2163,8 @@
         ]
       },
       {
-        &quot;id&quot;: &quot;Claim.coverage.claimResponse&quot;,
-        &quot;path&quot;: &quot;Claim.coverage.claimResponse&quot;,
+        &quot;id&quot;: &quot;Claim.insurance.claimResponse&quot;,
+        &quot;path&quot;: &quot;Claim.insurance.claimResponse&quot;,
         &quot;short&quot;: &quot;Adjudication results&quot;,
         &quot;definition&quot;: &quot;The Coverages adjudication details.&quot;,
         &quot;requirements&quot;: &quot;Used by downstream payers to determine what balance remains and the net payable.&quot;,
@@ -1984,27 +2176,6 @@
             &quot;targetProfile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/ClaimResponse&quot;
           }
         ]
-      },
-      {
-        &quot;id&quot;: &quot;Claim.coverage.originalRuleset&quot;,
-        &quot;path&quot;: &quot;Claim.coverage.originalRuleset&quot;,
-        &quot;short&quot;: &quot;Original version&quot;,
-        &quot;definition&quot;: &quot;The style (standard) and version of the original material which was converted into this resource.&quot;,
-        &quot;requirements&quot;: &quot;Knowledge of the original version can inform the processing of this instance so that information which is processable by the originating system may be generated.&quot;,
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;Coding&quot;
-          }
-        ],
-        &quot;binding&quot;: {
-          &quot;strength&quot;: &quot;example&quot;,
-          &quot;description&quot;: &quot;The static and dynamic model to which contents conform, which may be business version or standard/version.&quot;,
-          &quot;valueSetReference&quot;: {
-            &quot;reference&quot;: &quot;http://hl7.org/fhir/ValueSet/ruleset&quot;
-          }
-        }
       },
       {
         &quot;id&quot;: &quot;Claim.accident&quot;,
@@ -2147,7 +2318,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -2332,205 +2503,49 @@
         ]
       },
       {
-        &quot;id&quot;: &quot;Claim.item.careTeam&quot;,
-        &quot;extension&quot;: [
-          {
-            &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/structuredefinition-explicit-type-name&quot;,
-            &quot;valueString&quot;: &quot;CareTeam&quot;
-          }
-        ],
-        &quot;path&quot;: &quot;Claim.item.careTeam&quot;,
-        &quot;short&quot;: &quot;Members of the care team&quot;,
-        &quot;definition&quot;: &quot;The members of the team who provided the overall service as well as their role and whether responsible and qualifications.&quot;,
-        &quot;requirements&quot;: &quot;Role and Responsible may not be required when there is only a single provider listed.&quot;,
+        &quot;id&quot;: &quot;Claim.item.careTeamLinkId&quot;,
+        &quot;path&quot;: &quot;Claim.item.careTeamLinkId&quot;,
+        &quot;short&quot;: &quot;Applicable careTeam members&quot;,
+        &quot;definition&quot;: &quot;CareTeam applicable for this service or product line.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;*&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;BackboneElement&quot;
-          }
-        ],
-        &quot;constraint&quot;: [
-          {
-            &quot;key&quot;: &quot;ele-1&quot;,
-            &quot;severity&quot;: &quot;error&quot;,
-            &quot;human&quot;: &quot;All FHIR elements must have a @value or children&quot;,
-            &quot;expression&quot;: &quot;children().count() &gt; id.count()&quot;,
-            &quot;xpath&quot;: &quot;@value|f:*|h:div&quot;,
-            &quot;source&quot;: &quot;Element&quot;
+            &quot;code&quot;: &quot;positiveInt&quot;
           }
         ]
-      },
-      {
-        &quot;id&quot;: &quot;Claim.item.careTeam.id&quot;,
-        &quot;path&quot;: &quot;Claim.item.careTeam.id&quot;,
-        &quot;representation&quot;: [
-          &quot;xmlAttr&quot;
-        ],
-        &quot;short&quot;: &quot;xml:id (or equivalent in JSON)&quot;,
-        &quot;definition&quot;: &quot;unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.&quot;,
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;base&quot;: {
-          &quot;path&quot;: &quot;Element.id&quot;,
-          &quot;min&quot;: 0,
-          &quot;max&quot;: &quot;1&quot;
-        },
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;string&quot;
-          }
-        ],
-        &quot;mapping&quot;: [
-          {
-            &quot;identity&quot;: &quot;rim&quot;,
-            &quot;map&quot;: &quot;n/a&quot;
-          }
-        ]
-      },
-      {
-        &quot;id&quot;: &quot;Claim.item.careTeam.extension&quot;,
-        &quot;path&quot;: &quot;Claim.item.careTeam.extension&quot;,
-        &quot;short&quot;: &quot;Additional Content defined by implementations&quot;,
-        &quot;definition&quot;: &quot;May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.&quot;,
-        &quot;comments&quot;: &quot;There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone.&quot;,
-        &quot;alias&quot;: [
-          &quot;extensions&quot;,
-          &quot;user content&quot;
-        ],
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;*&quot;,
-        &quot;base&quot;: {
-          &quot;path&quot;: &quot;Element.extension&quot;,
-          &quot;min&quot;: 0,
-          &quot;max&quot;: &quot;*&quot;
-        },
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;Extension&quot;
-          }
-        ],
-        &quot;mapping&quot;: [
-          {
-            &quot;identity&quot;: &quot;rim&quot;,
-            &quot;map&quot;: &quot;n/a&quot;
-          }
-        ]
-      },
-      {
-        &quot;id&quot;: &quot;Claim.item.careTeam.modifierExtension&quot;,
-        &quot;path&quot;: &quot;Claim.item.careTeam.modifierExtension&quot;,
-        &quot;short&quot;: &quot;Extensions that cannot be ignored&quot;,
-        &quot;definition&quot;: &quot;May be used to represent additional information that is not part of the basic definition of the element, and that modifies the understanding of the element that contains it. Usually modifier elements provide negation or qualification. In order to make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.&quot;,
-        &quot;comments&quot;: &quot;There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone.&quot;,
-        &quot;alias&quot;: [
-          &quot;extensions&quot;,
-          &quot;user content&quot;,
-          &quot;modifiers&quot;
-        ],
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;*&quot;,
-        &quot;base&quot;: {
-          &quot;path&quot;: &quot;BackboneElement.modifierExtension&quot;,
-          &quot;min&quot;: 0,
-          &quot;max&quot;: &quot;*&quot;
-        },
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;Extension&quot;
-          }
-        ],
-        &quot;isModifier&quot;: true,
-        &quot;isSummary&quot;: true,
-        &quot;mapping&quot;: [
-          {
-            &quot;identity&quot;: &quot;rim&quot;,
-            &quot;map&quot;: &quot;N/A&quot;
-          }
-        ]
-      },
-      {
-        &quot;id&quot;: &quot;Claim.item.careTeam.provider&quot;,
-        &quot;path&quot;: &quot;Claim.item.careTeam.provider&quot;,
-        &quot;short&quot;: &quot;Provider individual or organization&quot;,
-        &quot;definition&quot;: &quot;Member of the team who provided the overall service.&quot;,
-        &quot;min&quot;: 1,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;Reference&quot;,
-            &quot;targetProfile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/Practitioner&quot;
-          },
-          {
-            &quot;code&quot;: &quot;Reference&quot;,
-            &quot;targetProfile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/Organization&quot;
-          }
-        ],
-        &quot;mapping&quot;: [
-          {
-            &quot;identity&quot;: &quot;w5&quot;,
-            &quot;map&quot;: &quot;who.actor&quot;
-          }
-        ]
-      },
-      {
-        &quot;id&quot;: &quot;Claim.item.careTeam.responsible&quot;,
-        &quot;path&quot;: &quot;Claim.item.careTeam.responsible&quot;,
-        &quot;short&quot;: &quot;Billing provider&quot;,
-        &quot;definition&quot;: &quot;The party who is billing and responsible for the claimed good or service rendered to the patient.&quot;,
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;boolean&quot;
-          }
-        ]
-      },
-      {
-        &quot;id&quot;: &quot;Claim.item.careTeam.role&quot;,
-        &quot;path&quot;: &quot;Claim.item.careTeam.role&quot;,
-        &quot;short&quot;: &quot;Role on the team&quot;,
-        &quot;definition&quot;: &quot;The lead, assisting or supervising practitioner and their discipline if a multidisiplinary team.&quot;,
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;Coding&quot;
-          }
-        ],
-        &quot;binding&quot;: {
-          &quot;strength&quot;: &quot;example&quot;,
-          &quot;description&quot;: &quot;The role codes for the care team members.&quot;,
-          &quot;valueSetReference&quot;: {
-            &quot;reference&quot;: &quot;http://hl7.org/fhir/ValueSet/claim-careteamrole&quot;
-          }
-        }
-      },
-      {
-        &quot;id&quot;: &quot;Claim.item.careTeam.qualification&quot;,
-        &quot;path&quot;: &quot;Claim.item.careTeam.qualification&quot;,
-        &quot;short&quot;: &quot;Type, classification or Specialization&quot;,
-        &quot;definition&quot;: &quot;The qualification which is applicable for this service.&quot;,
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;Coding&quot;
-          }
-        ],
-        &quot;binding&quot;: {
-          &quot;strength&quot;: &quot;example&quot;,
-          &quot;description&quot;: &quot;Provider professional qualifications&quot;,
-          &quot;valueSetReference&quot;: {
-            &quot;reference&quot;: &quot;http://hl7.org/fhir/ValueSet/provider-qualification&quot;
-          }
-        }
       },
       {
         &quot;id&quot;: &quot;Claim.item.diagnosisLinkId&quot;,
         &quot;path&quot;: &quot;Claim.item.diagnosisLinkId&quot;,
         &quot;short&quot;: &quot;Applicable diagnoses&quot;,
         &quot;definition&quot;: &quot;Diagnosis applicable for this service or product line.&quot;,
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;*&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;positiveInt&quot;
+          }
+        ]
+      },
+      {
+        &quot;id&quot;: &quot;Claim.item.procedureLinkId&quot;,
+        &quot;path&quot;: &quot;Claim.item.procedureLinkId&quot;,
+        &quot;short&quot;: &quot;Applicable procedures&quot;,
+        &quot;definition&quot;: &quot;Procedures applicable for this service or product line.&quot;,
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;*&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;positiveInt&quot;
+          }
+        ]
+      },
+      {
+        &quot;id&quot;: &quot;Claim.item.informationLinkId&quot;,
+        &quot;path&quot;: &quot;Claim.item.informationLinkId&quot;,
+        &quot;short&quot;: &quot;Applicable exception and supporting information&quot;,
+        &quot;definition&quot;: &quot;Exceptions, special conditions and supporting information pplicable for this service or product line.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;*&quot;,
         &quot;type&quot;: [
@@ -2548,7 +2563,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -2568,7 +2583,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -2583,12 +2598,12 @@
         &quot;id&quot;: &quot;Claim.item.service&quot;,
         &quot;path&quot;: &quot;Claim.item.service&quot;,
         &quot;short&quot;: &quot;Billing Code&quot;,
-        &quot;definition&quot;: &quot;If this is an actual service or product line, ie. not a Group, then use code to indicate the Professional Service or Product supplied (eg. CTP, HCPCS,USCLS,ICD10, NCPDP,DIN,ACHI,CCI). If a grouping item then use a group code to indicate the type of thing being grouped eg. 'glasses' or 'compound'.&quot;,
+        &quot;definition&quot;: &quot;If this is an actual service or product line, ie. not a Group, then use code to indicate the Professional Service or Product supplied (eg. CTP, HCPCS,USCLS,ICD10, NCPDP,DIN,RXNorm,ACHI,CCI). If a grouping item then use a group code to indicate the type of thing being grouped eg. 'glasses' or 'compound'.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -2609,7 +2624,7 @@
         &quot;max&quot;: &quot;*&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -2629,7 +2644,7 @@
         &quot;max&quot;: &quot;*&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -2671,7 +2686,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           },
           {
             &quot;code&quot;: &quot;Address&quot;
@@ -2737,20 +2752,6 @@
         ]
       },
       {
-        &quot;id&quot;: &quot;Claim.item.points&quot;,
-        &quot;path&quot;: &quot;Claim.item.points&quot;,
-        &quot;short&quot;: &quot;Difficulty scaling factor&quot;,
-        &quot;definition&quot;: &quot;An amount that expresses the weighting (based on difficulty, cost and/or resource intensiveness) associated with the good or service delivered. The concept of Points allows for assignment of point values for services and/or goods, such that a monetary amount can be assigned to each point.&quot;,
-        &quot;requirements&quot;: &quot;If a fee is present the associated product/service code must be present.&quot;,
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;decimal&quot;
-          }
-        ]
-      },
-      {
         &quot;id&quot;: &quot;Claim.item.net&quot;,
         &quot;path&quot;: &quot;Claim.item.net&quot;,
         &quot;short&quot;: &quot;Total item cost&quot;,
@@ -2788,7 +2789,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -2808,7 +2809,7 @@
         &quot;max&quot;: &quot;*&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -2958,7 +2959,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -2978,7 +2979,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -2998,7 +2999,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -3019,7 +3020,7 @@
         &quot;max&quot;: &quot;*&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -3039,7 +3040,7 @@
         &quot;max&quot;: &quot;*&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -3083,20 +3084,6 @@
         &quot;path&quot;: &quot;Claim.item.detail.factor&quot;,
         &quot;short&quot;: &quot;Price scaling factor&quot;,
         &quot;definition&quot;: &quot;A real number that represents a multiplier used in determining the overall value of services delivered and/or goods received. The concept of a Factor allows for a discount or surcharge multiplier to be applied to a monetary amount.&quot;,
-        &quot;requirements&quot;: &quot;If a fee is present the associated product/service code must be present.&quot;,
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;decimal&quot;
-          }
-        ]
-      },
-      {
-        &quot;id&quot;: &quot;Claim.item.detail.points&quot;,
-        &quot;path&quot;: &quot;Claim.item.detail.points&quot;,
-        &quot;short&quot;: &quot;Difficulty scaling factor&quot;,
-        &quot;definition&quot;: &quot;An amount that expresses the weighting (based on difficulty, cost and/or resource intensiveness) associated with the good or service delivered. The concept of Points allows for assignment of point values for services and/or goods, such that a monetary amount can be assigned to each point.&quot;,
         &quot;requirements&quot;: &quot;If a fee is present the associated product/service code must be present.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
@@ -3274,7 +3261,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -3294,7 +3281,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -3314,7 +3301,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -3335,7 +3322,7 @@
         &quot;max&quot;: &quot;*&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -3355,7 +3342,7 @@
         &quot;max&quot;: &quot;*&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -3399,20 +3386,6 @@
         &quot;path&quot;: &quot;Claim.item.detail.subDetail.factor&quot;,
         &quot;short&quot;: &quot;Price scaling factor&quot;,
         &quot;definition&quot;: &quot;A real number that represents a multiplier used in determining the overall value of services delivered and/or goods received. The concept of a Factor allows for a discount or surcharge multiplier to be applied to a monetary amount.&quot;,
-        &quot;requirements&quot;: &quot;If a fee is present the associated product/service code must be present.&quot;,
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;decimal&quot;
-          }
-        ]
-      },
-      {
-        &quot;id&quot;: &quot;Claim.item.detail.subDetail.points&quot;,
-        &quot;path&quot;: &quot;Claim.item.detail.subDetail.points&quot;,
-        &quot;short&quot;: &quot;Difficulty scaling factor&quot;,
-        &quot;definition&quot;: &quot;An amount that expresses the weighting (based on difficulty, cost and/or resource intensiveness) associated with the good or service delivered. The concept of Points allows for assignment of point values for services and/or goods, such that a monetary amount can be assigned to each point.&quot;,
         &quot;requirements&quot;: &quot;If a fee is present the associated product/service code must be present.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
@@ -3606,7 +3579,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -3627,180 +3600,6 @@
         &quot;type&quot;: [
           {
             &quot;code&quot;: &quot;Money&quot;
-          }
-        ]
-      },
-      {
-        &quot;id&quot;: &quot;Claim.missingTeeth&quot;,
-        &quot;extension&quot;: [
-          {
-            &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/structuredefinition-explicit-type-name&quot;,
-            &quot;valueString&quot;: &quot;MissingTeeth&quot;
-          }
-        ],
-        &quot;path&quot;: &quot;Claim.missingTeeth&quot;,
-        &quot;short&quot;: &quot;Only if type = oral&quot;,
-        &quot;definition&quot;: &quot;A list of teeth which would be expected but are not found due to having been previously  extracted or for other reasons.&quot;,
-        &quot;requirements&quot;: &quot;The list of missing teeth may influence the adjudication of services for example with Bridges.&quot;,
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;*&quot;,
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;BackboneElement&quot;
-          }
-        ],
-        &quot;constraint&quot;: [
-          {
-            &quot;key&quot;: &quot;ele-1&quot;,
-            &quot;severity&quot;: &quot;error&quot;,
-            &quot;human&quot;: &quot;All FHIR elements must have a @value or children&quot;,
-            &quot;expression&quot;: &quot;children().count() &gt; id.count()&quot;,
-            &quot;xpath&quot;: &quot;@value|f:*|h:div&quot;,
-            &quot;source&quot;: &quot;Element&quot;
-          }
-        ]
-      },
-      {
-        &quot;id&quot;: &quot;Claim.missingTeeth.id&quot;,
-        &quot;path&quot;: &quot;Claim.missingTeeth.id&quot;,
-        &quot;representation&quot;: [
-          &quot;xmlAttr&quot;
-        ],
-        &quot;short&quot;: &quot;xml:id (or equivalent in JSON)&quot;,
-        &quot;definition&quot;: &quot;unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.&quot;,
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;base&quot;: {
-          &quot;path&quot;: &quot;Element.id&quot;,
-          &quot;min&quot;: 0,
-          &quot;max&quot;: &quot;1&quot;
-        },
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;string&quot;
-          }
-        ],
-        &quot;mapping&quot;: [
-          {
-            &quot;identity&quot;: &quot;rim&quot;,
-            &quot;map&quot;: &quot;n/a&quot;
-          }
-        ]
-      },
-      {
-        &quot;id&quot;: &quot;Claim.missingTeeth.extension&quot;,
-        &quot;path&quot;: &quot;Claim.missingTeeth.extension&quot;,
-        &quot;short&quot;: &quot;Additional Content defined by implementations&quot;,
-        &quot;definition&quot;: &quot;May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.&quot;,
-        &quot;comments&quot;: &quot;There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone.&quot;,
-        &quot;alias&quot;: [
-          &quot;extensions&quot;,
-          &quot;user content&quot;
-        ],
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;*&quot;,
-        &quot;base&quot;: {
-          &quot;path&quot;: &quot;Element.extension&quot;,
-          &quot;min&quot;: 0,
-          &quot;max&quot;: &quot;*&quot;
-        },
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;Extension&quot;
-          }
-        ],
-        &quot;mapping&quot;: [
-          {
-            &quot;identity&quot;: &quot;rim&quot;,
-            &quot;map&quot;: &quot;n/a&quot;
-          }
-        ]
-      },
-      {
-        &quot;id&quot;: &quot;Claim.missingTeeth.modifierExtension&quot;,
-        &quot;path&quot;: &quot;Claim.missingTeeth.modifierExtension&quot;,
-        &quot;short&quot;: &quot;Extensions that cannot be ignored&quot;,
-        &quot;definition&quot;: &quot;May be used to represent additional information that is not part of the basic definition of the element, and that modifies the understanding of the element that contains it. Usually modifier elements provide negation or qualification. In order to make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.&quot;,
-        &quot;comments&quot;: &quot;There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone.&quot;,
-        &quot;alias&quot;: [
-          &quot;extensions&quot;,
-          &quot;user content&quot;,
-          &quot;modifiers&quot;
-        ],
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;*&quot;,
-        &quot;base&quot;: {
-          &quot;path&quot;: &quot;BackboneElement.modifierExtension&quot;,
-          &quot;min&quot;: 0,
-          &quot;max&quot;: &quot;*&quot;
-        },
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;Extension&quot;
-          }
-        ],
-        &quot;isModifier&quot;: true,
-        &quot;isSummary&quot;: true,
-        &quot;mapping&quot;: [
-          {
-            &quot;identity&quot;: &quot;rim&quot;,
-            &quot;map&quot;: &quot;N/A&quot;
-          }
-        ]
-      },
-      {
-        &quot;id&quot;: &quot;Claim.missingTeeth.tooth&quot;,
-        &quot;path&quot;: &quot;Claim.missingTeeth.tooth&quot;,
-        &quot;short&quot;: &quot;Tooth Code&quot;,
-        &quot;definition&quot;: &quot;The code identifying which tooth is missing.&quot;,
-        &quot;requirements&quot;: &quot;Provides the tooth number of the missing tooth.&quot;,
-        &quot;min&quot;: 1,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;Coding&quot;
-          }
-        ],
-        &quot;binding&quot;: {
-          &quot;strength&quot;: &quot;example&quot;,
-          &quot;description&quot;: &quot;The codes for the teeth, subset of OralSites&quot;,
-          &quot;valueSetReference&quot;: {
-            &quot;reference&quot;: &quot;http://hl7.org/fhir/ValueSet/teeth&quot;
-          }
-        }
-      },
-      {
-        &quot;id&quot;: &quot;Claim.missingTeeth.reason&quot;,
-        &quot;path&quot;: &quot;Claim.missingTeeth.reason&quot;,
-        &quot;short&quot;: &quot;Indicates whether it was extracted or other reason&quot;,
-        &quot;definition&quot;: &quot;Missing reason may be: E-extraction, O-other.&quot;,
-        &quot;requirements&quot;: &quot;Provides the reason for the missing tooth.&quot;,
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;Coding&quot;
-          }
-        ],
-        &quot;binding&quot;: {
-          &quot;strength&quot;: &quot;example&quot;,
-          &quot;description&quot;: &quot;Reason codes for the missing teeth&quot;,
-          &quot;valueSetReference&quot;: {
-            &quot;reference&quot;: &quot;http://hl7.org/fhir/ValueSet/missing-tooth-reason&quot;
-          }
-        }
-      },
-      {
-        &quot;id&quot;: &quot;Claim.missingTeeth.extractionDate&quot;,
-        &quot;path&quot;: &quot;Claim.missingTeeth.extractionDate&quot;,
-        &quot;short&quot;: &quot;Date tooth was extracted if known&quot;,
-        &quot;definition&quot;: &quot;The date of the extraction either known from records or patient reported estimate.&quot;,
-        &quot;requirements&quot;: &quot;Some services and adjudications require this information.&quot;,
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;date&quot;
           }
         ]
       }
@@ -3846,7 +3645,7 @@
         &quot;path&quot;: &quot;Claim.status&quot;,
         &quot;short&quot;: &quot;active | cancelled | draft | entered-in-error&quot;,
         &quot;definition&quot;: &quot;The status of the resource instance.&quot;,
-        &quot;min&quot;: 1,
+        &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
@@ -3859,7 +3658,7 @@
           &quot;strength&quot;: &quot;required&quot;,
           &quot;description&quot;: &quot;A code specifying the state of the resource instance.&quot;,
           &quot;valueSetReference&quot;: {
-            &quot;reference&quot;: &quot;http://hl7.org/fhir/ValueSet/claim-status&quot;
+            &quot;reference&quot;: &quot;http://hl7.org/fhir/ValueSet/fm-status&quot;
           }
         },
         &quot;mapping&quot;: [
@@ -3875,11 +3674,11 @@
         &quot;short&quot;: &quot;Type or discipline&quot;,
         &quot;definition&quot;: &quot;The category of claim, eg, oral, pharmacy, vision, insitutional, professional.&quot;,
         &quot;comments&quot;: &quot;Affects which fields and value sets are used.&quot;,
-        &quot;min&quot;: 1,
+        &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -3906,7 +3705,7 @@
         &quot;max&quot;: &quot;*&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -3924,73 +3723,48 @@
         ]
       },
       {
-        &quot;id&quot;: &quot;Claim.ruleset&quot;,
-        &quot;path&quot;: &quot;Claim.ruleset&quot;,
-        &quot;short&quot;: &quot;Current specification followed&quot;,
-        &quot;definition&quot;: &quot;The version of the specification on which this instance relies.&quot;,
-        &quot;alias&quot;: [
-          &quot;BusinessVersion&quot;
-        ],
+        &quot;id&quot;: &quot;Claim.use&quot;,
+        &quot;path&quot;: &quot;Claim.use&quot;,
+        &quot;short&quot;: &quot;complete | proposed | exploratory | other&quot;,
+        &quot;definition&quot;: &quot;Complete (Bill or Claim), Proposed (Pre-Authorization), Exploratory (Pre-determination).&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;code&quot;
           }
         ],
         &quot;binding&quot;: {
-          &quot;strength&quot;: &quot;example&quot;,
-          &quot;description&quot;: &quot;The static and dynamic model to which contents conform, which may be business version or standard/version.&quot;,
+          &quot;strength&quot;: &quot;required&quot;,
+          &quot;description&quot;: &quot;Complete, proposed, exploratory, other&quot;,
           &quot;valueSetReference&quot;: {
-            &quot;reference&quot;: &quot;http://hl7.org/fhir/ValueSet/ruleset&quot;
+            &quot;reference&quot;: &quot;http://hl7.org/fhir/ValueSet/claim-use&quot;
           }
         },
         &quot;mapping&quot;: [
           {
             &quot;identity&quot;: &quot;w5&quot;,
-            &quot;map&quot;: &quot;id.version&quot;
+            &quot;map&quot;: &quot;class&quot;
           }
         ]
       },
       {
-        &quot;id&quot;: &quot;Claim.originalRuleset&quot;,
-        &quot;path&quot;: &quot;Claim.originalRuleset&quot;,
-        &quot;short&quot;: &quot;Original specification followed&quot;,
-        &quot;definition&quot;: &quot;The version of the specification from which the original instance was created.&quot;,
-        &quot;alias&quot;: [
-          &quot;OriginalBusinessVersion&quot;
-        ],
+        &quot;id&quot;: &quot;Claim.patient&quot;,
+        &quot;path&quot;: &quot;Claim.patient&quot;,
+        &quot;short&quot;: &quot;The subject of the Products and Services&quot;,
+        &quot;definition&quot;: &quot;Patient Resource.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
-          }
-        ],
-        &quot;binding&quot;: {
-          &quot;strength&quot;: &quot;example&quot;,
-          &quot;description&quot;: &quot;The static and dynamic model to which contents conform, which may be business version or standard/version.&quot;,
-          &quot;valueSetReference&quot;: {
-            &quot;reference&quot;: &quot;http://hl7.org/fhir/ValueSet/ruleset&quot;
-          }
-        }
-      },
-      {
-        &quot;id&quot;: &quot;Claim.created&quot;,
-        &quot;path&quot;: &quot;Claim.created&quot;,
-        &quot;short&quot;: &quot;Creation date&quot;,
-        &quot;definition&quot;: &quot;The date when the enclosed suite of services were performed or completed.&quot;,
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;dateTime&quot;
+            &quot;code&quot;: &quot;Reference&quot;,
+            &quot;targetProfile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/Patient&quot;
           }
         ],
         &quot;mapping&quot;: [
           {
             &quot;identity&quot;: &quot;w5&quot;,
-            &quot;map&quot;: &quot;when.recorded&quot;
+            &quot;map&quot;: &quot;who.focus&quot;
           }
         ]
       },
@@ -4014,10 +3788,49 @@
         ]
       },
       {
+        &quot;id&quot;: &quot;Claim.created&quot;,
+        &quot;path&quot;: &quot;Claim.created&quot;,
+        &quot;short&quot;: &quot;Creation date&quot;,
+        &quot;definition&quot;: &quot;The date when the enclosed suite of services were performed or completed.&quot;,
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;1&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;dateTime&quot;
+          }
+        ],
+        &quot;mapping&quot;: [
+          {
+            &quot;identity&quot;: &quot;w5&quot;,
+            &quot;map&quot;: &quot;when.recorded&quot;
+          }
+        ]
+      },
+      {
+        &quot;id&quot;: &quot;Claim.enterer&quot;,
+        &quot;path&quot;: &quot;Claim.enterer&quot;,
+        &quot;short&quot;: &quot;Author&quot;,
+        &quot;definition&quot;: &quot;Person who created the invoice/claim/pre-determination or pre-authorization.&quot;,
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;1&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;Reference&quot;,
+            &quot;targetProfile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/Practitioner&quot;
+          }
+        ],
+        &quot;mapping&quot;: [
+          {
+            &quot;identity&quot;: &quot;w5&quot;,
+            &quot;map&quot;: &quot;who.author&quot;
+          }
+        ]
+      },
+      {
         &quot;id&quot;: &quot;Claim.insurer&quot;,
         &quot;path&quot;: &quot;Claim.insurer&quot;,
         &quot;short&quot;: &quot;Target&quot;,
-        &quot;definition&quot;: &quot;The Insurer who is target  of the request.&quot;,
+        &quot;definition&quot;: &quot;The Insurer who is target of the request.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
@@ -4068,32 +3881,6 @@
         ]
       },
       {
-        &quot;id&quot;: &quot;Claim.use&quot;,
-        &quot;path&quot;: &quot;Claim.use&quot;,
-        &quot;short&quot;: &quot;complete | proposed | exploratory | other&quot;,
-        &quot;definition&quot;: &quot;Complete (Bill or Claim), Proposed (Pre-Authorization), Exploratory (Pre-determination).&quot;,
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;code&quot;
-          }
-        ],
-        &quot;binding&quot;: {
-          &quot;strength&quot;: &quot;required&quot;,
-          &quot;description&quot;: &quot;Complete, proposed, exploratory, other&quot;,
-          &quot;valueSetReference&quot;: {
-            &quot;reference&quot;: &quot;http://hl7.org/fhir/ValueSet/claim-use&quot;
-          }
-        },
-        &quot;mapping&quot;: [
-          {
-            &quot;identity&quot;: &quot;w5&quot;,
-            &quot;map&quot;: &quot;class&quot;
-          }
-        ]
-      },
-      {
         &quot;id&quot;: &quot;Claim.priority&quot;,
         &quot;path&quot;: &quot;Claim.priority&quot;,
         &quot;short&quot;: &quot;Desired processing priority&quot;,
@@ -4102,7 +3889,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -4122,7 +3909,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -4132,46 +3919,6 @@
             &quot;reference&quot;: &quot;http://hl7.org/fhir/ValueSet/fundsreserve&quot;
           }
         }
-      },
-      {
-        &quot;id&quot;: &quot;Claim.enterer&quot;,
-        &quot;path&quot;: &quot;Claim.enterer&quot;,
-        &quot;short&quot;: &quot;Author&quot;,
-        &quot;definition&quot;: &quot;Person who created the invoice/claim/pre-determination or pre-authorization.&quot;,
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;Reference&quot;,
-            &quot;targetProfile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/Practitioner&quot;
-          }
-        ],
-        &quot;mapping&quot;: [
-          {
-            &quot;identity&quot;: &quot;w5&quot;,
-            &quot;map&quot;: &quot;who.author&quot;
-          }
-        ]
-      },
-      {
-        &quot;id&quot;: &quot;Claim.facility&quot;,
-        &quot;path&quot;: &quot;Claim.facility&quot;,
-        &quot;short&quot;: &quot;Servicing Facility&quot;,
-        &quot;definition&quot;: &quot;Facility where the services were provided.&quot;,
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;Reference&quot;,
-            &quot;targetProfile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/Location&quot;
-          }
-        ],
-        &quot;mapping&quot;: [
-          {
-            &quot;identity&quot;: &quot;w5&quot;,
-            &quot;map&quot;: &quot;where&quot;
-          }
-        ]
       },
       {
         &quot;id&quot;: &quot;Claim.related&quot;,
@@ -4216,7 +3963,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -4264,7 +4011,7 @@
         &quot;id&quot;: &quot;Claim.originalPrescription&quot;,
         &quot;path&quot;: &quot;Claim.originalPrescription&quot;,
         &quot;short&quot;: &quot;Original Prescription&quot;,
-        &quot;definition&quot;: &quot;Original prescription which has been superceded by this prescription to support the dispensing of pharmacy services, medications or products.&quot;,
+        &quot;definition&quot;: &quot;Original prescription which has been superceded by this prescription to support the dispensing of pharmacy services, medications or products. For example, a physician may prescribe a medication which the pharmacy determines is contraindicated, or for which the patient has an intolerance, and therefor issues a new precription for an alternate medication which has the same theraputic intent. The prescription from the pharmacy becomes the 'prescription' and that from the physician becomes the 'original prescription'.&quot;,
         &quot;comments&quot;: &quot;as above.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
@@ -4303,7 +4050,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -4381,6 +4128,137 @@
         ]
       },
       {
+        &quot;id&quot;: &quot;Claim.facility&quot;,
+        &quot;path&quot;: &quot;Claim.facility&quot;,
+        &quot;short&quot;: &quot;Servicing Facility&quot;,
+        &quot;definition&quot;: &quot;Facility where the services were provided.&quot;,
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;1&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;Reference&quot;,
+            &quot;targetProfile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/Location&quot;
+          }
+        ],
+        &quot;mapping&quot;: [
+          {
+            &quot;identity&quot;: &quot;w5&quot;,
+            &quot;map&quot;: &quot;where&quot;
+          }
+        ]
+      },
+      {
+        &quot;id&quot;: &quot;Claim.careTeam&quot;,
+        &quot;extension&quot;: [
+          {
+            &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/structuredefinition-explicit-type-name&quot;,
+            &quot;valueString&quot;: &quot;CareTeam&quot;
+          }
+        ],
+        &quot;path&quot;: &quot;Claim.careTeam&quot;,
+        &quot;short&quot;: &quot;Members of the care team&quot;,
+        &quot;definition&quot;: &quot;The members of the team who provided the overall service as well as their role and whether responsible and qualifications.&quot;,
+        &quot;requirements&quot;: &quot;Role and Responsible may not be required when there is only a single provider listed.&quot;,
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;*&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;BackboneElement&quot;
+          }
+        ]
+      },
+      {
+        &quot;id&quot;: &quot;Claim.careTeam.sequence&quot;,
+        &quot;path&quot;: &quot;Claim.careTeam.sequence&quot;,
+        &quot;short&quot;: &quot;Number to covey order of careTeam&quot;,
+        &quot;definition&quot;: &quot;Sequence of the careTeam which serves to order and provide a link.&quot;,
+        &quot;requirements&quot;: &quot;Required to maintain order of the careTeam.&quot;,
+        &quot;min&quot;: 1,
+        &quot;max&quot;: &quot;1&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;positiveInt&quot;
+          }
+        ]
+      },
+      {
+        &quot;id&quot;: &quot;Claim.careTeam.provider&quot;,
+        &quot;path&quot;: &quot;Claim.careTeam.provider&quot;,
+        &quot;short&quot;: &quot;Provider individual or organization&quot;,
+        &quot;definition&quot;: &quot;Member of the team who provided the overall service.&quot;,
+        &quot;min&quot;: 1,
+        &quot;max&quot;: &quot;1&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;Reference&quot;,
+            &quot;targetProfile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/Practitioner&quot;
+          },
+          {
+            &quot;code&quot;: &quot;Reference&quot;,
+            &quot;targetProfile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/Organization&quot;
+          }
+        ],
+        &quot;mapping&quot;: [
+          {
+            &quot;identity&quot;: &quot;w5&quot;,
+            &quot;map&quot;: &quot;who.actor&quot;
+          }
+        ]
+      },
+      {
+        &quot;id&quot;: &quot;Claim.careTeam.responsible&quot;,
+        &quot;path&quot;: &quot;Claim.careTeam.responsible&quot;,
+        &quot;short&quot;: &quot;Billing provider&quot;,
+        &quot;definition&quot;: &quot;The party who is billing and responsible for the claimed good or service rendered to the patient.&quot;,
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;1&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;boolean&quot;
+          }
+        ]
+      },
+      {
+        &quot;id&quot;: &quot;Claim.careTeam.role&quot;,
+        &quot;path&quot;: &quot;Claim.careTeam.role&quot;,
+        &quot;short&quot;: &quot;Role on the team&quot;,
+        &quot;definition&quot;: &quot;The lead, assisting or supervising practitioner and their discipline if a multidisiplinary team.&quot;,
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;1&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;CodeableConcept&quot;
+          }
+        ],
+        &quot;binding&quot;: {
+          &quot;strength&quot;: &quot;example&quot;,
+          &quot;description&quot;: &quot;The role codes for the care team members.&quot;,
+          &quot;valueSetReference&quot;: {
+            &quot;reference&quot;: &quot;http://hl7.org/fhir/ValueSet/claim-careteamrole&quot;
+          }
+        }
+      },
+      {
+        &quot;id&quot;: &quot;Claim.careTeam.qualification&quot;,
+        &quot;path&quot;: &quot;Claim.careTeam.qualification&quot;,
+        &quot;short&quot;: &quot;Type, classification or Specialization&quot;,
+        &quot;definition&quot;: &quot;The qualification which is applicable for this service.&quot;,
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;1&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;CodeableConcept&quot;
+          }
+        ],
+        &quot;binding&quot;: {
+          &quot;strength&quot;: &quot;example&quot;,
+          &quot;description&quot;: &quot;Provider professional qualifications&quot;,
+          &quot;valueSetReference&quot;: {
+            &quot;reference&quot;: &quot;http://hl7.org/fhir/ValueSet/provider-qualification&quot;
+          }
+        }
+      },
+      {
         &quot;id&quot;: &quot;Claim.information&quot;,
         &quot;extension&quot;: [
           {
@@ -4410,7 +4288,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -4431,7 +4309,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -4461,8 +4339,8 @@
       {
         &quot;id&quot;: &quot;Claim.information.value[x]&quot;,
         &quot;path&quot;: &quot;Claim.information.value[x]&quot;,
-        &quot;short&quot;: &quot;Additional Data&quot;,
-        &quot;definition&quot;: &quot;Additional data.&quot;,
+        &quot;short&quot;: &quot;Additional Data or supporting information&quot;,
+        &quot;definition&quot;: &quot;Additional data or information such as resources, documents, images etc. including references to the data or the actual inclusion of the data.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
@@ -4471,8 +4349,35 @@
           },
           {
             &quot;code&quot;: &quot;Quantity&quot;
+          },
+          {
+            &quot;code&quot;: &quot;Attachment&quot;
+          },
+          {
+            &quot;code&quot;: &quot;Reference&quot;,
+            &quot;targetProfile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/Resource&quot;
           }
         ]
+      },
+      {
+        &quot;id&quot;: &quot;Claim.information.reason&quot;,
+        &quot;path&quot;: &quot;Claim.information.reason&quot;,
+        &quot;short&quot;: &quot;Reason associated with the information&quot;,
+        &quot;definition&quot;: &quot;For example, provides the reason for: the additional stay, or missing tooth or any other situation where a reason code is required in addition to the content.&quot;,
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;1&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;CodeableConcept&quot;
+          }
+        ],
+        &quot;binding&quot;: {
+          &quot;strength&quot;: &quot;example&quot;,
+          &quot;description&quot;: &quot;Reason codes for the missing teeth&quot;,
+          &quot;valueSetReference&quot;: {
+            &quot;reference&quot;: &quot;http://hl7.org/fhir/ValueSet/missing-tooth-reason&quot;
+          }
+        }
       },
       {
         &quot;id&quot;: &quot;Claim.diagnosis&quot;,
@@ -4508,8 +4413,8 @@
         ]
       },
       {
-        &quot;id&quot;: &quot;Claim.diagnosis.diagnosis&quot;,
-        &quot;path&quot;: &quot;Claim.diagnosis.diagnosis&quot;,
+        &quot;id&quot;: &quot;Claim.diagnosis.diagnosis[x]&quot;,
+        &quot;path&quot;: &quot;Claim.diagnosis.diagnosis[x]&quot;,
         &quot;short&quot;: &quot;Patient's diagnosis&quot;,
         &quot;definition&quot;: &quot;The diagnosis.&quot;,
         &quot;requirements&quot;: &quot;Required to adjudicate services rendered to condition presented.&quot;,
@@ -4517,7 +4422,11 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
+          },
+          {
+            &quot;code&quot;: &quot;Reference&quot;,
+            &quot;targetProfile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/Condition&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -4539,7 +4448,7 @@
         &quot;max&quot;: &quot;*&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -4551,16 +4460,16 @@
         }
       },
       {
-        &quot;id&quot;: &quot;Claim.diagnosis.drg&quot;,
-        &quot;path&quot;: &quot;Claim.diagnosis.drg&quot;,
-        &quot;short&quot;: &quot;Diagnosis Related Group&quot;,
-        &quot;definition&quot;: &quot;The Diagnosis Related Group (DRG) code based on the assigned grouping code system.&quot;,
-        &quot;requirements&quot;: &quot;Required to adjudicate services rendered to the mandated diagnosis grouping system.&quot;,
+        &quot;id&quot;: &quot;Claim.diagnosis.packageCode&quot;,
+        &quot;path&quot;: &quot;Claim.diagnosis.packageCode&quot;,
+        &quot;short&quot;: &quot;Package billing code&quot;,
+        &quot;definition&quot;: &quot;The package billing code, for example DRG, based on the assigned grouping code system.&quot;,
+        &quot;requirements&quot;: &quot;Required to adjudicate services rendered to the mandated grouping system.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -4629,7 +4538,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           },
           {
             &quot;code&quot;: &quot;Reference&quot;,
@@ -4645,34 +4554,14 @@
         }
       },
       {
-        &quot;id&quot;: &quot;Claim.patient&quot;,
-        &quot;path&quot;: &quot;Claim.patient&quot;,
-        &quot;short&quot;: &quot;The subject of the Products and Services&quot;,
-        &quot;definition&quot;: &quot;Patient Resource.&quot;,
-        &quot;min&quot;: 1,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;Reference&quot;,
-            &quot;targetProfile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/Patient&quot;
-          }
-        ],
-        &quot;mapping&quot;: [
-          {
-            &quot;identity&quot;: &quot;w5&quot;,
-            &quot;map&quot;: &quot;who.focus&quot;
-          }
-        ]
-      },
-      {
-        &quot;id&quot;: &quot;Claim.coverage&quot;,
+        &quot;id&quot;: &quot;Claim.insurance&quot;,
         &quot;extension&quot;: [
           {
             &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/structuredefinition-explicit-type-name&quot;,
-            &quot;valueString&quot;: &quot;Coverage&quot;
+            &quot;valueString&quot;: &quot;Insurance&quot;
           }
         ],
-        &quot;path&quot;: &quot;Claim.coverage&quot;,
+        &quot;path&quot;: &quot;Claim.insurance&quot;,
         &quot;short&quot;: &quot;Insurance or medical plan&quot;,
         &quot;definition&quot;: &quot;Financial instrument by which payment information for health care.&quot;,
         &quot;requirements&quot;: &quot;Health care programs and insurers are significant payors of health service costs.&quot;,
@@ -4691,8 +4580,8 @@
         ]
       },
       {
-        &quot;id&quot;: &quot;Claim.coverage.sequence&quot;,
-        &quot;path&quot;: &quot;Claim.coverage.sequence&quot;,
+        &quot;id&quot;: &quot;Claim.insurance.sequence&quot;,
+        &quot;path&quot;: &quot;Claim.insurance.sequence&quot;,
         &quot;short&quot;: &quot;Service instance identifier&quot;,
         &quot;definition&quot;: &quot;A service line item.&quot;,
         &quot;requirements&quot;: &quot;To maintain order of the coverages.&quot;,
@@ -4705,10 +4594,10 @@
         ]
       },
       {
-        &quot;id&quot;: &quot;Claim.coverage.focal&quot;,
-        &quot;path&quot;: &quot;Claim.coverage.focal&quot;,
+        &quot;id&quot;: &quot;Claim.insurance.focal&quot;,
+        &quot;path&quot;: &quot;Claim.insurance.focal&quot;,
         &quot;short&quot;: &quot;Is the focal Coverage&quot;,
-        &quot;definition&quot;: &quot;The instance number of the Coverage which is the focus for adjudication. The Coverage against which the claim is to be adjudicated.&quot;,
+        &quot;definition&quot;: &quot;A flag to indicate that this Coverage is the focus for adjudication. The Coverage against which the claim is to be adjudicated.&quot;,
         &quot;requirements&quot;: &quot;To identify which coverage is being adjudicated.&quot;,
         &quot;min&quot;: 1,
         &quot;max&quot;: &quot;1&quot;,
@@ -4719,8 +4608,8 @@
         ]
       },
       {
-        &quot;id&quot;: &quot;Claim.coverage.coverage&quot;,
-        &quot;path&quot;: &quot;Claim.coverage.coverage&quot;,
+        &quot;id&quot;: &quot;Claim.insurance.coverage&quot;,
+        &quot;path&quot;: &quot;Claim.insurance.coverage&quot;,
         &quot;short&quot;: &quot;Insurance information&quot;,
         &quot;definition&quot;: &quot;Reference to the program or plan identification, underwriter or payor.&quot;,
         &quot;requirements&quot;: &quot;Need to identify the issuer to target for processing and for coordination of benefit processing.&quot;,
@@ -4734,8 +4623,8 @@
         ]
       },
       {
-        &quot;id&quot;: &quot;Claim.coverage.businessArrangement&quot;,
-        &quot;path&quot;: &quot;Claim.coverage.businessArrangement&quot;,
+        &quot;id&quot;: &quot;Claim.insurance.businessArrangement&quot;,
+        &quot;path&quot;: &quot;Claim.insurance.businessArrangement&quot;,
         &quot;short&quot;: &quot;Business agreement&quot;,
         &quot;definition&quot;: &quot;The contract number of a business agreement which describes the terms and conditions.&quot;,
         &quot;min&quot;: 0,
@@ -4747,8 +4636,8 @@
         ]
       },
       {
-        &quot;id&quot;: &quot;Claim.coverage.preAuthRef&quot;,
-        &quot;path&quot;: &quot;Claim.coverage.preAuthRef&quot;,
+        &quot;id&quot;: &quot;Claim.insurance.preAuthRef&quot;,
+        &quot;path&quot;: &quot;Claim.insurance.preAuthRef&quot;,
         &quot;short&quot;: &quot;Pre-Authorization/Determination Reference&quot;,
         &quot;definition&quot;: &quot;A list of references from the Insurer to which these services pertain.&quot;,
         &quot;requirements&quot;: &quot;To provide any pre=determination or prior authorization reference.&quot;,
@@ -4761,8 +4650,8 @@
         ]
       },
       {
-        &quot;id&quot;: &quot;Claim.coverage.claimResponse&quot;,
-        &quot;path&quot;: &quot;Claim.coverage.claimResponse&quot;,
+        &quot;id&quot;: &quot;Claim.insurance.claimResponse&quot;,
+        &quot;path&quot;: &quot;Claim.insurance.claimResponse&quot;,
         &quot;short&quot;: &quot;Adjudication results&quot;,
         &quot;definition&quot;: &quot;The Coverages adjudication details.&quot;,
         &quot;requirements&quot;: &quot;Used by downstream payers to determine what balance remains and the net payable.&quot;,
@@ -4774,27 +4663,6 @@
             &quot;targetProfile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/ClaimResponse&quot;
           }
         ]
-      },
-      {
-        &quot;id&quot;: &quot;Claim.coverage.originalRuleset&quot;,
-        &quot;path&quot;: &quot;Claim.coverage.originalRuleset&quot;,
-        &quot;short&quot;: &quot;Original version&quot;,
-        &quot;definition&quot;: &quot;The style (standard) and version of the original material which was converted into this resource.&quot;,
-        &quot;requirements&quot;: &quot;Knowledge of the original version can inform the processing of this instance so that information which is processable by the originating system may be generated.&quot;,
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;Coding&quot;
-          }
-        ],
-        &quot;binding&quot;: {
-          &quot;strength&quot;: &quot;example&quot;,
-          &quot;description&quot;: &quot;The static and dynamic model to which contents conform, which may be business version or standard/version.&quot;,
-          &quot;valueSetReference&quot;: {
-            &quot;reference&quot;: &quot;http://hl7.org/fhir/ValueSet/ruleset&quot;
-          }
-        }
       },
       {
         &quot;id&quot;: &quot;Claim.accident&quot;,
@@ -4839,7 +4707,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -4926,107 +4794,49 @@
         ]
       },
       {
-        &quot;id&quot;: &quot;Claim.item.careTeam&quot;,
-        &quot;extension&quot;: [
-          {
-            &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/structuredefinition-explicit-type-name&quot;,
-            &quot;valueString&quot;: &quot;CareTeam&quot;
-          }
-        ],
-        &quot;path&quot;: &quot;Claim.item.careTeam&quot;,
-        &quot;short&quot;: &quot;Members of the care team&quot;,
-        &quot;definition&quot;: &quot;The members of the team who provided the overall service as well as their role and whether responsible and qualifications.&quot;,
-        &quot;requirements&quot;: &quot;Role and Responsible may not be required when there is only a single provider listed.&quot;,
+        &quot;id&quot;: &quot;Claim.item.careTeamLinkId&quot;,
+        &quot;path&quot;: &quot;Claim.item.careTeamLinkId&quot;,
+        &quot;short&quot;: &quot;Applicable careTeam members&quot;,
+        &quot;definition&quot;: &quot;CareTeam applicable for this service or product line.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;*&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;BackboneElement&quot;
+            &quot;code&quot;: &quot;positiveInt&quot;
           }
         ]
-      },
-      {
-        &quot;id&quot;: &quot;Claim.item.careTeam.provider&quot;,
-        &quot;path&quot;: &quot;Claim.item.careTeam.provider&quot;,
-        &quot;short&quot;: &quot;Provider individual or organization&quot;,
-        &quot;definition&quot;: &quot;Member of the team who provided the overall service.&quot;,
-        &quot;min&quot;: 1,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;Reference&quot;,
-            &quot;targetProfile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/Practitioner&quot;
-          },
-          {
-            &quot;code&quot;: &quot;Reference&quot;,
-            &quot;targetProfile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/Organization&quot;
-          }
-        ],
-        &quot;mapping&quot;: [
-          {
-            &quot;identity&quot;: &quot;w5&quot;,
-            &quot;map&quot;: &quot;who.actor&quot;
-          }
-        ]
-      },
-      {
-        &quot;id&quot;: &quot;Claim.item.careTeam.responsible&quot;,
-        &quot;path&quot;: &quot;Claim.item.careTeam.responsible&quot;,
-        &quot;short&quot;: &quot;Billing provider&quot;,
-        &quot;definition&quot;: &quot;The party who is billing and responsible for the claimed good or service rendered to the patient.&quot;,
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;boolean&quot;
-          }
-        ]
-      },
-      {
-        &quot;id&quot;: &quot;Claim.item.careTeam.role&quot;,
-        &quot;path&quot;: &quot;Claim.item.careTeam.role&quot;,
-        &quot;short&quot;: &quot;Role on the team&quot;,
-        &quot;definition&quot;: &quot;The lead, assisting or supervising practitioner and their discipline if a multidisiplinary team.&quot;,
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;Coding&quot;
-          }
-        ],
-        &quot;binding&quot;: {
-          &quot;strength&quot;: &quot;example&quot;,
-          &quot;description&quot;: &quot;The role codes for the care team members.&quot;,
-          &quot;valueSetReference&quot;: {
-            &quot;reference&quot;: &quot;http://hl7.org/fhir/ValueSet/claim-careteamrole&quot;
-          }
-        }
-      },
-      {
-        &quot;id&quot;: &quot;Claim.item.careTeam.qualification&quot;,
-        &quot;path&quot;: &quot;Claim.item.careTeam.qualification&quot;,
-        &quot;short&quot;: &quot;Type, classification or Specialization&quot;,
-        &quot;definition&quot;: &quot;The qualification which is applicable for this service.&quot;,
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;Coding&quot;
-          }
-        ],
-        &quot;binding&quot;: {
-          &quot;strength&quot;: &quot;example&quot;,
-          &quot;description&quot;: &quot;Provider professional qualifications&quot;,
-          &quot;valueSetReference&quot;: {
-            &quot;reference&quot;: &quot;http://hl7.org/fhir/ValueSet/provider-qualification&quot;
-          }
-        }
       },
       {
         &quot;id&quot;: &quot;Claim.item.diagnosisLinkId&quot;,
         &quot;path&quot;: &quot;Claim.item.diagnosisLinkId&quot;,
         &quot;short&quot;: &quot;Applicable diagnoses&quot;,
         &quot;definition&quot;: &quot;Diagnosis applicable for this service or product line.&quot;,
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;*&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;positiveInt&quot;
+          }
+        ]
+      },
+      {
+        &quot;id&quot;: &quot;Claim.item.procedureLinkId&quot;,
+        &quot;path&quot;: &quot;Claim.item.procedureLinkId&quot;,
+        &quot;short&quot;: &quot;Applicable procedures&quot;,
+        &quot;definition&quot;: &quot;Procedures applicable for this service or product line.&quot;,
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;*&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;positiveInt&quot;
+          }
+        ]
+      },
+      {
+        &quot;id&quot;: &quot;Claim.item.informationLinkId&quot;,
+        &quot;path&quot;: &quot;Claim.item.informationLinkId&quot;,
+        &quot;short&quot;: &quot;Applicable exception and supporting information&quot;,
+        &quot;definition&quot;: &quot;Exceptions, special conditions and supporting information pplicable for this service or product line.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;*&quot;,
         &quot;type&quot;: [
@@ -5044,7 +4854,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -5064,7 +4874,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -5079,12 +4889,12 @@
         &quot;id&quot;: &quot;Claim.item.service&quot;,
         &quot;path&quot;: &quot;Claim.item.service&quot;,
         &quot;short&quot;: &quot;Billing Code&quot;,
-        &quot;definition&quot;: &quot;If this is an actual service or product line, ie. not a Group, then use code to indicate the Professional Service or Product supplied (eg. CTP, HCPCS,USCLS,ICD10, NCPDP,DIN,ACHI,CCI). If a grouping item then use a group code to indicate the type of thing being grouped eg. 'glasses' or 'compound'.&quot;,
+        &quot;definition&quot;: &quot;If this is an actual service or product line, ie. not a Group, then use code to indicate the Professional Service or Product supplied (eg. CTP, HCPCS,USCLS,ICD10, NCPDP,DIN,RXNorm,ACHI,CCI). If a grouping item then use a group code to indicate the type of thing being grouped eg. 'glasses' or 'compound'.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -5105,7 +4915,7 @@
         &quot;max&quot;: &quot;*&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -5125,7 +4935,7 @@
         &quot;max&quot;: &quot;*&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -5167,7 +4977,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           },
           {
             &quot;code&quot;: &quot;Address&quot;
@@ -5233,20 +5043,6 @@
         ]
       },
       {
-        &quot;id&quot;: &quot;Claim.item.points&quot;,
-        &quot;path&quot;: &quot;Claim.item.points&quot;,
-        &quot;short&quot;: &quot;Difficulty scaling factor&quot;,
-        &quot;definition&quot;: &quot;An amount that expresses the weighting (based on difficulty, cost and/or resource intensiveness) associated with the good or service delivered. The concept of Points allows for assignment of point values for services and/or goods, such that a monetary amount can be assigned to each point.&quot;,
-        &quot;requirements&quot;: &quot;If a fee is present the associated product/service code must be present.&quot;,
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;decimal&quot;
-          }
-        ]
-      },
-      {
         &quot;id&quot;: &quot;Claim.item.net&quot;,
         &quot;path&quot;: &quot;Claim.item.net&quot;,
         &quot;short&quot;: &quot;Total item cost&quot;,
@@ -5284,7 +5080,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -5304,7 +5100,7 @@
         &quot;max&quot;: &quot;*&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -5356,7 +5152,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -5376,7 +5172,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -5396,7 +5192,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -5417,7 +5213,7 @@
         &quot;max&quot;: &quot;*&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -5437,7 +5233,7 @@
         &quot;max&quot;: &quot;*&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -5481,20 +5277,6 @@
         &quot;path&quot;: &quot;Claim.item.detail.factor&quot;,
         &quot;short&quot;: &quot;Price scaling factor&quot;,
         &quot;definition&quot;: &quot;A real number that represents a multiplier used in determining the overall value of services delivered and/or goods received. The concept of a Factor allows for a discount or surcharge multiplier to be applied to a monetary amount.&quot;,
-        &quot;requirements&quot;: &quot;If a fee is present the associated product/service code must be present.&quot;,
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;decimal&quot;
-          }
-        ]
-      },
-      {
-        &quot;id&quot;: &quot;Claim.item.detail.points&quot;,
-        &quot;path&quot;: &quot;Claim.item.detail.points&quot;,
-        &quot;short&quot;: &quot;Difficulty scaling factor&quot;,
-        &quot;definition&quot;: &quot;An amount that expresses the weighting (based on difficulty, cost and/or resource intensiveness) associated with the good or service delivered. The concept of Points allows for assignment of point values for services and/or goods, such that a monetary amount can be assigned to each point.&quot;,
         &quot;requirements&quot;: &quot;If a fee is present the associated product/service code must be present.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
@@ -5574,7 +5356,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -5594,7 +5376,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -5614,7 +5396,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -5635,7 +5417,7 @@
         &quot;max&quot;: &quot;*&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -5655,7 +5437,7 @@
         &quot;max&quot;: &quot;*&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -5699,20 +5481,6 @@
         &quot;path&quot;: &quot;Claim.item.detail.subDetail.factor&quot;,
         &quot;short&quot;: &quot;Price scaling factor&quot;,
         &quot;definition&quot;: &quot;A real number that represents a multiplier used in determining the overall value of services delivered and/or goods received. The concept of a Factor allows for a discount or surcharge multiplier to be applied to a monetary amount.&quot;,
-        &quot;requirements&quot;: &quot;If a fee is present the associated product/service code must be present.&quot;,
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;decimal&quot;
-          }
-        ]
-      },
-      {
-        &quot;id&quot;: &quot;Claim.item.detail.subDetail.points&quot;,
-        &quot;path&quot;: &quot;Claim.item.detail.subDetail.points&quot;,
-        &quot;short&quot;: &quot;Difficulty scaling factor&quot;,
-        &quot;definition&quot;: &quot;An amount that expresses the weighting (based on difficulty, cost and/or resource intensiveness) associated with the good or service delivered. The concept of Points allows for assignment of point values for services and/or goods, such that a monetary amount can be assigned to each point.&quot;,
         &quot;requirements&quot;: &quot;If a fee is present the associated product/service code must be present.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
@@ -5808,7 +5576,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -5829,82 +5597,6 @@
         &quot;type&quot;: [
           {
             &quot;code&quot;: &quot;Money&quot;
-          }
-        ]
-      },
-      {
-        &quot;id&quot;: &quot;Claim.missingTeeth&quot;,
-        &quot;extension&quot;: [
-          {
-            &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/structuredefinition-explicit-type-name&quot;,
-            &quot;valueString&quot;: &quot;MissingTeeth&quot;
-          }
-        ],
-        &quot;path&quot;: &quot;Claim.missingTeeth&quot;,
-        &quot;short&quot;: &quot;Only if type = oral&quot;,
-        &quot;definition&quot;: &quot;A list of teeth which would be expected but are not found due to having been previously  extracted or for other reasons.&quot;,
-        &quot;requirements&quot;: &quot;The list of missing teeth may influence the adjudication of services for example with Bridges.&quot;,
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;*&quot;,
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;BackboneElement&quot;
-          }
-        ]
-      },
-      {
-        &quot;id&quot;: &quot;Claim.missingTeeth.tooth&quot;,
-        &quot;path&quot;: &quot;Claim.missingTeeth.tooth&quot;,
-        &quot;short&quot;: &quot;Tooth Code&quot;,
-        &quot;definition&quot;: &quot;The code identifying which tooth is missing.&quot;,
-        &quot;requirements&quot;: &quot;Provides the tooth number of the missing tooth.&quot;,
-        &quot;min&quot;: 1,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;Coding&quot;
-          }
-        ],
-        &quot;binding&quot;: {
-          &quot;strength&quot;: &quot;example&quot;,
-          &quot;description&quot;: &quot;The codes for the teeth, subset of OralSites&quot;,
-          &quot;valueSetReference&quot;: {
-            &quot;reference&quot;: &quot;http://hl7.org/fhir/ValueSet/teeth&quot;
-          }
-        }
-      },
-      {
-        &quot;id&quot;: &quot;Claim.missingTeeth.reason&quot;,
-        &quot;path&quot;: &quot;Claim.missingTeeth.reason&quot;,
-        &quot;short&quot;: &quot;Indicates whether it was extracted or other reason&quot;,
-        &quot;definition&quot;: &quot;Missing reason may be: E-extraction, O-other.&quot;,
-        &quot;requirements&quot;: &quot;Provides the reason for the missing tooth.&quot;,
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;Coding&quot;
-          }
-        ],
-        &quot;binding&quot;: {
-          &quot;strength&quot;: &quot;example&quot;,
-          &quot;description&quot;: &quot;Reason codes for the missing teeth&quot;,
-          &quot;valueSetReference&quot;: {
-            &quot;reference&quot;: &quot;http://hl7.org/fhir/ValueSet/missing-tooth-reason&quot;
-          }
-        }
-      },
-      {
-        &quot;id&quot;: &quot;Claim.missingTeeth.extractionDate&quot;,
-        &quot;path&quot;: &quot;Claim.missingTeeth.extractionDate&quot;,
-        &quot;short&quot;: &quot;Date tooth was extracted if known&quot;,
-        &quot;definition&quot;: &quot;The date of the extraction either known from records or patient reported estimate.&quot;,
-        &quot;requirements&quot;: &quot;Some services and adjudications require this information.&quot;,
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;date&quot;
           }
         ]
       }
@@ -5935,7 +5627,7 @@ of the specification.
 		<div class="container"><!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:32-0500. <a href="qa.html">QA Page</a>
+        © HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:21-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search</a> | 

@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>Immunization - FHIR v1.7.0</title>
+  <title>Immunization - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -123,7 +123,10 @@
  <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;vaccineCode</td><td>.code</td></tr>
  <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;patient</td><td>.partipication[ttypeCode=].role</td></tr>
  <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;wasNotGiven</td><td>[actionNegationInd=true].reasonCode</td></tr>
- <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;reported</td><td>.participation[typeCode=INF].role[classCode=PAT] (this syntax for self-reported=true)</td></tr>
+ <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;primarySource</td><td>immunization.uncertaintycode (if primary source=false, uncertainty=U)</td></tr>
+ <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;reportOrigin</td><td>.participation[typeCode=INF].role[classCode=PAT] (this syntax for self-reported)<br/>
+.participation[typeCode=INF].role[classCode=LIC] (this syntax for health care professional)<br/>
+.participation[typeCode=INF].role[classCode=PRS] (this syntax for family member)</td></tr>
  <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;performer</td><td>.participation[typeCode=PRF].COCT_MT090102UV</td></tr>
  <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;requester</td><td>outboundRelationship.target[classCode=SBADM].participation[typeCode=AUT].COCT_MT090102UV</td></tr>
  <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;encounter</td><td>component-&gt;EncounterEvent</td></tr>
@@ -160,7 +163,8 @@
  <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;vaccineCode</td><td>ClinicalDocument/component/StructuredBody/component/section/entry/substanceAdministration/consumable/manfacturedProduct/manufacturedMaterial/realmCode/code</td></tr>
  <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;patient</td><td/></tr>
  <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;wasNotGiven</td><td/></tr>
- <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;reported</td><td/></tr>
+ <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;primarySource</td><td/></tr>
+ <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;reportOrigin</td><td/></tr>
  <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;performer</td><td>ClinicalDocument/component/StructuredBody/component/section/entry/substanceAdministration/performer/assignedEntity/assignedPerson/name</td></tr>
  <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;requester</td><td/></tr>
  <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;encounter</td><td/></tr>
@@ -197,7 +201,8 @@
  <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;vaccineCode</td><td>RXA-5</td></tr>
  <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;patient</td><td>PID-3</td></tr>
  <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;wasNotGiven</td><td/></tr>
- <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;reported</td><td>RXA-9</td></tr>
+ <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;primarySource</td><td>RXA-9</td></tr>
+ <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;reportOrigin</td><td>RXA-9</td></tr>
  <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;performer</td><td>RXA-10</td></tr>
  <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;requester</td><td>ORC-12</td></tr>
  <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;encounter</td><td>PV1-19</td></tr>
@@ -242,7 +247,7 @@
 		<div class="container">  <!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:32-0500. <a href="qa.html">QA Page</a>
+        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:21-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search <img src="external.png" style="text-align: baseline"/></a> | 

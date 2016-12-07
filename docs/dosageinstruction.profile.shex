@@ -21,10 +21,7 @@ BASE <http://hl7.org/fhir/shape/>
         fhir:DosageInstruction.asNeededBoolean @<boolean>  |
         fhir:DosageInstruction.asNeededCodeableConcept @<CodeableConcept> 
     )?;
-    (                                       # Body site to administer to
-        fhir:DosageInstruction.siteCodeableConcept @<CodeableConcept>  |
-        fhir:DosageInstruction.siteReference @<Reference> 
-    )?;
+    fhir:DosageInstruction.site @<CodeableConcept>?;  # Body site to administer to
     fhir:DosageInstruction.route @<CodeableConcept>?;  # How drug should enter body
     fhir:DosageInstruction.method @<CodeableConcept>?;  # Technique for administering 
                                             # medication 
@@ -68,20 +65,6 @@ BASE <http://hl7.org/fhir/shape/>
     fhir:extension @<Extension>*;           # Additional Content defined by 
                                             # implementations 
     fhir:value xsd:string MAXLENGTH 1048576?;  # Primitive value for string
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
-# A reference from one resource to another
-<Reference> CLOSED {
-    fhir:link IRI?;
-    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
-    fhir:extension @<Extension>*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:Reference.reference @<string>?;    # Literal reference, Relative, 
-                                            # internal or absolute URL 
-    fhir:Reference.identifier @<Identifier>?;  # Logical reference, when literal 
-                                            # reference is not known 
-    fhir:Reference.display @<string>?;      # Text alternative for the resource
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -194,24 +177,6 @@ BASE <http://hl7.org/fhir/shape/>
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
-# An identifier intended for computation
-<Identifier> CLOSED {
-    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
-    fhir:extension @<Extension>*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:Identifier.use @<code> AND
-    	{fhir:value @fhirvs:identifier-use}?;  # usual | official | temp | 
-                                            # secondary (If known) 
-    fhir:Identifier.type @<CodeableConcept>?;  # Description of identifier
-    fhir:Identifier.system @<uri>?;         # The namespace for the identifier
-    fhir:Identifier.value @<string>?;       # The value that is unique
-    fhir:Identifier.period @<Period>?;      # Time period when id is/was valid 
-                                            # for use 
-    fhir:Identifier.assigner @<Reference>?;  # Organization that issued id (may 
-                                            # be just text) 
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
 # A reference to a code defined by a terminology system
 <Coding> CLOSED {
     fhir:concept IRI?;
@@ -246,18 +211,6 @@ BASE <http://hl7.org/fhir/shape/>
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
-# Time range defined by start and end date/time
-<Period> CLOSED {
-    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
-    fhir:extension @<Extension>*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:Period.start @<dateTime>?;         # Starting time with inclusive 
-                                            # boundary 
-    fhir:Period.end @<dateTime>?;           # End time with inclusive boundary, 
-                                            # if not ongoing 
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
 # When the event is to occur
 <Timing.repeat> CLOSED {
     fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
@@ -286,11 +239,27 @@ BASE <http://hl7.org/fhir/shape/>
     fhir:Timing.repeat.periodUnit @<code> AND
     	{fhir:value @fhirvs:units-of-time}?;  # s | min | h | d | wk | mo | a - 
                                             # unit of time (UCUM) 
+    fhir:Timing.repeat.dayOfWeek @<code> AND
+    	{fhir:value @fhirvs:days-of-week}*;  # mon | tue | wed | thu | fri | sat 
+                                            # | sun 
+    fhir:Timing.repeat.timeOfDay @<time>*;  # Time of day for action
     fhir:Timing.repeat.when @<code> AND
     	{fhir:value @fhirvs:event-timing}?;  # Regular life events the event is 
                                             # tied to 
     fhir:Timing.repeat.offset @<unsignedInt>?;  # Minutes from event (before or 
                                             # after) 
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
+# Time range defined by start and end date/time
+<Period> CLOSED {
+    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
+    fhir:extension @<Extension>*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:Period.start @<dateTime>?;         # Starting time with inclusive 
+                                            # boundary 
+    fhir:Period.end @<dateTime>?;           # End time with inclusive boundary, 
+                                            # if not ongoing 
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -318,18 +287,27 @@ BASE <http://hl7.org/fhir/shape/>
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
+# Primitive Type time
+<time> CLOSED {
+    fhir:Element.id @<id>?;                 # xml:id (or equivalent in JSON)
+    fhir:extension @<Extension>*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:value xsd:time?;                   # Primitive value for time
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
 #---------------------- Reference Types -------------------
 
 #---------------------- Value Sets ------------------------
 
-# Real world event that the relating to the schedule.
-fhirvs:event-timing ["HS" "WAKE" "C" "CM" "CD" "CV" "AC" "ACM" "ACD" "ACV" "PC" "PCM" "PCD" "PCV"]
-
 # How the Quantity should be understood and represented.
 fhirvs:quantity-comparator ["<" "<=" ">=" ">"]
 
-# Identifies the purpose for this identifier, if known .
-fhirvs:identifier-use ["usual" "official" "temp" "secondary"]
+# Real world event that the relating to the schedule.
+fhirvs:event-timing ["MORN" "AFT" "EVE" "NIGHT" "HS" "WAKE" "C" "CM" "CD" "CV" "AC" "ACM" "ACD" "ACV" "PC" "PCM" "PCD" "PCV"]
 
 # A unit of time (units from UCUM).
 fhirvs:units-of-time ["s" "min" "h" "d" "wk" "mo" "a"]
+
+# The days of the week.
+fhirvs:days-of-week ["mon" "tue" "wed" "thu" "fri" "sat" "sun"]

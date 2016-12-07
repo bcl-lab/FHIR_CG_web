@@ -12,13 +12,13 @@
   <publisher value="Health Level Seven International (Orders and Observations)"/>
   <contact>
     <telecom>
-      <system value="other"/>
+      <system value="url"/>
       <value value="http://hl7.org/special/committees/FHIR"/>
     </telecom>
   </contact>
   <date value="2015-02-28"/>
   <description value="Identifies how the ElementDefinition data type is used when it appears within a data element"/>
-  <fhirVersion value="1.7.0"/>
+  <fhirVersion value="1.8.0"/>
   <mapping>
     <identity value="dex"/>
     <uri value="http://wiki.ihe.net/index.php?title=Data_Element_Exchange"/>
@@ -194,7 +194,7 @@
     </element>
     <element id="ElementDefinition:elementdefinition-de.extension">
       <path value="ElementDefinition.extension"/>
-      <slicing id="101">
+      <slicing id="95">
         <discriminator value="url"/>
         <ordered value="false"/>
         <rules value="open"/>
@@ -706,7 +706,7 @@
       <isSummary value="true"/>
       <mapping>
         <identity value="v2"/>
-        <map value="NTE, OM.32, OM1.33, OM1.39"/>
+        <map value="NTE, OM1.32, OM1.33, OM1.39"/>
       </mapping>
       <mapping>
         <identity value="rim"/>
@@ -925,7 +925,7 @@
     <element id="ElementDefinition:elementdefinition-de.base.path">
       <path value="ElementDefinition.base.path"/>
       <short value="Path that identifies the base element"/>
-      <definition value="The Path that identifies the base element - this matches the ElementDefinition.path for that element. Across FHIR, there is only one base definition of any element - that is, an element definition on a [[[StructureDefinition]]] without a StructureDefinition.base."/>
+      <definition value="The Path that identifies the base element - this matches the ElementDefinition.path for that element. Across FHIR, there is only one base definition of any element - that is, an element definition on a [StructureDefinition](structuredefinition.html#) without a StructureDefinition.base."/>
       <min value="1"/>
       <max value="1"/>
       <base>
@@ -1566,7 +1566,7 @@
       <path value="ElementDefinition.pattern[x]"/>
       <short value="Value must have at least these property values"/>
       <definition value="Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.  The values of elements present in the pattern must match exactly (case-sensitive, accent-sensitive, etc.)."/>
-      <comments value="Mostly used for fixing values of CodeableConcept. At present, pattern[x] is not recommended as a basis for slicing while issues related to this are investigated during the DSTU period."/>
+      <comments value="Mostly used for fixing values of CodeableConcept. At present, pattern[x] is not recommended as a basis for slicing while issues related to this are investigated during the STU period."/>
       <min value="0"/>
       <max value="0"/>
       <base>
@@ -1697,16 +1697,106 @@
         <map value="N/A (MIF territory)"/>
       </mapping>
     </element>
-    <element id="ElementDefinition:elementdefinition-de.example[x]">
-      <path value="ElementDefinition.example[x]"/>
+    <element id="ElementDefinition:elementdefinition-de.example">
+      <path value="ElementDefinition.example"/>
       <short value="Example value (as defined for type)"/>
-      <definition value="A sample value for this element demonstrating the type of information that would typically be captured."/>
-      <comments value="This will most commonly be present for data where it&#39;s not implicitly obvious from either the data type or value set what the values might be.  (I.e. Example values for dates or quantities would generally be unnecessary.)  If the example value is fully populated, the publication tool can generate an instance automatically."/>
+      <definition value="A sample value for this element demonstrating the type of information that would typically be found in the element."/>
+      <comments value="Examples will most commonly be present for data where it&#39;s not implicitly obvious from either the data type or value set what the values might be.  (I.e. Example values for dates or quantities would generally be unnecessary.)  If the example value is fully populated, the publication tool can generate an instance automatically."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="ElementDefinition.example"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Element"/>
+      </type>
+      <constraint>
+        <key value="ele-1"/>
+        <severity value="error"/>
+        <human value="All FHIR elements must have a @value or children"/>
+        <expression value="children().count() &gt; id.count()"/>
+        <xpath value="@value|f:*|h:div"/>
+        <source value="Element"/>
+      </constraint>
+      <isSummary value="true"/>
+      <mapping>
+        <identity value="rim"/>
+        <map value="N/A (MIF territory)"/>
+      </mapping>
+    </element>
+    <element id="ElementDefinition:elementdefinition-de.example.id">
+      <path value="ElementDefinition.example.id"/>
+      <representation value="xmlAttr"/>
+      <short value="xml:id (or equivalent in JSON)"/>
+      <definition value="unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces."/>
       <min value="0"/>
       <max value="1"/>
       <base>
-        <path value="ElementDefinition.example[x]"/>
+        <path value="Element.id"/>
         <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="string"/>
+      </type>
+      <mapping>
+        <identity value="rim"/>
+        <map value="n/a"/>
+      </mapping>
+    </element>
+    <element id="ElementDefinition:elementdefinition-de.example.extension">
+      <path value="ElementDefinition.example.extension"/>
+      <short value="Additional Content defined by implementations"/>
+      <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension."/>
+      <comments value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone."/>
+      <alias value="extensions"/>
+      <alias value="user content"/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="Element.extension"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Extension"/>
+      </type>
+      <mapping>
+        <identity value="rim"/>
+        <map value="n/a"/>
+      </mapping>
+    </element>
+    <element id="ElementDefinition:elementdefinition-de.example.label">
+      <path value="ElementDefinition.example.label"/>
+      <short value="Describes the purpose of this example"/>
+      <definition value="Describes the purpose of this example amoung the set of examples."/>
+      <min value="1"/>
+      <max value="1"/>
+      <base>
+        <path value="ElementDefinition.example.label"/>
+        <min value="1"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="string"/>
+      </type>
+      <isSummary value="true"/>
+      <mapping>
+        <identity value="rim"/>
+        <map value="N/A (MIF territory)"/>
+      </mapping>
+    </element>
+    <element id="ElementDefinition:elementdefinition-de.example.value[x]">
+      <path value="ElementDefinition.example.value[x]"/>
+      <short value="Value of Example (one of allowed types)"/>
+      <definition value="The actual value for the element, which must be one of the types allowed for this element."/>
+      <min value="1"/>
+      <max value="1"/>
+      <base>
+        <path value="ElementDefinition.example.value[x]"/>
+        <min value="1"/>
         <max value="1"/>
       </base>
       <type>
@@ -2279,7 +2369,7 @@ Note that an element that has the property IsModifier is not necessarily a &quot
       <constraint>
         <key value="eld-12"/>
         <severity value="error"/>
-        <human value="ValueSet as a URI SHALL start with http:// or https:// urn:"/>
+        <human value="ValueSet as a URI SHALL start with http:// or https:// or urn:"/>
         <expression value="valueSet.is(uri).not() or valueSet.as(uri).startsWith(&#39;http:&#39;) or valueSet.as(uri).startsWith(&#39;https&#39;) or valueSet.as(uri).startsWith(&#39;urn:&#39;)"/>
         <xpath value="not(exists(f:valueSetUri)) or (starts-with(string(f:valueSetUri/@value), &#39;http:&#39;) or starts-with(string(f:valueSetUri/@value), &#39;https:&#39;) or starts-with(string(f:valueSetUri/@value), &#39;urn:&#39;))"/>
       </constraint>
@@ -2347,7 +2437,7 @@ Note that an element that has the property IsModifier is not necessarily a &quot
       <path value="ElementDefinition.binding.strength"/>
       <short value="required | extensible | preferred | example"/>
       <definition value="Indicates the degree of conformance expectations associated with this binding - that is, the degree to which the provided value set must be adhered to in the instances."/>
-      <comments value="For further discussion, see [[[Using Terminologies]]]."/>
+      <comments value="For further discussion, see [Using Terminologies](terminologies.html)."/>
       <alias value="conformance"/>
       <alias value="extensibility"/>
       <min value="1"/>

@@ -86,6 +86,8 @@ start=@<PlanDefinition> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:PlanDefinition.actionDefinition.triggerDefinition @<TriggerDefinition>*;  # When the action should be triggered
     fhir:PlanDefinition.actionDefinition.condition @<PlanDefinition.actionDefinition.condition>*;  # Whether or not the action is 
                                             # applicable 
+    fhir:PlanDefinition.actionDefinition.input @<DataRequirement>*;  # Input data requirements
+    fhir:PlanDefinition.actionDefinition.output @<DataRequirement>*;  # Output data definition
     fhir:PlanDefinition.actionDefinition.relatedAction @<PlanDefinition.actionDefinition.relatedAction>*;  # Relationship to another action
     (                                       # When the action should take place
         fhir:PlanDefinition.actionDefinition.timingDateTime @<dateTime>  |
@@ -122,21 +124,6 @@ start=@<PlanDefinition> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
-# Whether or not the action is applicable
-<PlanDefinition.actionDefinition.condition> CLOSED {
-    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
-    fhir:extension @<Extension>*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    fhir:PlanDefinition.actionDefinition.condition.kind @<code> AND
-    	{fhir:value @fhirvs:action-condition-kind};  # applicability | start | stop
-    fhir:PlanDefinition.actionDefinition.condition.description @<string>?;  # Natural language description of 
-                                            # the condition 
-    fhir:PlanDefinition.actionDefinition.condition.language @<string>?;  # Language of the expression
-    fhir:PlanDefinition.actionDefinition.condition.expression @<string>?;  # Boolean-valued expression
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
 # Relationship to another action
 <PlanDefinition.actionDefinition.relatedAction> CLOSED {
     fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
@@ -153,6 +140,21 @@ start=@<PlanDefinition> AND {fhir:nodeRole [fhir:treeRoot]}
         fhir:PlanDefinition.actionDefinition.relatedAction.offsetDuration @<Duration>  |
         fhir:PlanDefinition.actionDefinition.relatedAction.offsetRange @<Range> 
     )?;
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
+# Whether or not the action is applicable
+<PlanDefinition.actionDefinition.condition> CLOSED {
+    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
+    fhir:extension @<Extension>*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
+    fhir:PlanDefinition.actionDefinition.condition.kind @<code> AND
+    	{fhir:value @fhirvs:action-condition-kind};  # applicability | start | stop
+    fhir:PlanDefinition.actionDefinition.condition.description @<string>?;  # Natural language description of 
+                                            # the condition 
+    fhir:PlanDefinition.actionDefinition.condition.language @<string>?;  # Language of the expression
+    fhir:PlanDefinition.actionDefinition.condition.expression @<string>?;  # Boolean-valued expression
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -236,6 +238,22 @@ start=@<PlanDefinition> AND {fhir:nodeRole [fhir:treeRoot]}
                                             # endorser 
     fhir:Contributor.name @<string>;        # Name of the contributor
     fhir:Contributor.contact @<ContactDetail>*;  # Contact details of the contributor
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
+# Describes a required data item
+<DataRequirement> CLOSED {
+    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
+    fhir:extension @<Extension>*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:DataRequirement.type @<code> AND
+    	{fhir:value @fhirvs:all-types};  # The type of the required data
+    fhir:DataRequirement.profile @<uri>*;   # The profile of the required data
+    fhir:DataRequirement.mustSupport @<string>*;  # Indicates that specific structure 
+                                            # elements are referenced by the 
+                                            # knowledge module 
+    fhir:DataRequirement.codeFilter @<DataRequirement.codeFilter>*;  # Code filters for the data
+    fhir:DataRequirement.dateFilter @<DataRequirement.dateFilter>*;  # Date filters for the data
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -497,22 +515,6 @@ start=@<PlanDefinition> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
-# Describes a required data item
-<DataRequirement> CLOSED {
-    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
-    fhir:extension @<Extension>*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:DataRequirement.type @<code> AND
-    	{fhir:value @fhirvs:all-types};  # The type of the required data
-    fhir:DataRequirement.profile @<uri>*;   # The profile of the required data
-    fhir:DataRequirement.mustSupport @<string>*;  # Indicates that specific structure 
-                                            # elements are referenced by the 
-                                            # knowledge module 
-    fhir:DataRequirement.codeFilter @<DataRequirement.codeFilter>*;  # Code filters for the data
-    fhir:DataRequirement.dateFilter @<DataRequirement.dateFilter>*;  # Date filters for the data
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
 # Primitive Type instant
 <instant> CLOSED {
     fhir:Element.id @<id>?;                 # xml:id (or equivalent in JSON)
@@ -528,7 +530,8 @@ start=@<PlanDefinition> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:extension @<Extension>*;           # Additional Content defined by 
                                             # implementations 
     fhir:ContactPoint.system @<code> AND
-    	{fhir:value @fhirvs:contact-point-system}?;  # phone | fax | email | pager | other
+    	{fhir:value @fhirvs:contact-point-system}?;  # phone | fax | email | pager | url 
+                                            # | other 
     fhir:ContactPoint.value @<string>?;     # The actual contact point details
     fhir:ContactPoint.use @<code> AND
     	{fhir:value @fhirvs:contact-point-use}?;  # home | work | temp | old | mobile 
@@ -603,23 +606,6 @@ start=@<PlanDefinition> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
-# Date filters for the data
-<DataRequirement.dateFilter> CLOSED {
-    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
-    fhir:extension @<Extension>*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:DataRequirement.dateFilter.path @<string>;  # The date-valued attribute of the 
-                                            # filter 
-    (                                       # The value of the filter, as a 
-                                            # Period, DateTime, or Duration 
-                                            # value 
-        fhir:DataRequirement.dateFilter.valueDateTime @<dateTime>  |
-        fhir:DataRequirement.dateFilter.valuePeriod @<Period>  |
-        fhir:DataRequirement.dateFilter.valueDuration @<Duration> 
-    )?;
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
 # When the event is to occur
 <Timing.repeat> CLOSED {
     fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
@@ -648,11 +634,32 @@ start=@<PlanDefinition> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:Timing.repeat.periodUnit @<code> AND
     	{fhir:value @fhirvs:units-of-time}?;  # s | min | h | d | wk | mo | a - 
                                             # unit of time (UCUM) 
+    fhir:Timing.repeat.dayOfWeek @<code> AND
+    	{fhir:value @fhirvs:days-of-week}*;  # mon | tue | wed | thu | fri | sat 
+                                            # | sun 
+    fhir:Timing.repeat.timeOfDay @<time>*;  # Time of day for action
     fhir:Timing.repeat.when @<code> AND
     	{fhir:value @fhirvs:event-timing}?;  # Regular life events the event is 
                                             # tied to 
     fhir:Timing.repeat.offset @<unsignedInt>?;  # Minutes from event (before or 
                                             # after) 
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
+# Date filters for the data
+<DataRequirement.dateFilter> CLOSED {
+    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
+    fhir:extension @<Extension>*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:DataRequirement.dateFilter.path @<string>;  # The date-valued attribute of the 
+                                            # filter 
+    (                                       # The value of the filter, as a 
+                                            # Period, DateTime, or Duration 
+                                            # value 
+        fhir:DataRequirement.dateFilter.valueDateTime @<dateTime>  |
+        fhir:DataRequirement.dateFilter.valuePeriod @<Period>  |
+        fhir:DataRequirement.dateFilter.valueDuration @<Duration> 
+    )?;
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -682,69 +689,81 @@ start=@<PlanDefinition> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
+# Primitive Type time
+<time> CLOSED {
+    fhir:Element.id @<id>?;                 # xml:id (or equivalent in JSON)
+    fhir:extension @<Extension>*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:value xsd:time?;                   # Primitive value for time
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
 #---------------------- Reference Types -------------------
 
 #---------------------- Value Sets ------------------------
 
-# The type of contributor
-fhirvs:contributor-type ["author" "editor" "reviewer" "endorser"]
-
-# Defines requiredness behavior for selecting an action or an action group
-fhirvs:action-required-behavior ["must" "could" "must-unless-documented"]
-
-# Real world event that the relating to the schedule.
-fhirvs:event-timing ["HS" "WAKE" "C" "CM" "CD" "CV" "AC" "ACM" "ACD" "ACV" "PC" "PCM" "PCD" "PCV"]
-
-# Defines organization behavior of a group
-fhirvs:action-grouping-behavior ["visual-group" "logical-group" "sentence-group"]
+# Defines selection behavior of a group
+fhirvs:action-selection-behavior ["any" "all" "all-or-none" "exactly-one" "at-most-one" "one-or-more"]
 
 # The type of action to be performed
 fhirvs:action-type ["create" "update" "remove" "fire-event"]
 
-# The type of participant for the action
-fhirvs:action-participant-type ["patient" "practitioner" "related-person"]
-
-# The type of trigger
-fhirvs:trigger-type ["named-event" "periodic" "data-added" "data-modified" "data-removed" "data-accessed" "data-access-ended"]
-
-# How the Quantity should be understood and represented.
-fhirvs:quantity-comparator ["<" "<=" ">=" ">"]
-
-# A unit of time (units from UCUM).
-fhirvs:units-of-time ["s" "min" "h" "d" "wk" "mo" "a"]
-
-# Defines selection behavior of a group
-fhirvs:action-selection-behavior ["any" "all" "all-or-none" "exactly-one" "at-most-one" "one-or-more"]
-
-# The type of relationship to the related artifact
-fhirvs:related-artifact-type ["documentation" "justification" "citation" "predecessor" "successor" "derived-from" "depends-on" "composed-of"]
-
-# The lifecycle status of a Value Set or Concept Map.
-fhirvs:publication-status ["draft" "active" "retired"]
-
-# Telecommunications form for contact point
-fhirvs:contact-point-system ["phone" "fax" "email" "pager" "other"]
-
-# Either an abstract type, a resource or a data type.
-fhirvs:all-types ["Address" "Age" "Annotation" "Attachment" "BackboneElement" "CodeableConcept" "Coding" "ContactDetail" "ContactPoint" "Contributor" "Count" "DataRequirement" "Distance" "DosageInstruction" "Duration" "Element" "ElementDefinition" "Extension" "HumanName" "Identifier" "Meta" "Money" "Narrative" "ParameterDefinition" "Period" "Quantity" "Range" "Ratio" "Reference" "RelatedArtifact" "SampledData" "Signature" "SimpleQuantity" "Timing" "TriggerDefinition" "UsageContext" "base64Binary" "boolean" "code" "date" "dateTime" "decimal" "id" "instant" "integer" "markdown" "oid" "positiveInt" "string" "time" "unsignedInt" "uri" "uuid" "xhtml" "Account" "ActivityDefinition" "AllergyIntolerance" "Appointment" "AppointmentResponse" "AuditEvent" "Basic" "Binary" "BodySite" "Bundle" "CapabilityStatement" "CarePlan" "CareTeam" "Claim" "ClaimResponse" "ClinicalImpression" "CodeSystem" "Communication" "CommunicationRequest" "CompartmentDefinition" "Composition" "ConceptMap" "Condition" "Consent" "Contract" "Coverage" "DataElement" "DetectedIssue" "Device" "DeviceComponent" "DeviceMetric" "DeviceUseRequest" "DeviceUseStatement" "DiagnosticReport" "DiagnosticRequest" "DocumentManifest" "DocumentReference" "DomainResource" "EligibilityRequest" "EligibilityResponse" "Encounter" "Endpoint" "EnrollmentRequest" "EnrollmentResponse" "EpisodeOfCare" "ExpansionProfile" "ExplanationOfBenefit" "FamilyMemberHistory" "Flag" "Goal" "Group" "GuidanceResponse" "HealthcareService" "ImagingManifest" "ImagingStudy" "Immunization" "ImmunizationRecommendation" "ImplementationGuide" "Library" "Linkage" "List" "Location" "Measure" "MeasureReport" "Media" "Medication" "MedicationAdministration" "MedicationDispense" "MedicationRequest" "MedicationStatement" "MessageDefinition" "MessageHeader" "NamingSystem" "NutritionRequest" "Observation" "OperationDefinition" "OperationOutcome" "Organization" "Parameters" "Patient" "PaymentNotice" "PaymentReconciliation" "Person" "PlanDefinition" "Practitioner" "PractitionerRole" "Procedure" "ProcedureRequest" "ProcessRequest" "ProcessResponse" "Provenance" "Questionnaire" "QuestionnaireResponse" "ReferralRequest" "RelatedPerson" "RequestGroup" "ResearchStudy" "ResearchSubject" "Resource" "RiskAssessment" "Schedule" "SearchParameter" "Sequence" "ServiceDefinition" "Slot" "Specimen" "StructureDefinition" "StructureMap" "Subscription" "Substance" "SupplyDelivery" "SupplyRequest" "Task" "TestReport" "TestScript" "ValueSet" "VisionPrescription" "Type" "Any"]
-
 # Defines the types of relationships between actions
 fhirvs:action-relationship-type ["before-start" "before" "before-end" "concurrent-with-start" "concurrent" "concurrent-with-end" "after-start" "after" "after-end"]
-
-# Identifies the purpose for this identifier, if known .
-fhirvs:identifier-use ["usual" "official" "temp" "secondary"]
-
-# The status of a resource narrative
-fhirvs:narrative-status ["generated" "extensions" "additional" "empty"]
 
 # Use of contact point
 fhirvs:contact-point-use ["home" "work" "temp" "old" "mobile"]
 
-# Defines selection frequency behavior for an action or group
-fhirvs:action-precheck-behavior ["yes" "no"]
+# The type of contributor
+fhirvs:contributor-type ["author" "editor" "reviewer" "endorser"]
+
+# Telecommunications form for contact point
+fhirvs:contact-point-system ["phone" "fax" "email" "pager" "url" "other"]
+
+# The days of the week.
+fhirvs:days-of-week ["mon" "tue" "wed" "thu" "fri" "sat" "sun"]
+
+# Defines organization behavior of a group
+fhirvs:action-grouping-behavior ["visual-group" "logical-group" "sentence-group"]
+
+# Defines requiredness behavior for selecting an action or an action group
+fhirvs:action-required-behavior ["must" "could" "must-unless-documented"]
+
+# Identifies the purpose for this identifier, if known .
+fhirvs:identifier-use ["usual" "official" "temp" "secondary"]
+
+# Defines behavior for an action or a group for how many times that item may be repeated
+fhirvs:action-cardinality-behavior ["single" "multiple"]
+
+# The type of relationship to the related artifact
+fhirvs:related-artifact-type ["documentation" "justification" "citation" "predecessor" "successor" "derived-from" "depends-on" "composed-of"]
+
+# How the Quantity should be understood and represented.
+fhirvs:quantity-comparator ["<" "<=" ">=" ">"]
+
+# Real world event that the relating to the schedule.
+fhirvs:event-timing ["MORN" "AFT" "EVE" "NIGHT" "HS" "WAKE" "C" "CM" "CD" "CV" "AC" "ACM" "ACD" "ACV" "PC" "PCM" "PCD" "PCV"]
 
 # Defines the kinds of conditions that can appear on actions
 fhirvs:action-condition-kind ["applicability" "start" "stop"]
 
-# Defines behavior for an action or a group for how many times that item may be repeated
-fhirvs:action-cardinality-behavior ["single" "multiple"]
+# Either an abstract type, a resource or a data type.
+fhirvs:all-types ["Address" "Age" "Annotation" "Attachment" "BackboneElement" "CodeableConcept" "Coding" "ContactDetail" "ContactPoint" "Contributor" "Count" "DataRequirement" "Distance" "DosageInstruction" "Duration" "Element" "ElementDefinition" "Extension" "HumanName" "Identifier" "Meta" "Money" "Narrative" "ParameterDefinition" "Period" "Quantity" "Range" "Ratio" "Reference" "RelatedArtifact" "SampledData" "Signature" "SimpleQuantity" "Timing" "TriggerDefinition" "UsageContext" "base64Binary" "boolean" "code" "date" "dateTime" "decimal" "id" "instant" "integer" "markdown" "oid" "positiveInt" "string" "time" "unsignedInt" "uri" "uuid" "xhtml" "Account" "ActivityDefinition" "AllergyIntolerance" "Appointment" "AppointmentResponse" "AuditEvent" "Basic" "Binary" "BodySite" "Bundle" "CapabilityStatement" "CarePlan" "CareTeam" "Claim" "ClaimResponse" "ClinicalImpression" "CodeSystem" "Communication" "CommunicationRequest" "CompartmentDefinition" "Composition" "ConceptMap" "Condition" "Consent" "Contract" "Coverage" "DataElement" "DetectedIssue" "Device" "DeviceComponent" "DeviceMetric" "DeviceUseRequest" "DeviceUseStatement" "DiagnosticReport" "DiagnosticRequest" "DocumentManifest" "DocumentReference" "DomainResource" "EligibilityRequest" "EligibilityResponse" "Encounter" "Endpoint" "EnrollmentRequest" "EnrollmentResponse" "EpisodeOfCare" "ExpansionProfile" "ExplanationOfBenefit" "FamilyMemberHistory" "Flag" "Goal" "Group" "GuidanceResponse" "HealthcareService" "ImagingManifest" "ImagingStudy" "Immunization" "ImmunizationRecommendation" "ImplementationGuide" "Library" "Linkage" "List" "Location" "Measure" "MeasureReport" "Media" "Medication" "MedicationAdministration" "MedicationDispense" "MedicationRequest" "MedicationStatement" "MessageDefinition" "MessageHeader" "NamingSystem" "NutritionRequest" "Observation" "OperationDefinition" "OperationOutcome" "Organization" "Parameters" "Patient" "PaymentNotice" "PaymentReconciliation" "Person" "PlanDefinition" "Practitioner" "PractitionerRole" "Procedure" "ProcedureRequest" "ProcessRequest" "ProcessResponse" "Provenance" "Questionnaire" "QuestionnaireResponse" "ReferralRequest" "RelatedPerson" "RequestGroup" "ResearchStudy" "ResearchSubject" "Resource" "RiskAssessment" "Schedule" "SearchParameter" "Sequence" "ServiceDefinition" "Slot" "Specimen" "StructureDefinition" "StructureMap" "Subscription" "Substance" "SupplyDelivery" "SupplyRequest" "Task" "TestReport" "TestScript" "ValueSet" "VisionPrescription" "Type" "Any"]
+
+# The type of trigger
+fhirvs:trigger-type ["named-event" "periodic" "data-added" "data-modified" "data-removed" "data-accessed" "data-access-ended"]
+
+# A unit of time (units from UCUM).
+fhirvs:units-of-time ["s" "min" "h" "d" "wk" "mo" "a"]
+
+# The lifecycle status of a Value Set or Concept Map.
+fhirvs:publication-status ["draft" "active" "retired"]
+
+# The type of participant for the action
+fhirvs:action-participant-type ["patient" "practitioner" "related-person"]
+
+# The status of a resource narrative
+fhirvs:narrative-status ["generated" "extensions" "additional" "empty"]
+
+# Defines selection frequency behavior for an action or group
+fhirvs:action-precheck-behavior ["yes" "no"]

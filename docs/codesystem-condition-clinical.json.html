@@ -3,7 +3,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>Codesystem-condition-clinical.json - FHIR v1.7.0</title>
+  <title>Codesystem-condition-clinical.json - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -122,7 +122,7 @@
   &quot;resourceType&quot;: &quot;CodeSystem&quot;,
   &quot;id&quot;: &quot;condition-clinical&quot;,
   &quot;meta&quot;: {
-    &quot;lastUpdated&quot;: &quot;2016-11-28T17:29:55.664-05:00&quot;,
+    &quot;lastUpdated&quot;: &quot;2016-12-07T14:18:58.982-05:00&quot;,
     &quot;profile&quot;: [
       &quot;http://hl7.org/fhir/StructureDefinition/codesystem-shareable-definition&quot;
     ]
@@ -136,7 +136,7 @@
     &quot;system&quot;: &quot;urn:ietf:rfc:3986&quot;,
     &quot;value&quot;: &quot;urn:oid:2.16.840.1.113883.4.642.1.74&quot;
   },
-  &quot;version&quot;: &quot;1.7.0&quot;,
+  &quot;version&quot;: &quot;1.8.0&quot;,
   &quot;name&quot;: &quot;Condition Clinical Status Codes&quot;,
   &quot;status&quot;: &quot;draft&quot;,
   &quot;experimental&quot;: true,
@@ -145,7 +145,7 @@
     {
       &quot;telecom&quot;: [
         {
-          &quot;system&quot;: &quot;other&quot;,
+          &quot;system&quot;: &quot;url&quot;,
           &quot;value&quot;: &quot;http://hl7.org/fhir&quot;
         }
       ]
@@ -159,22 +159,31 @@
     {
       &quot;code&quot;: &quot;active&quot;,
       &quot;display&quot;: &quot;Active&quot;,
-      &quot;definition&quot;: &quot;The subject is currently experiencing the symptoms of the condition.&quot;
+      &quot;definition&quot;: &quot;The subject is currently experiencing the symptoms of the condition or there is evidence of the condition.&quot;,
+      &quot;concept&quot;: [
+        {
+          &quot;code&quot;: &quot;recurrence&quot;,
+          &quot;display&quot;: &quot;Recurrence&quot;,
+          &quot;definition&quot;: &quot;The subject is having a relapse or re-experiencing the condition after a period of remission or presumed resolution.&quot;
+        }
+      ]
     },
     {
-      &quot;code&quot;: &quot;relapse&quot;,
-      &quot;display&quot;: &quot;Relapse&quot;,
-      &quot;definition&quot;: &quot;The subject is re-experiencing the symptoms of the condition after a period of remission or presumed resolution.&quot;
-    },
-    {
-      &quot;code&quot;: &quot;remission&quot;,
-      &quot;display&quot;: &quot;Remission&quot;,
-      &quot;definition&quot;: &quot;The subject is no longer experiencing the symptoms of the condition, but there is a risk of the symptoms returning.&quot;
-    },
-    {
-      &quot;code&quot;: &quot;resolved&quot;,
-      &quot;display&quot;: &quot;Resolved&quot;,
-      &quot;definition&quot;: &quot;The subject is no longer experiencing the symptoms of the condition and there is no perceived risk of the symptoms returning.&quot;
+      &quot;code&quot;: &quot;inactive&quot;,
+      &quot;display&quot;: &quot;Inactive&quot;,
+      &quot;definition&quot;: &quot;The subject is no longer experiencing the symptoms of the condition or there is no longer evidence of the condition.&quot;,
+      &quot;concept&quot;: [
+        {
+          &quot;code&quot;: &quot;remission&quot;,
+          &quot;display&quot;: &quot;Remission&quot;,
+          &quot;definition&quot;: &quot;The subject is no longer experiencing the symptoms of the condition, but there is a risk of the symptoms returning.&quot;
+        },
+        {
+          &quot;code&quot;: &quot;resolved&quot;,
+          &quot;display&quot;: &quot;Resolved&quot;,
+          &quot;definition&quot;: &quot;The subject is no longer experiencing the symptoms of the condition and there is a negligible perceived risk of the symptoms returning.&quot;
+        }
+      ]
     }
   ]
 }
@@ -202,7 +211,7 @@ of the specification.
 		<div class="container"><!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:31-0500. <a href="qa.html">QA Page</a>
+        © HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:20-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search</a> | 

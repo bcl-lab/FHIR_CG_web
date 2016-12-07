@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><MedicationRequest xmlns="http://hl7.org/fhir">
   <id value="medrx0323"/>
-    <text><status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml"><p><b>Generated Narrative with Details</b></p><p><b>id</b>: medrx0323</p><p><b>contained</b>: </p><p><b>identifier</b>: 12345689 (OFFICIAL)</p><p><b>status</b>: completed</p><p><b>stage</b>: original-order <span>(Details : {[not stated] code &#39;original-order&#39; = &#39;original-order)</span></p><p><b>medication</b>: id: med0318; </p><p><b>patient</b>: <a>Donald Duck</a></p><p><b>context</b>: <a>encounter who leads to this prescription</a></p><p><b>dateWritten</b>: 2015-1-15</p><p><b>prescriber</b>: <a>Patrick Pump</a></p><p><b>dosageInstruction</b>: </p></div></text><contained>
+    <text><status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml"><p><b>Generated Narrative with Details</b></p><p><b>id</b>: medrx0323</p><p><b>contained</b>: </p><p><b>identifier</b>: 12345689 (OFFICIAL)</p><p><b>status</b>: completed</p><p><b>stage</b>: original-order <span>(Details : {[not stated] code &#39;original-order&#39; = &#39;original-order)</span></p><p><b>medication</b>: id: med0318; </p><p><b>patient</b>: <a>Donald Duck</a></p><p><b>context</b>: <a>encounter who leads to this prescription</a></p><p><b>dateWritten</b>: 2015-1-15</p><p><b>requester</b>: <a>Patrick Pump</a></p><p><b>dosageInstruction</b>: </p></div></text><contained>
         <Medication>
             <id value="med0318"/>
             <isBrand value="false"/>
@@ -78,10 +78,10 @@
         <display value="encounter who leads to this prescription"/>
     </context>
     <dateWritten value="2015-01-15"/>
-    <prescriber> <!--   Linked to the practitioner who treats patient   -->
+    <requester> 
         <reference value="Practitioner/f007"/>
         <display value="Patrick Pump"/>
-    </prescriber>
+    </requester>
     <dosageInstruction>
         <sequence value="1"/>
         <text value="1000mL infused at 50ml/hour for 4 hours - hung at 2200 hours"/>
@@ -93,13 +93,13 @@
                 <periodUnit value="h"/>
             </repeat>
         </timing>
-        <siteCodeableConcept>
+        <site>
             <coding>
                 <system value="http://snomed.info/sct"/>
                 <code value="6073002"/>
                 <display value="Structure of ligament of left superior vena cava"/>
             </coding>
-        </siteCodeableConcept>
+        </site>
         <route>
             <coding>
                 <system value="http://snomed.info/sct"/>

@@ -2,7 +2,7 @@
 <!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>ObservationInterpretation - FHIR v1.7.0</title>
+  <title>ObservationInterpretation - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -135,7 +135,7 @@ Description copied from Concept Domain of same name.  Must be verified.  Note al
 <a name="definition"> </a>
 <h2 class="self-link-parent"><span class="sectioncount">4.3.2.83.1</span> Code System Content <a href="cs.html#definition" title="link to here" class="self-link"><img src="../../assets/images/link.svg" width="20" class="self-link" height="20"/></a></h2>
 
-<div xmlns="http://www.w3.org/1999/xhtml"><p>Release Date: 2016-03-23</p>
+<div xmlns="http://www.w3.org/1999/xhtml"><p>Release Date: 2016-11-11</p>
 <table class="grid">
  <tr><td><b>Level</b></td><td><b>Code</b></td><td><b>Display</b></td><td><b>Definition</b></td></tr>
  <tr><td>1</td><td><span style="color: grey"><i>(_GeneticObservationInterpretation)</i></span> <b><i>Abstract</i></b></td><td><a name="_GeneticObservationInterpretation">&nbsp;</a></td><td>
@@ -195,8 +195,13 @@ Description copied from Concept Domain of same name.  Must be verified.  Note al
                         Synonyms: Above analytical limit, high off scale.<br/>
 
                      </td></tr>
- <tr><td>2</td><td>&nbsp;&nbsp;AC<a name="AC"> </a></td><td>Anti-complementary substances present</td><td>
+ <tr style="background: #EFEFEF"><td>2</td><td>&nbsp;&nbsp;AC<a name="AC"> </a> <b><i>Deprecated</i></b></td><td>Anti-complementary substances present</td><td>
                         A valid result cannot be obtained for the specified component / analyte due to the presence of anti-complementary substances in the sample.<br/>
+
+                        
+                           
+                              Deprecation Comment: 
+                           This code is being deprecated to match the status in V2 Table 0078 &quot;Interpretation Codes.<br/>
 
                      </td></tr>
  <tr><td>2</td><td>&nbsp;&nbsp;IE<a name="IE"> </a></td><td>Insufficient evidence</td><td>
@@ -205,12 +210,22 @@ Description copied from Concept Domain of same name.  Must be verified.  Note al
                         [Note: A MIC with &quot;IE&quot; and/or a comment may be reported (without an accompanying S, I or R-categorization).]<br/>
 
                      </td></tr>
- <tr><td>2</td><td>&nbsp;&nbsp;QCF<a name="QCF"> </a></td><td>Quality control failure</td><td>
+ <tr style="background: #EFEFEF"><td>2</td><td>&nbsp;&nbsp;QCF<a name="QCF"> </a> <b><i>Deprecated</i></b></td><td>Quality control failure</td><td>
                         A result cannot be considered valid for the specified component / analyte or organism due to failure in the quality control testing component.<br/>
 
+                        
+                           
+                              Deprecation Comment: 
+                           This code is being deprecated to match the status in V2 Table 0078 &quot;Interpretation Codes.<br/>
+
                      </td></tr>
- <tr><td>2</td><td>&nbsp;&nbsp;TOX<a name="TOX"> </a></td><td>Cytotoxic substance present</td><td>
+ <tr style="background: #EFEFEF"><td>2</td><td>&nbsp;&nbsp;TOX<a name="TOX"> </a> <b><i>Deprecated</i></b></td><td>Cytotoxic substance present</td><td>
                         A valid result cannot be obtained for the specified organism or cell line due to the presence of cytotoxic substances in the sample or culture.<br/>
+
+                        
+                           
+                              Deprecation Comment: 
+                           This code is being deprecated to match the status in V2 Table 0078 &quot;Interpretation Codes.<br/>
 
                      </td></tr>
  <tr><td>1</td><td><span style="color: grey"><i>(_ObservationInterpretationNormality)</i></span> <b><i>Abstract</i></b></td><td><a name="_ObservationInterpretationNormality">&nbsp;</a></td><td>
@@ -404,6 +419,13 @@ Members of the OO WG have recently attempted to contact members of RCRIM regardi
                            Open Issue: EX, HX, LX: These three concepts do not seem to meet a clear need in the vocabulary, and their use in observation interpretation appears likely to be covered by other existing concepts (e.g., A, H, L).  The only apparent significant difference is their reference to use in protocols for exclusion of study subjects.  These concepts/codes were proposed by RCRIM for use in the CTLaboratory message.  They were submitted and approved in the November 2005 Harmonization cycle in proposal &quot;030103C_VOCAB_RCRIM_l_quade_RCRIM Obs Interp_20051028154455&quot;.  However, this proposal was not fully implemented in the vocabulary.  The proposal recommended creation of the x_ClinicalResearchExclusion domain in ObservationInterpretation with a value set including those three concepts/codes, but there is no subdomain of that name or equivalent with a binding to either of the value sets that contain these concepts/codes.  Members of the OO WG have recently attempted to contact members of RCRIM regarding these concepts, both by email and at the recent WGM in Atlanta, without response.  It is felt by OO that the best course of action to take at this time is to add this comprehensive Open Issue rather than deprecate these three concepts at this time, until further discussion is held.<br/>
 
                      </td></tr>
+ <tr style="background: #EFEFEF"><td>1</td><td>HM<a name="HM"> </a> <b><i>Deprecated</i></b></td><td>Hold for Medical Review</td><td>
+                        Hold for Medical Review<br/>
+
+                        
+                           Usage Note: This code is not intended for use in V3 artifacts.  It is included in the code system to maintain alignment with the V2 Table 0078 &quot;Interpretation Codes.&quot;<br/>
+
+                     </td></tr>
  <tr><td>1</td><td><span style="color: grey"><i>(ObservationInterpretationDetection)</i></span> <b><i>Abstract</i></b></td><td><a name="ObservationInterpretationDetection">&nbsp;</a></td><td>
                         Interpretations of the presence or absence of a component / analyte or organism in a test or of a sign in a clinical observation. In keeping with laboratory data processing practice, these concepts provide a categorical interpretation of the &quot;meaning&quot; of the quantitative value for the same observation.<br/>
 
@@ -449,6 +471,13 @@ Members of the OO WG have recently attempted to contact members of RCRIM regardi
                         This result has been evaluated in light of known contraindicators.  Once those contraindicators have been taken into account the result is determined to be &quot;Unexpected&quot; (e.g., presence of non-prescribed drugs in a patient that is taking prescription medication for pain management).<br/>
 
                      </td></tr>
+ <tr style="background: #EFEFEF"><td>1</td><td>OBX<a name="OBX"> </a> <b><i>Deprecated</i></b></td><td>Interpretation qualifiers in separate OBX segments</td><td>
+                        Interpretation qualifiers in separate OBX segments<br/>
+
+                        
+                           Usage Note: This code is not intended for use in V3 artifacts.  It is included in the code system to maintain alignment with the V2 Table 0078 &quot;Interpretation Codes.&quot;<br/>
+
+                     </td></tr>
  <tr><td>1</td><td><span style="color: grey"><i>(ReactivityObservationInterpretation)</i></span> <b><i>Abstract</i></b></td><td><a name="ReactivityObservationInterpretation">&nbsp;</a></td><td>
                         Interpretations of the presence and level of reactivity of the specified component / analyte with the reagent in the performed laboratory test.<br/>
 
@@ -482,7 +511,7 @@ Members of the OO WG have recently attempted to contact members of RCRIM regardi
 		<div class="container">  <!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:33-0500. <a href="../../qa.html">QA Page</a>
+        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:28-0500. <a href="../../qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search <img src="../../external.png" style="text-align: baseline"/></a> | 

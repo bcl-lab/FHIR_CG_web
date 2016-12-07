@@ -4,7 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>StructureDefinition: FamilyMemberHistory-Genetic - FHIR v1.7.0</title>
+  <title>StructureDefinition: FamilyMemberHistory-Genetic - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -130,7 +130,7 @@
     {
       &quot;telecom&quot;: [
         {
-          &quot;system&quot;: &quot;other&quot;,
+          &quot;system&quot;: &quot;url&quot;,
           &quot;value&quot;: &quot;http://www.hl7.org/Special/committees/clingenomics&quot;
         }
       ]
@@ -138,7 +138,7 @@
   ],
   &quot;date&quot;: &quot;2013-10-02&quot;,
   &quot;description&quot;: &quot;Adds additional information to a family member history supporting both the capture of mother/father relationships as well as additional observations necessary to enable genetics-based risk analysis for patients&quot;,
-  &quot;fhirVersion&quot;: &quot;1.7.0&quot;,
+  &quot;fhirVersion&quot;: &quot;1.8.0&quot;,
   &quot;mapping&quot;: [
     {
       &quot;identity&quot;: &quot;v2&quot;,
@@ -212,7 +212,7 @@
           {
             &quot;key&quot;: &quot;fhs-2&quot;,
             &quot;severity&quot;: &quot;error&quot;,
-            &quot;human&quot;: &quot;Can only have estimatedAge is age[x] is present&quot;,
+            &quot;human&quot;: &quot;Can only have estimatedAge if age[x] is present&quot;,
             &quot;expression&quot;: &quot;age.exists() or estimatedAge.empty()&quot;,
             &quot;xpath&quot;: &quot;exists(*[starts-with(local-name(.), 'age')]) or not(exists(f:estimatedAge))&quot;,
             &quot;source&quot;: &quot;FamilyMemberHistory&quot;
@@ -407,7 +407,7 @@
         &quot;id&quot;: &quot;FamilyMemberHistory:familymemberhistory-genetic.extension&quot;,
         &quot;path&quot;: &quot;FamilyMemberHistory.extension&quot;,
         &quot;slicing&quot;: {
-          &quot;id&quot;: &quot;97&quot;,
+          &quot;id&quot;: &quot;91&quot;,
           &quot;discriminator&quot;: [
             &quot;url&quot;
           ],
@@ -469,7 +469,8 @@
             &quot;source&quot;: &quot;Extension&quot;
           }
         ],
-        &quot;mustSupport&quot;: true
+        &quot;mustSupport&quot;: true,
+        &quot;isModifier&quot;: false
       },
       {
         &quot;id&quot;: &quot;FamilyMemberHistory:familymemberhistory-genetic.extension:sibling&quot;,
@@ -511,7 +512,8 @@
             &quot;source&quot;: &quot;Extension&quot;
           }
         ],
-        &quot;mustSupport&quot;: true
+        &quot;mustSupport&quot;: true,
+        &quot;isModifier&quot;: false
       },
       {
         &quot;id&quot;: &quot;FamilyMemberHistory:familymemberhistory-genetic.extension:observation&quot;,
@@ -553,7 +555,8 @@
             &quot;source&quot;: &quot;Extension&quot;
           }
         ],
-        &quot;mustSupport&quot;: true
+        &quot;mustSupport&quot;: true,
+        &quot;isModifier&quot;: false
       },
       {
         &quot;id&quot;: &quot;FamilyMemberHistory:familymemberhistory-genetic.modifierExtension&quot;,
@@ -1445,7 +1448,7 @@
 		<div class="container"><!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:32-0500. <a href="qa.html">QA Page</a>
+        © HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:21-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search</a> | 

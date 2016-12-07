@@ -3,7 +3,7 @@
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="Condition"/>
   <meta>
-    <lastUpdated value="2016-11-28T17:29:55.664-05:00"/>
+    <lastUpdated value="2016-12-07T14:18:58.982-05:00"/>
   </meta>
   <text>
     <status value="generated"/>
@@ -38,12 +38,19 @@
             <span title="Condition : Use to record detailed information about conditions, problems or diagnoses recognized by a clinician. There are many uses including: recording a diagnosis during an encounter; populating a problem list or a summary statement, such as a discharge summary.">Condition</span>
             <a name="Condition"> </a>
           </td>
-          <td style="vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy"/>
+          <td style="vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">
+            <span style="padding: 3px" title="This element has or is affected by some invariants">I</span>
+          </td>
           <td style="vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy"/>
           <td style="vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">
             <a href="domainresource.html">DomainResource</a>
           </td>
-          <td style="vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">Detailed information about conditions, problems or diagnoses</td>
+          <td style="vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">Detailed information about conditions, problems or diagnoses
+            <br/>
+            <span style="font-style: italic" title="con-4">If condition is abated, then clinicalStatus must be either inactive, resolved, or remission</span>
+            <br/>
+            <span style="font-style: italic" title="con-3">Condition.clinicalStatus SHALL be present if verificationStatus is not entered-in-error</span>
+          </td>
         </tr>
 
         <tr style="border: 0px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: white;">
@@ -80,7 +87,7 @@
           <td style="vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">
             <a href="datatypes.html#code">code</a>
           </td>
-          <td style="vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">active | relapse | remission | resolved
+          <td style="vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">active | recurrence | inactive | remission | resolved
             <br/>
             <a href="valueset-condition-clinical.html" title="The clinical status of the condition or diagnosis.">Condition Clinical Status Codes</a> (
             <a href="terminologies.html#required" title="To be conformant, instances of this element SHALL include a code from the specified value set.">Required</a>)
@@ -99,7 +106,7 @@
             <span style="padding: 3px" title="This element is a modifier element">?!</span>
             <span style="padding: 3px" title="This element is included in summaries">Σ</span>
           </td>
-          <td style="vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">1..1</td>
+          <td style="vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">0..1</td>
           <td style="vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">
             <a href="datatypes.html#code">code</a>
           </td>
@@ -635,25 +642,28 @@
   <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm">
     <valueInteger value="2"/>
   </extension>
+  <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-wg">
+    <valueCode value="pc"/>
+  </extension>
   <url value="http://hl7.org/fhir/StructureDefinition/Condition"/>
   <name value="Condition"/>
   <status value="draft"/>
   <publisher value="Health Level Seven International (Patient Care)"/>
   <contact>
     <telecom>
-      <system value="other"/>
+      <system value="url"/>
       <value value="http://hl7.org/fhir"/>
     </telecom>
   </contact>
   <contact>
     <telecom>
-      <system value="other"/>
+      <system value="url"/>
       <value value="http://www.hl7.org/Special/committees/patientcare/index.cfm"/>
     </telecom>
   </contact>
-  <date value="2016-11-28T17:29:55-05:00"/>
+  <date value="2016-12-07T14:18:58-05:00"/>
   <description value="Base StructureDefinition for Condition Resource"/>
-  <fhirVersion value="1.7.0"/>
+  <fhirVersion value="1.8.0"/>
   <mapping>
     <identity value="sct-concept"/>
     <uri value="http://snomed.info/conceptdomain"/>
@@ -722,6 +732,20 @@
         <expression value="contained.where((&#39;#&#39;+id in %resource.descendants().reference).not()).empty()"/>
         <xpath value="not(exists(for $id in f:contained/*/@id return $id[not(ancestor::f:contained/parent::*/descendant::f:reference/@value=concat(&#39;#&#39;, $id))]))"/>
         <source value="DomainResource"/>
+      </constraint>
+      <constraint>
+        <key value="con-4"/>
+        <severity value="error"/>
+        <human value="If condition is abated, then clinicalStatus must be either inactive, resolved, or remission"/>
+        <expression value="abatement.empty() or (abatement as boolean).not()  or clinicalStatus=&#39;resolved&#39; or clinicalStatus=&#39;remission&#39; or clinicalStatus=&#39;inactive&#39;"/>
+        <xpath value="xpath: not(f:abatementBoolean=&#39;true&#39; or (not(exists(f:abatementBoolean)) and exists(*[starts-with(local-name(.), &#39;abatement&#39;)])) or f:clinicalStatus/@value=(&#39;resolved&#39;, &#39;remission&#39;, &#39;inactive&#39;)"/>
+      </constraint>
+      <constraint>
+        <key value="con-3"/>
+        <severity value="error"/>
+        <human value="Condition.clinicalStatus SHALL be present if verificationStatus is not entered-in-error"/>
+        <expression value="verificationStatus=&#39;entered-in-error&#39; or clinicalStatus.exists()"/>
+        <xpath value="f:verificationStatus/@value=&#39;entered-in-error&#39; or exists(f:clinicalStatus)"/>
       </constraint>
       <mapping>
         <identity value="rim"/>
@@ -948,7 +972,7 @@
     </element>
     <element id="Condition.clinicalStatus">
       <path value="Condition.clinicalStatus"/>
-      <short value="active | relapse | remission | resolved"/>
+      <short value="active | recurrence | inactive | remission | resolved"/>
       <definition value="The clinical status of the condition."/>
       <min value="0"/>
       <max value="1"/>
@@ -981,11 +1005,13 @@
       <path value="Condition.verificationStatus"/>
       <short value="provisional | differential | confirmed | refuted | entered-in-error | unknown"/>
       <definition value="The verification status to support the clinical status of the condition."/>
-      <min value="1"/>
+      <comments value="verificationStatus is not required.  For example, when a patient has abdominal pain in the ED, there is not likely going to be a verification status."/>
+      <min value="0"/>
       <max value="1"/>
       <type>
         <code value="code"/>
       </type>
+      <defaultValueCode value="unknown"/>
       <isModifier value="true"/>
       <isSummary value="true"/>
       <binding>
@@ -1139,7 +1165,7 @@ OR &lt; 272379006 |Event|"/>
       <path value="Condition.bodySite"/>
       <short value="Anatomical location, if relevant"/>
       <definition value="The anatomical location where this condition manifests itself."/>
-      <comments value="May be a summary code, or a reference to a very precise definition of the location, or both."/>
+      <comments value="Only used if not implicit in code found in Condition.code. If the use case requires attributes from the BodySite resource (e.g. to identify and track separately) then use the standard extension [body-site-instance](extension-body-site-instance.html).  May be a summary code, or a reference to a very precise definition of the location, or both."/>
       <min value="0"/>
       <max value="*"/>
       <type>
@@ -1263,7 +1289,7 @@ OR &lt; 272379006 |Event|"/>
       <path value="Condition.abatement[x]"/>
       <short value="If/when in resolution/remission"/>
       <definition value="The date or estimated date that the condition resolved or went into remission. This is called &quot;abatement&quot; because of the many overloaded connotations associated with &quot;remission&quot; or &quot;resolution&quot; - Conditions are never really resolved, but they can abate."/>
-      <comments value="There is no explicit distinction between resolution and remission because in many cases the distinction is not clear. Age is generally used when the patient reports an age at which the Condition abated.  If there is no abatement element, it is unknown whether the condition has resolved or entered remission; applications and users should generally assume that the condition is still valid."/>
+      <comments value="There is no explicit distinction between resolution and remission because in many cases the distinction is not clear. Age is generally used when the patient reports an age at which the Condition abated.  If there is no abatement element, it is unknown whether the condition has resolved or entered remission; applications and users should generally assume that the condition is still valid.  When abatementString exists, it implies the condition is abated."/>
       <min value="0"/>
       <max value="1"/>
       <type>
@@ -1663,6 +1689,20 @@ OR &lt; 272379006 |Event|"/>
       <definition value="Use to record detailed information about conditions, problems or diagnoses recognized by a clinician. There are many uses including: recording a diagnosis during an encounter; populating a problem list or a summary statement, such as a discharge summary."/>
       <min value="0"/>
       <max value="*"/>
+      <constraint>
+        <key value="con-4"/>
+        <severity value="error"/>
+        <human value="If condition is abated, then clinicalStatus must be either inactive, resolved, or remission"/>
+        <expression value="abatement.empty() or (abatement as boolean).not()  or clinicalStatus=&#39;resolved&#39; or clinicalStatus=&#39;remission&#39; or clinicalStatus=&#39;inactive&#39;"/>
+        <xpath value="xpath: not(f:abatementBoolean=&#39;true&#39; or (not(exists(f:abatementBoolean)) and exists(*[starts-with(local-name(.), &#39;abatement&#39;)])) or f:clinicalStatus/@value=(&#39;resolved&#39;, &#39;remission&#39;, &#39;inactive&#39;)"/>
+      </constraint>
+      <constraint>
+        <key value="con-3"/>
+        <severity value="error"/>
+        <human value="Condition.clinicalStatus SHALL be present if verificationStatus is not entered-in-error"/>
+        <expression value="verificationStatus=&#39;entered-in-error&#39; or clinicalStatus.exists()"/>
+        <xpath value="f:verificationStatus/@value=&#39;entered-in-error&#39; or exists(f:clinicalStatus)"/>
+      </constraint>
       <mapping>
         <identity value="sct-concept"/>
         <map value="&lt; 243796009 |Situation with explicit context|:
@@ -1712,7 +1752,7 @@ OR &lt; 272379006 |Event|"/>
     </element>
     <element id="Condition.clinicalStatus">
       <path value="Condition.clinicalStatus"/>
-      <short value="active | relapse | remission | resolved"/>
+      <short value="active | recurrence | inactive | remission | resolved"/>
       <definition value="The clinical status of the condition."/>
       <min value="0"/>
       <max value="1"/>
@@ -1745,11 +1785,13 @@ OR &lt; 272379006 |Event|"/>
       <path value="Condition.verificationStatus"/>
       <short value="provisional | differential | confirmed | refuted | entered-in-error | unknown"/>
       <definition value="The verification status to support the clinical status of the condition."/>
-      <min value="1"/>
+      <comments value="verificationStatus is not required.  For example, when a patient has abdominal pain in the ED, there is not likely going to be a verification status."/>
+      <min value="0"/>
       <max value="1"/>
       <type>
         <code value="code"/>
       </type>
+      <defaultValueCode value="unknown"/>
       <isModifier value="true"/>
       <isSummary value="true"/>
       <binding>
@@ -1903,7 +1945,7 @@ OR &lt; 272379006 |Event|"/>
       <path value="Condition.bodySite"/>
       <short value="Anatomical location, if relevant"/>
       <definition value="The anatomical location where this condition manifests itself."/>
-      <comments value="May be a summary code, or a reference to a very precise definition of the location, or both."/>
+      <comments value="Only used if not implicit in code found in Condition.code. If the use case requires attributes from the BodySite resource (e.g. to identify and track separately) then use the standard extension [body-site-instance](extension-body-site-instance.html).  May be a summary code, or a reference to a very precise definition of the location, or both."/>
       <min value="0"/>
       <max value="*"/>
       <type>
@@ -2027,7 +2069,7 @@ OR &lt; 272379006 |Event|"/>
       <path value="Condition.abatement[x]"/>
       <short value="If/when in resolution/remission"/>
       <definition value="The date or estimated date that the condition resolved or went into remission. This is called &quot;abatement&quot; because of the many overloaded connotations associated with &quot;remission&quot; or &quot;resolution&quot; - Conditions are never really resolved, but they can abate."/>
-      <comments value="There is no explicit distinction between resolution and remission because in many cases the distinction is not clear. Age is generally used when the patient reports an age at which the Condition abated.  If there is no abatement element, it is unknown whether the condition has resolved or entered remission; applications and users should generally assume that the condition is still valid."/>
+      <comments value="There is no explicit distinction between resolution and remission because in many cases the distinction is not clear. Age is generally used when the patient reports an age at which the Condition abated.  If there is no abatement element, it is unknown whether the condition has resolved or entered remission; applications and users should generally assume that the condition is still valid.  When abatementString exists, it implies the condition is abated."/>
       <min value="0"/>
       <max value="1"/>
       <type>

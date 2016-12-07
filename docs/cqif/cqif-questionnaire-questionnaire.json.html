@@ -3,7 +3,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>Cqif\cqif-questionnaire-questionnaire.json - FHIR v1.7.0</title>
+  <title>Cqif\cqif-questionnaire-questionnaire.json - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -130,8 +130,8 @@
       &quot;status&quot;: &quot;active&quot;,
       &quot;description&quot;: &quot;Type options for Questionnaire.item.enableWhen.answer[x]&quot;,
       &quot;expansion&quot;: {
-        &quot;identifier&quot;: &quot;urn:uuid:1c710646-2537-458f-811d-865aa9e2a332&quot;,
-        &quot;timestamp&quot;: &quot;2016-11-28T17:33:22-05:00&quot;,
+        &quot;identifier&quot;: &quot;urn:uuid:4d076897-5d21-4671-9892-e133e8eca5a0&quot;,
+        &quot;timestamp&quot;: &quot;2016-12-07T14:28:24-05:00&quot;,
         &quot;contains&quot;: [
           {
             &quot;system&quot;: &quot;http://hl7.org/fhir/data-types&quot;,
@@ -208,8 +208,8 @@
       &quot;status&quot;: &quot;active&quot;,
       &quot;description&quot;: &quot;Type options for Questionnaire.item.option.value[x]&quot;,
       &quot;expansion&quot;: {
-        &quot;identifier&quot;: &quot;urn:uuid:e18c1146-611c-4c84-aacb-019dfa753839&quot;,
-        &quot;timestamp&quot;: &quot;2016-11-28T17:33:22-05:00&quot;,
+        &quot;identifier&quot;: &quot;urn:uuid:1cce770b-5e05-4203-99c7-d504539775a5&quot;,
+        &quot;timestamp&quot;: &quot;2016-12-07T14:28:24-05:00&quot;,
         &quot;contains&quot;: [
           {
             &quot;system&quot;: &quot;http://hl7.org/fhir/data-types&quot;,
@@ -246,8 +246,8 @@
       &quot;status&quot;: &quot;active&quot;,
       &quot;description&quot;: &quot;Type options for Questionnaire.item.initial[x]&quot;,
       &quot;expansion&quot;: {
-        &quot;identifier&quot;: &quot;urn:uuid:c5aa847f-cf6e-47da-ab20-f8b27d0b24aa&quot;,
-        &quot;timestamp&quot;: &quot;2016-11-28T17:33:22-05:00&quot;,
+        &quot;identifier&quot;: &quot;urn:uuid:ab1f5e39-b9cc-4897-b418-e4fcc36a84c1&quot;,
+        &quot;timestamp&quot;: &quot;2016-12-07T14:28:24-05:00&quot;,
         &quot;contains&quot;: [
           {
             &quot;system&quot;: &quot;http://hl7.org/fhir/data-types&quot;,
@@ -1045,7 +1045,7 @@
                   }
                 }
               ],
-              &quot;text&quot;: &quot;Identifies a how this question or group of questions is known in a particular terminology such as LOINC.&quot;,
+              &quot;text&quot;: &quot;Identifies how this question or group of questions is known in a particular terminology such as LOINC.&quot;,
               &quot;type&quot;: &quot;display&quot;
             },
             {
@@ -1221,6 +1221,10 @@
             {
               &quot;extension&quot;: [
                 {
+                  &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-minOccurs&quot;,
+                  &quot;valueInteger&quot;: 1
+                },
+                {
                   &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs&quot;,
                   &quot;valueInteger&quot;: 1
                 },
@@ -1230,6 +1234,49 @@
                 }
               ],
               &quot;linkId&quot;: &quot;Questionnaire.item.linkId&quot;,
+              &quot;type&quot;: &quot;group&quot;,
+              &quot;required&quot;: true,
+              &quot;repeats&quot;: true,
+              &quot;item&quot;: [
+                {
+                  &quot;extension&quot;: [
+                    {
+                      &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl&quot;,
+                      &quot;valueCodeableConcept&quot;: {
+                        &quot;coding&quot;: [
+                          {
+                            &quot;system&quot;: &quot;http://hl7.org/fhir/questionnaire-item-control&quot;,
+                            &quot;code&quot;: &quot;flyover&quot;,
+                            &quot;display&quot;: &quot;Fly-over&quot;
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  &quot;text&quot;: &quot;An identifier that is unique within the Questionnaire allowing linkage to the equivalent item in a QuestionnaireResponse resource. This ''can'' be a meaningful identifier (e.g. a LOINC code) but is not intended to have any meaning.  GUIDs or sequential numbers are appropriate here.&quot;,
+                  &quot;type&quot;: &quot;display&quot;
+                },
+                {
+                  &quot;linkId&quot;: &quot;Questionnaire.item.linkId.value&quot;,
+                  &quot;text&quot;: &quot;Unique id for item in questionnaire&quot;,
+                  &quot;type&quot;: &quot;string&quot;,
+                  &quot;required&quot;: false,
+                  &quot;repeats&quot;: false
+                }
+              ]
+            },
+            {
+              &quot;extension&quot;: [
+                {
+                  &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs&quot;,
+                  &quot;valueInteger&quot;: 1
+                },
+                {
+                  &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType&quot;,
+                  &quot;valueString&quot;: &quot;uri&quot;
+                }
+              ],
+              &quot;linkId&quot;: &quot;Questionnaire.item.definition&quot;,
               &quot;type&quot;: &quot;group&quot;,
               &quot;required&quot;: false,
               &quot;repeats&quot;: true,
@@ -1249,12 +1296,12 @@
                       }
                     }
                   ],
-                  &quot;text&quot;: &quot;An identifier that is unique within the Questionnaire allowing linkage to the equivalent item in a QuestionnaireResponse resource. May be omitted if there is no expectation to link answers back to a Questionnaire.  This ''can'' be a meaningful identifier (e.g. a LOINC code) but is not intended to have any meaning.  GUIDs or sequential numbers are appropriate here.&quot;,
+                  &quot;text&quot;: &quot;A reference to an [ElementDefinition](elementdefinition.html) that provides the details for the item. If a definition is provided, then the following element values can be inferred from the definition: \n\n* concept (ElementDefinition.code)\n* type (ElementDefinition.type)\n* required (ElementDefinition.min)\n* repeats (ElementDefinition.max)\n* maxLength (ElementDefinition.maxLength)\n* options (ElementDefinition.binding)\n\nAny information provided in these elements overrides the information from the definition. The ElementDefinition must be in a [StructureDefinition](structuredefinition.html#) or a [DataElement](dataelement.html#), and must have a fragment identifier that identifies the specific data element by it\\'s id (Element.id). E.g. http://hl7.org/fhir/StructureDefinition/Observation#Observation.value[x].&quot;,
                   &quot;type&quot;: &quot;display&quot;
                 },
                 {
-                  &quot;linkId&quot;: &quot;Questionnaire.item.linkId.value&quot;,
-                  &quot;text&quot;: &quot;To link questionnaire with questionnaire response&quot;,
+                  &quot;linkId&quot;: &quot;Questionnaire.item.definition.value&quot;,
+                  &quot;text&quot;: &quot;ElementDefinition - details for the item&quot;,
                   &quot;type&quot;: &quot;string&quot;,
                   &quot;required&quot;: false,
                   &quot;repeats&quot;: false
@@ -1288,7 +1335,7 @@
                       }
                     }
                   ],
-                  &quot;text&quot;: &quot;Identifies a how this group of questions is known in a particular terminology such as LOINC. The code(s) for the \&quot;root\&quot; group apply to the questionnaire as a whole.&quot;,
+                  &quot;text&quot;: &quot;Terminology code that corresponds to this group or question (e.g. LOINC). The code(s) for the \&quot;root\&quot; group apply to the questionnaire as a whole. Value may come from the ElementDefinition referred to by .definition.&quot;,
                   &quot;type&quot;: &quot;display&quot;
                 },
                 {
@@ -1389,10 +1436,6 @@
             {
               &quot;extension&quot;: [
                 {
-                  &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-minOccurs&quot;,
-                  &quot;valueInteger&quot;: 1
-                },
-                {
                   &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs&quot;,
                   &quot;valueInteger&quot;: 1
                 },
@@ -1403,7 +1446,7 @@
               ],
               &quot;linkId&quot;: &quot;Questionnaire.item.type&quot;,
               &quot;type&quot;: &quot;group&quot;,
-              &quot;required&quot;: true,
+              &quot;required&quot;: false,
               &quot;repeats&quot;: true,
               &quot;item&quot;: [
                 {
@@ -1421,7 +1464,7 @@
                       }
                     }
                   ],
-                  &quot;text&quot;: &quot;Identifies the type of questionnaire item this is - whether text for display, a grouping of other items or a particular type of data to be captured (string, integer, coded choice, etc.). Additional constraints on the type of answer can be conveyed by extensions.&quot;,
+                  &quot;text&quot;: &quot;Identifies the type of questionnaire item this is - whether text for display, a grouping of other items or a particular type of data to be captured (string, integer, coded choice, etc.). Additional constraints on the type of answer can be conveyed by extensions. Value may come from the ElementDefinition referred to by .definition.&quot;,
                   &quot;type&quot;: &quot;display&quot;
                 },
                 {
@@ -2005,7 +2048,7 @@
                       }
                     }
                   ],
-                  &quot;text&quot;: &quot;If true, indicates that the item must be present in a \&quot;completed\&quot; QuestionnaireResponse.  If false, the item may be skipped when answering the questionnaire. If an item that contains other items is marked as required, that does not automatically make the contained elements required (though required groups must contain at least one child element).&quot;,
+                  &quot;text&quot;: &quot;If true, indicates that the item must be present in a \&quot;completed\&quot; QuestionnaireResponse.  If false, the item may be skipped when answering the questionnaire. Questionnaire.item.required only has meaning for elements that are conditionally enabled with enableWhen if the condition evaluates to true.  If an item that contains other items is marked as required, that does not automatically make the contained elements required (though required groups must contain at least one child element). Value may come from the ElementDefinition referred to by .definition.&quot;,
                   &quot;type&quot;: &quot;display&quot;
                 },
                 {
@@ -2048,7 +2091,7 @@
                       }
                     }
                   ],
-                  &quot;text&quot;: &quot;Whether the item may occur multiple times in the instance, containing multiple sets of answers.&quot;,
+                  &quot;text&quot;: &quot;Whether the item may occur multiple times in the instance, containing multiple sets of answers. If a question is marked as repeats=true, then multiple answers can be provided for the question in the corresponding QuestionnaireResponse.  When rendering the questionnaire, it is up to the rendering software whether to render the question text for each answer repetition or to simply list each of the answers beneath the question.  (Which is most appropriate visually may depend on the type of answer as well as whether there are nested items.). Value may come from the ElementDefinition referred to by .definition.&quot;,
                   &quot;type&quot;: &quot;display&quot;
                 },
                 {
@@ -2134,7 +2177,7 @@
                       }
                     }
                   ],
-                  &quot;text&quot;: &quot;The maximum number of characters that are permitted in the answer to be considered a \&quot;valid\&quot; QuestionnaireResponse. For base64binary, reflects the number of characters representing the encoded data, not the number of bytes of the binary data.&quot;,
+                  &quot;text&quot;: &quot;The maximum number of characters that are permitted in the answer to be considered a \&quot;valid\&quot; QuestionnaireResponse. For base64binary, reflects the number of characters representing the encoded data, not the number of bytes of the binary data. Value may come from the ElementDefinition referred to by .definition.&quot;,
                   &quot;type&quot;: &quot;display&quot;
                 },
                 {
@@ -2177,7 +2220,7 @@
                       }
                     }
                   ],
-                  &quot;text&quot;: &quot;Reference to a value set containing a list of codes representing permitted answers for the question. LOINC defines many useful value sets for questionnaire response. See [LOINC Answer Lists](loinc.html#alist).&quot;,
+                  &quot;text&quot;: &quot;Reference to a value set containing a list of codes representing permitted answers for the question. LOINC defines many useful value sets for questionnaire response. See [LOINC Answer Lists](loinc.html#alist). Value may come from the ElementDefinition referred to by .definition.&quot;,
                   &quot;type&quot;: &quot;display&quot;
                 },
                 {
@@ -2475,7 +2518,7 @@
                 }
               ],
               &quot;linkId&quot;: &quot;Questionnaire.item.initial[x]&quot;,
-              &quot;text&quot;: &quot;Initial presumed answer for question&quot;,
+              &quot;text&quot;: &quot;Default value when item is first rendered&quot;,
               &quot;type&quot;: &quot;group&quot;,
               &quot;required&quot;: false,
               &quot;repeats&quot;: true,
@@ -2495,7 +2538,7 @@
                       }
                     }
                   ],
-                  &quot;text&quot;: &quot;The value that should be pre-populated when rendering the questionnaire for user input.&quot;,
+                  &quot;text&quot;: &quot;The value that should be defaulted when rendering the questionnaire for user input. The user is allowed to change the value and override the default (unless marked as read-only). If the user doesn't change the value, then this initial value will be persisted when the QuestionnaireResponse is initially created.&quot;,
                   &quot;type&quot;: &quot;display&quot;
                 },
                 {
@@ -2847,7 +2890,7 @@ of the specification.
 		<div class="container"><!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:33-0500. <a href="../qa.html">QA Page</a>
+        © HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:28-0500. <a href="../qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search</a> | 

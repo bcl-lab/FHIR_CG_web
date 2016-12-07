@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>StructureDefinition: DiagnosticRequest-Genetics - FHIR v1.7.0</title>
+  <title>StructureDefinition: DiagnosticRequest-Genetics - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -141,7 +141,7 @@
   <tr><td>Definition</td><td><p>The base language in which the resource is written.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>A human language.<br/>The codes SHALL be taken from <a href="valueset-languages.html">Common Languages</a>; other codes may be used where these codes are not suitable</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td>A human language.<br/>The codes SHALL be taken from <a href="valueset-languages.html">Common Languages</a>; other codes may be used where these codes are not suitable</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#code">code</a></td></tr>
   <tr><td>Comments</td><td><p>Language is provided to support indexing and accessibility (typically, services such as text to speech use the language tag). The html language tag in the narrative applies  to the narrative. The language tag on the resource may be used to specify the language of other presentations generated from the data in the resource  Not all the content has to be in the base language. The Resource.language should not be assumed to apply to the narrative automatically. If a language is specified, it should it also be specified on the div element in the html (see rules in HTML5 for information about the relationship between xml:lang and the html lang attribute).</p>
 </td></tr>
@@ -200,31 +200,43 @@
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..*</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="references.html#Reference">Reference</a>(<a href="resource.html">Resource</a>)</td></tr>
   <tr><td colspan="2" class="structure"><a name="diagnosticrequest-genetics.DiagnosticRequest:diagnosticrequest-genetics.requisition"> </a><b>DiagnosticRequest.requisition</b></td></tr>
-  <tr><td>Definition</td><td><p>Composite request this is part of.</p>
+  <tr><td>Definition</td><td><p>A shared identifier common to all diagnostic requests that were authorized more or less simultaneously by a single author, representing the composite or group identifier.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#Identifier">Identifier</a></td></tr>
+  <tr><td>Requirements</td><td><p>Some business processes need to know if multiple items were ordered as part of the same &quot;requisition&quot; for billing or other purposes.</p>
+</td></tr>
+  <tr><td title="Other names by which this resource/element may be known">Alternate Names</td><td>grouperId, groupIdentifier</td></tr>
+  <tr><td>Comments</td><td><p>Requests are linked either by a &quot;basedOn&quot; relationship (i.e. one request is fulfilling another) or by having a common requisition. Requests that are part of the same requisition are generally treated independently from the perspective of changing their state or maintaining them after initial creation.</p>
+</td></tr>
   <tr><td colspan="2" class="structure"><a name="diagnosticrequest-genetics.DiagnosticRequest:diagnosticrequest-genetics.status"> </a><b>DiagnosticRequest.status</b></td></tr>
   <tr><td>Definition</td><td><p>The status of the order.</p>
 </td></tr>
-  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>The status of a diagnostic order.<br/>The codes SHALL be taken from <a href="valueset-request-status.html">RequestStatus</a></td></tr>
+  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>1..1</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td>The status of a diagnostic order.<br/>The codes SHALL be taken from <a href="valueset-request-status.html">RequestStatus</a></td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#code">code</a></td></tr>
   <tr><td><a href="conformance-rules.html#ismodifier">Is Modifier</a></td><td>true</td></tr>
-  <tr><td>Comments</td><td><p>Typically the system placing the order sets the status to &quot;requested&quot;. Thereafter, the order is maintained by the receiver that updates the status as the request is handled.</p>
+  <tr><td>Comments</td><td><p>The status is generally fully in the control of the requester - they determine whether the order is draft or active and, after it has been activated, competed, cancelled or suspended. States relating to the activities of the performer are reflected on either the corresponding event (see <a href="event.html">Event Pattern</a> for general discussion) or using the <a href="task.html">Task</a> resource.</p>
 </td></tr>
-  <tr><td colspan="2" class="structure"><a name="diagnosticrequest-genetics.DiagnosticRequest:diagnosticrequest-genetics.stage"> </a><b>DiagnosticRequest.stage</b></td></tr>
+  <tr><td colspan="2" class="structure"><a name="diagnosticrequest-genetics.DiagnosticRequest:diagnosticrequest-genetics.intent"> </a><b>DiagnosticRequest.intent</b></td></tr>
   <tr><td>Definition</td><td><p>Whether the request is a proposal, plan, an original order or a reflex order.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>1..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>The kind of diagnostic request<br/>The codes SHALL be taken from <a href="valueset-diagnostic-request-stage.html">DiagnosticRequestStage</a>; other codes may be used where these codes are not suitable</td></tr>
-  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td>The kind of diagnostic request<br/>The codes SHALL be taken from <a href="valueset-request-intent.html">RequestIntent</a></td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#code">code</a></td></tr>
   <tr><td><a href="conformance-rules.html#ismodifier">Is Modifier</a></td><td>true</td></tr>
+  <tr><td colspan="2" class="structure"><a name="diagnosticrequest-genetics.DiagnosticRequest:diagnosticrequest-genetics.priority"> </a><b>DiagnosticRequest.priority</b></td></tr>
+  <tr><td>Definition</td><td><p>Indicates how quickly the {{title}} should be addressed with respect to other requests.</p>
+</td></tr>
+  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td>Identifies the level of importance to be assigned to actioning the request<br/>The codes SHALL be taken from <a href="valueset-request-priority.html">RequestPriority</a></td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#code">code</a></td></tr>
+  <tr><td>Meaning if Missing</td><td>If missing, this task should be performed with normal priority</td></tr>
   <tr><td colspan="2" class="structure"><a name="diagnosticrequest-genetics.DiagnosticRequest:diagnosticrequest-genetics.code"> </a><b>DiagnosticRequest.code</b></td></tr>
   <tr><td>Definition</td><td><p>A code that identifies a particular diagnostic investigation, or panel of investigations, that have been requested.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>1..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>Codes for tests/services that can be performed by diagnostic services.<br/>The codes SHOULD be taken from <a href="valueset-diagnostic-requests.html">LOINC Diagnostic Request Codes</a></td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td>Codes for tests/services that can be performed by diagnostic services.<br/>The codes SHOULD be taken from <a href="valueset-diagnostic-requests.html">LOINC Diagnostic Request Codes</a></td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
   <tr><td>Comments</td><td><p>Many laboratory tests and radiology tests embed the specimen/organ system in the test name, for example,  serum or serum/plasma glucose, or a chest xray. The specimen may not be recorded separately from the test code.</p>
 </td></tr>
@@ -244,7 +256,7 @@
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td>Choice of: <a href="datatypes.html#dateTime">dateTime</a>, <a href="datatypes.html#Period">Period</a>, <a href="datatypes.html#Timing">Timing</a></td></tr>
   <tr><td>[x] Note</td><td>See <a href="formats.html#choice">Choice of Data Types</a> for further information about how to use [x]</td></tr>
-  <tr><td colspan="2" class="structure"><a name="diagnosticrequest-genetics.DiagnosticRequest:diagnosticrequest-genetics.authored"> </a><b>DiagnosticRequest.authored</b></td></tr>
+  <tr><td colspan="2" class="structure"><a name="diagnosticrequest-genetics.DiagnosticRequest:diagnosticrequest-genetics.authoredOn"> </a><b>DiagnosticRequest.authoredOn</b></td></tr>
   <tr><td>Definition</td><td><p>When the request transitioned to being actionable.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
@@ -260,7 +272,7 @@
   <tr><td>Definition</td><td><p>Desired type of performer for doing the diagnostic testing. (.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>Indicates specific responsibility of an individual within the care team, such as &quot;Primary physician&quot;, &quot;Team coordinator&quot;, &quot;Caregiver&quot;, etc.<br/>For example codes, see <a href="valueset-participant-role.html">Participant Roles</a></td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td>Indicates specific responsibility of an individual within the care team, such as &quot;Primary physician&quot;, &quot;Team coordinator&quot;, &quot;Caregiver&quot;, etc.<br/>For example codes, see <a href="valueset-participant-role.html">Participant Roles</a></td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
   <tr><td>Comments</td><td><p>this is a  role, not  aparticipation type.  I.e. doesn’t describe the task, describes the capacity.  Examples “compounding pharmacy” or “psychiatrist” or “internal referral”.</p>
 </td></tr>
@@ -271,12 +283,19 @@
   <tr><td><a href="datatypes.html">Type</a></td><td>Choice of: <a href="references.html#Reference">Reference</a>(<a href="practitioner.html" title="http://hl7.org/fhir/StructureDefinition/Practitioner">Practitioner</a>), <a href="references.html#Reference">Reference</a>(<a href="organization.html" title="http://hl7.org/fhir/StructureDefinition/Organization">Organization</a>), <a href="references.html#Reference">Reference</a>(<a href="patient.html" title="http://hl7.org/fhir/StructureDefinition/Patient">Patient</a>), <a href="references.html#Reference">Reference</a>(<a href="device.html" title="http://hl7.org/fhir/StructureDefinition/Device">Device</a>), <a href="references.html#Reference">Reference</a>(<a href="relatedperson.html" title="http://hl7.org/fhir/StructureDefinition/RelatedPerson">RelatedPerson</a>)</td></tr>
   <tr><td>Comments</td><td><p>Use an <a href="extensibility.html">extension</a> or listing alternative alternative performers and/or roles and/or preference.</p>
 </td></tr>
-  <tr><td colspan="2" class="structure"><a name="diagnosticrequest-genetics.DiagnosticRequest:diagnosticrequest-genetics.reason"> </a><b>DiagnosticRequest.reason</b></td></tr>
-  <tr><td>Definition</td><td><p>An explanation or justification for why this diagnostic investigation is being requested.   This is often for billing purposes.  May relate to the resources referred to in supportingInformation.</p>
+  <tr><td colspan="2" class="structure"><a name="diagnosticrequest-genetics.DiagnosticRequest:diagnosticrequest-genetics.reasonCode"> </a><b>DiagnosticRequest.reasonCode</b></td></tr>
+  <tr><td>Definition</td><td><p>An explanation or justification for why this diagnostic investigation is being requested in coded or textual form.   This is often for billing purposes.  May relate to the resources referred to in supportingInformation.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..*</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>Diagnosis or problem codes justifying the reason for requesting the diagnostic investigation.<br/>For example codes, see <a href="valueset-condition-code.html">Condition/Problem/Diagnosis Codes</a></td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td>Diagnosis or problem codes justifying the reason for requesting the diagnostic investigation.<br/>For example codes, see <a href="valueset-condition-code.html">Condition/Problem/Diagnosis Codes</a></td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
+  <tr><td>Comments</td><td><p>This may be used to decide how the diagnostic investigation will be performed, or even if it will be performed at all.   Use CodeableConcept text element if the data is free (uncoded) text as shown in the <a href="diagnosticrequest-example-di.html">CT Scan example</a>.</p>
+</td></tr>
+  <tr><td colspan="2" class="structure"><a name="diagnosticrequest-genetics.DiagnosticRequest:diagnosticrequest-genetics.reasonReference"> </a><b>DiagnosticRequest.reasonReference</b></td></tr>
+  <tr><td>Definition</td><td><p>Indicates another resource that provides a justification for why this diagnostic investigation is being requested.   May relate to the resources referred to in supportingInformation.</p>
+</td></tr>
+  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..*</td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td>Choice of: <a href="references.html#Reference">Reference</a>(<a href="condition.html" title="http://hl7.org/fhir/StructureDefinition/Condition">Condition</a>), <a href="references.html#Reference">Reference</a>(<a href="observation.html" title="http://hl7.org/fhir/StructureDefinition/Observation">Observation</a>)</td></tr>
   <tr><td>Comments</td><td><p>This may be used to decide how the diagnostic investigation will be performed, or even if it will be performed at all.   Use CodeableConcept text element if the data is free (uncoded) text as shown in the <a href="diagnosticrequest-example-di.html">CT Scan example</a>.</p>
 </td></tr>
   <tr><td colspan="2" class="structure"><a name="diagnosticrequest-genetics.DiagnosticRequest:diagnosticrequest-genetics.supportingInformation"> </a><b>DiagnosticRequest.supportingInformation</b></td></tr>
@@ -318,7 +337,7 @@ All Provenances should have some historical version of this Request as their sub
 		<div class="container">  <!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:32-0500. <a href="qa.html">QA Page</a>
+        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:21-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search <img src="external.png" style="text-align: baseline"/></a> | 

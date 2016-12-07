@@ -4,7 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>StructureDefinition: elementdefinition-de - FHIR v1.7.0</title>
+  <title>StructureDefinition: elementdefinition-de - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -130,7 +130,7 @@
     {
       &quot;telecom&quot;: [
         {
-          &quot;system&quot;: &quot;other&quot;,
+          &quot;system&quot;: &quot;url&quot;,
           &quot;value&quot;: &quot;http://hl7.org/special/committees/FHIR&quot;
         }
       ]
@@ -138,7 +138,7 @@
   ],
   &quot;date&quot;: &quot;2015-02-28&quot;,
   &quot;description&quot;: &quot;Identifies how the ElementDefinition data type is used when it appears within a data element&quot;,
-  &quot;fhirVersion&quot;: &quot;1.7.0&quot;,
+  &quot;fhirVersion&quot;: &quot;1.8.0&quot;,
   &quot;mapping&quot;: [
     {
       &quot;identity&quot;: &quot;dex&quot;,
@@ -333,7 +333,7 @@
         &quot;id&quot;: &quot;ElementDefinition:elementdefinition-de.extension&quot;,
         &quot;path&quot;: &quot;ElementDefinition.extension&quot;,
         &quot;slicing&quot;: {
-          &quot;id&quot;: &quot;101&quot;,
+          &quot;id&quot;: &quot;95&quot;,
           &quot;discriminator&quot;: [
             &quot;url&quot;
           ],
@@ -947,7 +947,7 @@
         &quot;mapping&quot;: [
           {
             &quot;identity&quot;: &quot;v2&quot;,
-            &quot;map&quot;: &quot;NTE, OM.32, OM1.33, OM1.39&quot;
+            &quot;map&quot;: &quot;NTE, OM1.32, OM1.33, OM1.39&quot;
           },
           {
             &quot;identity&quot;: &quot;rim&quot;,
@@ -1217,7 +1217,7 @@
         &quot;id&quot;: &quot;ElementDefinition:elementdefinition-de.base.path&quot;,
         &quot;path&quot;: &quot;ElementDefinition.base.path&quot;,
         &quot;short&quot;: &quot;Path that identifies the base element&quot;,
-        &quot;definition&quot;: &quot;The Path that identifies the base element - this matches the ElementDefinition.path for that element. Across FHIR, there is only one base definition of any element - that is, an element definition on a [[[StructureDefinition]]] without a StructureDefinition.base.&quot;,
+        &quot;definition&quot;: &quot;The Path that identifies the base element - this matches the ElementDefinition.path for that element. Across FHIR, there is only one base definition of any element - that is, an element definition on a [StructureDefinition](structuredefinition.html#) without a StructureDefinition.base.&quot;,
         &quot;min&quot;: 1,
         &quot;max&quot;: &quot;1&quot;,
         &quot;base&quot;: {
@@ -1952,7 +1952,7 @@
         &quot;path&quot;: &quot;ElementDefinition.pattern[x]&quot;,
         &quot;short&quot;: &quot;Value must have at least these property values&quot;,
         &quot;definition&quot;: &quot;Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.  The values of elements present in the pattern must match exactly (case-sensitive, accent-sensitive, etc.).&quot;,
-        &quot;comments&quot;: &quot;Mostly used for fixing values of CodeableConcept. At present, pattern[x] is not recommended as a basis for slicing while issues related to this are investigated during the DSTU period.&quot;,
+        &quot;comments&quot;: &quot;Mostly used for fixing values of CodeableConcept. At present, pattern[x] is not recommended as a basis for slicing while issues related to this are investigated during the STU period.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;0&quot;,
         &quot;base&quot;: {
@@ -2090,16 +2090,132 @@
         ]
       },
       {
-        &quot;id&quot;: &quot;ElementDefinition:elementdefinition-de.example[x]&quot;,
-        &quot;path&quot;: &quot;ElementDefinition.example[x]&quot;,
+        &quot;id&quot;: &quot;ElementDefinition:elementdefinition-de.example&quot;,
+        &quot;path&quot;: &quot;ElementDefinition.example&quot;,
         &quot;short&quot;: &quot;Example value (as defined for type)&quot;,
-        &quot;definition&quot;: &quot;A sample value for this element demonstrating the type of information that would typically be captured.&quot;,
-        &quot;comments&quot;: &quot;This will most commonly be present for data where it's not implicitly obvious from either the data type or value set what the values might be.  (I.e. Example values for dates or quantities would generally be unnecessary.)  If the example value is fully populated, the publication tool can generate an instance automatically.&quot;,
+        &quot;definition&quot;: &quot;A sample value for this element demonstrating the type of information that would typically be found in the element.&quot;,
+        &quot;comments&quot;: &quot;Examples will most commonly be present for data where it's not implicitly obvious from either the data type or value set what the values might be.  (I.e. Example values for dates or quantities would generally be unnecessary.)  If the example value is fully populated, the publication tool can generate an instance automatically.&quot;,
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;*&quot;,
+        &quot;base&quot;: {
+          &quot;path&quot;: &quot;ElementDefinition.example&quot;,
+          &quot;min&quot;: 0,
+          &quot;max&quot;: &quot;*&quot;
+        },
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;Element&quot;
+          }
+        ],
+        &quot;constraint&quot;: [
+          {
+            &quot;key&quot;: &quot;ele-1&quot;,
+            &quot;severity&quot;: &quot;error&quot;,
+            &quot;human&quot;: &quot;All FHIR elements must have a @value or children&quot;,
+            &quot;expression&quot;: &quot;children().count() &gt; id.count()&quot;,
+            &quot;xpath&quot;: &quot;@value|f:*|h:div&quot;,
+            &quot;source&quot;: &quot;Element&quot;
+          }
+        ],
+        &quot;isSummary&quot;: true,
+        &quot;mapping&quot;: [
+          {
+            &quot;identity&quot;: &quot;rim&quot;,
+            &quot;map&quot;: &quot;N/A (MIF territory)&quot;
+          }
+        ]
+      },
+      {
+        &quot;id&quot;: &quot;ElementDefinition:elementdefinition-de.example.id&quot;,
+        &quot;path&quot;: &quot;ElementDefinition.example.id&quot;,
+        &quot;representation&quot;: [
+          &quot;xmlAttr&quot;
+        ],
+        &quot;short&quot;: &quot;xml:id (or equivalent in JSON)&quot;,
+        &quot;definition&quot;: &quot;unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
         &quot;base&quot;: {
-          &quot;path&quot;: &quot;ElementDefinition.example[x]&quot;,
+          &quot;path&quot;: &quot;Element.id&quot;,
           &quot;min&quot;: 0,
+          &quot;max&quot;: &quot;1&quot;
+        },
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;string&quot;
+          }
+        ],
+        &quot;mapping&quot;: [
+          {
+            &quot;identity&quot;: &quot;rim&quot;,
+            &quot;map&quot;: &quot;n/a&quot;
+          }
+        ]
+      },
+      {
+        &quot;id&quot;: &quot;ElementDefinition:elementdefinition-de.example.extension&quot;,
+        &quot;path&quot;: &quot;ElementDefinition.example.extension&quot;,
+        &quot;short&quot;: &quot;Additional Content defined by implementations&quot;,
+        &quot;definition&quot;: &quot;May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.&quot;,
+        &quot;comments&quot;: &quot;There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone.&quot;,
+        &quot;alias&quot;: [
+          &quot;extensions&quot;,
+          &quot;user content&quot;
+        ],
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;*&quot;,
+        &quot;base&quot;: {
+          &quot;path&quot;: &quot;Element.extension&quot;,
+          &quot;min&quot;: 0,
+          &quot;max&quot;: &quot;*&quot;
+        },
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;Extension&quot;
+          }
+        ],
+        &quot;mapping&quot;: [
+          {
+            &quot;identity&quot;: &quot;rim&quot;,
+            &quot;map&quot;: &quot;n/a&quot;
+          }
+        ]
+      },
+      {
+        &quot;id&quot;: &quot;ElementDefinition:elementdefinition-de.example.label&quot;,
+        &quot;path&quot;: &quot;ElementDefinition.example.label&quot;,
+        &quot;short&quot;: &quot;Describes the purpose of this example&quot;,
+        &quot;definition&quot;: &quot;Describes the purpose of this example amoung the set of examples.&quot;,
+        &quot;min&quot;: 1,
+        &quot;max&quot;: &quot;1&quot;,
+        &quot;base&quot;: {
+          &quot;path&quot;: &quot;ElementDefinition.example.label&quot;,
+          &quot;min&quot;: 1,
+          &quot;max&quot;: &quot;1&quot;
+        },
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;string&quot;
+          }
+        ],
+        &quot;isSummary&quot;: true,
+        &quot;mapping&quot;: [
+          {
+            &quot;identity&quot;: &quot;rim&quot;,
+            &quot;map&quot;: &quot;N/A (MIF territory)&quot;
+          }
+        ]
+      },
+      {
+        &quot;id&quot;: &quot;ElementDefinition:elementdefinition-de.example.value[x]&quot;,
+        &quot;path&quot;: &quot;ElementDefinition.example.value[x]&quot;,
+        &quot;short&quot;: &quot;Value of Example (one of allowed types)&quot;,
+        &quot;definition&quot;: &quot;The actual value for the element, which must be one of the types allowed for this element.&quot;,
+        &quot;min&quot;: 1,
+        &quot;max&quot;: &quot;1&quot;,
+        &quot;base&quot;: {
+          &quot;path&quot;: &quot;ElementDefinition.example.value[x]&quot;,
+          &quot;min&quot;: 1,
           &quot;max&quot;: &quot;1&quot;
         },
         &quot;type&quot;: [
@@ -2753,7 +2869,7 @@
           {
             &quot;key&quot;: &quot;eld-12&quot;,
             &quot;severity&quot;: &quot;error&quot;,
-            &quot;human&quot;: &quot;ValueSet as a URI SHALL start with http:// or https:// urn:&quot;,
+            &quot;human&quot;: &quot;ValueSet as a URI SHALL start with http:// or https:// or urn:&quot;,
             &quot;expression&quot;: &quot;valueSet.is(uri).not() or valueSet.as(uri).startsWith('http:') or valueSet.as(uri).startsWith('https') or valueSet.as(uri).startsWith('urn:')&quot;,
             &quot;xpath&quot;: &quot;not(exists(f:valueSetUri)) or (starts-with(string(f:valueSetUri/@value), 'http:') or starts-with(string(f:valueSetUri/@value), 'https:') or starts-with(string(f:valueSetUri/@value), 'urn:'))&quot;
           }
@@ -2839,7 +2955,7 @@
         &quot;path&quot;: &quot;ElementDefinition.binding.strength&quot;,
         &quot;short&quot;: &quot;required | extensible | preferred | example&quot;,
         &quot;definition&quot;: &quot;Indicates the degree of conformance expectations associated with this binding - that is, the degree to which the provided value set must be adhered to in the instances.&quot;,
-        &quot;comments&quot;: &quot;For further discussion, see [[[Using Terminologies]]].&quot;,
+        &quot;comments&quot;: &quot;For further discussion, see [Using Terminologies](terminologies.html).&quot;,
         &quot;alias&quot;: [
           &quot;conformance&quot;,
           &quot;extensibility&quot;
@@ -3277,7 +3393,7 @@
 		<div class="container"><!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:33-0500. <a href="qa.html">QA Page</a>
+        © HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:28-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search</a> | 

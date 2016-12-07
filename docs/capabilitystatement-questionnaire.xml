@@ -6,7 +6,7 @@
     <system value="urn:ietf:rfc:3986"/>
   </identifier>
   <status value="draft"/>
-  <date value="2016-11-28T17:29:55-05:00"/>
+  <date value="2016-12-07T14:18:58-05:00"/>
   <publisher value="Health Level Seven International (FHIR Infrastructure)"/>
   <item>
     <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-minOccurs">
@@ -731,14 +731,14 @@
             </coding>
           </valueCodeableConcept>
         </extension>
-        <text value="Reference to a canonical URL of another CapabilityStatement that this software implements or uses. This capability statement is a published API description that corresponds to a business service. The rest of the capability statement does not need to repeat the details of the referenced resource, but can do so. HL7 defines the following Services: [[[Terminology Service]]]
+        <text value="Reference to a canonical URL of another CapabilityStatement that this software implements or uses. This capability statement is a published API description that corresponds to a business service. The rest of the capability statement does not need to repeat the details of the referenced resource, but can do so. HL7 defines the following Services: [Terminology Service](terminology-service.html)
 
 Many [Implementation Guides](http://fhir.org/guides/registry) define additional services."/>
         <type value="display"/>
       </item>
       <item>
         <linkId value="CapabilityStatement.instantiates.value"/>
-        <text value="Canonical URL of service implemented/used by software"/>
+        <text value="Canonical URL of another capability statement this implements"/>
         <type value="string"/>
         <required value="false"/>
         <repeats value="false"/>
@@ -1235,6 +1235,35 @@ Applications are recommended to accept unknown extensions and elements (&#39;bot
     </item>
     <item>
       <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
+        <valueString value="uri"/>
+      </extension>
+      <linkId value="CapabilityStatement.implementationGuide"/>
+      <type value="group"/>
+      <required value="false"/>
+      <repeats value="true"/>
+      <item>
+        <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl">
+          <valueCodeableConcept>
+            <coding>
+              <system value="http://hl7.org/fhir/questionnaire-item-control"/>
+              <code value="flyover"/>
+              <display value="Fly-over"/>
+            </coding>
+          </valueCodeableConcept>
+        </extension>
+        <text value="A list of implementation guides that the server does (or should) support in their entirety."/>
+        <type value="display"/>
+      </item>
+      <item>
+        <linkId value="CapabilityStatement.implementationGuide.value"/>
+        <text value="Implementation Guide supported"/>
+        <type value="string"/>
+        <required value="false"/>
+        <repeats value="false"/>
+      </item>
+    </item>
+    <item>
+      <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
         <valueString value="Reference"/>
       </extension>
       <linkId value="CapabilityStatement.profile"/>
@@ -1251,7 +1280,7 @@ Applications are recommended to accept unknown extensions and elements (&#39;bot
             </coding>
           </valueCodeableConcept>
         </extension>
-        <text value="A list of profiles that represent different use cases supported by the system. For a server, &quot;supported by the system&quot; means the system hosts/produces a set of resources that are conformant to a particular profile, and allows clients that use its services to search using this profile and to find appropriate data. For a client, it means the system will search by this profile and process data according to the guidance implicit in the profile. See further discussion in [Using Profiles]{profiling.html#profile-uses}. Supported profiles are different to the profiles that apply to a particular resource in rest.resource.profile. The resource profile is a general statement of what features of the resource are supported overall by the system - the sum total of the facilities it supports. A supported profile is a deeper statement about the functionality of the data and services provided by the server (or used by the client). A typical case is a laboratory system that produces a set of different reports - this is the list of types of data that it publishes. A key aspect of declaring profiles here is the question of how the client converts knowledge that the server publishes this data into working with the data; the client can inspect individual resources to determine whether they conform to a particular profile, but how does it find the ones that does? It does so by searching using the _profile parameter, so any resources listed here must be valid values for the _profile resource (using the identifier in the target profile).  Typical supported profiles cross resource types to describe a network of related resources, so they are listed here rather than by resource. However, they do not need to describe more than one resource."/>
+        <text value="A list of profiles that represent different use cases supported by the system. For a server, &quot;supported by the system&quot; means the system hosts/produces a set of resources that are conformant to a particular profile, and allows clients that use its services to search using this profile and to find appropriate data. For a client, it means the system will search by this profile and process data according to the guidance implicit in the profile. See further discussion in [Using Profiles](profiling.html#profile-uses). Supported profiles are different to the profiles that apply to a particular resource in rest.resource.profile. The resource profile is a general statement of what features of the resource are supported overall by the system - the sum total of the facilities it supports. A supported profile is a deeper statement about the functionality of the data and services provided by the server (or used by the client). A typical case is a laboratory system that produces a set of different reports - this is the list of types of data that it publishes. A key aspect of declaring profiles here is the question of how the client converts knowledge that the server publishes this data into working with the data; the client can inspect individual resources to determine whether they conform to a particular profile, but how does it find the ones that does? It does so by searching using the _profile parameter, so any resources listed here must be valid values for the _profile resource (using the identifier in the target profile).  Typical supported profiles cross resource types to describe a network of related resources, so they are listed here rather than by resource. However, they do not need to describe more than one resource."/>
         <type value="display"/>
       </item>
       <item>
@@ -2596,7 +2625,7 @@ Applications are recommended to accept unknown extensions and elements (&#39;bot
                   </coding>
                 </valueCodeableConcept>
               </extension>
-              <text value="An absolute URI that is a formal reference to where this parameter was first defined, so that a client can be confident of the meaning of the search parameter (a reference to [[[SearchParameter.url]]]). This SHOULD be present, and matches SearchParameter.url."/>
+              <text value="An absolute URI that is a formal reference to where this parameter was first defined, so that a client can be confident of the meaning of the search parameter (a reference to [SearchParameter.url]()). This SHOULD be present, and matches refers to a SearchParameter by it&#39;s canonical url. If systems wish to document their support for modifiers, comparators, target resource types, and chained parameters, they should do using a search parameter resource."/>
               <type value="display"/>
             </item>
             <item>
@@ -2669,93 +2698,6 @@ Applications are recommended to accept unknown extensions and elements (&#39;bot
             <item>
               <linkId value="CapabilityStatement.rest.resource.searchParam.documentation.value"/>
               <text value="Server-specific usage"/>
-              <type value="string"/>
-              <required value="false"/>
-              <repeats value="false"/>
-            </item>
-          </item>
-          <item>
-            <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
-              <valueString value="code"/>
-            </extension>
-            <linkId value="CapabilityStatement.rest.resource.searchParam.target"/>
-            <type value="group"/>
-            <required value="false"/>
-            <repeats value="true"/>
-            <item>
-              <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl">
-                <valueCodeableConcept>
-                  <coding>
-                    <system value="http://hl7.org/fhir/questionnaire-item-control"/>
-                    <code value="flyover"/>
-                    <display value="Fly-over"/>
-                  </coding>
-                </valueCodeableConcept>
-              </extension>
-              <text value="Types of resource (if a resource is referenced). This SHALL be the same as or a proper subset of the resources listed in the search parameter definition."/>
-              <type value="display"/>
-            </item>
-            <item>
-              <linkId value="CapabilityStatement.rest.resource.searchParam.target.value"/>
-              <text value="target"/>
-              <type value="choice"/>
-              <required value="false"/>
-              <repeats value="false"/>
-            </item>
-          </item>
-          <item>
-            <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
-              <valueString value="code"/>
-            </extension>
-            <linkId value="CapabilityStatement.rest.resource.searchParam.modifier"/>
-            <type value="group"/>
-            <required value="false"/>
-            <repeats value="true"/>
-            <item>
-              <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl">
-                <valueCodeableConcept>
-                  <coding>
-                    <system value="http://hl7.org/fhir/questionnaire-item-control"/>
-                    <code value="flyover"/>
-                    <display value="Fly-over"/>
-                  </coding>
-                </valueCodeableConcept>
-              </extension>
-              <text value="A modifier supported for the search parameter."/>
-              <type value="display"/>
-            </item>
-            <item>
-              <linkId value="CapabilityStatement.rest.resource.searchParam.modifier.value"/>
-              <text value="modifier"/>
-              <type value="choice"/>
-              <required value="false"/>
-              <repeats value="false"/>
-            </item>
-          </item>
-          <item>
-            <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
-              <valueString value="string"/>
-            </extension>
-            <linkId value="CapabilityStatement.rest.resource.searchParam.chain"/>
-            <type value="group"/>
-            <required value="false"/>
-            <repeats value="true"/>
-            <item>
-              <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl">
-                <valueCodeableConcept>
-                  <coding>
-                    <system value="http://hl7.org/fhir/questionnaire-item-control"/>
-                    <code value="flyover"/>
-                    <display value="Fly-over"/>
-                  </coding>
-                </valueCodeableConcept>
-              </extension>
-              <text value="Contains the names of any search parameters which may be chained to the containing search parameter. Chained parameters may be added to search parameters of type reference, and specify that resources will only be returned if they contain a reference to a resource which matches the chained parameter value. Values for this field should be drawn from CapabilityStatement.rest.resource.searchParam.name on the target resource type. Systems are not required to list all the chain names they support, but if they don&#39;t list them, clients may not know to use them."/>
-              <type value="display"/>
-            </item>
-            <item>
-              <linkId value="CapabilityStatement.rest.resource.searchParam.chain.value"/>
-              <text value="Chained names supported"/>
               <type value="string"/>
               <required value="false"/>
               <repeats value="false"/>

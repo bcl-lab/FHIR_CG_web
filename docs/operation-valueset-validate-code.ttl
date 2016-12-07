@@ -12,13 +12,13 @@
   fhir:OperationDefinition.name [ fhir:value "Value Set based Validation"];
   fhir:OperationDefinition.status [ fhir:value "draft"];
   fhir:OperationDefinition.kind [ fhir:value "operation"];
-  fhir:OperationDefinition.date [ fhir:value "2016-11-28T17:29:55-05:00"];
+  fhir:OperationDefinition.date [ fhir:value "2016-12-07T14:18:58-05:00"];
   fhir:OperationDefinition.publisher [ fhir:value "HL7 (FHIR Project)"];
   fhir:OperationDefinition.contact [
      fhir:index 0;
      fhir:ContactDetail.telecom [
        fhir:index 0;
-       fhir:ContactPoint.system [ fhir:value "other" ];
+       fhir:ContactPoint.system [ fhir:value "url" ];
        fhir:ContactPoint.value [ fhir:value "http://hl7.org/fhir" ]
      ], [
        fhir:index 1;
@@ -37,11 +37,11 @@
   fhir:OperationDefinition.instance [ fhir:value "true"];
   fhir:OperationDefinition.parameter [
      fhir:index 0;
-     fhir:OperationDefinition.name [ fhir:value "identifier" ];
+     fhir:OperationDefinition.name [ fhir:value "url" ];
      fhir:OperationDefinition.use [ fhir:value "in" ];
      fhir:OperationDefinition.min [ fhir:value "0" ];
      fhir:OperationDefinition.max [ fhir:value "1" ];
-     fhir:OperationDefinition.documentation [ fhir:value "A logical value set identifier (i.e. ValueSet.url). The server must know the value set (e.g. it is defined explicitly in the server's value sets, or it is defined implicitly by some code system known to the server" ];
+     fhir:OperationDefinition.documentation [ fhir:value "Value set Canonical URL. The server must know the value set (e.g. it is defined explicitly in the server's value sets, or it is defined implicitly by some code system known to the server" ];
      fhir:OperationDefinition.type [ fhir:value "uri" ]
   ], [
      fhir:index 1;
@@ -125,6 +125,14 @@
      fhir:OperationDefinition.type [ fhir:value "boolean" ]
   ], [
      fhir:index 11;
+     fhir:OperationDefinition.name [ fhir:value "displayLanguage" ];
+     fhir:OperationDefinition.use [ fhir:value "in" ];
+     fhir:OperationDefinition.min [ fhir:value "0" ];
+     fhir:OperationDefinition.max [ fhir:value "1" ];
+     fhir:OperationDefinition.documentation [ fhir:value "Specifies the language to be used for description when validating the display property" ];
+     fhir:OperationDefinition.type [ fhir:value "code" ]
+  ], [
+     fhir:index 12;
      fhir:OperationDefinition.name [ fhir:value "result" ];
      fhir:OperationDefinition.use [ fhir:value "out" ];
      fhir:OperationDefinition.min [ fhir:value "1" ];
@@ -132,7 +140,7 @@
      fhir:OperationDefinition.documentation [ fhir:value "True if the concept details supplied are valid" ];
      fhir:OperationDefinition.type [ fhir:value "boolean" ]
   ], [
-     fhir:index 12;
+     fhir:index 13;
      fhir:OperationDefinition.name [ fhir:value "message" ];
      fhir:OperationDefinition.use [ fhir:value "out" ];
      fhir:OperationDefinition.min [ fhir:value "0" ];
@@ -140,7 +148,7 @@
      fhir:OperationDefinition.documentation [ fhir:value "Error details, if result = false. If this is provided when result = true, the message carries hints and warnings" ];
      fhir:OperationDefinition.type [ fhir:value "string" ]
   ], [
-     fhir:index 13;
+     fhir:index 14;
      fhir:OperationDefinition.name [ fhir:value "display" ];
      fhir:OperationDefinition.use [ fhir:value "out" ];
      fhir:OperationDefinition.min [ fhir:value "0" ];

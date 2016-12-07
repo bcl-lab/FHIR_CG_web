@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>ResearchStudy - FHIR v1.7.0</title>
+  <title>ResearchStudy - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -122,7 +122,7 @@
   <tr><td>Definition</td><td><p>Identifiers assigned to this research study by the sponsor or other systems.</p>
 </td></tr>
   <tr><td>Note</td><td>This is a business identifer, not a resource identifier (see <a href="resource.html#identifiers">discussion</a>)</td></tr>
-  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
+  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..*</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#Identifier">Identifier</a></td></tr>
   <tr><td>Requirements</td><td><p>Allows identification of the research study as it is known by various participating systems and in a way that remains consistent across servers.</p>
 </td></tr>
@@ -152,7 +152,7 @@
   <tr><td>Definition</td><td><p>The current state of the study.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>1..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>ResearchStudyStatus: <a href="valueset-research-study-status.html">Codes that convey the current status of the research study</a> (<a href="terminologies.html#required">Required</a>)</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-research-study-status.html">ResearchStudyStatus</a> (<a href="terminologies.html#required">Required</a>)</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#code">code</a></td></tr>
   <tr><td><a href="conformance-rules.html#ismodifier">Is Modifier</a></td><td>true</td></tr>
   <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
@@ -161,39 +161,39 @@
   <tr><td>Definition</td><td><p>Codes categorizing the type of study such as investigational vs. observational, type of blinding, type of randomization, safety vs. efficacy, etc.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..*</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td><a href="terminologies.html#unbound">ResearchStudyCategory</a>: Codes that describe the type of research study.  E.g. Study phase, Interventional/Observational, blinding type, etc.</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="terminologies.html#unbound">ResearchStudyCategory</a>: </td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
   <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
   <tr><td colspan="2" class="structure"><a name="ResearchStudy.focus"> </a><b>ResearchStudy.focus</b></td></tr>
   <tr><td>Definition</td><td><p>The condition(s), medication(s), food(s), therapy(ies), device(s) or other concerns or interventions that the study is seeking to gain more information about.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..*</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td><a href="terminologies.html#unbound">ResearchStudyFocus</a>: Codes for medications, devices, conditions and other interventions</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="terminologies.html#unbound">ResearchStudyFocus</a>: </td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
   <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
   <tr><td colspan="2" class="structure"><a name="ResearchStudy.contact"> </a><b>ResearchStudy.contact</b></td></tr>
   <tr><td>Definition</td><td><p>Contact details to assist a user in learning more about or engaging with the study.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..*</td></tr>
-  <tr><td><a href="datatypes.html">Type</a></td><td><a href="contactdetail.html">ContactDetail</a></td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="metadatatypes.html#ContactDetail">ContactDetail</a></td></tr>
   <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
   <tr><td colspan="2" class="structure"><a name="ResearchStudy.relatedArtifact"> </a><b>ResearchStudy.relatedArtifact</b></td></tr>
   <tr><td>Definition</td><td><p>Citations, references and other related documents.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..*</td></tr>
-  <tr><td><a href="datatypes.html">Type</a></td><td><a href="relatedartifact.html">RelatedArtifact</a></td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="metadatatypes.html#RelatedArtifact">RelatedArtifact</a></td></tr>
   <tr><td colspan="2" class="structure"><a name="ResearchStudy.keyword"> </a><b>ResearchStudy.keyword</b></td></tr>
   <tr><td>Definition</td><td><p>Key terms to aid in searching for or filtering the study.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..*</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td><a href="terminologies.html#unbound">ResearchStudyKeyword</a>: Words associated with the study that may be useful in discovery</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="terminologies.html#unbound">ResearchStudyKeyword</a>: </td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
   <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
   <tr><td colspan="2" class="structure"><a name="ResearchStudy.jurisdiction"> </a><b>ResearchStudy.jurisdiction</b></td></tr>
   <tr><td>Definition</td><td><p>Indicates a country, state or other region where the study is taking place.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..*</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>Jurisdiction ValueSet: <a href="valueset-jurisdiction.html">Countries and regions within which this artifact is targeted for use</a> (<a href="terminologies.html#extensible">Extensible</a>)</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-jurisdiction.html">Jurisdiction ValueSet</a> (<a href="terminologies.html#extensible">Extensible</a>)</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
   <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
   <tr><td colspan="2" class="structure"><a name="ResearchStudy.description"> </a><b>ResearchStudy.description</b></td></tr>
@@ -228,7 +228,7 @@
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="references.html#Reference">Reference</a>(<a href="organization.html">Organization</a>)</td></tr>
   <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
   <tr><td>To Do</td><td>.participation[typeCode=PRF].role[scoper.determinerCode=INSTANCE].</td></tr>
-  <tr><td colspan="2" class="structure"><a name="ResearchStudy.principleInvestigator"> </a><b>ResearchStudy.principleInvestigator</b></td></tr>
+  <tr><td colspan="2" class="structure"><a name="ResearchStudy.principalInvestigator"> </a><b>ResearchStudy.principalInvestigator</b></td></tr>
   <tr><td>Definition</td><td><p>Indicates the individual who has primary oversite of the execution of the study.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
@@ -289,7 +289,7 @@
 		<div class="container">  <!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:33-0500. <a href="qa.html">QA Page</a>
+        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:28-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search <img src="external.png" style="text-align: baseline"/></a> | 

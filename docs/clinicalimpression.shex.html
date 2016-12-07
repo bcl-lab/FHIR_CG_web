@@ -3,7 +3,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>Clinicalimpression.shex - FHIR v1.7.0</title>
+  <title>Clinicalimpression.shex - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -175,14 +175,13 @@ start=@&lt;ClinicalImpression&gt; AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:ClinicalImpression.prognosisCodeableConcept @&lt;CodeableConcept&gt;*;  # Estimate of likely outcome
     fhir:ClinicalImpression.prognosisReference @&lt;Reference&gt;*;  # RiskAssessment expressing likely 
                                             # outcome 
-    fhir:ClinicalImpression.action          # Actions taken during assessment
+    fhir:ClinicalImpression.action          # Action taken as part of assessment 
+                                            # procedure 
     (   @&lt;ReferralRequestReference&gt; OR
         @&lt;ProcedureRequestReference&gt; OR
         @&lt;ProcedureReference&gt; OR
         @&lt;MedicationRequestReference&gt; OR
         @&lt;DiagnosticRequestReference&gt; OR
-        @&lt;NutritionRequestReference&gt; OR
-        @&lt;DeviceUseRequestReference&gt; OR
         @&lt;AppointmentReference&gt;
     )*;
     fhir:ClinicalImpression.note @&lt;Annotation&gt;*;  # Comments made about the 
@@ -562,20 +561,6 @@ start=@&lt;ClinicalImpression&gt; AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:nodeRole [fhir:treeRoot]?
 }
 
-&lt;DeviceUseRequestReference&gt; CLOSED {
-    fhir:Element.id @&lt;id&gt;?;
-    fhir:extension @&lt;Extension&gt;*;
-    fhir:link @&lt;DeviceUseRequest&gt; OR CLOSED {a fhir:DeviceUseRequest}?;
-    fhir:Reference.reference @&lt;string&gt;?;
-    fhir:Reference.display @&lt;string&gt;?;
-    fhir:index xsd:integer?
-}
-
-&lt;DeviceUseRequest&gt; {
-    a [fhir:DeviceUseRequest];
-    fhir:nodeRole [fhir:treeRoot]?
-}
-
 &lt;QuestionnaireResponseReference&gt; CLOSED {
     fhir:Element.id @&lt;id&gt;?;
     fhir:extension @&lt;Extension&gt;*;
@@ -629,20 +614,6 @@ start=@&lt;ClinicalImpression&gt; AND {fhir:nodeRole [fhir:treeRoot]}
 
 &lt;EpisodeOfCare&gt; {
     a [fhir:EpisodeOfCare];
-    fhir:nodeRole [fhir:treeRoot]?
-}
-
-&lt;NutritionRequestReference&gt; CLOSED {
-    fhir:Element.id @&lt;id&gt;?;
-    fhir:extension @&lt;Extension&gt;*;
-    fhir:link @&lt;NutritionRequest&gt; OR CLOSED {a fhir:NutritionRequest}?;
-    fhir:Reference.reference @&lt;string&gt;?;
-    fhir:Reference.display @&lt;string&gt;?;
-    fhir:index xsd:integer?
-}
-
-&lt;NutritionRequest&gt; {
-    a [fhir:NutritionRequest];
     fhir:nodeRole [fhir:treeRoot]?
 }
 
@@ -704,14 +675,14 @@ start=@&lt;ClinicalImpression&gt; AND {fhir:nodeRole [fhir:treeRoot]}
 
 #---------------------- Value Sets ------------------------
 
-# The workflow state of a clinical impression.
-fhirvs:clinical-impression-status [&quot;draft&quot; &quot;completed&quot; &quot;entered-in-error&quot;]
-
 # Identifies the purpose for this identifier, if known .
 fhirvs:identifier-use [&quot;usual&quot; &quot;official&quot; &quot;temp&quot; &quot;secondary&quot;]
 
 # The status of a resource narrative
 fhirvs:narrative-status [&quot;generated&quot; &quot;extensions&quot; &quot;additional&quot; &quot;empty&quot;]
+
+# The workflow state of a clinical impression.
+fhirvs:clinical-impression-status [&quot;draft&quot; &quot;completed&quot; &quot;entered-in-error&quot;]
 
 </pre>
 </div>
@@ -737,7 +708,7 @@ of the specification.
 		<div class="container"><!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:32-0500. <a href="qa.html">QA Page</a>
+        © HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:21-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search</a> | 

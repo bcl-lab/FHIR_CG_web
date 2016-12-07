@@ -13,11 +13,6 @@
      fhir:Narrative.div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative with Details</b></p><p><b>id</b>: example-pgx</p><p><b>status</b>: final</p><p><b>code</b>: Pharmacogenetics Report <span>(Details : {https://system/PGxReport code 'PGxReport' = 'PGxReport', given as 'Pharmacogenetics Report'})</span></p><p><b>subject</b>: <a>Bob Smith</a></p><p><b>effective</b>: 2016-10-15 12:34:56</p><p><b>issued</b>: 2016-10-20 14:00:05</p><p><b>performer</b>: <a>Organization/4829</a></p><p><b>request</b>: <a>DiagnosticRequest/example-pgx</a></p><p><b>result</b>: <a>Observation/example-phenotype</a></p><p><b>presentedForm</b>: </p></div>"
   ];
   fhir:DiagnosticReport.status [ fhir:value "final"];
-  fhir:DiagnosticReport.subject [
-     fhir:link <http://hl7.org/fhir/Patient/899962>;
-     fhir:Reference.reference [ fhir:value "Patient/899962" ];
-     fhir:Reference.display [ fhir:value "Bob Smith" ]
-  ];
   fhir:DiagnosticReport.code [
      fhir:CodeableConcept.coding [
        fhir:index 0;
@@ -26,6 +21,11 @@
        fhir:Coding.display [ fhir:value "Pharmacogenetics Report" ]
      ];
      fhir:CodeableConcept.text [ fhir:value "Pharmacogenetics Report" ]
+  ];
+  fhir:DiagnosticReport.subject [
+     fhir:link <http://hl7.org/fhir/Patient/899962>;
+     fhir:Reference.reference [ fhir:value "Patient/899962" ];
+     fhir:Reference.display [ fhir:value "Bob Smith" ]
   ];
   fhir:DiagnosticReport.effectiveDateTime [ fhir:value "2016-10-15T12:34:56+11:00"^^xsd:dateTime];
   fhir:DiagnosticReport.issued [ fhir:value "2016-10-20T14:00:05+11:00"^^xsd:dateTime];
@@ -48,8 +48,8 @@
      fhir:index 0;
      fhir:Attachment.contentType [ fhir:value "PDF" ];
      fhir:Attachment.language [ fhir:value "en-us" ];
-     fhir:Attachment.data [ fhir:value "<pdfInBase64Binary>"^^xsd:base64Binary ];
-     fhir:Attachment.hash [ fhir:value "<base64Binary>"^^xsd:base64Binary ];
+     fhir:Attachment.data [ fhir:value "cGRmSW5CYXNlNjRCaW5hcnk="^^xsd:base64Binary ];
+     fhir:Attachment.hash [ fhir:value "571ef9c5655840f324e679072ed62b1b95eef8a0"^^xsd:base64Binary ];
      fhir:Attachment.title [ fhir:value "Pharmacogenetics Report" ];
      fhir:Attachment.creation [ fhir:value "2016-10-20T20:00:00+11:00"^^xsd:dateTime ]
   ] .

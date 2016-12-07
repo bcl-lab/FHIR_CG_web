@@ -27,7 +27,7 @@
   POSSIBILITY OF SUCH DAMAGE.
   
 
-  Generated on Mon, Nov 28, 2016 17:29-0500 for FHIR v1.7.0 
+  Generated on Wed, Dec 7, 2016 14:18-0500 for FHIR v1.8.0 
 
   Note: the schemas &amp; schematrons do not contain all of the rules about what makes resources
   valid. Implementers will still need to be familiar with the content of the specification and with
@@ -110,6 +110,37 @@ A coverage may only be resposible for specific types of charges, and the sequenc
           <xs:element name="description" minOccurs="0" maxOccurs="1" type="string">
             <xs:annotation>
               <xs:documentation xml:lang="en">Provides additional information about what the account tracks and how it is used.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="guarantor" type="Account.Guarantor" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation xml:lang="en">Parties financially responsible for the account.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Account.Guarantor">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">A financial tool for tracking value accrued for a particular purpose.  In the healthcare field, used to track charges for a patient, cost centers, etc.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="BackboneElement">
+        <xs:sequence>
+          <xs:element name="party" minOccurs="1" maxOccurs="1" type="Reference">
+            <xs:annotation>
+              <xs:documentation xml:lang="en">The entity who is responsible.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="onHold" minOccurs="0" maxOccurs="1" type="boolean">
+            <xs:annotation>
+              <xs:documentation xml:lang="en">A guarantor may be placed on credit hold or otherwise have their role temporarily suspended.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
+          <xs:element name="period" minOccurs="0" maxOccurs="1" type="Period">
+            <xs:annotation>
+              <xs:documentation xml:lang="en">The timeframe during which the guarantor accepts responsibility for the account.</xs:documentation>
            </xs:annotation>
           </xs:element>
         </xs:sequence>

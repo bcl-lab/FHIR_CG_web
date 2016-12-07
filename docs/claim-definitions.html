@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>Claim - FHIR v1.7.0</title>
+  <title>Claim - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -124,53 +124,55 @@
   <tr><td colspan="2" class="structure"><a name="Claim.status"> </a><b>Claim.status</b></td></tr>
   <tr><td>Definition</td><td><p>The status of the resource instance.</p>
 </td></tr>
-  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>1..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>ClaimStatus: <a href="valueset-claim-status.html">A code specifying the state of the resource instance.</a> (<a href="terminologies.html#required">Required</a>)</td></tr>
+  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-fm-status.html">Financial Resource Status Codes</a> (<a href="terminologies.html#required">Required</a>)</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#code">code</a></td></tr>
   <tr><td><a href="conformance-rules.html#ismodifier">Is Modifier</a></td><td>true</td></tr>
   <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
   <tr><td colspan="2" class="structure"><a name="Claim.type"> </a><b>Claim.type</b></td></tr>
   <tr><td>Definition</td><td><p>The category of claim, eg, oral, pharmacy, vision, insitutional, professional.</p>
 </td></tr>
-  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>1..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>Example Claim Type Codes: <a href="valueset-claim-type.html">The type or discipline-style of the claim</a> (<a href="terminologies.html#required">Required</a>)</td></tr>
-  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#Coding">Coding</a></td></tr>
+  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-claim-type.html">Example Claim Type Codes</a> (<a href="terminologies.html#required">Required</a>)</td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
   <tr><td>Comments</td><td><p>Affects which fields and value sets are used.</p>
 </td></tr>
   <tr><td colspan="2" class="structure"><a name="Claim.subType"> </a><b>Claim.subType</b></td></tr>
   <tr><td>Definition</td><td><p>A finer grained suite of claim subtype codes which may convey Inpatient vs Outpatient and/or a specialty service. In the US the BillType.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..*</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>Example Claim SubType Codes: <a href="valueset-claim-subtype.html">A more granular claim typecode</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
-  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#Coding">Coding</a></td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-claim-subtype.html">Example Claim SubType Codes</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
   <tr><td>Comments</td><td><p>This may contain the local bill type codes such as the US UB-04 bill type code.</p>
 </td></tr>
-  <tr><td colspan="2" class="structure"><a name="Claim.ruleset"> </a><b>Claim.ruleset</b></td></tr>
-  <tr><td>Definition</td><td><p>The version of the specification on which this instance relies.</p>
+  <tr><td colspan="2" class="structure"><a name="Claim.use"> </a><b>Claim.use</b></td></tr>
+  <tr><td>Definition</td><td><p>Complete (Bill or Claim), Proposed (Pre-Authorization), Exploratory (Pre-determination).</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>Ruleset Codes: <a href="valueset-ruleset.html">The static and dynamic model to which contents conform, which may be business version or standard/version.</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
-  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#Coding">Coding</a></td></tr>
-  <tr><td title="Other names by which this resource/element may be known">Alternate Names</td><td>BusinessVersion</td></tr>
-  <tr><td colspan="2" class="structure"><a name="Claim.originalRuleset"> </a><b>Claim.originalRuleset</b></td></tr>
-  <tr><td>Definition</td><td><p>The version of the specification from which the original instance was created.</p>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-claim-use.html">Use</a> (<a href="terminologies.html#required">Required</a>)</td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#code">code</a></td></tr>
+  <tr><td colspan="2" class="structure"><a name="Claim.patient"> </a><b>Claim.patient</b></td></tr>
+  <tr><td>Definition</td><td><p>Patient Resource.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>Ruleset Codes: <a href="valueset-ruleset.html">The static and dynamic model to which contents conform, which may be business version or standard/version.</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
-  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#Coding">Coding</a></td></tr>
-  <tr><td title="Other names by which this resource/element may be known">Alternate Names</td><td>OriginalBusinessVersion</td></tr>
-  <tr><td colspan="2" class="structure"><a name="Claim.created"> </a><b>Claim.created</b></td></tr>
-  <tr><td>Definition</td><td><p>The date when the enclosed suite of services were performed or completed.</p>
-</td></tr>
-  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#dateTime">dateTime</a></td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="references.html#Reference">Reference</a>(<a href="patient.html">Patient</a>)</td></tr>
   <tr><td colspan="2" class="structure"><a name="Claim.billablePeriod"> </a><b>Claim.billablePeriod</b></td></tr>
   <tr><td>Definition</td><td><p>The billable period for which charges are being submitted.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#Period">Period</a></td></tr>
+  <tr><td colspan="2" class="structure"><a name="Claim.created"> </a><b>Claim.created</b></td></tr>
+  <tr><td>Definition</td><td><p>The date when the enclosed suite of services were performed or completed.</p>
+</td></tr>
+  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#dateTime">dateTime</a></td></tr>
+  <tr><td colspan="2" class="structure"><a name="Claim.enterer"> </a><b>Claim.enterer</b></td></tr>
+  <tr><td>Definition</td><td><p>Person who created the invoice/claim/pre-determination or pre-authorization.</p>
+</td></tr>
+  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="references.html#Reference">Reference</a>(<a href="practitioner.html">Practitioner</a>)</td></tr>
   <tr><td colspan="2" class="structure"><a name="Claim.insurer"> </a><b>Claim.insurer</b></td></tr>
-  <tr><td>Definition</td><td><p>The Insurer who is target  of the request.</p>
+  <tr><td>Definition</td><td><p>The Insurer who is target of the request.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="references.html#Reference">Reference</a>(<a href="organization.html">Organization</a>)</td></tr>
@@ -184,34 +186,18 @@
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="references.html#Reference">Reference</a>(<a href="organization.html">Organization</a>)</td></tr>
-  <tr><td colspan="2" class="structure"><a name="Claim.use"> </a><b>Claim.use</b></td></tr>
-  <tr><td>Definition</td><td><p>Complete (Bill or Claim), Proposed (Pre-Authorization), Exploratory (Pre-determination).</p>
-</td></tr>
-  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>Use: <a href="valueset-claim-use.html">Complete, proposed, exploratory, other</a> (<a href="terminologies.html#required">Required</a>)</td></tr>
-  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#code">code</a></td></tr>
   <tr><td colspan="2" class="structure"><a name="Claim.priority"> </a><b>Claim.priority</b></td></tr>
   <tr><td>Definition</td><td><p>Immediate (STAT), best effort (NORMAL), deferred (DEFER).</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>Priority Codes: <a href="valueset-process-priority.html">The timeliness with which processing is required: STAT, normal, Deferred</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
-  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#Coding">Coding</a></td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-process-priority.html">Priority Codes</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
   <tr><td colspan="2" class="structure"><a name="Claim.fundsReserve"> </a><b>Claim.fundsReserve</b></td></tr>
   <tr><td>Definition</td><td><p>In the case of a Pre-Determination/Pre-Authorization the provider may request that funds in the amount of the expected Benefit be reserved ('Patient' or 'Provider') to pay for the Benefits determined on the subsequent claim(s). 'None' explicitly indicates no funds reserving is requested.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>Funds Reservation Codes: <a href="valueset-fundsreserve.html">For whom funds are to be reserved: (Patient, Provider, None).</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
-  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#Coding">Coding</a></td></tr>
-  <tr><td colspan="2" class="structure"><a name="Claim.enterer"> </a><b>Claim.enterer</b></td></tr>
-  <tr><td>Definition</td><td><p>Person who created the invoice/claim/pre-determination or pre-authorization.</p>
-</td></tr>
-  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="datatypes.html">Type</a></td><td><a href="references.html#Reference">Reference</a>(<a href="practitioner.html">Practitioner</a>)</td></tr>
-  <tr><td colspan="2" class="structure"><a name="Claim.facility"> </a><b>Claim.facility</b></td></tr>
-  <tr><td>Definition</td><td><p>Facility where the services were provided.</p>
-</td></tr>
-  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="datatypes.html">Type</a></td><td><a href="references.html#Reference">Reference</a>(<a href="location.html">Location</a>)</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-fundsreserve.html">Funds Reservation Codes</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
   <tr><td colspan="2" class="structure"><a name="Claim.related"> </a><b>Claim.related</b></td></tr>
   <tr><td>Definition</td><td><p>Other claims which are related to this claim such as prior claim versions or for related services.</p>
 </td></tr>
@@ -227,8 +213,8 @@
   <tr><td>Definition</td><td><p>For example prior or umbrella.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>Example Related Claim Relationship Codes: <a href="valueset-related-claim-relationship.html">Relationship of this claim to a related Claim</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
-  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#Coding">Coding</a></td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-related-claim-relationship.html">Example Related Claim Relationship Codes</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
   <tr><td colspan="2" class="structure"><a name="Claim.related.reference"> </a><b>Claim.related.reference</b></td></tr>
   <tr><td>Definition</td><td><p>An alternate organizational reference to the case or file to which this particular claim pertains - eg Property/Casualy insurer claim # or Workers Compensation case # .</p>
 </td></tr>
@@ -244,7 +230,7 @@
   <tr><td>Comments</td><td><p>Should we create a group to hold multiple prescriptions and add a sequence number and on the line items a link to the sequence.</p>
 </td></tr>
   <tr><td colspan="2" class="structure"><a name="Claim.originalPrescription"> </a><b>Claim.originalPrescription</b></td></tr>
-  <tr><td>Definition</td><td><p>Original prescription which has been superceded by this prescription to support the dispensing of pharmacy services, medications or products.</p>
+  <tr><td>Definition</td><td><p>Original prescription which has been superceded by this prescription to support the dispensing of pharmacy services, medications or products. For example, a physician may prescribe a medication which the pharmacy determines is contraindicated, or for which the patient has an intolerance, and therefor issues a new precription for an alternate medication which has the same theraputic intent. The prescription from the pharmacy becomes the 'prescription' and that from the physician becomes the 'original prescription'.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="references.html#Reference">Reference</a>(<a href="medicationrequest.html">MedicationRequest</a>)</td></tr>
@@ -258,13 +244,13 @@
   <tr><td>Definition</td><td><p>Type of Party to be reimbursed: Subscriber, provider, other.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>1..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>Payee Type Codes: <a href="valueset-payeetype.html">A code for the party to be reimbursed.</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
-  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#Coding">Coding</a></td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-payeetype.html">Payee Type Codes</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
   <tr><td colspan="2" class="structure"><a name="Claim.payee.resourceType"> </a><b>Claim.payee.resourceType</b></td></tr>
   <tr><td>Definition</td><td><p>organization | patient | practitioner | relatedperson.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>PayeeResourceType: <a href="valueset-ex-payee-resource-type.html">The type of payee Resource</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-ex-payee-resource-type.html">PayeeResourceType</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#Coding">Coding</a></td></tr>
   <tr><td colspan="2" class="structure"><a name="Claim.payee.party"> </a><b>Claim.payee.party</b></td></tr>
   <tr><td>Definition</td><td><p>Party to be reimbursed: Subscriber, provider, other.</p>
@@ -276,6 +262,46 @@
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="references.html#Reference">Reference</a>(<a href="referralrequest.html">ReferralRequest</a>)</td></tr>
+  <tr><td colspan="2" class="structure"><a name="Claim.facility"> </a><b>Claim.facility</b></td></tr>
+  <tr><td>Definition</td><td><p>Facility where the services were provided.</p>
+</td></tr>
+  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="references.html#Reference">Reference</a>(<a href="location.html">Location</a>)</td></tr>
+  <tr><td colspan="2" class="structure"><a name="Claim.careTeam"> </a><b>Claim.careTeam</b></td></tr>
+  <tr><td>Definition</td><td><p>The members of the team who provided the overall service as well as their role and whether responsible and qualifications.</p>
+</td></tr>
+  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..*</td></tr>
+  <tr><td>Requirements</td><td><p>Role and Responsible may not be required when there is only a single provider listed.</p>
+</td></tr>
+  <tr><td colspan="2" class="structure"><a name="Claim.careTeam.sequence"> </a><b>Claim.careTeam.sequence</b></td></tr>
+  <tr><td>Definition</td><td><p>Sequence of the careTeam which serves to order and provide a link.</p>
+</td></tr>
+  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>1..1</td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#positiveInt">positiveInt</a></td></tr>
+  <tr><td>Requirements</td><td><p>Required to maintain order of the careTeam.</p>
+</td></tr>
+  <tr><td colspan="2" class="structure"><a name="Claim.careTeam.provider"> </a><b>Claim.careTeam.provider</b></td></tr>
+  <tr><td>Definition</td><td><p>Member of the team who provided the overall service.</p>
+</td></tr>
+  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>1..1</td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="references.html#Reference">Reference</a>(<a href="practitioner.html">Practitioner</a> | <a href="organization.html">Organization</a>)</td></tr>
+  <tr><td colspan="2" class="structure"><a name="Claim.careTeam.responsible"> </a><b>Claim.careTeam.responsible</b></td></tr>
+  <tr><td>Definition</td><td><p>The party who is billing and responsible for the claimed good or service rendered to the patient.</p>
+</td></tr>
+  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#boolean">boolean</a></td></tr>
+  <tr><td colspan="2" class="structure"><a name="Claim.careTeam.role"> </a><b>Claim.careTeam.role</b></td></tr>
+  <tr><td>Definition</td><td><p>The lead, assisting or supervising practitioner and their discipline if a multidisiplinary team.</p>
+</td></tr>
+  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-claim-careteamrole.html">Claim Care Team Role Codes</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
+  <tr><td colspan="2" class="structure"><a name="Claim.careTeam.qualification"> </a><b>Claim.careTeam.qualification</b></td></tr>
+  <tr><td>Definition</td><td><p>The qualification which is applicable for this service.</p>
+</td></tr>
+  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-provider-qualification.html">Example Provider Qualification Codes</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
   <tr><td colspan="2" class="structure"><a name="Claim.information"> </a><b>Claim.information</b></td></tr>
   <tr><td>Definition</td><td><p>Additional information codes regarding exceptions, special considerations, the condition, situation, prior or concurrent issues. Often there are mutiple jurisdiction specific valuesets which are required.</p>
 </td></tr>
@@ -286,16 +312,16 @@
   <tr><td>Definition</td><td><p>The general class of the information supplied: information; exception; accident, employment; onset, etc.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>1..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>Claim Information Category Codes: <a href="valueset-claim-informationcategory.html">The valuset used for additional information category codes.</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
-  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#Coding">Coding</a></td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-claim-informationcategory.html">Claim Information Category Codes</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
   <tr><td>Comments</td><td><p>This may contain the local bill type codes such as the US UB-04 bill type code.</p>
 </td></tr>
   <tr><td colspan="2" class="structure"><a name="Claim.information.code"> </a><b>Claim.information.code</b></td></tr>
   <tr><td>Definition</td><td><p>System and code pertaining to the specific information regarding special conditions relating to the setting, treatment or patient  for which care is sought which may influence the adjudication.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>Exception Codes: <a href="valueset-claim-exception.html">The valuset used for additional information codes.</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
-  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#Coding">Coding</a></td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-claim-exception.html">Exception Codes</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
   <tr><td>Comments</td><td><p>This may contain the local bill type codes such as the US UB-04 bill type code.</p>
 </td></tr>
   <tr><td colspan="2" class="structure"><a name="Claim.information.timing_x_"> </a><b>Claim.information.timing[x]</b></td></tr>
@@ -305,11 +331,17 @@
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#date">date</a>|<a href="datatypes.html#Period">Period</a></td></tr>
   <tr><td>[x] Note</td><td>See <a href="formats.html#choice">Choice of Data Types</a> for further information about how to use [x]</td></tr>
   <tr><td colspan="2" class="structure"><a name="Claim.information.value_x_"> </a><b>Claim.information.value[x]</b></td></tr>
-  <tr><td>Definition</td><td><p>Additional data.</p>
+  <tr><td>Definition</td><td><p>Additional data or information such as resources, documents, images etc. including references to the data or the actual inclusion of the data.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#string">string</a>|<a href="datatypes.html#Quantity">Quantity</a></td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#string">string</a>|<a href="datatypes.html#Quantity">Quantity</a>|<a href="datatypes.html#Attachment">Attachment</a>|<a href="references.html#Reference">Reference</a>(<a href="resourcelist.html#Any">Any</a>)</td></tr>
   <tr><td>[x] Note</td><td>See <a href="formats.html#choice">Choice of Data Types</a> for further information about how to use [x]</td></tr>
+  <tr><td colspan="2" class="structure"><a name="Claim.information.reason"> </a><b>Claim.information.reason</b></td></tr>
+  <tr><td>Definition</td><td><p>For example, provides the reason for: the additional stay, or missing tooth or any other situation where a reason code is required in addition to the content.</p>
+</td></tr>
+  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-missing-tooth-reason.html">Missing Tooth Reason Codes</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
   <tr><td colspan="2" class="structure"><a name="Claim.diagnosis"> </a><b>Claim.diagnosis</b></td></tr>
   <tr><td>Definition</td><td><p>Ordered list of patient diagnosis for which care is sought.</p>
 </td></tr>
@@ -321,31 +353,32 @@
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#positiveInt">positiveInt</a></td></tr>
   <tr><td>Requirements</td><td><p>Required to maintain order of the diagnoses.</p>
 </td></tr>
-  <tr><td colspan="2" class="structure"><a name="Claim.diagnosis.diagnosis"> </a><b>Claim.diagnosis.diagnosis</b></td></tr>
+  <tr><td colspan="2" class="structure"><a name="Claim.diagnosis.diagnosis_x_"> </a><b>Claim.diagnosis.diagnosis[x]</b></td></tr>
   <tr><td>Definition</td><td><p>The diagnosis.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>1..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>ICD-10 Codes: <a href="valueset-icd-10.html">ICD10 Diagnostic codes</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
-  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#Coding">Coding</a></td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-icd-10.html">ICD-10 Codes</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a>|<a href="references.html#Reference">Reference</a>(<a href="condition.html">Condition</a>)</td></tr>
+  <tr><td>[x] Note</td><td>See <a href="formats.html#choice">Choice of Data Types</a> for further information about how to use [x]</td></tr>
   <tr><td>Requirements</td><td><p>Required to adjudicate services rendered to condition presented.</p>
 </td></tr>
   <tr><td colspan="2" class="structure"><a name="Claim.diagnosis.type"> </a><b>Claim.diagnosis.type</b></td></tr>
   <tr><td>Definition</td><td><p>The type of the Diagnosis, for example: admitting,.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..*</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>Example Diagnosis Type Codes: <a href="valueset-ex-diagnosistype.html">The type of the diagnosis: admitting, principal, discharge</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
-  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#Coding">Coding</a></td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-ex-diagnosistype.html">Example Diagnosis Type Codes</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
   <tr><td>Requirements</td><td><p>Required to adjudicate services rendered to the mandated diagnosis grouping system.</p>
 </td></tr>
   <tr><td>Comments</td><td><p>Diagnosis are presented in list order to their expected importance: primary, secondary, etc.</p>
 </td></tr>
-  <tr><td colspan="2" class="structure"><a name="Claim.diagnosis.drg"> </a><b>Claim.diagnosis.drg</b></td></tr>
-  <tr><td>Definition</td><td><p>The Diagnosis Related Group (DRG) code based on the assigned grouping code system.</p>
+  <tr><td colspan="2" class="structure"><a name="Claim.diagnosis.packageCode"> </a><b>Claim.diagnosis.packageCode</b></td></tr>
+  <tr><td>Definition</td><td><p>The package billing code, for example DRG, based on the assigned grouping code system.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>Example Diagnosis Related Group Codes: <a href="valueset-ex-diagnosisrelatedgroup.html">The DRG codes associated with the diagnosis</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
-  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#Coding">Coding</a></td></tr>
-  <tr><td>Requirements</td><td><p>Required to adjudicate services rendered to the mandated diagnosis grouping system.</p>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-ex-diagnosisrelatedgroup.html">Example Diagnosis Related Group Codes</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
+  <tr><td>Requirements</td><td><p>Required to adjudicate services rendered to the mandated grouping system.</p>
 </td></tr>
   <tr><td colspan="2" class="structure"><a name="Claim.procedure"> </a><b>Claim.procedure</b></td></tr>
   <tr><td>Definition</td><td><p>Ordered list of patient procedures performed to support the adjudication.</p>
@@ -371,69 +404,56 @@
   <tr><td>Definition</td><td><p>The procedure code.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>1..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>ICD-10 Procedure Codes: <a href="valueset-icd-10-procedures.html">ICD10 Procedure codes</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
-  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#Coding">Coding</a>|<a href="references.html#Reference">Reference</a>(<a href="procedure.html">Procedure</a>)</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-icd-10-procedures.html">ICD-10 Procedure Codes</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a>|<a href="references.html#Reference">Reference</a>(<a href="procedure.html">Procedure</a>)</td></tr>
   <tr><td>[x] Note</td><td>See <a href="formats.html#choice">Choice of Data Types</a> for further information about how to use [x]</td></tr>
   <tr><td>Requirements</td><td><p>Required to adjudicate services rendered.</p>
 </td></tr>
-  <tr><td colspan="2" class="structure"><a name="Claim.patient"> </a><b>Claim.patient</b></td></tr>
-  <tr><td>Definition</td><td><p>Patient Resource.</p>
-</td></tr>
-  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>1..1</td></tr>
-  <tr><td><a href="datatypes.html">Type</a></td><td><a href="references.html#Reference">Reference</a>(<a href="patient.html">Patient</a>)</td></tr>
-  <tr><td colspan="2" class="structure"><a name="Claim.coverage"> </a><b>Claim.coverage</b></td></tr>
+  <tr><td colspan="2" class="structure"><a name="Claim.insurance"> </a><b>Claim.insurance</b></td></tr>
   <tr><td>Definition</td><td><p>Financial instrument by which payment information for health care.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..*</td></tr>
   <tr><td>Requirements</td><td><p>Health care programs and insurers are significant payors of health service costs.</p>
 </td></tr>
-  <tr><td colspan="2" class="structure"><a name="Claim.coverage.sequence"> </a><b>Claim.coverage.sequence</b></td></tr>
+  <tr><td colspan="2" class="structure"><a name="Claim.insurance.sequence"> </a><b>Claim.insurance.sequence</b></td></tr>
   <tr><td>Definition</td><td><p>A service line item.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>1..1</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#positiveInt">positiveInt</a></td></tr>
   <tr><td>Requirements</td><td><p>To maintain order of the coverages.</p>
 </td></tr>
-  <tr><td colspan="2" class="structure"><a name="Claim.coverage.focal"> </a><b>Claim.coverage.focal</b></td></tr>
-  <tr><td>Definition</td><td><p>The instance number of the Coverage which is the focus for adjudication. The Coverage against which the claim is to be adjudicated.</p>
+  <tr><td colspan="2" class="structure"><a name="Claim.insurance.focal"> </a><b>Claim.insurance.focal</b></td></tr>
+  <tr><td>Definition</td><td><p>A flag to indicate that this Coverage is the focus for adjudication. The Coverage against which the claim is to be adjudicated.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>1..1</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#boolean">boolean</a></td></tr>
   <tr><td>Requirements</td><td><p>To identify which coverage is being adjudicated.</p>
 </td></tr>
-  <tr><td colspan="2" class="structure"><a name="Claim.coverage.coverage"> </a><b>Claim.coverage.coverage</b></td></tr>
+  <tr><td colspan="2" class="structure"><a name="Claim.insurance.coverage"> </a><b>Claim.insurance.coverage</b></td></tr>
   <tr><td>Definition</td><td><p>Reference to the program or plan identification, underwriter or payor.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>1..1</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="references.html#Reference">Reference</a>(<a href="coverage.html">Coverage</a>)</td></tr>
   <tr><td>Requirements</td><td><p>Need to identify the issuer to target for processing and for coordination of benefit processing.</p>
 </td></tr>
-  <tr><td colspan="2" class="structure"><a name="Claim.coverage.businessArrangement"> </a><b>Claim.coverage.businessArrangement</b></td></tr>
+  <tr><td colspan="2" class="structure"><a name="Claim.insurance.businessArrangement"> </a><b>Claim.insurance.businessArrangement</b></td></tr>
   <tr><td>Definition</td><td><p>The contract number of a business agreement which describes the terms and conditions.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#string">string</a></td></tr>
-  <tr><td colspan="2" class="structure"><a name="Claim.coverage.preAuthRef"> </a><b>Claim.coverage.preAuthRef</b></td></tr>
+  <tr><td colspan="2" class="structure"><a name="Claim.insurance.preAuthRef"> </a><b>Claim.insurance.preAuthRef</b></td></tr>
   <tr><td>Definition</td><td><p>A list of references from the Insurer to which these services pertain.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..*</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#string">string</a></td></tr>
   <tr><td>Requirements</td><td><p>To provide any pre=determination or prior authorization reference.</p>
 </td></tr>
-  <tr><td colspan="2" class="structure"><a name="Claim.coverage.claimResponse"> </a><b>Claim.coverage.claimResponse</b></td></tr>
+  <tr><td colspan="2" class="structure"><a name="Claim.insurance.claimResponse"> </a><b>Claim.insurance.claimResponse</b></td></tr>
   <tr><td>Definition</td><td><p>The Coverages adjudication details.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="references.html#Reference">Reference</a>(<a href="claimresponse.html">ClaimResponse</a>)</td></tr>
   <tr><td>Requirements</td><td><p>Used by downstream payers to determine what balance remains and the net payable.</p>
-</td></tr>
-  <tr><td colspan="2" class="structure"><a name="Claim.coverage.originalRuleset"> </a><b>Claim.coverage.originalRuleset</b></td></tr>
-  <tr><td>Definition</td><td><p>The style (standard) and version of the original material which was converted into this resource.</p>
-</td></tr>
-  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>Ruleset Codes: <a href="valueset-ruleset.html">The static and dynamic model to which contents conform, which may be business version or standard/version.</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
-  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#Coding">Coding</a></td></tr>
-  <tr><td>Requirements</td><td><p>Knowledge of the original version can inform the processing of this instance so that information which is processable by the originating system may be generated.</p>
 </td></tr>
   <tr><td colspan="2" class="structure"><a name="Claim.accident"> </a><b>Claim.accident</b></td></tr>
   <tr><td>Definition</td><td><p>An accident which resulted in the need for healthcare services.</p>
@@ -450,8 +470,8 @@
   <tr><td>Definition</td><td><p>Type of accident: work, auto, etc.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>ActIncidentCode: <a href="v3/ActIncidentCode/vs.html">Type of accident: work place, auto, etc.</a> (<a href="terminologies.html#required">Required</a>)</td></tr>
-  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#Coding">Coding</a></td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="v3/ActIncidentCode/vs.html">ActIncidentCode</a> (<a href="terminologies.html#required">Required</a>)</td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
   <tr><td>Requirements</td><td><p>Coverage may be dependant on the type of accident.</p>
 </td></tr>
   <tr><td colspan="2" class="structure"><a name="Claim.accident.location_x_"> </a><b>Claim.accident.location[x]</b></td></tr>
@@ -479,36 +499,23 @@
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>1..1</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#positiveInt">positiveInt</a></td></tr>
-  <tr><td colspan="2" class="structure"><a name="Claim.item.careTeam"> </a><b>Claim.item.careTeam</b></td></tr>
-  <tr><td>Definition</td><td><p>The members of the team who provided the overall service as well as their role and whether responsible and qualifications.</p>
+  <tr><td colspan="2" class="structure"><a name="Claim.item.careTeamLinkId"> </a><b>Claim.item.careTeamLinkId</b></td></tr>
+  <tr><td>Definition</td><td><p>CareTeam applicable for this service or product line.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..*</td></tr>
-  <tr><td>Requirements</td><td><p>Role and Responsible may not be required when there is only a single provider listed.</p>
-</td></tr>
-  <tr><td colspan="2" class="structure"><a name="Claim.item.careTeam.provider"> </a><b>Claim.item.careTeam.provider</b></td></tr>
-  <tr><td>Definition</td><td><p>Member of the team who provided the overall service.</p>
-</td></tr>
-  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>1..1</td></tr>
-  <tr><td><a href="datatypes.html">Type</a></td><td><a href="references.html#Reference">Reference</a>(<a href="practitioner.html">Practitioner</a> | <a href="organization.html">Organization</a>)</td></tr>
-  <tr><td colspan="2" class="structure"><a name="Claim.item.careTeam.responsible"> </a><b>Claim.item.careTeam.responsible</b></td></tr>
-  <tr><td>Definition</td><td><p>The party who is billing and responsible for the claimed good or service rendered to the patient.</p>
-</td></tr>
-  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#boolean">boolean</a></td></tr>
-  <tr><td colspan="2" class="structure"><a name="Claim.item.careTeam.role"> </a><b>Claim.item.careTeam.role</b></td></tr>
-  <tr><td>Definition</td><td><p>The lead, assisting or supervising practitioner and their discipline if a multidisiplinary team.</p>
-</td></tr>
-  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>Claim Care Team Role Codes: <a href="valueset-claim-careteamrole.html">The role codes for the care team members.</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
-  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#Coding">Coding</a></td></tr>
-  <tr><td colspan="2" class="structure"><a name="Claim.item.careTeam.qualification"> </a><b>Claim.item.careTeam.qualification</b></td></tr>
-  <tr><td>Definition</td><td><p>The qualification which is applicable for this service.</p>
-</td></tr>
-  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>Example Provider Qualification Codes: <a href="valueset-provider-qualification.html">Provider professional qualifications</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
-  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#Coding">Coding</a></td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#positiveInt">positiveInt</a></td></tr>
   <tr><td colspan="2" class="structure"><a name="Claim.item.diagnosisLinkId"> </a><b>Claim.item.diagnosisLinkId</b></td></tr>
   <tr><td>Definition</td><td><p>Diagnosis applicable for this service or product line.</p>
+</td></tr>
+  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..*</td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#positiveInt">positiveInt</a></td></tr>
+  <tr><td colspan="2" class="structure"><a name="Claim.item.procedureLinkId"> </a><b>Claim.item.procedureLinkId</b></td></tr>
+  <tr><td>Definition</td><td><p>Procedures applicable for this service or product line.</p>
+</td></tr>
+  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..*</td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#positiveInt">positiveInt</a></td></tr>
+  <tr><td colspan="2" class="structure"><a name="Claim.item.informationLinkId"> </a><b>Claim.item.informationLinkId</b></td></tr>
+  <tr><td>Definition</td><td><p>Exceptions, special conditions and supporting information pplicable for this service or product line.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..*</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#positiveInt">positiveInt</a></td></tr>
@@ -516,34 +523,34 @@
   <tr><td>Definition</td><td><p>The type of reveneu or cost center providing the product and/or service.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>Example Revenue Center Codes: <a href="valueset-ex-revenue-center.html">Codes for the revenue or cost centers supplying the service and/or products.</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
-  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#Coding">Coding</a></td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-ex-revenue-center.html">Example Revenue Center Codes</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
   <tr><td colspan="2" class="structure"><a name="Claim.item.category"> </a><b>Claim.item.category</b></td></tr>
   <tr><td>Definition</td><td><p>Health Care Service Type Codes  to identify the classification of service or benefits.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>Benefit SubCategory Codes: <a href="valueset-benefit-subcategory.html">Benefit subcategories such as: oral-basic, major, glasses</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
-  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#Coding">Coding</a></td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-benefit-subcategory.html">Benefit SubCategory Codes</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
   <tr><td colspan="2" class="structure"><a name="Claim.item.service"> </a><b>Claim.item.service</b></td></tr>
-  <tr><td>Definition</td><td><p>If this is an actual service or product line, ie. not a Group, then use code to indicate the Professional Service or Product supplied (eg. CTP, HCPCS,USCLS,ICD10, NCPDP,DIN,ACHI,CCI). If a grouping item then use a group code to indicate the type of thing being grouped eg. 'glasses' or 'compound'.</p>
+  <tr><td>Definition</td><td><p>If this is an actual service or product line, ie. not a Group, then use code to indicate the Professional Service or Product supplied (eg. CTP, HCPCS,USCLS,ICD10, NCPDP,DIN,RXNorm,ACHI,CCI). If a grouping item then use a group code to indicate the type of thing being grouped eg. 'glasses' or 'compound'.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>USCLS Codes: <a href="valueset-service-uscls.html">Allowable service and product codes</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
-  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#Coding">Coding</a></td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-service-uscls.html">USCLS Codes</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
   <tr><td colspan="2" class="structure"><a name="Claim.item.modifier"> </a><b>Claim.item.modifier</b></td></tr>
   <tr><td>Definition</td><td><p>Item typification or modifiers codes, eg for Oral whether the treatment is cosmetic or associated with TMJ, or for medical whether the treatment was outside the clinic or out of office hours.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..*</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>Modifier type Codes: <a href="valueset-claim-modifiers.html">Item type or modifiers codes, eg for Oral whether the treatment is cosmetic or associated with TMJ, or an appliance was lost or stolen.</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
-  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#Coding">Coding</a></td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-claim-modifiers.html">Modifier type Codes</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
   <tr><td>Requirements</td><td><p>May impact on adjudication.</p>
 </td></tr>
   <tr><td colspan="2" class="structure"><a name="Claim.item.programCode"> </a><b>Claim.item.programCode</b></td></tr>
   <tr><td>Definition</td><td><p>For programs which require reason codes for the inclusion or covering of this billed item under the program or sub-program.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..*</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>Example Program Reason Codes: <a href="valueset-ex-program-code.html">Program specific reason codes</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
-  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#Coding">Coding</a></td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-ex-program-code.html">Example Program Reason Codes</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
   <tr><td colspan="2" class="structure"><a name="Claim.item.serviced_x_"> </a><b>Claim.item.serviced[x]</b></td></tr>
   <tr><td>Definition</td><td><p>The date or dates when the enclosed suite of services were performed or completed.</p>
 </td></tr>
@@ -554,8 +561,8 @@
   <tr><td>Definition</td><td><p>Where the service was provided.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>Example Service Place Codes: <a href="valueset-service-place.html">Place of service: pharmcy,school, prison, etc.</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
-  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#Coding">Coding</a>|<a href="datatypes.html#Address">Address</a>|<a href="references.html#Reference">Reference</a>(<a href="location.html">Location</a>)</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-service-place.html">Example Service Place Codes</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a>|<a href="datatypes.html#Address">Address</a>|<a href="references.html#Reference">Reference</a>(<a href="location.html">Location</a>)</td></tr>
   <tr><td>[x] Note</td><td>See <a href="formats.html#choice">Choice of Data Types</a> for further information about how to use [x]</td></tr>
   <tr><td colspan="2" class="structure"><a name="Claim.item.quantity"> </a><b>Claim.item.quantity</b></td></tr>
   <tr><td>Definition</td><td><p>The number of repetitions of a service or product.</p>
@@ -569,13 +576,6 @@
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#Money">Money</a></td></tr>
   <tr><td colspan="2" class="structure"><a name="Claim.item.factor"> </a><b>Claim.item.factor</b></td></tr>
   <tr><td>Definition</td><td><p>A real number that represents a multiplier used in determining the overall value of services delivered and/or goods received. The concept of a Factor allows for a discount or surcharge multiplier to be applied to a monetary amount.</p>
-</td></tr>
-  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#decimal">decimal</a></td></tr>
-  <tr><td>Requirements</td><td><p>If a fee is present the associated product/service code must be present.</p>
-</td></tr>
-  <tr><td colspan="2" class="structure"><a name="Claim.item.points"> </a><b>Claim.item.points</b></td></tr>
-  <tr><td>Definition</td><td><p>An amount that expresses the weighting (based on difficulty, cost and/or resource intensiveness) associated with the good or service delivered. The concept of Points allows for assignment of point values for services and/or goods, such that a monetary amount can be assigned to each point.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#decimal">decimal</a></td></tr>
@@ -599,14 +599,14 @@
   <tr><td>Definition</td><td><p>Physical service site on the patient (limb, tooth, etc).</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>Oral Site Codes: <a href="valueset-tooth.html">The code for the teeth, quadrant, sextant and arch</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
-  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#Coding">Coding</a></td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-tooth.html">Oral Site Codes</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
   <tr><td colspan="2" class="structure"><a name="Claim.item.subSite"> </a><b>Claim.item.subSite</b></td></tr>
   <tr><td>Definition</td><td><p>A region or surface of the site, eg. limb region or tooth surface(s).</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..*</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>Surface Codes: <a href="valueset-surface.html">The code for the tooth surface and surface combinations</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
-  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#Coding">Coding</a></td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-surface.html">Surface Codes</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
   <tr><td colspan="2" class="structure"><a name="Claim.item.detail"> </a><b>Claim.item.detail</b></td></tr>
   <tr><td>Definition</td><td><p>Second tier of goods and services.</p>
 </td></tr>
@@ -620,34 +620,34 @@
   <tr><td>Definition</td><td><p>The type of reveneu or cost center providing the product and/or service.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>Example Revenue Center Codes: <a href="valueset-ex-revenue-center.html">Codes for the revenue or cost centers supplying the service and/or products.</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
-  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#Coding">Coding</a></td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-ex-revenue-center.html">Example Revenue Center Codes</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
   <tr><td colspan="2" class="structure"><a name="Claim.item.detail.category"> </a><b>Claim.item.detail.category</b></td></tr>
   <tr><td>Definition</td><td><p>Health Care Service Type Codes  to identify the classification of service or benefits.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>Benefit SubCategory Codes: <a href="valueset-benefit-subcategory.html">Benefit subcategories such as: oral-basic, major, glasses</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
-  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#Coding">Coding</a></td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-benefit-subcategory.html">Benefit SubCategory Codes</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
   <tr><td colspan="2" class="structure"><a name="Claim.item.detail.service"> </a><b>Claim.item.detail.service</b></td></tr>
   <tr><td>Definition</td><td><p>If this is an actual service or product line, ie. not a Group, then use code to indicate the Professional Service or Product supplied (eg. CTP, HCPCS,USCLS,ICD10, NCPDP,DIN,ACHI,CCI). If a grouping item then use a group code to indicate the type of thing being grouped eg. 'glasses' or 'compound'.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>USCLS Codes: <a href="valueset-service-uscls.html">Allowable service and product codes</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
-  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#Coding">Coding</a></td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-service-uscls.html">USCLS Codes</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
   <tr><td colspan="2" class="structure"><a name="Claim.item.detail.modifier"> </a><b>Claim.item.detail.modifier</b></td></tr>
   <tr><td>Definition</td><td><p>Item typification or modifiers codes, eg for Oral whether the treatment is cosmetic or associated with TMJ, or for medical whether the treatment was outside the clinic or out of office hours.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..*</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>Modifier type Codes: <a href="valueset-claim-modifiers.html">Item type or modifiers codes, eg for Oral whether the treatment is cosmetic or associated with TMJ, or an appliance was lost or stolen.</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
-  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#Coding">Coding</a></td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-claim-modifiers.html">Modifier type Codes</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
   <tr><td>Requirements</td><td><p>May impact on adjudication.</p>
 </td></tr>
   <tr><td colspan="2" class="structure"><a name="Claim.item.detail.programCode"> </a><b>Claim.item.detail.programCode</b></td></tr>
   <tr><td>Definition</td><td><p>For programs which require reson codes for the inclusion, covering, of this billed item under the program or sub-program.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..*</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>Example Program Reason Codes: <a href="valueset-ex-program-code.html">Program specific reason codes</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
-  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#Coding">Coding</a></td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-ex-program-code.html">Example Program Reason Codes</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
   <tr><td colspan="2" class="structure"><a name="Claim.item.detail.quantity"> </a><b>Claim.item.detail.quantity</b></td></tr>
   <tr><td>Definition</td><td><p>The number of repetitions of a service or product.</p>
 </td></tr>
@@ -662,13 +662,6 @@
 </td></tr>
   <tr><td colspan="2" class="structure"><a name="Claim.item.detail.factor"> </a><b>Claim.item.detail.factor</b></td></tr>
   <tr><td>Definition</td><td><p>A real number that represents a multiplier used in determining the overall value of services delivered and/or goods received. The concept of a Factor allows for a discount or surcharge multiplier to be applied to a monetary amount.</p>
-</td></tr>
-  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#decimal">decimal</a></td></tr>
-  <tr><td>Requirements</td><td><p>If a fee is present the associated product/service code must be present.</p>
-</td></tr>
-  <tr><td colspan="2" class="structure"><a name="Claim.item.detail.points"> </a><b>Claim.item.detail.points</b></td></tr>
-  <tr><td>Definition</td><td><p>An amount that expresses the weighting (based on difficulty, cost and/or resource intensiveness) associated with the good or service delivered. The concept of Points allows for assignment of point values for services and/or goods, such that a monetary amount can be assigned to each point.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#decimal">decimal</a></td></tr>
@@ -701,34 +694,34 @@
   <tr><td>Definition</td><td><p>The type of reveneu or cost center providing the product and/or service.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>Example Revenue Center Codes: <a href="valueset-ex-revenue-center.html">Codes for the revenue or cost centers supplying the service and/or products.</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
-  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#Coding">Coding</a></td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-ex-revenue-center.html">Example Revenue Center Codes</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
   <tr><td colspan="2" class="structure"><a name="Claim.item.detail.subDetail.category"> </a><b>Claim.item.detail.subDetail.category</b></td></tr>
   <tr><td>Definition</td><td><p>Health Care Service Type Codes  to identify the classification of service or benefits.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>Benefit SubCategory Codes: <a href="valueset-benefit-subcategory.html">Benefit subcategories such as: oral-basic, major, glasses</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
-  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#Coding">Coding</a></td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-benefit-subcategory.html">Benefit SubCategory Codes</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
   <tr><td colspan="2" class="structure"><a name="Claim.item.detail.subDetail.service"> </a><b>Claim.item.detail.subDetail.service</b></td></tr>
   <tr><td>Definition</td><td><p>A code to indicate the Professional Service or Product supplied (eg. CTP, HCPCS,USCLS,ICD10, NCPDP,DIN,ACHI,CCI).</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>USCLS Codes: <a href="valueset-service-uscls.html">Allowable service and product codes</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
-  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#Coding">Coding</a></td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-service-uscls.html">USCLS Codes</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
   <tr><td colspan="2" class="structure"><a name="Claim.item.detail.subDetail.modifier"> </a><b>Claim.item.detail.subDetail.modifier</b></td></tr>
   <tr><td>Definition</td><td><p>Item typification or modifiers codes, eg for Oral whether the treatment is cosmetic or associated with TMJ, or for medical whether the treatment was outside the clinic or out of office hours.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..*</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>Modifier type Codes: <a href="valueset-claim-modifiers.html">Item type or modifiers codes, eg for Oral whether the treatment is cosmetic or associated with TMJ, or an appliance was lost or stolen.</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
-  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#Coding">Coding</a></td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-claim-modifiers.html">Modifier type Codes</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
   <tr><td>Requirements</td><td><p>May impact on adjudication.</p>
 </td></tr>
   <tr><td colspan="2" class="structure"><a name="Claim.item.detail.subDetail.programCode"> </a><b>Claim.item.detail.subDetail.programCode</b></td></tr>
   <tr><td>Definition</td><td><p>For programs which require reson codes for the inclusion, covering, of this billed item under the program or sub-program.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..*</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>Example Program Reason Codes: <a href="valueset-ex-program-code.html">Program specific reason codes</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
-  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#Coding">Coding</a></td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-ex-program-code.html">Example Program Reason Codes</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
   <tr><td colspan="2" class="structure"><a name="Claim.item.detail.subDetail.quantity"> </a><b>Claim.item.detail.subDetail.quantity</b></td></tr>
   <tr><td>Definition</td><td><p>The number of repetitions of a service or product.</p>
 </td></tr>
@@ -743,13 +736,6 @@
 </td></tr>
   <tr><td colspan="2" class="structure"><a name="Claim.item.detail.subDetail.factor"> </a><b>Claim.item.detail.subDetail.factor</b></td></tr>
   <tr><td>Definition</td><td><p>A real number that represents a multiplier used in determining the overall value of services delivered and/or goods received. The concept of a Factor allows for a discount or surcharge multiplier to be applied to a monetary amount.</p>
-</td></tr>
-  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#decimal">decimal</a></td></tr>
-  <tr><td>Requirements</td><td><p>If a fee is present the associated product/service code must be present.</p>
-</td></tr>
-  <tr><td colspan="2" class="structure"><a name="Claim.item.detail.subDetail.points"> </a><b>Claim.item.detail.subDetail.points</b></td></tr>
-  <tr><td>Definition</td><td><p>An amount that expresses the weighting (based on difficulty, cost and/or resource intensiveness) associated with the good or service delivered. The concept of Points allows for assignment of point values for services and/or goods, such that a monetary amount can be assigned to each point.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#decimal">decimal</a></td></tr>
@@ -791,8 +777,8 @@
   <tr><td>Definition</td><td><p>Material of the prior denture or bridge prosthesis. (Oral).</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>Oral Prostho Material type Codes: <a href="valueset-oral-prosthodontic-material.html">Material of the prior denture or bridge prosthesis. (Oral)</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
-  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#Coding">Coding</a></td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-oral-prosthodontic-material.html">Oral Prostho Material type Codes</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
   <tr><td>Requirements</td><td><p>May impact on adjudication.</p>
 </td></tr>
   <tr><td colspan="2" class="structure"><a name="Claim.total"> </a><b>Claim.total</b></td></tr>
@@ -800,35 +786,6 @@
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#Money">Money</a></td></tr>
-  <tr><td colspan="2" class="structure"><a name="Claim.missingTeeth"> </a><b>Claim.missingTeeth</b></td></tr>
-  <tr><td>Definition</td><td><p>A list of teeth which would be expected but are not found due to having been previously  extracted or for other reasons.</p>
-</td></tr>
-  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..*</td></tr>
-  <tr><td>Requirements</td><td><p>The list of missing teeth may influence the adjudication of services for example with Bridges.</p>
-</td></tr>
-  <tr><td colspan="2" class="structure"><a name="Claim.missingTeeth.tooth"> </a><b>Claim.missingTeeth.tooth</b></td></tr>
-  <tr><td>Definition</td><td><p>The code identifying which tooth is missing.</p>
-</td></tr>
-  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>1..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>Teeth Codes: <a href="valueset-teeth.html">The codes for the teeth, subset of OralSites</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
-  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#Coding">Coding</a></td></tr>
-  <tr><td>Requirements</td><td><p>Provides the tooth number of the missing tooth.</p>
-</td></tr>
-  <tr><td colspan="2" class="structure"><a name="Claim.missingTeeth.reason"> </a><b>Claim.missingTeeth.reason</b></td></tr>
-  <tr><td>Definition</td><td><p>Missing reason may be: E-extraction, O-other.</p>
-</td></tr>
-  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>Missing Tooth Reason Codes: <a href="valueset-missing-tooth-reason.html">Reason codes for the missing teeth</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
-  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#Coding">Coding</a></td></tr>
-  <tr><td>Requirements</td><td><p>Provides the reason for the missing tooth.</p>
-</td></tr>
-  <tr><td colspan="2" class="structure"><a name="Claim.missingTeeth.extractionDate"> </a><b>Claim.missingTeeth.extractionDate</b></td></tr>
-  <tr><td>Definition</td><td><p>The date of the extraction either known from records or patient reported estimate.</p>
-</td></tr>
-  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#date">date</a></td></tr>
-  <tr><td>Requirements</td><td><p>Some services and adjudications require this information.</p>
-</td></tr>
 </table>
 
 
@@ -847,7 +804,7 @@
 		<div class="container">  <!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:32-0500. <a href="qa.html">QA Page</a>
+        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:21-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search <img src="external.png" style="text-align: baseline"/></a> | 

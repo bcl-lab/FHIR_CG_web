@@ -14,10 +14,18 @@
   <status value="active"/>
 
   <type>
+   <coding>
     <system value="http://hl7.org/fhir/ex-claimtype"/>
     <code value="pharmacy"/>
+   </coding>	
   </type>
   
+ <use value="complete"/>
+
+ <patient>
+   <reference value="Patient/1"/>
+ </patient>
+ 
   <created value="2014-08-16"/>
 
  <insurer>
@@ -28,47 +36,52 @@
     <reference value="Organization/1"/>
  </organization>
 
- <use value="complete"/>
-
  <priority>
+   <coding>
     <code value="stat"/>
+   </coding>
  </priority>
 
  <payee>
    <type>
+    <coding>
      <code value="provider"/>
+	</coding>
    </type>
  </payee>
+
+   <careTeam>
+     <sequence value="1"/>
+     <provider>
+       <reference value="Practitioner/example"/>
+     </provider>
+   </careTeam>
  
   <diagnosis>
     <sequence value="1"/>
-	<diagnosis>
+	<diagnosisCodeableConcept>
+	 <coding>
 	  <code value="654456"/>
-	  </diagnosis>
+	 </coding>
+	</diagnosisCodeableConcept>
   </diagnosis>
  
- <patient>
-   <reference value="Patient/1"/>
- </patient>
- 
- <coverage>
+ <insurance>
    <sequence value="1"/>
    <focal value="true"/>
    <coverage>
      <reference value="Coverage/9876B1"/>
    </coverage>
- </coverage>
+ </insurance>
   
  <item>
    <sequence value="1"/>
-   <careTeam>
-     <provider>
-       <reference value="Practitioner/example"/>
-     </provider>
-   </careTeam>
+   <careTeamLinkId value="1"/>
    <service>
+    <coding>
      <system value="http://hl7.org/fhir/ex-pharmaservice"/>
      <code value="smokecess"/> <!--  smoking cessation consult  -->
+	</coding> 
    </service>
    <servicedDate value="2014-08-16"/>
    <unitPrice>

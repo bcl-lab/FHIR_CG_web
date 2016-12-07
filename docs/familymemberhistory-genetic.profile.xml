@@ -12,13 +12,13 @@
   <publisher value="Health Level Seven International (Clinical Genomics)"/>
   <contact>
     <telecom>
-      <system value="other"/>
+      <system value="url"/>
       <value value="http://www.hl7.org/Special/committees/clingenomics"/>
     </telecom>
   </contact>
   <date value="2013-10-02"/>
   <description value="Adds additional information to a family member history supporting both the capture of mother/father relationships as well as additional observations necessary to enable genetics-based risk analysis for patients"/>
-  <fhirVersion value="1.7.0"/>
+  <fhirVersion value="1.8.0"/>
   <mapping>
     <identity value="v2"/>
     <uri value="http://hl7.org/v2"/>
@@ -87,7 +87,7 @@
       <constraint>
         <key value="fhs-2"/>
         <severity value="error"/>
-        <human value="Can only have estimatedAge is age[x] is present"/>
+        <human value="Can only have estimatedAge if age[x] is present"/>
         <expression value="age.exists() or estimatedAge.empty()"/>
         <xpath value="exists(*[starts-with(local-name(.), &#39;age&#39;)]) or not(exists(f:estimatedAge))"/>
         <source value="FamilyMemberHistory"/>
@@ -246,7 +246,7 @@
     </element>
     <element id="FamilyMemberHistory:familymemberhistory-genetic.extension">
       <path value="FamilyMemberHistory.extension"/>
-      <slicing id="97">
+      <slicing id="91">
         <discriminator value="url"/>
         <ordered value="false"/>
         <rules value="open"/>
@@ -298,6 +298,7 @@
         <source value="Extension"/>
       </constraint>
       <mustSupport value="true"/>
+      <isModifier value="false"/>
     </element>
     <element id="FamilyMemberHistory:familymemberhistory-genetic.extension:sibling">
       <path value="FamilyMemberHistory.extension"/>
@@ -333,6 +334,7 @@
         <source value="Extension"/>
       </constraint>
       <mustSupport value="true"/>
+      <isModifier value="false"/>
     </element>
     <element id="FamilyMemberHistory:familymemberhistory-genetic.extension:observation">
       <path value="FamilyMemberHistory.extension"/>
@@ -368,6 +370,7 @@
         <source value="Extension"/>
       </constraint>
       <mustSupport value="true"/>
+      <isModifier value="false"/>
     </element>
     <element id="FamilyMemberHistory:familymemberhistory-genetic.modifierExtension">
       <path value="FamilyMemberHistory.modifierExtension"/>

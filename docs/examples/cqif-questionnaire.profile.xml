@@ -12,13 +12,13 @@
   <publisher value="Health Level Seven, Inc. - CDS WG"/>
   <contact>
     <telecom>
-      <system value="other"/>
+      <system value="url"/>
       <value value="http://hl7.org/special/committees/dss"/>
     </telecom>
   </contact>
   <date value="2015-05-30"/>
   <description value="A questionnaire with the ability to specify behavior associated with questions or groups of questions"/>
-  <fhirVersion value="1.7.0"/>
+  <fhirVersion value="1.8.0"/>
   <mapping>
     <identity value="rim"/>
     <uri value="http://hl7.org/v3"/>
@@ -521,7 +521,7 @@
     <element id="Questionnaire:cqif-questionnaire.concept">
       <path value="Questionnaire.concept"/>
       <short value="Concept that represents the overall questionnaire"/>
-      <definition value="Identifies a how this question or group of questions is known in a particular terminology such as LOINC."/>
+      <definition value="Identifies how this question or group of questions is known in a particular terminology such as LOINC."/>
       <requirements value="Allows linking of the complete Questionnaire resources to formal terminologies.  It&#39;s common for &quot;pannels&quot; of questions to be identified by a code."/>
       <min value="0"/>
       <max value="*"/>
@@ -661,6 +661,14 @@
         <xpath value="not((f:type/@value=&#39;group&#39; and not(f:item)) or (f:type/@value=&#39;display&#39; and f:item))"/>
         <source value="Questionnaire.item"/>
       </constraint>
+      <constraint>
+        <key value="que-11"/>
+        <severity value="error"/>
+        <human value="Type is required if a definition is not provided"/>
+        <expression value="definition.empty() implies type.exists()"/>
+        <xpath value="not(exists(f:type)) or exists(f:definition)"/>
+        <source value="Questionnaire.item"/>
+      </constraint>
       <mapping>
         <identity value="rim"/>
         <map value=".outboundRelationship[typeCode=COMP].target[classCode=OBS, moodCode=DEF]"/>
@@ -688,7 +696,7 @@
     </element>
     <element id="Questionnaire:cqif-questionnaire.item.extension">
       <path value="Questionnaire.item.extension"/>
-      <slicing id="102">
+      <slicing id="96">
         <discriminator value="url"/>
         <ordered value="false"/>
         <rules value="open"/>
@@ -839,15 +847,15 @@
     </element>
     <element id="Questionnaire:cqif-questionnaire.item.linkId">
       <path value="Questionnaire.item.linkId"/>
-      <short value="To link questionnaire with questionnaire response"/>
+      <short value="Unique id for item in questionnaire"/>
       <definition value="An identifier that is unique within the Questionnaire allowing linkage to the equivalent item in a QuestionnaireResponse resource."/>
-      <comments value="May be omitted if there is no expectation to link answers back to a Questionnaire.  This &#39;&#39;can&#39;&#39; be a meaningful identifier (e.g. a LOINC code) but is not intended to have any meaning.  GUIDs or sequential numbers are appropriate here."/>
-      <requirements value="[[[QuestionnaireResponse]]] does not require omitted items to be included and may have some items that repeat, so linkage based on position alone is not sufficient."/>
-      <min value="0"/>
+      <comments value="This &#39;&#39;can&#39;&#39; be a meaningful identifier (e.g. a LOINC code) but is not intended to have any meaning.  GUIDs or sequential numbers are appropriate here."/>
+      <requirements value="[QuestionnaireResponse](questionnaireresponse.html#) does not require omitted items to be included and may have some items that repeat, so linkage based on position alone is not sufficient."/>
+      <min value="1"/>
       <max value="1"/>
       <base>
         <path value="Questionnaire.item.linkId"/>
-        <min value="0"/>
+        <min value="1"/>
         <max value="1"/>
       </base>
       <type>
@@ -858,11 +866,42 @@
         <map value=".id"/>
       </mapping>
     </element>
+    <element id="Questionnaire:cqif-questionnaire.item.definition">
+      <path value="Questionnaire.item.definition"/>
+      <short value="ElementDefinition - details for the item"/>
+      <definition value="A reference to an [ElementDefinition](elementdefinition.html) that provides the details for the item. If a definition is provided, then the following element values can be inferred from the definition: 
+
+* concept (ElementDefinition.code)
+* type (ElementDefinition.type)
+* required (ElementDefinition.min)
+* repeats (ElementDefinition.max)
+* maxLength (ElementDefinition.maxLength)
+* options (ElementDefinition.binding)
+
+Any information provided in these elements overrides the information from the definition."/>
+      <comments value="The ElementDefinition must be in a [StructureDefinition](structuredefinition.html#) or a [DataElement](dataelement.html#), and must have a fragment identifier that identifies the specific data element by it\&#39;s id (Element.id). E.g. http://hl7.org/fhir/StructureDefinition/Observation#Observation.value[x]."/>
+      <requirements value="A common pattern is to define a set of data elements, and then build multiple different questionnaires for different circumstances to gather the data. This element provides traceability to the common definition, and allows the content for the question to come from the underlying definition."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="Questionnaire.item.definition"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="uri"/>
+      </type>
+      <condition value="que-11"/>
+      <mapping>
+        <identity value="rim"/>
+        <map value="Not supported"/>
+      </mapping>
+    </element>
     <element id="Questionnaire:cqif-questionnaire.item.concept">
       <path value="Questionnaire.item.concept"/>
       <short value="Concept that represents this item within in a questionnaire"/>
-      <definition value="Identifies a how this group of questions is known in a particular terminology such as LOINC."/>
-      <comments value="The code(s) for the &quot;root&quot; group apply to the questionnaire as a whole."/>
+      <definition value="Terminology code that corresponds to this group or question (e.g. LOINC)."/>
+      <comments value="The code(s) for the &quot;root&quot; group apply to the questionnaire as a whole. Value may come from the ElementDefinition referred to by .definition."/>
       <requirements value="Allows linking of groups of questions (and complete Questionnaire resources) to formal terminologies."/>
       <min value="0"/>
       <max value="*"/>
@@ -936,20 +975,21 @@ Systems SHOULD NOT generate their own prefixes if prefixes are defined for any i
     </element>
     <element id="Questionnaire:cqif-questionnaire.item.type">
       <path value="Questionnaire.item.type"/>
-      <short value="group | display | question | boolean | decimal | integer | date | dateTime +"/>
+      <short value="group | display | boolean | decimal | integer | date | dateTime +"/>
       <definition value="Identifies the type of questionnaire item this is - whether text for display, a grouping of other items or a particular type of data to be captured (string, integer, coded choice, etc.)."/>
-      <comments value="Additional constraints on the type of answer can be conveyed by extensions."/>
+      <comments value="Additional constraints on the type of answer can be conveyed by extensions. Value may come from the ElementDefinition referred to by .definition."/>
       <requirements value="Defines the format in which the user is to be prompted for the answer."/>
-      <min value="1"/>
+      <min value="0"/>
       <max value="1"/>
       <base>
         <path value="Questionnaire.item.type"/>
-        <min value="1"/>
+        <min value="0"/>
         <max value="1"/>
       </base>
       <type>
         <code value="code"/>
       </type>
+      <condition value="que-11"/>
       <binding>
         <strength value="required"/>
         <description value="Distinguishes groups from questions and display text and indicates data type for questions"/>
@@ -1174,7 +1214,7 @@ The dataType of this element must be the same as the data type of the question b
       <path value="Questionnaire.item.required"/>
       <short value="Whether the item must be included in data results"/>
       <definition value="If true, indicates that the item must be present in a &quot;completed&quot; QuestionnaireResponse.  If false, the item may be skipped when answering the questionnaire."/>
-      <comments value="If an item that contains other items is marked as required, that does not automatically make the contained elements required (though required groups must contain at least one child element)."/>
+      <comments value="Questionnaire.item.required only has meaning for elements that are conditionally enabled with enableWhen if the condition evaluates to true.  If an item that contains other items is marked as required, that does not automatically make the contained elements required (though required groups must contain at least one child element). Value may come from the ElementDefinition referred to by .definition."/>
       <min value="0"/>
       <max value="1"/>
       <base>
@@ -1196,6 +1236,7 @@ The dataType of this element must be the same as the data type of the question b
       <path value="Questionnaire.item.repeats"/>
       <short value="Whether the item may repeat"/>
       <definition value="Whether the item may occur multiple times in the instance, containing multiple sets of answers."/>
+      <comments value="If a question is marked as repeats=true, then multiple answers can be provided for the question in the corresponding QuestionnaireResponse.  When rendering the questionnaire, it is up to the rendering software whether to render the question text for each answer repetition or to simply list each of the answers beneath the question.  (Which is most appropriate visually may depend on the type of answer as well as whether there are nested items.). Value may come from the ElementDefinition referred to by .definition."/>
       <requirements value="Items may be used to create set of (related) questions that can be repeated to give multiple answers to such a set."/>
       <min value="0"/>
       <max value="1"/>
@@ -1240,7 +1281,7 @@ The dataType of this element must be the same as the data type of the question b
       <path value="Questionnaire.item.maxLength"/>
       <short value="No more than this many characters"/>
       <definition value="The maximum number of characters that are permitted in the answer to be considered a &quot;valid&quot; QuestionnaireResponse."/>
-      <comments value="For base64binary, reflects the number of characters representing the encoded data, not the number of bytes of the binary data."/>
+      <comments value="For base64binary, reflects the number of characters representing the encoded data, not the number of bytes of the binary data. Value may come from the ElementDefinition referred to by .definition."/>
       <min value="0"/>
       <max value="1"/>
       <base>
@@ -1265,7 +1306,7 @@ The dataType of this element must be the same as the data type of the question b
       <path value="Questionnaire.item.options"/>
       <short value="Valueset containing permitted answers"/>
       <definition value="Reference to a value set containing a list of codes representing permitted answers for the question."/>
-      <comments value="LOINC defines many useful value sets for questionnaire response. See [LOINC Answer Lists](loinc.html#alist)."/>
+      <comments value="LOINC defines many useful value sets for questionnaire response. See [LOINC Answer Lists](loinc.html#alist). Value may come from the ElementDefinition referred to by .definition."/>
       <min value="0"/>
       <max value="1"/>
       <base>
@@ -1420,8 +1461,9 @@ The dataType of this element must be the same as the data type of the question b
     </element>
     <element id="Questionnaire:cqif-questionnaire.item.initial[x]">
       <path value="Questionnaire.item.initial[x]"/>
-      <short value="Initial presumed answer for question"/>
-      <definition value="The value that should be pre-populated when rendering the questionnaire for user input."/>
+      <short value="Default value when item is first rendered"/>
+      <definition value="The value that should be defaulted when rendering the questionnaire for user input."/>
+      <comments value="The user is allowed to change the value and override the default (unless marked as read-only). If the user doesn&#39;t change the value, then this initial value will be persisted when the QuestionnaireResponse is initially created."/>
       <requirements value="In some workflows, having defaults saves time."/>
       <min value="0"/>
       <max value="1"/>

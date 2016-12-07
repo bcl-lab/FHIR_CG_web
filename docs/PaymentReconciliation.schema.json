@@ -28,50 +28,16 @@
             },
             "status": {
               "description": "The status of the resource instance.",
-              "enum": [
-                "active",
-                "cancelled",
-                "draft",
-                "entered-in-error"
-              ],
-              "type": "string"
+              "type": "string",
+              "pattern": "[^\\s]+([\\s]?[^\\s]+)*"
             },
             "_status": {
               "description": "Extensions for status",
               "$ref": "Element.schema.json#/definitions/Element"
             },
-            "request": {
-              "description": "Original request resource reference.",
-              "$ref": "Reference.schema.json#/definitions/Reference"
-            },
-            "outcome": {
-              "description": "Transaction status: error, complete.",
-              "enum": [
-                "complete",
-                "error",
-                "partial"
-              ],
-              "type": "string"
-            },
-            "_outcome": {
-              "description": "Extensions for outcome",
-              "$ref": "Element.schema.json#/definitions/Element"
-            },
-            "disposition": {
-              "description": "A description of the status of the adjudication.",
-              "type": "string"
-            },
-            "_disposition": {
-              "description": "Extensions for disposition",
-              "$ref": "Element.schema.json#/definitions/Element"
-            },
-            "ruleset": {
-              "description": "The version of the style of resource contents. This should be mapped to the allowable profiles for this and supporting resources.",
-              "$ref": "Coding.schema.json#/definitions/Coding"
-            },
-            "originalRuleset": {
-              "description": "The style (standard) and version of the original material which was converted into this resource.",
-              "$ref": "Coding.schema.json#/definitions/Coding"
+            "period": {
+              "description": "The period of time for which payments have been gathered into this bulk payment for settlement.",
+              "$ref": "Period.schema.json#/definitions/Period"
             },
             "created": {
               "description": "The date when the enclosed suite of services were performed or completed.",
@@ -82,13 +48,25 @@
               "description": "Extensions for created",
               "$ref": "Element.schema.json#/definitions/Element"
             },
-            "period": {
-              "description": "The period of time for which payments have been gathered into this bulk payment for settlement.",
-              "$ref": "Period.schema.json#/definitions/Period"
-            },
             "organization": {
               "description": "The Insurer who produced this adjudicated response.",
               "$ref": "Reference.schema.json#/definitions/Reference"
+            },
+            "request": {
+              "description": "Original request resource reference.",
+              "$ref": "Reference.schema.json#/definitions/Reference"
+            },
+            "outcome": {
+              "description": "Transaction status: error, complete.",
+              "$ref": "CodeableConcept.schema.json#/definitions/CodeableConcept"
+            },
+            "disposition": {
+              "description": "A description of the status of the adjudication.",
+              "type": "string"
+            },
+            "_disposition": {
+              "description": "Extensions for disposition",
+              "$ref": "Element.schema.json#/definitions/Element"
             },
             "requestProvider": {
               "description": "The practitioner who is responsible for the services rendered to the patient.",
@@ -107,7 +85,7 @@
             },
             "form": {
               "description": "The form to be used for printing the content.",
-              "$ref": "Coding.schema.json#/definitions/Coding"
+              "$ref": "CodeableConcept.schema.json#/definitions/CodeableConcept"
             },
             "total": {
               "description": "Total payment amount.",
@@ -122,7 +100,6 @@
             }
           },
           "required": [
-            "total",
             "resourceType"
           ]
         }
@@ -138,7 +115,7 @@
           "properties": {
             "type": {
               "description": "Code to indicate the nature of the payment, adjustment, funds advance, etc.",
-              "$ref": "Coding.schema.json#/definitions/Coding"
+              "$ref": "CodeableConcept.schema.json#/definitions/CodeableConcept"
             },
             "request": {
               "description": "The claim or financial resource.",
@@ -186,7 +163,7 @@
           "properties": {
             "type": {
               "description": "The note purpose: Print/Display.",
-              "$ref": "Coding.schema.json#/definitions/Coding"
+              "$ref": "CodeableConcept.schema.json#/definitions/CodeableConcept"
             },
             "text": {
               "description": "The note text.",

@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>Account - FHIR v1.7.0</title>
+  <title>Account - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -135,14 +135,14 @@
   <tr><td>Definition</td><td><p>Categorizes the account for reporting and searching purposes.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td><a href="terminologies.html#unbound">AccountType</a>: The usage type of this account, permits categorization of accounts.</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="terminologies.html#unbound">AccountType</a>: </td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
   <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
   <tr><td colspan="2" class="structure"><a name="Account.status"> </a><b>Account.status</b></td></tr>
   <tr><td>Definition</td><td><p>Indicates whether the account is presently used/useable or not.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>AccountStatus: <a href="valueset-account-status.html">Indicates whether the account is available to be used.</a> (<a href="terminologies.html#required">Required</a>)</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-account-status.html">AccountStatus</a> (<a href="terminologies.html#required">Required</a>)</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#code">code</a></td></tr>
   <tr><td><a href="conformance-rules.html#ismodifier">Is Modifier</a></td><td>true</td></tr>
   <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
@@ -159,7 +159,7 @@ This period may be different to the coveragePeriod which is the duration of time
   <tr><td>Definition</td><td><p>Identifies the currency to which transactions must be converted when crediting or debiting the account.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td><a href="http://www.iso.org/iso/home/standards/currency_codes">AccountCurrency <img src="external.png" style="text-align: baseline"/></a>: <a href="terminologies.html#example">Example</a>: <a href="http://www.iso.org/iso/home/standards/currency_codes">Currency codes - ISO 4217 <img src="external.png" style="text-align: baseline"/></a> (The monetary currency in which this account records values.)</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="http://www.iso.org/iso/home/standards/currency_codes">AccountCurrency <img src="external.png" style="text-align: baseline"/></a>: </td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#Coding">Coding</a></td></tr>
   <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
   <tr><td>Comments</td><td><p>Tracked separately from balance because currency might be known when balance is not.  In some cases, balance might be expressed in a currency other than the base currency for the account.</p>
@@ -211,6 +211,29 @@ Where the order is important, a local/jurisdicational extension may be defined t
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#string">string</a></td></tr>
   <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
+  <tr><td colspan="2" class="structure"><a name="Account.guarantor"> </a><b>Account.guarantor</b></td></tr>
+  <tr><td>Definition</td><td><p>Parties financially responsible for the account.</p>
+</td></tr>
+  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..*</td></tr>
+  <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
+  <tr><td colspan="2" class="structure"><a name="Account.guarantor.party"> </a><b>Account.guarantor.party</b></td></tr>
+  <tr><td>Definition</td><td><p>The entity who is responsible.</p>
+</td></tr>
+  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>1..1</td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="references.html#Reference">Reference</a>(<a href="patient.html">Patient</a> | <a href="relatedperson.html">RelatedPerson</a> | <a href="organization.html">Organization</a>)</td></tr>
+  <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
+  <tr><td colspan="2" class="structure"><a name="Account.guarantor.onHold"> </a><b>Account.guarantor.onHold</b></td></tr>
+  <tr><td>Definition</td><td><p>A guarantor may be placed on credit hold or otherwise have their role temporarily suspended.</p>
+</td></tr>
+  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#boolean">boolean</a></td></tr>
+  <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
+  <tr><td colspan="2" class="structure"><a name="Account.guarantor.period"> </a><b>Account.guarantor.period</b></td></tr>
+  <tr><td>Definition</td><td><p>The timeframe during which the guarantor accepts responsibility for the account.</p>
+</td></tr>
+  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#Period">Period</a></td></tr>
+  <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
 </table>
 
 
@@ -229,7 +252,7 @@ Where the order is important, a local/jurisdicational extension may be defined t
 		<div class="container">  <!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:32-0500. <a href="qa.html">QA Page</a>
+        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:21-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search <img src="external.png" style="text-align: baseline"/></a> | 

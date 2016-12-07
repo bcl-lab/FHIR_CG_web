@@ -9,15 +9,15 @@
     {
       "telecom": [
         {
-          "system": "other",
+          "system": "url",
           "value": "http://www.hl7.org/Special/committees/clingenomics"
         }
       ]
     }
   ],
   "date": "2013-10-02",
-  "description": "Identifies a parent of the relative.",
-  "fhirVersion": "1.7.0",
+  "description": "Identifies a sibling of the relative.",
+  "fhirVersion": "1.8.0",
   "mapping": [
     {
       "identity": "rim",
@@ -40,8 +40,8 @@
         "id": "Extension:naturalbrothersnaturalsisters-geneticother",
         "path": "Extension",
         "short": "natural brother(s) & natural sister(s) - genetic & other",
-        "definition": "Identifies a parent of the relative.",
-        "comments": "Some rare cases may have complex inner-pedigree-tree relationship. For instance, double cousin relationship need two extra link with In pedigree tree itself. This can't be revealed by relationship to subject.",
+        "definition": "Identifies a sibling of the relative.",
+        "comments": "Some cases may have complex inner-pedigree-tree relationship. For instance, double cousin relationship need two extra link with In pedigree tree itself. This can't be revealed by relationship to subject.",
         "min": 0,
         "max": "*",
         "base": {
@@ -103,7 +103,7 @@
         "id": "Extension:naturalbrothersnaturalsisters-geneticother.extension",
         "path": "Extension.extension",
         "slicing": {
-          "id": "75",
+          "id": "71",
           "discriminator": [
             "url"
           ],
@@ -238,10 +238,10 @@
           }
         ],
         "binding": {
-          "strength": "example",
-          "description": "The nature of the relationship between the patient and the related person being described in the family member history.",
+          "strength": "required",
+          "description": "Sibling relationship types",
           "valueSetReference": {
-            "reference": "http://hl7.org/fhir/ValueSet/v3-FamilyMember"
+            "reference": "http://hl7.org/fhir/ValueSet/sibling-relationship-codes"
           }
         },
         "mapping": [
@@ -252,12 +252,12 @@
         ]
       },
       {
-        "id": "Extension:naturalbrothersnaturalsisters-geneticother.extension:identifier",
+        "id": "Extension:naturalbrothersnaturalsisters-geneticother.extension:reference",
         "path": "Extension.extension",
-        "sliceName": "identifier",
+        "sliceName": "reference",
         "short": "Link to sibling relative(s)",
-        "definition": "Identifies a sibling of the relative.",
-        "min": 0,
+        "definition": "Points to the FamilyMemberHistory record of the relation who is the sibling of this relation.",
+        "min": 1,
         "max": "1",
         "base": {
           "path": "Element.extension",
@@ -272,7 +272,7 @@
         "isModifier": false
       },
       {
-        "id": "Extension:naturalbrothersnaturalsisters-geneticother.extension:identifier.id",
+        "id": "Extension:naturalbrothersnaturalsisters-geneticother.extension:reference.id",
         "path": "Extension.extension.id",
         "representation": [
           "xmlAttr"
@@ -299,7 +299,7 @@
         ]
       },
       {
-        "id": "Extension:naturalbrothersnaturalsisters-geneticother.extension:identifier.extension:extension",
+        "id": "Extension:naturalbrothersnaturalsisters-geneticother.extension:reference.extension:extension",
         "path": "Extension.extension.extension",
         "sliceName": "extension",
         "short": "Extension",
@@ -318,7 +318,7 @@
         ]
       },
       {
-        "id": "Extension:naturalbrothersnaturalsisters-geneticother.extension:identifier.url",
+        "id": "Extension:naturalbrothersnaturalsisters-geneticother.extension:reference.url",
         "path": "Extension.extension.url",
         "representation": [
           "xmlAttr"
@@ -338,7 +338,7 @@
             "code": "uri"
           }
         ],
-        "fixedUri": "identifier",
+        "fixedUri": "reference",
         "mapping": [
           {
             "identity": "rim",
@@ -347,7 +347,7 @@
         ]
       },
       {
-        "id": "Extension:naturalbrothersnaturalsisters-geneticother.extension:identifier.valueReference",
+        "id": "Extension:naturalbrothersnaturalsisters-geneticother.extension:reference.valueReference",
         "path": "Extension.extension.valueReference",
         "short": "Value of extension",
         "definition": "Value of extension - may be a resource or one of a constrained set of the data types (see Extensibility in the spec for list).",
@@ -543,8 +543,8 @@
         "id": "Extension:naturalbrothersnaturalsisters-geneticother",
         "path": "Extension",
         "short": "natural brother(s) & natural sister(s) - genetic & other",
-        "definition": "Identifies a parent of the relative.",
-        "comments": "Some rare cases may have complex inner-pedigree-tree relationship. For instance, double cousin relationship need two extra link with In pedigree tree itself. This can't be revealed by relationship to subject.",
+        "definition": "Identifies a sibling of the relative.",
+        "comments": "Some cases may have complex inner-pedigree-tree relationship. For instance, double cousin relationship need two extra link with In pedigree tree itself. This can't be revealed by relationship to subject.",
         "min": 0,
         "max": "*",
         "isModifier": false
@@ -590,20 +590,20 @@
           }
         ],
         "binding": {
-          "strength": "example",
-          "description": "The nature of the relationship between the patient and the related person being described in the family member history.",
+          "strength": "required",
+          "description": "Sibling relationship types",
           "valueSetReference": {
-            "reference": "http://hl7.org/fhir/ValueSet/v3-FamilyMember"
+            "reference": "http://hl7.org/fhir/ValueSet/sibling-relationship-codes"
           }
         }
       },
       {
-        "id": "Extension:naturalbrothersnaturalsisters-geneticother.extension:identifier",
+        "id": "Extension:naturalbrothersnaturalsisters-geneticother.extension:reference",
         "path": "Extension.extension",
-        "sliceName": "identifier",
+        "sliceName": "reference",
         "short": "Link to sibling relative(s)",
-        "definition": "Identifies a sibling of the relative.",
-        "min": 0,
+        "definition": "Points to the FamilyMemberHistory record of the relation who is the sibling of this relation.",
+        "min": 1,
         "max": "1",
         "type": [
           {
@@ -613,23 +613,23 @@
         "isModifier": false
       },
       {
-        "id": "Extension:naturalbrothersnaturalsisters-geneticother.extension:identifier.extension:extension",
+        "id": "Extension:naturalbrothersnaturalsisters-geneticother.extension:reference.extension:extension",
         "path": "Extension.extension.extension",
         "sliceName": "extension",
         "max": "0"
       },
       {
-        "id": "Extension:naturalbrothersnaturalsisters-geneticother.extension:identifier.url",
+        "id": "Extension:naturalbrothersnaturalsisters-geneticother.extension:reference.url",
         "path": "Extension.extension.url",
         "type": [
           {
             "code": "uri"
           }
         ],
-        "fixedUri": "identifier"
+        "fixedUri": "reference"
       },
       {
-        "id": "Extension:naturalbrothersnaturalsisters-geneticother.extension:identifier.value[x]",
+        "id": "Extension:naturalbrothersnaturalsisters-geneticother.extension:reference.value[x]",
         "path": "Extension.extension.value[x]",
         "min": 1,
         "type": [

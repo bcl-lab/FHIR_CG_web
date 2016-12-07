@@ -1,0 +1,76 @@
+{
+  "@context": "http://build.fhir.org/Coverage.jsonld",
+  "@context": "http://hl7.org/fhir/Coverage/SP1234",
+  "Resource.id": {
+    "id.value": "SP1234"
+  },
+  "DomainResource.text": {
+    "Narrative.status": {
+      "code.value": "generated"
+    },
+    "Narrative.div": {
+      "xhtml.value": "<div xmlns=\"http://www.w3.org/1999/xhtml\">A human-readable rendering of a Self Pay Agreement.</div>"
+    }
+  },
+  "Coverage.identifier": [
+    {
+      "Identifier.system": {
+        "uri.value": "http://hospitalx.com/selfpayagreement"
+      },
+      "Identifier.value": {
+        "string.value": "SP12345678"
+      }
+    }
+  ],
+  "Coverage.status": {
+    "code.value": "active"
+  },
+  "Coverage.type": {
+    "CodeableConcept.coding": [
+      {
+        "Coding.system": {
+          "uri.value": "http://hl7.org/fhir/coverage-selfpay"
+        },
+        "Coding.code": {
+          "code.value": "pay"
+        },
+        "Coding.display": {
+          "string.value": "PAY"
+        }
+      }
+    ]
+  },
+  "Coverage.subscriber": {
+    "Reference.reference": {
+      "string.value": "Patient/5"
+    },
+    "Resource.reference": "http://hl7.org/fhir//Patient/5"
+  },
+  "Coverage.beneficiary": {
+    "Reference.reference": {
+      "string.value": "Patient/5"
+    },
+    "Resource.reference": "http://hl7.org/fhir//Patient/5"
+  },
+  "Coverage.relationship": {
+    "CodeableConcept.coding": [
+      {
+        "Coding.code": {
+          "code.value": "self"
+        }
+      }
+    ]
+  },
+  "Coverage.period": {
+    "Period.end": {
+      "dateTime.value": "2012-03-17"
+    }
+  },
+  "Coverage.payor": [
+    {
+      "Reference.reference": {
+        "string.value": "Patient/5"
+      }
+    }
+  ]
+}

@@ -3,7 +3,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>Questionnaireresponse.profile.json - FHIR v1.7.0</title>
+  <title>Questionnaireresponse.profile.json - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -119,7 +119,7 @@
   &quot;resourceType&quot;: &quot;StructureDefinition&quot;,
   &quot;id&quot;: &quot;QuestionnaireResponse&quot;,
   &quot;meta&quot;: {
-    &quot;lastUpdated&quot;: &quot;2016-11-28T17:29:55.664-05:00&quot;
+    &quot;lastUpdated&quot;: &quot;2016-12-07T14:18:58.982-05:00&quot;
   },
   &quot;text&quot;: {
     &quot;status&quot;: &quot;generated&quot;,
@@ -129,6 +129,10 @@
     {
       &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm&quot;,
       &quot;valueInteger&quot;: 2
+    },
+    {
+      &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/structuredefinition-wg&quot;,
+      &quot;valueCode&quot;: &quot;pc&quot;
     }
   ],
   &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse&quot;,
@@ -139,7 +143,7 @@
     {
       &quot;telecom&quot;: [
         {
-          &quot;system&quot;: &quot;other&quot;,
+          &quot;system&quot;: &quot;url&quot;,
           &quot;value&quot;: &quot;http://hl7.org/fhir&quot;
         }
       ]
@@ -147,16 +151,16 @@
     {
       &quot;telecom&quot;: [
         {
-          &quot;system&quot;: &quot;other&quot;,
+          &quot;system&quot;: &quot;url&quot;,
           &quot;value&quot;: &quot;http://www.hl7.org/Special/committees/patientcare/index.cfm&quot;
         }
       ]
     }
   ],
-  &quot;date&quot;: &quot;2016-11-28T17:29:55-05:00&quot;,
+  &quot;date&quot;: &quot;2016-12-07T14:18:58-05:00&quot;,
   &quot;description&quot;: &quot;Base StructureDefinition for QuestionnaireResponse Resource&quot;,
   &quot;purpose&quot;: &quot;To support structured, hierarchical registration of data gathered using digital forms and other questionnaires.&quot;,
-  &quot;fhirVersion&quot;: &quot;1.7.0&quot;,
+  &quot;fhirVersion&quot;: &quot;1.8.0&quot;,
   &quot;mapping&quot;: [
     {
       &quot;identity&quot;: &quot;rim&quot;,
@@ -481,8 +485,8 @@
       {
         &quot;id&quot;: &quot;QuestionnaireResponse.basedOn&quot;,
         &quot;path&quot;: &quot;QuestionnaireResponse.basedOn&quot;,
-        &quot;short&quot;: &quot;Request fulfilled by this Questionnaire&quot;,
-        &quot;definition&quot;: &quot;Identifies the order, proposal or plan that is fulfilled in whole or in part by this Questionnaire.&quot;,
+        &quot;short&quot;: &quot;Request fulfilled by this QuestionnaireResponse&quot;,
+        &quot;definition&quot;: &quot;Identifies the order, proposal or plan that is fulfilled in whole or in part by this QuestionnaireResponse.&quot;,
         &quot;requirements&quot;: &quot;Supports traceability of authorization and confirmation of action on recommendations.&quot;,
         &quot;alias&quot;: [
           &quot;order&quot;
@@ -588,6 +592,7 @@
         &quot;path&quot;: &quot;QuestionnaireResponse.subject&quot;,
         &quot;short&quot;: &quot;The subject of the questions&quot;,
         &quot;definition&quot;: &quot;The subject of the questionnaire response.  This could be a patient, organization, practitioner, device, etc.  This is who/what the answers apply to, but is not necessarily the source of information.&quot;,
+        &quot;comments&quot;: &quot;If the Questionnaire declared a subjectType, the resource pointed to by this element must be an instance of that type.&quot;,
         &quot;requirements&quot;: &quot;The subject context must be known.&quot;,
         &quot;alias&quot;: [
           &quot;Patient&quot;,
@@ -758,6 +763,7 @@
         &quot;path&quot;: &quot;QuestionnaireResponse.item&quot;,
         &quot;short&quot;: &quot;Groups and questions&quot;,
         &quot;definition&quot;: &quot;Corresponds to a group or question item from the original questionnaire.&quot;,
+        &quot;comments&quot;: &quot;Groups cannot have answers and therefore must nest directly within item. When dealing with questions, nesting must occur within each answer because some questions may have multiple answers (and the nesting occurs for each answer).&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;*&quot;,
         &quot;type&quot;: [
@@ -773,6 +779,13 @@
             &quot;expression&quot;: &quot;children().count() &gt; id.count()&quot;,
             &quot;xpath&quot;: &quot;@value|f:*|h:div&quot;,
             &quot;source&quot;: &quot;Element&quot;
+          },
+          {
+            &quot;key&quot;: &quot;qrs-1&quot;,
+            &quot;severity&quot;: &quot;error&quot;,
+            &quot;human&quot;: &quot;Nested item can't be beneath both item and answer&quot;,
+            &quot;expression&quot;: &quot;(answer.exists() and item.exists()).not()&quot;,
+            &quot;xpath&quot;: &quot;not(exists(f:answer) and exists(f:item))&quot;
           }
         ],
         &quot;mapping&quot;: [
@@ -873,10 +886,10 @@
       {
         &quot;id&quot;: &quot;QuestionnaireResponse.item.linkId&quot;,
         &quot;path&quot;: &quot;QuestionnaireResponse.item.linkId&quot;,
-        &quot;short&quot;: &quot;Corresponding item within Questionnaire&quot;,
+        &quot;short&quot;: &quot;Pointer to specific item from Questionnaire&quot;,
         &quot;definition&quot;: &quot;Identifies the item from the Questionnaire that corresponds to this item in the QuestionnaireResponse resource.&quot;,
         &quot;requirements&quot;: &quot;Items can repeat in the answers, so a direct 1..1 correspondence may not exist - requiring correspondence by identifier.&quot;,
-        &quot;min&quot;: 0,
+        &quot;min&quot;: 1,
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
@@ -887,6 +900,27 @@
           {
             &quot;identity&quot;: &quot;rim&quot;,
             &quot;map&quot;: &quot;.outboundRelationship[typeCode=DEFN].target[classCode=OBS, moodCode=DEFN]&quot;
+          }
+        ]
+      },
+      {
+        &quot;id&quot;: &quot;QuestionnaireResponse.item.definition&quot;,
+        &quot;path&quot;: &quot;QuestionnaireResponse.item.definition&quot;,
+        &quot;short&quot;: &quot;ElementDefinition - details for the item&quot;,
+        &quot;definition&quot;: &quot;A reference to an [ElementDefinition](elementdefinition.html) that provides the details for the item.&quot;,
+        &quot;comments&quot;: &quot;The ElementDefinition must be in a [StructureDefinition](structuredefinition.html) or a [DataElement](dataelement.html), and must have a fragment identifier that identifies the specific data element by it\\'s id (Element.id). E.g. http://hl7.org/fhir/StructureDefinition/Observation#Observation.value[x].&quot;,
+        &quot;requirements&quot;: &quot;A common pattern is to define a set of data elements, and then build multiple different questionnaires for different circumstances to gather the data. This element provides traceability to the common definition.&quot;,
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;1&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;uri&quot;
+          }
+        ],
+        &quot;mapping&quot;: [
+          {
+            &quot;identity&quot;: &quot;rim&quot;,
+            &quot;map&quot;: &quot;Not supported&quot;
           }
         ]
       },
@@ -1197,8 +1231,8 @@
       {
         &quot;id&quot;: &quot;QuestionnaireResponse.basedOn&quot;,
         &quot;path&quot;: &quot;QuestionnaireResponse.basedOn&quot;,
-        &quot;short&quot;: &quot;Request fulfilled by this Questionnaire&quot;,
-        &quot;definition&quot;: &quot;Identifies the order, proposal or plan that is fulfilled in whole or in part by this Questionnaire.&quot;,
+        &quot;short&quot;: &quot;Request fulfilled by this QuestionnaireResponse&quot;,
+        &quot;definition&quot;: &quot;Identifies the order, proposal or plan that is fulfilled in whole or in part by this QuestionnaireResponse.&quot;,
         &quot;requirements&quot;: &quot;Supports traceability of authorization and confirmation of action on recommendations.&quot;,
         &quot;alias&quot;: [
           &quot;order&quot;
@@ -1304,6 +1338,7 @@
         &quot;path&quot;: &quot;QuestionnaireResponse.subject&quot;,
         &quot;short&quot;: &quot;The subject of the questions&quot;,
         &quot;definition&quot;: &quot;The subject of the questionnaire response.  This could be a patient, organization, practitioner, device, etc.  This is who/what the answers apply to, but is not necessarily the source of information.&quot;,
+        &quot;comments&quot;: &quot;If the Questionnaire declared a subjectType, the resource pointed to by this element must be an instance of that type.&quot;,
         &quot;requirements&quot;: &quot;The subject context must be known.&quot;,
         &quot;alias&quot;: [
           &quot;Patient&quot;,
@@ -1474,11 +1509,21 @@
         &quot;path&quot;: &quot;QuestionnaireResponse.item&quot;,
         &quot;short&quot;: &quot;Groups and questions&quot;,
         &quot;definition&quot;: &quot;Corresponds to a group or question item from the original questionnaire.&quot;,
+        &quot;comments&quot;: &quot;Groups cannot have answers and therefore must nest directly within item. When dealing with questions, nesting must occur within each answer because some questions may have multiple answers (and the nesting occurs for each answer).&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;*&quot;,
         &quot;type&quot;: [
           {
             &quot;code&quot;: &quot;BackboneElement&quot;
+          }
+        ],
+        &quot;constraint&quot;: [
+          {
+            &quot;key&quot;: &quot;qrs-1&quot;,
+            &quot;severity&quot;: &quot;error&quot;,
+            &quot;human&quot;: &quot;Nested item can't be beneath both item and answer&quot;,
+            &quot;expression&quot;: &quot;(answer.exists() and item.exists()).not()&quot;,
+            &quot;xpath&quot;: &quot;not(exists(f:answer) and exists(f:item))&quot;
           }
         ],
         &quot;mapping&quot;: [
@@ -1491,10 +1536,10 @@
       {
         &quot;id&quot;: &quot;QuestionnaireResponse.item.linkId&quot;,
         &quot;path&quot;: &quot;QuestionnaireResponse.item.linkId&quot;,
-        &quot;short&quot;: &quot;Corresponding item within Questionnaire&quot;,
+        &quot;short&quot;: &quot;Pointer to specific item from Questionnaire&quot;,
         &quot;definition&quot;: &quot;Identifies the item from the Questionnaire that corresponds to this item in the QuestionnaireResponse resource.&quot;,
         &quot;requirements&quot;: &quot;Items can repeat in the answers, so a direct 1..1 correspondence may not exist - requiring correspondence by identifier.&quot;,
-        &quot;min&quot;: 0,
+        &quot;min&quot;: 1,
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
@@ -1505,6 +1550,27 @@
           {
             &quot;identity&quot;: &quot;rim&quot;,
             &quot;map&quot;: &quot;.outboundRelationship[typeCode=DEFN].target[classCode=OBS, moodCode=DEFN]&quot;
+          }
+        ]
+      },
+      {
+        &quot;id&quot;: &quot;QuestionnaireResponse.item.definition&quot;,
+        &quot;path&quot;: &quot;QuestionnaireResponse.item.definition&quot;,
+        &quot;short&quot;: &quot;ElementDefinition - details for the item&quot;,
+        &quot;definition&quot;: &quot;A reference to an [ElementDefinition](elementdefinition.html) that provides the details for the item.&quot;,
+        &quot;comments&quot;: &quot;The ElementDefinition must be in a [StructureDefinition](structuredefinition.html) or a [DataElement](dataelement.html), and must have a fragment identifier that identifies the specific data element by it\\'s id (Element.id). E.g. http://hl7.org/fhir/StructureDefinition/Observation#Observation.value[x].&quot;,
+        &quot;requirements&quot;: &quot;A common pattern is to define a set of data elements, and then build multiple different questionnaires for different circumstances to gather the data. This element provides traceability to the common definition.&quot;,
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;1&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;uri&quot;
+          }
+        ],
+        &quot;mapping&quot;: [
+          {
+            &quot;identity&quot;: &quot;rim&quot;,
+            &quot;map&quot;: &quot;Not supported&quot;
           }
         ]
       },
@@ -1690,7 +1756,7 @@ of the specification.
 		<div class="container"><!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:33-0500. <a href="qa.html">QA Page</a>
+        © HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:28-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search</a> | 

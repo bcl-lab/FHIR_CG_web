@@ -35,8 +35,8 @@ start=@<MedicationAdministration> AND {fhir:nodeRole [fhir:treeRoot]}
                                             # administration 
     (                                       # Start and end time of 
                                             # administration 
-        fhir:MedicationAdministration.effectiveTimeDateTime @<dateTime>  |
-        fhir:MedicationAdministration.effectiveTimePeriod @<Period> 
+        fhir:MedicationAdministration.effectiveDateTime @<dateTime>  |
+        fhir:MedicationAdministration.effectivePeriod @<Period> 
     );
     fhir:MedicationAdministration.performer  # Who administered substance
     (   @<PractitionerReference> OR
@@ -71,10 +71,7 @@ start=@<MedicationAdministration> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
     fhir:MedicationAdministration.dosage.text @<string>?;  # Free text dosage instructions e.g. 
                                             # SIG 
-    (                                       # Body site administered to
-        fhir:MedicationAdministration.dosage.siteCodeableConcept @<CodeableConcept>  |
-        fhir:MedicationAdministration.dosage.siteReference @<Reference> 
-    )?;
+    fhir:MedicationAdministration.dosage.site @<CodeableConcept>?;  # Body site administered to
     fhir:MedicationAdministration.dosage.route @<CodeableConcept>?;  # Path of substance into body
     fhir:MedicationAdministration.dosage.method @<CodeableConcept>?;  # How drug was administered
     fhir:MedicationAdministration.dosage.dose @<SimpleQuantity>?;  # Amount of medication per dose
@@ -406,11 +403,11 @@ start=@<MedicationAdministration> AND {fhir:nodeRole [fhir:treeRoot]}
 # A set of codes indicating the current status of a MedicationAdministration.
 fhirvs:medication-admin-status ["in-progress" "on-hold" "completed" "entered-in-error" "stopped"]
 
+# How the Quantity should be understood and represented.
+fhirvs:quantity-comparator ["<" "<=" ">=" ">"]
+
 # Identifies the purpose for this identifier, if known .
 fhirvs:identifier-use ["usual" "official" "temp" "secondary"]
 
 # The status of a resource narrative
 fhirvs:narrative-status ["generated" "extensions" "additional" "empty"]
-
-# How the Quantity should be understood and represented.
-fhirvs:quantity-comparator ["<" "<=" ">=" ">"]

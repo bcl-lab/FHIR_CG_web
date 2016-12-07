@@ -27,7 +27,7 @@ start=@<Device> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:Device.status @<code> AND
     	{fhir:value @fhirvs:devicestatus}?;  # available | not-available | 
                                             # entered-in-error 
-    fhir:Device.type @<CodeableConcept>;    # What kind of device this is
+    fhir:Device.type @<CodeableConcept>?;   # What kind of device this is
     fhir:Device.lotNumber @<string>?;       # Lot number of manufacture
     fhir:Device.manufacturer @<string>?;    # Name of device manufacturer
     fhir:Device.manufactureDate @<dateTime>?;  # Date when the device was made
@@ -150,7 +150,8 @@ start=@<Device> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:extension @<Extension>*;           # Additional Content defined by 
                                             # implementations 
     fhir:ContactPoint.system @<code> AND
-    	{fhir:value @fhirvs:contact-point-system}?;  # phone | fax | email | pager | other
+    	{fhir:value @fhirvs:contact-point-system}?;  # phone | fax | email | pager | url 
+                                            # | other 
     fhir:ContactPoint.value @<string>?;     # The actual contact point details
     fhir:ContactPoint.use @<code> AND
     	{fhir:value @fhirvs:contact-point-use}?;  # home | work | temp | old | mobile 
@@ -275,11 +276,11 @@ start=@<Device> AND {fhir:nodeRole [fhir:treeRoot]}
 # The availability status of the device.
 fhirvs:devicestatus ["available" "not-available" "entered-in-error"]
 
-# Telecommunications form for contact point
-fhirvs:contact-point-system ["phone" "fax" "email" "pager" "other"]
-
 # Use of contact point
 fhirvs:contact-point-use ["home" "work" "temp" "old" "mobile"]
+
+# Telecommunications form for contact point
+fhirvs:contact-point-system ["phone" "fax" "email" "pager" "url" "other"]
 
 # Identifies the purpose for this identifier, if known .
 fhirvs:identifier-use ["usual" "official" "temp" "secondary"]

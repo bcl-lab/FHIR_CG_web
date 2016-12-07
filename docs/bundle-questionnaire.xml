@@ -6,7 +6,7 @@
     <system value="urn:ietf:rfc:3986"/>
   </identifier>
   <status value="draft"/>
-  <date value="2016-11-28T17:29:55-05:00"/>
+  <date value="2016-12-07T14:18:58-05:00"/>
   <publisher value="Health Level Seven International (FHIR Infrastructure)"/>
   <item>
     <linkId value="Bundle"/>
@@ -186,6 +186,53 @@
         <valueInteger value="1"/>
       </extension>
       <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
+        <valueString value="Identifier"/>
+      </extension>
+      <linkId value="Bundle.identifier"/>
+      <text value="Persistent identifier for the bundle"/>
+      <type value="group"/>
+      <required value="false"/>
+      <repeats value="true"/>
+      <item>
+        <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl">
+          <valueCodeableConcept>
+            <coding>
+              <system value="http://hl7.org/fhir/questionnaire-item-control"/>
+              <code value="flyover"/>
+              <display value="Fly-over"/>
+            </coding>
+          </valueCodeableConcept>
+        </extension>
+        <text value="A persistent identifier for the batch that won&#39;t change as a batch is copied from server to server. Persistent identity generally only matters for batches of type Document, Message, and Collection. It would not normally be populated for search and history results, and servers ignore Bundle.identifier when processing batches and transactions. For Documents, the .identifier SHALL be populated such that the .identifier is globally unique."/>
+        <type value="display"/>
+      </item>
+      <item>
+        <linkId value="Bundle.identifier.label"/>
+        <text value="label:"/>
+        <type value="string"/>
+        <required value="false"/>
+        <repeats value="false"/>
+      </item>
+      <item>
+        <linkId value="Bundle.identifier.system"/>
+        <text value="system:"/>
+        <type value="string"/>
+        <required value="false"/>
+        <repeats value="false"/>
+      </item>
+      <item>
+        <linkId value="Bundle.identifier.value"/>
+        <text value="value:"/>
+        <type value="string"/>
+        <required value="false"/>
+        <repeats value="false"/>
+      </item>
+    </item>
+    <item>
+      <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs">
+        <valueInteger value="1"/>
+      </extension>
+      <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
         <valueString value="integer"/>
       </extension>
       <linkId value="Bundle.total"/>
@@ -328,12 +375,12 @@
               </coding>
             </valueCodeableConcept>
           </extension>
-          <text value="A name which details the functional use for this link - see [[http://www.iana.org/assignments/link-relations/link-relations.xhtml]]."/>
+          <text value="A name which details the functional use for this link - see [http://www.iana.org/assignments/link-relations/link-relations.xhtml#link-relations-1](http://www.iana.org/assignments/link-relations/link-relations.xhtml#link-relations-1)."/>
           <type value="display"/>
         </item>
         <item>
           <linkId value="Bundle.link.relation.value"/>
-          <text value="http://www.iana.org/assignments/link-relations/link-relations.xhtml"/>
+          <text value="See http://www.iana.org/assignments/link-relations/link-relations.xhtml#link-relations-1"/>
           <type value="string"/>
           <required value="false"/>
           <repeats value="false"/>
@@ -1177,7 +1224,7 @@
                 </coding>
               </valueCodeableConcept>
             </extension>
-            <text value="The etag for the resource, it the operation for the entry produced a versioned resource. This has to match the version id in the header if a resource is included."/>
+            <text value="The etag for the resource, it the operation for the entry produced a versioned resource (see [Resource Metadata and Versioning](http.html#versioning) and [Managing Resource Contention](http.html#concurrency)). Etags match the Resource.meta.versionId. The ETag has to match the version id in the header if a resource is included."/>
             <type value="display"/>
           </item>
           <item>

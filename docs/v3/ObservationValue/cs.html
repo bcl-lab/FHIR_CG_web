@@ -2,7 +2,7 @@
 <!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>ObservationValue - FHIR v1.7.0</title>
+  <title>ObservationValue - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -137,7 +137,7 @@ Description copied from Concept Domain of same name.  Must be corrected..)</li>
 <a name="definition"> </a>
 <h2 class="self-link-parent"><span class="sectioncount">4.3.2.1063.1</span> Code System Content <a href="cs.html#definition" title="link to here" class="self-link"><img src="../../assets/images/link.svg" width="20" class="self-link" height="20"/></a></h2>
 
-<div xmlns="http://www.w3.org/1999/xhtml"><p>Release Date: 2016-03-23</p>
+<div xmlns="http://www.w3.org/1999/xhtml"><p>Release Date: 2016-11-11</p>
 <table class="grid">
  <tr><td><b>Level</b></td><td><b>Code</b></td><td><b>Display</b></td><td><b>Definition</b></td></tr>
  <tr><td>1</td><td><span style="color: grey"><i>(_ActCoverageAssessmentObservationValue)</i></span> <b><i>Abstract</i></b></td><td><a name="_ActCoverageAssessmentObservationValue">&nbsp;</a></td><td>
@@ -425,6 +425,26 @@ Description copied from Concept Domain of same name.  Must be corrected..)</li>
                            Description:Patient exhibits a severe reaction to the challenge agent.<br/>
 
                      </td></tr>
+ <tr><td>1</td><td><span style="color: grey"><i>(_CompositeMeasureScoring)</i></span> <b><i>Abstract</i></b></td><td><a name="_CompositeMeasureScoring">&nbsp;</a></td><td>
+                        Observation values that communicate the method used in a quality measure to combine the component measure results included in an composite measure.<br/>
+
+                     </td></tr>
+ <tr><td>2</td><td>&nbsp;&nbsp;ALLORNONESCR<a name="ALLORNONESCR"> </a></td><td>All-or-nothing Scoring</td><td>
+                        Code specifying that the measure uses all-or-nothing scoring. All-or-nothing scoring places an individual in the numerator of the composite measure if and only if they are in the numerator of all component measures in which they are in the denominator. <br/>
+
+                     </td></tr>
+ <tr><td>2</td><td>&nbsp;&nbsp;LINEARSCR<a name="LINEARSCR"> </a></td><td>Linear Scoring</td><td>
+                        Code specifying that the measure uses linear scoring. Linear scoring computes the fraction of component measures in which the individual appears in the numerator, giving equal weight to each component measure.<br/>
+
+                     </td></tr>
+ <tr><td>2</td><td>&nbsp;&nbsp;OPPORSCR<a name="OPPORSCR"> </a></td><td>Opportunity Scoring</td><td>
+                        Code specifying that the measure uses opportunity-based scoring. In opportunity-based scoring the measure score is determined by combining the denominator and numerator of each component measure to determine an overall composite score.<br/>
+
+                     </td></tr>
+ <tr><td>2</td><td>&nbsp;&nbsp;WEIGHTSCR<a name="WEIGHTSCR"> </a></td><td>Weighted Scoring</td><td>
+                        Code specifying that the measure uses weighted scoring. Weighted scoring assigns a factor to each component measure to weight that measure's contribution to the overall score.<br/>
+
+                     </td></tr>
  <tr><td>1</td><td><span style="color: grey"><i>(_CoverageLimitObservationValue)</i></span> <b><i>Abstract</i></b></td><td><a name="_CoverageLimitObservationValue">&nbsp;</a></td><td>
                         
                            Description:Coded observation values for coverage limitations, for e.g., types of claims or types of parties covered under a policy or program.<br/>
@@ -669,7 +689,7 @@ Description copied from Concept Domain of same name.  Must be corrected..)</li>
                         Security metadata observation value conveying the alteration integrity of an IT resource (data, information object, service, or system capability), by indicating the mechanism by which software systems can strip portions of the resource that could allow the identification of the source of the information or the information subject.  Custodian may retain a key to relink data necessary to reidentify the information subject.<br/>
 
                         
-                           Rationale: Personal data which has been processed to make it impossible to know whose data it is. Used particularly for secondary use of health data. In some cases, it may be possible for authorized individuals to restore the identity of the individual, e.g.,for public health case management.  Based on ISO/TS 25237:2008 Health informatics Pseudonymization<br/>
+                           Rationale: Personal data which has been processed to make it impossible to know whose data it is. Used particularly for secondary use of health data. In some cases, it may be possible for authorized individuals to restore the identity of the individual, e.g.,for public health case management.  Based on ISO/TS 25237:2008 Health informaticsâ€”Pseudonymization<br/>
 
                      </td></tr>
  <tr><td>4</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;REDACTED<a name="REDACTED"> </a></td><td>redacted</td><td>
@@ -912,7 +932,7 @@ Long-term shared authentication secrets, if used, are never revealed to any part
 
                         The degree of confidence in the vetting process used to establish the identity of the individual to whom the credential was issued, and 2) the degree of confidence that the individual who uses the credential is the individual to whom the credential was issued. [OMB M-04-04 E-Authentication Guidance for Federal Agencies]<br/>
 
-                        High authentication level of assurance indicates that the relying party may have very high confidence in the asserted identity's validity. Level 4 is for transactions that need very high confidence in the accuracy of the asserted identity. Level 4 provides the highest practical assurance of remote network authentication. Authentication is based on proof of possession of a key through a cryptographic protocol. This level is similar to Level 3 except that only hard cryptographic tokens are allowed, cryptographic module validation requirements are strengthened, and subsequent critical data transfers must be authenticated via a key that is bound to the authentication process. The token should be a hardware cryptographic module validated at FIPS 140-2 Level 2 or higher overall with at least FIPS 140-2 Level 3 physical security. This level requires a physical token, which cannot readily be copied, and operator authentication at Level 2 and higher, and ensures good, two-factor remote authentication.<br/>
+                        High authentication level of assurance indicates that the relying party may have very high confidence in the asserted identity's validity. Level 4 is for transactions that need very high confidence in the accuracy of the asserted identity. Level 4 provides the highest practical assurance of remote network authentication. Authentication is based on proof of possession of a key through a cryptographic protocol. This level is similar to Level 3 except that only â€œhardâ€? cryptographic tokens are allowed, cryptographic module validation requirements are strengthened, and subsequent critical data transfers must be authenticated via a key that is bound to the authentication process. The token should be a hardware cryptographic module validated at FIPS 140-2 Level 2 or higher overall with at least FIPS 140-2 Level 3 physical security. This level requires a physical token, which cannot readily be copied, and operator authentication at Level 2 and higher, and ensures good, two-factor remote authentication.<br/>
 
                         Level 4 requires strong cryptographic authentication of all parties and all sensitive data transfers between the parties. Either public key or symmetric key technology may be used. Authentication requires that the claimant prove through a secure authentication protocol that the claimant controls the token. Eavesdropper, replay, online guessing, verifier impersonation, and man-in-the-middle attacks are prevented. Long-term shared authentication secrets, if used, are never revealed to any party except the claimant and verifiers operated directly by the CSP; however, session (temporary) shared secrets may be provided to independent verifiers by the CSP. Strong approved cryptographic techniques are used for all operations. All sensitive data transfers are cryptographically authenticated using keys bound to the authentication process.   [Summary of the technical requirements specified in NIST SP 800-63 for the four levels of assurance defined by the December 2003, the Office of Management and Budget (OMB) issued Memorandum M-04-04, E-Authentication Guidance for Federal Agencies.]<br/>
 
@@ -1205,7 +1225,7 @@ Long-term shared authentication secrets, if used, are never revealed to any part
 		<div class="container">  <!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:33-0500. <a href="../../qa.html">QA Page</a>
+        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:28-0500. <a href="../../qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search <img src="../../external.png" style="text-align: baseline"/></a> | 

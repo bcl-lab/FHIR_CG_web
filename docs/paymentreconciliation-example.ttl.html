@@ -3,7 +3,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>Paymentreconciliation-example.ttl - FHIR v1.7.0</title>
+  <title>Paymentreconciliation-example.ttl - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -136,17 +136,23 @@
      fhir:Identifier.value [ fhir:value &quot;781234&quot; ]
   ];
   fhir:PaymentReconciliation.status [ fhir:value &quot;active&quot;];
-  fhir:PaymentReconciliation.request [
-     fhir:link &lt;http://www.BenefitsInc.com/fhir/eligibility/225476332402&gt;;
-     fhir:Reference.reference [ fhir:value &quot;http://www.BenefitsInc.com/fhir/eligibility/225476332402&quot; ]
-  ];
-  fhir:PaymentReconciliation.outcome [ fhir:value &quot;complete&quot;];
-  fhir:PaymentReconciliation.disposition [ fhir:value &quot;2014 August mid-month settlement.&quot;];
   fhir:PaymentReconciliation.created [ fhir:value &quot;2014-08-16&quot;^^xsd:date];
   fhir:PaymentReconciliation.organization [
      fhir:link &lt;http://hl7.org/fhir/Organization/2&gt;;
      fhir:Reference.reference [ fhir:value &quot;Organization/2&quot; ]
   ];
+  fhir:PaymentReconciliation.request [
+     fhir:link &lt;http://www.BenefitsInc.com/fhir/eligibility/225476332402&gt;;
+     fhir:Reference.reference [ fhir:value &quot;http://www.BenefitsInc.com/fhir/eligibility/225476332402&quot; ]
+  ];
+  fhir:PaymentReconciliation.outcome [
+     fhir:CodeableConcept.coding [
+       fhir:index 0;
+       fhir:Coding.system [ fhir:value &quot;http://hl7.org/fhir/remittance-outcome&quot; ];
+       fhir:Coding.code [ fhir:value &quot;complete&quot; ]
+     ]
+  ];
+  fhir:PaymentReconciliation.disposition [ fhir:value &quot;2014 August mid-month settlement.&quot;];
   fhir:PaymentReconciliation.requestOrganization [
      fhir:link &lt;http://hl7.org/fhir/Organization/1&gt;;
      fhir:Reference.reference [ fhir:value &quot;Organization/1&quot; ]
@@ -154,8 +160,11 @@
   fhir:PaymentReconciliation.detail [
      fhir:index 0;
      fhir:PaymentReconciliation.detail.type [
-       fhir:Coding.system [ fhir:value &quot;http://hl7.org/fhir/paymenttype&quot; ];
-       fhir:Coding.code [ fhir:value &quot;payment&quot; ]
+       fhir:CodeableConcept.coding [
+         fhir:index 0;
+         fhir:Coding.system [ fhir:value &quot;http://hl7.org/fhir/paymenttype&quot; ];
+         fhir:Coding.code [ fhir:value &quot;payment&quot; ]
+       ]
      ];
      fhir:PaymentReconciliation.detail.request [
        fhir:link &lt;http://www.BenefitsInc.com/fhir/oralhealthclaim/225476332402&gt;;
@@ -170,8 +179,11 @@
   ], [
      fhir:index 1;
      fhir:PaymentReconciliation.detail.type [
-       fhir:Coding.system [ fhir:value &quot;http://hl7.org/fhir/paymenttype&quot; ];
-       fhir:Coding.code [ fhir:value &quot;payment&quot; ]
+       fhir:CodeableConcept.coding [
+         fhir:index 0;
+         fhir:Coding.system [ fhir:value &quot;http://hl7.org/fhir/paymenttype&quot; ];
+         fhir:Coding.code [ fhir:value &quot;payment&quot; ]
+       ]
      ];
      fhir:PaymentReconciliation.detail.request [
        fhir:link &lt;http://www.BenefitsInc.com/fhir/oralhealthclaim/225476332699&gt;;
@@ -186,8 +198,11 @@
   ], [
      fhir:index 2;
      fhir:PaymentReconciliation.detail.type [
-       fhir:Coding.system [ fhir:value &quot;http://hl7.org/fhir/paymenttype&quot; ];
-       fhir:Coding.code [ fhir:value &quot;advance&quot; ]
+       fhir:CodeableConcept.coding [
+         fhir:index 0;
+         fhir:Coding.system [ fhir:value &quot;http://hl7.org/fhir/paymenttype&quot; ];
+         fhir:Coding.code [ fhir:value &quot;advance&quot; ]
+       ]
      ];
      fhir:PaymentReconciliation.detail.date [ fhir:value &quot;2014-08-16&quot;^^xsd:date ];
      fhir:PaymentReconciliation.detail.amount [
@@ -233,7 +248,7 @@ of the specification.
 		<div class="container"><!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:33-0500. <a href="qa.html">QA Page</a>
+        © HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:28-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search</a> | 

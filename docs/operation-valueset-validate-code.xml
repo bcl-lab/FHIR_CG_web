@@ -37,13 +37,13 @@
         </tr>
         <tr>
           <td>IN</td>
-          <td>identifier</td>
+          <td>url</td>
           <td>0..1</td>
           <td>uri</td>
           <td/>
           <td>
             <div>
-              <p>A logical value set identifier (i.e. ValueSet.url). The server must know the value set (e.g. it is defined explicitly in the server&#39;s value sets, or it is defined implicitly by some code system known to the server</p>
+              <p>Value set Canonical URL. The server must know the value set (e.g. it is defined explicitly in the server&#39;s value sets, or it is defined implicitly by some code system known to the server</p>
 
             </div>
           </td>
@@ -179,6 +179,19 @@
           </td>
         </tr>
         <tr>
+          <td>IN</td>
+          <td>displayLanguage</td>
+          <td>0..1</td>
+          <td>code</td>
+          <td/>
+          <td>
+            <div>
+              <p>Specifies the language to be used for description when validating the display property</p>
+
+            </div>
+          </td>
+        </tr>
+        <tr>
           <td>OUT</td>
           <td>result</td>
           <td>1..1</td>
@@ -224,11 +237,11 @@
   <name value="Value Set based Validation"/>
   <status value="draft"/>
   <kind value="operation"/>
-  <date value="2016-11-28T17:29:55-05:00"/>
+  <date value="2016-12-07T14:18:58-05:00"/>
   <publisher value="HL7 (FHIR Project)"/>
   <contact>
     <telecom>
-      <system value="other"/>
+      <system value="url"/>
       <value value="http://hl7.org/fhir"/>
     </telecom>
     <telecom>
@@ -243,11 +256,11 @@
   <type value="true"/>
   <instance value="true"/>
   <parameter>
-    <name value="identifier"/>
+    <name value="url"/>
     <use value="in"/>
     <min value="0"/>
     <max value="1"/>
-    <documentation value="A logical value set identifier (i.e. ValueSet.url). The server must know the value set (e.g. it is defined explicitly in the server&#39;s value sets, or it is defined implicitly by some code system known to the server"/>
+    <documentation value="Value set Canonical URL. The server must know the value set (e.g. it is defined explicitly in the server&#39;s value sets, or it is defined implicitly by some code system known to the server"/>
     <type value="uri"/>
   </parameter>
   <parameter>
@@ -329,6 +342,14 @@
     <max value="1"/>
     <documentation value="if true, then an abstract code is allowed to be used in the context of the code that is being validated. Typically, abstract codes are allowed to be used in value set specifications (e.g. any code that is subsumed by an abstract code). If false (which is the default value), then only concrete codes as defined by the value set are allowed"/>
     <type value="boolean"/>
+  </parameter>
+  <parameter>
+    <name value="displayLanguage"/>
+    <use value="in"/>
+    <min value="0"/>
+    <max value="1"/>
+    <documentation value="Specifies the language to be used for description when validating the display property"/>
+    <type value="code"/>
   </parameter>
   <parameter>
     <name value="result"/>

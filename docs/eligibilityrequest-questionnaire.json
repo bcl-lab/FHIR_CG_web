@@ -9,8 +9,8 @@
       "status": "active",
       "description": "Type options for EligibilityRequest.serviced[x]",
       "expansion": {
-        "identifier": "urn:uuid:c318582f-0d68-42c4-af6d-56d597f32c7a",
-        "timestamp": "2016-11-28T17:32:37-05:00",
+        "identifier": "urn:uuid:624ce002-d5eb-46da-bbc9-c99ca003aae4",
+        "timestamp": "2016-12-07T14:21:45-05:00",
         "contains": [
           {
             "system": "http://hl7.org/fhir/data-types",
@@ -32,7 +32,7 @@
     }
   ],
   "status": "draft",
-  "date": "2016-11-28T17:29:55-05:00",
+  "date": "2016-12-07T14:18:58-05:00",
   "publisher": "Health Level Seven International (Financial Management)",
   "item": [
     {
@@ -57,7 +57,7 @@
               }
             }
           ],
-          "text": "This resource provides the insurance eligibility details from the insurer regarding a specified coverage and optionally some class of service.",
+          "text": "This resource provides the details  from the insurer to identify a specified coverage and optionally some class of service.",
           "type": "display"
         },
         {
@@ -393,10 +393,6 @@
         {
           "extension": [
             {
-              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-minOccurs",
-              "valueInteger": 1
-            },
-            {
               "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs",
               "valueInteger": 1
             },
@@ -407,7 +403,7 @@
           ],
           "linkId": "EligibilityRequest.status",
           "type": "group",
-          "required": true,
+          "required": false,
           "repeats": true,
           "item": [
             {
@@ -445,10 +441,11 @@
             },
             {
               "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType",
-              "valueString": "Coding"
+              "valueString": "CodeableConcept"
             }
           ],
-          "linkId": "EligibilityRequest.ruleset",
+          "linkId": "EligibilityRequest.priority",
+          "text": "Desired processing priority",
           "type": "group",
           "required": false,
           "repeats": true,
@@ -468,13 +465,20 @@
                   }
                 }
               ],
-              "text": "The version of the style of resource contents. This should be mapped to the allowable profiles for this and supporting resources.",
+              "text": "Immediate (STAT), best effort (NORMAL), deferred (DEFER).",
               "type": "display"
             },
             {
-              "linkId": "EligibilityRequest.ruleset.value",
-              "text": "Resource version",
+              "linkId": "EligibilityRequest.priority.coding",
+              "text": "code:",
               "type": "open-choice",
+              "required": false,
+              "repeats": false
+            },
+            {
+              "linkId": "EligibilityRequest.priority.text",
+              "text": "text:",
+              "type": "string",
               "required": false,
               "repeats": false
             }
@@ -488,10 +492,10 @@
             },
             {
               "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType",
-              "valueString": "Coding"
+              "valueString": "Reference"
             }
           ],
-          "linkId": "EligibilityRequest.originalRuleset",
+          "linkId": "EligibilityRequest.patient",
           "type": "group",
           "required": false,
           "repeats": true,
@@ -511,15 +515,116 @@
                   }
                 }
               ],
-              "text": "The style (standard) and version of the original material which was converted into this resource.",
+              "text": "Patient Resource. 1..1.",
               "type": "display"
             },
             {
-              "linkId": "EligibilityRequest.originalRuleset.value",
-              "text": "Original version",
-              "type": "open-choice",
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-allowedResource",
+                  "valueCode": "Patient"
+                },
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-referenceFilter",
+                  "valueString": "subject=$subj&patient=$subj&encounter=$encounter"
+                }
+              ],
+              "linkId": "EligibilityRequest.patient.value",
+              "text": "The subject of the Products and Services",
+              "type": "reference",
               "required": false,
               "repeats": false
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs",
+              "valueInteger": 1
+            }
+          ],
+          "linkId": "EligibilityRequest.serviced[x]",
+          "text": "Estimated date or dates of Service",
+          "type": "group",
+          "required": false,
+          "repeats": true,
+          "item": [
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://hl7.org/fhir/questionnaire-item-control",
+                        "code": "flyover",
+                        "display": "Fly-over"
+                      }
+                    ]
+                  }
+                }
+              ],
+              "text": "The date or dates when the enclosed suite of services were performed or completed.",
+              "type": "display"
+            },
+            {
+              "linkId": "EligibilityRequest.serviced[x]._type",
+              "text": "type",
+              "type": "choice",
+              "required": false,
+              "repeats": false,
+              "options": {
+                "reference": "#vs2"
+              },
+              "item": [
+                {
+                  "extension": [
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType",
+                      "valueString": "datetime"
+                    }
+                  ],
+                  "linkId": "EligibilityRequest.serviced[x]._date",
+                  "type": "group",
+                  "item": [
+                    {
+                      "linkId": "EligibilityRequest.serviced[x]._date.value",
+                      "text": "date",
+                      "type": "dateTime",
+                      "required": false,
+                      "repeats": false
+                    }
+                  ]
+                },
+                {
+                  "extension": [
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType",
+                      "valueString": "Period"
+                    }
+                  ],
+                  "linkId": "EligibilityRequest.serviced[x]._Period",
+                  "text": "Period",
+                  "type": "group",
+                  "item": [
+                    {
+                      "linkId": "EligibilityRequest.serviced[x]._Period.low",
+                      "text": "start:",
+                      "type": "dateTime",
+                      "required": false,
+                      "repeats": false
+                    },
+                    {
+                      "linkId": "EligibilityRequest.serviced[x]._Period.end",
+                      "text": "end:",
+                      "type": "dateTime",
+                      "required": false,
+                      "repeats": false
+                    }
+                  ]
+                }
+              ]
             }
           ]
         },
@@ -577,7 +682,7 @@
               "valueString": "Reference"
             }
           ],
-          "linkId": "EligibilityRequest.insurer",
+          "linkId": "EligibilityRequest.enterer",
           "type": "group",
           "required": false,
           "repeats": true,
@@ -597,22 +702,22 @@
                   }
                 }
               ],
-              "text": "The Insurer who is target  of the request.",
+              "text": "Person who created the invoice/claim/pre-determination or pre-authorization.",
               "type": "display"
             },
             {
               "extension": [
                 {
                   "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-allowedResource",
-                  "valueCode": "Organization"
+                  "valueCode": "Practitioner"
                 },
                 {
                   "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-referenceFilter",
                   "valueString": "subject=$subj&patient=$subj&encounter=$encounter"
                 }
               ],
-              "linkId": "EligibilityRequest.insurer.value",
-              "text": "Target",
+              "linkId": "EligibilityRequest.enterer.value",
+              "text": "Author",
               "type": "reference",
               "required": false,
               "repeats": false
@@ -733,53 +838,10 @@
             },
             {
               "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType",
-              "valueString": "Coding"
-            }
-          ],
-          "linkId": "EligibilityRequest.priority",
-          "type": "group",
-          "required": false,
-          "repeats": true,
-          "item": [
-            {
-              "extension": [
-                {
-                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
-                  "valueCodeableConcept": {
-                    "coding": [
-                      {
-                        "system": "http://hl7.org/fhir/questionnaire-item-control",
-                        "code": "flyover",
-                        "display": "Fly-over"
-                      }
-                    ]
-                  }
-                }
-              ],
-              "text": "Immediate (STAT), best effort (NORMAL), deferred (DEFER).",
-              "type": "display"
-            },
-            {
-              "linkId": "EligibilityRequest.priority.value",
-              "text": "Desired processing priority",
-              "type": "open-choice",
-              "required": false,
-              "repeats": false
-            }
-          ]
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs",
-              "valueInteger": 1
-            },
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType",
               "valueString": "Reference"
             }
           ],
-          "linkId": "EligibilityRequest.enterer",
+          "linkId": "EligibilityRequest.insurer",
           "type": "group",
           "required": false,
           "repeats": true,
@@ -799,22 +861,22 @@
                   }
                 }
               ],
-              "text": "Person who created the invoice/claim/pre-determination or pre-authorization.",
+              "text": "The Insurer who is target  of the request.",
               "type": "display"
             },
             {
               "extension": [
                 {
                   "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-allowedResource",
-                  "valueCode": "Practitioner"
+                  "valueCode": "Organization"
                 },
                 {
                   "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-referenceFilter",
                   "valueString": "subject=$subj&patient=$subj&encounter=$encounter"
                 }
               ],
-              "linkId": "EligibilityRequest.enterer.value",
-              "text": "Author",
+              "linkId": "EligibilityRequest.insurer.value",
+              "text": "Target",
               "type": "reference",
               "required": false,
               "repeats": false
@@ -868,59 +930,6 @@
               ],
               "linkId": "EligibilityRequest.facility.value",
               "text": "Servicing Facility",
-              "type": "reference",
-              "required": false,
-              "repeats": false
-            }
-          ]
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs",
-              "valueInteger": 1
-            },
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType",
-              "valueString": "Reference"
-            }
-          ],
-          "linkId": "EligibilityRequest.patient",
-          "type": "group",
-          "required": false,
-          "repeats": true,
-          "item": [
-            {
-              "extension": [
-                {
-                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
-                  "valueCodeableConcept": {
-                    "coding": [
-                      {
-                        "system": "http://hl7.org/fhir/questionnaire-item-control",
-                        "code": "flyover",
-                        "display": "Fly-over"
-                      }
-                    ]
-                  }
-                }
-              ],
-              "text": "Patient Resource. 1..1.",
-              "type": "display"
-            },
-            {
-              "extension": [
-                {
-                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-allowedResource",
-                  "valueCode": "Patient"
-                },
-                {
-                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-referenceFilter",
-                  "valueString": "subject=$subj&patient=$subj&encounter=$encounter"
-                }
-              ],
-              "linkId": "EligibilityRequest.patient.value",
-              "text": "The subject of the Products and Services",
               "type": "reference",
               "required": false,
               "repeats": false
@@ -1028,104 +1037,14 @@
             {
               "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs",
               "valueInteger": 1
-            }
-          ],
-          "linkId": "EligibilityRequest.serviced[x]",
-          "text": "Estimated date or dates of Service",
-          "type": "group",
-          "required": false,
-          "repeats": true,
-          "item": [
-            {
-              "extension": [
-                {
-                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
-                  "valueCodeableConcept": {
-                    "coding": [
-                      {
-                        "system": "http://hl7.org/fhir/questionnaire-item-control",
-                        "code": "flyover",
-                        "display": "Fly-over"
-                      }
-                    ]
-                  }
-                }
-              ],
-              "text": "The date or dates when the enclosed suite of services were performed or completed.",
-              "type": "display"
-            },
-            {
-              "linkId": "EligibilityRequest.serviced[x]._type",
-              "text": "type",
-              "type": "choice",
-              "required": false,
-              "repeats": false,
-              "options": {
-                "reference": "#vs2"
-              },
-              "item": [
-                {
-                  "extension": [
-                    {
-                      "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType",
-                      "valueString": "datetime"
-                    }
-                  ],
-                  "linkId": "EligibilityRequest.serviced[x]._date",
-                  "type": "group",
-                  "item": [
-                    {
-                      "linkId": "EligibilityRequest.serviced[x]._date.value",
-                      "text": "date",
-                      "type": "dateTime",
-                      "required": false,
-                      "repeats": false
-                    }
-                  ]
-                },
-                {
-                  "extension": [
-                    {
-                      "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType",
-                      "valueString": "Period"
-                    }
-                  ],
-                  "linkId": "EligibilityRequest.serviced[x]._Period",
-                  "text": "Period",
-                  "type": "group",
-                  "item": [
-                    {
-                      "linkId": "EligibilityRequest.serviced[x]._Period.low",
-                      "text": "start:",
-                      "type": "dateTime",
-                      "required": false,
-                      "repeats": false
-                    },
-                    {
-                      "linkId": "EligibilityRequest.serviced[x]._Period.end",
-                      "text": "end:",
-                      "type": "dateTime",
-                      "required": false,
-                      "repeats": false
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs",
-              "valueInteger": 1
             },
             {
               "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType",
-              "valueString": "Coding"
+              "valueString": "CodeableConcept"
             }
           ],
           "linkId": "EligibilityRequest.benefitCategory",
+          "text": "Benefit Category",
           "type": "group",
           "required": false,
           "repeats": true,
@@ -1149,9 +1068,16 @@
               "type": "display"
             },
             {
-              "linkId": "EligibilityRequest.benefitCategory.value",
-              "text": "Benefit Category",
+              "linkId": "EligibilityRequest.benefitCategory.coding",
+              "text": "code:",
               "type": "open-choice",
+              "required": false,
+              "repeats": false
+            },
+            {
+              "linkId": "EligibilityRequest.benefitCategory.text",
+              "text": "text:",
+              "type": "string",
               "required": false,
               "repeats": false
             }
@@ -1165,10 +1091,11 @@
             },
             {
               "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType",
-              "valueString": "Coding"
+              "valueString": "CodeableConcept"
             }
           ],
           "linkId": "EligibilityRequest.benefitSubCategory",
+          "text": "Benefit SubCategory",
           "type": "group",
           "required": false,
           "repeats": true,
@@ -1192,9 +1119,16 @@
               "type": "display"
             },
             {
-              "linkId": "EligibilityRequest.benefitSubCategory.value",
-              "text": "Benefit SubCategory",
+              "linkId": "EligibilityRequest.benefitSubCategory.coding",
+              "text": "code:",
               "type": "open-choice",
+              "required": false,
+              "repeats": false
+            },
+            {
+              "linkId": "EligibilityRequest.benefitSubCategory.text",
+              "text": "text:",
+              "type": "string",
               "required": false,
               "repeats": false
             }

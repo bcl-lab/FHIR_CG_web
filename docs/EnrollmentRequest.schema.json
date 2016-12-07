@@ -28,25 +28,12 @@
             },
             "status": {
               "description": "The status of the resource instance.",
-              "enum": [
-                "active",
-                "cancelled",
-                "draft",
-                "entered-in-error"
-              ],
-              "type": "string"
+              "type": "string",
+              "pattern": "[^\\s]+([\\s]?[^\\s]+)*"
             },
             "_status": {
               "description": "Extensions for status",
               "$ref": "Element.schema.json#/definitions/Element"
-            },
-            "ruleset": {
-              "description": "The version of the style of resource contents. This should be mapped to the allowable profiles for this and supporting resources.",
-              "$ref": "Coding.schema.json#/definitions/Coding"
-            },
-            "originalRuleset": {
-              "description": "The style (standard) and version of the original material which was converted into this resource.",
-              "$ref": "Coding.schema.json#/definitions/Coding"
             },
             "created": {
               "description": "The date when this resource was created.",
@@ -57,35 +44,19 @@
               "description": "Extensions for created",
               "$ref": "Element.schema.json#/definitions/Element"
             },
-            "insurerIdentifier": {
-              "description": "The Insurer who is target  of the request.",
-              "$ref": "Identifier.schema.json#/definitions/Identifier"
-            },
-            "insurerReference": {
+            "insurer": {
               "description": "The Insurer who is target  of the request.",
               "$ref": "Reference.schema.json#/definitions/Reference"
             },
-            "providerIdentifier": {
-              "description": "The practitioner who is responsible for the services rendered to the patient.",
-              "$ref": "Identifier.schema.json#/definitions/Identifier"
-            },
-            "providerReference": {
+            "provider": {
               "description": "The practitioner who is responsible for the services rendered to the patient.",
               "$ref": "Reference.schema.json#/definitions/Reference"
             },
-            "organizationIdentifier": {
-              "description": "The organization which is responsible for the services rendered to the patient.",
-              "$ref": "Identifier.schema.json#/definitions/Identifier"
-            },
-            "organizationReference": {
+            "organization": {
               "description": "The organization which is responsible for the services rendered to the patient.",
               "$ref": "Reference.schema.json#/definitions/Reference"
             },
-            "subjectIdentifier": {
-              "description": "Patient Resource.",
-              "$ref": "Identifier.schema.json#/definitions/Identifier"
-            },
-            "subjectReference": {
+            "subject": {
               "description": "Patient Resource.",
               "$ref": "Reference.schema.json#/definitions/Reference"
             },
@@ -95,7 +66,6 @@
             }
           },
           "required": [
-            "coverage",
             "resourceType"
           ]
         }

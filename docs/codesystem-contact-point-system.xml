@@ -3,7 +3,7 @@
 <CodeSystem xmlns="http://hl7.org/fhir">
   <id value="contact-point-system"/>
   <meta>
-    <lastUpdated value="2016-11-28T17:29:55.664-05:00"/>
+    <lastUpdated value="2016-12-07T14:18:58.982-05:00"/>
   </meta>
   <text>
     <status value="generated"/>
@@ -55,11 +55,18 @@
           <td>The value is a pager number. These may be local pager numbers that are only usable on a particular pager system.</td>
         </tr>
         <tr>
+          <td>url
+            <a name="contact-point-system-url"> </a>
+          </td>
+          <td>URL</td>
+          <td>A contact that is not a phone, fax, pager or email address and is expressed as a URL.  This is intended for various personal contacts including blogs, Skype, Twitter, Facebook, etc. Do not use for email addresses.</td>
+        </tr>
+        <tr>
           <td>other
             <a name="contact-point-system-other"> </a>
           </td>
-          <td>URL</td>
-          <td>A contact that is not a phone, fax, or email address. The format of the value SHOULD be a URL. This is intended for various personal contacts including blogs, Twitter, Facebook, etc. Do not use for email addresses. If this is not a URL, then it will require human interpretation.</td>
+          <td>Other</td>
+          <td>A contact that is not a phone, fax, page or email address and is not expressible as a URL.  E.g. Internal mail address.  This SHOULD NOT be used for contacts that are expressible as a URL (e.g. Skype, Twitter, Facebook, etc.)  Extensions may be used to distinguish &quot;other&quot; contact types.</td>
         </tr>
       </table>
     </div>
@@ -69,14 +76,14 @@
     <system value="urn:ietf:rfc:3986"/>
     <value value="urn:oid:2.16.840.1.113883.4.642.1.39"/>
   </identifier>
-  <version value="1.7.0"/>
+  <version value="1.8.0"/>
   <name value="ContactPointSystem"/>
   <status value="draft"/>
   <experimental value="false"/>
   <publisher value="HL7 (FHIR Project)"/>
   <contact>
     <telecom>
-      <system value="other"/>
+      <system value="url"/>
       <value value="http://hl7.org/fhir"/>
     </telecom>
     <telecom>
@@ -84,7 +91,7 @@
       <value value="fhir@lists.hl7.org"/>
     </telecom>
   </contact>
-  <date value="2016-11-28T17:29:55-05:00"/>
+  <date value="2016-12-07T14:18:58-05:00"/>
   <description value="Telecommunications form for contact point"/>
   <caseSensitive value="true"/>
   <valueSet value="http://hl7.org/fhir/ValueSet/contact-point-system"/>
@@ -110,8 +117,13 @@
     <definition value="The value is a pager number. These may be local pager numbers that are only usable on a particular pager system."/>
   </concept>
   <concept>
-    <code value="other"/>
+    <code value="url"/>
     <display value="URL"/>
-    <definition value="A contact that is not a phone, fax, or email address. The format of the value SHOULD be a URL. This is intended for various personal contacts including blogs, Twitter, Facebook, etc. Do not use for email addresses. If this is not a URL, then it will require human interpretation."/>
+    <definition value="A contact that is not a phone, fax, pager or email address and is expressed as a URL.  This is intended for various personal contacts including blogs, Skype, Twitter, Facebook, etc. Do not use for email addresses."/>
+  </concept>
+  <concept>
+    <code value="other"/>
+    <display value="Other"/>
+    <definition value="A contact that is not a phone, fax, page or email address and is not expressible as a URL.  E.g. Internal mail address.  This SHOULD NOT be used for contacts that are expressible as a URL (e.g. Skype, Twitter, Facebook, etc.)  Extensions may be used to distinguish &quot;other&quot; contact types."/>
   </concept>
 </CodeSystem>

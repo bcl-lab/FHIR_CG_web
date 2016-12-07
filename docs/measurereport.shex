@@ -51,26 +51,6 @@ start=@<MeasureReport> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
-# The populations in the group
-<MeasureReport.group.population> CLOSED {
-    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
-    fhir:extension @<Extension>*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    fhir:MeasureReport.group.population.type @<code> AND
-    	{fhir:value @fhirvs:measure-population};  # initial-population | numerator | 
-                                            # numerator-exclusion | denominator 
-                                            # | denominator-exclusion | 
-                                            # denominator-exception | 
-                                            # measure-population | 
-                                            # measure-population-exclusion | 
-                                            # measure-score 
-    fhir:MeasureReport.group.population.count @<integer>?;  # Size of the population
-    fhir:MeasureReport.group.population.patients @<Reference>?;  # For patient-list reports, the 
-                                            # patients in this population 
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
 # Stratification results
 <MeasureReport.group.stratifier> CLOSED {
     fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
@@ -94,6 +74,26 @@ start=@<MeasureReport> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:MeasureReport.group.supplementalData.group @<MeasureReport.group.supplementalData.group>*;  # Supplemental data results, one for 
                                             # each unique supplemental data 
                                             # value 
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
+# The populations in the group
+<MeasureReport.group.population> CLOSED {
+    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
+    fhir:extension @<Extension>*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
+    fhir:MeasureReport.group.population.type @<code> AND
+    	{fhir:value @fhirvs:measure-population};  # initial-population | numerator | 
+                                            # numerator-exclusion | denominator 
+                                            # | denominator-exclusion | 
+                                            # denominator-exception | 
+                                            # measure-population | 
+                                            # measure-population-exclusion | 
+                                            # measure-score 
+    fhir:MeasureReport.group.population.count @<integer>?;  # Size of the population
+    fhir:MeasureReport.group.population.patients @<Reference>?;  # For patient-list reports, the 
+                                            # patients in this population 
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -346,8 +346,8 @@ start=@<MeasureReport> AND {fhir:nodeRole [fhir:treeRoot]}
 # The status of the measure report
 fhirvs:measure-report-status ["complete" "pending" "error"]
 
-# The type of population
-fhirvs:measure-population ["initial-population" "numerator" "numerator-exclusion" "denominator" "denominator-exclusion" "denominator-exception" "measure-population" "measure-population-exclusion" "measure-observation"]
+# The type of the measure report
+fhirvs:measure-report-type ["individual" "patient-list" "summary"]
 
 # Identifies the purpose for this identifier, if known .
 fhirvs:identifier-use ["usual" "official" "temp" "secondary"]
@@ -355,5 +355,5 @@ fhirvs:identifier-use ["usual" "official" "temp" "secondary"]
 # The status of a resource narrative
 fhirvs:narrative-status ["generated" "extensions" "additional" "empty"]
 
-# The type of the measure report
-fhirvs:measure-report-type ["individual" "patient-list" "summary"]
+# The type of population
+fhirvs:measure-population ["initial-population" "numerator" "numerator-exclusion" "denominator" "denominator-exclusion" "denominator-exception" "measure-population" "measure-population-exclusion" "measure-observation"]

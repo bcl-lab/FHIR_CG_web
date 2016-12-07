@@ -26,12 +26,25 @@
     "code.value": "active"
   },
   "Claim.type": {
-    "Coding.system": {
-      "uri.value": "http://hl7.org/fhir/ex-claimtype"
+    "CodeableConcept.coding": [
+      {
+        "Coding.system": {
+          "uri.value": "http://hl7.org/fhir/ex-claimtype"
+        },
+        "Coding.code": {
+          "code.value": "oral"
+        }
+      }
+    ]
+  },
+  "Claim.use": {
+    "code.value": "proposed"
+  },
+  "Claim.patient": {
+    "Reference.reference": {
+      "string.value": "Patient/1"
     },
-    "Coding.code": {
-      "code.value": "oral"
-    }
+    "Resource.reference": "http://hl7.org/fhir//Patient/1"
   },
   "Claim.created": {
     "dateTime.value": "2015-03-16"
@@ -48,56 +61,76 @@
     },
     "Resource.reference": "http://hl7.org/fhir//Organization/1"
   },
-  "Claim.use": {
-    "code.value": "proposed"
-  },
   "Claim.priority": {
-    "Coding.code": {
-      "code.value": "normal"
-    }
+    "CodeableConcept.coding": [
+      {
+        "Coding.code": {
+          "code.value": "normal"
+        }
+      }
+    ]
   },
   "Claim.fundsReserve": {
-    "Coding.code": {
-      "code.value": "provider"
-    }
+    "CodeableConcept.coding": [
+      {
+        "Coding.code": {
+          "code.value": "provider"
+        }
+      }
+    ]
   },
   "Claim.payee": {
     "Claim.payee.type": {
-      "Coding.code": {
-        "code.value": "provider"
-      }
+      "CodeableConcept.coding": [
+        {
+          "Coding.code": {
+            "code.value": "provider"
+          }
+        }
+      ]
     }
   },
+  "Claim.careTeam": [
+    {
+      "Claim.careTeam.sequence": {
+        "positiveInt.value": 1
+      },
+      "Claim.careTeam.provider": {
+        "Reference.reference": {
+          "string.value": "Practitioner/example"
+        },
+        "Resource.reference": "http://hl7.org/fhir//Practitioner/example"
+      }
+    }
+  ],
   "Claim.diagnosis": [
     {
       "Claim.diagnosis.sequence": {
         "positiveInt.value": 1
       },
-      "Claim.diagnosis.diagnosis": {
-        "Coding.system": {
-          "uri.value": "http://hl7.org/fhir/sid/icd-10"
-        },
-        "Coding.code": {
-          "code.value": "123457"
-        }
+      "Claim.diagnosis.diagnosisCodeableConcept": {
+        "CodeableConcept.coding": [
+          {
+            "Coding.system": {
+              "uri.value": "http://hl7.org/fhir/sid/icd-10"
+            },
+            "Coding.code": {
+              "code.value": "123457"
+            }
+          }
+        ]
       }
     }
   ],
-  "Claim.patient": {
-    "Reference.reference": {
-      "string.value": "Patient/1"
-    },
-    "Resource.reference": "http://hl7.org/fhir//Patient/1"
-  },
-  "Claim.coverage": [
+  "Claim.insurance": [
     {
-      "Claim.coverage.sequence": {
+      "Claim.insurance.sequence": {
         "positiveInt.value": 1
       },
-      "Claim.coverage.focal": {
+      "Claim.insurance.focal": {
         "boolean.value": true
       },
-      "Claim.coverage.coverage": {
+      "Claim.insurance.coverage": {
         "Reference.reference": {
           "string.value": "Coverage/9876B1"
         },
@@ -110,14 +143,9 @@
       "Claim.item.sequence": {
         "positiveInt.value": 1
       },
-      "Claim.item.careTeam": [
+      "Claim.item.careTeamLinkId": [
         {
-          "Claim.item.careTeam.provider": {
-            "Reference.reference": {
-              "string.value": "Practitioner/example"
-            },
-            "Resource.reference": "http://hl7.org/fhir//Practitioner/example"
-          }
+          "positiveInt.value": 1
         }
       ],
       "Claim.item.diagnosisLinkId": [
@@ -126,12 +154,16 @@
         }
       ],
       "Claim.item.service": {
-        "Coding.system": {
-          "uri.value": "http://hl7.org/fhir/oralservicecodes"
-        },
-        "Coding.code": {
-          "code.value": "ORTHPLAN"
-        }
+        "CodeableConcept.coding": [
+          {
+            "Coding.system": {
+              "uri.value": "http://hl7.org/fhir/oralservicecodes"
+            },
+            "Coding.code": {
+              "code.value": "ORTHPLAN"
+            }
+          }
+        ]
       },
       "Claim.item.servicedDate": {
         "date.value": "2015-05-16"
@@ -164,12 +196,16 @@
             "positiveInt.value": 1
           },
           "Claim.item.detail.service": {
-            "Coding.system": {
-              "uri.value": "http://hl7.org/fhir/oralservicecodes"
-            },
-            "Coding.code": {
-              "code.value": "ORTHOEXAM"
-            }
+            "CodeableConcept.coding": [
+              {
+                "Coding.system": {
+                  "uri.value": "http://hl7.org/fhir/oralservicecodes"
+                },
+                "Coding.code": {
+                  "code.value": "ORTHOEXAM"
+                }
+              }
+            ]
           },
           "Claim.item.detail.unitPrice": {
             "Quantity.value": {
@@ -199,12 +235,16 @@
             "positiveInt.value": 2
           },
           "Claim.item.detail.service": {
-            "Coding.system": {
-              "uri.value": "http://hl7.org/fhir/oralservicecodes"
-            },
-            "Coding.code": {
-              "code.value": "ORTHODIAG"
-            }
+            "CodeableConcept.coding": [
+              {
+                "Coding.system": {
+                  "uri.value": "http://hl7.org/fhir/oralservicecodes"
+                },
+                "Coding.code": {
+                  "code.value": "ORTHODIAG"
+                }
+              }
+            ]
           },
           "Claim.item.detail.unitPrice": {
             "Quantity.value": {
@@ -234,12 +274,16 @@
             "positiveInt.value": 3
           },
           "Claim.item.detail.service": {
-            "Coding.system": {
-              "uri.value": "http://hl7.org/fhir/oralservicecodes"
-            },
-            "Coding.code": {
-              "code.value": "ORTHOINITIAL"
-            }
+            "CodeableConcept.coding": [
+              {
+                "Coding.system": {
+                  "uri.value": "http://hl7.org/fhir/oralservicecodes"
+                },
+                "Coding.code": {
+                  "code.value": "ORTHOINITIAL"
+                }
+              }
+            ]
           },
           "Claim.item.detail.unitPrice": {
             "Quantity.value": {
@@ -269,12 +313,16 @@
             "positiveInt.value": 4
           },
           "Claim.item.detail.service": {
-            "Coding.system": {
-              "uri.value": "http://hl7.org/fhir/oralservicecodes"
-            },
-            "Coding.code": {
-              "code.value": "ORTHOMONTHS"
-            }
+            "CodeableConcept.coding": [
+              {
+                "Coding.system": {
+                  "uri.value": "http://hl7.org/fhir/oralservicecodes"
+                },
+                "Coding.code": {
+                  "code.value": "ORTHOMONTHS"
+                }
+              }
+            ]
           },
           "Claim.item.detail.quantity": {
             "Quantity.value": {
@@ -287,12 +335,16 @@
             "positiveInt.value": 5
           },
           "Claim.item.detail.service": {
-            "Coding.system": {
-              "uri.value": "http://hl7.org/fhir/oralservicecodes"
-            },
-            "Coding.code": {
-              "code.value": "ORTHOPERIODIC"
-            }
+            "CodeableConcept.coding": [
+              {
+                "Coding.system": {
+                  "uri.value": "http://hl7.org/fhir/oralservicecodes"
+                },
+                "Coding.code": {
+                  "code.value": "ORTHOPERIODIC"
+                }
+              }
+            ]
           },
           "Claim.item.detail.quantity": {
             "Quantity.value": {
@@ -328,23 +380,22 @@
       "Claim.item.sequence": {
         "positiveInt.value": 2
       },
-      "Claim.item.careTeam": [
+      "Claim.item.careTeamLinkId": [
         {
-          "Claim.item.careTeam.provider": {
-            "Reference.reference": {
-              "string.value": "Practitioner/example"
-            },
-            "Resource.reference": "http://hl7.org/fhir//Practitioner/example"
-          }
+          "positiveInt.value": 1
         }
       ],
       "Claim.item.service": {
-        "Coding.system": {
-          "uri.value": "http://hl7.org/fhir/oralservicecodes"
-        },
-        "Coding.code": {
-          "code.value": "21211"
-        }
+        "CodeableConcept.coding": [
+          {
+            "Coding.system": {
+              "uri.value": "http://hl7.org/fhir/oralservicecodes"
+            },
+            "Coding.code": {
+              "code.value": "21211"
+            }
+          }
+        ]
       },
       "Claim.item.servicedDate": {
         "date.value": "2014-08-16"
@@ -372,21 +423,29 @@
         }
       },
       "Claim.item.bodySite": {
-        "Coding.system": {
-          "uri.value": "http://fdi.org/fhir/oraltoothcodes"
-        },
-        "Coding.code": {
-          "code.value": "21"
-        }
+        "CodeableConcept.coding": [
+          {
+            "Coding.system": {
+              "uri.value": "http://fdi.org/fhir/oraltoothcodes"
+            },
+            "Coding.code": {
+              "code.value": "21"
+            }
+          }
+        ]
       },
       "Claim.item.subSite": [
         {
-          "Coding.system": {
-            "uri.value": "http://fdi.org/fhir/oralsurfacecodes"
-          },
-          "Coding.code": {
-            "code.value": "L"
-          }
+          "CodeableConcept.coding": [
+            {
+              "Coding.system": {
+                "uri.value": "http://fdi.org/fhir/oralsurfacecodes"
+              },
+              "Coding.code": {
+                "code.value": "L"
+              }
+            }
+          ]
         }
       ]
     },
@@ -394,23 +453,22 @@
       "Claim.item.sequence": {
         "positiveInt.value": 3
       },
-      "Claim.item.careTeam": [
+      "Claim.item.careTeamLinkId": [
         {
-          "Claim.item.careTeam.provider": {
-            "Reference.reference": {
-              "string.value": "Practitioner/example"
-            },
-            "Resource.reference": "http://hl7.org/fhir//Practitioner/example"
-          }
+          "positiveInt.value": 1
         }
       ],
       "Claim.item.service": {
-        "Coding.system": {
-          "uri.value": "http://hl7.org/fhir/oralservicecodes"
-        },
-        "Coding.code": {
-          "code.value": "27211"
-        }
+        "CodeableConcept.coding": [
+          {
+            "Coding.system": {
+              "uri.value": "http://hl7.org/fhir/oralservicecodes"
+            },
+            "Coding.code": {
+              "code.value": "27211"
+            }
+          }
+        ]
       },
       "Claim.item.servicedDate": {
         "date.value": "2014-08-16"
@@ -438,12 +496,16 @@
         }
       },
       "Claim.item.bodySite": {
-        "Coding.system": {
-          "uri.value": "http://fdi.org/fhir/oraltoothcodes"
-        },
-        "Coding.code": {
-          "code.value": "36"
-        }
+        "CodeableConcept.coding": [
+          {
+            "Coding.system": {
+              "uri.value": "http://fdi.org/fhir/oraltoothcodes"
+            },
+            "Coding.code": {
+              "code.value": "36"
+            }
+          }
+        ]
       },
       "Claim.item.detail": [
         {
@@ -451,12 +513,16 @@
             "positiveInt.value": 1
           },
           "Claim.item.detail.service": {
-            "Coding.system": {
-              "uri.value": "http://hl7.org/fhir/oralservicecodes"
-            },
-            "Coding.code": {
-              "code.value": "27211"
-            }
+            "CodeableConcept.coding": [
+              {
+                "Coding.system": {
+                  "uri.value": "http://hl7.org/fhir/oralservicecodes"
+                },
+                "Coding.code": {
+                  "code.value": "27211"
+                }
+              }
+            ]
           },
           "Claim.item.detail.unitPrice": {
             "Quantity.value": {
@@ -486,12 +552,16 @@
             "positiveInt.value": 2
           },
           "Claim.item.detail.service": {
-            "Coding.system": {
-              "uri.value": "http://hl7.org/fhir/oralservicecodes"
-            },
-            "Coding.code": {
-              "code.value": "lab"
-            }
+            "CodeableConcept.coding": [
+              {
+                "Coding.system": {
+                  "uri.value": "http://hl7.org/fhir/oralservicecodes"
+                },
+                "Coding.code": {
+                  "code.value": "lab"
+                }
+              }
+            ]
           },
           "Claim.item.detail.unitPrice": {
             "Quantity.value": {

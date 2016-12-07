@@ -26,12 +26,25 @@
     "code.value": "active"
   },
   "Claim.type": {
-    "Coding.system": {
-      "uri.value": "http://hl7.org/fhir/ex-claimtype"
+    "CodeableConcept.coding": [
+      {
+        "Coding.system": {
+          "uri.value": "http://hl7.org/fhir/ex-claimtype"
+        },
+        "Coding.code": {
+          "code.value": "vision"
+        }
+      }
+    ]
+  },
+  "Claim.use": {
+    "code.value": "complete"
+  },
+  "Claim.patient": {
+    "Reference.reference": {
+      "string.value": "Patient/1"
     },
-    "Coding.code": {
-      "code.value": "vision"
-    }
+    "Resource.reference": "http://hl7.org/fhir//Patient/1"
   },
   "Claim.created": {
     "dateTime.value": "2014-08-16"
@@ -48,13 +61,14 @@
     },
     "Resource.reference": "http://hl7.org/fhir//Organization/1"
   },
-  "Claim.use": {
-    "code.value": "complete"
-  },
   "Claim.priority": {
-    "Coding.code": {
-      "code.value": "normal"
-    }
+    "CodeableConcept.coding": [
+      {
+        "Coding.code": {
+          "code.value": "normal"
+        }
+      }
+    ]
   },
   "Claim.prescription": {
     "Reference.reference": {
@@ -64,38 +78,53 @@
   },
   "Claim.payee": {
     "Claim.payee.type": {
-      "Coding.code": {
-        "code.value": "provider"
-      }
+      "CodeableConcept.coding": [
+        {
+          "Coding.code": {
+            "code.value": "provider"
+          }
+        }
+      ]
     }
   },
+  "Claim.careTeam": [
+    {
+      "Claim.careTeam.sequence": {
+        "positiveInt.value": 1
+      },
+      "Claim.careTeam.provider": {
+        "Reference.reference": {
+          "string.value": "Practitioner/example"
+        },
+        "Resource.reference": "http://hl7.org/fhir//Practitioner/example"
+      }
+    }
+  ],
   "Claim.diagnosis": [
     {
       "Claim.diagnosis.sequence": {
         "positiveInt.value": 1
       },
-      "Claim.diagnosis.diagnosis": {
-        "Coding.code": {
-          "code.value": "654321"
-        }
+      "Claim.diagnosis.diagnosisCodeableConcept": {
+        "CodeableConcept.coding": [
+          {
+            "Coding.code": {
+              "code.value": "654321"
+            }
+          }
+        ]
       }
     }
   ],
-  "Claim.patient": {
-    "Reference.reference": {
-      "string.value": "Patient/1"
-    },
-    "Resource.reference": "http://hl7.org/fhir//Patient/1"
-  },
-  "Claim.coverage": [
+  "Claim.insurance": [
     {
-      "Claim.coverage.sequence": {
+      "Claim.insurance.sequence": {
         "positiveInt.value": 1
       },
-      "Claim.coverage.focal": {
+      "Claim.insurance.focal": {
         "boolean.value": true
       },
-      "Claim.coverage.coverage": {
+      "Claim.insurance.coverage": {
         "Reference.reference": {
           "string.value": "Coverage/9876B1"
         },
@@ -108,23 +137,22 @@
       "Claim.item.sequence": {
         "positiveInt.value": 1
       },
-      "Claim.item.careTeam": [
+      "Claim.item.careTeamLinkId": [
         {
-          "Claim.item.careTeam.provider": {
-            "Reference.reference": {
-              "string.value": "Practitioner/example"
-            },
-            "Resource.reference": "http://hl7.org/fhir//Practitioner/example"
-          }
+          "positiveInt.value": 1
         }
       ],
       "Claim.item.service": {
-        "Coding.system": {
-          "uri.value": "http://hl7.org/fhir/ex-visionservice"
-        },
-        "Coding.code": {
-          "code.value": "glasses"
-        }
+        "CodeableConcept.coding": [
+          {
+            "Coding.system": {
+              "uri.value": "http://hl7.org/fhir/ex-visionservice"
+            },
+            "Coding.code": {
+              "code.value": "glasses"
+            }
+          }
+        ]
       },
       "Claim.item.servicedDate": {
         "date.value": "2014-08-16"
@@ -157,12 +185,16 @@
             "positiveInt.value": 1
           },
           "Claim.item.detail.service": {
-            "Coding.system": {
-              "uri.value": "http://hl7.org/fhir/ex-visionservice"
-            },
-            "Coding.code": {
-              "code.value": "frame"
-            }
+            "CodeableConcept.coding": [
+              {
+                "Coding.system": {
+                  "uri.value": "http://hl7.org/fhir/ex-visionservice"
+                },
+                "Coding.code": {
+                  "code.value": "frame"
+                }
+              }
+            ]
           },
           "Claim.item.detail.unitPrice": {
             "Quantity.value": {
@@ -192,12 +224,16 @@
             "positiveInt.value": 2
           },
           "Claim.item.detail.service": {
-            "Coding.system": {
-              "uri.value": "http://hl7.org/fhir/ex-visionservice"
-            },
-            "Coding.code": {
-              "code.value": "lens"
-            }
+            "CodeableConcept.coding": [
+              {
+                "Coding.system": {
+                  "uri.value": "http://hl7.org/fhir/ex-visionservice"
+                },
+                "Coding.code": {
+                  "code.value": "lens"
+                }
+              }
+            ]
           },
           "Claim.item.detail.quantity": {
             "Quantity.value": {
@@ -232,12 +268,16 @@
             "positiveInt.value": 3
           },
           "Claim.item.detail.service": {
-            "Coding.system": {
-              "uri.value": "http://hl7.org/fhir/ex-visionservice"
-            },
-            "Coding.code": {
-              "code.value": "fst"
-            }
+            "CodeableConcept.coding": [
+              {
+                "Coding.system": {
+                  "uri.value": "http://hl7.org/fhir/ex-visionservice"
+                },
+                "Coding.code": {
+                  "code.value": "fst"
+                }
+              }
+            ]
           },
           "Claim.item.detail.unitPrice": {
             "Quantity.value": {

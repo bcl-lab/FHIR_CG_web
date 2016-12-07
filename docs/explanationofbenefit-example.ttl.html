@@ -3,7 +3,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>Explanationofbenefit-example.ttl - FHIR v1.7.0</title>
+  <title>Explanationofbenefit-example.ttl - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -136,6 +136,22 @@
      fhir:Identifier.value [ fhir:value &quot;987654321&quot; ]
   ];
   fhir:ExplanationOfBenefit.status [ fhir:value &quot;active&quot;];
+  fhir:ExplanationOfBenefit.type [
+     fhir:CodeableConcept.coding [
+       fhir:index 0;
+       fhir:Coding.system [ fhir:value &quot;http://hl7.org/fhir/ex-claimtype&quot; ];
+       fhir:Coding.code [ fhir:value &quot;oral&quot; ]
+     ]
+  ];
+  fhir:ExplanationOfBenefit.patient [
+     fhir:link &lt;http://hl7.org/fhir/Patient/pat1&gt;;
+     fhir:Reference.reference [ fhir:value &quot;Patient/pat1&quot; ]
+  ];
+  fhir:ExplanationOfBenefit.created [ fhir:value &quot;2014-08-16&quot;^^xsd:date];
+  fhir:ExplanationOfBenefit.organization [
+     fhir:link &lt;http://hl7.org/fhir/Organization/2&gt;;
+     fhir:Reference.reference [ fhir:value &quot;Organization/2&quot; ]
+  ];
   fhir:ExplanationOfBenefit.claim [
      fhir:link &lt;http://hl7.org/fhir/Claim/100150&gt;;
      fhir:Reference.reference [ fhir:value &quot;Claim/100150&quot; ]
@@ -144,26 +160,24 @@
      fhir:link &lt;http://hl7.org/fhir/ClaimResponse/R3500&gt;;
      fhir:Reference.reference [ fhir:value &quot;ClaimResponse/R3500&quot; ]
   ];
-  fhir:ExplanationOfBenefit.type [
-     fhir:Coding.system [ fhir:value &quot;http://hl7.org/fhir/ex-claimtype&quot; ];
-     fhir:Coding.code [ fhir:value &quot;oral&quot; ]
-  ];
-  fhir:ExplanationOfBenefit.created [ fhir:value &quot;2014-08-16&quot;^^xsd:date];
   fhir:ExplanationOfBenefit.outcome [
-     fhir:Coding.system [ fhir:value &quot;http://hl7.org/fhir/remittance-outcome&quot; ];
-     fhir:Coding.code [ fhir:value &quot;complete&quot; ]
+     fhir:CodeableConcept.coding [
+       fhir:index 0;
+       fhir:Coding.system [ fhir:value &quot;http://hl7.org/fhir/remittance-outcome&quot; ];
+       fhir:Coding.code [ fhir:value &quot;complete&quot; ]
+     ]
   ];
   fhir:ExplanationOfBenefit.disposition [ fhir:value &quot;Claim settled as per contract.&quot;];
-  fhir:ExplanationOfBenefit.organization [
-     fhir:link &lt;http://hl7.org/fhir/Organization/2&gt;;
-     fhir:Reference.reference [ fhir:value &quot;Organization/2&quot; ]
+  fhir:ExplanationOfBenefit.careTeam [
+     fhir:index 0;
+     fhir:ExplanationOfBenefit.careTeam.sequence [ fhir:value &quot;1&quot;^^xsd:positiveInteger ];
+     fhir:ExplanationOfBenefit.careTeam.provider [
+       fhir:link &lt;http://hl7.org/fhir/Practitioner/example&gt;;
+       fhir:Reference.reference [ fhir:value &quot;Practitioner/example&quot; ]
+     ]
   ];
-  fhir:ExplanationOfBenefit.patient [
-     fhir:link &lt;http://hl7.org/fhir/Patient/pat1&gt;;
-     fhir:Reference.reference [ fhir:value &quot;Patient/pat1&quot; ]
-  ];
-  fhir:ExplanationOfBenefit.coverage [
-     fhir:ExplanationOfBenefit.coverage.coverage [
+  fhir:ExplanationOfBenefit.insurance [
+     fhir:ExplanationOfBenefit.insurance.coverage [
        fhir:link &lt;http://hl7.org/fhir/Coverage/9876B1&gt;;
        fhir:Reference.reference [ fhir:value &quot;Coverage/9876B1&quot; ]
      ]
@@ -171,16 +185,16 @@
   fhir:ExplanationOfBenefit.item [
      fhir:index 0;
      fhir:ExplanationOfBenefit.item.sequence [ fhir:value &quot;1&quot;^^xsd:positiveInteger ];
-     fhir:ExplanationOfBenefit.item.careTeam [
-       fhir:index 0;
-       fhir:ExplanationOfBenefit.item.careTeam.provider [
-         fhir:link &lt;http://hl7.org/fhir/Practitioner/example&gt;;
-         fhir:Reference.reference [ fhir:value &quot;Practitioner/example&quot; ]
-       ]
+     fhir:ExplanationOfBenefit.item.careTeamLinkId [
+       fhir:value &quot;1&quot;^^xsd:positiveInteger;
+       fhir:index 0
      ];
      fhir:ExplanationOfBenefit.item.service [
-       fhir:Coding.system [ fhir:value &quot;http://hl7.org/fhir/service-uscls&quot; ];
-       fhir:Coding.code [ fhir:value &quot;1200&quot; ]
+       fhir:CodeableConcept.coding [
+         fhir:index 0;
+         fhir:Coding.system [ fhir:value &quot;http://hl7.org/fhir/service-uscls&quot; ];
+         fhir:Coding.code [ fhir:value &quot;1200&quot; ]
+       ]
      ];
      fhir:ExplanationOfBenefit.item.servicedDate [ fhir:value &quot;2014-08-16&quot;^^xsd:date ];
      fhir:ExplanationOfBenefit.item.unitPrice [
@@ -196,7 +210,10 @@
      fhir:ExplanationOfBenefit.item.adjudication [
        fhir:index 0;
        fhir:ExplanationOfBenefit.item.adjudication.category [
-         fhir:Coding.code [ fhir:value &quot;eligible&quot; ]
+         fhir:CodeableConcept.coding [
+           fhir:index 0;
+           fhir:Coding.code [ fhir:value &quot;eligible&quot; ]
+         ]
        ];
        fhir:ExplanationOfBenefit.item.adjudication.amount [
          fhir:Quantity.value [ fhir:value &quot;120.00&quot;^^xsd:decimal ];
@@ -206,13 +223,19 @@
      ], [
        fhir:index 1;
        fhir:ExplanationOfBenefit.item.adjudication.category [
-         fhir:Coding.code [ fhir:value &quot;eligpercent&quot; ]
+         fhir:CodeableConcept.coding [
+           fhir:index 0;
+           fhir:Coding.code [ fhir:value &quot;eligpercent&quot; ]
+         ]
        ];
        fhir:ExplanationOfBenefit.item.adjudication.value [ fhir:value &quot;0.80&quot;^^xsd:decimal ]
      ], [
        fhir:index 2;
        fhir:ExplanationOfBenefit.item.adjudication.category [
-         fhir:Coding.code [ fhir:value &quot;benefit&quot; ]
+         fhir:CodeableConcept.coding [
+           fhir:index 0;
+           fhir:Coding.code [ fhir:value &quot;benefit&quot; ]
+         ]
        ];
        fhir:ExplanationOfBenefit.item.adjudication.amount [
          fhir:Quantity.value [ fhir:value &quot;96.00&quot;^^xsd:decimal ];
@@ -232,17 +255,17 @@
      fhir:Quantity.code [ fhir:value &quot;USD&quot; ]
   ] .
 
+&lt;http://hl7.org/fhir/Patient/pat1&gt; a fhir:Patient .
+
+&lt;http://hl7.org/fhir/Organization/2&gt; a fhir:Organization .
+
 &lt;http://hl7.org/fhir/Claim/100150&gt; a fhir:Claim .
 
 &lt;http://hl7.org/fhir/ClaimResponse/R3500&gt; a fhir:ClaimResponse .
 
-&lt;http://hl7.org/fhir/Organization/2&gt; a fhir:Organization .
-
-&lt;http://hl7.org/fhir/Patient/pat1&gt; a fhir:Patient .
+&lt;http://hl7.org/fhir/Practitioner/example&gt; a fhir:Practitioner .
 
 &lt;http://hl7.org/fhir/Coverage/9876B1&gt; a fhir:Coverage .
-
-&lt;http://hl7.org/fhir/Practitioner/example&gt; a fhir:Practitioner .
 
 # -------------------------------------------------------------------------------------
 
@@ -271,7 +294,7 @@ of the specification.
 		<div class="container"><!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:32-0500. <a href="qa.html">QA Page</a>
+        © HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:21-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search</a> | 

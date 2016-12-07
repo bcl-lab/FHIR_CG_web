@@ -6,7 +6,7 @@
     <system value="urn:ietf:rfc:3986"/>
   </identifier>
   <status value="draft"/>
-  <date value="2016-11-28T17:29:55-05:00"/>
+  <date value="2016-12-07T14:18:58-05:00"/>
   <publisher value="Health Level Seven International (Public Health and Emergency Response)"/>
   <item>
     <linkId value="Immunization"/>
@@ -469,7 +469,7 @@
       <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
         <valueString value="boolean"/>
       </extension>
-      <linkId value="Immunization.reported"/>
+      <linkId value="Immunization.primarySource"/>
       <type value="group"/>
       <required value="true"/>
       <repeats value="true"/>
@@ -483,13 +483,53 @@
             </coding>
           </valueCodeableConcept>
         </extension>
-        <text value="True if this administration was reported rather than directly administered. May need source of reported info (e.g. parent), but leave out for now."/>
+        <text value="An indication that the content of the record is based on information from the person who administered the vaccine. This reflects the context under which the data was originally recorded. Reflects the “reliability” of the content."/>
         <type value="display"/>
       </item>
       <item>
-        <linkId value="Immunization.reported.value"/>
-        <text value="Indicates a self-reported record"/>
+        <linkId value="Immunization.primarySource.value"/>
+        <text value="Indicates context the data was recorded in"/>
         <type value="boolean"/>
+        <required value="false"/>
+        <repeats value="false"/>
+      </item>
+    </item>
+    <item>
+      <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs">
+        <valueInteger value="1"/>
+      </extension>
+      <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
+        <valueString value="CodeableConcept"/>
+      </extension>
+      <linkId value="Immunization.reportOrigin"/>
+      <text value="Indicates the source of a secondarily reported record"/>
+      <type value="group"/>
+      <required value="false"/>
+      <repeats value="true"/>
+      <item>
+        <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl">
+          <valueCodeableConcept>
+            <coding>
+              <system value="http://hl7.org/fhir/questionnaire-item-control"/>
+              <code value="flyover"/>
+              <display value="Fly-over"/>
+            </coding>
+          </valueCodeableConcept>
+        </extension>
+        <text value="The source of the data when the report of the immunization event is not based on information from the person who administered the vaccine. Should not be populated if primarySource = True, will not be required even if primarySource = False."/>
+        <type value="display"/>
+      </item>
+      <item>
+        <linkId value="Immunization.reportOrigin.coding"/>
+        <text value="code:"/>
+        <type value="open-choice"/>
+        <required value="false"/>
+        <repeats value="false"/>
+      </item>
+      <item>
+        <linkId value="Immunization.reportOrigin.text"/>
+        <text value="text:"/>
+        <type value="string"/>
         <required value="false"/>
         <repeats value="false"/>
       </item>
@@ -1088,7 +1128,7 @@
       <required value="false"/>
       <repeats value="true"/>
       <item>
-        <text value="A reaction may be an indication of an allergy or intolerance and, if this is determined to be the case,  it should be recorded as a new [[[AllergyIntolerance]]] resource instance as most systems will not query against  past Immunization.reaction elements."/>
+        <text value="A reaction may be an indication of an allergy or intolerance and, if this is determined to be the case,  it should be recorded as a new [AllergyIntolerance](allergyintolerance.html) resource instance as most systems will not query against  past Immunization.reaction elements."/>
         <type value="display"/>
       </item>
       <item>

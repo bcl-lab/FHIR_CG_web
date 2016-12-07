@@ -13,13 +13,13 @@
   <publisher value="Health Level Seven International fhir"/>
   <contact>
     <telecom>
-      <system value="other"/>
+      <system value="url"/>
       <value value="http://hl7.org/fhir"/>
     </telecom>
   </contact>
-  <date value="2016-11-28T17:29:55-05:00"/>
+  <date value="2016-12-07T14:18:58-05:00"/>
   <description value="Logical Model: A pattern to be followed by resources that represent a specific proposal, plan and/or order for some sort of action or service."/>
-  <fhirVersion value="1.7.0"/>
+  <fhirVersion value="1.8.0"/>
   <mapping>
     <identity value="rim"/>
     <uri value="http://hl7.org/v3"/>
@@ -143,9 +143,13 @@
     </element>
     <element id="Request.status">
       <path value="Request.status"/>
-      <short value="draft | active | suspended | cancelled | completed | entered-in-error"/>
+      <short value="draft | active | suspended | cancelled | completed | entered-in-error | unknown"/>
       <definition value="The current state of the request."/>
-      <comments value="The status is generally fully in the control of the requester - they determine whether the order is draft or active and, after it has been activated, completed, cancelled or suspended. States relating to the activities of the performer are reflected on either the corresponding [[[Event]]](s) or using the [[[Task]]] resource."/>
+      <comments value="The status is generally fully in the control of the requester - they determine whether the order is draft or active and, after it has been activated, completed, cancelled or suspended. States relating to the activities of the performer are reflected on either the corresponding [Event](event.html)(s) or using the [Task](task.html) resource.
+
+A nominal state-transition diagram can be found in the [[request.html#statemachine | Request pattern]] documentation
+
+Unknown does not represent &quot;other&quot; - one of the defined statuses must apply.  Unknown is used when the authoring system is not sure what the current status is."/>
       <min value="1"/>
       <max value="1"/>
       <type>
@@ -197,6 +201,29 @@
       <mapping>
         <identity value="w5"/>
         <map value="class"/>
+      </mapping>
+    </element>
+    <element id="Request.priority">
+      <path value="Request.priority"/>
+      <short value="routine | urgent | asap | stat"/>
+      <definition value="Indicates how quickly the {{title}} should be addressed with respect to other requests."/>
+      <min value="0"/>
+      <max value="1"/>
+      <type>
+        <code value="code"/>
+      </type>
+      <meaningWhenMissing value="If missing, this task should be performed with normal priority"/>
+      <isSummary value="true"/>
+      <binding>
+        <strength value="required"/>
+        <description value="Identifies the level of importance to be assigned to actioning the request"/>
+        <valueSetReference>
+          <reference value="http://hl7.org/fhir/ValueSet/request-priority"/>
+        </valueSetReference>
+      </binding>
+      <mapping>
+        <identity value="w5"/>
+        <map value="grade"/>
       </mapping>
     </element>
     <element id="Request.code">
@@ -304,11 +331,12 @@
         <map value="when.planned"/>
       </mapping>
     </element>
-    <element id="Request.authored">
-      <path value="Request.authored"/>
+    <element id="Request.authoredOn">
+      <path value="Request.authoredOn"/>
       <short value="When request transitioned to being actionable"/>
       <definition value="For draft requests, indicates the date of initial creation.  For requests with other statuses, indicates the date of activation."/>
-      <alias value="created"/>
+      <alias value="createdOn"/>
+      <alias value="signedOn"/>
       <min value="0"/>
       <max value="1"/>
       <type>
@@ -328,8 +356,31 @@
       <path value="Request.requester"/>
       <short value="Who/what is requesting service"/>
       <definition value="The individual who initiated the request and has responsibility for its activation."/>
+      <comments value="[Resources may choose to replace this with just a single requester where there&#39;s no need to responsible organization]."/>
       <alias value="author"/>
       <min value="0"/>
+      <max value="1"/>
+      <type>
+        <code value="Element"/>
+      </type>
+      <constraint>
+        <key value="inv-1"/>
+        <severity value="error"/>
+        <human value="onBehalfOf can only be specified if agent is practitioner or device"/>
+        <expression value="(agent is Practitioner) or (agent is Device) or onBehalfOf.exists().not()"/>
+        <xpath value="contains(f:agent, &#39;/Practitioner&#39;) or contains(f:agent, &#39;/Device&#39;) or not(exists(f:onBehalfOf))"/>
+      </constraint>
+      <isSummary value="true"/>
+      <mapping>
+        <identity value="rim"/>
+        <map value=".participation[typeCode=AUT].role"/>
+      </mapping>
+    </element>
+    <element id="Request.requester.agent">
+      <path value="Request.requester.agent"/>
+      <short value="Individual making the request"/>
+      <definition value="The device, practitioner, etc. who initiated the request."/>
+      <min value="1"/>
       <max value="1"/>
       <type>
         <code value="Reference"/>
@@ -354,18 +405,38 @@
       <isSummary value="true"/>
       <mapping>
         <identity value="rim"/>
-        <map value=".participation[typeCode=AUT].role"/>
+        <map value=".player"/>
       </mapping>
       <mapping>
         <identity value="w5"/>
         <map value="who.author"/>
       </mapping>
     </element>
+    <element id="Request.requester.onBehalfOf">
+      <path value="Request.requester.onBehalfOf"/>
+      <short value="Organization agent is acting for"/>
+      <definition value="The organization the device or practitioner was acting on behalf of."/>
+      <requirements value="Practitioners and Devices can be associated with multiple organizations.  This element indicates which organization they were acting on behalf of when authoring the request."/>
+      <min value="0"/>
+      <max value="1"/>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Organization"/>
+      </type>
+      <condition value="inv-1"/>
+      <isSummary value="true"/>
+      <mapping>
+        <identity value="rim"/>
+        <map value=".scoper"/>
+      </mapping>
+    </element>
     <element id="Request.performerType">
       <path value="Request.performerType"/>
       <short value="Desired kind of service performer"/>
       <definition value="The type of individual that is desired to act upon the request."/>
-      <comments value="If performer is also specified, this indicates what type of performer is desired in the event the requested performer is not available."/>
+      <comments value="If performer is also specified, this indicates what type of performer is desired in the event the requested performer is not available.
+
+If specified without indicating a performer, this indicates that the performer must be of the specified type.  If specified with a performer then it indicates the requirements of the performer if the designated performer is not available."/>
       <min value="0"/>
       <max value="1"/>
       <type>

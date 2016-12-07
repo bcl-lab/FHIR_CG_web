@@ -3,7 +3,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>Task.profile.json - FHIR v1.7.0</title>
+  <title>Task.profile.json - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -119,7 +119,7 @@
   &quot;resourceType&quot;: &quot;StructureDefinition&quot;,
   &quot;id&quot;: &quot;Task&quot;,
   &quot;meta&quot;: {
-    &quot;lastUpdated&quot;: &quot;2016-11-28T17:29:55.664-05:00&quot;
+    &quot;lastUpdated&quot;: &quot;2016-12-07T14:18:58.982-05:00&quot;
   },
   &quot;text&quot;: {
     &quot;status&quot;: &quot;generated&quot;,
@@ -129,6 +129,10 @@
     {
       &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm&quot;,
       &quot;valueInteger&quot;: 0
+    },
+    {
+      &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/structuredefinition-wg&quot;,
+      &quot;valueCode&quot;: &quot;oo&quot;
     }
   ],
   &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/Task&quot;,
@@ -139,7 +143,7 @@
     {
       &quot;telecom&quot;: [
         {
-          &quot;system&quot;: &quot;other&quot;,
+          &quot;system&quot;: &quot;url&quot;,
           &quot;value&quot;: &quot;http://hl7.org/fhir&quot;
         }
       ]
@@ -147,16 +151,21 @@
     {
       &quot;telecom&quot;: [
         {
-          &quot;system&quot;: &quot;other&quot;,
+          &quot;system&quot;: &quot;url&quot;,
           &quot;value&quot;: &quot;http://www.hl7.org/Special/committees/orders/index.cfm&quot;
         }
       ]
     }
   ],
-  &quot;date&quot;: &quot;2016-11-28T17:29:55-05:00&quot;,
+  &quot;date&quot;: &quot;2016-12-07T14:18:58-05:00&quot;,
   &quot;description&quot;: &quot;Base StructureDefinition for Task Resource&quot;,
-  &quot;fhirVersion&quot;: &quot;1.7.0&quot;,
+  &quot;fhirVersion&quot;: &quot;1.8.0&quot;,
   &quot;mapping&quot;: [
+    {
+      &quot;identity&quot;: &quot;workflow&quot;,
+      &quot;uri&quot;: &quot;http://hl7.org/fhir/workflow&quot;,
+      &quot;name&quot;: &quot;Workflow Mapping&quot;
+    },
     {
       &quot;identity&quot;: &quot;rim&quot;,
       &quot;uri&quot;: &quot;http://hl7.org/v3&quot;,
@@ -218,15 +227,19 @@
           {
             &quot;key&quot;: &quot;inv-1&quot;,
             &quot;severity&quot;: &quot;error&quot;,
-            &quot;human&quot;: &quot;Last modified date must be greater than or equal to created date.&quot;,
-            &quot;expression&quot;: &quot;lastModified &gt;= created&quot;,
-            &quot;xpath&quot;: &quot;f:lastModified &gt;= f:created&quot;
+            &quot;human&quot;: &quot;Last modified date must be greater than or equal to authored-on date.&quot;,
+            &quot;expression&quot;: &quot;lastModified &gt;= authoredOn or lastModified.exists().not() or authoredOn.exists().not()&quot;,
+            &quot;xpath&quot;: &quot;f:lastModified &gt;= f:authoredOn or not(exists(f:lastModified)) or not(exists(f:authoredOn))&quot;
           }
         ],
         &quot;mapping&quot;: [
           {
             &quot;identity&quot;: &quot;rim&quot;,
             &quot;map&quot;: &quot;Entity. Role, or Act&quot;
+          },
+          {
+            &quot;identity&quot;: &quot;workflow&quot;,
+            &quot;map&quot;: &quot;Request, Event&quot;
           },
           {
             &quot;identity&quot;: &quot;rim&quot;,
@@ -461,13 +474,17 @@
         &quot;short&quot;: &quot;Task Instance Identifier&quot;,
         &quot;definition&quot;: &quot;The business identifier for this task.&quot;,
         &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;1&quot;,
+        &quot;max&quot;: &quot;*&quot;,
         &quot;type&quot;: [
           {
             &quot;code&quot;: &quot;Identifier&quot;
           }
         ],
         &quot;mapping&quot;: [
+          {
+            &quot;identity&quot;: &quot;workflow&quot;,
+            &quot;map&quot;: &quot;Request.identifier, Event.identifier&quot;
+          },
           {
             &quot;identity&quot;: &quot;rim&quot;,
             &quot;map&quot;: &quot;.id&quot;
@@ -479,10 +496,39 @@
         ]
       },
       {
+        &quot;id&quot;: &quot;Task.definition[x]&quot;,
+        &quot;path&quot;: &quot;Task.definition[x]&quot;,
+        &quot;short&quot;: &quot;Formal definition of task&quot;,
+        &quot;definition&quot;: &quot;A reference to a formal or informal definition of the task.  For example, a protocol, a step within a defined workflow definition, etc.&quot;,
+        &quot;requirements&quot;: &quot;Enables a formal definition of how he task is to be performed (e.g. using BPMN, BPEL, XPDL or other formal notation) to be associated with a task, enabling automation.&quot;,
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;1&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;uri&quot;
+          },
+          {
+            &quot;code&quot;: &quot;Reference&quot;,
+            &quot;targetProfile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/ActivityDefinition&quot;
+          }
+        ],
+        &quot;isSummary&quot;: true,
+        &quot;mapping&quot;: [
+          {
+            &quot;identity&quot;: &quot;workflow&quot;,
+            &quot;map&quot;: &quot;Request.definition, Event.definitoin&quot;
+          },
+          {
+            &quot;identity&quot;: &quot;rim&quot;,
+            &quot;map&quot;: &quot;.outboundRelationship[typeCode=DEFN].target&quot;
+          }
+        ]
+      },
+      {
         &quot;id&quot;: &quot;Task.basedOn&quot;,
         &quot;path&quot;: &quot;Task.basedOn&quot;,
         &quot;short&quot;: &quot;Request fulfilled by this task&quot;,
-        &quot;definition&quot;: &quot;Identifies a plan, proposal or order that this task has been created in fulfillment of.&quot;,
+        &quot;definition&quot;: &quot;BasedOn refers to a higher-level authorization that triggered the creation of the task.  It references a \&quot;request\&quot; resource such as a DiagnosticRequest, MedicationRequest, ProcedureRequest, CarePlan, etc. which is distinct from the \&quot;request\&quot; resource the task is seeking to fulfil.  This latter resource is referenced by FocusOn.  For example, based on a DiagnosticRequest (= BasedOn), a task is created to fulfil a procedureRequest ( = FocusOn ) to collect a specimen from a patient.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;*&quot;,
         &quot;type&quot;: [
@@ -494,14 +540,18 @@
         &quot;isSummary&quot;: true,
         &quot;mapping&quot;: [
           {
+            &quot;identity&quot;: &quot;workflow&quot;,
+            &quot;map&quot;: &quot;Request.basedOn, Definition.basedOn&quot;
+          },
+          {
             &quot;identity&quot;: &quot;rim&quot;,
             &quot;map&quot;: &quot;.outboundRelationship[typeCode=FLFS].target[moodCode=INT]&quot;
           }
         ]
       },
       {
-        &quot;id&quot;: &quot;Task.requisition&quot;,
-        &quot;path&quot;: &quot;Task.requisition&quot;,
+        &quot;id&quot;: &quot;Task.groupIdentifier&quot;,
+        &quot;path&quot;: &quot;Task.groupIdentifier&quot;,
         &quot;short&quot;: &quot;Requisition or grouper id&quot;,
         &quot;definition&quot;: &quot;An identifier that links together multiple tasks and other requests that were created in the same context.&quot;,
         &quot;requirements&quot;: &quot;Billing and/or reporting can be linked to whether multiple requests were created as a single unit.&quot;,
@@ -515,14 +565,18 @@
         &quot;isSummary&quot;: true,
         &quot;mapping&quot;: [
           {
+            &quot;identity&quot;: &quot;workflow&quot;,
+            &quot;map&quot;: &quot;Request.groupIdentifier&quot;
+          },
+          {
             &quot;identity&quot;: &quot;rim&quot;,
             &quot;map&quot;: &quot;.inboundRelationship[typeCode=COMP].source[moodCode=INT].id&quot;
           }
         ]
       },
       {
-        &quot;id&quot;: &quot;Task.parent&quot;,
-        &quot;path&quot;: &quot;Task.parent&quot;,
+        &quot;id&quot;: &quot;Task.partOf&quot;,
+        &quot;path&quot;: &quot;Task.partOf&quot;,
         &quot;short&quot;: &quot;Composite task&quot;,
         &quot;definition&quot;: &quot;Task that this particular task is part of.&quot;,
         &quot;comments&quot;: &quot;This should usually be 0..1.&quot;,
@@ -537,6 +591,10 @@
         ],
         &quot;isSummary&quot;: true,
         &quot;mapping&quot;: [
+          {
+            &quot;identity&quot;: &quot;workflow&quot;,
+            &quot;map&quot;: &quot;Event.partOf&quot;
+          },
           {
             &quot;identity&quot;: &quot;rim&quot;,
             &quot;map&quot;: &quot;.inboundRelationship[typeCode=COMP].source[moodCode=INT]&quot;
@@ -565,6 +623,10 @@
           }
         },
         &quot;mapping&quot;: [
+          {
+            &quot;identity&quot;: &quot;workflow&quot;,
+            &quot;map&quot;: &quot;Request.status, Event.status&quot;
+          },
           {
             &quot;identity&quot;: &quot;rim&quot;,
             &quot;map&quot;: &quot;.statusCode&quot;
@@ -622,27 +684,31 @@
         ]
       },
       {
-        &quot;id&quot;: &quot;Task.stage&quot;,
-        &quot;path&quot;: &quot;Task.stage&quot;,
+        &quot;id&quot;: &quot;Task.intent&quot;,
+        &quot;path&quot;: &quot;Task.intent&quot;,
         &quot;short&quot;: &quot;proposed | planned | actionable +&quot;,
         &quot;definition&quot;: &quot;Indicates the \&quot;level\&quot; of actionability associated with the Task.  I.e. Is this a proposed task, a planned task, an actionable task, etc.&quot;,
-        &quot;comments&quot;: &quot;This element is immutable.  Proposed tasks, planned tasks, etc. must be distinct instances.&quot;,
+        &quot;comments&quot;: &quot;This element is immutable.  Proposed tasks, planned tasks, etc. must be distinct instances.\n\nIn most cases, Tasks will have an intent of \&quot;order\&quot;.&quot;,
         &quot;min&quot;: 1,
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;CodeableConcept&quot;
+            &quot;code&quot;: &quot;code&quot;
           }
         ],
         &quot;isSummary&quot;: true,
         &quot;binding&quot;: {
-          &quot;strength&quot;: &quot;extensible&quot;,
+          &quot;strength&quot;: &quot;required&quot;,
           &quot;description&quot;: &quot;Distinguishes whether the task is a proposal, plan or full order&quot;,
           &quot;valueSetReference&quot;: {
-            &quot;reference&quot;: &quot;http://hl7.org/fhir/ValueSet/task-stage&quot;
+            &quot;reference&quot;: &quot;http://hl7.org/fhir/ValueSet/request-intent&quot;
           }
         },
         &quot;mapping&quot;: [
+          {
+            &quot;identity&quot;: &quot;workflow&quot;,
+            &quot;map&quot;: &quot;Request.intent&quot;
+          },
           {
             &quot;identity&quot;: &quot;rim&quot;,
             &quot;map&quot;: &quot;.moodCode&quot;
@@ -654,34 +720,10 @@
         ]
       },
       {
-        &quot;id&quot;: &quot;Task.code&quot;,
-        &quot;path&quot;: &quot;Task.code&quot;,
-        &quot;short&quot;: &quot;Task Type&quot;,
-        &quot;definition&quot;: &quot;A name or code (or both) briefly describing what the task involves.&quot;,
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;CodeableConcept&quot;
-          }
-        ],
-        &quot;isSummary&quot;: true,
-        &quot;mapping&quot;: [
-          {
-            &quot;identity&quot;: &quot;rim&quot;,
-            &quot;map&quot;: &quot;.code&quot;
-          },
-          {
-            &quot;identity&quot;: &quot;w5&quot;,
-            &quot;map&quot;: &quot;class&quot;
-          }
-        ]
-      },
-      {
         &quot;id&quot;: &quot;Task.priority&quot;,
         &quot;path&quot;: &quot;Task.priority&quot;,
-        &quot;short&quot;: &quot;low | normal | high&quot;,
-        &quot;definition&quot;: &quot;The priority of the task among other tasks of the same type.&quot;,
+        &quot;short&quot;: &quot;normal | urgent | asap | stat&quot;,
+        &quot;definition&quot;: &quot;Indicates how quickly the Task should be addressed with respect to other requests.&quot;,
         &quot;requirements&quot;: &quot;Used to identify the service level expected while performing a task.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
@@ -695,10 +737,14 @@
           &quot;strength&quot;: &quot;required&quot;,
           &quot;description&quot;: &quot;The task's priority&quot;,
           &quot;valueSetReference&quot;: {
-            &quot;reference&quot;: &quot;http://hl7.org/fhir/ValueSet/task-priority&quot;
+            &quot;reference&quot;: &quot;http://hl7.org/fhir/ValueSet/request-priority&quot;
           }
         },
         &quot;mapping&quot;: [
+          {
+            &quot;identity&quot;: &quot;workflow&quot;,
+            &quot;map&quot;: &quot;Request.priority&quot;
+          },
           {
             &quot;identity&quot;: &quot;rim&quot;,
             &quot;map&quot;: &quot;.priorityCode&quot;
@@ -706,6 +752,35 @@
           {
             &quot;identity&quot;: &quot;w5&quot;,
             &quot;map&quot;: &quot;grade&quot;
+          }
+        ]
+      },
+      {
+        &quot;id&quot;: &quot;Task.code&quot;,
+        &quot;path&quot;: &quot;Task.code&quot;,
+        &quot;short&quot;: &quot;Task Type&quot;,
+        &quot;definition&quot;: &quot;A name or code (or both) briefly describing what the task involves.&quot;,
+        &quot;comments&quot;: &quot;The title (eg \&quot;My Tasks\&quot;, \&quot;Outstanding Tasks for Patient X\&quot;) should go into the code.&quot;,
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;1&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;CodeableConcept&quot;
+          }
+        ],
+        &quot;isSummary&quot;: true,
+        &quot;mapping&quot;: [
+          {
+            &quot;identity&quot;: &quot;workflow&quot;,
+            &quot;map&quot;: &quot;Request.code, Event.code&quot;
+          },
+          {
+            &quot;identity&quot;: &quot;rim&quot;,
+            &quot;map&quot;: &quot;.code&quot;
+          },
+          {
+            &quot;identity&quot;: &quot;w5&quot;,
+            &quot;map&quot;: &quot;class&quot;
           }
         ]
       },
@@ -776,6 +851,10 @@
         &quot;isSummary&quot;: true,
         &quot;mapping&quot;: [
           {
+            &quot;identity&quot;: &quot;workflow&quot;,
+            &quot;map&quot;: &quot;Request.subject, Event.subject&quot;
+          },
+          {
             &quot;identity&quot;: &quot;rim&quot;,
             &quot;map&quot;: &quot;.participation[typeCode=RCT].role&quot;
           },
@@ -806,6 +885,10 @@
         &quot;isSummary&quot;: true,
         &quot;mapping&quot;: [
           {
+            &quot;identity&quot;: &quot;workflow&quot;,
+            &quot;map&quot;: &quot;Request.context, Event.context&quot;
+          },
+          {
             &quot;identity&quot;: &quot;rim&quot;,
             &quot;map&quot;: &quot;.inboundRelationship[typeCode=COMP].source[classCode=PCPR, moodCode=EVN]&quot;
           },
@@ -816,15 +899,39 @@
         ]
       },
       {
-        &quot;id&quot;: &quot;Task.created&quot;,
-        &quot;path&quot;: &quot;Task.created&quot;,
+        &quot;id&quot;: &quot;Task.executionPeriod&quot;,
+        &quot;path&quot;: &quot;Task.executionPeriod&quot;,
+        &quot;short&quot;: &quot;Start and end time of execution&quot;,
+        &quot;definition&quot;: &quot;Identifies the time action was first taken against the task (start) and/or the time final action was taken against the task prior to marking it as completed (end).&quot;,
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;1&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;Period&quot;
+          }
+        ],
+        &quot;isSummary&quot;: true,
+        &quot;mapping&quot;: [
+          {
+            &quot;identity&quot;: &quot;workflow&quot;,
+            &quot;map&quot;: &quot;Event.occurrence[x]&quot;
+          },
+          {
+            &quot;identity&quot;: &quot;w5&quot;,
+            &quot;map&quot;: &quot;when.done&quot;
+          }
+        ]
+      },
+      {
+        &quot;id&quot;: &quot;Task.authoredOn&quot;,
+        &quot;path&quot;: &quot;Task.authoredOn&quot;,
         &quot;short&quot;: &quot;Task Creation Date&quot;,
         &quot;definition&quot;: &quot;The date and time this task was created.&quot;,
         &quot;requirements&quot;: &quot;Most often used along with lastUpdated to track duration of task to supporting monitoring and management.&quot;,
         &quot;alias&quot;: [
           &quot;Created Date&quot;
         ],
-        &quot;min&quot;: 1,
+        &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
@@ -835,6 +942,10 @@
           &quot;inv-1&quot;
         ],
         &quot;mapping&quot;: [
+          {
+            &quot;identity&quot;: &quot;workflow&quot;,
+            &quot;map&quot;: &quot;Request.authoredOn&quot;
+          },
           {
             &quot;identity&quot;: &quot;rim&quot;,
             &quot;map&quot;: &quot;.participation[typeCode=AUT].time&quot;
@@ -854,7 +965,7 @@
         &quot;alias&quot;: [
           &quot;Update Date&quot;
         ],
-        &quot;min&quot;: 1,
+        &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
@@ -875,9 +986,131 @@
       {
         &quot;id&quot;: &quot;Task.requester&quot;,
         &quot;path&quot;: &quot;Task.requester&quot;,
-        &quot;short&quot;: &quot;Task Creator&quot;,
+        &quot;short&quot;: &quot;Who is asking for task to be done&quot;,
         &quot;definition&quot;: &quot;The creator of the task.&quot;,
         &quot;requirements&quot;: &quot;Identifies who created this task.  May be used by access control mechanisms (e.g., to ensure that only the creator can cancel a task).&quot;,
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;1&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;BackboneElement&quot;
+          }
+        ],
+        &quot;constraint&quot;: [
+          {
+            &quot;key&quot;: &quot;ele-1&quot;,
+            &quot;severity&quot;: &quot;error&quot;,
+            &quot;human&quot;: &quot;All FHIR elements must have a @value or children&quot;,
+            &quot;expression&quot;: &quot;children().count() &gt; id.count()&quot;,
+            &quot;xpath&quot;: &quot;@value|f:*|h:div&quot;,
+            &quot;source&quot;: &quot;Element&quot;
+          }
+        ],
+        &quot;isSummary&quot;: true,
+        &quot;mapping&quot;: [
+          {
+            &quot;identity&quot;: &quot;workflow&quot;,
+            &quot;map&quot;: &quot;Request.requester&quot;
+          },
+          {
+            &quot;identity&quot;: &quot;rim&quot;,
+            &quot;map&quot;: &quot;.participation[typeCode=AUT].role&quot;
+          }
+        ]
+      },
+      {
+        &quot;id&quot;: &quot;Task.requester.id&quot;,
+        &quot;path&quot;: &quot;Task.requester.id&quot;,
+        &quot;representation&quot;: [
+          &quot;xmlAttr&quot;
+        ],
+        &quot;short&quot;: &quot;xml:id (or equivalent in JSON)&quot;,
+        &quot;definition&quot;: &quot;unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.&quot;,
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;1&quot;,
+        &quot;base&quot;: {
+          &quot;path&quot;: &quot;Element.id&quot;,
+          &quot;min&quot;: 0,
+          &quot;max&quot;: &quot;1&quot;
+        },
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;string&quot;
+          }
+        ],
+        &quot;mapping&quot;: [
+          {
+            &quot;identity&quot;: &quot;rim&quot;,
+            &quot;map&quot;: &quot;n/a&quot;
+          }
+        ]
+      },
+      {
+        &quot;id&quot;: &quot;Task.requester.extension&quot;,
+        &quot;path&quot;: &quot;Task.requester.extension&quot;,
+        &quot;short&quot;: &quot;Additional Content defined by implementations&quot;,
+        &quot;definition&quot;: &quot;May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.&quot;,
+        &quot;comments&quot;: &quot;There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone.&quot;,
+        &quot;alias&quot;: [
+          &quot;extensions&quot;,
+          &quot;user content&quot;
+        ],
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;*&quot;,
+        &quot;base&quot;: {
+          &quot;path&quot;: &quot;Element.extension&quot;,
+          &quot;min&quot;: 0,
+          &quot;max&quot;: &quot;*&quot;
+        },
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;Extension&quot;
+          }
+        ],
+        &quot;mapping&quot;: [
+          {
+            &quot;identity&quot;: &quot;rim&quot;,
+            &quot;map&quot;: &quot;n/a&quot;
+          }
+        ]
+      },
+      {
+        &quot;id&quot;: &quot;Task.requester.modifierExtension&quot;,
+        &quot;path&quot;: &quot;Task.requester.modifierExtension&quot;,
+        &quot;short&quot;: &quot;Extensions that cannot be ignored&quot;,
+        &quot;definition&quot;: &quot;May be used to represent additional information that is not part of the basic definition of the element, and that modifies the understanding of the element that contains it. Usually modifier elements provide negation or qualification. In order to make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.&quot;,
+        &quot;comments&quot;: &quot;There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone.&quot;,
+        &quot;alias&quot;: [
+          &quot;extensions&quot;,
+          &quot;user content&quot;,
+          &quot;modifiers&quot;
+        ],
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;*&quot;,
+        &quot;base&quot;: {
+          &quot;path&quot;: &quot;BackboneElement.modifierExtension&quot;,
+          &quot;min&quot;: 0,
+          &quot;max&quot;: &quot;*&quot;
+        },
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;Extension&quot;
+          }
+        ],
+        &quot;isModifier&quot;: true,
+        &quot;isSummary&quot;: true,
+        &quot;mapping&quot;: [
+          {
+            &quot;identity&quot;: &quot;rim&quot;,
+            &quot;map&quot;: &quot;N/A&quot;
+          }
+        ]
+      },
+      {
+        &quot;id&quot;: &quot;Task.requester.agent&quot;,
+        &quot;path&quot;: &quot;Task.requester.agent&quot;,
+        &quot;short&quot;: &quot;Individual asking for task&quot;,
+        &quot;definition&quot;: &quot;The device, practitioner, etc. who initiated the task.&quot;,
         &quot;alias&quot;: [
           &quot;Initiator&quot;,
           &quot;Author&quot;
@@ -909,12 +1142,76 @@
         &quot;isSummary&quot;: true,
         &quot;mapping&quot;: [
           {
+            &quot;identity&quot;: &quot;workflow&quot;,
+            &quot;map&quot;: &quot;Request.requester.agent&quot;
+          },
+          {
             &quot;identity&quot;: &quot;rim&quot;,
-            &quot;map&quot;: &quot;.participation[typeCode=AUT].role&quot;
+            &quot;map&quot;: &quot;.player&quot;
           },
           {
             &quot;identity&quot;: &quot;w5&quot;,
             &quot;map&quot;: &quot;who.author&quot;
+          }
+        ]
+      },
+      {
+        &quot;id&quot;: &quot;Task.requester.onBehalfOf&quot;,
+        &quot;path&quot;: &quot;Task.requester.onBehalfOf&quot;,
+        &quot;short&quot;: &quot;Organization individual is acting for&quot;,
+        &quot;definition&quot;: &quot;The organization the device or practitioner was acting on behalf of when they initiated the task.&quot;,
+        &quot;requirements&quot;: &quot;Practitioners and Devices can be associated with multiple organizations.  This element indicates which organization they were acting on behalf of when authoring the request.&quot;,
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;1&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;Reference&quot;,
+            &quot;targetProfile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/Organization&quot;
+          }
+        ],
+        &quot;mapping&quot;: [
+          {
+            &quot;identity&quot;: &quot;workflow&quot;,
+            &quot;map&quot;: &quot;Request.requester.onBehalfOf&quot;
+          },
+          {
+            &quot;identity&quot;: &quot;rim&quot;,
+            &quot;map&quot;: &quot;.scoper&quot;
+          }
+        ]
+      },
+      {
+        &quot;id&quot;: &quot;Task.performerType&quot;,
+        &quot;path&quot;: &quot;Task.performerType&quot;,
+        &quot;short&quot;: &quot;requester | dispatcher | scheduler | performer | monitor | manager | acquirer | reviewer&quot;,
+        &quot;definition&quot;: &quot;The type of participant that can execute the task.&quot;,
+        &quot;requirements&quot;: &quot;Use to distinguish tasks on different activity queues.&quot;,
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;*&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;CodeableConcept&quot;
+          }
+        ],
+        &quot;binding&quot;: {
+          &quot;strength&quot;: &quot;preferred&quot;,
+          &quot;description&quot;: &quot;The type(s) of task performers allowed&quot;,
+          &quot;valueSetReference&quot;: {
+            &quot;reference&quot;: &quot;http://hl7.org/fhir/ValueSet/task-performer-type&quot;
+          }
+        },
+        &quot;mapping&quot;: [
+          {
+            &quot;identity&quot;: &quot;workflow&quot;,
+            &quot;map&quot;: &quot;Event.performer.role, Request.performerType&quot;
+          },
+          {
+            &quot;identity&quot;: &quot;rim&quot;,
+            &quot;map&quot;: &quot;.participation[typeCode=PRF].role.code&quot;
+          },
+          {
+            &quot;identity&quot;: &quot;w5&quot;,
+            &quot;map&quot;: &quot;who.actor&quot;
           }
         ]
       },
@@ -956,39 +1253,12 @@
         &quot;isSummary&quot;: true,
         &quot;mapping&quot;: [
           {
-            &quot;identity&quot;: &quot;rim&quot;,
-            &quot;map&quot;: &quot;.participation[typeCode=PRF].role&quot;
+            &quot;identity&quot;: &quot;workflow&quot;,
+            &quot;map&quot;: &quot;Event.performer.actor, Request.performer&quot;
           },
           {
-            &quot;identity&quot;: &quot;w5&quot;,
-            &quot;map&quot;: &quot;who.actor&quot;
-          }
-        ]
-      },
-      {
-        &quot;id&quot;: &quot;Task.performerType&quot;,
-        &quot;path&quot;: &quot;Task.performerType&quot;,
-        &quot;short&quot;: &quot;requester | dispatcher | scheduler | performer | monitor | manager | acquirer | reviewer&quot;,
-        &quot;definition&quot;: &quot;The type of participant that can execute the task.&quot;,
-        &quot;requirements&quot;: &quot;Use to distinguish tasks on different activity queues.&quot;,
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;*&quot;,
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;CodeableConcept&quot;
-          }
-        ],
-        &quot;binding&quot;: {
-          &quot;strength&quot;: &quot;preferred&quot;,
-          &quot;description&quot;: &quot;The type(s) of task performers allowed&quot;,
-          &quot;valueSetReference&quot;: {
-            &quot;reference&quot;: &quot;http://hl7.org/fhir/ValueSet/task-performer-type&quot;
-          }
-        },
-        &quot;mapping&quot;: [
-          {
             &quot;identity&quot;: &quot;rim&quot;,
-            &quot;map&quot;: &quot;.participation[typeCode=PRF].role.code&quot;
+            &quot;map&quot;: &quot;.participation[typeCode=PRF].role&quot;
           },
           {
             &quot;identity&quot;: &quot;w5&quot;,
@@ -1015,6 +1285,10 @@
         },
         &quot;mapping&quot;: [
           {
+            &quot;identity&quot;: &quot;workflow&quot;,
+            &quot;map&quot;: &quot;Request.reasonCode, Event.reasonCodeableConcept&quot;
+          },
+          {
             &quot;identity&quot;: &quot;rim&quot;,
             &quot;map&quot;: &quot;.reasonCode&quot;
           },
@@ -1038,16 +1312,48 @@
         ],
         &quot;mapping&quot;: [
           {
+            &quot;identity&quot;: &quot;workflow&quot;,
+            &quot;map&quot;: &quot;Request.note, Event.note&quot;
+          },
+          {
             &quot;identity&quot;: &quot;rim&quot;,
             &quot;map&quot;: &quot;.inboundRelationship[typeCode=SUBJ, ].source[classCode=OBS, moodCode=EVN, code=\&quot;annotation\&quot;].value(string)&quot;
           }
         ]
       },
       {
-        &quot;id&quot;: &quot;Task.fulfillment&quot;,
-        &quot;path&quot;: &quot;Task.fulfillment&quot;,
+        &quot;id&quot;: &quot;Task.relevantHistory&quot;,
+        &quot;path&quot;: &quot;Task.relevantHistory&quot;,
+        &quot;short&quot;: &quot;Key events in history of the Task&quot;,
+        &quot;definition&quot;: &quot;Links to Provenance records for past versions of this Task that identify key state transitions or updates that are likely to be relevant to a user looking at the current version of the task.&quot;,
+        &quot;comments&quot;: &quot;This element does not point to the Provenance associated with the *current* version of the resource - as it would be created after this version existed.  The Provenance for the current version can be retrieved with a _revinclude.&quot;,
+        &quot;alias&quot;: [
+          &quot;Status History&quot;
+        ],
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;*&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;Reference&quot;,
+            &quot;targetProfile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/Provenance&quot;
+          }
+        ],
+        &quot;mapping&quot;: [
+          {
+            &quot;identity&quot;: &quot;workflow&quot;,
+            &quot;map&quot;: &quot;Request.relevantHistory&quot;
+          },
+          {
+            &quot;identity&quot;: &quot;rim&quot;,
+            &quot;map&quot;: &quot;.inboundRelationship(typeCode=SUBJ].source[classCode=CACT, moodCode=EVN]&quot;
+          }
+        ]
+      },
+      {
+        &quot;id&quot;: &quot;Task.restriction&quot;,
+        &quot;path&quot;: &quot;Task.restriction&quot;,
         &quot;short&quot;: &quot;Constraints on fulfillment tasks&quot;,
-        &quot;definition&quot;: &quot;Identifies any limitations on what part of a referenced task subject request should be actioned.&quot;,
+        &quot;definition&quot;: &quot;If the Task.focus is a request resource and the task is seeking fulfillment (i.e is asking for the request to be actioned), this element identifies any limitations on what parts of the referenced request should be actioned.&quot;,
         &quot;requirements&quot;: &quot;Sometimes when fulfillment is sought, you don't want full fulfillment.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
@@ -1074,8 +1380,8 @@
         ]
       },
       {
-        &quot;id&quot;: &quot;Task.fulfillment.id&quot;,
-        &quot;path&quot;: &quot;Task.fulfillment.id&quot;,
+        &quot;id&quot;: &quot;Task.restriction.id&quot;,
+        &quot;path&quot;: &quot;Task.restriction.id&quot;,
         &quot;representation&quot;: [
           &quot;xmlAttr&quot;
         ],
@@ -1101,8 +1407,8 @@
         ]
       },
       {
-        &quot;id&quot;: &quot;Task.fulfillment.extension&quot;,
-        &quot;path&quot;: &quot;Task.fulfillment.extension&quot;,
+        &quot;id&quot;: &quot;Task.restriction.extension&quot;,
+        &quot;path&quot;: &quot;Task.restriction.extension&quot;,
         &quot;short&quot;: &quot;Additional Content defined by implementations&quot;,
         &quot;definition&quot;: &quot;May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.&quot;,
         &quot;comments&quot;: &quot;There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone.&quot;,
@@ -1130,8 +1436,8 @@
         ]
       },
       {
-        &quot;id&quot;: &quot;Task.fulfillment.modifierExtension&quot;,
-        &quot;path&quot;: &quot;Task.fulfillment.modifierExtension&quot;,
+        &quot;id&quot;: &quot;Task.restriction.modifierExtension&quot;,
+        &quot;path&quot;: &quot;Task.restriction.modifierExtension&quot;,
         &quot;short&quot;: &quot;Extensions that cannot be ignored&quot;,
         &quot;definition&quot;: &quot;May be used to represent additional information that is not part of the basic definition of the element, and that modifies the understanding of the element that contains it. Usually modifier elements provide negation or qualification. In order to make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.&quot;,
         &quot;comments&quot;: &quot;There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone.&quot;,
@@ -1162,8 +1468,8 @@
         ]
       },
       {
-        &quot;id&quot;: &quot;Task.fulfillment.repetitions&quot;,
-        &quot;path&quot;: &quot;Task.fulfillment.repetitions&quot;,
+        &quot;id&quot;: &quot;Task.restriction.repetitions&quot;,
+        &quot;path&quot;: &quot;Task.restriction.repetitions&quot;,
         &quot;short&quot;: &quot;How many times to repeat&quot;,
         &quot;definition&quot;: &quot;Indicates the number of times the requested action should occur.&quot;,
         &quot;requirements&quot;: &quot;E.g. order that requests monthly lab tests, fulfillment is sought for 1.&quot;,
@@ -1182,8 +1488,8 @@
         ]
       },
       {
-        &quot;id&quot;: &quot;Task.fulfillment.period&quot;,
-        &quot;path&quot;: &quot;Task.fulfillment.period&quot;,
+        &quot;id&quot;: &quot;Task.restriction.period&quot;,
+        &quot;path&quot;: &quot;Task.restriction.period&quot;,
         &quot;short&quot;: &quot;Over what time-period is fulfillment sought&quot;,
         &quot;definition&quot;: &quot;Over what time-period is fulfillment sought.&quot;,
         &quot;requirements&quot;: &quot;E.g. order that authorizes 1 year's services.  Fulfillment is sought for next 3 months.&quot;,
@@ -1202,8 +1508,8 @@
         ]
       },
       {
-        &quot;id&quot;: &quot;Task.fulfillment.recipients&quot;,
-        &quot;path&quot;: &quot;Task.fulfillment.recipients&quot;,
+        &quot;id&quot;: &quot;Task.restriction.recipient&quot;,
+        &quot;path&quot;: &quot;Task.restriction.recipient&quot;,
         &quot;short&quot;: &quot;For whom is fulfillment sought?&quot;,
         &quot;definition&quot;: &quot;For requests that are targeted to more than on potential recipient/target, for whom is fulfillment sought?&quot;,
         &quot;min&quot;: 0,
@@ -1238,27 +1544,6 @@
         ]
       },
       {
-        &quot;id&quot;: &quot;Task.definition&quot;,
-        &quot;path&quot;: &quot;Task.definition&quot;,
-        &quot;short&quot;: &quot;Task Definition&quot;,
-        &quot;definition&quot;: &quot;A reference to a formal or informal definition of the task.  For example, a protocol, a step within a defined workflow definition, etc.&quot;,
-        &quot;requirements&quot;: &quot;Enables a formal definition of how he task is to be performed (e.g. using BPMN, BPEL, XPDL or other formal notation) to be associated with a task, enabling automation.&quot;,
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;uri&quot;
-          }
-        ],
-        &quot;isSummary&quot;: true,
-        &quot;mapping&quot;: [
-          {
-            &quot;identity&quot;: &quot;rim&quot;,
-            &quot;map&quot;: &quot;.outboundRelationship[typeCode=DEFN].target&quot;
-          }
-        ]
-      },
-      {
         &quot;id&quot;: &quot;Task.input&quot;,
         &quot;extension&quot;: [
           {
@@ -1267,7 +1552,7 @@
           }
         ],
         &quot;path&quot;: &quot;Task.input&quot;,
-        &quot;short&quot;: &quot;Supporting information&quot;,
+        &quot;short&quot;: &quot;Information used to perform task&quot;,
         &quot;definition&quot;: &quot;Additional information that may be needed in the execution of the task.&quot;,
         &quot;requirements&quot;: &quot;Resources and data used to perform the task.  This data is used in the business logic of task execution, and is stored separately because it varies between workflows.&quot;,
         &quot;alias&quot;: [
@@ -1416,7 +1701,7 @@
       {
         &quot;id&quot;: &quot;Task.input.value[x]&quot;,
         &quot;path&quot;: &quot;Task.input.value[x]&quot;,
-        &quot;short&quot;: &quot;Input Value&quot;,
+        &quot;short&quot;: &quot;Content to use in performing the task&quot;,
         &quot;definition&quot;: &quot;The value of the input parameter as a basic type.&quot;,
         &quot;min&quot;: 1,
         &quot;max&quot;: &quot;1&quot;,
@@ -1546,7 +1831,7 @@
       {
         &quot;id&quot;: &quot;Task.output&quot;,
         &quot;path&quot;: &quot;Task.output&quot;,
-        &quot;short&quot;: &quot;Task Output&quot;,
+        &quot;short&quot;: &quot;Information produced as part of task&quot;,
         &quot;definition&quot;: &quot;Outputs produced by the Task.&quot;,
         &quot;requirements&quot;: &quot;Resources and data produced during the execution the task.  This data is generated by the business logic of task execution, and is stored separately because it varies between workflows.&quot;,
         &quot;min&quot;: 0,
@@ -1664,7 +1949,7 @@
       {
         &quot;id&quot;: &quot;Task.output.type&quot;,
         &quot;path&quot;: &quot;Task.output.type&quot;,
-        &quot;short&quot;: &quot;Output Name&quot;,
+        &quot;short&quot;: &quot;Label for output&quot;,
         &quot;definition&quot;: &quot;The name of the Output parameter.&quot;,
         &quot;requirements&quot;: &quot;Outputs are named to enable task automation to bind data and pass it from one task to the next.&quot;,
         &quot;alias&quot;: [
@@ -1691,7 +1976,7 @@
       {
         &quot;id&quot;: &quot;Task.output.value[x]&quot;,
         &quot;path&quot;: &quot;Task.output.value[x]&quot;,
-        &quot;short&quot;: &quot;Output Value&quot;,
+        &quot;short&quot;: &quot;Result of output&quot;,
         &quot;definition&quot;: &quot;The value of the Output parameter as a basic type.&quot;,
         &quot;requirements&quot;: &quot;Task outputs can take any form.&quot;,
         &quot;min&quot;: 1,
@@ -1834,12 +2119,16 @@
           {
             &quot;key&quot;: &quot;inv-1&quot;,
             &quot;severity&quot;: &quot;error&quot;,
-            &quot;human&quot;: &quot;Last modified date must be greater than or equal to created date.&quot;,
-            &quot;expression&quot;: &quot;lastModified &gt;= created&quot;,
-            &quot;xpath&quot;: &quot;f:lastModified &gt;= f:created&quot;
+            &quot;human&quot;: &quot;Last modified date must be greater than or equal to authored-on date.&quot;,
+            &quot;expression&quot;: &quot;lastModified &gt;= authoredOn or lastModified.exists().not() or authoredOn.exists().not()&quot;,
+            &quot;xpath&quot;: &quot;f:lastModified &gt;= f:authoredOn or not(exists(f:lastModified)) or not(exists(f:authoredOn))&quot;
           }
         ],
         &quot;mapping&quot;: [
+          {
+            &quot;identity&quot;: &quot;workflow&quot;,
+            &quot;map&quot;: &quot;Request, Event&quot;
+          },
           {
             &quot;identity&quot;: &quot;rim&quot;,
             &quot;map&quot;: &quot;ControlAct[moodCode=INT]&quot;
@@ -1856,13 +2145,17 @@
         &quot;short&quot;: &quot;Task Instance Identifier&quot;,
         &quot;definition&quot;: &quot;The business identifier for this task.&quot;,
         &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;1&quot;,
+        &quot;max&quot;: &quot;*&quot;,
         &quot;type&quot;: [
           {
             &quot;code&quot;: &quot;Identifier&quot;
           }
         ],
         &quot;mapping&quot;: [
+          {
+            &quot;identity&quot;: &quot;workflow&quot;,
+            &quot;map&quot;: &quot;Request.identifier, Event.identifier&quot;
+          },
           {
             &quot;identity&quot;: &quot;rim&quot;,
             &quot;map&quot;: &quot;.id&quot;
@@ -1874,10 +2167,39 @@
         ]
       },
       {
+        &quot;id&quot;: &quot;Task.definition[x]&quot;,
+        &quot;path&quot;: &quot;Task.definition[x]&quot;,
+        &quot;short&quot;: &quot;Formal definition of task&quot;,
+        &quot;definition&quot;: &quot;A reference to a formal or informal definition of the task.  For example, a protocol, a step within a defined workflow definition, etc.&quot;,
+        &quot;requirements&quot;: &quot;Enables a formal definition of how he task is to be performed (e.g. using BPMN, BPEL, XPDL or other formal notation) to be associated with a task, enabling automation.&quot;,
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;1&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;uri&quot;
+          },
+          {
+            &quot;code&quot;: &quot;Reference&quot;,
+            &quot;targetProfile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/ActivityDefinition&quot;
+          }
+        ],
+        &quot;isSummary&quot;: true,
+        &quot;mapping&quot;: [
+          {
+            &quot;identity&quot;: &quot;workflow&quot;,
+            &quot;map&quot;: &quot;Request.definition, Event.definitoin&quot;
+          },
+          {
+            &quot;identity&quot;: &quot;rim&quot;,
+            &quot;map&quot;: &quot;.outboundRelationship[typeCode=DEFN].target&quot;
+          }
+        ]
+      },
+      {
         &quot;id&quot;: &quot;Task.basedOn&quot;,
         &quot;path&quot;: &quot;Task.basedOn&quot;,
         &quot;short&quot;: &quot;Request fulfilled by this task&quot;,
-        &quot;definition&quot;: &quot;Identifies a plan, proposal or order that this task has been created in fulfillment of.&quot;,
+        &quot;definition&quot;: &quot;BasedOn refers to a higher-level authorization that triggered the creation of the task.  It references a \&quot;request\&quot; resource such as a DiagnosticRequest, MedicationRequest, ProcedureRequest, CarePlan, etc. which is distinct from the \&quot;request\&quot; resource the task is seeking to fulfil.  This latter resource is referenced by FocusOn.  For example, based on a DiagnosticRequest (= BasedOn), a task is created to fulfil a procedureRequest ( = FocusOn ) to collect a specimen from a patient.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;*&quot;,
         &quot;type&quot;: [
@@ -1889,14 +2211,18 @@
         &quot;isSummary&quot;: true,
         &quot;mapping&quot;: [
           {
+            &quot;identity&quot;: &quot;workflow&quot;,
+            &quot;map&quot;: &quot;Request.basedOn, Definition.basedOn&quot;
+          },
+          {
             &quot;identity&quot;: &quot;rim&quot;,
             &quot;map&quot;: &quot;.outboundRelationship[typeCode=FLFS].target[moodCode=INT]&quot;
           }
         ]
       },
       {
-        &quot;id&quot;: &quot;Task.requisition&quot;,
-        &quot;path&quot;: &quot;Task.requisition&quot;,
+        &quot;id&quot;: &quot;Task.groupIdentifier&quot;,
+        &quot;path&quot;: &quot;Task.groupIdentifier&quot;,
         &quot;short&quot;: &quot;Requisition or grouper id&quot;,
         &quot;definition&quot;: &quot;An identifier that links together multiple tasks and other requests that were created in the same context.&quot;,
         &quot;requirements&quot;: &quot;Billing and/or reporting can be linked to whether multiple requests were created as a single unit.&quot;,
@@ -1910,14 +2236,18 @@
         &quot;isSummary&quot;: true,
         &quot;mapping&quot;: [
           {
+            &quot;identity&quot;: &quot;workflow&quot;,
+            &quot;map&quot;: &quot;Request.groupIdentifier&quot;
+          },
+          {
             &quot;identity&quot;: &quot;rim&quot;,
             &quot;map&quot;: &quot;.inboundRelationship[typeCode=COMP].source[moodCode=INT].id&quot;
           }
         ]
       },
       {
-        &quot;id&quot;: &quot;Task.parent&quot;,
-        &quot;path&quot;: &quot;Task.parent&quot;,
+        &quot;id&quot;: &quot;Task.partOf&quot;,
+        &quot;path&quot;: &quot;Task.partOf&quot;,
         &quot;short&quot;: &quot;Composite task&quot;,
         &quot;definition&quot;: &quot;Task that this particular task is part of.&quot;,
         &quot;comments&quot;: &quot;This should usually be 0..1.&quot;,
@@ -1932,6 +2262,10 @@
         ],
         &quot;isSummary&quot;: true,
         &quot;mapping&quot;: [
+          {
+            &quot;identity&quot;: &quot;workflow&quot;,
+            &quot;map&quot;: &quot;Event.partOf&quot;
+          },
           {
             &quot;identity&quot;: &quot;rim&quot;,
             &quot;map&quot;: &quot;.inboundRelationship[typeCode=COMP].source[moodCode=INT]&quot;
@@ -1960,6 +2294,10 @@
           }
         },
         &quot;mapping&quot;: [
+          {
+            &quot;identity&quot;: &quot;workflow&quot;,
+            &quot;map&quot;: &quot;Request.status, Event.status&quot;
+          },
           {
             &quot;identity&quot;: &quot;rim&quot;,
             &quot;map&quot;: &quot;.statusCode&quot;
@@ -2017,27 +2355,31 @@
         ]
       },
       {
-        &quot;id&quot;: &quot;Task.stage&quot;,
-        &quot;path&quot;: &quot;Task.stage&quot;,
+        &quot;id&quot;: &quot;Task.intent&quot;,
+        &quot;path&quot;: &quot;Task.intent&quot;,
         &quot;short&quot;: &quot;proposed | planned | actionable +&quot;,
         &quot;definition&quot;: &quot;Indicates the \&quot;level\&quot; of actionability associated with the Task.  I.e. Is this a proposed task, a planned task, an actionable task, etc.&quot;,
-        &quot;comments&quot;: &quot;This element is immutable.  Proposed tasks, planned tasks, etc. must be distinct instances.&quot;,
+        &quot;comments&quot;: &quot;This element is immutable.  Proposed tasks, planned tasks, etc. must be distinct instances.\n\nIn most cases, Tasks will have an intent of \&quot;order\&quot;.&quot;,
         &quot;min&quot;: 1,
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;CodeableConcept&quot;
+            &quot;code&quot;: &quot;code&quot;
           }
         ],
         &quot;isSummary&quot;: true,
         &quot;binding&quot;: {
-          &quot;strength&quot;: &quot;extensible&quot;,
+          &quot;strength&quot;: &quot;required&quot;,
           &quot;description&quot;: &quot;Distinguishes whether the task is a proposal, plan or full order&quot;,
           &quot;valueSetReference&quot;: {
-            &quot;reference&quot;: &quot;http://hl7.org/fhir/ValueSet/task-stage&quot;
+            &quot;reference&quot;: &quot;http://hl7.org/fhir/ValueSet/request-intent&quot;
           }
         },
         &quot;mapping&quot;: [
+          {
+            &quot;identity&quot;: &quot;workflow&quot;,
+            &quot;map&quot;: &quot;Request.intent&quot;
+          },
           {
             &quot;identity&quot;: &quot;rim&quot;,
             &quot;map&quot;: &quot;.moodCode&quot;
@@ -2049,34 +2391,10 @@
         ]
       },
       {
-        &quot;id&quot;: &quot;Task.code&quot;,
-        &quot;path&quot;: &quot;Task.code&quot;,
-        &quot;short&quot;: &quot;Task Type&quot;,
-        &quot;definition&quot;: &quot;A name or code (or both) briefly describing what the task involves.&quot;,
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;CodeableConcept&quot;
-          }
-        ],
-        &quot;isSummary&quot;: true,
-        &quot;mapping&quot;: [
-          {
-            &quot;identity&quot;: &quot;rim&quot;,
-            &quot;map&quot;: &quot;.code&quot;
-          },
-          {
-            &quot;identity&quot;: &quot;w5&quot;,
-            &quot;map&quot;: &quot;class&quot;
-          }
-        ]
-      },
-      {
         &quot;id&quot;: &quot;Task.priority&quot;,
         &quot;path&quot;: &quot;Task.priority&quot;,
-        &quot;short&quot;: &quot;low | normal | high&quot;,
-        &quot;definition&quot;: &quot;The priority of the task among other tasks of the same type.&quot;,
+        &quot;short&quot;: &quot;normal | urgent | asap | stat&quot;,
+        &quot;definition&quot;: &quot;Indicates how quickly the Task should be addressed with respect to other requests.&quot;,
         &quot;requirements&quot;: &quot;Used to identify the service level expected while performing a task.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
@@ -2090,10 +2408,14 @@
           &quot;strength&quot;: &quot;required&quot;,
           &quot;description&quot;: &quot;The task's priority&quot;,
           &quot;valueSetReference&quot;: {
-            &quot;reference&quot;: &quot;http://hl7.org/fhir/ValueSet/task-priority&quot;
+            &quot;reference&quot;: &quot;http://hl7.org/fhir/ValueSet/request-priority&quot;
           }
         },
         &quot;mapping&quot;: [
+          {
+            &quot;identity&quot;: &quot;workflow&quot;,
+            &quot;map&quot;: &quot;Request.priority&quot;
+          },
           {
             &quot;identity&quot;: &quot;rim&quot;,
             &quot;map&quot;: &quot;.priorityCode&quot;
@@ -2101,6 +2423,35 @@
           {
             &quot;identity&quot;: &quot;w5&quot;,
             &quot;map&quot;: &quot;grade&quot;
+          }
+        ]
+      },
+      {
+        &quot;id&quot;: &quot;Task.code&quot;,
+        &quot;path&quot;: &quot;Task.code&quot;,
+        &quot;short&quot;: &quot;Task Type&quot;,
+        &quot;definition&quot;: &quot;A name or code (or both) briefly describing what the task involves.&quot;,
+        &quot;comments&quot;: &quot;The title (eg \&quot;My Tasks\&quot;, \&quot;Outstanding Tasks for Patient X\&quot;) should go into the code.&quot;,
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;1&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;CodeableConcept&quot;
+          }
+        ],
+        &quot;isSummary&quot;: true,
+        &quot;mapping&quot;: [
+          {
+            &quot;identity&quot;: &quot;workflow&quot;,
+            &quot;map&quot;: &quot;Request.code, Event.code&quot;
+          },
+          {
+            &quot;identity&quot;: &quot;rim&quot;,
+            &quot;map&quot;: &quot;.code&quot;
+          },
+          {
+            &quot;identity&quot;: &quot;w5&quot;,
+            &quot;map&quot;: &quot;class&quot;
           }
         ]
       },
@@ -2171,6 +2522,10 @@
         &quot;isSummary&quot;: true,
         &quot;mapping&quot;: [
           {
+            &quot;identity&quot;: &quot;workflow&quot;,
+            &quot;map&quot;: &quot;Request.subject, Event.subject&quot;
+          },
+          {
             &quot;identity&quot;: &quot;rim&quot;,
             &quot;map&quot;: &quot;.participation[typeCode=RCT].role&quot;
           },
@@ -2201,6 +2556,10 @@
         &quot;isSummary&quot;: true,
         &quot;mapping&quot;: [
           {
+            &quot;identity&quot;: &quot;workflow&quot;,
+            &quot;map&quot;: &quot;Request.context, Event.context&quot;
+          },
+          {
             &quot;identity&quot;: &quot;rim&quot;,
             &quot;map&quot;: &quot;.inboundRelationship[typeCode=COMP].source[classCode=PCPR, moodCode=EVN]&quot;
           },
@@ -2211,15 +2570,39 @@
         ]
       },
       {
-        &quot;id&quot;: &quot;Task.created&quot;,
-        &quot;path&quot;: &quot;Task.created&quot;,
+        &quot;id&quot;: &quot;Task.executionPeriod&quot;,
+        &quot;path&quot;: &quot;Task.executionPeriod&quot;,
+        &quot;short&quot;: &quot;Start and end time of execution&quot;,
+        &quot;definition&quot;: &quot;Identifies the time action was first taken against the task (start) and/or the time final action was taken against the task prior to marking it as completed (end).&quot;,
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;1&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;Period&quot;
+          }
+        ],
+        &quot;isSummary&quot;: true,
+        &quot;mapping&quot;: [
+          {
+            &quot;identity&quot;: &quot;workflow&quot;,
+            &quot;map&quot;: &quot;Event.occurrence[x]&quot;
+          },
+          {
+            &quot;identity&quot;: &quot;w5&quot;,
+            &quot;map&quot;: &quot;when.done&quot;
+          }
+        ]
+      },
+      {
+        &quot;id&quot;: &quot;Task.authoredOn&quot;,
+        &quot;path&quot;: &quot;Task.authoredOn&quot;,
         &quot;short&quot;: &quot;Task Creation Date&quot;,
         &quot;definition&quot;: &quot;The date and time this task was created.&quot;,
         &quot;requirements&quot;: &quot;Most often used along with lastUpdated to track duration of task to supporting monitoring and management.&quot;,
         &quot;alias&quot;: [
           &quot;Created Date&quot;
         ],
-        &quot;min&quot;: 1,
+        &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
@@ -2230,6 +2613,10 @@
           &quot;inv-1&quot;
         ],
         &quot;mapping&quot;: [
+          {
+            &quot;identity&quot;: &quot;workflow&quot;,
+            &quot;map&quot;: &quot;Request.authoredOn&quot;
+          },
           {
             &quot;identity&quot;: &quot;rim&quot;,
             &quot;map&quot;: &quot;.participation[typeCode=AUT].time&quot;
@@ -2249,7 +2636,7 @@
         &quot;alias&quot;: [
           &quot;Update Date&quot;
         ],
-        &quot;min&quot;: 1,
+        &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
@@ -2270,9 +2657,33 @@
       {
         &quot;id&quot;: &quot;Task.requester&quot;,
         &quot;path&quot;: &quot;Task.requester&quot;,
-        &quot;short&quot;: &quot;Task Creator&quot;,
+        &quot;short&quot;: &quot;Who is asking for task to be done&quot;,
         &quot;definition&quot;: &quot;The creator of the task.&quot;,
         &quot;requirements&quot;: &quot;Identifies who created this task.  May be used by access control mechanisms (e.g., to ensure that only the creator can cancel a task).&quot;,
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;1&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;BackboneElement&quot;
+          }
+        ],
+        &quot;isSummary&quot;: true,
+        &quot;mapping&quot;: [
+          {
+            &quot;identity&quot;: &quot;workflow&quot;,
+            &quot;map&quot;: &quot;Request.requester&quot;
+          },
+          {
+            &quot;identity&quot;: &quot;rim&quot;,
+            &quot;map&quot;: &quot;.participation[typeCode=AUT].role&quot;
+          }
+        ]
+      },
+      {
+        &quot;id&quot;: &quot;Task.requester.agent&quot;,
+        &quot;path&quot;: &quot;Task.requester.agent&quot;,
+        &quot;short&quot;: &quot;Individual asking for task&quot;,
+        &quot;definition&quot;: &quot;The device, practitioner, etc. who initiated the task.&quot;,
         &quot;alias&quot;: [
           &quot;Initiator&quot;,
           &quot;Author&quot;
@@ -2304,12 +2715,76 @@
         &quot;isSummary&quot;: true,
         &quot;mapping&quot;: [
           {
+            &quot;identity&quot;: &quot;workflow&quot;,
+            &quot;map&quot;: &quot;Request.requester.agent&quot;
+          },
+          {
             &quot;identity&quot;: &quot;rim&quot;,
-            &quot;map&quot;: &quot;.participation[typeCode=AUT].role&quot;
+            &quot;map&quot;: &quot;.player&quot;
           },
           {
             &quot;identity&quot;: &quot;w5&quot;,
             &quot;map&quot;: &quot;who.author&quot;
+          }
+        ]
+      },
+      {
+        &quot;id&quot;: &quot;Task.requester.onBehalfOf&quot;,
+        &quot;path&quot;: &quot;Task.requester.onBehalfOf&quot;,
+        &quot;short&quot;: &quot;Organization individual is acting for&quot;,
+        &quot;definition&quot;: &quot;The organization the device or practitioner was acting on behalf of when they initiated the task.&quot;,
+        &quot;requirements&quot;: &quot;Practitioners and Devices can be associated with multiple organizations.  This element indicates which organization they were acting on behalf of when authoring the request.&quot;,
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;1&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;Reference&quot;,
+            &quot;targetProfile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/Organization&quot;
+          }
+        ],
+        &quot;mapping&quot;: [
+          {
+            &quot;identity&quot;: &quot;workflow&quot;,
+            &quot;map&quot;: &quot;Request.requester.onBehalfOf&quot;
+          },
+          {
+            &quot;identity&quot;: &quot;rim&quot;,
+            &quot;map&quot;: &quot;.scoper&quot;
+          }
+        ]
+      },
+      {
+        &quot;id&quot;: &quot;Task.performerType&quot;,
+        &quot;path&quot;: &quot;Task.performerType&quot;,
+        &quot;short&quot;: &quot;requester | dispatcher | scheduler | performer | monitor | manager | acquirer | reviewer&quot;,
+        &quot;definition&quot;: &quot;The type of participant that can execute the task.&quot;,
+        &quot;requirements&quot;: &quot;Use to distinguish tasks on different activity queues.&quot;,
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;*&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;CodeableConcept&quot;
+          }
+        ],
+        &quot;binding&quot;: {
+          &quot;strength&quot;: &quot;preferred&quot;,
+          &quot;description&quot;: &quot;The type(s) of task performers allowed&quot;,
+          &quot;valueSetReference&quot;: {
+            &quot;reference&quot;: &quot;http://hl7.org/fhir/ValueSet/task-performer-type&quot;
+          }
+        },
+        &quot;mapping&quot;: [
+          {
+            &quot;identity&quot;: &quot;workflow&quot;,
+            &quot;map&quot;: &quot;Event.performer.role, Request.performerType&quot;
+          },
+          {
+            &quot;identity&quot;: &quot;rim&quot;,
+            &quot;map&quot;: &quot;.participation[typeCode=PRF].role.code&quot;
+          },
+          {
+            &quot;identity&quot;: &quot;w5&quot;,
+            &quot;map&quot;: &quot;who.actor&quot;
           }
         ]
       },
@@ -2351,39 +2826,12 @@
         &quot;isSummary&quot;: true,
         &quot;mapping&quot;: [
           {
-            &quot;identity&quot;: &quot;rim&quot;,
-            &quot;map&quot;: &quot;.participation[typeCode=PRF].role&quot;
+            &quot;identity&quot;: &quot;workflow&quot;,
+            &quot;map&quot;: &quot;Event.performer.actor, Request.performer&quot;
           },
           {
-            &quot;identity&quot;: &quot;w5&quot;,
-            &quot;map&quot;: &quot;who.actor&quot;
-          }
-        ]
-      },
-      {
-        &quot;id&quot;: &quot;Task.performerType&quot;,
-        &quot;path&quot;: &quot;Task.performerType&quot;,
-        &quot;short&quot;: &quot;requester | dispatcher | scheduler | performer | monitor | manager | acquirer | reviewer&quot;,
-        &quot;definition&quot;: &quot;The type of participant that can execute the task.&quot;,
-        &quot;requirements&quot;: &quot;Use to distinguish tasks on different activity queues.&quot;,
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;*&quot;,
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;CodeableConcept&quot;
-          }
-        ],
-        &quot;binding&quot;: {
-          &quot;strength&quot;: &quot;preferred&quot;,
-          &quot;description&quot;: &quot;The type(s) of task performers allowed&quot;,
-          &quot;valueSetReference&quot;: {
-            &quot;reference&quot;: &quot;http://hl7.org/fhir/ValueSet/task-performer-type&quot;
-          }
-        },
-        &quot;mapping&quot;: [
-          {
             &quot;identity&quot;: &quot;rim&quot;,
-            &quot;map&quot;: &quot;.participation[typeCode=PRF].role.code&quot;
+            &quot;map&quot;: &quot;.participation[typeCode=PRF].role&quot;
           },
           {
             &quot;identity&quot;: &quot;w5&quot;,
@@ -2410,6 +2858,10 @@
         },
         &quot;mapping&quot;: [
           {
+            &quot;identity&quot;: &quot;workflow&quot;,
+            &quot;map&quot;: &quot;Request.reasonCode, Event.reasonCodeableConcept&quot;
+          },
+          {
             &quot;identity&quot;: &quot;rim&quot;,
             &quot;map&quot;: &quot;.reasonCode&quot;
           },
@@ -2433,16 +2885,48 @@
         ],
         &quot;mapping&quot;: [
           {
+            &quot;identity&quot;: &quot;workflow&quot;,
+            &quot;map&quot;: &quot;Request.note, Event.note&quot;
+          },
+          {
             &quot;identity&quot;: &quot;rim&quot;,
             &quot;map&quot;: &quot;.inboundRelationship[typeCode=SUBJ, ].source[classCode=OBS, moodCode=EVN, code=\&quot;annotation\&quot;].value(string)&quot;
           }
         ]
       },
       {
-        &quot;id&quot;: &quot;Task.fulfillment&quot;,
-        &quot;path&quot;: &quot;Task.fulfillment&quot;,
+        &quot;id&quot;: &quot;Task.relevantHistory&quot;,
+        &quot;path&quot;: &quot;Task.relevantHistory&quot;,
+        &quot;short&quot;: &quot;Key events in history of the Task&quot;,
+        &quot;definition&quot;: &quot;Links to Provenance records for past versions of this Task that identify key state transitions or updates that are likely to be relevant to a user looking at the current version of the task.&quot;,
+        &quot;comments&quot;: &quot;This element does not point to the Provenance associated with the *current* version of the resource - as it would be created after this version existed.  The Provenance for the current version can be retrieved with a _revinclude.&quot;,
+        &quot;alias&quot;: [
+          &quot;Status History&quot;
+        ],
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;*&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;Reference&quot;,
+            &quot;targetProfile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/Provenance&quot;
+          }
+        ],
+        &quot;mapping&quot;: [
+          {
+            &quot;identity&quot;: &quot;workflow&quot;,
+            &quot;map&quot;: &quot;Request.relevantHistory&quot;
+          },
+          {
+            &quot;identity&quot;: &quot;rim&quot;,
+            &quot;map&quot;: &quot;.inboundRelationship(typeCode=SUBJ].source[classCode=CACT, moodCode=EVN]&quot;
+          }
+        ]
+      },
+      {
+        &quot;id&quot;: &quot;Task.restriction&quot;,
+        &quot;path&quot;: &quot;Task.restriction&quot;,
         &quot;short&quot;: &quot;Constraints on fulfillment tasks&quot;,
-        &quot;definition&quot;: &quot;Identifies any limitations on what part of a referenced task subject request should be actioned.&quot;,
+        &quot;definition&quot;: &quot;If the Task.focus is a request resource and the task is seeking fulfillment (i.e is asking for the request to be actioned), this element identifies any limitations on what parts of the referenced request should be actioned.&quot;,
         &quot;requirements&quot;: &quot;Sometimes when fulfillment is sought, you don't want full fulfillment.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
@@ -2459,8 +2943,8 @@
         ]
       },
       {
-        &quot;id&quot;: &quot;Task.fulfillment.repetitions&quot;,
-        &quot;path&quot;: &quot;Task.fulfillment.repetitions&quot;,
+        &quot;id&quot;: &quot;Task.restriction.repetitions&quot;,
+        &quot;path&quot;: &quot;Task.restriction.repetitions&quot;,
         &quot;short&quot;: &quot;How many times to repeat&quot;,
         &quot;definition&quot;: &quot;Indicates the number of times the requested action should occur.&quot;,
         &quot;requirements&quot;: &quot;E.g. order that requests monthly lab tests, fulfillment is sought for 1.&quot;,
@@ -2479,8 +2963,8 @@
         ]
       },
       {
-        &quot;id&quot;: &quot;Task.fulfillment.period&quot;,
-        &quot;path&quot;: &quot;Task.fulfillment.period&quot;,
+        &quot;id&quot;: &quot;Task.restriction.period&quot;,
+        &quot;path&quot;: &quot;Task.restriction.period&quot;,
         &quot;short&quot;: &quot;Over what time-period is fulfillment sought&quot;,
         &quot;definition&quot;: &quot;Over what time-period is fulfillment sought.&quot;,
         &quot;requirements&quot;: &quot;E.g. order that authorizes 1 year's services.  Fulfillment is sought for next 3 months.&quot;,
@@ -2499,8 +2983,8 @@
         ]
       },
       {
-        &quot;id&quot;: &quot;Task.fulfillment.recipients&quot;,
-        &quot;path&quot;: &quot;Task.fulfillment.recipients&quot;,
+        &quot;id&quot;: &quot;Task.restriction.recipient&quot;,
+        &quot;path&quot;: &quot;Task.restriction.recipient&quot;,
         &quot;short&quot;: &quot;For whom is fulfillment sought?&quot;,
         &quot;definition&quot;: &quot;For requests that are targeted to more than on potential recipient/target, for whom is fulfillment sought?&quot;,
         &quot;min&quot;: 0,
@@ -2535,27 +3019,6 @@
         ]
       },
       {
-        &quot;id&quot;: &quot;Task.definition&quot;,
-        &quot;path&quot;: &quot;Task.definition&quot;,
-        &quot;short&quot;: &quot;Task Definition&quot;,
-        &quot;definition&quot;: &quot;A reference to a formal or informal definition of the task.  For example, a protocol, a step within a defined workflow definition, etc.&quot;,
-        &quot;requirements&quot;: &quot;Enables a formal definition of how he task is to be performed (e.g. using BPMN, BPEL, XPDL or other formal notation) to be associated with a task, enabling automation.&quot;,
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;uri&quot;
-          }
-        ],
-        &quot;isSummary&quot;: true,
-        &quot;mapping&quot;: [
-          {
-            &quot;identity&quot;: &quot;rim&quot;,
-            &quot;map&quot;: &quot;.outboundRelationship[typeCode=DEFN].target&quot;
-          }
-        ]
-      },
-      {
         &quot;id&quot;: &quot;Task.input&quot;,
         &quot;extension&quot;: [
           {
@@ -2564,7 +3027,7 @@
           }
         ],
         &quot;path&quot;: &quot;Task.input&quot;,
-        &quot;short&quot;: &quot;Supporting information&quot;,
+        &quot;short&quot;: &quot;Information used to perform task&quot;,
         &quot;definition&quot;: &quot;Additional information that may be needed in the execution of the task.&quot;,
         &quot;requirements&quot;: &quot;Resources and data used to perform the task.  This data is used in the business logic of task execution, and is stored separately because it varies between workflows.&quot;,
         &quot;alias&quot;: [
@@ -2615,7 +3078,7 @@
       {
         &quot;id&quot;: &quot;Task.input.value[x]&quot;,
         &quot;path&quot;: &quot;Task.input.value[x]&quot;,
-        &quot;short&quot;: &quot;Input Value&quot;,
+        &quot;short&quot;: &quot;Content to use in performing the task&quot;,
         &quot;definition&quot;: &quot;The value of the input parameter as a basic type.&quot;,
         &quot;min&quot;: 1,
         &quot;max&quot;: &quot;1&quot;,
@@ -2745,7 +3208,7 @@
       {
         &quot;id&quot;: &quot;Task.output&quot;,
         &quot;path&quot;: &quot;Task.output&quot;,
-        &quot;short&quot;: &quot;Task Output&quot;,
+        &quot;short&quot;: &quot;Information produced as part of task&quot;,
         &quot;definition&quot;: &quot;Outputs produced by the Task.&quot;,
         &quot;requirements&quot;: &quot;Resources and data produced during the execution the task.  This data is generated by the business logic of task execution, and is stored separately because it varies between workflows.&quot;,
         &quot;min&quot;: 0,
@@ -2765,7 +3228,7 @@
       {
         &quot;id&quot;: &quot;Task.output.type&quot;,
         &quot;path&quot;: &quot;Task.output.type&quot;,
-        &quot;short&quot;: &quot;Output Name&quot;,
+        &quot;short&quot;: &quot;Label for output&quot;,
         &quot;definition&quot;: &quot;The name of the Output parameter.&quot;,
         &quot;requirements&quot;: &quot;Outputs are named to enable task automation to bind data and pass it from one task to the next.&quot;,
         &quot;alias&quot;: [
@@ -2792,7 +3255,7 @@
       {
         &quot;id&quot;: &quot;Task.output.value[x]&quot;,
         &quot;path&quot;: &quot;Task.output.value[x]&quot;,
-        &quot;short&quot;: &quot;Output Value&quot;,
+        &quot;short&quot;: &quot;Result of output&quot;,
         &quot;definition&quot;: &quot;The value of the Output parameter as a basic type.&quot;,
         &quot;requirements&quot;: &quot;Task outputs can take any form.&quot;,
         &quot;min&quot;: 1,
@@ -2947,7 +3410,7 @@ of the specification.
 		<div class="container"><!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:33-0500. <a href="qa.html">QA Page</a>
+        © HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:28-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search</a> | 

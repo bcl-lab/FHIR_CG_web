@@ -3,7 +3,7 @@
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="observation-geneticsAminoAcidChange"/>
   <url value="http://hl7.org/fhir/StructureDefinition/observation-geneticsAminoAcidChange"/>
-  <name value="Amino acid change"/>
+  <name value="HGVS nomenclature for observed Amino Acid Change"/>
   <status value="draft"/>
   <publisher value="Health Level Seven International (Clinical Genomics)"/>
   <contact>
@@ -33,9 +33,9 @@
   <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Extension"/>
   <derivation value="constraint"/>
   <snapshot>
-    <element id="Extension:aminoacidchange">
+    <element id="Extension:hgvsnomenclatureforobservedaminoacidchange">
       <path value="Extension"/>
-      <short value="Amino acid change"/>
+      <short value="HGVS nomenclature for observed Amino Acid Change"/>
       <definition value="Human Genome Variation Society (HGVS) nomenclature for an amino acid change. Reference sequence ID used for HGVS naming must be anotated. An amino acid is a sequence feature that corresponds to a single amino acid residue in a polypeptide ([SO:0001237](http://www.sequenceontology.org/browser/current_svn/term/SO:0001237)). LONIC Code: ([48005-3](http://loinc.org/48005-3))."/>
       <min value="0"/>
       <max value="1"/>
@@ -70,7 +70,7 @@
         <map value="N/A"/>
       </mapping>
     </element>
-    <element id="Extension:aminoacidchange.id">
+    <element id="Extension:hgvsnomenclatureforobservedaminoacidchange.id">
       <path value="Extension.id"/>
       <representation value="xmlAttr"/>
       <short value="xml:id (or equivalent in JSON)"/>
@@ -90,7 +90,7 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Extension:aminoacidchange.extension:extension">
+    <element id="Extension:hgvsnomenclatureforobservedaminoacidchange.extension:extension">
       <path value="Extension.extension"/>
       <sliceName value="extension"/>
       <short value="Extension"/>
@@ -106,7 +106,7 @@
         <code value="Extension"/>
       </type>
     </element>
-    <element id="Extension:aminoacidchange.url">
+    <element id="Extension:hgvsnomenclatureforobservedaminoacidchange.url">
       <path value="Extension.url"/>
       <representation value="xmlAttr"/>
       <short value="identifies the meaning of the extension"/>
@@ -128,8 +128,8 @@
         <map value="N/A"/>
       </mapping>
     </element>
-    <element id="Extension:aminoacidchange.valueString">
-      <path value="Extension.valueString"/>
+    <element id="Extension:hgvsnomenclatureforobservedaminoacidchange.valueCodeableConcept">
+      <path value="Extension.valueCodeableConcept"/>
       <short value="Value of extension"/>
       <definition value="Value of extension - may be a resource or one of a constrained set of the data types (see Extensibility in the spec for list)."/>
       <min value="1"/>
@@ -140,7 +140,7 @@
         <max value="1"/>
       </base>
       <type>
-        <code value="string"/>
+        <code value="CodeableConcept"/>
       </type>
       <binding>
         <strength value="preferred"/>
@@ -154,9 +154,9 @@
     </element>
   </snapshot>
   <differential>
-    <element id="Extension:aminoacidchange">
+    <element id="Extension:hgvsnomenclatureforobservedaminoacidchange">
       <path value="Extension"/>
-      <short value="Amino acid change"/>
+      <short value="HGVS nomenclature for observed Amino Acid Change"/>
       <definition value="Human Genome Variation Society (HGVS) nomenclature for an amino acid change. Reference sequence ID used for HGVS naming must be anotated. An amino acid is a sequence feature that corresponds to a single amino acid residue in a polypeptide ([SO:0001237](http://www.sequenceontology.org/browser/current_svn/term/SO:0001237)). LONIC Code: ([48005-3](http://loinc.org/48005-3))."/>
       <min value="0"/>
       <max value="1"/>
@@ -169,23 +169,23 @@
         <map value="N/A"/>
       </mapping>
     </element>
-    <element id="Extension:aminoacidchange.extension:extension">
+    <element id="Extension:hgvsnomenclatureforobservedaminoacidchange.extension:extension">
       <path value="Extension.extension"/>
       <sliceName value="extension"/>
       <max value="0"/>
     </element>
-    <element id="Extension:aminoacidchange.url">
+    <element id="Extension:hgvsnomenclatureforobservedaminoacidchange.url">
       <path value="Extension.url"/>
       <type>
         <code value="uri"/>
       </type>
       <fixedUri value="http://hl7.org/fhir/StructureDefinition/observation-geneticsAminoAcidChange"/>
     </element>
-    <element id="Extension:aminoacidchange.value[x]">
+    <element id="Extension:hgvsnomenclatureforobservedaminoacidchange.value[x]">
       <path value="Extension.value[x]"/>
       <min value="1"/>
       <type>
-        <code value="string"/>
+        <code value="CodeableConcept"/>
       </type>
       <binding>
         <strength value="preferred"/>

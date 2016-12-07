@@ -67,11 +67,9 @@
           "HumanName.use": {
             "code.value": "official"
           },
-          "HumanName.family": [
-            {
-              "string.value": "Donald"
-            }
-          ],
+          "HumanName.family": {
+            "string.value": "Donald"
+          },
           "HumanName.given": [
             {
               "string.value": "Duck"
@@ -124,25 +122,19 @@
       "Coverage.status": {
         "code.value": "active"
       },
-      "Coverage.issuer": {
-        "Reference.identifier": {
-          "Identifier.system": {
-            "uri.value": "http://www.bindb.com/bin"
-          },
-          "Identifier.value": {
-            "string.value": "123456"
-          }
-        }
-      },
       "Coverage.type": {
-        "Coding.system": {
-          "uri.value": "http://hl7.org/fhir/v3/ActCode"
-        },
-        "Coding.code": {
-          "code.value": "EHCPOL"
-        }
+        "CodeableConcept.coding": [
+          {
+            "Coding.system": {
+              "uri.value": "http://hl7.org/fhir/v3/ActCode"
+            },
+            "Coding.code": {
+              "code.value": "EHCPOL"
+            }
+          }
+        ]
       },
-      "Coverage.planholder": {
+      "Coverage.subscriber": {
         "Reference.reference": {
           "string.value": "#patient-1"
         }
@@ -153,10 +145,26 @@
         }
       },
       "Coverage.relationship": {
-        "Coding.code": {
-          "code.value": "self"
-        }
+        "CodeableConcept.coding": [
+          {
+            "Coding.code": {
+              "code.value": "self"
+            }
+          }
+        ]
       },
+      "Coverage.payor": [
+        {
+          "Reference.identifier": {
+            "Identifier.system": {
+              "uri.value": "http://www.bindb.com/bin"
+            },
+            "Identifier.value": {
+              "string.value": "123456"
+            }
+          }
+        }
+      ],
       "Coverage.group": {
         "Coverage.group.plan": {
           "string.value": "CBI35"
@@ -172,10 +180,10 @@
         }
       },
       "Coverage.dependent": {
-        "positiveInt.value": 1
+        "string.value": "1"
       },
       "Coverage.sequence": {
-        "positiveInt.value": 1
+        "string.value": "1"
       }
     }
   ],
@@ -193,11 +201,23 @@
     "code.value": "active"
   },
   "Claim.type": {
-    "Coding.system": {
-      "uri.value": "http://hl7.org/fhir/ex-claimtype"
-    },
-    "Coding.code": {
-      "code.value": "oral"
+    "CodeableConcept.coding": [
+      {
+        "Coding.system": {
+          "uri.value": "http://hl7.org/fhir/ex-claimtype"
+        },
+        "Coding.code": {
+          "code.value": "oral"
+        }
+      }
+    ]
+  },
+  "Claim.use": {
+    "code.value": "complete"
+  },
+  "Claim.patient": {
+    "Reference.reference": {
+      "string.value": "#patient-1"
     }
   },
   "Claim.created": {
@@ -213,47 +233,63 @@
       "string.value": "#org-org"
     }
   },
-  "Claim.use": {
-    "code.value": "complete"
-  },
   "Claim.priority": {
-    "Coding.code": {
-      "code.value": "normal"
-    }
+    "CodeableConcept.coding": [
+      {
+        "Coding.code": {
+          "code.value": "normal"
+        }
+      }
+    ]
   },
   "Claim.payee": {
     "Claim.payee.type": {
-      "Coding.code": {
-        "code.value": "provider"
-      }
+      "CodeableConcept.coding": [
+        {
+          "Coding.code": {
+            "code.value": "provider"
+          }
+        }
+      ]
     }
   },
+  "Claim.careTeam": [
+    {
+      "Claim.careTeam.sequence": {
+        "positiveInt.value": 1
+      },
+      "Claim.careTeam.provider": {
+        "Reference.reference": {
+          "string.value": "#provider-1"
+        }
+      }
+    }
+  ],
   "Claim.diagnosis": [
     {
       "Claim.diagnosis.sequence": {
         "positiveInt.value": 1
       },
-      "Claim.diagnosis.diagnosis": {
-        "Coding.code": {
-          "code.value": "123456"
-        }
+      "Claim.diagnosis.diagnosisCodeableConcept": {
+        "CodeableConcept.coding": [
+          {
+            "Coding.code": {
+              "code.value": "123456"
+            }
+          }
+        ]
       }
     }
   ],
-  "Claim.patient": {
-    "Reference.reference": {
-      "string.value": "#patient-1"
-    }
-  },
-  "Claim.coverage": [
+  "Claim.insurance": [
     {
-      "Claim.coverage.sequence": {
+      "Claim.insurance.sequence": {
         "positiveInt.value": 1
       },
-      "Claim.coverage.focal": {
+      "Claim.insurance.focal": {
         "boolean.value": true
       },
-      "Claim.coverage.coverage": {
+      "Claim.insurance.coverage": {
         "Reference.reference": {
           "string.value": "#coverage-1"
         }
@@ -265,19 +301,19 @@
       "Claim.item.sequence": {
         "positiveInt.value": 1
       },
-      "Claim.item.careTeam": [
+      "Claim.item.careTeamLinkId": [
         {
-          "Claim.item.careTeam.provider": {
-            "Reference.reference": {
-              "string.value": "#provider-1"
-            }
-          }
+          "positiveInt.value": 1
         }
       ],
       "Claim.item.service": {
-        "Coding.code": {
-          "code.value": "1200"
-        }
+        "CodeableConcept.coding": [
+          {
+            "Coding.code": {
+              "code.value": "1200"
+            }
+          }
+        ]
       },
       "Claim.item.servicedDate": {
         "date.value": "2014-08-16"

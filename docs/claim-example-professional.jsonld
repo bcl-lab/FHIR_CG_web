@@ -26,12 +26,25 @@
     "code.value": "active"
   },
   "Claim.type": {
-    "Coding.system": {
-      "uri.value": "http://hl7.org/fhir/ex-claimtype"
+    "CodeableConcept.coding": [
+      {
+        "Coding.system": {
+          "uri.value": "http://hl7.org/fhir/ex-claimtype"
+        },
+        "Coding.code": {
+          "code.value": "professional"
+        }
+      }
+    ]
+  },
+  "Claim.use": {
+    "code.value": "complete"
+  },
+  "Claim.patient": {
+    "Reference.reference": {
+      "string.value": "Patient/1"
     },
-    "Coding.code": {
-      "code.value": "professional"
-    }
+    "Resource.reference": "http://hl7.org/fhir//Patient/1"
   },
   "Claim.created": {
     "dateTime.value": "2014-08-16"
@@ -48,48 +61,64 @@
     },
     "Resource.reference": "http://hl7.org/fhir//Organization/1"
   },
-  "Claim.use": {
-    "code.value": "complete"
-  },
   "Claim.priority": {
-    "Coding.code": {
-      "code.value": "normal"
-    }
+    "CodeableConcept.coding": [
+      {
+        "Coding.code": {
+          "code.value": "normal"
+        }
+      }
+    ]
   },
   "Claim.payee": {
     "Claim.payee.type": {
-      "Coding.code": {
-        "code.value": "provider"
-      }
+      "CodeableConcept.coding": [
+        {
+          "Coding.code": {
+            "code.value": "provider"
+          }
+        }
+      ]
     }
   },
+  "Claim.careTeam": [
+    {
+      "Claim.careTeam.sequence": {
+        "positiveInt.value": 1
+      },
+      "Claim.careTeam.provider": {
+        "Reference.reference": {
+          "string.value": "Practitioner/example"
+        },
+        "Resource.reference": "http://hl7.org/fhir//Practitioner/example"
+      }
+    }
+  ],
   "Claim.diagnosis": [
     {
       "Claim.diagnosis.sequence": {
         "positiveInt.value": 1
       },
-      "Claim.diagnosis.diagnosis": {
-        "Coding.code": {
-          "code.value": "654456"
-        }
+      "Claim.diagnosis.diagnosisCodeableConcept": {
+        "CodeableConcept.coding": [
+          {
+            "Coding.code": {
+              "code.value": "654456"
+            }
+          }
+        ]
       }
     }
   ],
-  "Claim.patient": {
-    "Reference.reference": {
-      "string.value": "Patient/1"
-    },
-    "Resource.reference": "http://hl7.org/fhir//Patient/1"
-  },
-  "Claim.coverage": [
+  "Claim.insurance": [
     {
-      "Claim.coverage.sequence": {
+      "Claim.insurance.sequence": {
         "positiveInt.value": 1
       },
-      "Claim.coverage.focal": {
+      "Claim.insurance.focal": {
         "boolean.value": true
       },
-      "Claim.coverage.coverage": {
+      "Claim.insurance.coverage": {
         "Reference.reference": {
           "string.value": "Coverage/9876B1"
         },
@@ -102,23 +131,22 @@
       "Claim.item.sequence": {
         "positiveInt.value": 1
       },
-      "Claim.item.careTeam": [
+      "Claim.item.careTeamLinkId": [
         {
-          "Claim.item.careTeam.provider": {
-            "Reference.reference": {
-              "string.value": "Practitioner/example"
-            },
-            "Resource.reference": "http://hl7.org/fhir//Practitioner/example"
-          }
+          "positiveInt.value": 1
         }
       ],
       "Claim.item.service": {
-        "Coding.system": {
-          "uri.value": "http://hl7.org/fhir/ex-serviceproduct"
-        },
-        "Coding.code": {
-          "code.value": "exam"
-        }
+        "CodeableConcept.coding": [
+          {
+            "Coding.system": {
+              "uri.value": "http://hl7.org/fhir/ex-serviceproduct"
+            },
+            "Coding.code": {
+              "code.value": "exam"
+            }
+          }
+        ]
       },
       "Claim.item.servicedDate": {
         "date.value": "2014-08-16"

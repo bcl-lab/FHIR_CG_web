@@ -161,46 +161,7 @@ BASE <http://hl7.org/fhir/shape/>
         fhir:ElementDefinition.patternTiming @<Timing>  |
         fhir:ElementDefinition.patternMeta @<Meta> 
     )?;
-    (                                       # Example value (as defined for type)
-        fhir:ElementDefinition.exampleBase64Binary @<base64Binary>  |
-        fhir:ElementDefinition.exampleBoolean @<boolean>  |
-        fhir:ElementDefinition.exampleCode @<code>  |
-        fhir:ElementDefinition.exampleDate @<date>  |
-        fhir:ElementDefinition.exampleDateTime @<dateTime>  |
-        fhir:ElementDefinition.exampleDecimal @<decimal>  |
-        fhir:ElementDefinition.exampleId @<id>  |
-        fhir:ElementDefinition.exampleInstant @<instant>  |
-        fhir:ElementDefinition.exampleInteger @<integer>  |
-        fhir:ElementDefinition.exampleMarkdown @<markdown>  |
-        fhir:ElementDefinition.exampleOid @<oid>  |
-        fhir:ElementDefinition.examplePositiveInt @<positiveInt>  |
-        fhir:ElementDefinition.exampleString @<string>  |
-        fhir:ElementDefinition.exampleTime @<time>  |
-        fhir:ElementDefinition.exampleUnsignedInt @<unsignedInt>  |
-        fhir:ElementDefinition.exampleUri @<uri>  |
-        fhir:ElementDefinition.exampleAddress @<Address>  |
-        fhir:ElementDefinition.exampleAge @<Age>  |
-        fhir:ElementDefinition.exampleAnnotation @<Annotation>  |
-        fhir:ElementDefinition.exampleAttachment @<Attachment>  |
-        fhir:ElementDefinition.exampleCodeableConcept @<CodeableConcept>  |
-        fhir:ElementDefinition.exampleCoding @<Coding>  |
-        fhir:ElementDefinition.exampleContactPoint @<ContactPoint>  |
-        fhir:ElementDefinition.exampleCount @<Count>  |
-        fhir:ElementDefinition.exampleDistance @<Distance>  |
-        fhir:ElementDefinition.exampleDuration @<Duration>  |
-        fhir:ElementDefinition.exampleHumanName @<HumanName>  |
-        fhir:ElementDefinition.exampleIdentifier @<Identifier>  |
-        fhir:ElementDefinition.exampleMoney @<Money>  |
-        fhir:ElementDefinition.examplePeriod @<Period>  |
-        fhir:ElementDefinition.exampleQuantity @<Quantity>  |
-        fhir:ElementDefinition.exampleRange @<Range>  |
-        fhir:ElementDefinition.exampleRatio @<Ratio>  |
-        fhir:ElementDefinition.exampleReference @<Reference>  |
-        fhir:ElementDefinition.exampleSampledData @<SampledData>  |
-        fhir:ElementDefinition.exampleSignature @<Signature>  |
-        fhir:ElementDefinition.exampleTiming @<Timing>  |
-        fhir:ElementDefinition.exampleMeta @<Meta> 
-    )?;
+    fhir:ElementDefinition.example @<ElementDefinition.example>*;  # Example value (as defined for type)
     (                                       # Minimum Allowed Value (for some 
                                             # types) 
         fhir:ElementDefinition.minValueDate @<date>  |
@@ -240,6 +201,18 @@ BASE <http://hl7.org/fhir/shape/>
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
+# Base definition information for tools
+<ElementDefinition.base> CLOSED {
+    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
+    fhir:extension @<Extension>*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:ElementDefinition.base.path @<string>;  # Path that identifies the base 
+                                            # element 
+    fhir:ElementDefinition.base.min @<integer>;  # Min cardinality of the base element
+    fhir:ElementDefinition.base.max @<string>;  # Max cardinality of the base element
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
 # Map element to another set of definitions
 <ElementDefinition.mapping> CLOSED {
     fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
@@ -267,18 +240,6 @@ BASE <http://hl7.org/fhir/shape/>
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
-# Base definition information for tools
-<ElementDefinition.base> CLOSED {
-    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
-    fhir:extension @<Extension>*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:ElementDefinition.base.path @<string>;  # Path that identifies the base 
-                                            # element 
-    fhir:ElementDefinition.base.min @<integer>;  # Min cardinality of the base element
-    fhir:ElementDefinition.base.max @<string>;  # Max cardinality of the base element
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
 # Data type and Profile for this element
 <ElementDefinition.type> CLOSED {
     fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
@@ -298,6 +259,73 @@ BASE <http://hl7.org/fhir/shape/>
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
+# ValueSet details if this is coded
+<ElementDefinition.binding> CLOSED {
+    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
+    fhir:extension @<Extension>*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:ElementDefinition.binding.strength @<code> AND
+    	{fhir:value @fhirvs:binding-strength};  # required | extensible | preferred 
+                                            # | example 
+    fhir:ElementDefinition.binding.description @<string>?;  # Human explanation of the value set
+    (                                       # Source of value set
+        fhir:ElementDefinition.binding.valueSetUri @<uri>  |
+        fhir:ElementDefinition.binding.valueSetReference @<Reference> 
+    )?;
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
+# Example value (as defined for type)
+<ElementDefinition.example> CLOSED {
+    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
+    fhir:extension @<Extension>*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:ElementDefinition.example.label @<string>;  # Describes the purpose of this 
+                                            # example 
+    (                                       # Value of Example (one of allowed 
+                                            # types) 
+        fhir:ElementDefinition.example.valueBase64Binary @<base64Binary>  |
+        fhir:ElementDefinition.example.valueBoolean @<boolean>  |
+        fhir:ElementDefinition.example.valueCode @<code>  |
+        fhir:ElementDefinition.example.valueDate @<date>  |
+        fhir:ElementDefinition.example.valueDateTime @<dateTime>  |
+        fhir:ElementDefinition.example.valueDecimal @<decimal>  |
+        fhir:ElementDefinition.example.valueId @<id>  |
+        fhir:ElementDefinition.example.valueInstant @<instant>  |
+        fhir:ElementDefinition.example.valueInteger @<integer>  |
+        fhir:ElementDefinition.example.valueMarkdown @<markdown>  |
+        fhir:ElementDefinition.example.valueOid @<oid>  |
+        fhir:ElementDefinition.example.valuePositiveInt @<positiveInt>  |
+        fhir:ElementDefinition.example.valueString @<string>  |
+        fhir:ElementDefinition.example.valueTime @<time>  |
+        fhir:ElementDefinition.example.valueUnsignedInt @<unsignedInt>  |
+        fhir:ElementDefinition.example.valueUri @<uri>  |
+        fhir:ElementDefinition.example.valueAddress @<Address>  |
+        fhir:ElementDefinition.example.valueAge @<Age>  |
+        fhir:ElementDefinition.example.valueAnnotation @<Annotation>  |
+        fhir:ElementDefinition.example.valueAttachment @<Attachment>  |
+        fhir:ElementDefinition.example.valueCodeableConcept @<CodeableConcept>  |
+        fhir:ElementDefinition.example.valueCoding @<Coding>  |
+        fhir:ElementDefinition.example.valueContactPoint @<ContactPoint>  |
+        fhir:ElementDefinition.example.valueCount @<Count>  |
+        fhir:ElementDefinition.example.valueDistance @<Distance>  |
+        fhir:ElementDefinition.example.valueDuration @<Duration>  |
+        fhir:ElementDefinition.example.valueHumanName @<HumanName>  |
+        fhir:ElementDefinition.example.valueIdentifier @<Identifier>  |
+        fhir:ElementDefinition.example.valueMoney @<Money>  |
+        fhir:ElementDefinition.example.valuePeriod @<Period>  |
+        fhir:ElementDefinition.example.valueQuantity @<Quantity>  |
+        fhir:ElementDefinition.example.valueRange @<Range>  |
+        fhir:ElementDefinition.example.valueRatio @<Ratio>  |
+        fhir:ElementDefinition.example.valueReference @<Reference>  |
+        fhir:ElementDefinition.example.valueSampledData @<SampledData>  |
+        fhir:ElementDefinition.example.valueSignature @<Signature>  |
+        fhir:ElementDefinition.example.valueTiming @<Timing>  |
+        fhir:ElementDefinition.example.valueMeta @<Meta> 
+    );
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
 # Condition that must evaluate to true
 <ElementDefinition.constraint> CLOSED {
     fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
@@ -314,22 +342,6 @@ BASE <http://hl7.org/fhir/shape/>
     fhir:ElementDefinition.constraint.xpath @<string>?;  # XPath expression of constraint
     fhir:ElementDefinition.constraint.source @<uri>?;  # Reference to original source of 
                                             # constraint 
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
-# ValueSet details if this is coded
-<ElementDefinition.binding> CLOSED {
-    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
-    fhir:extension @<Extension>*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:ElementDefinition.binding.strength @<code> AND
-    	{fhir:value @fhirvs:binding-strength};  # required | extensible | preferred 
-                                            # | example 
-    fhir:ElementDefinition.binding.description @<string>?;  # Human explanation of the value set
-    (                                       # Source of value set
-        fhir:ElementDefinition.binding.valueSetUri @<uri>  |
-        fhir:ElementDefinition.binding.valueSetReference @<Reference> 
-    )?;
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -404,8 +416,8 @@ BASE <http://hl7.org/fhir/shape/>
     fhir:Address.state @<string>?;          # Sub-unit of country (abbreviations 
                                             # ok) 
     fhir:Address.postalCode @<string>?;     # Postal code for area
-    fhir:Address.country @<string>?;        # Country (can be ISO 3166 3 letter 
-                                            # code) 
+    fhir:Address.country @<string>?;        # Country (e.g. can be ISO 3166 2 or 
+                                            # 3 letter code) 
     fhir:Address.period @<Period>?;         # Time period when address was/is in 
                                             # use 
     fhir:index xsd:integer?                 # Relative position in a list
@@ -479,7 +491,8 @@ BASE <http://hl7.org/fhir/shape/>
     fhir:extension @<Extension>*;           # Additional Content defined by 
                                             # implementations 
     fhir:ContactPoint.system @<code> AND
-    	{fhir:value @fhirvs:contact-point-system}?;  # phone | fax | email | pager | other
+    	{fhir:value @fhirvs:contact-point-system}?;  # phone | fax | email | pager | url 
+                                            # | other 
     fhir:ContactPoint.value @<string>?;     # The actual contact point details
     fhir:ContactPoint.use @<code> AND
     	{fhir:value @fhirvs:contact-point-use}?;  # home | work | temp | old | mobile 
@@ -501,7 +514,7 @@ BASE <http://hl7.org/fhir/shape/>
                                             # | anonymous | old | maiden 
     fhir:HumanName.text @<string>?;         # Text representation of the full 
                                             # name 
-    fhir:HumanName.family @<string>*;       # Family name (often called 
+    fhir:HumanName.family @<string>?;       # Family name (often called 
                                             # 'Surname') 
     fhir:HumanName.given @<string>*;        # Given names (not always 'first'). 
                                             # Includes middle names 
@@ -886,6 +899,10 @@ BASE <http://hl7.org/fhir/shape/>
     fhir:Timing.repeat.periodUnit @<code> AND
     	{fhir:value @fhirvs:units-of-time}?;  # s | min | h | d | wk | mo | a - 
                                             # unit of time (UCUM) 
+    fhir:Timing.repeat.dayOfWeek @<code> AND
+    	{fhir:value @fhirvs:days-of-week}*;  # mon | tue | wed | thu | fri | sat 
+                                            # | sun 
+    fhir:Timing.repeat.timeOfDay @<time>*;  # Time of day for action
     fhir:Timing.repeat.when @<code> AND
     	{fhir:value @fhirvs:event-timing}?;  # Regular life events the event is 
                                             # tied to 
@@ -898,32 +915,44 @@ BASE <http://hl7.org/fhir/shape/>
 
 #---------------------- Value Sets ------------------------
 
-# Real world event that the relating to the schedule.
-fhirvs:event-timing ["HS" "WAKE" "C" "CM" "CD" "CV" "AC" "ACM" "ACD" "ACV" "PC" "PCM" "PCD" "PCV"]
-
-# How slices are interpreted when evaluating an instance.
-fhirvs:resource-slicing-rules ["closed" "open" "openAtEnd"]
-
-# How a property is represented on the wire.
-fhirvs:property-representation ["xmlAttr" "xmlText" "typeAttr" "cdaText" "xhtml"]
-
 # Whether a reference needs to be version specific or version independent, or whetehr either can be used
 fhirvs:reference-version-rules ["either" "independent" "specific"]
-
-# The type of an address (physical / postal)
-fhirvs:address-type ["postal" "physical" "both"]
-
-# How the Quantity should be understood and represented.
-fhirvs:quantity-comparator ["<" "<=" ">=" ">"]
-
-# A unit of time (units from UCUM).
-fhirvs:units-of-time ["s" "min" "h" "d" "wk" "mo" "a"]
 
 # The use of an address
 fhirvs:address-use ["home" "work" "temp" "old"]
 
+# The type of an address (physical / postal)
+fhirvs:address-type ["postal" "physical" "both"]
+
+# Use of contact point
+fhirvs:contact-point-use ["home" "work" "temp" "old" "mobile"]
+
+# How slices are interpreted when evaluating an instance.
+fhirvs:resource-slicing-rules ["closed" "open" "openAtEnd"]
+
+# Telecommunications form for contact point
+fhirvs:contact-point-system ["phone" "fax" "email" "pager" "url" "other"]
+
+# The days of the week.
+fhirvs:days-of-week ["mon" "tue" "wed" "thu" "fri" "sat" "sun"]
+
+# Identifies the purpose for this identifier, if known .
+fhirvs:identifier-use ["usual" "official" "temp" "secondary"]
+
+# How resource references can be aggregated.
+fhirvs:resource-aggregation-mode ["contained" "referenced" "bundled"]
+
 # SHALL applications comply with this constraint?
 fhirvs:constraint-severity ["error" "warning"]
+
+# How the Quantity should be understood and represented.
+fhirvs:quantity-comparator ["<" "<=" ">=" ">"]
+
+# Real world event that the relating to the schedule.
+fhirvs:event-timing ["MORN" "AFT" "EVE" "NIGHT" "HS" "WAKE" "C" "CM" "CD" "CV" "AC" "ACM" "ACD" "ACV" "PC" "PCM" "PCD" "PCV"]
+
+# A unit of time (units from UCUM).
+fhirvs:units-of-time ["s" "min" "h" "d" "wk" "mo" "a"]
 
 # Indication of the degree of conformance expectations associated with a binding.
 fhirvs:binding-strength ["required" "extensible" "preferred" "example"]
@@ -931,14 +960,5 @@ fhirvs:binding-strength ["required" "extensible" "preferred" "example"]
 # The use of a human name
 fhirvs:name-use ["usual" "official" "temp" "nickname" "anonymous" "old" "maiden"]
 
-# Telecommunications form for contact point
-fhirvs:contact-point-system ["phone" "fax" "email" "pager" "other"]
-
-# Use of contact point
-fhirvs:contact-point-use ["home" "work" "temp" "old" "mobile"]
-
-# Identifies the purpose for this identifier, if known .
-fhirvs:identifier-use ["usual" "official" "temp" "secondary"]
-
-# How resource references can be aggregated.
-fhirvs:resource-aggregation-mode ["contained" "referenced" "bundled"]
+# How a property is represented on the wire.
+fhirvs:property-representation ["xmlAttr" "xmlText" "typeAttr" "cdaText" "xhtml"]

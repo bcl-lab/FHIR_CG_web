@@ -3,7 +3,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>Eligibilityresponse-example.ttl - FHIR v1.7.0</title>
+  <title>Eligibilityresponse-example.ttl - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -136,26 +136,26 @@
      fhir:Identifier.value [ fhir:value &quot;881234&quot; ]
   ];
   fhir:EligibilityResponse.status [ fhir:value &quot;active&quot;];
+  fhir:EligibilityResponse.created [ fhir:value &quot;2014-08-16&quot;^^xsd:date];
   fhir:EligibilityResponse.request [
      fhir:link &lt;http://www.BenefitsInc.com/fhir/eligibility/225476332402&gt;;
      fhir:Reference.reference [ fhir:value &quot;http://www.BenefitsInc.com/fhir/eligibility/225476332402&quot; ]
   ];
-  fhir:EligibilityResponse.outcome [ fhir:value &quot;complete&quot;];
+  fhir:EligibilityResponse.outcome [
+     fhir:CodeableConcept.coding [
+       fhir:index 0;
+       fhir:Coding.system [ fhir:value &quot;http://hl7.org/fhir/remittance-outcome&quot; ];
+       fhir:Coding.code [ fhir:value &quot;complete&quot; ]
+     ]
+  ];
   fhir:EligibilityResponse.disposition [ fhir:value &quot;Policy is currently in-force.&quot;];
-  fhir:EligibilityResponse.created [ fhir:value &quot;2014-08-16&quot;^^xsd:date];
-  fhir:EligibilityResponse.organization [
+  fhir:EligibilityResponse.insurer [
      fhir:link &lt;http://hl7.org/fhir/Organization/2&gt;;
      fhir:Reference.reference [ fhir:value &quot;Organization/2&quot; ]
-  ];
-  fhir:EligibilityResponse.requestOrganization [
-     fhir:link &lt;http://hl7.org/fhir/Organization/1&gt;;
-     fhir:Reference.reference [ fhir:value &quot;Organization/1&quot; ]
   ];
   fhir:EligibilityResponse.inforce [ fhir:value &quot;true&quot;^^xsd:boolean] .
 
 &lt;http://hl7.org/fhir/Organization/2&gt; a fhir:Organization .
-
-&lt;http://hl7.org/fhir/Organization/1&gt; a fhir:Organization .
 
 # -------------------------------------------------------------------------------------
 
@@ -184,7 +184,7 @@ of the specification.
 		<div class="container"><!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:32-0500. <a href="qa.html">QA Page</a>
+        © HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:21-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search</a> | 

@@ -2,7 +2,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>Capabilitystatement-example.xml - FHIR v1.7.0</title>
+  <title>Capabilitystatement-example.xml - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -151,11 +151,11 @@
   </b><span class="xmltag">&lt;<a href="capabilitystatement-definitions.html#CapabilityStatement.date" class="xmltag">date</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">2012-01-04</span>"</span><span class="xmltag">/&gt;</span><b>
   </b><span class="xmltag">&lt;<a href="capabilitystatement-definitions.html#CapabilityStatement.publisher" class="xmltag">publisher</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">ACME Corporation</span>"</span><span class="xmltag">/&gt;</span><b>
   </b><span class="xmltag">&lt;<a href="capabilitystatement-definitions.html#CapabilityStatement.contact" class="xmltag">contact</a></span><span class="xmltag">&gt;</span><b>
-    </b><span class="xmltag">&lt;<a href="contactdetail-definitions.html#ContactDetail.name" class="xmltag">name</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">System Administrator</span>"</span><span class="xmltag">/&gt;</span><b>
-    </b><span class="xmltag">&lt;<a href="contactdetail-definitions.html#ContactDetail.telecom" class="xmltag">telecom</a></span><span class="xmltag">&gt;</span><b>
+    </b><span class="xmltag">&lt;<a href="metadatatypes-definitions.html#ContactDetail.name" class="xmltag">name</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">System Administrator</span>"</span><span class="xmltag">/&gt;</span><b>
+    </b><span class="xmltag">&lt;<a href="metadatatypes-definitions.html#ContactDetail.telecom" class="xmltag">telecom</a></span><span class="xmltag">&gt;</span><b>
       </b><span class="xmltag">&lt;<a href="datatypes-definitions.html#ContactPoint.system" class="xmltag">system</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">email</span>"</span><span class="xmltag">/&gt;</span><b>
       </b><span class="xmltag">&lt;<a href="datatypes-definitions.html#ContactPoint.value" class="xmltag">value</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">wile@acme.org</span>"</span><span class="xmltag">/&gt;</span><b>
-    </b><span class="xmltag">&lt;/<a href="contactdetail-definitions.html#ContactDetail.telecom" class="xmltag">telecom</a>&gt;</span><b>
+    </b><span class="xmltag">&lt;/<a href="metadatatypes-definitions.html#ContactDetail.telecom" class="xmltag">telecom</a>&gt;</span><b>
   </b><span class="xmltag">&lt;/<a href="capabilitystatement-definitions.html#CapabilityStatement.contact" class="xmltag">contact</a>&gt;</span><b>
   </b><span class="xmltag">&lt;<a href="capabilitystatement-definitions.html#CapabilityStatement.description" class="xmltag">description</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">This is the FHIR capability statement for the main EHR at ACME for the private interface
    - it does not describe the public interface</span>"</span><span class="xmltag">/&gt;</span><b>
@@ -259,18 +259,11 @@
         </b><span class="xmltag">&lt;<a href="capabilitystatement-definitions.html#CapabilityStatement.rest.resource.searchParam.definition" class="xmltag">definition</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">http://hl7.org/fhir/SearchParameter/Patient-identifier</span>"</span><span class="xmltag">/&gt;</span><b>
         </b><span class="xmltag">&lt;<a href="capabilitystatement-definitions.html#CapabilityStatement.rest.resource.searchParam.type" class="xmltag">type</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">token</span>"</span><span class="xmltag">/&gt;</span><b>
         </b><span class="xmltag">&lt;<a href="capabilitystatement-definitions.html#CapabilityStatement.rest.resource.searchParam.documentation" class="xmltag">documentation</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">Only supports search by institution MRN</span>"</span><span class="xmltag">/&gt;</span><b>
-        </b><span class="xmltag">&lt;<a href="capabilitystatement-definitions.html#CapabilityStatement.rest.resource.searchParam.modifier" class="xmltag">modifier</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">missing</span>"</span><span class="xmltag">/&gt;</span><b>
      </b><span class="xmltag">&lt;/<a href="capabilitystatement-definitions.html#CapabilityStatement.rest.resource.searchParam" class="xmltag">searchParam</a>&gt;</span><b>
       </b><span class="xmltag">&lt;<a href="capabilitystatement-definitions.html#CapabilityStatement.rest.resource.searchParam" class="xmltag">searchParam</a></span><span class="xmltag">&gt;</span><b>  
         </b><span class="xmltag">&lt;<a href="capabilitystatement-definitions.html#CapabilityStatement.rest.resource.searchParam.name" class="xmltag">name</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">careprovider</span>"</span><span class="xmltag">/&gt;</span><b>
         </b><span class="xmltag">&lt;<a href="capabilitystatement-definitions.html#CapabilityStatement.rest.resource.searchParam.definition" class="xmltag">definition</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">http://hl7.org/fhir/SearchParameter/Patient-careprovider</span>"</span><span class="xmltag">/&gt;</span><b>
         </b><span class="xmltag">&lt;<a href="capabilitystatement-definitions.html#CapabilityStatement.rest.resource.searchParam.type" class="xmltag">type</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">reference</span>"</span><span class="xmltag">/&gt;</span><b>
-        </b><span class="xmlcomment">&lt;!--   there&apos;s not a lot of value in saying this, since it&apos;s the only 
-          choice anyway. but in other cases it&apos;s pretty important   --&gt;</span><b>
-        </b><span class="xmltag">&lt;<a href="capabilitystatement-definitions.html#CapabilityStatement.rest.resource.searchParam.target" class="xmltag">target</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">Organization</span>"</span><span class="xmltag">/&gt;</span><b>
-        </b><span class="xmltag">&lt;<a href="capabilitystatement-definitions.html#CapabilityStatement.rest.resource.searchParam.modifier" class="xmltag">modifier</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">missing</span>"</span><span class="xmltag">/&gt;</span><b>
-        </b><span class="xmltag">&lt;<a href="capabilitystatement-definitions.html#CapabilityStatement.rest.resource.searchParam.chain" class="xmltag">chain</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">name</span>"</span><span class="xmltag">/&gt;</span><b>
-        </b><span class="xmltag">&lt;<a href="capabilitystatement-definitions.html#CapabilityStatement.rest.resource.searchParam.chain" class="xmltag">chain</a></span><span class="xmlattr"> value="<span class="xmlattrvalue">identifier</span>"</span><span class="xmltag">/&gt;</span><b>
      </b><span class="xmltag">&lt;/<a href="capabilitystatement-definitions.html#CapabilityStatement.rest.resource.searchParam" class="xmltag">searchParam</a>&gt;</span><b>
     </b><span class="xmltag">&lt;/<a href="capabilitystatement-definitions.html#CapabilityStatement.rest.resource" class="xmltag">resource</a>&gt;</span><b>
     </b><span class="xmltag">&lt;<a href="capabilitystatement-definitions.html#CapabilityStatement.rest.interaction" class="xmltag">interaction</a></span><span class="xmltag">&gt;</span><b>
@@ -355,7 +348,7 @@ of the specification.
 		<div class="container"><!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:32-0500. <a href="qa.html">QA Page</a>
+        © HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:21-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search</a> | 

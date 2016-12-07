@@ -23,31 +23,20 @@ start=@<PaymentNotice> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
     fhir:PaymentNotice.identifier @<Identifier>*;  # Business Identifier
     fhir:PaymentNotice.status @<code> AND
-    	{fhir:value @fhirvs:paymentnotice-status};  # active | cancelled | draft | 
+    	{fhir:value @fhirvs:fm-status}?;  # active | cancelled | draft | 
                                             # entered-in-error 
-    fhir:PaymentNotice.ruleset @<Coding>?;  # Resource version
-    fhir:PaymentNotice.originalRuleset @<Coding>?;  # Original version
+    fhir:PaymentNotice.request @<Reference>?;  # Request reference
+    fhir:PaymentNotice.response @<Reference>?;  # Response reference
+    fhir:PaymentNotice.statusDate @<date>?;  # Payment or clearing date
     fhir:PaymentNotice.created @<dateTime>?;  # Creation date
     fhir:PaymentNotice.target @<Reference>?;  # Insurer or Regulatory body
     fhir:PaymentNotice.provider @<Reference>?;  # Responsible practitioner
     fhir:PaymentNotice.organization @<Reference>?;  # Responsible organization
-    fhir:PaymentNotice.request @<Reference>?;  # Request reference
-    fhir:PaymentNotice.response @<Reference>?;  # Response reference
-    fhir:PaymentNotice.paymentStatus @<Coding>;  # Status of the payment
-    fhir:PaymentNotice.statusDate @<date>?;  # Payment or clearing date
+    fhir:PaymentNotice.paymentStatus @<CodeableConcept>?;  # Status of the payment
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
 #---------------------- Data Types -------------------
-
-# Primitive Type dateTime
-<dateTime> CLOSED {
-    fhir:Element.id @<id>?;                 # xml:id (or equivalent in JSON)
-    fhir:extension @<Extension>*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:value xsd:gYear OR xsd:gYearMonth OR xsd:date OR xsd:dateTime?;  # Primitive value for dateTime
-    fhir:index xsd:integer?                 # Relative position in a list
-}
 
 # Primitive Type date
 <date> CLOSED {
@@ -55,6 +44,15 @@ start=@<PaymentNotice> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:extension @<Extension>*;           # Additional Content defined by 
                                             # implementations 
     fhir:value xsd:gYear OR xsd:gYearMonth OR xsd:date?;  # Primitive value for date
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
+# Primitive Type dateTime
+<dateTime> CLOSED {
+    fhir:Element.id @<id>?;                 # xml:id (or equivalent in JSON)
+    fhir:extension @<Extension>*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:value xsd:gYear OR xsd:gYearMonth OR xsd:date OR xsd:dateTime?;  # Primitive value for dateTime
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -149,28 +147,24 @@ start=@<PaymentNotice> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
-# A reference to a code defined by a terminology system
-<Coding> CLOSED {
-    fhir:concept IRI?;
-    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
-    fhir:extension @<Extension>*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:Coding.system @<uri>?;             # Identity of the terminology system
-    fhir:Coding.version @<string>?;         # Version of the system - if relevant
-    fhir:Coding.code @<code>?;              # Symbol in syntax defined by the 
-                                            # system 
-    fhir:Coding.display @<string>?;         # Representation defined by the 
-                                            # system 
-    fhir:Coding.userSelected @<boolean>?;   # If this coding was chosen directly 
-                                            # by the user 
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
 # Primitive Type id
 <id> CLOSED {
     fhir:extension @<Extension>*;           # Additional Content defined by 
                                             # implementations 
     fhir:value xsd:string?;                 # Primitive value for id
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
+# Concept - reference to a terminology or just  text
+<CodeableConcept> CLOSED {
+    fhir:concept IRI*;
+    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
+    fhir:extension @<Extension>*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:CodeableConcept.coding @<Coding>*;  # Code defined by a terminology 
+                                            # system 
+    fhir:CodeableConcept.text @<string>?;   # Plain text representation of the 
+                                            # concept 
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -204,6 +198,23 @@ start=@<PaymentNotice> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
+# A reference to a code defined by a terminology system
+<Coding> CLOSED {
+    fhir:concept IRI?;
+    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
+    fhir:extension @<Extension>*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:Coding.system @<uri>?;             # Identity of the terminology system
+    fhir:Coding.version @<string>?;         # Version of the system - if relevant
+    fhir:Coding.code @<code>?;              # Symbol in syntax defined by the 
+                                            # system 
+    fhir:Coding.display @<string>?;         # Representation defined by the 
+                                            # system 
+    fhir:Coding.userSelected @<boolean>?;   # If this coding was chosen directly 
+                                            # by the user 
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
 # Primitive Type boolean
 <boolean> CLOSED {
     fhir:Element.id @<id>?;                 # xml:id (or equivalent in JSON)
@@ -213,25 +224,12 @@ start=@<PaymentNotice> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
-# Concept - reference to a terminology or just  text
-<CodeableConcept> CLOSED {
-    fhir:concept IRI*;
-    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
-    fhir:extension @<Extension>*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:CodeableConcept.coding @<Coding>*;  # Code defined by a terminology 
-                                            # system 
-    fhir:CodeableConcept.text @<string>?;   # Plain text representation of the 
-                                            # concept 
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
 #---------------------- Reference Types -------------------
 
 #---------------------- Value Sets ------------------------
 
-# A code specifying the state of the resource instance.
-fhirvs:paymentnotice-status ["active" "cancelled" "draft" "entered-in-error"]
+# This value set includes STatus codes.
+fhirvs:fm-status ["active" "cancelled" "draft" "entered-in-error"]
 
 # Identifies the purpose for this identifier, if known .
 fhirvs:identifier-use ["usual" "official" "temp" "secondary"]

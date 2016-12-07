@@ -2,7 +2,7 @@
   <!-- These elements SHALL always appear in this order. These basic elements shared by all resources come first
 in order to support consistent definitions for schema and UML derived code. --><html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>Workflow - FHIR v1.7.0</title>
+  <title>Workflow - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -127,7 +127,7 @@ parent steps and child steps get linked together?  How does a care plan identify
 </p>
 <p>
 FHIR defines three categories of resources that are involved in activities - <a href="#request">requests</a>, <a href="#event">events</a> and
-<a href="#definition">definitions</a>.  Each of these different types has an associated &quot;pattern&quot; to which  resources that fall into that category are encouraged to adhere.
+<a href="#definition">definitions</a>.  Each of these different types has a &quot;pattern&quot; associated with it. &nbsp;Resources that fall into that type are encouraged to adhere to their respective pattern.
 These patterns provide standard elements that are typical for most resources of each type.  Strict adherence is not required as work groups are expected to align with
 typical domain behavior and requirements as more authoritative than &quot;desired&quot; architectural patterns.  In some cases, capabilities might be supported with extensions rather than
 core elements where a pattern capability is deemed to be &quot;not common, but still relevant&quot; for a given resource.
@@ -139,7 +139,7 @@ A full description of the patterns and their interrelationships can be found in 
 <p>
 In addition to defining patterns for resources used in workflow processes, FHIR supports the execution of those processes as well.  However, FHIR does not define a &quot;one size
 fits all&quot; solution for workflow architecture.  FHIR supports a variety of interoperability paradigms and most of them (<a href="http.html">REST</a>,
-<a href="messaging.html">Messaging</a> and <a href="services.html">Services</a> provide support for driving workflow execution.  (The <a href="documents.html">Document</a>
+<a href="messaging.html">Messaging</a> and <a href="services.html">Services</a>) provide support for driving workflow execution.  (The <a href="documents.html">Document</a>
 paradigm does not directly support driving behavior, though it can be combined with one of the other patterns to do so.)  In addition, several of these paradigms allow multiple
 approaches to supporting workflow, depending on the context and needs of the workflow process.
 </p>
@@ -350,7 +350,7 @@ be found in the <a href="request.html">Request</a>, <a href="event.html">Event</
 <a name="request"> </a>
 <h4 class="self-link-parent"><span class="sectioncount">12.1.1.3</span> Request Resource Pattern <a href="workflow.html#request" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h4>
 <p>
-Requests are resources that represent the proposal, plan or order for an activity to occur.  A <a href="request.html">Request</a> pattern defines the common elements typically
+Requests are resources that represent the proposal, plan or order for an activity to occur.  A <a href="request.html">Request pattern</a> defines the common elements typically
 present on all request resources.
 </p>
 <p>
@@ -373,7 +373,7 @@ may be delegated to the patient or to down-stream practitioners.  Such fufilling
 <h4 class="self-link-parent"><span class="sectioncount">12.1.1.4</span> Event Resource Pattern <a href="workflow.html#event" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h4>
 <p>
 Events are resources that represent the ongoing or completed execution of some activity or observation.  For example, a clinical procedure, a financial transaction, the recording
-of an allergy or diagnosis, etc.  An <a href="event.html">Event</a> pattern defines the common elements
+of a diagnosis, etc.  An <a href="event.html">Event pattern</a> defines the common elements
 typically present on all event resources.
 </p>
 
@@ -381,7 +381,7 @@ typically present on all event resources.
 <h4 class="self-link-parent"><span class="sectioncount">12.1.1.5</span> Definition Resource Pattern <a href="workflow.html#definition" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h4>
 <p>
 Definitions are resources that represent activities that could be performed in a time and subject-independent manner such as a protocol, order set, clinical guideline, etc.
-A <a href="definition.html">Definition</a> pattern defines the common elements typically present on all event resources.
+A <a href="definition.html">Definition pattern</a> defines the common elements typically present on all event resources.
 </p>
 
 <a name="commpatterns"> </a>
@@ -425,6 +425,8 @@ The scenarios below make use of a few conventions:
   the terms hold whether the request is expressed as a proposal, plan or full-blown order</li>
   <li>Each of the patterns defines the set of steps involved in processing the request, lists some of the benefits and limitations associated with the approach and then
   makes recommendations about when the pattern is most appropriate</li>
+  <li>The descriptions of these patterns focuses on the notion of requesting fulfillment of a request.  However most of these patterns are also applicable to requests for
+  status change, requests for information, etc.  If a pattern is limited in the types of execution it can trigger, this will be noted in the &quot;limitations&quot; section.</li>
 </ul>
 
 <a name="commpatterns"> </a>
@@ -515,6 +517,7 @@ TODO: Insert Jose's decision tree here?
   (generally on the order of 10s of seconds).</li>
   <li>Requires that the placer have authority to post directly to the placer's system</li>
   <li>Requires that the &quot;request&quot; be expressible as a simple creation, update or operation invocation</li>
+  <li>Only works for &quot;fulfillment&quot; requests for Request resources - can't handle request for state changes or information</li>
 </ul>
 <h5 class="self-link-parent"><span class="sectioncount">12.1.2.2.4<a name="12.1.2.2.4"> </a></span> Usage Recommendations <a href="workflow.html#12.1.2.2.4" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h5>
 <p>
@@ -525,6 +528,7 @@ more sophisticated patterns.
 
 <a name="optionb"> </a>
 <h4 class="self-link-parent"><span class="sectioncount">12.1.2.3</span> Option B: Direct POST of request to fulfiller's system <a href="workflow.html#optionb" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h4>
+<img src="workflow-optionb.png" alt="Diagram showing direct POST of request to fulfiller's system workflow"/>
 <h5 class="self-link-parent"><span class="sectioncount">12.1.2.3.1<a name="12.1.2.3.1"> </a></span> Steps <a href="workflow.html#12.1.2.3.1" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h5>
 <ol>
   <li>Placer system invokes a <a href="http.html#create">create</a> by POSTing a 'request' resource (e.g. <a href="medicationrequest.html">MedicationRequest</a>,
@@ -558,6 +562,7 @@ the filler to say &quot;no&quot;).  This is a pseudo-messaging architecture that
 
 <a name="optionc"> </a>
 <h4 class="self-link-parent"><span class="sectioncount">12.1.2.4</span> Option C: POST of request to placer/queue server system, receiver uses polling <a href="workflow.html#optionc" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h4>
+<img src="workflow-optionc.png" alt="Diagram showing POST of request to placer/queue server system, receiver uses polling workflow"/>
 <h5 class="self-link-parent"><span class="sectioncount">12.1.2.4.1<a name="12.1.2.4.1"> </a></span> Steps <a href="workflow.html#12.1.2.4.1" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h5>
 <ol>
   <li>Placer system invokes a &quot;create&quot; action by POSTing a 'request' resource (e.g. MedicationRequest, DiagnosticOrder, ReferralRequest, etc.) to the appropriate RESTful resource
@@ -595,6 +600,7 @@ RESTful approach where data resides on the server &quot;owned&quot; by the data 
 
 <a name="optiond"> </a>
 <h4 class="self-link-parent"><span class="sectioncount">12.1.2.5</span> Option D: POST of request to placer/queue server system, receiver uses subscription <a href="workflow.html#optiond" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h4>
+<img src="workflow-optiond.png" alt="Diagram showing POST of request to placer/queue server system, receiver uses subscription workflow"/>
 <h5 class="self-link-parent"><span class="sectioncount">12.1.2.5.1<a name="12.1.2.5.1"> </a></span> Steps <a href="workflow.html#12.1.2.5.1" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h5>
 <ol>
   <li>Same as <a href="#optionc">Option C</a> - placer posts to itself or to queue server</li>
@@ -625,6 +631,7 @@ Same a <a href="#optionc">Option C</a>, but in an environment where subscription
 
 <a name="optione"> </a>
 <h4 class="self-link-parent"><span class="sectioncount">12.1.2.6</span> Option E: POST of Task to filler system <a href="workflow.html#optione" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h4>
+<img src="workflow-optione.png" alt="Diagram showing POST of Task to filler system workflow"/>
 <h5 class="self-link-parent"><span class="sectioncount">12.1.2.6.1<a name="12.1.2.6.1"> </a></span> Steps <a href="workflow.html#12.1.2.6.1" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h5>
 <ol>
   <li>Placer POSTs the request to its own system or to a queue server system</li>
@@ -664,6 +671,7 @@ Not clear why would anyone do this . . .
 
 <a name="optionf"> </a>
 <h4 class="self-link-parent"><span class="sectioncount">12.1.2.7</span> Option F: POST of &quot;open&quot; Task to queue server system <a href="workflow.html#optionf" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h4>
+<img src="workflow-optionf.png" alt="Diagram showing POST of &quot;open&quot; Task to queue server system workflow"/>
 <h5 class="self-link-parent"><span class="sectioncount">12.1.2.7.1<a name="12.1.2.7.1"> </a></span> Steps <a href="workflow.html#12.1.2.7.1" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h5>
 <ol>
   <li>Placer POSTs the request to its own system or to a queue server system</li>
@@ -708,6 +716,7 @@ choose what to take on and negotiate what work they perform.
 
 <a name="optiong"> </a>
 <h4 class="self-link-parent"><span class="sectioncount">12.1.2.8</span> Option G: POST of &quot;request&quot; resource for filler system, response via Task <a href="workflow.html#optiong" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h4>
+<img src="workflow-optiong.png" alt="Diagram showing POST of &quot;request&quot; resource for filler system, response via Task workflow"/>
 <h5 class="self-link-parent"><span class="sectioncount">12.1.2.8.1<a name="12.1.2.8.1"> </a></span> Steps <a href="workflow.html#12.1.2.8.1" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h5>
 <ol>
   <li>Placer system invokes a &quot;create&quot; action by POSTing a 'request' resource (e.g. MedicationRequest, DiagnosticOrder, ReferralRequest, etc.) to the appropriate RESTful resource
@@ -718,7 +727,9 @@ choose what to take on and negotiate what work they perform.
   <li>Placer either polls the Task to note acceptance and changes or uses a subscription to determine the same</li>
   <li>Fulfiller POSTs an event resource to its own system or to a queue server system</li>
   <li>Fulfiller Updates the Task resource to change its status to completed and to point to the event resource</li>
-  <li>Placer system becomes aware of the update via polling or subscription and retrieves the referenced event resource</li>
+  <li>Placer system becomes aware of the update via polling or subscription</li>
+  <li>Placer system retrieves the event</li>
+  <li>Placer system marks the request as &quot;complete&quot;</li>
 </ol>
 <h5 class="self-link-parent"><span class="sectioncount">12.1.2.8.2<a name="12.1.2.8.2"> </a></span> Benefits <a href="workflow.html#12.1.2.8.2" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h5>
 <ul>
@@ -741,7 +752,7 @@ Use this when the filler needs to have complete ownership over the task and ther
 
 <a name="optionh"> </a>
 <h4 class="self-link-parent"><span class="sectioncount">12.1.2.9</span> Option H: Workflow broker <a href="workflow.html#optionh" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h4>
-<img src="workflow-optionh.png" alt="Diagram showing interaction of placer, filler and workflow broker"/>
+<img src="workflow-optionh.png" alt="Diagram showing workflow broker workflow"/>
 <h5 class="self-link-parent"><span class="sectioncount">12.1.2.9.1<a name="12.1.2.9.1"> </a></span> Steps <a href="workflow.html#12.1.2.9.1" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h5>
 <ol>
   <li>Placer POSTs the request to its own system or to a queue server system</li>
@@ -795,7 +806,7 @@ Appropriate in environments that have a workflow engine that takes on responsibi
 </ul>
 <h5 class="self-link-parent"><span class="sectioncount">12.1.2.10.4<a name="12.1.2.10.4"> </a></span> Usage Recommendations <a href="workflow.html#12.1.2.10.4" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h5>
 <p>
-Existing messaging (likely v2) infrastructure and a need to stay consistent with that architecture
+Existing messaging infrastructure (e.g. v2 LTP, MLTP, WSI Web Services, Direct, VISA, REST, etc.) and a need to stay consistent with that architecture
 </p>
 
 <a name="optionj"> </a>
@@ -884,7 +895,7 @@ TBD
 		<div class="container">  <!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:33-0500. <a href="qa.html">QA Page</a>
+        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:28-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search <img src="external.png" style="text-align: baseline"/></a> | 

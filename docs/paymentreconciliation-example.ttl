@@ -18,17 +18,23 @@
      fhir:Identifier.value [ fhir:value "781234" ]
   ];
   fhir:PaymentReconciliation.status [ fhir:value "active"];
-  fhir:PaymentReconciliation.request [
-     fhir:link <http://www.BenefitsInc.com/fhir/eligibility/225476332402>;
-     fhir:Reference.reference [ fhir:value "http://www.BenefitsInc.com/fhir/eligibility/225476332402" ]
-  ];
-  fhir:PaymentReconciliation.outcome [ fhir:value "complete"];
-  fhir:PaymentReconciliation.disposition [ fhir:value "2014 August mid-month settlement."];
   fhir:PaymentReconciliation.created [ fhir:value "2014-08-16"^^xsd:date];
   fhir:PaymentReconciliation.organization [
      fhir:link <http://hl7.org/fhir/Organization/2>;
      fhir:Reference.reference [ fhir:value "Organization/2" ]
   ];
+  fhir:PaymentReconciliation.request [
+     fhir:link <http://www.BenefitsInc.com/fhir/eligibility/225476332402>;
+     fhir:Reference.reference [ fhir:value "http://www.BenefitsInc.com/fhir/eligibility/225476332402" ]
+  ];
+  fhir:PaymentReconciliation.outcome [
+     fhir:CodeableConcept.coding [
+       fhir:index 0;
+       fhir:Coding.system [ fhir:value "http://hl7.org/fhir/remittance-outcome" ];
+       fhir:Coding.code [ fhir:value "complete" ]
+     ]
+  ];
+  fhir:PaymentReconciliation.disposition [ fhir:value "2014 August mid-month settlement."];
   fhir:PaymentReconciliation.requestOrganization [
      fhir:link <http://hl7.org/fhir/Organization/1>;
      fhir:Reference.reference [ fhir:value "Organization/1" ]
@@ -36,8 +42,11 @@
   fhir:PaymentReconciliation.detail [
      fhir:index 0;
      fhir:PaymentReconciliation.detail.type [
-       fhir:Coding.system [ fhir:value "http://hl7.org/fhir/paymenttype" ];
-       fhir:Coding.code [ fhir:value "payment" ]
+       fhir:CodeableConcept.coding [
+         fhir:index 0;
+         fhir:Coding.system [ fhir:value "http://hl7.org/fhir/paymenttype" ];
+         fhir:Coding.code [ fhir:value "payment" ]
+       ]
      ];
      fhir:PaymentReconciliation.detail.request [
        fhir:link <http://www.BenefitsInc.com/fhir/oralhealthclaim/225476332402>;
@@ -52,8 +61,11 @@
   ], [
      fhir:index 1;
      fhir:PaymentReconciliation.detail.type [
-       fhir:Coding.system [ fhir:value "http://hl7.org/fhir/paymenttype" ];
-       fhir:Coding.code [ fhir:value "payment" ]
+       fhir:CodeableConcept.coding [
+         fhir:index 0;
+         fhir:Coding.system [ fhir:value "http://hl7.org/fhir/paymenttype" ];
+         fhir:Coding.code [ fhir:value "payment" ]
+       ]
      ];
      fhir:PaymentReconciliation.detail.request [
        fhir:link <http://www.BenefitsInc.com/fhir/oralhealthclaim/225476332699>;
@@ -68,8 +80,11 @@
   ], [
      fhir:index 2;
      fhir:PaymentReconciliation.detail.type [
-       fhir:Coding.system [ fhir:value "http://hl7.org/fhir/paymenttype" ];
-       fhir:Coding.code [ fhir:value "advance" ]
+       fhir:CodeableConcept.coding [
+         fhir:index 0;
+         fhir:Coding.system [ fhir:value "http://hl7.org/fhir/paymenttype" ];
+         fhir:Coding.code [ fhir:value "advance" ]
+       ]
      ];
      fhir:PaymentReconciliation.detail.date [ fhir:value "2014-08-16"^^xsd:date ];
      fhir:PaymentReconciliation.detail.amount [

@@ -7,7 +7,7 @@
     }
   ],
   "status": "draft",
-  "date": "2016-11-28T17:29:55-05:00",
+  "date": "2016-12-07T14:18:58-05:00",
   "publisher": "Health Level Seven International (Public Health and Emergency Response)",
   "item": [
     {
@@ -629,7 +629,7 @@
               "valueString": "boolean"
             }
           ],
-          "linkId": "Immunization.reported",
+          "linkId": "Immunization.primarySource",
           "type": "group",
           "required": true,
           "repeats": true,
@@ -649,13 +649,64 @@
                   }
                 }
               ],
-              "text": "True if this administration was reported rather than directly administered. May need source of reported info (e.g. parent), but leave out for now.",
+              "text": "An indication that the content of the record is based on information from the person who administered the vaccine. This reflects the context under which the data was originally recorded. Reflects the “reliability” of the content.",
               "type": "display"
             },
             {
-              "linkId": "Immunization.reported.value",
-              "text": "Indicates a self-reported record",
+              "linkId": "Immunization.primarySource.value",
+              "text": "Indicates context the data was recorded in",
               "type": "boolean",
+              "required": false,
+              "repeats": false
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs",
+              "valueInteger": 1
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType",
+              "valueString": "CodeableConcept"
+            }
+          ],
+          "linkId": "Immunization.reportOrigin",
+          "text": "Indicates the source of a secondarily reported record",
+          "type": "group",
+          "required": false,
+          "repeats": true,
+          "item": [
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://hl7.org/fhir/questionnaire-item-control",
+                        "code": "flyover",
+                        "display": "Fly-over"
+                      }
+                    ]
+                  }
+                }
+              ],
+              "text": "The source of the data when the report of the immunization event is not based on information from the person who administered the vaccine. Should not be populated if primarySource = True, will not be required even if primarySource = False.",
+              "type": "display"
+            },
+            {
+              "linkId": "Immunization.reportOrigin.coding",
+              "text": "code:",
+              "type": "open-choice",
+              "required": false,
+              "repeats": false
+            },
+            {
+              "linkId": "Immunization.reportOrigin.text",
+              "text": "text:",
+              "type": "string",
               "required": false,
               "repeats": false
             }
@@ -1451,7 +1502,7 @@
           "repeats": true,
           "item": [
             {
-              "text": "A reaction may be an indication of an allergy or intolerance and, if this is determined to be the case,  it should be recorded as a new [[[AllergyIntolerance]]] resource instance as most systems will not query against  past Immunization.reaction elements.",
+              "text": "A reaction may be an indication of an allergy or intolerance and, if this is determined to be the case,  it should be recorded as a new [AllergyIntolerance](allergyintolerance.html) resource instance as most systems will not query against  past Immunization.reaction elements.",
               "type": "display"
             },
             {

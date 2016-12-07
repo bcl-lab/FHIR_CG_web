@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>AuditEvent - FHIR v1.7.0</title>
+  <title>AuditEvent - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -121,7 +121,7 @@
   <tr><td>Definition</td><td><p>Identifier for a family of the event.  For example, a menu item, program, rule, policy, function code, application name or URL. It identifies the performed function.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>1..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>Audit Event ID: <a href="valueset-audit-event-type.html">Type of event.</a> (<a href="terminologies.html#extensible">Extensible</a>)</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-audit-event-type.html">Audit Event ID</a> (<a href="terminologies.html#extensible">Extensible</a>)</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#Coding">Coding</a></td></tr>
   <tr><td>Requirements</td><td><p>This identifies the performed function. For &quot;Execute&quot; Event Action Code audit records, this identifies the application function performed.</p>
 </td></tr>
@@ -130,7 +130,7 @@
   <tr><td>Definition</td><td><p>Identifier for the category of event.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..*</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>Audit Event Sub-Type: <a href="valueset-audit-event-sub-type.html">Sub-type of event.</a> (<a href="terminologies.html#extensible">Extensible</a>)</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-audit-event-sub-type.html">Audit Event Sub-Type</a> (<a href="terminologies.html#extensible">Extensible</a>)</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#Coding">Coding</a></td></tr>
   <tr><td>Requirements</td><td><p>This field enables queries of messages by implementation-defined event categories.</p>
 </td></tr>
@@ -139,7 +139,7 @@
   <tr><td>Definition</td><td><p>Indicator for type of action performed during the event that generated the audit.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>AuditEventAction: <a href="valueset-audit-event-action.html">Indicator for type of action performed during the event that generated the audit.</a> (<a href="terminologies.html#required">Required</a>)</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-audit-event-action.html">AuditEventAction</a> (<a href="terminologies.html#required">Required</a>)</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#code">code</a></td></tr>
   <tr><td>Requirements</td><td><p>This broadly indicates what kind of action was done on the AuditEvent.entity by the AuditEvent.agent.</p>
 </td></tr>
@@ -158,7 +158,7 @@
   <tr><td>Definition</td><td><p>Indicates whether the event succeeded or failed.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>AuditEventOutcome: <a href="valueset-audit-event-outcome.html">Indicates whether the event succeeded or failed</a> (<a href="terminologies.html#required">Required</a>)</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-audit-event-outcome.html">AuditEventOutcome</a> (<a href="terminologies.html#required">Required</a>)</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#code">code</a></td></tr>
   <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
   <tr><td>Comments</td><td><p>In some cases a &quot;success&quot; may be partial, for example, an incomplete or interrupted transfer of a radiological study. For the purpose of establishing accountability, these distinctions are not relevant.</p>
@@ -173,7 +173,7 @@
   <tr><td>Definition</td><td><p>The purposeOfUse (reason) that was used during the event being recorded.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..*</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>PurposeOfUse: <a href="v3/PurposeOfUse/vs.html">The reason the activity took place.</a> (<a href="terminologies.html#extensible">Extensible</a>)</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="v3/PurposeOfUse/vs.html">PurposeOfUse</a> (<a href="terminologies.html#extensible">Extensible</a>)</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
   <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
   <tr><td>Comments</td><td><p>Use AuditEvent.agent.purposeOfUse when you know that is specific to the agent, otherwise use AuditEvent.purposeOfEvent. For example, during a machine-to-machine transfer it might not be obvious to the audit system who caused the event, but it does know why.</p>
@@ -192,7 +192,7 @@
   <tr><td>Definition</td><td><p>Specification of the role(s) the user plays when performing the event. Additional may contain security role codes that come from local codes defined by the access control security system (e.g. RBAC, ABAC) used in the local context.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..*</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>Audit agent Role ID Code: <a href="valueset-dicm-402-roleid.html">How the agent participated in the event.</a> (<a href="terminologies.html#extensible">Extensible</a>)</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-dicm-402-roleid.html">Audit agent Role ID Code</a> (<a href="terminologies.html#extensible">Extensible</a>)</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
   <tr><td>Requirements</td><td><p>This value ties an audited event to a user's role(s). It is an optional value that might be used to group events for analysis by user functional role categories.</p>
 </td></tr>
@@ -257,7 +257,7 @@
   <tr><td>Definition</td><td><p>Type of media involved. Used when the event is about exporting/importing onto media.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>Media Type Code: <a href="valueset-dicm-405-mediatype.html">Used when the event is about exporting/importing onto media.</a> (<a href="terminologies.html#extensible">Extensible</a>)</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-dicm-405-mediatype.html">Media Type Code</a> (<a href="terminologies.html#extensible">Extensible</a>)</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#Coding">Coding</a></td></tr>
   <tr><td>Requirements</td><td><p>Usually, this is used instead of specifying a network address. This field is not used for Media Id (i.e. the serial number of a CD).</p>
 </td></tr>
@@ -278,7 +278,7 @@
   <tr><td>Definition</td><td><p>An identifier for the type of network access point that originated the audit event.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>AuditEventAgentNetworkType: <a href="valueset-network-type.html">The type of network access point of this agent in the audit event</a> (<a href="terminologies.html#required">Required</a>)</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-network-type.html">AuditEventAgentNetworkType</a> (<a href="terminologies.html#required">Required</a>)</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#code">code</a></td></tr>
   <tr><td>Requirements</td><td><p>This datum identifies the type of network access point identifier of the user device for the audit event. It is an optional value that may be used to group events recorded on separate servers for analysis of access according to a network access point's type.</p>
 </td></tr>
@@ -286,7 +286,7 @@
   <tr><td>Definition</td><td><p>The reason (purpose of use), specific to this agent, that was used during the event being recorded.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..*</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>PurposeOfUse: <a href="v3/PurposeOfUse/vs.html">The reason the activity took place.</a> (<a href="terminologies.html#extensible">Extensible</a>)</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="v3/PurposeOfUse/vs.html">PurposeOfUse</a> (<a href="terminologies.html#extensible">Extensible</a>)</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
   <tr><td>Comments</td><td><p>Use AuditEvent.agent.purposeOfUse when you know that is specific to the agent, otherwise use AuditEvent.purposeOfEvent. For example, during a machine-to-machine transfer it might not be obvious to the audit system who caused the event, but it does know why.</p>
 </td></tr>
@@ -318,7 +318,7 @@
   <tr><td>Definition</td><td><p>Code specifying the type of source where event originated.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..*</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>Audit Event Source Type: <a href="valueset-audit-source-type.html">Code specifying the type of system that detected and recorded the event.</a> (<a href="terminologies.html#extensible">Extensible</a>)</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-audit-source-type.html">Audit Event Source Type</a> (<a href="terminologies.html#extensible">Extensible</a>)</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#Coding">Coding</a></td></tr>
   <tr><td>Requirements</td><td><p>This field indicates which type of source is identified by the Audit Source ID. It is an optional value that may be used to group events for analysis according to the type of source where the event occurred.</p>
 </td></tr>
@@ -352,7 +352,7 @@
   <tr><td>Definition</td><td><p>The type of the object that was involved in this audit event.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>AuditEventEntityType: <a href="valueset-object-type.html">Code for the entity type involved audited.</a> (<a href="terminologies.html#extensible">Extensible</a>)</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-object-type.html">AuditEventEntityType</a> (<a href="terminologies.html#extensible">Extensible</a>)</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#Coding">Coding</a></td></tr>
   <tr><td>Requirements</td><td><p>To describe the object being acted upon. In addition to queries on the subject of the action in an auditable event, it is also important to be able to query on the object type for the action.</p>
 </td></tr>
@@ -362,7 +362,7 @@
   <tr><td>Definition</td><td><p>Code representing the role the entity played in the event being audited.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>AuditEventEntityRole: <a href="valueset-object-role.html">Code representing the role the entity played in the event.</a> (<a href="terminologies.html#extensible">Extensible</a>)</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-object-role.html">AuditEventEntityRole</a> (<a href="terminologies.html#extensible">Extensible</a>)</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#Coding">Coding</a></td></tr>
   <tr><td>Requirements</td><td><p>For some detailed audit analysis it may be necessary to indicate a more granular type of entity, based on the application role it serves.</p>
 </td></tr>
@@ -370,7 +370,7 @@
   <tr><td>Definition</td><td><p>Identifier for the data life-cycle stage for the entity.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>AuditEventEntityLifecycle: <a href="valueset-object-lifecycle.html">Identifier for the data life-cycle stage for the entity.</a> (<a href="terminologies.html#extensible">Extensible</a>)</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-object-lifecycle.html">AuditEventEntityLifecycle</a> (<a href="terminologies.html#extensible">Extensible</a>)</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#Coding">Coding</a></td></tr>
   <tr><td>Requirements</td><td><p>Institutional policies for privacy and security may optionally fall under different accountability rules based on data life cycle. This provides a differentiating value for those cases.</p>
 </td></tr>
@@ -380,7 +380,7 @@
   <tr><td>Definition</td><td><p>Denotes security labels for the identified entity.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..*</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>All Security Labels: <a href="valueset-security-labels.html">Security Labels from the Healthcare Privacy and Security Classification System.</a> (<a href="terminologies.html#extensible">Extensible</a>)</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-security-labels.html">All Security Labels</a> (<a href="terminologies.html#extensible">Extensible</a>)</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#Coding">Coding</a></td></tr>
   <tr><td>Requirements</td><td><p>This field identifies the security labels for a specific instance of an object, such as a patient, to detect/track privacy and security issues.</p>
 </td></tr>
@@ -447,7 +447,7 @@
 		<div class="container">  <!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:32-0500. <a href="qa.html">QA Page</a>
+        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:21-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search <img src="external.png" style="text-align: baseline"/></a> | 

@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>request - FHIR v1.7.0</title>
+  <title>request - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -126,12 +126,15 @@
  <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;groupIdentifier</td><td>.inboundRelationship(typeCode=COMP].source[moodCode=INT].identifier</td></tr>
  <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;status</td><td>.status</td></tr>
  <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;intent</td><td>.moodCode (nuances beyond PRP/PLAN/RQO would need to be elsewhere)</td></tr>
+ <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;priority</td><td/></tr>
  <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;code</td><td>.code</td></tr>
  <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;subject</td><td>.participation[typeCode=SBJ].role</td></tr>
  <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;context</td><td>.inboundRelationship(typeCode=COMP].source[classCode&lt;=PCPR, moodCode=EVN]</td></tr>
  <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;occurrence[x]</td><td>.effectiveTime</td></tr>
- <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;authored</td><td>.participation[typeCode=AUT].time</td></tr>
+ <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;authoredOn</td><td>.participation[typeCode=AUT].time</td></tr>
  <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;requester</td><td>.participation[typeCode=AUT].role</td></tr>
+ <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;agent</td><td>.player</td></tr>
+ <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;onBehalfOf</td><td>.scoper</td></tr>
  <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;performerType</td><td>.participation[typeCode=PRF].role[scoper.determinerCode=KIND].code</td></tr>
  <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;performer</td><td>.participation[typeCode=PRF].role[scoper.determinerCode=INSTANCE]</td></tr>
  <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;reasonCode</td><td>.reasonCode</td></tr>
@@ -156,7 +159,7 @@
 		<div class="container">  <!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:31-0500. <a href="qa.html">QA Page</a>
+        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:20-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search <img src="external.png" style="text-align: baseline"/></a> | 

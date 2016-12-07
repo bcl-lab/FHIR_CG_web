@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>Messaging - FHIR v1.7.0</title>
+  <title>Messaging - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -105,7 +105,7 @@
 
 <div class="col-9">
 
-<h1 class="self-link-parent"><span class="sectioncount">2.46<a name="2.46"> </a></span> Messaging using FHIR Resources <a href="messaging.html#2.46" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h1>
+<h1 class="self-link-parent"><span class="sectioncount">2.47<a name="2.47"> </a></span> Messaging using FHIR Resources <a href="messaging.html#2.47" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h1>
 <table class="cols"><tr><td id="wg"><a href="http://www.hl7.org/Special/committees/fiwg/index.cfm" _target="blank">FHIR Infrastructure <img src="external.png" style="text-align: baseline"/></a> Work Group</td><td id="fmm"><a href="resource.html#maturity">Maturity Level</a>: N/A</td><td id="ballot"><a href="help.html#status">Ballot Status</a>: <a href="history.html#pubs">STU 3</a></td></tr></table>
 
 <p>
@@ -141,7 +141,7 @@ resources required.
 
 <a name="basic"> </a>
 
-<h2 class="self-link-parent"><span class="sectioncount">2.46.1</span> Basic Messaging Assumptions <a href="messaging.html#basic" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h2>
+<h2 class="self-link-parent"><span class="sectioncount">2.47.1</span> Basic Messaging Assumptions <a href="messaging.html#basic" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h2>
 
 <p>
 This specification assumes that content will be delivered from one application to
@@ -174,7 +174,7 @@ in both directions.
 <p>
 A key aspect of a message is the impact of its content:
 </p>
-<h3 class="self-link-parent"><span class="sectioncount">2.46.1.1<a name="2.46.1.1"> </a></span> The impact of the content of a message. <a href="messaging.html#2.46.1.1" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h3>
+<h3 class="self-link-parent"><span class="sectioncount">2.47.1.1<a name="2.47.1.1"> </a></span> The impact of the content of a message. <a href="messaging.html#2.47.1.1" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h3>
 <table class="codes">
  <tr><td>Consequence</td><td>The message represents/requests a change that should not be processed more than once; e.g. Making a booking for an appointment.</td></tr>
  <tr><td>Currency</td><td>The message represents a response to query for current information. Retrospective processing is wrong and/or wasteful.</td></tr>
@@ -189,7 +189,7 @@ must be determined by the content, or the context.
 
 <a name="synchronous"> </a>
 <a name="patterns"> </a>
-<h3 class="self-link-parent"><span class="sectioncount">2.46.1.2</span> Message Exchange Patterns <a href="messaging.html#patterns" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h3>
+<h3 class="self-link-parent"><span class="sectioncount">2.47.1.2</span> Message Exchange Patterns <a href="messaging.html#patterns" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h3>
 <p>
 Each FHIR request message has one or more response messages. There must be at least
 one response message so that the sender can know that the message was properly
@@ -220,7 +220,7 @@ response messages. In these cases, the asynchronous message pattern
 </p>
 
 
-<h3 class="self-link-parent"><span class="sectioncount">2.46.1.3<a name="2.46.1.3"> </a></span> MessageHeader Identifiers <a href="messaging.html#2.46.1.3" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h3>
+<h3 class="self-link-parent"><span class="sectioncount">2.47.1.3<a name="2.47.1.3"> </a></span> MessageHeader Identifiers <a href="messaging.html#2.47.1.3" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h3>
 <p>
 An incoming message contains two identifiers: the Bundle.id and
 the <a href="messageheader.html">MessageHeader</a>.id.
@@ -239,7 +239,7 @@ MessageHeader.response.identifier so that the source system can relate the respo
 </p>
 
 <a name="reliable"> </a>
-<h3 class="self-link-parent"><span class="sectioncount">2.46.1.4</span> Absence of Reliable Messaging <a href="messaging.html#reliable" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h3>
+<h3 class="self-link-parent"><span class="sectioncount">2.47.1.4</span> Absence of Reliable Messaging <a href="messaging.html#reliable" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h3>
 <p>
 Some of the message delivery mechanisms mentioned above are reliable delivery
 systems - the message is always delivered, or an appropriate error is returned
@@ -282,7 +282,7 @@ Applications that implement reliable messaging declare their reliable cache
 period in their <a href="capabilitystatement.html">Capability Statement</a>.
 </p>
 
-<h4 class="self-link-parent"><span class="sectioncount">2.46.1.4.1<a name="2.46.1.4.1"> </a></span> Example: Consequence <a href="messaging.html#2.46.1.4.1" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h4>
+<h4 class="self-link-parent"><span class="sectioncount">2.47.1.4.1<a name="2.47.1.4.1"> </a></span> Example: Consequence <a href="messaging.html#2.47.1.4.1" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h4>
 <p>
 In the first example, a Clinical EHR issues an order for a particular imaging examination
 to be performed on a patient. This is considered to be a message of <b>Consequence</b>: multiple
@@ -313,7 +313,7 @@ response portion of the returned message.
 </p>
 
 
-<h4 class="self-link-parent"><span class="sectioncount">2.46.1.4.2<a name="2.46.1.4.2"> </a></span> Example: Currency <a href="messaging.html#2.46.1.4.2" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h4>
+<h4 class="self-link-parent"><span class="sectioncount">2.47.1.4.2<a name="2.47.1.4.2"> </a></span> Example: Currency <a href="messaging.html#2.47.1.4.2" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h4>
 <p>
 In this second example, a Clinical EHR needs to know what appointment slots are available
 for a particular imaging procedure. This is a message of <b>Currency</b>: available slots are
@@ -350,7 +350,7 @@ here.
 
 <a name="conf"> </a>
 
-<h2 class="self-link-parent"><span class="sectioncount">2.46.2</span> Capability Statement <a href="messaging.html#conf" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h2>
+<h2 class="self-link-parent"><span class="sectioncount">2.47.2</span> Capability Statement <a href="messaging.html#conf" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h2>
 <p>
 Applications may only assert conformance to &quot;FHIR messaging&quot; if they
 publish a <a href="capabilitystatement.html">Capability statement</a> so the claim may be verified. A
@@ -361,8 +361,8 @@ are required to be bundled (receiver), and any rules about the
 information content of the individual resources.
 </p>
 
-<a name="process"/>
-<h2 class="self-link-parent"><span class="sectioncount">2.46.3</span> $process-message <a href="messaging.html#process" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h2>
+<a name="process"> </a>
+<h2 class="self-link-parent"><span class="sectioncount">2.47.3</span> $process-message <a href="messaging.html#process" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h2>
 <p>
 The simplest way to handle messages where there are also <a href="http.html">RESTful interactions</a>
 occurring is to use the <a href="messageheader-operations.html">$process-message</a>.
@@ -405,7 +405,7 @@ message id described above</a> SHALL be followed when messages are processed usi
 The <a href="messageheader-operations.html">$process-message</a> operation may be used
 synchronously, or asynchronously.
 </p>
-<h3 class="self-link-parent"><span class="sectioncount">2.46.3.1<a name="2.46.3.1"> </a></span> Synchronous Operation <a href="messaging.html#2.46.3.1" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h3>
+<h3 class="self-link-parent"><span class="sectioncount">2.47.3.1<a name="2.47.3.1"> </a></span> Synchronous Operation <a href="messaging.html#2.47.3.1" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h3>
 <p>
 Synchronous messaging is the easiest to understand; the sender sends a message to the
 receiver (the server), the server processes it, and then returns a response. Usually
@@ -421,7 +421,7 @@ The following rules apply when using the $process-message operation synchronousl
  <li>It is an error if the sender POSTs a message that requires multiple response messages</li>
  <li>Servers SHALL accept multiple concurrent message submissions and process them correctly (they are allowed to process them sequentially internally, but multiple concurrent submissions is not an error in its own right)</li>
 </ul>
-<h3 class="self-link-parent"><span class="sectioncount">2.46.3.2<a name="2.46.3.2"> </a></span> Asynchronous Operation <a href="messaging.html#2.46.3.2" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h3>
+<h3 class="self-link-parent"><span class="sectioncount">2.47.3.2<a name="2.47.3.2"> </a></span> Asynchronous Operation <a href="messaging.html#2.47.3.2" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h3>
 <p>
 In Asynchronous messaging, the server acknowledges receipt of the message immediately,
 and responds to the sender separately. The server may respond more than once to any
@@ -445,8 +445,8 @@ Note that asynchronous messaging is less reliable than synchronous messaging; mo
 This specification does not dictate any particular error handling protocols or responsibilities; these are left to trading partner agreements between implementers.
 </p>
 
-<a name="endpoints"/>
-<h2 class="self-link-parent"><span class="sectioncount">2.46.4</span> Relationship between Messaging and REST <a href="messaging.html#endpoints" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h2>
+<a name="endpoints"> </a>
+<h2 class="self-link-parent"><span class="sectioncount">2.47.4</span> Relationship between Messaging and REST <a href="messaging.html#endpoints" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h2>
 
 <p>
 As well as this messaging framework documented here, FHIR also defines a
@@ -487,7 +487,7 @@ any logic associated with the actual event.</b> It is just for managing a set of
 </p>
 
 <a name="rest"> </a>
-<h3 class="self-link-parent"><span class="sectioncount">2.46.4.1</span> Asynchronous Messaging using the RESTful API <a href="messaging.html#rest" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h3>
+<h3 class="self-link-parent"><span class="sectioncount">2.47.4.1</span> Asynchronous Messaging using the RESTful API <a href="messaging.html#rest" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h3>
 
 <p>
 It is possible to exchange messages using the RESTful
@@ -534,9 +534,9 @@ attack).
 
 
 
-<a name="Events"/>
-<a name="events"/>
-<h2 class="self-link-parent"><span class="sectioncount">2.46.5</span> Event List <a href="messaging.html#events" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h2>
+<a name="Events"> </a>
+<a name="events"> </a>
+<h2 class="self-link-parent"><span class="sectioncount">2.47.5</span> Event List <a href="messaging.html#events" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h2>
 
 <p>
 The <i>message.code</i> element carries a <a href="datatypes.html#Coding">Coding</a> that identifies the event that the message conveys.
@@ -561,7 +561,7 @@ This table lists the message event codes defined in this specification (the syst
  <tr><td>Practitioner</td><td><font color="silver">--</font></td><td/></tr>
  <tr><td><font color="silver">--</font></td><td>RelatedPerson</td><td/></tr>
  <tr><td>Person</td><td><font color="silver">--</font></td><td/></tr>
- <tr><td>communication-request<a name="communication-request"> </a></td><td>??</td><td/><td><font color="silver">--</font></td><td><font color="silver">--</font></td><td/></tr>
+ <tr><td>communication-request<a name="communication-request"> </a></td><td>Notification</td><td>Notification to convey information.</td><td>CommunicationRequest</td><td><font color="silver">--</font></td><td/></tr>
  <tr><td>diagnosticreport-provide<a name="diagnosticreport-provide"> </a></td><td>Notification</td><td>Provide a diagnostic report, or update a previously provided diagnostic report.</td><td>DiagnosticReport<br/>&nbsp;DiagnosticReport.patient .perfomer .results.specimen .results.result .image</td><td><font color="silver">--</font></td><td/></tr>
  <tr><td rowspan="3">observation-provide</td><td rowspan="3">Provide a simple observation or update a previously provided simple observation.</td><td>Observation<br/>&nbsp;Observation.subjectPatient .subjectPatient.person .subjectGroup .subjectDevice .subjectAnimal .performerAgent .performerAgent.person .performerPatient .performerPerson</td><td><font color="silver">--</font></td><td/></tr>
  <tr><td>Observation<br/>&nbsp;Observation.subjectPatient .subjectPatient.person .subjectGroup .subjectDevice .subjectAnimal .performerAgent .performerAgent.person .performerPatient .performerPerson</td><td><font color="silver">--</font></td><td/></tr>
@@ -584,7 +584,7 @@ In this table, the request and response columns list the focus resource for the 
 <blockquote class="dstu-note">
 <a name="dstu"> </a>
 <p>
-<b>DSTU Note:</b>
+<b>STU Note:</b>
 Additional events may be defined elsewhere, though this specification does not yet define how.
 </p>
 <p>
@@ -592,8 +592,8 @@ Feedback is sought <a href="http://wiki.hl7.org/index.php?title=FHIR_Specificati
 </p>
 </blockquote>
 
-<a name="operations"/>
-<h2 class="self-link-parent"><span class="sectioncount">2.46.6</span> Invoking Operations via Messages <a href="messaging.html#operations" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h2>
+<a name="operations"> </a>
+<h2 class="self-link-parent"><span class="sectioncount">2.47.6</span> Invoking Operations via Messages <a href="messaging.html#operations" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h2>
 
 <p>
 A message can be used to invoke an operation as defined for a RESTful interface using
@@ -661,8 +661,8 @@ The only operations that can be executed in this way are defined to be executed
 at the System or Resource level for a particular resource.
 </p>
 
-<a name="search"/>
-<h3 class="self-link-parent"><span class="sectioncount">2.46.6.1</span> Invoking Search via Messages <a href="messaging.html#search" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h3>
+<a name="search"> </a>
+<h3 class="self-link-parent"><span class="sectioncount">2.47.6.1</span> Invoking Search via Messages <a href="messaging.html#search" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h3>
 <p>
 In the same way that a defined operation can be invoked, a regular search operation
 can be invoked. This also uses the <a href="parameters.html">Parameters</a> resource,
@@ -779,7 +779,7 @@ Here's an example:
 		<div class="container">  <!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:33-0500. <a href="qa.html">QA Page</a>
+        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:28-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search <img src="external.png" style="text-align: baseline"/></a> | 

@@ -3,7 +3,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>Explanationofbenefit-example.json - FHIR v1.7.0</title>
+  <title>Explanationofbenefit-example.json - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -129,29 +129,45 @@
     }
   ],
   &quot;status&quot;: &quot;active&quot;,
+  &quot;type&quot;: {
+    &quot;coding&quot;: [
+      {
+        &quot;system&quot;: &quot;http://hl7.org/fhir/ex-claimtype&quot;,
+        &quot;code&quot;: &quot;oral&quot;
+      }
+    ]
+  },
+  &quot;patient&quot;: {
+    &quot;reference&quot;: &quot;Patient/pat1&quot;
+  },
+  &quot;created&quot;: &quot;2014-08-16&quot;,
+  &quot;organization&quot;: {
+    &quot;reference&quot;: &quot;Organization/2&quot;
+  },
   &quot;claim&quot;: {
     &quot;reference&quot;: &quot;Claim/100150&quot;
   },
   &quot;claimResponse&quot;: {
     &quot;reference&quot;: &quot;ClaimResponse/R3500&quot;
   },
-  &quot;type&quot;: {
-    &quot;system&quot;: &quot;http://hl7.org/fhir/ex-claimtype&quot;,
-    &quot;code&quot;: &quot;oral&quot;
-  },
-  &quot;created&quot;: &quot;2014-08-16&quot;,
   &quot;outcome&quot;: {
-    &quot;system&quot;: &quot;http://hl7.org/fhir/remittance-outcome&quot;,
-    &quot;code&quot;: &quot;complete&quot;
+    &quot;coding&quot;: [
+      {
+        &quot;system&quot;: &quot;http://hl7.org/fhir/remittance-outcome&quot;,
+        &quot;code&quot;: &quot;complete&quot;
+      }
+    ]
   },
   &quot;disposition&quot;: &quot;Claim settled as per contract.&quot;,
-  &quot;organization&quot;: {
-    &quot;reference&quot;: &quot;Organization/2&quot;
-  },
-  &quot;patient&quot;: {
-    &quot;reference&quot;: &quot;Patient/pat1&quot;
-  },
-  &quot;coverage&quot;: {
+  &quot;careTeam&quot;: [
+    {
+      &quot;sequence&quot;: 1,
+      &quot;provider&quot;: {
+        &quot;reference&quot;: &quot;Practitioner/example&quot;
+      }
+    }
+  ],
+  &quot;insurance&quot;: {
     &quot;coverage&quot;: {
       &quot;reference&quot;: &quot;Coverage/9876B1&quot;
     }
@@ -159,16 +175,16 @@
   &quot;item&quot;: [
     {
       &quot;sequence&quot;: 1,
-      &quot;careTeam&quot;: [
-        {
-          &quot;provider&quot;: {
-            &quot;reference&quot;: &quot;Practitioner/example&quot;
-          }
-        }
+      &quot;careTeamLinkId&quot;: [
+        1
       ],
       &quot;service&quot;: {
-        &quot;system&quot;: &quot;http://hl7.org/fhir/service-uscls&quot;,
-        &quot;code&quot;: &quot;1200&quot;
+        &quot;coding&quot;: [
+          {
+            &quot;system&quot;: &quot;http://hl7.org/fhir/service-uscls&quot;,
+            &quot;code&quot;: &quot;1200&quot;
+          }
+        ]
       },
       &quot;servicedDate&quot;: &quot;2014-08-16&quot;,
       &quot;unitPrice&quot;: {
@@ -184,7 +200,11 @@
       &quot;adjudication&quot;: [
         {
           &quot;category&quot;: {
-            &quot;code&quot;: &quot;eligible&quot;
+            &quot;coding&quot;: [
+              {
+                &quot;code&quot;: &quot;eligible&quot;
+              }
+            ]
           },
           &quot;amount&quot;: {
             &quot;value&quot;: 120.00,
@@ -194,13 +214,21 @@
         },
         {
           &quot;category&quot;: {
-            &quot;code&quot;: &quot;eligpercent&quot;
+            &quot;coding&quot;: [
+              {
+                &quot;code&quot;: &quot;eligpercent&quot;
+              }
+            ]
           },
           &quot;value&quot;: 0.80
         },
         {
           &quot;category&quot;: {
-            &quot;code&quot;: &quot;benefit&quot;
+            &quot;coding&quot;: [
+              {
+                &quot;code&quot;: &quot;benefit&quot;
+              }
+            ]
           },
           &quot;amount&quot;: {
             &quot;value&quot;: 96.00,
@@ -246,7 +274,7 @@ of the specification.
 		<div class="container"><!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:32-0500. <a href="qa.html">QA Page</a>
+        © HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:21-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search</a> | 

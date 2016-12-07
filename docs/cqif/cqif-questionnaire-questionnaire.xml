@@ -9,8 +9,8 @@
       <status value="active"/>
       <description value="Type options for Questionnaire.item.enableWhen.answer[x]"/>
       <expansion>
-        <identifier value="urn:uuid:1c710646-2537-458f-811d-865aa9e2a332"/>
-        <timestamp value="2016-11-28T17:33:22-05:00"/>
+        <identifier value="urn:uuid:4d076897-5d21-4671-9892-e133e8eca5a0"/>
+        <timestamp value="2016-12-07T14:28:24-05:00"/>
         <contains>
           <system value="http://hl7.org/fhir/data-types"/>
           <code value="boolean"/>
@@ -86,8 +86,8 @@
       <status value="active"/>
       <description value="Type options for Questionnaire.item.option.value[x]"/>
       <expansion>
-        <identifier value="urn:uuid:e18c1146-611c-4c84-aacb-019dfa753839"/>
-        <timestamp value="2016-11-28T17:33:22-05:00"/>
+        <identifier value="urn:uuid:1cce770b-5e05-4203-99c7-d504539775a5"/>
+        <timestamp value="2016-12-07T14:28:24-05:00"/>
         <contains>
           <system value="http://hl7.org/fhir/data-types"/>
           <code value="integer"/>
@@ -123,8 +123,8 @@
       <status value="active"/>
       <description value="Type options for Questionnaire.item.initial[x]"/>
       <expansion>
-        <identifier value="urn:uuid:c5aa847f-cf6e-47da-ab20-f8b27d0b24aa"/>
-        <timestamp value="2016-11-28T17:33:22-05:00"/>
+        <identifier value="urn:uuid:ab1f5e39-b9cc-4897-b418-e4fcc36a84c1"/>
+        <timestamp value="2016-12-07T14:28:24-05:00"/>
         <contains>
           <system value="http://hl7.org/fhir/data-types"/>
           <code value="boolean"/>
@@ -738,7 +738,7 @@
             </coding>
           </valueCodeableConcept>
         </extension>
-        <text value="Identifies a how this question or group of questions is known in a particular terminology such as LOINC."/>
+        <text value="Identifies how this question or group of questions is known in a particular terminology such as LOINC."/>
         <type value="display"/>
       </item>
       <item>
@@ -870,6 +870,9 @@
         </item>
       </item>
       <item>
+        <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-minOccurs">
+          <valueInteger value="1"/>
+        </extension>
         <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs">
           <valueInteger value="1"/>
         </extension>
@@ -877,6 +880,38 @@
           <valueString value="string"/>
         </extension>
         <linkId value="Questionnaire.item.linkId"/>
+        <type value="group"/>
+        <required value="true"/>
+        <repeats value="true"/>
+        <item>
+          <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl">
+            <valueCodeableConcept>
+              <coding>
+                <system value="http://hl7.org/fhir/questionnaire-item-control"/>
+                <code value="flyover"/>
+                <display value="Fly-over"/>
+              </coding>
+            </valueCodeableConcept>
+          </extension>
+          <text value="An identifier that is unique within the Questionnaire allowing linkage to the equivalent item in a QuestionnaireResponse resource. This &#39;&#39;can&#39;&#39; be a meaningful identifier (e.g. a LOINC code) but is not intended to have any meaning.  GUIDs or sequential numbers are appropriate here."/>
+          <type value="display"/>
+        </item>
+        <item>
+          <linkId value="Questionnaire.item.linkId.value"/>
+          <text value="Unique id for item in questionnaire"/>
+          <type value="string"/>
+          <required value="false"/>
+          <repeats value="false"/>
+        </item>
+      </item>
+      <item>
+        <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs">
+          <valueInteger value="1"/>
+        </extension>
+        <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
+          <valueString value="uri"/>
+        </extension>
+        <linkId value="Questionnaire.item.definition"/>
         <type value="group"/>
         <required value="false"/>
         <repeats value="true"/>
@@ -890,12 +925,21 @@
               </coding>
             </valueCodeableConcept>
           </extension>
-          <text value="An identifier that is unique within the Questionnaire allowing linkage to the equivalent item in a QuestionnaireResponse resource. May be omitted if there is no expectation to link answers back to a Questionnaire.  This &#39;&#39;can&#39;&#39; be a meaningful identifier (e.g. a LOINC code) but is not intended to have any meaning.  GUIDs or sequential numbers are appropriate here."/>
+          <text value="A reference to an [ElementDefinition](elementdefinition.html) that provides the details for the item. If a definition is provided, then the following element values can be inferred from the definition: 
+
+* concept (ElementDefinition.code)
+* type (ElementDefinition.type)
+* required (ElementDefinition.min)
+* repeats (ElementDefinition.max)
+* maxLength (ElementDefinition.maxLength)
+* options (ElementDefinition.binding)
+
+Any information provided in these elements overrides the information from the definition. The ElementDefinition must be in a [StructureDefinition](structuredefinition.html#) or a [DataElement](dataelement.html#), and must have a fragment identifier that identifies the specific data element by it\&#39;s id (Element.id). E.g. http://hl7.org/fhir/StructureDefinition/Observation#Observation.value[x]."/>
           <type value="display"/>
         </item>
         <item>
-          <linkId value="Questionnaire.item.linkId.value"/>
-          <text value="To link questionnaire with questionnaire response"/>
+          <linkId value="Questionnaire.item.definition.value"/>
+          <text value="ElementDefinition - details for the item"/>
           <type value="string"/>
           <required value="false"/>
           <repeats value="false"/>
@@ -919,7 +963,7 @@
               </coding>
             </valueCodeableConcept>
           </extension>
-          <text value="Identifies a how this group of questions is known in a particular terminology such as LOINC. The code(s) for the &quot;root&quot; group apply to the questionnaire as a whole."/>
+          <text value="Terminology code that corresponds to this group or question (e.g. LOINC). The code(s) for the &quot;root&quot; group apply to the questionnaire as a whole. Value may come from the ElementDefinition referred to by .definition."/>
           <type value="display"/>
         </item>
         <item>
@@ -999,9 +1043,6 @@ Systems SHOULD NOT generate their own prefixes if prefixes are defined for any i
         </item>
       </item>
       <item>
-        <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-minOccurs">
-          <valueInteger value="1"/>
-        </extension>
         <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs">
           <valueInteger value="1"/>
         </extension>
@@ -1010,7 +1051,7 @@ Systems SHOULD NOT generate their own prefixes if prefixes are defined for any i
         </extension>
         <linkId value="Questionnaire.item.type"/>
         <type value="group"/>
-        <required value="true"/>
+        <required value="false"/>
         <repeats value="true"/>
         <item>
           <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl">
@@ -1022,7 +1063,7 @@ Systems SHOULD NOT generate their own prefixes if prefixes are defined for any i
               </coding>
             </valueCodeableConcept>
           </extension>
-          <text value="Identifies the type of questionnaire item this is - whether text for display, a grouping of other items or a particular type of data to be captured (string, integer, coded choice, etc.). Additional constraints on the type of answer can be conveyed by extensions."/>
+          <text value="Identifies the type of questionnaire item this is - whether text for display, a grouping of other items or a particular type of data to be captured (string, integer, coded choice, etc.). Additional constraints on the type of answer can be conveyed by extensions. Value may come from the ElementDefinition referred to by .definition."/>
           <type value="display"/>
         </item>
         <item>
@@ -1465,7 +1506,7 @@ The dataType of this element must be the same as the data type of the question b
               </coding>
             </valueCodeableConcept>
           </extension>
-          <text value="If true, indicates that the item must be present in a &quot;completed&quot; QuestionnaireResponse.  If false, the item may be skipped when answering the questionnaire. If an item that contains other items is marked as required, that does not automatically make the contained elements required (though required groups must contain at least one child element)."/>
+          <text value="If true, indicates that the item must be present in a &quot;completed&quot; QuestionnaireResponse.  If false, the item may be skipped when answering the questionnaire. Questionnaire.item.required only has meaning for elements that are conditionally enabled with enableWhen if the condition evaluates to true.  If an item that contains other items is marked as required, that does not automatically make the contained elements required (though required groups must contain at least one child element). Value may come from the ElementDefinition referred to by .definition."/>
           <type value="display"/>
         </item>
         <item>
@@ -1497,7 +1538,7 @@ The dataType of this element must be the same as the data type of the question b
               </coding>
             </valueCodeableConcept>
           </extension>
-          <text value="Whether the item may occur multiple times in the instance, containing multiple sets of answers."/>
+          <text value="Whether the item may occur multiple times in the instance, containing multiple sets of answers. If a question is marked as repeats=true, then multiple answers can be provided for the question in the corresponding QuestionnaireResponse.  When rendering the questionnaire, it is up to the rendering software whether to render the question text for each answer repetition or to simply list each of the answers beneath the question.  (Which is most appropriate visually may depend on the type of answer as well as whether there are nested items.). Value may come from the ElementDefinition referred to by .definition."/>
           <type value="display"/>
         </item>
         <item>
@@ -1561,7 +1602,7 @@ The dataType of this element must be the same as the data type of the question b
               </coding>
             </valueCodeableConcept>
           </extension>
-          <text value="The maximum number of characters that are permitted in the answer to be considered a &quot;valid&quot; QuestionnaireResponse. For base64binary, reflects the number of characters representing the encoded data, not the number of bytes of the binary data."/>
+          <text value="The maximum number of characters that are permitted in the answer to be considered a &quot;valid&quot; QuestionnaireResponse. For base64binary, reflects the number of characters representing the encoded data, not the number of bytes of the binary data. Value may come from the ElementDefinition referred to by .definition."/>
           <type value="display"/>
         </item>
         <item>
@@ -1593,7 +1634,7 @@ The dataType of this element must be the same as the data type of the question b
               </coding>
             </valueCodeableConcept>
           </extension>
-          <text value="Reference to a value set containing a list of codes representing permitted answers for the question. LOINC defines many useful value sets for questionnaire response. See [LOINC Answer Lists](loinc.html#alist)."/>
+          <text value="Reference to a value set containing a list of codes representing permitted answers for the question. LOINC defines many useful value sets for questionnaire response. See [LOINC Answer Lists](loinc.html#alist). Value may come from the ElementDefinition referred to by .definition."/>
           <type value="display"/>
         </item>
         <item>
@@ -1813,7 +1854,7 @@ The dataType of this element must be the same as the data type of the question b
           <valueInteger value="1"/>
         </extension>
         <linkId value="Questionnaire.item.initial[x]"/>
-        <text value="Initial presumed answer for question"/>
+        <text value="Default value when item is first rendered"/>
         <type value="group"/>
         <required value="false"/>
         <repeats value="true"/>
@@ -1827,7 +1868,7 @@ The dataType of this element must be the same as the data type of the question b
               </coding>
             </valueCodeableConcept>
           </extension>
-          <text value="The value that should be pre-populated when rendering the questionnaire for user input."/>
+          <text value="The value that should be defaulted when rendering the questionnaire for user input. The user is allowed to change the value and override the default (unless marked as read-only). If the user doesn&#39;t change the value, then this initial value will be persisted when the QuestionnaireResponse is initially created."/>
           <type value="display"/>
         </item>
         <item>

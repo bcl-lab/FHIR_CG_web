@@ -13,8 +13,16 @@
   ],
   "status": "active",
   "type": {
-    "system": "http://hl7.org/fhir/ex-claimtype",
-    "code": "pharmacy"
+    "coding": [
+      {
+        "system": "http://hl7.org/fhir/ex-claimtype",
+        "code": "pharmacy"
+      }
+    ]
+  },
+  "use": "complete",
+  "patient": {
+    "reference": "Patient/1"
   },
   "created": "2014-08-16",
   "insurer": {
@@ -23,27 +31,43 @@
   "organization": {
     "reference": "Organization/1"
   },
-  "use": "complete",
   "priority": {
-    "code": "stat"
+    "coding": [
+      {
+        "code": "stat"
+      }
+    ]
   },
   "payee": {
     "type": {
-      "code": "provider"
+      "coding": [
+        {
+          "code": "provider"
+        }
+      ]
     }
   },
-  "diagnosis": [
+  "careTeam": [
     {
       "sequence": 1,
-      "diagnosis": {
-        "code": "654456"
+      "provider": {
+        "reference": "Practitioner/example"
       }
     }
   ],
-  "patient": {
-    "reference": "Patient/1"
-  },
-  "coverage": [
+  "diagnosis": [
+    {
+      "sequence": 1,
+      "diagnosisCodeableConcept": {
+        "coding": [
+          {
+            "code": "654456"
+          }
+        ]
+      }
+    }
+  ],
+  "insurance": [
     {
       "sequence": 1,
       "focal": true,
@@ -55,16 +79,16 @@
   "item": [
     {
       "sequence": 1,
-      "careTeam": [
-        {
-          "provider": {
-            "reference": "Practitioner/example"
-          }
-        }
+      "careTeamLinkId": [
+        1
       ],
       "service": {
-        "system": "http://hl7.org/fhir/ex-pharmaservice",
-        "code": "smokecess"
+        "coding": [
+          {
+            "system": "http://hl7.org/fhir/ex-pharmaservice",
+            "code": "smokecess"
+          }
+        ]
       },
       "servicedDate": "2014-08-16",
       "unitPrice": {

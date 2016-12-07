@@ -58,14 +58,13 @@ start=@<ClinicalImpression> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:ClinicalImpression.prognosisCodeableConcept @<CodeableConcept>*;  # Estimate of likely outcome
     fhir:ClinicalImpression.prognosisReference @<Reference>*;  # RiskAssessment expressing likely 
                                             # outcome 
-    fhir:ClinicalImpression.action          # Actions taken during assessment
+    fhir:ClinicalImpression.action          # Action taken as part of assessment 
+                                            # procedure 
     (   @<ReferralRequestReference> OR
         @<ProcedureRequestReference> OR
         @<ProcedureReference> OR
         @<MedicationRequestReference> OR
         @<DiagnosticRequestReference> OR
-        @<NutritionRequestReference> OR
-        @<DeviceUseRequestReference> OR
         @<AppointmentReference>
     )*;
     fhir:ClinicalImpression.note @<Annotation>*;  # Comments made about the 
@@ -445,20 +444,6 @@ start=@<ClinicalImpression> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:nodeRole [fhir:treeRoot]?
 }
 
-<DeviceUseRequestReference> CLOSED {
-    fhir:Element.id @<id>?;
-    fhir:extension @<Extension>*;
-    fhir:link @<DeviceUseRequest> OR CLOSED {a fhir:DeviceUseRequest}?;
-    fhir:Reference.reference @<string>?;
-    fhir:Reference.display @<string>?;
-    fhir:index xsd:integer?
-}
-
-<DeviceUseRequest> {
-    a [fhir:DeviceUseRequest];
-    fhir:nodeRole [fhir:treeRoot]?
-}
-
 <QuestionnaireResponseReference> CLOSED {
     fhir:Element.id @<id>?;
     fhir:extension @<Extension>*;
@@ -512,20 +497,6 @@ start=@<ClinicalImpression> AND {fhir:nodeRole [fhir:treeRoot]}
 
 <EpisodeOfCare> {
     a [fhir:EpisodeOfCare];
-    fhir:nodeRole [fhir:treeRoot]?
-}
-
-<NutritionRequestReference> CLOSED {
-    fhir:Element.id @<id>?;
-    fhir:extension @<Extension>*;
-    fhir:link @<NutritionRequest> OR CLOSED {a fhir:NutritionRequest}?;
-    fhir:Reference.reference @<string>?;
-    fhir:Reference.display @<string>?;
-    fhir:index xsd:integer?
-}
-
-<NutritionRequest> {
-    a [fhir:NutritionRequest];
     fhir:nodeRole [fhir:treeRoot]?
 }
 
@@ -587,11 +558,11 @@ start=@<ClinicalImpression> AND {fhir:nodeRole [fhir:treeRoot]}
 
 #---------------------- Value Sets ------------------------
 
-# The workflow state of a clinical impression.
-fhirvs:clinical-impression-status ["draft" "completed" "entered-in-error"]
-
 # Identifies the purpose for this identifier, if known .
 fhirvs:identifier-use ["usual" "official" "temp" "secondary"]
 
 # The status of a resource narrative
 fhirvs:narrative-status ["generated" "extensions" "additional" "empty"]
+
+# The workflow state of a clinical impression.
+fhirvs:clinical-impression-status ["draft" "completed" "entered-in-error"]

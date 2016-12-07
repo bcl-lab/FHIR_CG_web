@@ -36,8 +36,7 @@ start=@<Patient> AND {fhir:nodeRole [fhir:treeRoot]}
         fhir:Patient.deceasedDateTime @<dateTime> 
     )?;
     fhir:Patient.address @<Address>*;       # Addresses for the individual
-    fhir:Patient.maritalStatus @<CodeableConcept> AND
-    	{fhir:value @fhirvs:marital-status}?;  # Marital (civil) status of a patient
+    fhir:Patient.maritalStatus @<CodeableConcept>?;  # Marital (civil) status of a patient
     (                                       # Whether patient is part of a 
                                             # multiple birth 
         fhir:Patient.multipleBirthBoolean @<boolean>  |
@@ -64,18 +63,6 @@ start=@<Patient> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
-# This patient is known to be an animal (non-human)
-<Patient.animal> CLOSED {
-    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
-    fhir:extension @<Extension>*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    fhir:Patient.animal.species @<CodeableConcept>;  # E.g. Dog, Cow
-    fhir:Patient.animal.breed @<CodeableConcept>?;  # E.g. Poodle, Angus
-    fhir:Patient.animal.genderStatus @<CodeableConcept>?;  # E.g. Neutered, Intact
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
 # A contact party (e.g. guardian, partner, friend) for the patient
 <Patient.contact> CLOSED {
     fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
@@ -98,19 +85,6 @@ start=@<Patient> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
-# A list of Languages which may be used to communicate with the patient about his or her health
-<Patient.communication> CLOSED {
-    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
-    fhir:extension @<Extension>*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    fhir:Patient.communication.language @<CodeableConcept>;  # The language which can be used to 
-                                            # communicate with the patient about 
-                                            # his or her health 
-    fhir:Patient.communication.preferred @<boolean>?;  # Language preference indicator
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
 # Link to another patient resource that concerns the same actual person
 <Patient.link> CLOSED {
     fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
@@ -126,6 +100,31 @@ start=@<Patient> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:Patient.link.type @<code> AND
     	{fhir:value @fhirvs:link-type};  # replace | refer | seealso - type 
                                             # of link 
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
+# This patient is known to be an animal (non-human)
+<Patient.animal> CLOSED {
+    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
+    fhir:extension @<Extension>*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
+    fhir:Patient.animal.species @<CodeableConcept>;  # E.g. Dog, Cow
+    fhir:Patient.animal.breed @<CodeableConcept>?;  # E.g. Poodle, Angus
+    fhir:Patient.animal.genderStatus @<CodeableConcept>?;  # E.g. Neutered, Intact
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
+# A list of Languages which may be used to communicate with the patient about his or her health
+<Patient.communication> CLOSED {
+    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
+    fhir:extension @<Extension>*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
+    fhir:Patient.communication.language @<CodeableConcept>;  # The language which can be used to 
+                                            # communicate with the patient about 
+                                            # his or her health 
+    fhir:Patient.communication.preferred @<boolean>?;  # Language preference indicator
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -191,8 +190,8 @@ start=@<Patient> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:Address.state @<string>?;          # Sub-unit of country (abbreviations 
                                             # ok) 
     fhir:Address.postalCode @<string>?;     # Postal code for area
-    fhir:Address.country @<string>?;        # Country (can be ISO 3166 3 letter 
-                                            # code) 
+    fhir:Address.country @<string>?;        # Country (e.g. can be ISO 3166 2 or 
+                                            # 3 letter code) 
     fhir:Address.period @<Period>?;         # Time period when address was/is in 
                                             # use 
     fhir:index xsd:integer?                 # Relative position in a list
@@ -295,7 +294,7 @@ start=@<Patient> AND {fhir:nodeRole [fhir:treeRoot]}
                                             # | anonymous | old | maiden 
     fhir:HumanName.text @<string>?;         # Text representation of the full 
                                             # name 
-    fhir:HumanName.family @<string>*;       # Family name (often called 
+    fhir:HumanName.family @<string>?;       # Family name (often called 
                                             # 'Surname') 
     fhir:HumanName.given @<string>*;        # Given names (not always 'first'). 
                                             # Includes middle names 
@@ -311,7 +310,8 @@ start=@<Patient> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:extension @<Extension>*;           # Additional Content defined by 
                                             # implementations 
     fhir:ContactPoint.system @<code> AND
-    	{fhir:value @fhirvs:contact-point-system}?;  # phone | fax | email | pager | other
+    	{fhir:value @fhirvs:contact-point-system}?;  # phone | fax | email | pager | url 
+                                            # | other 
     fhir:ContactPoint.value @<string>?;     # The actual contact point details
     fhir:ContactPoint.use @<code> AND
     	{fhir:value @fhirvs:contact-point-use}?;  # home | work | temp | old | mobile 
@@ -497,26 +497,23 @@ start=@<Patient> AND {fhir:nodeRole [fhir:treeRoot]}
 # The use of an address
 fhirvs:address-use ["home" "work" "temp" "old"]
 
-# This value set defines the set of codes that can be used to indicate the marital status of a person.
-fhirvs:marital-status ["A" "D" "I" "L" "M" "P" "S" "T" "U" "W" "UNK"]
-
-# The use of a human name
-fhirvs:name-use ["usual" "official" "temp" "nickname" "anonymous" "old" "maiden"]
-
-# Telecommunications form for contact point
-fhirvs:contact-point-system ["phone" "fax" "email" "pager" "other"]
-
-# The type of link between this patient resource and another patient resource.
-fhirvs:link-type ["replace" "refer" "seealso"]
-
 # The type of an address (physical / postal)
 fhirvs:address-type ["postal" "physical" "both"]
 
 # Use of contact point
 fhirvs:contact-point-use ["home" "work" "temp" "old" "mobile"]
 
+# The type of link between this patient resource and another patient resource.
+fhirvs:link-type ["replace" "refer" "seealso"]
+
+# Telecommunications form for contact point
+fhirvs:contact-point-system ["phone" "fax" "email" "pager" "url" "other"]
+
 # Identifies the purpose for this identifier, if known .
 fhirvs:identifier-use ["usual" "official" "temp" "secondary"]
+
+# The use of a human name
+fhirvs:name-use ["usual" "official" "temp" "nickname" "anonymous" "old" "maiden"]
 
 # The status of a resource narrative
 fhirvs:narrative-status ["generated" "extensions" "additional" "empty"]

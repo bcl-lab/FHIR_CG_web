@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>Profiling - FHIR v1.7.0</title>
+  <title>Profiling - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -266,7 +266,7 @@ to conform to the declared profiles SHOULD be published in this form.
 <blockquote class="dstu-note">
 <a name="dstu"> </a>
 <p>
-<b>DSTU Note:</b> there are many uninvestigated issues associated with this use of profiles. 
+<b>STU Note:</b> there are many uninvestigated issues associated with this use of profiles. 
 HL7 is actively seeking feedback from users who experiment in this area, and users
 should be prepared for changes to features and obligations in this area in the future.
 </p>
@@ -550,7 +550,9 @@ for each possible slice and applications can easily determine
 which slice an item in a list is. The intention is that 
 this can be done in generated code, e.g. using a switch/case 
 statement. When slicing elements with a choice of types, the 
-discriminator SHALL be &quot;@type&quot;.
+discriminator SHALL be &quot;@type&quot;. This is for a common usecase where 
+you want to profile an element that has a choice (like value[x]) of data types
+differently for the different types it may have.
 </p>
 <p>
 When a constraining structure designates one or more discriminators, it SHALL
@@ -562,7 +564,7 @@ The structure definition SHALL ensure that there is no overlap between the
 set of values and/or codes in the value sets between slices. Note: At present, 
 only a fixed value or a required value set should be used for slicing; using 
 <a href="elementdefinition-definitions.html#ElementDefinition.pattern_x_">ElementDefinition.pattern[x]</a>
-is not recommended as a basis for slicing while issues related to this are investigated during the DSTU period.
+is not recommended as a basis for slicing while issues related to this are investigated during the STU period.
 
 
 </p>
@@ -651,7 +653,7 @@ profile.  This is called &quot;Re-slicing&quot;.  The rules for re-slicing are a
 When you slice, you define a name for each new slice. The name has to be unique across the set of slices in the profile. So if profile A defines an element X with cardinality 0..*, and profile B is derived from profile A, then profile B can either:
 </p>
 <ol>
-  <li>make a constraint on X with no name - in which case the profile is aading constraints to all slices of X; or </li>
+  <li>make a constraint on X with no name - in which case the profile is adding constraints to all slices of X; or </li>
   <li>make a constraint on X with a name - in which case the profile is describing a specific slice on X, and the constraints only apply to that slice; or </li>
   <li>it can do both</li>
 </ol>
@@ -758,7 +760,7 @@ Note that local codes are not as interoperable as standard published code system
 <p>
 A profile
 can change the terminology binding of an element - both strength and value set - within the limits of the base structure
-it is constraining. This table summarises the changes that can be made to the binding strength:
+it is constraining. This table summarizes the changes that can be made to the binding strength:
 </p>
 <table class="grid">
  <tr><td>derived (across)<br/>base (down)</td>  <td>required</td>      <td>extensible</td>              <td>preferred</td>      <td>example</td>       </tr>
@@ -824,7 +826,7 @@ Additional Search Parameters can be defined using the <a href="searchparameter.h
 <h3 class="self-link-parent"><span class="sectioncount">5.1.0.19</span> Presenting Profiles <a href="profiling.html#presentation" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h3>
 
 <p>
-When this specification describes a profile,, the profile is presented in 5 different forms:
+When this specification describes a profile, the profile is presented in 5 different forms:
 </p>
 <ol>
  <li>Text Summary</li>
@@ -906,7 +908,7 @@ content to demonstrate the idea of profile comparison.
 		<div class="container">  <!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:33-0500. <a href="qa.html">QA Page</a>
+        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:28-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search <img src="external.png" style="text-align: baseline"/></a> | 

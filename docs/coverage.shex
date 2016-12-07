@@ -23,29 +23,34 @@ start=@<Coverage> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
     fhir:Coverage.identifier @<Identifier>*;  # The primary coverage ID
     fhir:Coverage.status @<code> AND
-    	{fhir:value @fhirvs:coverage-status}?;  # active | cancelled | draft | 
+    	{fhir:value @fhirvs:fm-status}?;  # active | cancelled | draft | 
                                             # entered-in-error 
-    fhir:Coverage.issuer                    # Identifier for the plan or 
-                                            # agreement issuer 
-    (   @<OrganizationReference> OR
-        @<PatientReference> OR
-        @<RelatedPersonReference>
-    )?;
-    fhir:Coverage.isAgreement @<boolean>?;  # Is a Payment Agreement
-    fhir:Coverage.period @<Period>?;        # Coverage start and end dates
-    fhir:Coverage.type @<Coding>?;          # Type of coverage
-    fhir:Coverage.planholder                # Plan holder
+    fhir:Coverage.type @<CodeableConcept>?;  # Type of coverage
+    fhir:Coverage.policyHolder              # Owner of the policy
     (   @<PatientReference> OR
         @<RelatedPersonReference> OR
         @<OrganizationReference>
     )?;
+    fhir:Coverage.subscriber                # Subscriber to the policy
+    (   @<PatientReference> OR
+        @<RelatedPersonReference>
+    )?;
+    fhir:Coverage.subscriberId @<string>?;  # ID assigned to the Subscriber
     fhir:Coverage.beneficiary @<Reference>?;  # Plan Beneficiary
-    fhir:Coverage.relationship @<Coding>?;  # Beneficiary relationship to 
-                                            # Planholder 
+    fhir:Coverage.relationship @<CodeableConcept>?;  # Beneficiary relationship to the 
+                                            # Subscriber 
+    fhir:Coverage.period @<Period>?;        # Coverage start and end dates
+    fhir:Coverage.payor                     # Identifier for the plan or 
+                                            # agreement issuer 
+    (   @<OrganizationReference> OR
+        @<PatientReference> OR
+        @<RelatedPersonReference>
+    )*;
     fhir:Coverage.group @<Coverage.group>?;  # Additional coverage classifications
-    fhir:Coverage.dependent @<positiveInt>?;  # Dependent number
-    fhir:Coverage.sequence @<positiveInt>?;  # The plan instance or sequence 
+    fhir:Coverage.dependent @<string>?;     # Dependent number
+    fhir:Coverage.sequence @<string>?;      # The plan instance or sequence 
                                             # counter 
+    fhir:Coverage.order @<positiveInt>?;    # Relative order of the coverage
     fhir:Coverage.network @<string>?;       # Insurer network
     fhir:Coverage.contract @<Reference>*;   # Contract details
     fhir:index xsd:integer?                 # Relative position in a list
@@ -181,15 +186,6 @@ start=@<Coverage> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
-# Primitive Type boolean
-<boolean> CLOSED {
-    fhir:Element.id @<id>?;                 # xml:id (or equivalent in JSON)
-    fhir:extension @<Extension>*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:value xsd:boolean?;                # Primitive value for boolean
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
 # A human-readable formatted text, including images
 <Narrative> CLOSED {
     fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
@@ -199,23 +195,6 @@ start=@<Coverage> AND {fhir:nodeRole [fhir:treeRoot]}
     	{fhir:value @fhirvs:narrative-status};  # generated | extensions | 
                                             # additional | empty 
     fhir:Narrative.div xsd:string;          # Limited xhtml content
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
-# A reference to a code defined by a terminology system
-<Coding> CLOSED {
-    fhir:concept IRI?;
-    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
-    fhir:extension @<Extension>*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:Coding.system @<uri>?;             # Identity of the terminology system
-    fhir:Coding.version @<string>?;         # Version of the system - if relevant
-    fhir:Coding.code @<code>?;              # Symbol in syntax defined by the 
-                                            # system 
-    fhir:Coding.display @<string>?;         # Representation defined by the 
-                                            # system 
-    fhir:Coding.userSelected @<boolean>?;   # If this coding was chosen directly 
-                                            # by the user 
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -232,6 +211,19 @@ start=@<Coverage> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:extension @<Extension>*;           # Additional Content defined by 
                                             # implementations 
     fhir:value xsd:positiveInteger?;        # Primitive value for positiveInt
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
+# Concept - reference to a terminology or just  text
+<CodeableConcept> CLOSED {
+    fhir:concept IRI*;
+    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
+    fhir:extension @<Extension>*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:CodeableConcept.coding @<Coding>*;  # Code defined by a terminology 
+                                            # system 
+    fhir:CodeableConcept.text @<string>?;   # Plain text representation of the 
+                                            # concept 
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -253,16 +245,29 @@ start=@<Coverage> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
-# Concept - reference to a terminology or just  text
-<CodeableConcept> CLOSED {
-    fhir:concept IRI*;
+# A reference to a code defined by a terminology system
+<Coding> CLOSED {
+    fhir:concept IRI?;
     fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
     fhir:extension @<Extension>*;           # Additional Content defined by 
                                             # implementations 
-    fhir:CodeableConcept.coding @<Coding>*;  # Code defined by a terminology 
+    fhir:Coding.system @<uri>?;             # Identity of the terminology system
+    fhir:Coding.version @<string>?;         # Version of the system - if relevant
+    fhir:Coding.code @<code>?;              # Symbol in syntax defined by the 
                                             # system 
-    fhir:CodeableConcept.text @<string>?;   # Plain text representation of the 
-                                            # concept 
+    fhir:Coding.display @<string>?;         # Representation defined by the 
+                                            # system 
+    fhir:Coding.userSelected @<boolean>?;   # If this coding was chosen directly 
+                                            # by the user 
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
+# Primitive Type boolean
+<boolean> CLOSED {
+    fhir:Element.id @<id>?;                 # xml:id (or equivalent in JSON)
+    fhir:extension @<Extension>*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:value xsd:boolean?;                # Primitive value for boolean
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -312,11 +317,11 @@ start=@<Coverage> AND {fhir:nodeRole [fhir:treeRoot]}
 
 #---------------------- Value Sets ------------------------
 
+# This value set includes STatus codes.
+fhirvs:fm-status ["active" "cancelled" "draft" "entered-in-error"]
+
 # Identifies the purpose for this identifier, if known .
 fhirvs:identifier-use ["usual" "official" "temp" "secondary"]
 
 # The status of a resource narrative
 fhirvs:narrative-status ["generated" "extensions" "additional" "empty"]
-
-# A code specifying the state of the resource instance.
-fhirvs:coverage-status ["active" "cancelled" "draft" "entered-in-error"]

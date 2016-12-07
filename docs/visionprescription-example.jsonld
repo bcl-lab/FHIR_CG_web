@@ -25,14 +25,14 @@
   "VisionPrescription.status": {
     "code.value": "active"
   },
-  "VisionPrescription.dateWritten": {
-    "dateTime.value": "2014-06-15"
-  },
   "VisionPrescription.patient": {
     "Reference.reference": {
       "string.value": "Patient/example"
     },
     "Resource.reference": "http://hl7.org/fhir//Patient/example"
+  },
+  "VisionPrescription.dateWritten": {
+    "dateTime.value": "2014-06-15"
   },
   "VisionPrescription.prescriber": {
     "Reference.reference": {
@@ -43,15 +43,25 @@
   "VisionPrescription.dispense": [
     {
       "VisionPrescription.dispense.product": {
-        "Coding.system": {
-          "uri.value": "http://hl7.org/fhir/ex-visionprescriptionproduct"
-        },
-        "Coding.code": {
-          "code.value": "lens"
-        }
+        "CodeableConcept.coding": [
+          {
+            "Coding.system": {
+              "uri.value": "http://hl7.org/fhir/ex-visionprescriptionproduct"
+            },
+            "Coding.code": {
+              "code.value": "lens"
+            }
+          }
+        ]
       },
       "VisionPrescription.dispense.eye": {
-        "code.value": "right"
+        "CodeableConcept.coding": [
+          {
+            "Coding.code": {
+              "code.value": "right"
+            }
+          }
+        ]
       },
       "VisionPrescription.dispense.sphere": {
         "decimal.value": -2.00
@@ -60,7 +70,13 @@
         "decimal.value": 0.5
       },
       "VisionPrescription.dispense.base": {
-        "code.value": "down"
+        "CodeableConcept.coding": [
+          {
+            "Coding.code": {
+              "code.value": "down"
+            }
+          }
+        ]
       },
       "VisionPrescription.dispense.add": {
         "decimal.value": 2.00
@@ -68,15 +84,25 @@
     },
     {
       "VisionPrescription.dispense.product": {
-        "Coding.system": {
-          "uri.value": "http://hl7.org/fhir/ex-visionprescriptionproduct"
-        },
-        "Coding.code": {
-          "code.value": "lens"
-        }
+        "CodeableConcept.coding": [
+          {
+            "Coding.system": {
+              "uri.value": "http://hl7.org/fhir/ex-visionprescriptionproduct"
+            },
+            "Coding.code": {
+              "code.value": "lens"
+            }
+          }
+        ]
       },
       "VisionPrescription.dispense.eye": {
-        "code.value": "left"
+        "CodeableConcept.coding": [
+          {
+            "Coding.code": {
+              "code.value": "left"
+            }
+          }
+        ]
       },
       "VisionPrescription.dispense.sphere": {
         "decimal.value": -1.00
@@ -91,7 +117,13 @@
         "decimal.value": 0.5
       },
       "VisionPrescription.dispense.base": {
-        "code.value": "up"
+        "CodeableConcept.coding": [
+          {
+            "Coding.code": {
+              "code.value": "up"
+            }
+          }
+        ]
       },
       "VisionPrescription.dispense.add": {
         "decimal.value": 2.00

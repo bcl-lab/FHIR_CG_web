@@ -9,8 +9,8 @@
       "status": "active",
       "description": "Type options for Condition.subject",
       "expansion": {
-        "identifier": "urn:uuid:0aebbf67-e9c3-42a7-9d17-c014e587f972",
-        "timestamp": "2016-11-28T17:32:28-05:00",
+        "identifier": "urn:uuid:adb9286e-88a6-461b-8b95-0a28914bda94",
+        "timestamp": "2016-12-07T14:21:37-05:00",
         "contains": [
           {
             "system": "http://hl7.org/fhir/resource-types",
@@ -32,8 +32,8 @@
       "status": "active",
       "description": "Type options for Condition.context",
       "expansion": {
-        "identifier": "urn:uuid:fd60c183-5b53-4f4a-9842-14ee5e1fc1d0",
-        "timestamp": "2016-11-28T17:32:28-05:00",
+        "identifier": "urn:uuid:9d2d85cb-33a1-444d-9e39-e1ffcabdd6a2",
+        "timestamp": "2016-12-07T14:21:37-05:00",
         "contains": [
           {
             "system": "http://hl7.org/fhir/resource-types",
@@ -55,8 +55,8 @@
       "status": "active",
       "description": "Type options for Condition.onset[x]",
       "expansion": {
-        "identifier": "urn:uuid:b8a83cdf-1fd4-41df-aa90-338bde5d9a83",
-        "timestamp": "2016-11-28T17:32:28-05:00",
+        "identifier": "urn:uuid:51984b10-c179-4c00-868f-40dfcb5066b9",
+        "timestamp": "2016-12-07T14:21:37-05:00",
         "contains": [
           {
             "system": "http://hl7.org/fhir/data-types",
@@ -93,8 +93,8 @@
       "status": "active",
       "description": "Type options for Condition.abatement[x]",
       "expansion": {
-        "identifier": "urn:uuid:77944a19-b4bf-49ff-995b-9b0192cc49aa",
-        "timestamp": "2016-11-28T17:32:28-05:00",
+        "identifier": "urn:uuid:0a939475-075c-4c47-8675-83cc81472e0f",
+        "timestamp": "2016-12-07T14:21:37-05:00",
         "contains": [
           {
             "system": "http://hl7.org/fhir/data-types",
@@ -136,8 +136,8 @@
       "status": "active",
       "description": "Type options for Condition.asserter",
       "expansion": {
-        "identifier": "urn:uuid:b2337792-89fe-449e-9720-b57e3a59f8fc",
-        "timestamp": "2016-11-28T17:32:28-05:00",
+        "identifier": "urn:uuid:d2c780b0-f12b-4846-bf58-5473328c78ec",
+        "timestamp": "2016-12-07T14:21:37-05:00",
         "contains": [
           {
             "system": "http://hl7.org/fhir/resource-types",
@@ -164,8 +164,8 @@
       "status": "active",
       "description": "Type options for Condition.stage.assessment",
       "expansion": {
-        "identifier": "urn:uuid:61c79f43-3d1a-46de-8bce-aa7b8b387617",
-        "timestamp": "2016-11-28T17:32:28-05:00",
+        "identifier": "urn:uuid:5240067d-5bea-4a95-91c9-614644caa404",
+        "timestamp": "2016-12-07T14:21:37-05:00",
         "contains": [
           {
             "system": "http://hl7.org/fhir/resource-types",
@@ -192,7 +192,7 @@
     }
   ],
   "status": "draft",
-  "date": "2016-11-28T17:29:55-05:00",
+  "date": "2016-12-07T14:18:58-05:00",
   "publisher": "Health Level Seven International (Patient Care)",
   "item": [
     {
@@ -596,10 +596,6 @@
         {
           "extension": [
             {
-              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-minOccurs",
-              "valueInteger": 1
-            },
-            {
               "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs",
               "valueInteger": 1
             },
@@ -610,7 +606,7 @@
           ],
           "linkId": "Condition.verificationStatus",
           "type": "group",
-          "required": true,
+          "required": false,
           "repeats": true,
           "item": [
             {
@@ -628,7 +624,7 @@
                   }
                 }
               ],
-              "text": "The verification status to support the clinical status of the condition.",
+              "text": "The verification status to support the clinical status of the condition. verificationStatus is not required.  For example, when a patient has abdominal pain in the ED, there is not likely going to be a verification status.",
               "type": "display"
             },
             {
@@ -821,7 +817,7 @@
                   }
                 }
               ],
-              "text": "The anatomical location where this condition manifests itself. May be a summary code, or a reference to a very precise definition of the location, or both.",
+              "text": "The anatomical location where this condition manifests itself. Only used if not implicit in code found in Condition.code. If the use case requires attributes from the BodySite resource (e.g. to identify and track separately) then use the standard extension [body-site-instance](extension-body-site-instance.html).  May be a summary code, or a reference to a very precise definition of the location, or both.",
               "type": "display"
             },
             {
@@ -1270,7 +1266,7 @@
                   }
                 }
               ],
-              "text": "The date or estimated date that the condition resolved or went into remission. This is called \"abatement\" because of the many overloaded connotations associated with \"remission\" or \"resolution\" - Conditions are never really resolved, but they can abate. There is no explicit distinction between resolution and remission because in many cases the distinction is not clear. Age is generally used when the patient reports an age at which the Condition abated.  If there is no abatement element, it is unknown whether the condition has resolved or entered remission; applications and users should generally assume that the condition is still valid.",
+              "text": "The date or estimated date that the condition resolved or went into remission. This is called \"abatement\" because of the many overloaded connotations associated with \"remission\" or \"resolution\" - Conditions are never really resolved, but they can abate. There is no explicit distinction between resolution and remission because in many cases the distinction is not clear. Age is generally used when the patient reports an age at which the Condition abated.  If there is no abatement element, it is unknown whether the condition has resolved or entered remission; applications and users should generally assume that the condition is still valid.  When abatementString exists, it implies the condition is abated.",
               "type": "display"
             },
             {

@@ -3,7 +3,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>V3-ActCode.cs.json - FHIR v1.7.0</title>
+  <title>V3-ActCode.cs.json - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -120,7 +120,7 @@ The kind of Act (e.g. physical examination, serum potassium, inpatient encounter
   &quot;resourceType&quot;: &quot;CodeSystem&quot;,
   &quot;id&quot;: &quot;v3-ActCode&quot;,
   &quot;meta&quot;: {
-    &quot;lastUpdated&quot;: &quot;2016-03-23T00:00:00.000-04:00&quot;
+    &quot;lastUpdated&quot;: &quot;2016-11-11T00:00:00.000-05:00&quot;
   },
   &quot;text&quot;: {
     &quot;status&quot;: &quot;generated&quot;,
@@ -131,7 +131,7 @@ The kind of Act (e.g. physical examination, serum potassium, inpatient encounter
     &quot;system&quot;: &quot;urn:ietf:rfc:3986&quot;,
     &quot;value&quot;: &quot;urn:oid:2.16.840.1.113883.5.4&quot;
   },
-  &quot;version&quot;: &quot;2016-03-23&quot;,
+  &quot;version&quot;: &quot;2016-11-11&quot;,
   &quot;name&quot;: &quot;v3 Code System ActCode&quot;,
   &quot;status&quot;: &quot;active&quot;,
   &quot;experimental&quot;: false,
@@ -140,17 +140,17 @@ The kind of Act (e.g. physical examination, serum potassium, inpatient encounter
     {
       &quot;telecom&quot;: [
         {
-          &quot;system&quot;: &quot;other&quot;,
+          &quot;system&quot;: &quot;url&quot;,
           &quot;value&quot;: &quot;http://hl7.org&quot;
         }
       ]
     }
   ],
-  &quot;date&quot;: &quot;2016-03-23T00:00:00-04:00&quot;,
+  &quot;date&quot;: &quot;2016-11-11T00:00:00-05:00&quot;,
   &quot;description&quot;: &quot; A code specifying the particular kind of Act that the Act-instance represents within its class.  Constraints:\r\nThe kind of Act (e.g. physical examination, serum potassium, inpatient encounter, charge financial transaction, etc.) is specified with a code from one of several, typically external, coding systems.  The coding system will depend on the class of Act, such as LOINC for observations, etc. Conceptually, the Act.code must be a specialization of the Act.classCode. This is why the structure of ActClass domain should be reflected in the superstructure of the ActCode domain and then individual codes or externally referenced vocabularies subordinated under these domains that reflect the ActClass structure. Act.classCode and Act.code are not modifiers of each other but the Act.code concept should really imply the Act.classCode concept. For a negative example, it is not appropriate to use an Act.code \&quot;potassium\&quot; together with and Act.classCode for \&quot;laboratory observation\&quot; to somehow mean \&quot;potassium laboratory observation\&quot; and then use the same Act.code for \&quot;potassium\&quot; together with Act.classCode for \&quot;medication\&quot; to mean \&quot;substitution of potassium\&quot;. This mutually modifying use of Act.code and Act.classCode is not permitted.&quot;,
   &quot;caseSensitive&quot;: true,
   &quot;valueSet&quot;: &quot;http://hl7.org/fhir/ValueSet/v3-ActCode&quot;,
-  &quot;hierarchyMeaning&quot;: &quot;subsumes&quot;,
+  &quot;hierarchyMeaning&quot;: &quot;is-a&quot;,
   &quot;content&quot;: &quot;complete&quot;,
   &quot;property&quot;: [
     {
@@ -414,7 +414,7 @@ The kind of Act (e.g. physical examination, serum potassium, inpatient encounter
           &quot;definition&quot;: &quot;A billing arrangement where a Provider charges a separate fee for each intervention/procedure/event or product.\r\n\n                        Fee for Service is used when an individual intervention/procedure/event is used for billing purposes.  In other words, fees are associated with the  intervention/procedure/event.  For example, a specific CCI (Canadian Classification of Interventions) code has an associated fee and is used for billing purposes.&quot;,
           &quot;property&quot;: [
             {
-              &quot;code&quot;: &quot;notSelectable&quot;,
+              &quot;code&quot;: &quot;inactive&quot;,
               &quot;valueBoolean&quot;: true
             }
           ],
@@ -1286,7 +1286,7 @@ The kind of Act (e.g. physical examination, serum potassium, inpatient encounter
               &quot;valueBoolean&quot;: true
             },
             {
-              &quot;code&quot;: &quot;notSelectable&quot;,
+              &quot;code&quot;: &quot;inactive&quot;,
               &quot;valueBoolean&quot;: true
             }
           ],
@@ -1297,7 +1297,7 @@ The kind of Act (e.g. physical examination, serum potassium, inpatient encounter
               &quot;definition&quot;: &quot;Insurance coverage is in effect for healthcare service(s) and/or product(s).&quot;,
               &quot;property&quot;: [
                 {
-                  &quot;code&quot;: &quot;notSelectable&quot;,
+                  &quot;code&quot;: &quot;inactive&quot;,
                   &quot;valueBoolean&quot;: true
                 }
               ]
@@ -1308,7 +1308,7 @@ The kind of Act (e.g. physical examination, serum potassium, inpatient encounter
               &quot;definition&quot;: &quot;Insurance coverage is not in effect for healthcare service(s) and/or product(s). May optionally include reasons for the ineligibility.&quot;,
               &quot;property&quot;: [
                 {
-                  &quot;code&quot;: &quot;notSelectable&quot;,
+                  &quot;code&quot;: &quot;inactive&quot;,
                   &quot;valueBoolean&quot;: true
                 }
               ]
@@ -1329,8 +1329,8 @@ The kind of Act (e.g. physical examination, serum potassium, inpatient encounter
       ],
       &quot;concept&quot;: [
         {
-          &quot;code&quot;: &quot;_ActCoverageAgeLimitCode&quot;,
-          &quot;display&quot;: &quot;ActCoverageAgeLimitCode&quot;,
+          &quot;code&quot;: &quot;_ActCoverageQuantityLimitCode&quot;,
+          &quot;display&quot;: &quot;ActCoverageQuantityLimitCode&quot;,
           &quot;definition&quot;: &quot;Maximum amount paid or maximum number of services/products covered; or maximum amount or number covered during a specified time period under the policy or program.&quot;,
           &quot;property&quot;: [
             {
@@ -1396,7 +1396,7 @@ The kind of Act (e.g. physical examination, serum potassium, inpatient encounter
               &quot;valueBoolean&quot;: true
             },
             {
-              &quot;code&quot;: &quot;notSelectable&quot;,
+              &quot;code&quot;: &quot;inactive&quot;,
               &quot;valueBoolean&quot;: true
             }
           ]
@@ -2583,7 +2583,7 @@ The kind of Act (e.g. physical examination, serum potassium, inpatient encounter
                       &quot;definition&quot;: &quot;The covered party pays a percentage of the cost of covered services.&quot;,
                       &quot;property&quot;: [
                         {
-                          &quot;code&quot;: &quot;notSelectable&quot;,
+                          &quot;code&quot;: &quot;inactive&quot;,
                           &quot;valueBoolean&quot;: true
                         }
                       ]
@@ -2800,7 +2800,7 @@ The kind of Act (e.g. physical examination, serum potassium, inpatient encounter
                   &quot;valueBoolean&quot;: true
                 },
                 {
-                  &quot;code&quot;: &quot;notSelectable&quot;,
+                  &quot;code&quot;: &quot;inactive&quot;,
                   &quot;valueBoolean&quot;: true
                 }
               ]
@@ -4009,14 +4009,14 @@ The kind of Act (e.g. physical examination, serum potassium, inpatient encounter
                       &quot;definition&quot;: &quot;Policy for handling psychiatry information, which will be afforded heightened confidentiality. Information handling protocols based on organizational policies related to psychiatry information that is deemed sensitive.\r\n\n                        \n                           Usage Note: If there is a jurisdictional mandate, then use the applicable ActPrivacyLaw code system, and specify the law rather than or in addition to this more generic code.&quot;
                     },
                     {
-                      &quot;code&quot;: &quot;SOC&quot;,
-                      &quot;display&quot;: &quot;social services sensitivity&quot;,
-                      &quot;definition&quot;: &quot;Information about provision of social services.\r\n\n                        \n                           Usage Note: This is a temporary addition to FHIR to be proposed in harmonization.&quot;
-                    },
-                    {
                       &quot;code&quot;: &quot;SCA&quot;,
                       &quot;display&quot;: &quot;sickle cell anemia&quot;,
                       &quot;definition&quot;: &quot;Policy for handling sickle cell disease information, which is afforded heightened confidentiality.  Information handling protocols are based on organizational policies related to sickle cell disease information, which is deemed sensitive.\r\n\n                        \n                           Usage Note: If there is a jurisdictional mandate, then the Act valued with this ActCode should be associated with an Act valued with any applicable laws from the ActPrivacyLaw code system.&quot;
+                    },
+                    {
+                      &quot;code&quot;: &quot;SOC&quot;,
+                      &quot;display&quot;: &quot;social services sensitivity&quot;,
+                      &quot;definition&quot;: &quot;Information about provision of social services.\r\n\n                        \n                           Usage Note: This is a temporary addition to FHIR to be proposed in harmonization.&quot;
                     },
                     {
                       &quot;code&quot;: &quot;SDV&quot;,
@@ -4044,7 +4044,7 @@ The kind of Act (e.g. physical examination, serum potassium, inpatient encounter
                       &quot;definition&quot;: &quot;Types of sensitivity policies that apply to Acts.  Act.confidentialityCode is defined in the RIM as \&quot;constraints around appropriate disclosure of information about this Act, regardless of mood.\&quot;\r\n\n                        \n                           Usage Note: ActSensitivity codes are used to bind information to an Act.confidentialityCode according to local sensitivity policy so that those confidentiality codes can then govern its handling across enterprises.  Internally to a policy domain, however, local policies guide the access control system on how end users in that policy domain are able to use information tagged with these sensitivity values.&quot;,
                       &quot;property&quot;: [
                         {
-                          &quot;code&quot;: &quot;notSelectable&quot;,
+                          &quot;code&quot;: &quot;inactive&quot;,
                           &quot;valueBoolean&quot;: true
                         }
                       ]
@@ -4641,7 +4641,7 @@ The kind of Act (e.g. physical examination, serum potassium, inpatient encounter
               &quot;definition&quot;: &quot;An additional immunization administration within a series intended to bolster or enhance immunity.&quot;,
               &quot;property&quot;: [
                 {
-                  &quot;code&quot;: &quot;notSelectable&quot;,
+                  &quot;code&quot;: &quot;inactive&quot;,
                   &quot;valueBoolean&quot;: true
                 }
               ]
@@ -4652,7 +4652,7 @@ The kind of Act (e.g. physical examination, serum potassium, inpatient encounter
               &quot;definition&quot;: &quot;The first immunization administration in a series intended to produce immunity&quot;,
               &quot;property&quot;: [
                 {
-                  &quot;code&quot;: &quot;notSelectable&quot;,
+                  &quot;code&quot;: &quot;inactive&quot;,
                   &quot;valueBoolean&quot;: true
                 }
               ]
@@ -5396,6 +5396,16 @@ The kind of Act (e.g. physical examination, serum potassium, inpatient encounter
               &quot;code&quot;: &quot;AGGREGATE&quot;,
               &quot;display&quot;: &quot;aggregate measure observation&quot;,
               &quot;definition&quot;: &quot;Indicates that the observation is carrying out an aggregation calculation, contained in the value element.&quot;
+            },
+            {
+              &quot;code&quot;: &quot;CMPMSRMTH&quot;,
+              &quot;display&quot;: &quot;composite measure method&quot;,
+              &quot;definition&quot;: &quot;Indicates what method is used in a quality measure to combine the component measure results included in an composite measure.&quot;
+            },
+            {
+              &quot;code&quot;: &quot;CMPMSRSCRWGHT&quot;,
+              &quot;display&quot;: &quot;component measure scoring weight&quot;,
+              &quot;definition&quot;: &quot;An attribute of a quality measure describing the weight this component measure score is to carry in determining the overall composite measure final score. The value is real value greater than 0 and less than 1.0. Each component measure score will be multiplied by its CMPMSRSCRWGHT and then summed with the other component measures to determine the final overall composite measure score. The sum across all CMPMSRSCRWGHT values within a single composite measure SHALL be 1.0. The value assigned is scoped to the composite measure referencing this component measure only.&quot;
             },
             {
               &quot;code&quot;: &quot;COPY&quot;,
@@ -6358,7 +6368,7 @@ The kind of Act (e.g. physical examination, serum potassium, inpatient encounter
                           &quot;valueBoolean&quot;: true
                         },
                         {
-                          &quot;code&quot;: &quot;notSelectable&quot;,
+                          &quot;code&quot;: &quot;inactive&quot;,
                           &quot;valueBoolean&quot;: true
                         }
                       ],
@@ -6604,7 +6614,7 @@ The kind of Act (e.g. physical examination, serum potassium, inpatient encounter
               &quot;valueBoolean&quot;: true
             },
             {
-              &quot;code&quot;: &quot;notSelectable&quot;,
+              &quot;code&quot;: &quot;inactive&quot;,
               &quot;valueBoolean&quot;: true
             }
           ],
@@ -6615,7 +6625,7 @@ The kind of Act (e.g. physical examination, serum potassium, inpatient encounter
               &quot;definition&quot;: &quot;FDA label coating&quot;,
               &quot;property&quot;: [
                 {
-                  &quot;code&quot;: &quot;notSelectable&quot;,
+                  &quot;code&quot;: &quot;inactive&quot;,
                   &quot;valueBoolean&quot;: true
                 }
               ]
@@ -6626,7 +6636,7 @@ The kind of Act (e.g. physical examination, serum potassium, inpatient encounter
               &quot;definition&quot;: &quot;FDA label color&quot;,
               &quot;property&quot;: [
                 {
-                  &quot;code&quot;: &quot;notSelectable&quot;,
+                  &quot;code&quot;: &quot;inactive&quot;,
                   &quot;valueBoolean&quot;: true
                 }
               ]
@@ -6637,7 +6647,7 @@ The kind of Act (e.g. physical examination, serum potassium, inpatient encounter
               &quot;definition&quot;: &quot;FDA label imprint code&quot;,
               &quot;property&quot;: [
                 {
-                  &quot;code&quot;: &quot;notSelectable&quot;,
+                  &quot;code&quot;: &quot;inactive&quot;,
                   &quot;valueBoolean&quot;: true
                 }
               ]
@@ -6648,7 +6658,7 @@ The kind of Act (e.g. physical examination, serum potassium, inpatient encounter
               &quot;definition&quot;: &quot;FDA label logo&quot;,
               &quot;property&quot;: [
                 {
-                  &quot;code&quot;: &quot;notSelectable&quot;,
+                  &quot;code&quot;: &quot;inactive&quot;,
                   &quot;valueBoolean&quot;: true
                 }
               ]
@@ -6659,7 +6669,7 @@ The kind of Act (e.g. physical examination, serum potassium, inpatient encounter
               &quot;definition&quot;: &quot;FDA label scoring&quot;,
               &quot;property&quot;: [
                 {
-                  &quot;code&quot;: &quot;notSelectable&quot;,
+                  &quot;code&quot;: &quot;inactive&quot;,
                   &quot;valueBoolean&quot;: true
                 }
               ]
@@ -6670,7 +6680,7 @@ The kind of Act (e.g. physical examination, serum potassium, inpatient encounter
               &quot;definition&quot;: &quot;FDA label shape&quot;,
               &quot;property&quot;: [
                 {
-                  &quot;code&quot;: &quot;notSelectable&quot;,
+                  &quot;code&quot;: &quot;inactive&quot;,
                   &quot;valueBoolean&quot;: true
                 }
               ]
@@ -6681,7 +6691,7 @@ The kind of Act (e.g. physical examination, serum potassium, inpatient encounter
               &quot;definition&quot;: &quot;FDA label size&quot;,
               &quot;property&quot;: [
                 {
-                  &quot;code&quot;: &quot;notSelectable&quot;,
+                  &quot;code&quot;: &quot;inactive&quot;,
                   &quot;valueBoolean&quot;: true
                 }
               ]
@@ -6981,7 +6991,7 @@ The kind of Act (e.g. physical examination, serum potassium, inpatient encounter
           &quot;valueBoolean&quot;: true
         },
         {
-          &quot;code&quot;: &quot;notSelectable&quot;,
+          &quot;code&quot;: &quot;inactive&quot;,
           &quot;valueBoolean&quot;: true
         }
       ],
@@ -6996,7 +7006,7 @@ The kind of Act (e.g. physical examination, serum potassium, inpatient encounter
               &quot;valueBoolean&quot;: true
             },
             {
-              &quot;code&quot;: &quot;notSelectable&quot;,
+              &quot;code&quot;: &quot;inactive&quot;,
               &quot;valueBoolean&quot;: true
             }
           ]
@@ -7013,7 +7023,7 @@ The kind of Act (e.g. physical examination, serum potassium, inpatient encounter
           &quot;valueBoolean&quot;: true
         },
         {
-          &quot;code&quot;: &quot;notSelectable&quot;,
+          &quot;code&quot;: &quot;inactive&quot;,
           &quot;valueBoolean&quot;: true
         }
       ]
@@ -7022,7 +7032,7 @@ The kind of Act (e.g. physical examination, serum potassium, inpatient encounter
       &quot;code&quot;: &quot;COPAY&quot;,
       &quot;property&quot;: [
         {
-          &quot;code&quot;: &quot;notSelectable&quot;,
+          &quot;code&quot;: &quot;inactive&quot;,
           &quot;valueBoolean&quot;: true
         }
       ]
@@ -7031,7 +7041,7 @@ The kind of Act (e.g. physical examination, serum potassium, inpatient encounter
       &quot;code&quot;: &quot;DEDUCT&quot;,
       &quot;property&quot;: [
         {
-          &quot;code&quot;: &quot;notSelectable&quot;,
+          &quot;code&quot;: &quot;inactive&quot;,
           &quot;valueBoolean&quot;: true
         }
       ]
@@ -7040,7 +7050,7 @@ The kind of Act (e.g. physical examination, serum potassium, inpatient encounter
       &quot;code&quot;: &quot;DOSEIND&quot;,
       &quot;property&quot;: [
         {
-          &quot;code&quot;: &quot;notSelectable&quot;,
+          &quot;code&quot;: &quot;inactive&quot;,
           &quot;valueBoolean&quot;: true
         }
       ]
@@ -7049,7 +7059,7 @@ The kind of Act (e.g. physical examination, serum potassium, inpatient encounter
       &quot;code&quot;: &quot;PRA&quot;,
       &quot;property&quot;: [
         {
-          &quot;code&quot;: &quot;notSelectable&quot;,
+          &quot;code&quot;: &quot;inactive&quot;,
           &quot;valueBoolean&quot;: true
         }
       ]
@@ -7060,7 +7070,7 @@ The kind of Act (e.g. physical examination, serum potassium, inpatient encounter
       &quot;definition&quot;: &quot;The act of putting something away for safe keeping. The \&quot;something\&quot; may be physical object such as a specimen, or information, such as observations regarding a specimen.&quot;,
       &quot;property&quot;: [
         {
-          &quot;code&quot;: &quot;notSelectable&quot;,
+          &quot;code&quot;: &quot;inactive&quot;,
           &quot;valueBoolean&quot;: true
         },
         {
@@ -7095,7 +7105,7 @@ of the specification.
 		<div class="container"><!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:33-0500. <a href="../../qa.html">QA Page</a>
+        © HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:28-0500. <a href="../../qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search</a> | 

@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>request - FHIR v1.7.0</title>
+  <title>request - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -107,7 +107,7 @@
 
 <ul class="nav nav-tabs"><li><a href="request.html">Content</a></li><li><a href="request-examples.html">Examples</a></li><li class="active"><a href="#">Detailed Descriptions</a></li><li><a href="request-mappings.html">Mappings</a></li></ul>
 
-<h2 class="self-link-parent"><span class="sectioncount">12.6.5<a name="12.6.5"> </a></span> Resource request - Detailed Descriptions <a href="request-definitions.html#12.6.5" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h2>
+<h2 class="self-link-parent"><span class="sectioncount">12.6.9<a name="12.6.9"> </a></span> Resource request - Detailed Descriptions <a href="request-definitions.html#12.6.9" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h2>
 
 <p>Detailed Descriptions for the elements in the request resource.</p>
 
@@ -172,18 +172,20 @@
   <tr><td>Definition</td><td><p>The current state of the request.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>1..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>RequestStatus: <a href="valueset-request-status.html">Codes identifying the stage lifecycle stage of a request</a> (<a href="terminologies.html#required">Required</a>)</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-request-status.html">RequestStatus</a> (<a href="terminologies.html#required">Required</a>)</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#code">code</a></td></tr>
   <tr><td><a href="conformance-rules.html#ismodifier">Is Modifier</a></td><td>true</td></tr>
   <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
   <tr><td>Comments</td><td><p>The status is generally fully in the control of the requester - they determine whether the order is draft or active and, after it has been activated, completed, cancelled or suspended. States relating to the activities of the performer are reflected on either the corresponding <a href="event.html">Event</a>(s) or using the <a href="task.html">Task</a> resource.</p>
+<p>A nominal state-transition diagram can be found in the [[request.html#statemachine | Request pattern]] documentation</p>
+<p>Unknown does not represent &quot;other&quot; - one of the defined statuses must apply.  Unknown is used when the authoring system is not sure what the current status is.</p>
 </td></tr>
   <tr><td>To Do</td><td>Should this be a common code system for all requests?</td></tr>
   <tr><td colspan="2" class="structure"><a name="Request.intent"> </a><b>Request.intent</b></td></tr>
   <tr><td>Definition</td><td><p>Indicates the level of authority/intentionality associated with the request and where the request fits into the workflow chain.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>1..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>RequestIntent: <a href="valueset-request-intent.html">Codes indicating the degree of authority/intentionality associated with a request</a> (<a href="terminologies.html#required">Required</a>)</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-request-intent.html">RequestIntent</a> (<a href="terminologies.html#required">Required</a>)</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#code">code</a></td></tr>
   <tr><td><a href="conformance-rules.html#ismodifier">Is Modifier</a></td><td>true</td></tr>
   <tr><td>Requirements</td><td><p>Proposals/recommendations, plans and orders all use the same structure and can exist in the same fulfillment chain.</p>
@@ -193,11 +195,19 @@
   <tr><td>Comments</td><td><p>When resources map to this element, they are free to define as many codes as necessary to cover their space and will map to &quot;proposal, plan or order&quot;.  Can have multiple codes that map to one of these.  E.g. &quot;original order&quot;, &quot;encoded order&quot;, &quot;reflex order&quot; would all map to &quot;order&quot;.  Expectation is that the set of codes is mutually exclusive or a strict all-encompassing hierarchy.</p>
 </td></tr>
   <tr><td>To Do</td><td>Should this be a common code system for all requests?</td></tr>
+  <tr><td colspan="2" class="structure"><a name="Request.priority"> </a><b>Request.priority</b></td></tr>
+  <tr><td>Definition</td><td><p>Indicates how quickly the {{title}} should be addressed with respect to other requests.</p>
+</td></tr>
+  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-request-priority.html">RequestPriority</a> (<a href="terminologies.html#required">Required</a>)</td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#code">code</a></td></tr>
+  <tr><td>Meaning if Missing</td><td>If missing, this task should be performed with normal priority</td></tr>
+  <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
   <tr><td colspan="2" class="structure"><a name="Request.code"> </a><b>Request.code</b></td></tr>
   <tr><td>Definition</td><td><p>A code that identifies the specific service or action being requested.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td><a href="terminologies.html#unbound">RequestCode</a>: Codes indicating the details of what is being requested.  These will vary significantly based on the type of request resource and will often be example/preferred rather than extensible/required.</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="terminologies.html#unbound">RequestCode</a>: </td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
   <tr><td title="Other names by which this resource/element may be known">Alternate Names</td><td>type</td></tr>
   <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
@@ -234,29 +244,49 @@
   <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
   <tr><td>Comments</td><td><p>[The list of types may be constrained as appropriate for the type of event].</p>
 </td></tr>
-  <tr><td colspan="2" class="structure"><a name="Request.authored"> </a><b>Request.authored</b></td></tr>
+  <tr><td colspan="2" class="structure"><a name="Request.authoredOn"> </a><b>Request.authoredOn</b></td></tr>
   <tr><td>Definition</td><td><p>For draft requests, indicates the date of initial creation.  For requests with other statuses, indicates the date of activation.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#dateTime">dateTime</a></td></tr>
-  <tr><td title="Other names by which this resource/element may be known">Alternate Names</td><td>created</td></tr>
+  <tr><td title="Other names by which this resource/element may be known">Alternate Names</td><td>createdOn; signedOn</td></tr>
   <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
   <tr><td>To Do</td><td>Do we need a &quot;status date&quot; too (for when the request was suspended, cancelled, etc.).</td></tr>
   <tr><td colspan="2" class="structure"><a name="Request.requester"> </a><b>Request.requester</b></td></tr>
   <tr><td>Definition</td><td><p>The individual who initiated the request and has responsibility for its activation.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="datatypes.html">Type</a></td><td><a href="references.html#Reference">Reference</a>(<a href="practitioner.html">Practitioner</a> | <a href="organization.html">Organization</a> | <a href="patient.html">Patient</a> | <a href="relatedperson.html">RelatedPerson</a> | <a href="device.html">Device</a>)</td></tr>
   <tr><td title="Other names by which this resource/element may be known">Alternate Names</td><td>author</td></tr>
   <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
+  <tr><td>Comments</td><td><p>[Resources may choose to replace this with just a single requester where there's no need to responsible organization].</p>
+</td></tr>
+  <tr><td>Invariants</td><td><b>Defined on this element</b><br/>
+<b title="Formal Invariant Identifier">inv-1</b>: onBehalfOf can only be specified if agent is practitioner or device (<a href="http://hl7.org/fluentpath">expression <img src="external.png" style="text-align: baseline"/></a>: (agent is Practitioner) or (agent is Device) or onBehalfOf.exists().not(), xpath: contains(f:agent, '/Practitioner') or contains(f:agent, '/Device') or not(exists(f:onBehalfOf)))</td></tr>
+  <tr><td colspan="2" class="structure"><a name="Request.requester.agent"> </a><b>Request.requester.agent</b></td></tr>
+  <tr><td>Definition</td><td><p>The device, practitioner, etc. who initiated the request.</p>
+</td></tr>
+  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>1..1</td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="references.html#Reference">Reference</a>(<a href="practitioner.html">Practitioner</a> | <a href="organization.html">Organization</a> | <a href="patient.html">Patient</a> | <a href="relatedperson.html">RelatedPerson</a> | <a href="device.html">Device</a>)</td></tr>
+  <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
+  <tr><td colspan="2" class="structure"><a name="Request.requester.onBehalfOf"> </a><b>Request.requester.onBehalfOf</b></td></tr>
+  <tr><td>Definition</td><td><p>The organization the device or practitioner was acting on behalf of.</p>
+</td></tr>
+  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="references.html#Reference">Reference</a>(<a href="organization.html">Organization</a>)</td></tr>
+  <tr><td>Requirements</td><td><p>Practitioners and Devices can be associated with multiple organizations.  This element indicates which organization they were acting on behalf of when authoring the request.</p>
+</td></tr>
+  <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
+  <tr><td>Invariants</td><td><b>Affect this element</b><br/>
+<b title="Formal Invariant Identifier">inv-1</b>: onBehalfOf can only be specified if agent is practitioner or device (<a href="http://hl7.org/fluentpath">expression <img src="external.png" style="text-align: baseline"/></a>: (agent is Practitioner) or (agent is Device) or onBehalfOf.exists().not(), xpath: contains(f:agent, '/Practitioner') or contains(f:agent, '/Device') or not(exists(f:onBehalfOf)))</td></tr>
   <tr><td colspan="2" class="structure"><a name="Request.performerType"> </a><b>Request.performerType</b></td></tr>
   <tr><td>Definition</td><td><p>The type of individual that is desired to act upon the request.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td><a href="terminologies.html#unbound">PerformerType</a>: Identifies types of practitioners, devices or others that should fulfill a request.  While the detailed constraints of relevant providers will vary by resource, some degree of consistency around recommended codes across request and definition resources would be desirable</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="terminologies.html#unbound">PerformerType</a>: </td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
   <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
   <tr><td>Comments</td><td><p>If performer is also specified, this indicates what type of performer is desired in the event the requested performer is not available.</p>
+<p>If specified without indicating a performer, this indicates that the performer must be of the specified type.  If specified with a performer then it indicates the requirements of the performer if the designated performer is not available.</p>
 </td></tr>
   <tr><td>To Do</td><td>Need to define who.performer.</td></tr>
   <tr><td colspan="2" class="structure"><a name="Request.performer"> </a><b>Request.performer</b></td></tr>
@@ -269,7 +299,7 @@
   <tr><td>Definition</td><td><p>Describes why the request is being made in coded or textual form.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..*</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td><a href="terminologies.html#unbound">RequestReason</a>: Codes identifying why this request was necessary.  These may be clinical reasons (e.g. diagnoses, symptoms) and/or administrative reasons.  While the detailed constraints of relevant reasons will vary by resource, some degree of consistency across resources around recommended codes would be desirable.</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="terminologies.html#unbound">RequestReason</a>: </td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
   <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
   <tr><td>Comments</td><td><p>Textual reasons can be caprued using reasonCode.text.</p>
@@ -318,7 +348,7 @@
 		<div class="container">  <!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:31-0500. <a href="qa.html">QA Page</a>
+        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:20-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search <img src="external.png" style="text-align: baseline"/></a> | 

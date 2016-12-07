@@ -2,7 +2,7 @@
   "resourceType": "StructureDefinition",
   "id": "goal-relationship",
   "url": "http://hl7.org/fhir/StructureDefinition/goal-relationship",
-  "name": "Goals related to this one",
+  "name": "Goals related to this Goal",
   "title": "related goal",
   "status": "draft",
   "publisher": "Health Level Seven, Inc. - FHIR WG",
@@ -10,7 +10,7 @@
     {
       "telecom": [
         {
-          "system": "other",
+          "system": "url",
           "value": "http://hl7.org/special/committees/fhir"
         }
       ]
@@ -18,7 +18,7 @@
   ],
   "date": "2014-12-07",
   "description": "Establishes a relationship between this goal and other goals.",
-  "fhirVersion": "1.7.0",
+  "fhirVersion": "1.8.0",
   "mapping": [
     {
       "identity": "rim",
@@ -38,9 +38,9 @@
   "snapshot": {
     "element": [
       {
-        "id": "Extension:goalsrelatedtothisone",
+        "id": "Extension:goalsrelatedtothisgoal",
         "path": "Extension",
-        "short": "Goals related to this one",
+        "short": "Goals related to this Goal",
         "definition": "Establishes a relationship between this goal and other goals.",
         "min": 0,
         "max": "*",
@@ -72,7 +72,7 @@
         ]
       },
       {
-        "id": "Extension:goalsrelatedtothisone.id",
+        "id": "Extension:goalsrelatedtothisgoal.id",
         "path": "Extension.id",
         "representation": [
           "xmlAttr"
@@ -99,10 +99,10 @@
         ]
       },
       {
-        "id": "Extension:goalsrelatedtothisone.extension",
+        "id": "Extension:goalsrelatedtothisgoal.extension",
         "path": "Extension.extension",
         "slicing": {
-          "id": "79",
+          "id": "75",
           "discriminator": [
             "url"
           ],
@@ -125,7 +125,7 @@
         ]
       },
       {
-        "id": "Extension:goalsrelatedtothisone.extension:type",
+        "id": "Extension:goalsrelatedtothisgoal.extension:type",
         "path": "Extension.extension",
         "sliceName": "type",
         "short": "predecessor | successor | replacement | other",
@@ -144,7 +144,7 @@
         ]
       },
       {
-        "id": "Extension:goalsrelatedtothisone.extension:type.id",
+        "id": "Extension:goalsrelatedtothisgoal.extension:type.id",
         "path": "Extension.extension.id",
         "representation": [
           "xmlAttr"
@@ -171,7 +171,7 @@
         ]
       },
       {
-        "id": "Extension:goalsrelatedtothisone.extension:type.extension:extension",
+        "id": "Extension:goalsrelatedtothisgoal.extension:type.extension:extension",
         "path": "Extension.extension.extension",
         "sliceName": "extension",
         "short": "Extension",
@@ -190,7 +190,7 @@
         ]
       },
       {
-        "id": "Extension:goalsrelatedtothisone.extension:type.url",
+        "id": "Extension:goalsrelatedtothisgoal.extension:type.url",
         "path": "Extension.extension.url",
         "representation": [
           "xmlAttr"
@@ -219,7 +219,7 @@
         ]
       },
       {
-        "id": "Extension:goalsrelatedtothisone.extension:type.valueCodeableConcept",
+        "id": "Extension:goalsrelatedtothisgoal.extension:type.valueCodeableConcept",
         "path": "Extension.extension.valueCodeableConcept",
         "short": "Value of extension",
         "definition": "Value of extension - may be a resource or one of a constrained set of the data types (see Extensibility in the spec for list).",
@@ -236,7 +236,7 @@
           }
         ],
         "binding": {
-          "strength": "required",
+          "strength": "extensible",
           "description": "Types of relationships between two goals",
           "valueSetReference": {
             "reference": "http://hl7.org/fhir/ValueSet/goal-relationship-type"
@@ -250,7 +250,7 @@
         ]
       },
       {
-        "id": "Extension:goalsrelatedtothisone.extension:target",
+        "id": "Extension:goalsrelatedtothisgoal.extension:target",
         "path": "Extension.extension",
         "sliceName": "target",
         "short": "Related goal",
@@ -269,7 +269,7 @@
         ]
       },
       {
-        "id": "Extension:goalsrelatedtothisone.extension:target.id",
+        "id": "Extension:goalsrelatedtothisgoal.extension:target.id",
         "path": "Extension.extension.id",
         "representation": [
           "xmlAttr"
@@ -296,7 +296,7 @@
         ]
       },
       {
-        "id": "Extension:goalsrelatedtothisone.extension:target.extension:extension",
+        "id": "Extension:goalsrelatedtothisgoal.extension:target.extension:extension",
         "path": "Extension.extension.extension",
         "sliceName": "extension",
         "short": "Extension",
@@ -315,7 +315,7 @@
         ]
       },
       {
-        "id": "Extension:goalsrelatedtothisone.extension:target.url",
+        "id": "Extension:goalsrelatedtothisgoal.extension:target.url",
         "path": "Extension.extension.url",
         "representation": [
           "xmlAttr"
@@ -344,7 +344,7 @@
         ]
       },
       {
-        "id": "Extension:goalsrelatedtothisone.extension:target.valueReference",
+        "id": "Extension:goalsrelatedtothisgoal.extension:target.valueReference",
         "path": "Extension.extension.valueReference",
         "short": "Value of extension",
         "definition": "Value of extension - may be a resource or one of a constrained set of the data types (see Extensibility in the spec for list).",
@@ -369,7 +369,7 @@
         ]
       },
       {
-        "id": "Extension:goalsrelatedtothisone.url",
+        "id": "Extension:goalsrelatedtothisgoal.url",
         "path": "Extension.url",
         "representation": [
           "xmlAttr"
@@ -398,7 +398,7 @@
         ]
       },
       {
-        "id": "Extension:goalsrelatedtothisone.value[x]",
+        "id": "Extension:goalsrelatedtothisgoal.value[x]",
         "path": "Extension.value[x]",
         "short": "Value of extension",
         "definition": "Value of extension - may be a resource or one of a constrained set of the data types (see Extensibility in the spec for list).",
@@ -537,15 +537,15 @@
   "differential": {
     "element": [
       {
-        "id": "Extension:goalsrelatedtothisone",
+        "id": "Extension:goalsrelatedtothisgoal",
         "path": "Extension",
-        "short": "Goals related to this one",
+        "short": "Goals related to this Goal",
         "definition": "Establishes a relationship between this goal and other goals.",
         "min": 0,
         "max": "*"
       },
       {
-        "id": "Extension:goalsrelatedtothisone.extension:type",
+        "id": "Extension:goalsrelatedtothisgoal.extension:type",
         "path": "Extension.extension",
         "sliceName": "type",
         "short": "predecessor | successor | replacement | other",
@@ -559,13 +559,13 @@
         ]
       },
       {
-        "id": "Extension:goalsrelatedtothisone.extension:type.extension:extension",
+        "id": "Extension:goalsrelatedtothisgoal.extension:type.extension:extension",
         "path": "Extension.extension.extension",
         "sliceName": "extension",
         "max": "0"
       },
       {
-        "id": "Extension:goalsrelatedtothisone.extension:type.url",
+        "id": "Extension:goalsrelatedtothisgoal.extension:type.url",
         "path": "Extension.extension.url",
         "type": [
           {
@@ -575,7 +575,7 @@
         "fixedUri": "type"
       },
       {
-        "id": "Extension:goalsrelatedtothisone.extension:type.value[x]",
+        "id": "Extension:goalsrelatedtothisgoal.extension:type.value[x]",
         "path": "Extension.extension.value[x]",
         "min": 1,
         "type": [
@@ -584,7 +584,7 @@
           }
         ],
         "binding": {
-          "strength": "required",
+          "strength": "extensible",
           "description": "Types of relationships between two goals",
           "valueSetReference": {
             "reference": "http://hl7.org/fhir/ValueSet/goal-relationship-type"
@@ -592,7 +592,7 @@
         }
       },
       {
-        "id": "Extension:goalsrelatedtothisone.extension:target",
+        "id": "Extension:goalsrelatedtothisgoal.extension:target",
         "path": "Extension.extension",
         "sliceName": "target",
         "short": "Related goal",
@@ -606,13 +606,13 @@
         ]
       },
       {
-        "id": "Extension:goalsrelatedtothisone.extension:target.extension:extension",
+        "id": "Extension:goalsrelatedtothisgoal.extension:target.extension:extension",
         "path": "Extension.extension.extension",
         "sliceName": "extension",
         "max": "0"
       },
       {
-        "id": "Extension:goalsrelatedtothisone.extension:target.url",
+        "id": "Extension:goalsrelatedtothisgoal.extension:target.url",
         "path": "Extension.extension.url",
         "type": [
           {
@@ -622,7 +622,7 @@
         "fixedUri": "target"
       },
       {
-        "id": "Extension:goalsrelatedtothisone.extension:target.value[x]",
+        "id": "Extension:goalsrelatedtothisgoal.extension:target.value[x]",
         "path": "Extension.extension.value[x]",
         "min": 1,
         "type": [
@@ -633,7 +633,7 @@
         ]
       },
       {
-        "id": "Extension:goalsrelatedtothisone.url",
+        "id": "Extension:goalsrelatedtothisgoal.url",
         "path": "Extension.url",
         "type": [
           {
@@ -643,7 +643,7 @@
         "fixedUri": "http://hl7.org/fhir/StructureDefinition/goal-relationship"
       },
       {
-        "id": "Extension:goalsrelatedtothisone.value[x]",
+        "id": "Extension:goalsrelatedtothisgoal.value[x]",
         "path": "Extension.value[x]",
         "min": 0,
         "max": "0"

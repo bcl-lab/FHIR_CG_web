@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>W5 - FHIR v1.7.0</title>
+  <title>W5 - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -88,7 +88,7 @@
 	<div id="segment-breadcrumb" class="segment">  <!-- segment-breadcrumb -->
 		<div class="container">  <!-- container -->	
 			<ul class="breadcrumb">
-        <li><a href="ontology-module.html"><img src="ontology.png"/> Ontology</a></li>
+        <li><a href="linked-data-module.html"><img src="linked-data.png"/> Linked Data</a></li>
         <li><b>W5 Map</b></li>          <!-- w5.html / page / -->
 
 			</ul>	
@@ -327,7 +327,7 @@
  <td>identifier*</td>
  <td/>
  <td>status</td>
- <td>stage</td>
+ <td>intent<br/>priority</td>
  <td/>
  <td>code</td>
  <td>subject</td>
@@ -335,7 +335,7 @@
  <td/>
  <td>occurrence[x]</td>
  <td/>
- <td>authored</td>
+ <td>authoredOn</td>
  <td>requester</td>
  <td/>
  <td>performerType<br/>performer</td>
@@ -343,7 +343,7 @@
  <td/>
  <td/>
  <td/>
- <td>reason*</td>
+ <td>reasonCode*<br/>reasonReference*</td>
 </tr>
 <tr>
  <td>FamilyMemberHistory</td>
@@ -475,7 +475,7 @@
  <td/>
  <td/>
  <td/>
- <td>reported</td>
+ <td>primarySource<br/>reportOrigin</td>
  <td>performer</td>
  <td>requester</td>
  <td/>
@@ -610,7 +610,7 @@
  <td>encounter<br/>supportingInformation*</td>
  <td/>
  <td/>
- <td>effectiveTime[x]</td>
+ <td>effective[x]</td>
  <td/>
  <td/>
  <td/>
@@ -660,7 +660,7 @@
  <td>dateWritten</td>
  <td/>
  <td/>
- <td>prescriber</td>
+ <td>requester</td>
  <td/>
  <td/>
  <td>performer</td>
@@ -675,7 +675,7 @@
  <td/>
  <td/>
  <td>medication[x]</td>
- <td>patient</td>
+ <td>subject</td>
  <td/>
  <td/>
  <td/>
@@ -853,7 +853,7 @@
 </tr>
 <tr>
  <td>ResearchStudy</td>
- <td>identifier</td>
+ <td>identifier*</td>
  <td/>
  <td>status</td>
  <td/>
@@ -867,7 +867,7 @@
  <td/>
  <td/>
  <td/>
- <td>sponsor<br/>principleInvestigator</td>
+ <td>sponsor<br/>principalInvestigator</td>
  <td/>
  <td/>
  <td/>
@@ -1523,7 +1523,7 @@
 <tr>
  <td>ProcessRequest</td>
  <td>identifier*</td>
- <td>ruleset</td>
+ <td/>
  <td>status</td>
  <td>action</td>
  <td/>
@@ -1546,7 +1546,7 @@
 <tr>
  <td>ProcessResponse</td>
  <td>identifier*</td>
- <td>ruleset</td>
+ <td/>
  <td>status</td>
  <td/>
  <td/>
@@ -1660,21 +1660,21 @@
 </tr>
 <tr>
  <td>Task</td>
- <td>identifier</td>
+ <td>identifier*</td>
  <td/>
  <td>status</td>
- <td>stage<br/>code</td>
+ <td>intent<br/>code</td>
  <td>priority</td>
  <td>focus</td>
  <td>for</td>
  <td>context</td>
  <td/>
  <td/>
+ <td>executionPeriod</td>
+ <td>authoredOn</td>
+ <td>agent</td>
  <td/>
- <td>created</td>
- <td>requester</td>
- <td/>
- <td>owner<br/>performerType*</td>
+ <td>performerType*<br/>owner</td>
  <td/>
  <td/>
  <td/>
@@ -1753,7 +1753,7 @@
 </tr>
 <tr>
  <td>Bundle</td>
- <td/>
+ <td>identifier</td>
  <td/>
  <td/>
  <td>type</td>
@@ -2492,7 +2492,7 @@
 <tr>
  <td>Claim</td>
  <td>identifier*</td>
- <td>ruleset</td>
+ <td/>
  <td>status</td>
  <td>type<br/>subType*<br/>use</td>
  <td/>
@@ -2515,7 +2515,7 @@
 <tr>
  <td>ClaimResponse</td>
  <td>identifier*</td>
- <td>ruleset</td>
+ <td/>
  <td>status</td>
  <td/>
  <td/>
@@ -2566,13 +2566,13 @@
  <td>type</td>
  <td/>
  <td/>
- <td>planholder<br/>beneficiary</td>
+ <td>policyHolder<br/>subscriber<br/>subscriberId<br/>beneficiary</td>
  <td/>
  <td/>
  <td/>
  <td>period</td>
  <td/>
- <td>issuer</td>
+ <td>payor*</td>
  <td/>
  <td/>
  <td/>
@@ -2584,7 +2584,7 @@
 <tr>
  <td>EligibilityRequest</td>
  <td>identifier*</td>
- <td>ruleset</td>
+ <td/>
  <td>status</td>
  <td>priority</td>
  <td/>
@@ -2607,7 +2607,7 @@
 <tr>
  <td>EligibilityResponse</td>
  <td>identifier*</td>
- <td>ruleset</td>
+ <td/>
  <td>status</td>
  <td/>
  <td/>
@@ -2676,7 +2676,7 @@
 <tr>
  <td>ExplanationOfBenefit</td>
  <td>identifier*</td>
- <td>ruleset</td>
+ <td/>
  <td>status</td>
  <td>type<br/>subType*</td>
  <td/>
@@ -2687,7 +2687,7 @@
  <td/>
  <td>billablePeriod<br/>serviced[x]</td>
  <td>created</td>
- <td>author</td>
+ <td>enterer<br/>insurer</td>
  <td>provider<br/>organization</td>
  <td>provider</td>
  <td>referral</td>
@@ -2699,7 +2699,7 @@
 <tr>
  <td>PaymentNotice</td>
  <td>identifier*</td>
- <td>ruleset</td>
+ <td/>
  <td>status</td>
  <td/>
  <td/>
@@ -2722,7 +2722,7 @@
 <tr>
  <td>PaymentReconciliation</td>
  <td>identifier*</td>
- <td>ruleset</td>
+ <td/>
  <td>status</td>
  <td/>
  <td/>
@@ -2963,7 +2963,7 @@
  <td>identifier* : Identifier</td>
  <td/>
  <td>status : code</td>
- <td>stage : CodeableConcept</td>
+ <td>intent : code<br/>priority : code</td>
  <td/>
  <td>code : CodeableConcept</td>
  <td>subject : Patient|Group|Location|Device</td>
@@ -2971,7 +2971,7 @@
  <td/>
  <td>occurrence[x] : dateTime|Period|Timing</td>
  <td/>
- <td>authored : dateTime</td>
+ <td>authoredOn : dateTime</td>
  <td>requester : Device|Practitioner|Organization</td>
  <td/>
  <td>performerType : CodeableConcept<br/>performer : Practitioner|Organization|Patient|Device|RelatedPerson</td>
@@ -2979,7 +2979,7 @@
  <td/>
  <td/>
  <td/>
- <td>reason* : CodeableConcept</td>
+ <td>reasonCode* : CodeableConcept<br/>reasonReference* : Condition|Observation</td>
 </tr>
 <tr>
  <td>FamilyMemberHistory</td>
@@ -3111,7 +3111,7 @@
  <td/>
  <td/>
  <td/>
- <td>reported : boolean</td>
+ <td>primarySource : boolean<br/>reportOrigin : CodeableConcept</td>
  <td>performer : Practitioner</td>
  <td>requester : Practitioner</td>
  <td/>
@@ -3246,7 +3246,7 @@
  <td>encounter : Encounter<br/>supportingInformation* : Any</td>
  <td/>
  <td/>
- <td>effectiveTime[x] : dateTime|Period</td>
+ <td>effective[x] : dateTime|Period</td>
  <td/>
  <td/>
  <td/>
@@ -3296,7 +3296,7 @@
  <td>dateWritten : dateTime</td>
  <td/>
  <td/>
- <td>prescriber : Practitioner</td>
+ <td>requester : Practitioner|Organization|Patient|RelatedPerson|Device</td>
  <td/>
  <td/>
  <td>performer : Organization</td>
@@ -3311,7 +3311,7 @@
  <td/>
  <td/>
  <td>medication[x] : CodeableConcept|Reference(Medication)</td>
- <td>patient : Patient</td>
+ <td>subject : Patient|Group</td>
  <td/>
  <td/>
  <td/>
@@ -3489,7 +3489,7 @@
 </tr>
 <tr>
  <td>ResearchStudy</td>
- <td>identifier : Identifier</td>
+ <td>identifier* : Identifier</td>
  <td/>
  <td>status : code</td>
  <td/>
@@ -3503,7 +3503,7 @@
  <td/>
  <td/>
  <td/>
- <td>sponsor : Organization<br/>principleInvestigator : Practitioner</td>
+ <td>sponsor : Organization<br/>principalInvestigator : Practitioner</td>
  <td/>
  <td/>
  <td/>
@@ -4159,7 +4159,7 @@
 <tr>
  <td>ProcessRequest</td>
  <td>identifier* : Identifier</td>
- <td>ruleset : Coding</td>
+ <td/>
  <td>status : code</td>
  <td>action : code</td>
  <td/>
@@ -4182,7 +4182,7 @@
 <tr>
  <td>ProcessResponse</td>
  <td>identifier* : Identifier</td>
- <td>ruleset : Coding</td>
+ <td/>
  <td>status : code</td>
  <td/>
  <td/>
@@ -4296,21 +4296,21 @@
 </tr>
 <tr>
  <td>Task</td>
- <td>identifier : Identifier</td>
+ <td>identifier* : Identifier</td>
  <td/>
  <td>status : code</td>
- <td>stage : CodeableConcept<br/>code : CodeableConcept</td>
+ <td>intent : code<br/>code : CodeableConcept</td>
  <td>priority : code</td>
  <td>focus : Any</td>
  <td>for : Any</td>
  <td>context : Encounter|EpisodeOfCare</td>
  <td/>
  <td/>
+ <td>executionPeriod : Period</td>
+ <td>authoredOn : dateTime</td>
+ <td>agent : Device|Organization|Patient|Practitioner|RelatedPerson</td>
  <td/>
- <td>created : dateTime</td>
- <td>requester : Device|Organization|Patient|Practitioner|RelatedPerson</td>
- <td/>
- <td>owner : Device|Organization|Patient|Practitioner|RelatedPerson<br/>performerType* : CodeableConcept</td>
+ <td>performerType* : CodeableConcept<br/>owner : Device|Organization|Patient|Practitioner|RelatedPerson</td>
  <td/>
  <td/>
  <td/>
@@ -4389,7 +4389,7 @@
 </tr>
 <tr>
  <td>Bundle</td>
- <td/>
+ <td>identifier : Identifier</td>
  <td/>
  <td/>
  <td>type : code</td>
@@ -5128,9 +5128,9 @@
 <tr>
  <td>Claim</td>
  <td>identifier* : Identifier</td>
- <td>ruleset : Coding</td>
+ <td/>
  <td>status : code</td>
- <td>type : Coding<br/>subType* : Coding<br/>use : code</td>
+ <td>type : CodeableConcept<br/>subType* : CodeableConcept<br/>use : code</td>
  <td/>
  <td/>
  <td>patient : Patient</td>
@@ -5145,13 +5145,13 @@
  <td>referral : ReferralRequest</td>
  <td/>
  <td/>
- <td>facility : Location<br/>location[x] : Coding|Address|Reference(Location)</td>
+ <td>facility : Location<br/>location[x] : CodeableConcept|Address|Reference(Location)</td>
  <td/>
 </tr>
 <tr>
  <td>ClaimResponse</td>
  <td>identifier* : Identifier</td>
- <td>ruleset : Coding</td>
+ <td/>
  <td>status : code</td>
  <td/>
  <td/>
@@ -5199,16 +5199,16 @@
  <td>identifier* : Identifier</td>
  <td/>
  <td>status : code</td>
- <td>type : Coding</td>
+ <td>type : CodeableConcept</td>
  <td/>
  <td/>
- <td>planholder : Patient|RelatedPerson|Organization<br/>beneficiary : Patient</td>
+ <td>policyHolder : Patient|RelatedPerson|Organization<br/>subscriber : Patient|RelatedPerson<br/>subscriberId : string<br/>beneficiary : Patient</td>
  <td/>
  <td/>
  <td/>
  <td>period : Period</td>
  <td/>
- <td>issuer : Organization|Patient|RelatedPerson</td>
+ <td>payor* : Organization|Patient|RelatedPerson</td>
  <td/>
  <td/>
  <td/>
@@ -5220,9 +5220,9 @@
 <tr>
  <td>EligibilityRequest</td>
  <td>identifier* : Identifier</td>
- <td>ruleset : Coding</td>
+ <td/>
  <td>status : code</td>
- <td>priority : Coding</td>
+ <td>priority : CodeableConcept</td>
  <td/>
  <td/>
  <td>patient : Patient</td>
@@ -5243,7 +5243,7 @@
 <tr>
  <td>EligibilityResponse</td>
  <td>identifier* : Identifier</td>
- <td>ruleset : Coding</td>
+ <td/>
  <td>status : code</td>
  <td/>
  <td/>
@@ -5312,9 +5312,9 @@
 <tr>
  <td>ExplanationOfBenefit</td>
  <td>identifier* : Identifier</td>
- <td>ruleset : Coding</td>
+ <td/>
  <td>status : code</td>
- <td>type : Coding<br/>subType* : Coding</td>
+ <td>type : CodeableConcept<br/>subType* : CodeableConcept</td>
  <td/>
  <td/>
  <td>patient : Patient</td>
@@ -5323,19 +5323,19 @@
  <td/>
  <td>billablePeriod : Period<br/>serviced[x] : date|Period</td>
  <td>created : dateTime</td>
- <td>author : Organization</td>
+ <td>enterer : Practitioner<br/>insurer : Organization</td>
  <td>provider : Practitioner<br/>organization : Organization</td>
  <td>provider : Practitioner|Organization</td>
  <td>referral : ReferralRequest</td>
  <td/>
  <td/>
- <td>facility : Location<br/>location[x] : Coding|Address|Reference(Location)</td>
+ <td>facility : Location<br/>location[x] : CodeableConcept|Address|Reference(Location)</td>
  <td>claim : Claim</td>
 </tr>
 <tr>
  <td>PaymentNotice</td>
  <td>identifier* : Identifier</td>
- <td>ruleset : Coding</td>
+ <td/>
  <td>status : code</td>
  <td/>
  <td/>
@@ -5358,7 +5358,7 @@
 <tr>
  <td>PaymentReconciliation</td>
  <td>identifier* : Identifier</td>
- <td>ruleset : Coding</td>
+ <td/>
  <td>status : code</td>
  <td/>
  <td/>
@@ -5395,7 +5395,7 @@
 		<div class="container">  <!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:33-0500. <a href="qa.html">QA Page</a>
+        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:28-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search <img src="external.png" style="text-align: baseline"/></a> | 

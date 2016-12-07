@@ -6,7 +6,7 @@
     <system value="urn:ietf:rfc:3986"/>
   </identifier>
   <status value="draft"/>
-  <date value="2016-11-28T17:29:55-05:00"/>
+  <date value="2016-12-07T14:18:58-05:00"/>
   <publisher value="Health Level Seven International (Financial Management)"/>
   <item>
     <linkId value="ClaimResponse"/>
@@ -274,9 +274,6 @@
       </item>
     </item>
     <item>
-      <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-minOccurs">
-        <valueInteger value="1"/>
-      </extension>
       <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs">
         <valueInteger value="1"/>
       </extension>
@@ -285,7 +282,7 @@
       </extension>
       <linkId value="ClaimResponse.status"/>
       <type value="group"/>
-      <required value="true"/>
+      <required value="false"/>
       <repeats value="true"/>
       <item>
         <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl">
@@ -304,108 +301,6 @@
         <linkId value="ClaimResponse.status.value"/>
         <text value="status"/>
         <type value="choice"/>
-        <required value="false"/>
-        <repeats value="false"/>
-      </item>
-    </item>
-    <item>
-      <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs">
-        <valueInteger value="1"/>
-      </extension>
-      <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
-        <valueString value="Reference"/>
-      </extension>
-      <linkId value="ClaimResponse.request"/>
-      <type value="group"/>
-      <required value="false"/>
-      <repeats value="true"/>
-      <item>
-        <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl">
-          <valueCodeableConcept>
-            <coding>
-              <system value="http://hl7.org/fhir/questionnaire-item-control"/>
-              <code value="flyover"/>
-              <display value="Fly-over"/>
-            </coding>
-          </valueCodeableConcept>
-        </extension>
-        <text value="Original request resource referrence."/>
-        <type value="display"/>
-      </item>
-      <item>
-        <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-allowedResource">
-          <valueCode value="Claim"/>
-        </extension>
-        <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-referenceFilter">
-          <valueString value="subject=$subj&amp;patient=$subj&amp;encounter=$encounter"/>
-        </extension>
-        <linkId value="ClaimResponse.request.value"/>
-        <text value="Id of resource triggering adjudication"/>
-        <type value="reference"/>
-        <required value="false"/>
-        <repeats value="false"/>
-      </item>
-    </item>
-    <item>
-      <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs">
-        <valueInteger value="1"/>
-      </extension>
-      <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
-        <valueString value="Coding"/>
-      </extension>
-      <linkId value="ClaimResponse.ruleset"/>
-      <type value="group"/>
-      <required value="false"/>
-      <repeats value="true"/>
-      <item>
-        <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl">
-          <valueCodeableConcept>
-            <coding>
-              <system value="http://hl7.org/fhir/questionnaire-item-control"/>
-              <code value="flyover"/>
-              <display value="Fly-over"/>
-            </coding>
-          </valueCodeableConcept>
-        </extension>
-        <text value="The version of the style of resource contents. This should be mapped to the allowable profiles for this and supporting resources."/>
-        <type value="display"/>
-      </item>
-      <item>
-        <linkId value="ClaimResponse.ruleset.value"/>
-        <text value="Resource version"/>
-        <type value="open-choice"/>
-        <required value="false"/>
-        <repeats value="false"/>
-      </item>
-    </item>
-    <item>
-      <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs">
-        <valueInteger value="1"/>
-      </extension>
-      <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
-        <valueString value="Coding"/>
-      </extension>
-      <linkId value="ClaimResponse.originalRuleset"/>
-      <type value="group"/>
-      <required value="false"/>
-      <repeats value="true"/>
-      <item>
-        <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl">
-          <valueCodeableConcept>
-            <coding>
-              <system value="http://hl7.org/fhir/questionnaire-item-control"/>
-              <code value="flyover"/>
-              <display value="Fly-over"/>
-            </coding>
-          </valueCodeableConcept>
-        </extension>
-        <text value="The style (standard) and version of the original material which was converted into this resource."/>
-        <type value="display"/>
-      </item>
-      <item>
-        <linkId value="ClaimResponse.originalRuleset.value"/>
-        <text value="Original version"/>
-        <type value="open-choice"/>
         <required value="false"/>
         <repeats value="false"/>
       </item>
@@ -449,7 +344,7 @@
       <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
         <valueString value="Reference"/>
       </extension>
-      <linkId value="ClaimResponse.organization"/>
+      <linkId value="ClaimResponse.insurer"/>
       <type value="group"/>
       <required value="false"/>
       <repeats value="true"/>
@@ -473,7 +368,7 @@
         <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-referenceFilter">
           <valueString value="subject=$subj&amp;patient=$subj&amp;encounter=$encounter"/>
         </extension>
-        <linkId value="ClaimResponse.organization.value"/>
+        <linkId value="ClaimResponse.insurer.value"/>
         <text value="Insurer"/>
         <type value="reference"/>
         <required value="false"/>
@@ -561,9 +456,48 @@
         <valueInteger value="1"/>
       </extension>
       <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
-        <valueString value="Coding"/>
+        <valueString value="Reference"/>
+      </extension>
+      <linkId value="ClaimResponse.request"/>
+      <type value="group"/>
+      <required value="false"/>
+      <repeats value="true"/>
+      <item>
+        <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl">
+          <valueCodeableConcept>
+            <coding>
+              <system value="http://hl7.org/fhir/questionnaire-item-control"/>
+              <code value="flyover"/>
+              <display value="Fly-over"/>
+            </coding>
+          </valueCodeableConcept>
+        </extension>
+        <text value="Original request resource referrence."/>
+        <type value="display"/>
+      </item>
+      <item>
+        <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-allowedResource">
+          <valueCode value="Claim"/>
+        </extension>
+        <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-referenceFilter">
+          <valueString value="subject=$subj&amp;patient=$subj&amp;encounter=$encounter"/>
+        </extension>
+        <linkId value="ClaimResponse.request.value"/>
+        <text value="Id of resource triggering adjudication"/>
+        <type value="reference"/>
+        <required value="false"/>
+        <repeats value="false"/>
+      </item>
+    </item>
+    <item>
+      <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs">
+        <valueInteger value="1"/>
+      </extension>
+      <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
+        <valueString value="CodeableConcept"/>
       </extension>
       <linkId value="ClaimResponse.outcome"/>
+      <text value="complete | error | partial"/>
       <type value="group"/>
       <required value="false"/>
       <repeats value="true"/>
@@ -581,9 +515,16 @@
         <type value="display"/>
       </item>
       <item>
-        <linkId value="ClaimResponse.outcome.value"/>
-        <text value="complete | error | partial"/>
+        <linkId value="ClaimResponse.outcome.coding"/>
+        <text value="code:"/>
         <type value="open-choice"/>
+        <required value="false"/>
+        <repeats value="false"/>
+      </item>
+      <item>
+        <linkId value="ClaimResponse.outcome.text"/>
+        <text value="text:"/>
+        <type value="string"/>
         <required value="false"/>
         <repeats value="false"/>
       </item>
@@ -625,9 +566,10 @@
         <valueInteger value="1"/>
       </extension>
       <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
-        <valueString value="Coding"/>
+        <valueString value="CodeableConcept"/>
       </extension>
       <linkId value="ClaimResponse.payeeType"/>
+      <text value="Party to be paid any benefits payable"/>
       <type value="group"/>
       <required value="false"/>
       <repeats value="true"/>
@@ -645,9 +587,16 @@
         <type value="display"/>
       </item>
       <item>
-        <linkId value="ClaimResponse.payeeType.value"/>
-        <text value="Party to be paid any benefits payable"/>
+        <linkId value="ClaimResponse.payeeType.coding"/>
+        <text value="code:"/>
         <type value="open-choice"/>
+        <required value="false"/>
+        <repeats value="false"/>
+      </item>
+      <item>
+        <linkId value="ClaimResponse.payeeType.text"/>
+        <text value="text:"/>
+        <type value="string"/>
         <required value="false"/>
         <repeats value="false"/>
       </item>
@@ -906,9 +855,10 @@
             <valueInteger value="1"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
-            <valueString value="Coding"/>
+            <valueString value="CodeableConcept"/>
           </extension>
           <linkId value="ClaimResponse.item.adjudication.category"/>
+          <text value="Adjudication category such as co-pay, eligible, benefit, etc."/>
           <type value="group"/>
           <required value="true"/>
           <repeats value="true"/>
@@ -926,9 +876,16 @@
             <type value="display"/>
           </item>
           <item>
-            <linkId value="ClaimResponse.item.adjudication.category.value"/>
-            <text value="Adjudication category such as co-pay, eligible, benefit, etc."/>
+            <linkId value="ClaimResponse.item.adjudication.category.coding"/>
+            <text value="code:"/>
             <type value="open-choice"/>
+            <required value="false"/>
+            <repeats value="false"/>
+          </item>
+          <item>
+            <linkId value="ClaimResponse.item.adjudication.category.text"/>
+            <text value="text:"/>
+            <type value="string"/>
             <required value="false"/>
             <repeats value="false"/>
           </item>
@@ -938,9 +895,10 @@
             <valueInteger value="1"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
-            <valueString value="Coding"/>
+            <valueString value="CodeableConcept"/>
           </extension>
           <linkId value="ClaimResponse.item.adjudication.reason"/>
+          <text value="Adjudication reason"/>
           <type value="group"/>
           <required value="false"/>
           <repeats value="true"/>
@@ -958,9 +916,16 @@
             <type value="display"/>
           </item>
           <item>
-            <linkId value="ClaimResponse.item.adjudication.reason.value"/>
-            <text value="Adjudication reason"/>
+            <linkId value="ClaimResponse.item.adjudication.reason.coding"/>
+            <text value="code:"/>
             <type value="open-choice"/>
+            <required value="false"/>
+            <repeats value="false"/>
+          </item>
+          <item>
+            <linkId value="ClaimResponse.item.adjudication.reason.text"/>
+            <text value="text:"/>
+            <type value="string"/>
             <required value="false"/>
             <repeats value="false"/>
           </item>
@@ -1537,9 +1502,10 @@
           <valueInteger value="1"/>
         </extension>
         <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
-          <valueString value="Coding"/>
+          <valueString value="CodeableConcept"/>
         </extension>
         <linkId value="ClaimResponse.addItem.revenue"/>
+        <text value="Revenue or cost center code"/>
         <type value="group"/>
         <required value="false"/>
         <repeats value="true"/>
@@ -1557,9 +1523,16 @@
           <type value="display"/>
         </item>
         <item>
-          <linkId value="ClaimResponse.addItem.revenue.value"/>
-          <text value="Revenue or cost center code"/>
+          <linkId value="ClaimResponse.addItem.revenue.coding"/>
+          <text value="code:"/>
           <type value="open-choice"/>
+          <required value="false"/>
+          <repeats value="false"/>
+        </item>
+        <item>
+          <linkId value="ClaimResponse.addItem.revenue.text"/>
+          <text value="text:"/>
+          <type value="string"/>
           <required value="false"/>
           <repeats value="false"/>
         </item>
@@ -1569,9 +1542,10 @@
           <valueInteger value="1"/>
         </extension>
         <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
-          <valueString value="Coding"/>
+          <valueString value="CodeableConcept"/>
         </extension>
         <linkId value="ClaimResponse.addItem.category"/>
+        <text value="Type of service or product"/>
         <type value="group"/>
         <required value="false"/>
         <repeats value="true"/>
@@ -1589,9 +1563,16 @@
           <type value="display"/>
         </item>
         <item>
-          <linkId value="ClaimResponse.addItem.category.value"/>
-          <text value="Type of service or product"/>
+          <linkId value="ClaimResponse.addItem.category.coding"/>
+          <text value="code:"/>
           <type value="open-choice"/>
+          <required value="false"/>
+          <repeats value="false"/>
+        </item>
+        <item>
+          <linkId value="ClaimResponse.addItem.category.text"/>
+          <text value="text:"/>
+          <type value="string"/>
           <required value="false"/>
           <repeats value="false"/>
         </item>
@@ -1601,9 +1582,10 @@
           <valueInteger value="1"/>
         </extension>
         <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
-          <valueString value="Coding"/>
+          <valueString value="CodeableConcept"/>
         </extension>
         <linkId value="ClaimResponse.addItem.service"/>
+        <text value="Group, Service or Product"/>
         <type value="group"/>
         <required value="false"/>
         <repeats value="true"/>
@@ -1621,18 +1603,26 @@
           <type value="display"/>
         </item>
         <item>
-          <linkId value="ClaimResponse.addItem.service.value"/>
-          <text value="Group, Service or Product"/>
+          <linkId value="ClaimResponse.addItem.service.coding"/>
+          <text value="code:"/>
           <type value="open-choice"/>
+          <required value="false"/>
+          <repeats value="false"/>
+        </item>
+        <item>
+          <linkId value="ClaimResponse.addItem.service.text"/>
+          <text value="text:"/>
+          <type value="string"/>
           <required value="false"/>
           <repeats value="false"/>
         </item>
       </item>
       <item>
         <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
-          <valueString value="Coding"/>
+          <valueString value="CodeableConcept"/>
         </extension>
         <linkId value="ClaimResponse.addItem.modifier"/>
+        <text value="Service/Product billing modifiers"/>
         <type value="group"/>
         <required value="false"/>
         <repeats value="true"/>
@@ -1650,9 +1640,16 @@
           <type value="display"/>
         </item>
         <item>
-          <linkId value="ClaimResponse.addItem.modifier.value"/>
-          <text value="Service/Product billing modifiers"/>
+          <linkId value="ClaimResponse.addItem.modifier.coding"/>
+          <text value="code:"/>
           <type value="open-choice"/>
+          <required value="false"/>
+          <repeats value="false"/>
+        </item>
+        <item>
+          <linkId value="ClaimResponse.addItem.modifier.text"/>
+          <text value="text:"/>
+          <type value="string"/>
           <required value="false"/>
           <repeats value="false"/>
         </item>
@@ -1863,9 +1860,10 @@
             <valueInteger value="1"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
-            <valueString value="Coding"/>
+            <valueString value="CodeableConcept"/>
           </extension>
           <linkId value="ClaimResponse.addItem.detail.revenue"/>
+          <text value="Revenue or cost center code"/>
           <type value="group"/>
           <required value="false"/>
           <repeats value="true"/>
@@ -1883,9 +1881,16 @@
             <type value="display"/>
           </item>
           <item>
-            <linkId value="ClaimResponse.addItem.detail.revenue.value"/>
-            <text value="Revenue or cost center code"/>
+            <linkId value="ClaimResponse.addItem.detail.revenue.coding"/>
+            <text value="code:"/>
             <type value="open-choice"/>
+            <required value="false"/>
+            <repeats value="false"/>
+          </item>
+          <item>
+            <linkId value="ClaimResponse.addItem.detail.revenue.text"/>
+            <text value="text:"/>
+            <type value="string"/>
             <required value="false"/>
             <repeats value="false"/>
           </item>
@@ -1895,9 +1900,10 @@
             <valueInteger value="1"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
-            <valueString value="Coding"/>
+            <valueString value="CodeableConcept"/>
           </extension>
           <linkId value="ClaimResponse.addItem.detail.category"/>
+          <text value="Type of service or product"/>
           <type value="group"/>
           <required value="false"/>
           <repeats value="true"/>
@@ -1915,9 +1921,16 @@
             <type value="display"/>
           </item>
           <item>
-            <linkId value="ClaimResponse.addItem.detail.category.value"/>
-            <text value="Type of service or product"/>
+            <linkId value="ClaimResponse.addItem.detail.category.coding"/>
+            <text value="code:"/>
             <type value="open-choice"/>
+            <required value="false"/>
+            <repeats value="false"/>
+          </item>
+          <item>
+            <linkId value="ClaimResponse.addItem.detail.category.text"/>
+            <text value="text:"/>
+            <type value="string"/>
             <required value="false"/>
             <repeats value="false"/>
           </item>
@@ -1927,9 +1940,10 @@
             <valueInteger value="1"/>
           </extension>
           <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
-            <valueString value="Coding"/>
+            <valueString value="CodeableConcept"/>
           </extension>
           <linkId value="ClaimResponse.addItem.detail.service"/>
+          <text value="Service or Product"/>
           <type value="group"/>
           <required value="false"/>
           <repeats value="true"/>
@@ -1947,18 +1961,26 @@
             <type value="display"/>
           </item>
           <item>
-            <linkId value="ClaimResponse.addItem.detail.service.value"/>
-            <text value="Service or Product"/>
+            <linkId value="ClaimResponse.addItem.detail.service.coding"/>
+            <text value="code:"/>
             <type value="open-choice"/>
+            <required value="false"/>
+            <repeats value="false"/>
+          </item>
+          <item>
+            <linkId value="ClaimResponse.addItem.detail.service.text"/>
+            <text value="text:"/>
+            <type value="string"/>
             <required value="false"/>
             <repeats value="false"/>
           </item>
         </item>
         <item>
           <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
-            <valueString value="Coding"/>
+            <valueString value="CodeableConcept"/>
           </extension>
           <linkId value="ClaimResponse.addItem.detail.modifier"/>
+          <text value="Service/Product billing modifiers"/>
           <type value="group"/>
           <required value="false"/>
           <repeats value="true"/>
@@ -1976,9 +1998,16 @@
             <type value="display"/>
           </item>
           <item>
-            <linkId value="ClaimResponse.addItem.detail.modifier.value"/>
-            <text value="Service/Product billing modifiers"/>
+            <linkId value="ClaimResponse.addItem.detail.modifier.coding"/>
+            <text value="code:"/>
             <type value="open-choice"/>
+            <required value="false"/>
+            <repeats value="false"/>
+          </item>
+          <item>
+            <linkId value="ClaimResponse.addItem.detail.modifier.text"/>
+            <text value="text:"/>
+            <type value="string"/>
             <required value="false"/>
             <repeats value="false"/>
           </item>
@@ -2290,9 +2319,10 @@
           <valueInteger value="1"/>
         </extension>
         <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
-          <valueString value="Coding"/>
+          <valueString value="CodeableConcept"/>
         </extension>
         <linkId value="ClaimResponse.error.code"/>
+        <text value="Error code detailing processing issues"/>
         <type value="group"/>
         <required value="true"/>
         <repeats value="true"/>
@@ -2310,9 +2340,16 @@
           <type value="display"/>
         </item>
         <item>
-          <linkId value="ClaimResponse.error.code.value"/>
-          <text value="Error code detailing processing issues"/>
+          <linkId value="ClaimResponse.error.code.coding"/>
+          <text value="code:"/>
           <type value="open-choice"/>
+          <required value="false"/>
+          <repeats value="false"/>
+        </item>
+        <item>
+          <linkId value="ClaimResponse.error.code.text"/>
+          <text value="text:"/>
+          <type value="string"/>
           <required value="false"/>
           <repeats value="false"/>
         </item>
@@ -2600,9 +2637,10 @@
           <valueInteger value="1"/>
         </extension>
         <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
-          <valueString value="Coding"/>
+          <valueString value="CodeableConcept"/>
         </extension>
         <linkId value="ClaimResponse.payment.type"/>
+        <text value="Partial or Complete"/>
         <type value="group"/>
         <required value="false"/>
         <repeats value="true"/>
@@ -2620,9 +2658,16 @@
           <type value="display"/>
         </item>
         <item>
-          <linkId value="ClaimResponse.payment.type.value"/>
-          <text value="Partial or Complete"/>
+          <linkId value="ClaimResponse.payment.type.coding"/>
+          <text value="code:"/>
           <type value="open-choice"/>
+          <required value="false"/>
+          <repeats value="false"/>
+        </item>
+        <item>
+          <linkId value="ClaimResponse.payment.type.text"/>
+          <text value="text:"/>
+          <type value="string"/>
           <required value="false"/>
           <repeats value="false"/>
         </item>
@@ -2693,9 +2738,10 @@
           <valueInteger value="1"/>
         </extension>
         <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
-          <valueString value="Coding"/>
+          <valueString value="CodeableConcept"/>
         </extension>
         <linkId value="ClaimResponse.payment.adjustmentReason"/>
+        <text value="Reason for Payment adjustment"/>
         <type value="group"/>
         <required value="false"/>
         <repeats value="true"/>
@@ -2713,9 +2759,16 @@
           <type value="display"/>
         </item>
         <item>
-          <linkId value="ClaimResponse.payment.adjustmentReason.value"/>
-          <text value="Reason for Payment adjustment"/>
+          <linkId value="ClaimResponse.payment.adjustmentReason.coding"/>
+          <text value="code:"/>
           <type value="open-choice"/>
+          <required value="false"/>
+          <repeats value="false"/>
+        </item>
+        <item>
+          <linkId value="ClaimResponse.payment.adjustmentReason.text"/>
+          <text value="text:"/>
+          <type value="string"/>
           <required value="false"/>
           <repeats value="false"/>
         </item>
@@ -2898,9 +2951,10 @@
         <valueInteger value="1"/>
       </extension>
       <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
-        <valueString value="Coding"/>
+        <valueString value="CodeableConcept"/>
       </extension>
       <linkId value="ClaimResponse.form"/>
+      <text value="Printed Form Identifier"/>
       <type value="group"/>
       <required value="false"/>
       <repeats value="true"/>
@@ -2918,9 +2972,16 @@
         <type value="display"/>
       </item>
       <item>
-        <linkId value="ClaimResponse.form.value"/>
-        <text value="Printed Form Identifier"/>
+        <linkId value="ClaimResponse.form.coding"/>
+        <text value="code:"/>
         <type value="choice"/>
+        <required value="false"/>
+        <repeats value="false"/>
+      </item>
+      <item>
+        <linkId value="ClaimResponse.form.text"/>
+        <text value="text:"/>
+        <type value="string"/>
         <required value="false"/>
         <repeats value="false"/>
       </item>
@@ -3053,9 +3114,10 @@
           <valueInteger value="1"/>
         </extension>
         <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
-          <valueString value="Coding"/>
+          <valueString value="CodeableConcept"/>
         </extension>
         <linkId value="ClaimResponse.note.type"/>
+        <text value="display | print | printoper"/>
         <type value="group"/>
         <required value="false"/>
         <repeats value="true"/>
@@ -3073,9 +3135,16 @@
           <type value="display"/>
         </item>
         <item>
-          <linkId value="ClaimResponse.note.type.value"/>
-          <text value="display | print | printoper"/>
+          <linkId value="ClaimResponse.note.type.coding"/>
+          <text value="code:"/>
           <type value="choice"/>
+          <required value="false"/>
+          <repeats value="false"/>
+        </item>
+        <item>
+          <linkId value="ClaimResponse.note.type.text"/>
+          <text value="text:"/>
+          <type value="string"/>
           <required value="false"/>
           <repeats value="false"/>
         </item>
@@ -3117,9 +3186,10 @@
           <valueInteger value="1"/>
         </extension>
         <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
-          <valueString value="Coding"/>
+          <valueString value="CodeableConcept"/>
         </extension>
         <linkId value="ClaimResponse.note.language"/>
+        <text value="Language"/>
         <type value="group"/>
         <required value="false"/>
         <repeats value="true"/>
@@ -3137,16 +3207,58 @@
           <type value="display"/>
         </item>
         <item>
-          <linkId value="ClaimResponse.note.language.value"/>
-          <text value="Language"/>
+          <linkId value="ClaimResponse.note.language.coding"/>
+          <text value="code:"/>
           <type value="open-choice"/>
+          <required value="false"/>
+          <repeats value="false"/>
+        </item>
+        <item>
+          <linkId value="ClaimResponse.note.language.text"/>
+          <text value="text:"/>
+          <type value="string"/>
           <required value="false"/>
           <repeats value="false"/>
         </item>
       </item>
     </item>
     <item>
-      <linkId value="ClaimResponse.coverage"/>
+      <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
+        <valueString value="Reference"/>
+      </extension>
+      <linkId value="ClaimResponse.communicationRequest"/>
+      <type value="group"/>
+      <required value="false"/>
+      <repeats value="true"/>
+      <item>
+        <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl">
+          <valueCodeableConcept>
+            <coding>
+              <system value="http://hl7.org/fhir/questionnaire-item-control"/>
+              <code value="flyover"/>
+              <display value="Fly-over"/>
+            </coding>
+          </valueCodeableConcept>
+        </extension>
+        <text value="Request for additional supporting or authorizing information, such as: documents, images or resources."/>
+        <type value="display"/>
+      </item>
+      <item>
+        <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-allowedResource">
+          <valueCode value="CommunicationRequest"/>
+        </extension>
+        <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-referenceFilter">
+          <valueString value="subject=$subj&amp;patient=$subj&amp;encounter=$encounter"/>
+        </extension>
+        <linkId value="ClaimResponse.communicationRequest.value"/>
+        <text value="Request for additional information"/>
+        <type value="reference"/>
+        <required value="false"/>
+        <repeats value="false"/>
+      </item>
+    </item>
+    <item>
+      <linkId value="ClaimResponse.insurance"/>
       <text value="Insurance or medical plan"/>
       <type value="group"/>
       <required value="false"/>
@@ -3171,7 +3283,7 @@
         <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
           <valueString value="string"/>
         </extension>
-        <linkId value="ClaimResponse.coverage.id"/>
+        <linkId value="ClaimResponse.insurance.id"/>
         <type value="group"/>
         <required value="false"/>
         <repeats value="true"/>
@@ -3189,7 +3301,7 @@
           <type value="display"/>
         </item>
         <item>
-          <linkId value="ClaimResponse.coverage.id.value"/>
+          <linkId value="ClaimResponse.insurance.id.value"/>
           <text value="xml:id (or equivalent in JSON)"/>
           <type value="string"/>
           <required value="false"/>
@@ -3197,7 +3309,7 @@
         </item>
       </item>
       <item>
-        <linkId value="ClaimResponse.coverage.extension"/>
+        <linkId value="ClaimResponse.insurance.extension"/>
         <text value="Additional Content defined by implementations"/>
         <type value="group"/>
         <required value="false"/>
@@ -3217,7 +3329,7 @@
         </item>
       </item>
       <item>
-        <linkId value="ClaimResponse.coverage.modifierExtension"/>
+        <linkId value="ClaimResponse.insurance.modifierExtension"/>
         <text value="Extensions that cannot be ignored"/>
         <type value="group"/>
         <required value="false"/>
@@ -3246,7 +3358,7 @@
         <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
           <valueString value="integer"/>
         </extension>
-        <linkId value="ClaimResponse.coverage.sequence"/>
+        <linkId value="ClaimResponse.insurance.sequence"/>
         <type value="group"/>
         <required value="true"/>
         <repeats value="true"/>
@@ -3264,7 +3376,7 @@
           <type value="display"/>
         </item>
         <item>
-          <linkId value="ClaimResponse.coverage.sequence.value"/>
+          <linkId value="ClaimResponse.insurance.sequence.value"/>
           <text value="Service instance identifier"/>
           <type value="integer"/>
           <required value="false"/>
@@ -3281,7 +3393,7 @@
         <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
           <valueString value="boolean"/>
         </extension>
-        <linkId value="ClaimResponse.coverage.focal"/>
+        <linkId value="ClaimResponse.insurance.focal"/>
         <type value="group"/>
         <required value="true"/>
         <repeats value="true"/>
@@ -3299,7 +3411,7 @@
           <type value="display"/>
         </item>
         <item>
-          <linkId value="ClaimResponse.coverage.focal.value"/>
+          <linkId value="ClaimResponse.insurance.focal.value"/>
           <text value="Is the focal Coverage"/>
           <type value="boolean"/>
           <required value="false"/>
@@ -3316,7 +3428,7 @@
         <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
           <valueString value="Reference"/>
         </extension>
-        <linkId value="ClaimResponse.coverage.coverage"/>
+        <linkId value="ClaimResponse.insurance.coverage"/>
         <type value="group"/>
         <required value="true"/>
         <repeats value="true"/>
@@ -3340,7 +3452,7 @@
           <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-referenceFilter">
             <valueString value="subject=$subj&amp;patient=$subj&amp;encounter=$encounter"/>
           </extension>
-          <linkId value="ClaimResponse.coverage.coverage.value"/>
+          <linkId value="ClaimResponse.insurance.coverage.value"/>
           <text value="Insurance information"/>
           <type value="reference"/>
           <required value="false"/>
@@ -3354,7 +3466,7 @@
         <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
           <valueString value="string"/>
         </extension>
-        <linkId value="ClaimResponse.coverage.businessArrangement"/>
+        <linkId value="ClaimResponse.insurance.businessArrangement"/>
         <type value="group"/>
         <required value="false"/>
         <repeats value="true"/>
@@ -3372,7 +3484,7 @@
           <type value="display"/>
         </item>
         <item>
-          <linkId value="ClaimResponse.coverage.businessArrangement.value"/>
+          <linkId value="ClaimResponse.insurance.businessArrangement.value"/>
           <text value="Business agreement"/>
           <type value="string"/>
           <required value="false"/>
@@ -3383,7 +3495,7 @@
         <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
           <valueString value="string"/>
         </extension>
-        <linkId value="ClaimResponse.coverage.preAuthRef"/>
+        <linkId value="ClaimResponse.insurance.preAuthRef"/>
         <type value="group"/>
         <required value="false"/>
         <repeats value="true"/>
@@ -3401,7 +3513,7 @@
           <type value="display"/>
         </item>
         <item>
-          <linkId value="ClaimResponse.coverage.preAuthRef.value"/>
+          <linkId value="ClaimResponse.insurance.preAuthRef.value"/>
           <text value="Pre-Authorization/Determination Reference"/>
           <type value="string"/>
           <required value="false"/>
@@ -3415,7 +3527,7 @@
         <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
           <valueString value="Reference"/>
         </extension>
-        <linkId value="ClaimResponse.coverage.claimResponse"/>
+        <linkId value="ClaimResponse.insurance.claimResponse"/>
         <type value="group"/>
         <required value="false"/>
         <repeats value="true"/>
@@ -3439,7 +3551,7 @@
           <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-referenceFilter">
             <valueString value="subject=$subj&amp;patient=$subj&amp;encounter=$encounter"/>
           </extension>
-          <linkId value="ClaimResponse.coverage.claimResponse.value"/>
+          <linkId value="ClaimResponse.insurance.claimResponse.value"/>
           <text value="Adjudication results"/>
           <type value="reference"/>
           <required value="false"/>

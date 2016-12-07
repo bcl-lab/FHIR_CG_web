@@ -14,15 +14,15 @@
     {
       "telecom": [
         {
-          "system": "other",
+          "system": "url",
           "value": "http://hl7.org/fhir"
         }
       ]
     }
   ],
-  "date": "2016-11-28T17:29:55-05:00",
+  "date": "2016-12-07T14:18:58-05:00",
   "description": "Logical Model: A pattern to be followed by resources that represent a specific proposal, plan and/or order for some sort of action or service.",
-  "fhirVersion": "1.7.0",
+  "fhirVersion": "1.8.0",
   "mapping": [
     {
       "identity": "rim",
@@ -184,9 +184,9 @@
       {
         "id": "Request.status",
         "path": "Request.status",
-        "short": "draft | active | suspended | cancelled | completed | entered-in-error",
+        "short": "draft | active | suspended | cancelled | completed | entered-in-error | unknown",
         "definition": "The current state of the request.",
-        "comments": "The status is generally fully in the control of the requester - they determine whether the order is draft or active and, after it has been activated, completed, cancelled or suspended. States relating to the activities of the performer are reflected on either the corresponding [[[Event]]](s) or using the [[[Task]]] resource.",
+        "comments": "The status is generally fully in the control of the requester - they determine whether the order is draft or active and, after it has been activated, completed, cancelled or suspended. States relating to the activities of the performer are reflected on either the corresponding [Event](event.html)(s) or using the [Task](task.html) resource.\n\nA nominal state-transition diagram can be found in the [[request.html#statemachine | Request pattern]] documentation\n\nUnknown does not represent \"other\" - one of the defined statuses must apply.  Unknown is used when the authoring system is not sure what the current status is.",
         "min": 1,
         "max": "1",
         "type": [
@@ -248,6 +248,34 @@
           {
             "identity": "w5",
             "map": "class"
+          }
+        ]
+      },
+      {
+        "id": "Request.priority",
+        "path": "Request.priority",
+        "short": "routine | urgent | asap | stat",
+        "definition": "Indicates how quickly the {{title}} should be addressed with respect to other requests.",
+        "min": 0,
+        "max": "1",
+        "type": [
+          {
+            "code": "code"
+          }
+        ],
+        "meaningWhenMissing": "If missing, this task should be performed with normal priority",
+        "isSummary": true,
+        "binding": {
+          "strength": "required",
+          "description": "Identifies the level of importance to be assigned to actioning the request",
+          "valueSetReference": {
+            "reference": "http://hl7.org/fhir/ValueSet/request-priority"
+          }
+        },
+        "mapping": [
+          {
+            "identity": "w5",
+            "map": "grade"
           }
         ]
       },
@@ -385,12 +413,13 @@
         ]
       },
       {
-        "id": "Request.authored",
-        "path": "Request.authored",
+        "id": "Request.authoredOn",
+        "path": "Request.authoredOn",
         "short": "When request transitioned to being actionable",
         "definition": "For draft requests, indicates the date of initial creation.  For requests with other statuses, indicates the date of activation.",
         "alias": [
-          "created"
+          "createdOn",
+          "signedOn"
         ],
         "min": 0,
         "max": "1",
@@ -416,10 +445,40 @@
         "path": "Request.requester",
         "short": "Who/what is requesting service",
         "definition": "The individual who initiated the request and has responsibility for its activation.",
+        "comments": "[Resources may choose to replace this with just a single requester where there's no need to responsible organization].",
         "alias": [
           "author"
         ],
         "min": 0,
+        "max": "1",
+        "type": [
+          {
+            "code": "Element"
+          }
+        ],
+        "constraint": [
+          {
+            "key": "inv-1",
+            "severity": "error",
+            "human": "onBehalfOf can only be specified if agent is practitioner or device",
+            "expression": "(agent is Practitioner) or (agent is Device) or onBehalfOf.exists().not()",
+            "xpath": "contains(f:agent, '/Practitioner') or contains(f:agent, '/Device') or not(exists(f:onBehalfOf))"
+          }
+        ],
+        "isSummary": true,
+        "mapping": [
+          {
+            "identity": "rim",
+            "map": ".participation[typeCode=AUT].role"
+          }
+        ]
+      },
+      {
+        "id": "Request.requester.agent",
+        "path": "Request.requester.agent",
+        "short": "Individual making the request",
+        "definition": "The device, practitioner, etc. who initiated the request.",
+        "min": 1,
         "max": "1",
         "type": [
           {
@@ -447,7 +506,7 @@
         "mapping": [
           {
             "identity": "rim",
-            "map": ".participation[typeCode=AUT].role"
+            "map": ".player"
           },
           {
             "identity": "w5",
@@ -456,11 +515,36 @@
         ]
       },
       {
+        "id": "Request.requester.onBehalfOf",
+        "path": "Request.requester.onBehalfOf",
+        "short": "Organization agent is acting for",
+        "definition": "The organization the device or practitioner was acting on behalf of.",
+        "requirements": "Practitioners and Devices can be associated with multiple organizations.  This element indicates which organization they were acting on behalf of when authoring the request.",
+        "min": 0,
+        "max": "1",
+        "type": [
+          {
+            "code": "Reference",
+            "targetProfile": "http://hl7.org/fhir/StructureDefinition/Organization"
+          }
+        ],
+        "condition": [
+          "inv-1"
+        ],
+        "isSummary": true,
+        "mapping": [
+          {
+            "identity": "rim",
+            "map": ".scoper"
+          }
+        ]
+      },
+      {
         "id": "Request.performerType",
         "path": "Request.performerType",
         "short": "Desired kind of service performer",
         "definition": "The type of individual that is desired to act upon the request.",
-        "comments": "If performer is also specified, this indicates what type of performer is desired in the event the requested performer is not available.",
+        "comments": "If performer is also specified, this indicates what type of performer is desired in the event the requested performer is not available.\n\nIf specified without indicating a performer, this indicates that the performer must be of the specified type.  If specified with a performer then it indicates the requirements of the performer if the designated performer is not available.",
         "min": 0,
         "max": "1",
         "type": [

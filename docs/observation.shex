@@ -79,21 +79,6 @@ start=@<Observation> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
-# Provides guide for interpretation
-<Observation.referenceRange> CLOSED {
-    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
-    fhir:extension @<Extension>*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    fhir:Observation.referenceRange.low @<SimpleQuantity>?;  # Low Range, if relevant
-    fhir:Observation.referenceRange.high @<SimpleQuantity>?;  # High Range, if relevant
-    fhir:Observation.referenceRange.meaning @<CodeableConcept>*;  # Reference range qualifier
-    fhir:Observation.referenceRange.age @<Range>?;  # Applicable age range, if relevant
-    fhir:Observation.referenceRange.text @<string>?;  # Text based reference range in an 
-                                            # observation 
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
 # Resource related to this observation
 <Observation.related> CLOSED {
     fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
@@ -110,6 +95,21 @@ start=@<Observation> AND {fhir:nodeRole [fhir:treeRoot]}
         @<QuestionnaireResponseReference> OR
         @<SequenceReference>
     );
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
+# Provides guide for interpretation
+<Observation.referenceRange> CLOSED {
+    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
+    fhir:extension @<Extension>*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
+    fhir:Observation.referenceRange.low @<SimpleQuantity>?;  # Low Range, if relevant
+    fhir:Observation.referenceRange.high @<SimpleQuantity>?;  # High Range, if relevant
+    fhir:Observation.referenceRange.meaning @<CodeableConcept>*;  # Reference range qualifier
+    fhir:Observation.referenceRange.age @<Range>?;  # Applicable age range, if relevant
+    fhir:Observation.referenceRange.text @<string>?;  # Text based reference range in an 
+                                            # observation 
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -608,8 +608,8 @@ start=@<Observation> AND {fhir:nodeRole [fhir:treeRoot]}
 
 #---------------------- Value Sets ------------------------
 
-# Codes providing the status of an observation.
-fhirvs:observation-status ["registered" "preliminary" "final" "amended" "cancelled" "entered-in-error" "unknown"]
+# Codes specifying how two observations are related.
+fhirvs:observation-relationshiptypes ["has-member" "derived-from" "sequel-to" "replaces" "qualified-by" "interfered-by"]
 
 # How the Quantity should be understood and represented.
 fhirvs:quantity-comparator ["<" "<=" ">=" ">"]
@@ -620,5 +620,5 @@ fhirvs:identifier-use ["usual" "official" "temp" "secondary"]
 # The status of a resource narrative
 fhirvs:narrative-status ["generated" "extensions" "additional" "empty"]
 
-# Codes specifying how two observations are related.
-fhirvs:observation-relationshiptypes ["has-member" "derived-from" "sequel-to" "replaces" "qualified-by" "interfered-by"]
+# Codes providing the status of an observation.
+fhirvs:observation-status ["registered" "preliminary" "final" "amended" "cancelled" "entered-in-error" "unknown"]

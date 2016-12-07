@@ -6,19 +6,25 @@
     <status value="generated"/>
     <div xmlns="http://www.w3.org/1999/xhtml">to do</div>
   </text>
+  <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm">
+    <valueInteger value="1"/>
+  </extension>
+  <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-wg">
+    <valueCode value="oo"/>
+  </extension>
   <url value="http://hl7.org/fhir/StructureDefinition/ldlcholesterol"/>
   <name value="Example Lipid Profile"/>
   <status value="draft"/>
   <publisher value="Grahame Grieve"/>
   <contact>
     <telecom>
-      <system value="other"/>
+      <system value="url"/>
       <value value="grahame@healthintersections.com.au"/>
     </telecom>
   </contact>
   <date value="2012-05-12"/>
   <description value="LDL Cholesterol Result"/>
-  <fhirVersion value="1.7.0"/>
+  <fhirVersion value="1.8.0"/>
   <mapping>
     <identity value="v2"/>
     <uri value="http://hl7.org/v2"/>
@@ -378,7 +384,7 @@
       <path value="Observation.category"/>
       <short value="Classification of  type of observation"/>
       <definition value="A code that classifies the general type of observation being made."/>
-      <comments value="There may be multiple axis of categoriization depending on the context or use case for retrieving or displaying the resource.  The level of granularity is defined by the category concepts in the value set.   More fine-grained filtering can be performed using the metadata and/or terminology hierarchy in Observation.code."/>
+      <comments value="There may be multiple axis of categoriization depending on the context or use case for retrieving or displaying the resource.  The level of granularity is defined by the category concepts in the value set."/>
       <requirements value="Used for filtering what observations are retreived and displayed."/>
       <min value="0"/>
       <max value="*"/>
@@ -1258,7 +1264,7 @@
     <element id="Observation:ldlcholesterol.related.target">
       <path value="Observation.related.target"/>
       <short value="Resource that is related to this one"/>
-      <definition value="A reference to the observation or [[[QuestionnaireResponse]]] resource that is related to this observation."/>
+      <definition value="A reference to the observation or [QuestionnaireResponse](questionnaireresponse.html#) resource that is related to this observation."/>
       <min value="1"/>
       <max value="1"/>
       <base>

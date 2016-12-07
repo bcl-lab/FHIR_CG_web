@@ -27,7 +27,7 @@
   POSSIBILITY OF SUCH DAMAGE.
   
 
-  Generated on Mon, Nov 28, 2016 17:29-0500 for FHIR v1.7.0 
+  Generated on Wed, Dec 7, 2016 14:18-0500 for FHIR v1.8.0 
 
   Note: the schemas &amp; schematrons do not contain all of the rules about what makes resources
   valid. Implementers will still need to be familiar with the content of the specification and with
@@ -96,7 +96,7 @@
           </xs:element>
           <xs:element name="concept" minOccurs="0" maxOccurs="unbounded" type="Coding">
             <xs:annotation>
-              <xs:documentation xml:lang="en">Identifies a how this question or group of questions is known in a particular terminology such as LOINC.</xs:documentation>
+              <xs:documentation xml:lang="en">Identifies how this question or group of questions is known in a particular terminology such as LOINC.</xs:documentation>
            </xs:annotation>
           </xs:element>
           <xs:element name="subjectType" minOccurs="0" maxOccurs="unbounded" type="code">
@@ -120,14 +120,28 @@
     <xs:complexContent>
       <xs:extension base="BackboneElement">
         <xs:sequence>
-          <xs:element name="linkId" minOccurs="0" maxOccurs="1" type="string">
+          <xs:element name="linkId" minOccurs="1" maxOccurs="1" type="string">
             <xs:annotation>
               <xs:documentation xml:lang="en">An identifier that is unique within the Questionnaire allowing linkage to the equivalent item in a QuestionnaireResponse resource.</xs:documentation>
            </xs:annotation>
           </xs:element>
+          <xs:element name="definition" minOccurs="0" maxOccurs="1" type="uri">
+            <xs:annotation>
+              <xs:documentation xml:lang="en">A reference to an [[[ElementDefinition]]] that provides the details for the item. If a definition is provided, then the following element values can be inferred from the definition: 
+
+* concept (ElementDefinition.code)
+* type (ElementDefinition.type)
+* required (ElementDefinition.min)
+* repeats (ElementDefinition.max)
+* maxLength (ElementDefinition.maxLength)
+* options (ElementDefinition.binding)
+
+Any information provided in these elements overrides the information from the definition.</xs:documentation>
+           </xs:annotation>
+          </xs:element>
           <xs:element name="concept" minOccurs="0" maxOccurs="unbounded" type="Coding">
             <xs:annotation>
-              <xs:documentation xml:lang="en">Identifies a how this group of questions is known in a particular terminology such as LOINC.</xs:documentation>
+              <xs:documentation xml:lang="en">Terminology code that corresponds to this group or question (e.g. LOINC).</xs:documentation>
            </xs:annotation>
           </xs:element>
           <xs:element name="prefix" minOccurs="0" maxOccurs="1" type="string">
@@ -140,7 +154,7 @@
               <xs:documentation xml:lang="en">The name of a section, the text of a question or text content for a text item.</xs:documentation>
            </xs:annotation>
           </xs:element>
-          <xs:element name="type" minOccurs="1" maxOccurs="1" type="QuestionnaireItemType">
+          <xs:element name="type" minOccurs="0" maxOccurs="1" type="QuestionnaireItemType">
             <xs:annotation>
               <xs:documentation xml:lang="en">Identifies the type of questionnaire item this is - whether text for display, a grouping of other items or a particular type of data to be captured (string, integer, coded choice, etc.).</xs:documentation>
            </xs:annotation>
@@ -182,7 +196,7 @@
           </xs:element>
           <xs:choice minOccurs="0" maxOccurs="1" >
             <xs:annotation>
-              <xs:documentation xml:lang="en">The value that should be pre-populated when rendering the questionnaire for user input.</xs:documentation>
+              <xs:documentation xml:lang="en">The value that should be defaulted when rendering the questionnaire for user input.</xs:documentation>
             </xs:annotation>
             <xs:element name="initialBoolean" type="boolean"/>
             <xs:element name="initialDecimal" type="decimal"/>
@@ -277,11 +291,6 @@
       <xs:enumeration value="display">
         <xs:annotation>
           <xs:documentation xml:lang="en">Display</xs:documentation>
-        </xs:annotation>
-      </xs:enumeration>
-      <xs:enumeration value="question">
-        <xs:annotation>
-          <xs:documentation xml:lang="en">Question</xs:documentation>
         </xs:annotation>
       </xs:enumeration>
       <xs:enumeration value="boolean">

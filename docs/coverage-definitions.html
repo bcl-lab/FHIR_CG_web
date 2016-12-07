@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>Coverage - FHIR v1.7.0</title>
+  <title>Coverage - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -118,7 +118,7 @@
   <tr><td>Requirements</td><td><p>Health care programs and insurers are significant payors of health service costs.</p>
 </td></tr>
   <tr><td colspan="2" class="structure"><a name="Coverage.identifier"> </a><b>Coverage.identifier</b></td></tr>
-  <tr><td>Definition</td><td><p>The main (and possibly only) identifier for the coverage - often referred to as a Member Id, Subscriber Id, Certificate number or Personal Health Number or Case ID.</p>
+  <tr><td>Definition</td><td><p>The main (and possibly only) identifier for the coverage - often referred to as a Member Id, Certificate number, Personal Health Number or Case ID. May be constructed as the concatination of the Coverage.SubscriberID and the Coverage.dependant.</p>
 </td></tr>
   <tr><td>Note</td><td>This is a business identifer, not a resource identifier (see <a href="resource.html#identifiers">discussion</a>)</td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..*</td></tr>
@@ -130,67 +130,71 @@
   <tr><td>Definition</td><td><p>The status of the resource instance.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>CoverageStatus: <a href="valueset-coverage-status.html">A code specifying the state of the resource instance.</a> (<a href="terminologies.html#required">Required</a>)</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-fm-status.html">Financial Resource Status Codes</a> (<a href="terminologies.html#required">Required</a>)</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#code">code</a></td></tr>
   <tr><td><a href="conformance-rules.html#ismodifier">Is Modifier</a></td><td>true</td></tr>
   <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
-  <tr><td colspan="2" class="structure"><a name="Coverage.issuer"> </a><b>Coverage.issuer</b></td></tr>
-  <tr><td>Definition</td><td><p>The program or plan underwriter or payor including both insurance and non-insurance agreements, such as patient-pay agreements.</p>
+  <tr><td colspan="2" class="structure"><a name="Coverage.type"> </a><b>Coverage.type</b></td></tr>
+  <tr><td>Definition</td><td><p>The type of coverage: social program, medical plan, accident coverage (workers compensation, auto), group health or payment by an individual or organization.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="datatypes.html">Type</a></td><td><a href="references.html#Reference">Reference</a>(<a href="organization.html">Organization</a> | <a href="patient.html">Patient</a> | <a href="relatedperson.html">RelatedPerson</a>)</td></tr>
-  <tr><td>Requirements</td><td><p>Need to identify the issuer to target for processing and for coordination of benefit processing.</p>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-coverage-type.html">Coverage Type Codes</a> (<a href="terminologies.html#preferred">Preferred</a>)</td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
+  <tr><td>Requirements</td><td><p>The order of application of coverages is dependent on the types of coverage.</p>
 </td></tr>
   <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
-  <tr><td colspan="2" class="structure"><a name="Coverage.isAgreement"> </a><b>Coverage.isAgreement</b></td></tr>
-  <tr><td>Definition</td><td><p>A self, or other, payment agreement not an insurance policy.</p>
+  <tr><td colspan="2" class="structure"><a name="Coverage.policyHolder"> </a><b>Coverage.policyHolder</b></td></tr>
+  <tr><td>Definition</td><td><p>The party who 'owns' the insurance policy,  may be an individual, corporation or the subscriber's employer.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#boolean">boolean</a></td></tr>
-  <tr><td>Requirements</td><td><p>Only insurance policies receive Claims, agreements receive bills.</p>
-</td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="references.html#Reference">Reference</a>(<a href="patient.html">Patient</a> | <a href="relatedperson.html">RelatedPerson</a> | <a href="organization.html">Organization</a>)</td></tr>
   <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
+  <tr><td colspan="2" class="structure"><a name="Coverage.subscriber"> </a><b>Coverage.subscriber</b></td></tr>
+  <tr><td>Definition</td><td><p>The party who has signed-up for or 'owns' the contractual relationship to the policy or to whom the benefit of the policy for services rendered to them or their family is due.</p>
+</td></tr>
+  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="references.html#Reference">Reference</a>(<a href="patient.html">Patient</a> | <a href="relatedperson.html">RelatedPerson</a>)</td></tr>
+  <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
+  <tr><td colspan="2" class="structure"><a name="Coverage.subscriberId"> </a><b>Coverage.subscriberId</b></td></tr>
+  <tr><td>Definition</td><td><p>The insurer assigned ID for the Subscriber.</p>
+</td></tr>
+  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#string">string</a></td></tr>
+  <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
+  <tr><td colspan="2" class="structure"><a name="Coverage.beneficiary"> </a><b>Coverage.beneficiary</b></td></tr>
+  <tr><td>Definition</td><td><p>The party who benefits from the insurance coverage., the patient when services are provided.</p>
+</td></tr>
+  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="references.html#Reference">Reference</a>(<a href="patient.html">Patient</a>)</td></tr>
+  <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
+  <tr><td colspan="2" class="structure"><a name="Coverage.relationship"> </a><b>Coverage.relationship</b></td></tr>
+  <tr><td>Definition</td><td><p>The relationship of beneficiary (patient) to the subscriber.</p>
+</td></tr>
+  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-policyholder-relationship.html">Policyholder Relationship Codes</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
+  <tr><td>Requirements</td><td><p>To determine relationship between the patient and the subscriber.</p>
+</td></tr>
   <tr><td colspan="2" class="structure"><a name="Coverage.period"> </a><b>Coverage.period</b></td></tr>
   <tr><td>Definition</td><td><p>Time period during which the coverage is in force. A missing start date indicates the start date isn't known, a missing end date means the coverage is continuing to be in force.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#Period">Period</a></td></tr>
   <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
-  <tr><td colspan="2" class="structure"><a name="Coverage.type"> </a><b>Coverage.type</b></td></tr>
-  <tr><td>Definition</td><td><p>The type of coverage: social program, medical plan, accident coverage (workers compensation, auto), group health.</p>
+  <tr><td colspan="2" class="structure"><a name="Coverage.payor"> </a><b>Coverage.payor</b></td></tr>
+  <tr><td>Definition</td><td><p>The program or plan underwriter or payor including both insurance and non-insurance agreements, such as patient-pay agreements. May provide multiple identifiers such as insurance company identifier or business identifier (BIN number).</p>
 </td></tr>
-  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>ActCoverageTypeCode: <a href="v3/ActCoverageTypeCode/vs.html">The type of insurance: public health, worker compensation; private accident, auto, private health, etc.).</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
-  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#Coding">Coding</a></td></tr>
-  <tr><td>Requirements</td><td><p>The order of application of coverages is dependent on the types of coverage.</p>
+  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..*</td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="references.html#Reference">Reference</a>(<a href="organization.html">Organization</a> | <a href="patient.html">Patient</a> | <a href="relatedperson.html">RelatedPerson</a>)</td></tr>
+  <tr><td>Requirements</td><td><p>Need to identify the issuer to target for processing and for coordination of benefit processing.</p>
 </td></tr>
   <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
-  <tr><td colspan="2" class="structure"><a name="Coverage.planholder"> </a><b>Coverage.planholder</b></td></tr>
-  <tr><td>Definition</td><td><p>The party who 'owns' the insurance contractual relationship to the policy or to whom the benefit of the policy is due.</p>
-</td></tr>
-  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="datatypes.html">Type</a></td><td><a href="references.html#Reference">Reference</a>(<a href="patient.html">Patient</a> | <a href="relatedperson.html">RelatedPerson</a> | <a href="organization.html">Organization</a>)</td></tr>
-  <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
-  <tr><td colspan="2" class="structure"><a name="Coverage.beneficiary"> </a><b>Coverage.beneficiary</b></td></tr>
-  <tr><td>Definition</td><td><p>The party who benefits from the insurance coverage.</p>
-</td></tr>
-  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="datatypes.html">Type</a></td><td><a href="references.html#Reference">Reference</a>(<a href="patient.html">Patient</a>)</td></tr>
-  <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
-  <tr><td colspan="2" class="structure"><a name="Coverage.relationship"> </a><b>Coverage.relationship</b></td></tr>
-  <tr><td>Definition</td><td><p>The relationship of beneficiary (patient) (subscriber) to the the planholder.</p>
-</td></tr>
-  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>Policyholder Relationship Codes: <a href="valueset-policyholder-relationship.html">The relationship between the Policyholder and the Beneficiary (insured/covered party/patient).</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
-  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#Coding">Coding</a></td></tr>
-  <tr><td>Requirements</td><td><p>To determine relationship between the patient and the subscriber.</p>
-</td></tr>
   <tr><td colspan="2" class="structure"><a name="Coverage.group"> </a><b>Coverage.group</b></td></tr>
   <tr><td>Definition</td><td><p>A suite of underwrite specific classifiers, for example may be used to identify a class of coverage or employer group, Policy, Plan.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
   <tr><td colspan="2" class="structure"><a name="Coverage.group.group"> </a><b>Coverage.group.group</b></td></tr>
-  <tr><td>Definition</td><td><p>Identifies a style or collective of coverage issues by the underwriter, for example may be used to identify a class of coverage or employer group. May also be referred to as a Policy or Group ID.</p>
+  <tr><td>Definition</td><td><p>Identifies a style or collective of coverage issued by the underwriter, for example may be used to identify an employer group. May also be referred to as a Policy or Group ID.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#string">string</a></td></tr>
@@ -202,7 +206,7 @@
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#string">string</a></td></tr>
   <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
   <tr><td colspan="2" class="structure"><a name="Coverage.group.subGroup"> </a><b>Coverage.group.subGroup</b></td></tr>
-  <tr><td>Definition</td><td><p>Identifies a style or collective of coverage issues by the underwriter, for example may be used to identify a class of coverage or employer group. May also be referred to as a Policy or Group ID.</p>
+  <tr><td>Definition</td><td><p>Identifies a style or collective of coverage issued by the underwriter, for example may be used to identify a subset of an employer group.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#string">string</a></td></tr>
@@ -214,7 +218,7 @@
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#string">string</a></td></tr>
   <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
   <tr><td colspan="2" class="structure"><a name="Coverage.group.plan"> </a><b>Coverage.group.plan</b></td></tr>
-  <tr><td>Definition</td><td><p>Identifies a style or collective of coverage issues by the underwriter, for example may be used to identify a class of coverage or employer group. May also be referred to as a Policy or Group ID.</p>
+  <tr><td>Definition</td><td><p>Identifies a style or collective of coverage issued by the underwriter, for example may be used to identify a collection of benefits provided to employees. May be referred to as a Section or Division ID.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#string">string</a></td></tr>
@@ -226,7 +230,7 @@
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#string">string</a></td></tr>
   <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
   <tr><td colspan="2" class="structure"><a name="Coverage.group.subPlan"> </a><b>Coverage.group.subPlan</b></td></tr>
-  <tr><td>Definition</td><td><p>Identifies a sub-style or sub-collective of coverage issues by the underwriter, for example may be used to identify a specific employer group within a class of employers. May be referred to as a Section or Division ID.</p>
+  <tr><td>Definition</td><td><p>Identifies a sub-style or sub-collective of coverage issued by the underwriter, for example may be used to identify a subset of a collection of benefits provided to employees.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#string">string</a></td></tr>
@@ -265,20 +269,26 @@
   <tr><td>Definition</td><td><p>A unique identifier for a dependent under the coverage.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#positiveInt">positiveInt</a></td></tr>
-  <tr><td>Requirements</td><td><p>For some coverage a single identifier is issued to the PolicyHolder and a dependent number issued to each beneficiary.</p>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#string">string</a></td></tr>
+  <tr><td>Requirements</td><td><p>For some coverage a single identifier is issued to the Subscriber and a dependent number issued to each beneficiary.</p>
 </td></tr>
   <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
   <tr><td colspan="2" class="structure"><a name="Coverage.sequence"> </a><b>Coverage.sequence</b></td></tr>
   <tr><td>Definition</td><td><p>An optional counter for a particular instance of the identified coverage which increments upon each renewal.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#positiveInt">positiveInt</a></td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#string">string</a></td></tr>
   <tr><td>Requirements</td><td><p>Some coverage, for example social plans, may be offered in short time increments, for example for a week or a month at a time, so while the rest of the plan details and identifiers may remain constant over time, the instance is incremented with each renewal and provided to the covered party on their 'card'.</p>
 </td></tr>
   <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
+  <tr><td colspan="2" class="structure"><a name="Coverage.order"> </a><b>Coverage.order</b></td></tr>
+  <tr><td>Definition</td><td><p>The order of applicability of this coverage relative to other coverages which are currently inforce. Note, there may be gaps in the numbering and this does not imply primary, secondard etc. as the specific positioning of coverages depends upon the episode of care.</p>
+</td></tr>
+  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#positiveInt">positiveInt</a></td></tr>
+  <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
   <tr><td colspan="2" class="structure"><a name="Coverage.network"> </a><b>Coverage.network</b></td></tr>
-  <tr><td>Definition</td><td><p>The identifier for a community of providers.</p>
+  <tr><td>Definition</td><td><p>The insurer-specific identifier for the insurer-defined network of providers to which the beneficiary may seek treatment which will be covered at the 'in-network' rate, otherwise 'out of network' terms and conditions apply.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#string">string</a></td></tr>
@@ -306,7 +316,7 @@
 		<div class="container">  <!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:32-0500. <a href="qa.html">QA Page</a>
+        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:21-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search <img src="external.png" style="text-align: baseline"/></a> | 

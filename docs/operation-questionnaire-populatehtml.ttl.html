@@ -3,7 +3,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>Operation-questionnaire-populatehtml.ttl - FHIR v1.7.0</title>
+  <title>Operation-questionnaire-populatehtml.ttl - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -130,13 +130,13 @@
   fhir:OperationDefinition.name [ fhir:value &quot;Generate HTML for Questionnaire&quot;];
   fhir:OperationDefinition.status [ fhir:value &quot;draft&quot;];
   fhir:OperationDefinition.kind [ fhir:value &quot;operation&quot;];
-  fhir:OperationDefinition.date [ fhir:value &quot;2016-11-28T17:29:55-05:00&quot;];
+  fhir:OperationDefinition.date [ fhir:value &quot;2016-12-07T14:18:58-05:00&quot;];
   fhir:OperationDefinition.publisher [ fhir:value &quot;HL7 (FHIR Project)&quot;];
   fhir:OperationDefinition.contact [
      fhir:index 0;
      fhir:ContactDetail.telecom [
        fhir:index 0;
-       fhir:ContactPoint.system [ fhir:value &quot;other&quot; ];
+       fhir:ContactPoint.system [ fhir:value &quot;url&quot; ];
        fhir:ContactPoint.value [ fhir:value &quot;http://hl7.org/fhir&quot; ]
      ], [
        fhir:index 1;
@@ -144,7 +144,7 @@
        fhir:ContactPoint.value [ fhir:value &quot;fhir@lists.hl7.org&quot; ]
      ]
   ];
-  fhir:OperationDefinition.description [ fhir:value &quot;Generates an HTML page as a [[[Binary]]] instance  based on a specified [[[Questionnaire]]], filling in answers to questions where possible based on information provided as part of the operation or already known by the server about the subject of the [[[Questionnaire]]].\n\nIf the operation is not called at the instance level, one and only one of the identifier, questionnaire or questionnaireRef 'in' parameters must be provided. If called at the instance level, these parameters will be ignored.\n\nThe response will contain a [[[Binary]]] instance containing an HTML page for filling in and submitting the specified [[[Questionnaire]]] and/or an [[[OperationOutcome]]] resource with errors or warnings.\n\nThe generated HTML form instance will be populated with an unanswered set of questions following the group and question structure of the specified [[[Questionnaire]]].  If  *content* parameters were specified or the *local* parameter was set to true, some of the questions may have answers filled in as well.  In the case of repeating questions or groups, typically only one repetition will be provided unless answer values exist that would support populating multiple repetitions.\n\nPopulation of the HTML form with appropriate data is dependent on the questions and/or groups in the [[[Questionnaire]]] having metadata that allows the server to recognize the questions.  This might be through *Questionnaire.group.question.code*, through extensions such as the [[[http://hl7.org/fhir/StructureDefinition/questionnaire-deReference]]] extension or through use of the [[[ConceptMap]]] resource.\n\nRegardless of the mechanism used to link the questions in a questionnaire to a \&quot;known\&quot; mappable concept, solutions using this operation should ensure that the details of the question and associated linkage element are sufficiently similar as to safely allow auto-population; i.e. the question text and context must be sufficiently the same, the value set for the question must fall within the value set for the mapped element, the data types must be the same or convertible, etc.&quot;];
+  fhir:OperationDefinition.description [ fhir:value &quot;Generates an HTML page as a [Binary](binary.html) instance  based on a specified [Questionnaire](questionnaire.html), filling in answers to questions where possible based on information provided as part of the operation or already known by the server about the subject of the [Questionnaire](questionnaire.html).\n\nIf the operation is not called at the instance level, one and only one of the identifier, questionnaire or questionnaireRef 'in' parameters must be provided. If called at the instance level, these parameters will be ignored.\n\nThe response will contain a [Binary](binary.html) instance containing an HTML page for filling in and submitting the specified [Questionnaire](questionnaire.html) and/or an [OperationOutcome](operationoutcome.html) resource with errors or warnings.\n\nThe generated HTML form instance will be populated with an unanswered set of questions following the group and question structure of the specified [Questionnaire](questionnaire.html).  If  *content* parameters were specified or the *local* parameter was set to true, some of the questions may have answers filled in as well.  In the case of repeating questions or groups, typically only one repetition will be provided unless answer values exist that would support populating multiple repetitions.\n\nPopulation of the HTML form with appropriate data is dependent on the questions and/or groups in the [Questionnaire](questionnaire.html) having metadata that allows the server to recognize the questions.  This might be through *Questionnaire.group.question.code*, through extensions such as the [http://hl7.org/fhir/StructureDefinition/questionnaire-deReference](extension-questionnaire-dereference.html) extension or through use of the [ConceptMap](conceptmap.html) resource.\n\nRegardless of the mechanism used to link the questions in a questionnaire to a \&quot;known\&quot; mappable concept, solutions using this operation should ensure that the details of the question and associated linkage element are sufficiently similar as to safely allow auto-population; i.e. the question text and context must be sufficiently the same, the value set for the question must fall within the value set for the mapped element, the data types must be the same or convertible, etc.&quot;];
   fhir:OperationDefinition.code [ fhir:value &quot;populatehtml&quot;];
   fhir:OperationDefinition.comment [ fhir:value &quot;While it is theoretically possible for an HTML form to be completely auto-populated and submitted without human review, the intention of this transaction is merely to reduce redundant data entry.  The HTML form **SHOULD** ensure that a human submitter has an opportunity to review the auto-populated answers to confirm correctness as well as to complete or expand on information provided by the auto-population process.\n\nComplex form designs with conditional logic or tight constraints on cardinalities may be challenging to auto-populate.  A server MAY choose to traverse the questionnaire as if it were a human respondent, answering only those questions that are enabled based on previously answered questions.  However, doing so may result in minimal population.  Alternatively, systems may choose to populate all known answers, independent of dependencies and other constraints.  This may cause questions to be answered that should not be answered.  The generated HTML form is responsible for pruning the final populated questionnaire once human review has taken place.\n\nInvoking this operation with the ''content'' parameter may involve the disclosure of personally identifiable healthcare information to the system which is performing the population process.  No such disclosures should be made unless the system on which the operation is being invoked is a \&quot;trusted\&quot; system and appropriate agreements are in place to protect the confidentiality of any information shared with that system.&quot;];
   fhir:OperationDefinition.resource [
@@ -168,7 +168,7 @@
      fhir:OperationDefinition.use [ fhir:value &quot;in&quot; ];
      fhir:OperationDefinition.min [ fhir:value &quot;0&quot; ];
      fhir:OperationDefinition.max [ fhir:value &quot;1&quot; ];
-     fhir:OperationDefinition.documentation [ fhir:value &quot;The [[[Questionnaire]]] is provided directly as part of the request. Servers may choose not to accept questionnaires in this fashion&quot; ];
+     fhir:OperationDefinition.documentation [ fhir:value &quot;The [Questionnaire](questionnaire.html) is provided directly as part of the request. Servers may choose not to accept questionnaires in this fashion&quot; ];
      fhir:OperationDefinition.type [ fhir:value &quot;Questionnaire&quot; ]
   ], [
      fhir:index 2;
@@ -176,7 +176,7 @@
      fhir:OperationDefinition.use [ fhir:value &quot;in&quot; ];
      fhir:OperationDefinition.min [ fhir:value &quot;0&quot; ];
      fhir:OperationDefinition.max [ fhir:value &quot;1&quot; ];
-     fhir:OperationDefinition.documentation [ fhir:value &quot;The [[[Questionnaire]]] is provided as a resource reference. Servers may choose not to accept questionnaires in this fashion or may fail if they cannot resolve or access the referenced questionnaire.&quot; ];
+     fhir:OperationDefinition.documentation [ fhir:value &quot;The [Questionnaire](questionnaire.html) is provided as a resource reference. Servers may choose not to accept questionnaires in this fashion or may fail if they cannot resolve or access the referenced questionnaire.&quot; ];
      fhir:OperationDefinition.type [ fhir:value &quot;Reference&quot; ];
      fhir:OperationDefinition.profile [
        fhir:Reference.reference [ fhir:value &quot;http://hl7.org/fhir/StructureDefinition/Questionnaire&quot; ]
@@ -203,8 +203,8 @@
      fhir:OperationDefinition.use [ fhir:value &quot;out&quot; ];
      fhir:OperationDefinition.min [ fhir:value &quot;1&quot; ];
      fhir:OperationDefinition.max [ fhir:value &quot;1&quot; ];
-     fhir:OperationDefinition.documentation [ fhir:value &quot;The URL for the web form  that supports capturing the information defined by questionnaire, possibly partially (or fully)-populated with a set of answers for the specified Questionnaire&quot; ];
-     fhir:OperationDefinition.type [ fhir:value &quot;uri&quot; ]
+     fhir:OperationDefinition.documentation [ fhir:value &quot;The generated HTML page that supports capturing the information defined by questionnaire, possibly partially (or fully)-populated with a set of answers for the specified Questionnaire&quot; ];
+     fhir:OperationDefinition.type [ fhir:value &quot;Binary&quot; ]
   ], [
      fhir:index 6;
      fhir:OperationDefinition.name [ fhir:value &quot;issues&quot; ];
@@ -242,7 +242,7 @@ of the specification.
 		<div class="container"><!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:33-0500. <a href="qa.html">QA Page</a>
+        © HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:28-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search</a> | 

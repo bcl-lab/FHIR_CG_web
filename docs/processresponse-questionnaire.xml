@@ -6,7 +6,7 @@
     <system value="urn:ietf:rfc:3986"/>
   </identifier>
   <status value="draft"/>
-  <date value="2016-11-28T17:29:55-05:00"/>
+  <date value="2016-12-07T14:18:58-05:00"/>
   <publisher value="Health Level Seven International (Financial Management)"/>
   <item>
     <linkId value="ProcessResponse"/>
@@ -274,9 +274,6 @@
       </item>
     </item>
     <item>
-      <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-minOccurs">
-        <valueInteger value="1"/>
-      </extension>
       <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs">
         <valueInteger value="1"/>
       </extension>
@@ -285,7 +282,7 @@
       </extension>
       <linkId value="ProcessResponse.status"/>
       <type value="group"/>
-      <required value="true"/>
+      <required value="false"/>
       <repeats value="true"/>
       <item>
         <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl">
@@ -304,172 +301,6 @@
         <linkId value="ProcessResponse.status.value"/>
         <text value="status"/>
         <type value="choice"/>
-        <required value="false"/>
-        <repeats value="false"/>
-      </item>
-    </item>
-    <item>
-      <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs">
-        <valueInteger value="1"/>
-      </extension>
-      <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
-        <valueString value="Reference"/>
-      </extension>
-      <linkId value="ProcessResponse.request"/>
-      <type value="group"/>
-      <required value="false"/>
-      <repeats value="true"/>
-      <item>
-        <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl">
-          <valueCodeableConcept>
-            <coding>
-              <system value="http://hl7.org/fhir/questionnaire-item-control"/>
-              <code value="flyover"/>
-              <display value="Fly-over"/>
-            </coding>
-          </valueCodeableConcept>
-        </extension>
-        <text value="Original request resource reference."/>
-        <type value="display"/>
-      </item>
-      <item>
-        <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-allowedResource">
-          <valueCode value="Resource"/>
-        </extension>
-        <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-referenceFilter">
-          <valueString value="subject=$subj&amp;patient=$subj&amp;encounter=$encounter"/>
-        </extension>
-        <linkId value="ProcessResponse.request.value"/>
-        <text value="Request reference"/>
-        <type value="reference"/>
-        <required value="false"/>
-        <repeats value="false"/>
-      </item>
-    </item>
-    <item>
-      <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs">
-        <valueInteger value="1"/>
-      </extension>
-      <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
-        <valueString value="Coding"/>
-      </extension>
-      <linkId value="ProcessResponse.outcome"/>
-      <type value="group"/>
-      <required value="false"/>
-      <repeats value="true"/>
-      <item>
-        <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl">
-          <valueCodeableConcept>
-            <coding>
-              <system value="http://hl7.org/fhir/questionnaire-item-control"/>
-              <code value="flyover"/>
-              <display value="Fly-over"/>
-            </coding>
-          </valueCodeableConcept>
-        </extension>
-        <text value="Transaction status: error, complete, held."/>
-        <type value="display"/>
-      </item>
-      <item>
-        <linkId value="ProcessResponse.outcome.value"/>
-        <text value="Processing outcome"/>
-        <type value="open-choice"/>
-        <required value="false"/>
-        <repeats value="false"/>
-      </item>
-    </item>
-    <item>
-      <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs">
-        <valueInteger value="1"/>
-      </extension>
-      <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
-        <valueString value="string"/>
-      </extension>
-      <linkId value="ProcessResponse.disposition"/>
-      <type value="group"/>
-      <required value="false"/>
-      <repeats value="true"/>
-      <item>
-        <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl">
-          <valueCodeableConcept>
-            <coding>
-              <system value="http://hl7.org/fhir/questionnaire-item-control"/>
-              <code value="flyover"/>
-              <display value="Fly-over"/>
-            </coding>
-          </valueCodeableConcept>
-        </extension>
-        <text value="A description of the status of the adjudication or processing."/>
-        <type value="display"/>
-      </item>
-      <item>
-        <linkId value="ProcessResponse.disposition.value"/>
-        <text value="Disposition Message"/>
-        <type value="string"/>
-        <required value="false"/>
-        <repeats value="false"/>
-      </item>
-    </item>
-    <item>
-      <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs">
-        <valueInteger value="1"/>
-      </extension>
-      <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
-        <valueString value="Coding"/>
-      </extension>
-      <linkId value="ProcessResponse.ruleset"/>
-      <type value="group"/>
-      <required value="false"/>
-      <repeats value="true"/>
-      <item>
-        <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl">
-          <valueCodeableConcept>
-            <coding>
-              <system value="http://hl7.org/fhir/questionnaire-item-control"/>
-              <code value="flyover"/>
-              <display value="Fly-over"/>
-            </coding>
-          </valueCodeableConcept>
-        </extension>
-        <text value="The version of the style of resource contents. This should be mapped to the allowable profiles for this and supporting resources."/>
-        <type value="display"/>
-      </item>
-      <item>
-        <linkId value="ProcessResponse.ruleset.value"/>
-        <text value="Resource version"/>
-        <type value="open-choice"/>
-        <required value="false"/>
-        <repeats value="false"/>
-      </item>
-    </item>
-    <item>
-      <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs">
-        <valueInteger value="1"/>
-      </extension>
-      <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
-        <valueString value="Coding"/>
-      </extension>
-      <linkId value="ProcessResponse.originalRuleset"/>
-      <type value="group"/>
-      <required value="false"/>
-      <repeats value="true"/>
-      <item>
-        <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl">
-          <valueCodeableConcept>
-            <coding>
-              <system value="http://hl7.org/fhir/questionnaire-item-control"/>
-              <code value="flyover"/>
-              <display value="Fly-over"/>
-            </coding>
-          </valueCodeableConcept>
-        </extension>
-        <text value="The style (standard) and version of the original material which was converted into this resource."/>
-        <type value="display"/>
-      </item>
-      <item>
-        <linkId value="ProcessResponse.originalRuleset.value"/>
-        <text value="Original version"/>
-        <type value="open-choice"/>
         <required value="false"/>
         <repeats value="false"/>
       </item>
@@ -540,6 +371,116 @@
         <linkId value="ProcessResponse.organization.value"/>
         <text value="Authoring Organization"/>
         <type value="reference"/>
+        <required value="false"/>
+        <repeats value="false"/>
+      </item>
+    </item>
+    <item>
+      <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs">
+        <valueInteger value="1"/>
+      </extension>
+      <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
+        <valueString value="Reference"/>
+      </extension>
+      <linkId value="ProcessResponse.request"/>
+      <type value="group"/>
+      <required value="false"/>
+      <repeats value="true"/>
+      <item>
+        <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl">
+          <valueCodeableConcept>
+            <coding>
+              <system value="http://hl7.org/fhir/questionnaire-item-control"/>
+              <code value="flyover"/>
+              <display value="Fly-over"/>
+            </coding>
+          </valueCodeableConcept>
+        </extension>
+        <text value="Original request resource reference."/>
+        <type value="display"/>
+      </item>
+      <item>
+        <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-allowedResource">
+          <valueCode value="Resource"/>
+        </extension>
+        <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-referenceFilter">
+          <valueString value="subject=$subj&amp;patient=$subj&amp;encounter=$encounter"/>
+        </extension>
+        <linkId value="ProcessResponse.request.value"/>
+        <text value="Request reference"/>
+        <type value="reference"/>
+        <required value="false"/>
+        <repeats value="false"/>
+      </item>
+    </item>
+    <item>
+      <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs">
+        <valueInteger value="1"/>
+      </extension>
+      <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
+        <valueString value="CodeableConcept"/>
+      </extension>
+      <linkId value="ProcessResponse.outcome"/>
+      <text value="Processing outcome"/>
+      <type value="group"/>
+      <required value="false"/>
+      <repeats value="true"/>
+      <item>
+        <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl">
+          <valueCodeableConcept>
+            <coding>
+              <system value="http://hl7.org/fhir/questionnaire-item-control"/>
+              <code value="flyover"/>
+              <display value="Fly-over"/>
+            </coding>
+          </valueCodeableConcept>
+        </extension>
+        <text value="Transaction status: error, complete, held."/>
+        <type value="display"/>
+      </item>
+      <item>
+        <linkId value="ProcessResponse.outcome.coding"/>
+        <text value="code:"/>
+        <type value="open-choice"/>
+        <required value="false"/>
+        <repeats value="false"/>
+      </item>
+      <item>
+        <linkId value="ProcessResponse.outcome.text"/>
+        <text value="text:"/>
+        <type value="string"/>
+        <required value="false"/>
+        <repeats value="false"/>
+      </item>
+    </item>
+    <item>
+      <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs">
+        <valueInteger value="1"/>
+      </extension>
+      <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
+        <valueString value="string"/>
+      </extension>
+      <linkId value="ProcessResponse.disposition"/>
+      <type value="group"/>
+      <required value="false"/>
+      <repeats value="true"/>
+      <item>
+        <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl">
+          <valueCodeableConcept>
+            <coding>
+              <system value="http://hl7.org/fhir/questionnaire-item-control"/>
+              <code value="flyover"/>
+              <display value="Fly-over"/>
+            </coding>
+          </valueCodeableConcept>
+        </extension>
+        <text value="A description of the status of the adjudication or processing."/>
+        <type value="display"/>
+      </item>
+      <item>
+        <linkId value="ProcessResponse.disposition.value"/>
+        <text value="Disposition Message"/>
+        <type value="string"/>
         <required value="false"/>
         <repeats value="false"/>
       </item>
@@ -625,9 +566,10 @@
         <valueInteger value="1"/>
       </extension>
       <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
-        <valueString value="Coding"/>
+        <valueString value="CodeableConcept"/>
       </extension>
       <linkId value="ProcessResponse.form"/>
+      <text value="Printed Form Identifier"/>
       <type value="group"/>
       <required value="false"/>
       <repeats value="true"/>
@@ -645,15 +587,22 @@
         <type value="display"/>
       </item>
       <item>
-        <linkId value="ProcessResponse.form.value"/>
-        <text value="Printed Form Identifier"/>
+        <linkId value="ProcessResponse.form.coding"/>
+        <text value="code:"/>
         <type value="choice"/>
+        <required value="false"/>
+        <repeats value="false"/>
+      </item>
+      <item>
+        <linkId value="ProcessResponse.form.text"/>
+        <text value="text:"/>
+        <type value="string"/>
         <required value="false"/>
         <repeats value="false"/>
       </item>
     </item>
     <item>
-      <linkId value="ProcessResponse.notes"/>
+      <linkId value="ProcessResponse.note"/>
       <text value="Notes"/>
       <type value="group"/>
       <required value="false"/>
@@ -678,7 +627,7 @@
         <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
           <valueString value="string"/>
         </extension>
-        <linkId value="ProcessResponse.notes.id"/>
+        <linkId value="ProcessResponse.note.id"/>
         <type value="group"/>
         <required value="false"/>
         <repeats value="true"/>
@@ -696,7 +645,7 @@
           <type value="display"/>
         </item>
         <item>
-          <linkId value="ProcessResponse.notes.id.value"/>
+          <linkId value="ProcessResponse.note.id.value"/>
           <text value="xml:id (or equivalent in JSON)"/>
           <type value="string"/>
           <required value="false"/>
@@ -704,7 +653,7 @@
         </item>
       </item>
       <item>
-        <linkId value="ProcessResponse.notes.extension"/>
+        <linkId value="ProcessResponse.note.extension"/>
         <text value="Additional Content defined by implementations"/>
         <type value="group"/>
         <required value="false"/>
@@ -724,7 +673,7 @@
         </item>
       </item>
       <item>
-        <linkId value="ProcessResponse.notes.modifierExtension"/>
+        <linkId value="ProcessResponse.note.modifierExtension"/>
         <text value="Extensions that cannot be ignored"/>
         <type value="group"/>
         <required value="false"/>
@@ -748,9 +697,10 @@
           <valueInteger value="1"/>
         </extension>
         <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
-          <valueString value="Coding"/>
+          <valueString value="CodeableConcept"/>
         </extension>
-        <linkId value="ProcessResponse.notes.type"/>
+        <linkId value="ProcessResponse.note.type"/>
+        <text value="display | print | printoper"/>
         <type value="group"/>
         <required value="false"/>
         <repeats value="true"/>
@@ -768,9 +718,16 @@
           <type value="display"/>
         </item>
         <item>
-          <linkId value="ProcessResponse.notes.type.value"/>
-          <text value="display | print | printoper"/>
+          <linkId value="ProcessResponse.note.type.coding"/>
+          <text value="code:"/>
           <type value="choice"/>
+          <required value="false"/>
+          <repeats value="false"/>
+        </item>
+        <item>
+          <linkId value="ProcessResponse.note.type.text"/>
+          <text value="text:"/>
+          <type value="string"/>
           <required value="false"/>
           <repeats value="false"/>
         </item>
@@ -782,7 +739,7 @@
         <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
           <valueString value="string"/>
         </extension>
-        <linkId value="ProcessResponse.notes.text"/>
+        <linkId value="ProcessResponse.note.text"/>
         <type value="group"/>
         <required value="false"/>
         <repeats value="true"/>
@@ -800,7 +757,7 @@
           <type value="display"/>
         </item>
         <item>
-          <linkId value="ProcessResponse.notes.text.value"/>
+          <linkId value="ProcessResponse.note.text.value"/>
           <text value="Notes text"/>
           <type value="string"/>
           <required value="false"/>
@@ -810,9 +767,10 @@
     </item>
     <item>
       <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
-        <valueString value="Coding"/>
+        <valueString value="CodeableConcept"/>
       </extension>
       <linkId value="ProcessResponse.error"/>
+      <text value="Error code"/>
       <type value="group"/>
       <required value="false"/>
       <repeats value="true"/>
@@ -830,9 +788,51 @@
         <type value="display"/>
       </item>
       <item>
-        <linkId value="ProcessResponse.error.value"/>
-        <text value="Error code"/>
+        <linkId value="ProcessResponse.error.coding"/>
+        <text value="code:"/>
         <type value="choice"/>
+        <required value="false"/>
+        <repeats value="false"/>
+      </item>
+      <item>
+        <linkId value="ProcessResponse.error.text"/>
+        <text value="text:"/>
+        <type value="string"/>
+        <required value="false"/>
+        <repeats value="false"/>
+      </item>
+    </item>
+    <item>
+      <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
+        <valueString value="Reference"/>
+      </extension>
+      <linkId value="ProcessResponse.communicationRequest"/>
+      <type value="group"/>
+      <required value="false"/>
+      <repeats value="true"/>
+      <item>
+        <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl">
+          <valueCodeableConcept>
+            <coding>
+              <system value="http://hl7.org/fhir/questionnaire-item-control"/>
+              <code value="flyover"/>
+              <display value="Fly-over"/>
+            </coding>
+          </valueCodeableConcept>
+        </extension>
+        <text value="Request for additional supporting or authorizing information, such as: documents, images or resources."/>
+        <type value="display"/>
+      </item>
+      <item>
+        <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-allowedResource">
+          <valueCode value="CommunicationRequest"/>
+        </extension>
+        <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-referenceFilter">
+          <valueString value="subject=$subj&amp;patient=$subj&amp;encounter=$encounter"/>
+        </extension>
+        <linkId value="ProcessResponse.communicationRequest.value"/>
+        <text value="Request for additional information"/>
+        <type value="reference"/>
         <required value="false"/>
         <repeats value="false"/>
       </item>

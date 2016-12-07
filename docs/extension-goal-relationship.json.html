@@ -3,7 +3,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>Extension-goal-relationship.json - FHIR v1.7.0</title>
+  <title>Extension-goal-relationship.json - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -114,13 +114,13 @@
 </p>
 
 <div class="example">
-<p>Goals related to this one</p>
+<p>Goals related to this Goal</p>
 <pre class="json">
 {
   &quot;resourceType&quot;: &quot;StructureDefinition&quot;,
   &quot;id&quot;: &quot;goal-relationship&quot;,
   &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/goal-relationship&quot;,
-  &quot;name&quot;: &quot;Goals related to this one&quot;,
+  &quot;name&quot;: &quot;Goals related to this Goal&quot;,
   &quot;title&quot;: &quot;related goal&quot;,
   &quot;status&quot;: &quot;draft&quot;,
   &quot;publisher&quot;: &quot;Health Level Seven, Inc. - FHIR WG&quot;,
@@ -128,7 +128,7 @@
     {
       &quot;telecom&quot;: [
         {
-          &quot;system&quot;: &quot;other&quot;,
+          &quot;system&quot;: &quot;url&quot;,
           &quot;value&quot;: &quot;http://hl7.org/special/committees/fhir&quot;
         }
       ]
@@ -136,7 +136,7 @@
   ],
   &quot;date&quot;: &quot;2014-12-07&quot;,
   &quot;description&quot;: &quot;Establishes a relationship between this goal and other goals.&quot;,
-  &quot;fhirVersion&quot;: &quot;1.7.0&quot;,
+  &quot;fhirVersion&quot;: &quot;1.8.0&quot;,
   &quot;mapping&quot;: [
     {
       &quot;identity&quot;: &quot;rim&quot;,
@@ -156,9 +156,9 @@
   &quot;snapshot&quot;: {
     &quot;element&quot;: [
       {
-        &quot;id&quot;: &quot;Extension:goalsrelatedtothisone&quot;,
+        &quot;id&quot;: &quot;Extension:goalsrelatedtothisgoal&quot;,
         &quot;path&quot;: &quot;Extension&quot;,
-        &quot;short&quot;: &quot;Goals related to this one&quot;,
+        &quot;short&quot;: &quot;Goals related to this Goal&quot;,
         &quot;definition&quot;: &quot;Establishes a relationship between this goal and other goals.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;*&quot;,
@@ -190,7 +190,7 @@
         ]
       },
       {
-        &quot;id&quot;: &quot;Extension:goalsrelatedtothisone.id&quot;,
+        &quot;id&quot;: &quot;Extension:goalsrelatedtothisgoal.id&quot;,
         &quot;path&quot;: &quot;Extension.id&quot;,
         &quot;representation&quot;: [
           &quot;xmlAttr&quot;
@@ -217,10 +217,10 @@
         ]
       },
       {
-        &quot;id&quot;: &quot;Extension:goalsrelatedtothisone.extension&quot;,
+        &quot;id&quot;: &quot;Extension:goalsrelatedtothisgoal.extension&quot;,
         &quot;path&quot;: &quot;Extension.extension&quot;,
         &quot;slicing&quot;: {
-          &quot;id&quot;: &quot;79&quot;,
+          &quot;id&quot;: &quot;75&quot;,
           &quot;discriminator&quot;: [
             &quot;url&quot;
           ],
@@ -243,7 +243,7 @@
         ]
       },
       {
-        &quot;id&quot;: &quot;Extension:goalsrelatedtothisone.extension:type&quot;,
+        &quot;id&quot;: &quot;Extension:goalsrelatedtothisgoal.extension:type&quot;,
         &quot;path&quot;: &quot;Extension.extension&quot;,
         &quot;sliceName&quot;: &quot;type&quot;,
         &quot;short&quot;: &quot;predecessor | successor | replacement | other&quot;,
@@ -262,7 +262,7 @@
         ]
       },
       {
-        &quot;id&quot;: &quot;Extension:goalsrelatedtothisone.extension:type.id&quot;,
+        &quot;id&quot;: &quot;Extension:goalsrelatedtothisgoal.extension:type.id&quot;,
         &quot;path&quot;: &quot;Extension.extension.id&quot;,
         &quot;representation&quot;: [
           &quot;xmlAttr&quot;
@@ -289,7 +289,7 @@
         ]
       },
       {
-        &quot;id&quot;: &quot;Extension:goalsrelatedtothisone.extension:type.extension:extension&quot;,
+        &quot;id&quot;: &quot;Extension:goalsrelatedtothisgoal.extension:type.extension:extension&quot;,
         &quot;path&quot;: &quot;Extension.extension.extension&quot;,
         &quot;sliceName&quot;: &quot;extension&quot;,
         &quot;short&quot;: &quot;Extension&quot;,
@@ -308,7 +308,7 @@
         ]
       },
       {
-        &quot;id&quot;: &quot;Extension:goalsrelatedtothisone.extension:type.url&quot;,
+        &quot;id&quot;: &quot;Extension:goalsrelatedtothisgoal.extension:type.url&quot;,
         &quot;path&quot;: &quot;Extension.extension.url&quot;,
         &quot;representation&quot;: [
           &quot;xmlAttr&quot;
@@ -337,7 +337,7 @@
         ]
       },
       {
-        &quot;id&quot;: &quot;Extension:goalsrelatedtothisone.extension:type.valueCodeableConcept&quot;,
+        &quot;id&quot;: &quot;Extension:goalsrelatedtothisgoal.extension:type.valueCodeableConcept&quot;,
         &quot;path&quot;: &quot;Extension.extension.valueCodeableConcept&quot;,
         &quot;short&quot;: &quot;Value of extension&quot;,
         &quot;definition&quot;: &quot;Value of extension - may be a resource or one of a constrained set of the data types (see Extensibility in the spec for list).&quot;,
@@ -354,7 +354,7 @@
           }
         ],
         &quot;binding&quot;: {
-          &quot;strength&quot;: &quot;required&quot;,
+          &quot;strength&quot;: &quot;extensible&quot;,
           &quot;description&quot;: &quot;Types of relationships between two goals&quot;,
           &quot;valueSetReference&quot;: {
             &quot;reference&quot;: &quot;http://hl7.org/fhir/ValueSet/goal-relationship-type&quot;
@@ -368,7 +368,7 @@
         ]
       },
       {
-        &quot;id&quot;: &quot;Extension:goalsrelatedtothisone.extension:target&quot;,
+        &quot;id&quot;: &quot;Extension:goalsrelatedtothisgoal.extension:target&quot;,
         &quot;path&quot;: &quot;Extension.extension&quot;,
         &quot;sliceName&quot;: &quot;target&quot;,
         &quot;short&quot;: &quot;Related goal&quot;,
@@ -387,7 +387,7 @@
         ]
       },
       {
-        &quot;id&quot;: &quot;Extension:goalsrelatedtothisone.extension:target.id&quot;,
+        &quot;id&quot;: &quot;Extension:goalsrelatedtothisgoal.extension:target.id&quot;,
         &quot;path&quot;: &quot;Extension.extension.id&quot;,
         &quot;representation&quot;: [
           &quot;xmlAttr&quot;
@@ -414,7 +414,7 @@
         ]
       },
       {
-        &quot;id&quot;: &quot;Extension:goalsrelatedtothisone.extension:target.extension:extension&quot;,
+        &quot;id&quot;: &quot;Extension:goalsrelatedtothisgoal.extension:target.extension:extension&quot;,
         &quot;path&quot;: &quot;Extension.extension.extension&quot;,
         &quot;sliceName&quot;: &quot;extension&quot;,
         &quot;short&quot;: &quot;Extension&quot;,
@@ -433,7 +433,7 @@
         ]
       },
       {
-        &quot;id&quot;: &quot;Extension:goalsrelatedtothisone.extension:target.url&quot;,
+        &quot;id&quot;: &quot;Extension:goalsrelatedtothisgoal.extension:target.url&quot;,
         &quot;path&quot;: &quot;Extension.extension.url&quot;,
         &quot;representation&quot;: [
           &quot;xmlAttr&quot;
@@ -462,7 +462,7 @@
         ]
       },
       {
-        &quot;id&quot;: &quot;Extension:goalsrelatedtothisone.extension:target.valueReference&quot;,
+        &quot;id&quot;: &quot;Extension:goalsrelatedtothisgoal.extension:target.valueReference&quot;,
         &quot;path&quot;: &quot;Extension.extension.valueReference&quot;,
         &quot;short&quot;: &quot;Value of extension&quot;,
         &quot;definition&quot;: &quot;Value of extension - may be a resource or one of a constrained set of the data types (see Extensibility in the spec for list).&quot;,
@@ -487,7 +487,7 @@
         ]
       },
       {
-        &quot;id&quot;: &quot;Extension:goalsrelatedtothisone.url&quot;,
+        &quot;id&quot;: &quot;Extension:goalsrelatedtothisgoal.url&quot;,
         &quot;path&quot;: &quot;Extension.url&quot;,
         &quot;representation&quot;: [
           &quot;xmlAttr&quot;
@@ -516,7 +516,7 @@
         ]
       },
       {
-        &quot;id&quot;: &quot;Extension:goalsrelatedtothisone.value[x]&quot;,
+        &quot;id&quot;: &quot;Extension:goalsrelatedtothisgoal.value[x]&quot;,
         &quot;path&quot;: &quot;Extension.value[x]&quot;,
         &quot;short&quot;: &quot;Value of extension&quot;,
         &quot;definition&quot;: &quot;Value of extension - may be a resource or one of a constrained set of the data types (see Extensibility in the spec for list).&quot;,
@@ -655,15 +655,15 @@
   &quot;differential&quot;: {
     &quot;element&quot;: [
       {
-        &quot;id&quot;: &quot;Extension:goalsrelatedtothisone&quot;,
+        &quot;id&quot;: &quot;Extension:goalsrelatedtothisgoal&quot;,
         &quot;path&quot;: &quot;Extension&quot;,
-        &quot;short&quot;: &quot;Goals related to this one&quot;,
+        &quot;short&quot;: &quot;Goals related to this Goal&quot;,
         &quot;definition&quot;: &quot;Establishes a relationship between this goal and other goals.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;*&quot;
       },
       {
-        &quot;id&quot;: &quot;Extension:goalsrelatedtothisone.extension:type&quot;,
+        &quot;id&quot;: &quot;Extension:goalsrelatedtothisgoal.extension:type&quot;,
         &quot;path&quot;: &quot;Extension.extension&quot;,
         &quot;sliceName&quot;: &quot;type&quot;,
         &quot;short&quot;: &quot;predecessor | successor | replacement | other&quot;,
@@ -677,13 +677,13 @@
         ]
       },
       {
-        &quot;id&quot;: &quot;Extension:goalsrelatedtothisone.extension:type.extension:extension&quot;,
+        &quot;id&quot;: &quot;Extension:goalsrelatedtothisgoal.extension:type.extension:extension&quot;,
         &quot;path&quot;: &quot;Extension.extension.extension&quot;,
         &quot;sliceName&quot;: &quot;extension&quot;,
         &quot;max&quot;: &quot;0&quot;
       },
       {
-        &quot;id&quot;: &quot;Extension:goalsrelatedtothisone.extension:type.url&quot;,
+        &quot;id&quot;: &quot;Extension:goalsrelatedtothisgoal.extension:type.url&quot;,
         &quot;path&quot;: &quot;Extension.extension.url&quot;,
         &quot;type&quot;: [
           {
@@ -693,7 +693,7 @@
         &quot;fixedUri&quot;: &quot;type&quot;
       },
       {
-        &quot;id&quot;: &quot;Extension:goalsrelatedtothisone.extension:type.value[x]&quot;,
+        &quot;id&quot;: &quot;Extension:goalsrelatedtothisgoal.extension:type.value[x]&quot;,
         &quot;path&quot;: &quot;Extension.extension.value[x]&quot;,
         &quot;min&quot;: 1,
         &quot;type&quot;: [
@@ -702,7 +702,7 @@
           }
         ],
         &quot;binding&quot;: {
-          &quot;strength&quot;: &quot;required&quot;,
+          &quot;strength&quot;: &quot;extensible&quot;,
           &quot;description&quot;: &quot;Types of relationships between two goals&quot;,
           &quot;valueSetReference&quot;: {
             &quot;reference&quot;: &quot;http://hl7.org/fhir/ValueSet/goal-relationship-type&quot;
@@ -710,7 +710,7 @@
         }
       },
       {
-        &quot;id&quot;: &quot;Extension:goalsrelatedtothisone.extension:target&quot;,
+        &quot;id&quot;: &quot;Extension:goalsrelatedtothisgoal.extension:target&quot;,
         &quot;path&quot;: &quot;Extension.extension&quot;,
         &quot;sliceName&quot;: &quot;target&quot;,
         &quot;short&quot;: &quot;Related goal&quot;,
@@ -724,13 +724,13 @@
         ]
       },
       {
-        &quot;id&quot;: &quot;Extension:goalsrelatedtothisone.extension:target.extension:extension&quot;,
+        &quot;id&quot;: &quot;Extension:goalsrelatedtothisgoal.extension:target.extension:extension&quot;,
         &quot;path&quot;: &quot;Extension.extension.extension&quot;,
         &quot;sliceName&quot;: &quot;extension&quot;,
         &quot;max&quot;: &quot;0&quot;
       },
       {
-        &quot;id&quot;: &quot;Extension:goalsrelatedtothisone.extension:target.url&quot;,
+        &quot;id&quot;: &quot;Extension:goalsrelatedtothisgoal.extension:target.url&quot;,
         &quot;path&quot;: &quot;Extension.extension.url&quot;,
         &quot;type&quot;: [
           {
@@ -740,7 +740,7 @@
         &quot;fixedUri&quot;: &quot;target&quot;
       },
       {
-        &quot;id&quot;: &quot;Extension:goalsrelatedtothisone.extension:target.value[x]&quot;,
+        &quot;id&quot;: &quot;Extension:goalsrelatedtothisgoal.extension:target.value[x]&quot;,
         &quot;path&quot;: &quot;Extension.extension.value[x]&quot;,
         &quot;min&quot;: 1,
         &quot;type&quot;: [
@@ -751,7 +751,7 @@
         ]
       },
       {
-        &quot;id&quot;: &quot;Extension:goalsrelatedtothisone.url&quot;,
+        &quot;id&quot;: &quot;Extension:goalsrelatedtothisgoal.url&quot;,
         &quot;path&quot;: &quot;Extension.url&quot;,
         &quot;type&quot;: [
           {
@@ -761,7 +761,7 @@
         &quot;fixedUri&quot;: &quot;http://hl7.org/fhir/StructureDefinition/goal-relationship&quot;
       },
       {
-        &quot;id&quot;: &quot;Extension:goalsrelatedtothisone.value[x]&quot;,
+        &quot;id&quot;: &quot;Extension:goalsrelatedtothisgoal.value[x]&quot;,
         &quot;path&quot;: &quot;Extension.value[x]&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;0&quot;
@@ -793,7 +793,7 @@ of the specification.
 		<div class="container"><!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:32-0500. <a href="qa.html">QA Page</a>
+        © HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:21-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search</a> | 

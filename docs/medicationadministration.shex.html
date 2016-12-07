@@ -3,7 +3,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>Medicationadministration.shex - FHIR v1.7.0</title>
+  <title>Medicationadministration.shex - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -152,8 +152,8 @@ start=@&lt;MedicationAdministration&gt; AND {fhir:nodeRole [fhir:treeRoot]}
                                             # administration 
     (                                       # Start and end time of 
                                             # administration 
-        fhir:MedicationAdministration.effectiveTimeDateTime @&lt;dateTime&gt;  |
-        fhir:MedicationAdministration.effectiveTimePeriod @&lt;Period&gt; 
+        fhir:MedicationAdministration.effectiveDateTime @&lt;dateTime&gt;  |
+        fhir:MedicationAdministration.effectivePeriod @&lt;Period&gt; 
     );
     fhir:MedicationAdministration.performer  # Who administered substance
     (   @&lt;PractitionerReference&gt; OR
@@ -188,10 +188,7 @@ start=@&lt;MedicationAdministration&gt; AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:modifierExtension @&lt;Extension&gt;*;   # Extensions that cannot be ignored
     fhir:MedicationAdministration.dosage.text @&lt;string&gt;?;  # Free text dosage instructions e.g. 
                                             # SIG 
-    (                                       # Body site administered to
-        fhir:MedicationAdministration.dosage.siteCodeableConcept @&lt;CodeableConcept&gt;  |
-        fhir:MedicationAdministration.dosage.siteReference @&lt;Reference&gt; 
-    )?;
+    fhir:MedicationAdministration.dosage.site @&lt;CodeableConcept&gt;?;  # Body site administered to
     fhir:MedicationAdministration.dosage.route @&lt;CodeableConcept&gt;?;  # Path of substance into body
     fhir:MedicationAdministration.dosage.method @&lt;CodeableConcept&gt;?;  # How drug was administered
     fhir:MedicationAdministration.dosage.dose @&lt;SimpleQuantity&gt;?;  # Amount of medication per dose
@@ -523,14 +520,14 @@ start=@&lt;MedicationAdministration&gt; AND {fhir:nodeRole [fhir:treeRoot]}
 # A set of codes indicating the current status of a MedicationAdministration.
 fhirvs:medication-admin-status [&quot;in-progress&quot; &quot;on-hold&quot; &quot;completed&quot; &quot;entered-in-error&quot; &quot;stopped&quot;]
 
+# How the Quantity should be understood and represented.
+fhirvs:quantity-comparator [&quot;&lt;&quot; &quot;&lt;=&quot; &quot;&gt;=&quot; &quot;&gt;&quot;]
+
 # Identifies the purpose for this identifier, if known .
 fhirvs:identifier-use [&quot;usual&quot; &quot;official&quot; &quot;temp&quot; &quot;secondary&quot;]
 
 # The status of a resource narrative
 fhirvs:narrative-status [&quot;generated&quot; &quot;extensions&quot; &quot;additional&quot; &quot;empty&quot;]
-
-# How the Quantity should be understood and represented.
-fhirvs:quantity-comparator [&quot;&lt;&quot; &quot;&lt;=&quot; &quot;&gt;=&quot; &quot;&gt;&quot;]
 
 </pre>
 </div>
@@ -556,7 +553,7 @@ of the specification.
 		<div class="container"><!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:32-0500. <a href="qa.html">QA Page</a>
+        © HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:27-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search</a> | 

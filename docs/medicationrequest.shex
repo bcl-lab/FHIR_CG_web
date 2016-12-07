@@ -53,8 +53,14 @@ start=@<MedicationRequest> AND {fhir:nodeRole [fhir:treeRoot]}
                                             # the medication 
     fhir:MedicationRequest.dateWritten @<dateTime>?;  # When prescription was initially 
                                             # authorized 
-    fhir:MedicationRequest.prescriber @<Reference>?;  # Who ordered the initial 
+    fhir:MedicationRequest.requester        # Who ordered the initial 
                                             # medication(s) 
+    (   @<PractitionerReference> OR
+        @<OrganizationReference> OR
+        @<PatientReference> OR
+        @<RelatedPersonReference> OR
+        @<DeviceReference>
+    )?;
     fhir:MedicationRequest.reasonCode @<CodeableConcept>*;  # Reason or indication for writing 
                                             # the prescription 
     fhir:MedicationRequest.reasonReference  # Condition or Observation that 
@@ -76,6 +82,19 @@ start=@<MedicationRequest> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
+# Any restrictions on medication substitution
+<MedicationRequest.substitution> CLOSED {
+    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
+    fhir:extension @<Extension>*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
+    fhir:MedicationRequest.substitution.allowed @<boolean>;  # Whether substitution is allowed or 
+                                            # not 
+    fhir:MedicationRequest.substitution.reason @<CodeableConcept>?;  # Why should (not) substitution be 
+                                            # made 
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
 # Medication supply authorization
 <MedicationRequest.dispenseRequest> CLOSED {
     fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
@@ -89,19 +108,6 @@ start=@<MedicationRequest> AND {fhir:nodeRole [fhir:treeRoot]}
                                             # dispense 
     fhir:MedicationRequest.dispenseRequest.expectedSupplyDuration @<Duration>?;  # Number of days supply per dispense
     fhir:MedicationRequest.dispenseRequest.performer @<Reference>?;  # Intended dispenser
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
-# Any restrictions on medication substitution
-<MedicationRequest.substitution> CLOSED {
-    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
-    fhir:extension @<Extension>*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    fhir:MedicationRequest.substitution.allowed @<boolean>;  # Whether substitution is allowed or 
-                                            # not 
-    fhir:MedicationRequest.substitution.reason @<CodeableConcept>?;  # Why should (not) substitution be 
-                                            # made 
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -329,10 +335,7 @@ start=@<MedicationRequest> AND {fhir:nodeRole [fhir:treeRoot]}
         fhir:DosageInstruction.asNeededBoolean @<boolean>  |
         fhir:DosageInstruction.asNeededCodeableConcept @<CodeableConcept> 
     )?;
-    (                                       # Body site to administer to
-        fhir:DosageInstruction.siteCodeableConcept @<CodeableConcept>  |
-        fhir:DosageInstruction.siteReference @<Reference> 
-    )?;
+    fhir:DosageInstruction.site @<CodeableConcept>?;  # Body site to administer to
     fhir:DosageInstruction.route @<CodeableConcept>?;  # How drug should enter body
     fhir:DosageInstruction.method @<CodeableConcept>?;  # Technique for administering 
                                             # medication 
@@ -475,6 +478,10 @@ start=@<MedicationRequest> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:Timing.repeat.periodUnit @<code> AND
     	{fhir:value @fhirvs:units-of-time}?;  # s | min | h | d | wk | mo | a - 
                                             # unit of time (UCUM) 
+    fhir:Timing.repeat.dayOfWeek @<code> AND
+    	{fhir:value @fhirvs:days-of-week}*;  # mon | tue | wed | thu | fri | sat 
+                                            # | sun 
+    fhir:Timing.repeat.timeOfDay @<time>*;  # Time of day for action
     fhir:Timing.repeat.when @<code> AND
     	{fhir:value @fhirvs:event-timing}?;  # Regular life events the event is 
                                             # tied to 
@@ -488,6 +495,15 @@ start=@<MedicationRequest> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:extension @<Extension>*;           # Additional Content defined by 
                                             # implementations 
     fhir:value xsd:nonNegativeInteger?;     # Primitive value for unsignedInt
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
+# Primitive Type time
+<time> CLOSED {
+    fhir:Element.id @<id>?;                 # xml:id (or equivalent in JSON)
+    fhir:extension @<Extension>*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:value xsd:time?;                   # Primitive value for time
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -521,20 +537,6 @@ start=@<MedicationRequest> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:nodeRole [fhir:treeRoot]?
 }
 
-<CarePlanReference> CLOSED {
-    fhir:Element.id @<id>?;
-    fhir:extension @<Extension>*;
-    fhir:link @<CarePlan> OR CLOSED {a fhir:CarePlan}?;
-    fhir:Reference.reference @<string>?;
-    fhir:Reference.display @<string>?;
-    fhir:index xsd:integer?
-}
-
-<CarePlan> {
-    a [fhir:CarePlan];
-    fhir:nodeRole [fhir:treeRoot]?
-}
-
 <MedicationRequestReference> CLOSED {
     fhir:Element.id @<id>?;
     fhir:extension @<Extension>*;
@@ -546,6 +548,104 @@ start=@<MedicationRequest> AND {fhir:nodeRole [fhir:treeRoot]}
 
 <MedicationRequest> {
     a [fhir:MedicationRequest];
+    fhir:nodeRole [fhir:treeRoot]?
+}
+
+<OrganizationReference> CLOSED {
+    fhir:Element.id @<id>?;
+    fhir:extension @<Extension>*;
+    fhir:link @<Organization> OR CLOSED {a fhir:Organization}?;
+    fhir:Reference.reference @<string>?;
+    fhir:Reference.display @<string>?;
+    fhir:index xsd:integer?
+}
+
+<Organization> {
+    a [fhir:Organization];
+    fhir:nodeRole [fhir:treeRoot]?
+}
+
+<DeviceReference> CLOSED {
+    fhir:Element.id @<id>?;
+    fhir:extension @<Extension>*;
+    fhir:link @<Device> OR CLOSED {a fhir:Device}?;
+    fhir:Reference.reference @<string>?;
+    fhir:Reference.display @<string>?;
+    fhir:index xsd:integer?
+}
+
+<Device> {
+    a [fhir:Device];
+    fhir:nodeRole [fhir:treeRoot]?
+}
+
+<ProcedureRequestReference> CLOSED {
+    fhir:Element.id @<id>?;
+    fhir:extension @<Extension>*;
+    fhir:link @<ProcedureRequest> OR CLOSED {a fhir:ProcedureRequest}?;
+    fhir:Reference.reference @<string>?;
+    fhir:Reference.display @<string>?;
+    fhir:index xsd:integer?
+}
+
+<ProcedureRequest> {
+    a [fhir:ProcedureRequest];
+    fhir:nodeRole [fhir:treeRoot]?
+}
+
+<PatientReference> CLOSED {
+    fhir:Element.id @<id>?;
+    fhir:extension @<Extension>*;
+    fhir:link @<Patient> OR CLOSED {a fhir:Patient}?;
+    fhir:Reference.reference @<string>?;
+    fhir:Reference.display @<string>?;
+    fhir:index xsd:integer?
+}
+
+<Patient> {
+    a [fhir:Patient];
+    fhir:nodeRole [fhir:treeRoot]?
+}
+
+<RelatedPersonReference> CLOSED {
+    fhir:Element.id @<id>?;
+    fhir:extension @<Extension>*;
+    fhir:link @<RelatedPerson> OR CLOSED {a fhir:RelatedPerson}?;
+    fhir:Reference.reference @<string>?;
+    fhir:Reference.display @<string>?;
+    fhir:index xsd:integer?
+}
+
+<RelatedPerson> {
+    a [fhir:RelatedPerson];
+    fhir:nodeRole [fhir:treeRoot]?
+}
+
+<PractitionerReference> CLOSED {
+    fhir:Element.id @<id>?;
+    fhir:extension @<Extension>*;
+    fhir:link @<Practitioner> OR CLOSED {a fhir:Practitioner}?;
+    fhir:Reference.reference @<string>?;
+    fhir:Reference.display @<string>?;
+    fhir:index xsd:integer?
+}
+
+<Practitioner> {
+    a [fhir:Practitioner];
+    fhir:nodeRole [fhir:treeRoot]?
+}
+
+<CarePlanReference> CLOSED {
+    fhir:Element.id @<id>?;
+    fhir:extension @<Extension>*;
+    fhir:link @<CarePlan> OR CLOSED {a fhir:CarePlan}?;
+    fhir:Reference.reference @<string>?;
+    fhir:Reference.display @<string>?;
+    fhir:index xsd:integer?
+}
+
+<CarePlan> {
+    a [fhir:CarePlan];
     fhir:nodeRole [fhir:treeRoot]?
 }
 
@@ -588,20 +688,6 @@ start=@<MedicationRequest> AND {fhir:nodeRole [fhir:treeRoot]}
 
 <PlanDefinition> {
     a [fhir:PlanDefinition];
-    fhir:nodeRole [fhir:treeRoot]?
-}
-
-<ProcedureRequestReference> CLOSED {
-    fhir:Element.id @<id>?;
-    fhir:extension @<Extension>*;
-    fhir:link @<ProcedureRequest> OR CLOSED {a fhir:ProcedureRequest}?;
-    fhir:Reference.reference @<string>?;
-    fhir:Reference.display @<string>?;
-    fhir:index xsd:integer?
-}
-
-<ProcedureRequest> {
-    a [fhir:ProcedureRequest];
     fhir:nodeRole [fhir:treeRoot]?
 }
 
@@ -649,20 +735,23 @@ start=@<MedicationRequest> AND {fhir:nodeRole [fhir:treeRoot]}
 
 #---------------------- Value Sets ------------------------
 
-# Real world event that the relating to the schedule.
-fhirvs:event-timing ["HS" "WAKE" "C" "CM" "CD" "CV" "AC" "ACM" "ACD" "ACV" "PC" "PCM" "PCD" "PCV"]
+# How the Quantity should be understood and represented.
+fhirvs:quantity-comparator ["<" "<=" ">=" ">"]
 
 # A coded concept specifying the state of the prescribing event. Describes the lifecycle of the prescription
 fhirvs:medication-request-status ["active" "on-hold" "cancelled" "completed" "entered-in-error" "stopped" "draft"]
 
-# How the Quantity should be understood and represented.
-fhirvs:quantity-comparator ["<" "<=" ">=" ">"]
+# Real world event that the relating to the schedule.
+fhirvs:event-timing ["MORN" "AFT" "EVE" "NIGHT" "HS" "WAKE" "C" "CM" "CD" "CV" "AC" "ACM" "ACD" "ACV" "PC" "PCM" "PCD" "PCV"]
+
+# A unit of time (units from UCUM).
+fhirvs:units-of-time ["s" "min" "h" "d" "wk" "mo" "a"]
+
+# The days of the week.
+fhirvs:days-of-week ["mon" "tue" "wed" "thu" "fri" "sat" "sun"]
 
 # Identifies the purpose for this identifier, if known .
 fhirvs:identifier-use ["usual" "official" "temp" "secondary"]
 
 # The status of a resource narrative
 fhirvs:narrative-status ["generated" "extensions" "additional" "empty"]
-
-# A unit of time (units from UCUM).
-fhirvs:units-of-time ["s" "min" "h" "d" "wk" "mo" "a"]

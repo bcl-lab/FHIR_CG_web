@@ -23,23 +23,21 @@ start=@<PaymentReconciliation> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
     fhir:PaymentReconciliation.identifier @<Identifier>*;  # Business Identifier
     fhir:PaymentReconciliation.status @<code> AND
-    	{fhir:value @fhirvs:paymentreconciliation-status};  # active | cancelled | draft | 
+    	{fhir:value @fhirvs:fm-status}?;  # active | cancelled | draft | 
                                             # entered-in-error 
+    fhir:PaymentReconciliation.period @<Period>?;  # Period covered
+    fhir:PaymentReconciliation.created @<dateTime>?;  # Creation date
+    fhir:PaymentReconciliation.organization @<Reference>?;  # Insurer
     fhir:PaymentReconciliation.request @<Reference>?;  # Claim reference
-    fhir:PaymentReconciliation.outcome @<code> AND
+    fhir:PaymentReconciliation.outcome @<CodeableConcept> AND
     	{fhir:value @fhirvs:remittance-outcome}?;  # complete | error | partial
     fhir:PaymentReconciliation.disposition @<string>?;  # Disposition Message
-    fhir:PaymentReconciliation.ruleset @<Coding>?;  # Resource version
-    fhir:PaymentReconciliation.originalRuleset @<Coding>?;  # Original version
-    fhir:PaymentReconciliation.created @<dateTime>?;  # Creation date
-    fhir:PaymentReconciliation.period @<Period>?;  # Period covered
-    fhir:PaymentReconciliation.organization @<Reference>?;  # Insurer
     fhir:PaymentReconciliation.requestProvider @<Reference>?;  # Responsible practitioner
     fhir:PaymentReconciliation.requestOrganization @<Reference>?;  # Responsible organization
     fhir:PaymentReconciliation.detail @<PaymentReconciliation.detail>*;  # Details
-    fhir:PaymentReconciliation.form @<Coding> AND
+    fhir:PaymentReconciliation.form @<CodeableConcept> AND
     	{fhir:value @fhirvs:forms}?;  # Printed Form Identifier
-    fhir:PaymentReconciliation.total @<Money>;  # Total amount of Payment
+    fhir:PaymentReconciliation.total @<Money>?;  # Total amount of Payment
     fhir:PaymentReconciliation.note @<PaymentReconciliation.note>*;  # Note text
     fhir:index xsd:integer?                 # Relative position in a list
 }
@@ -50,7 +48,7 @@ start=@<PaymentReconciliation> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:extension @<Extension>*;           # Additional Content defined by 
                                             # implementations 
     fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    fhir:PaymentReconciliation.detail.type @<Coding>;  # Type code
+    fhir:PaymentReconciliation.detail.type @<CodeableConcept>;  # Type code
     fhir:PaymentReconciliation.detail.request @<Reference>?;  # Claim
     fhir:PaymentReconciliation.detail.response @<Reference>?;  # Claim Response
     fhir:PaymentReconciliation.detail.submitter @<Reference>?;  # Submitter
@@ -66,7 +64,7 @@ start=@<PaymentReconciliation> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:extension @<Extension>*;           # Additional Content defined by 
                                             # implementations 
     fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    fhir:PaymentReconciliation.note.type @<Coding> AND
+    fhir:PaymentReconciliation.note.type @<CodeableConcept> AND
     	{fhir:value @fhirvs:note-type}?;  # display | print | printoper
     fhir:PaymentReconciliation.note.text @<string>?;  # Notes text
     fhir:index xsd:integer?                 # Relative position in a list
@@ -220,6 +218,36 @@ start=@<PaymentReconciliation> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
+# Primitive Type id
+<id> CLOSED {
+    fhir:extension @<Extension>*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:value xsd:string?;                 # Primitive value for id
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
+# Concept - reference to a terminology or just  text
+<CodeableConcept> CLOSED {
+    fhir:concept IRI*;
+    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
+    fhir:extension @<Extension>*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:CodeableConcept.coding @<Coding>*;  # Code defined by a terminology 
+                                            # system 
+    fhir:CodeableConcept.text @<string>?;   # Plain text representation of the 
+                                            # concept 
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
+# Primitive Type instant
+<instant> CLOSED {
+    fhir:Element.id @<id>?;                 # xml:id (or equivalent in JSON)
+    fhir:extension @<Extension>*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:value xsd:dateTime?;               # Primitive value for instant
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
 # A reference to a code defined by a terminology system
 <Coding> CLOSED {
     fhir:concept IRI?;
@@ -237,20 +265,12 @@ start=@<PaymentReconciliation> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
-# Primitive Type id
-<id> CLOSED {
-    fhir:extension @<Extension>*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:value xsd:string?;                 # Primitive value for id
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
-# Primitive Type instant
-<instant> CLOSED {
+# Primitive Type decimal
+<decimal> CLOSED {
     fhir:Element.id @<id>?;                 # xml:id (or equivalent in JSON)
     fhir:extension @<Extension>*;           # Additional Content defined by 
                                             # implementations 
-    fhir:value xsd:dateTime?;               # Primitive value for instant
+    fhir:value xsd:decimal?;                # Primitive value for decimal
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -263,49 +283,27 @@ start=@<PaymentReconciliation> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
-# Primitive Type decimal
-<decimal> CLOSED {
-    fhir:Element.id @<id>?;                 # xml:id (or equivalent in JSON)
-    fhir:extension @<Extension>*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:value xsd:decimal?;                # Primitive value for decimal
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
-# Concept - reference to a terminology or just  text
-<CodeableConcept> CLOSED {
-    fhir:concept IRI*;
-    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
-    fhir:extension @<Extension>*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:CodeableConcept.coding @<Coding>*;  # Code defined by a terminology 
-                                            # system 
-    fhir:CodeableConcept.text @<string>?;   # Plain text representation of the 
-                                            # concept 
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
 #---------------------- Reference Types -------------------
 
 #---------------------- Value Sets ------------------------
 
-# A code specifying the state of the resource instance.
-fhirvs:paymentreconciliation-status ["active" "cancelled" "draft" "entered-in-error"]
-
-# The presentation types of notes.
-fhirvs:note-type ["display" "print" "printoper"]
-
 # This value set includes a Claim Processing Outcome codes.
 fhirvs:remittance-outcome ["complete" "error" "partial"]
-
-# This value set includes a sample set of Forms codes.
-fhirvs:forms ["1" "2"]
 
 # How the Quantity should be understood and represented.
 fhirvs:quantity-comparator ["<" "<=" ">=" ">"]
 
+# This value set includes STatus codes.
+fhirvs:fm-status ["active" "cancelled" "draft" "entered-in-error"]
+
+# The presentation types of notes.
+fhirvs:note-type ["display" "print" "printoper"]
+
 # Identifies the purpose for this identifier, if known .
 fhirvs:identifier-use ["usual" "official" "temp" "secondary"]
+
+# This value set includes a sample set of Forms codes.
+fhirvs:forms ["1" "2"]
 
 # The status of a resource narrative
 fhirvs:narrative-status ["generated" "extensions" "additional" "empty"]

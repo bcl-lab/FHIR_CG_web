@@ -3,7 +3,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>Coverage.profile.json - FHIR v1.7.0</title>
+  <title>Coverage.profile.json - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -119,7 +119,7 @@
   &quot;resourceType&quot;: &quot;StructureDefinition&quot;,
   &quot;id&quot;: &quot;Coverage&quot;,
   &quot;meta&quot;: {
-    &quot;lastUpdated&quot;: &quot;2016-11-28T17:29:55.664-05:00&quot;
+    &quot;lastUpdated&quot;: &quot;2016-12-07T14:18:58.982-05:00&quot;
   },
   &quot;text&quot;: {
     &quot;status&quot;: &quot;generated&quot;,
@@ -129,6 +129,10 @@
     {
       &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm&quot;,
       &quot;valueInteger&quot;: 1
+    },
+    {
+      &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/structuredefinition-wg&quot;,
+      &quot;valueCode&quot;: &quot;fm&quot;
     }
   ],
   &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/Coverage&quot;,
@@ -139,7 +143,7 @@
     {
       &quot;telecom&quot;: [
         {
-          &quot;system&quot;: &quot;other&quot;,
+          &quot;system&quot;: &quot;url&quot;,
           &quot;value&quot;: &quot;http://hl7.org/fhir&quot;
         }
       ]
@@ -147,16 +151,16 @@
     {
       &quot;telecom&quot;: [
         {
-          &quot;system&quot;: &quot;other&quot;,
+          &quot;system&quot;: &quot;url&quot;,
           &quot;value&quot;: &quot;http://www.hl7.org/Special/committees/fm/index.cfm&quot;
         }
       ]
     }
   ],
-  &quot;date&quot;: &quot;2016-11-28T17:29:55-05:00&quot;,
+  &quot;date&quot;: &quot;2016-12-07T14:18:58-05:00&quot;,
   &quot;description&quot;: &quot;Base StructureDefinition for Coverage Resource&quot;,
   &quot;purpose&quot;: &quot;Health care programs and insurers are significant payors of health service costs.&quot;,
-  &quot;fhirVersion&quot;: &quot;1.7.0&quot;,
+  &quot;fhirVersion&quot;: &quot;1.8.0&quot;,
   &quot;mapping&quot;: [
     {
       &quot;identity&quot;: &quot;rim&quot;,
@@ -468,7 +472,7 @@
         &quot;id&quot;: &quot;Coverage.identifier&quot;,
         &quot;path&quot;: &quot;Coverage.identifier&quot;,
         &quot;short&quot;: &quot;The primary coverage ID&quot;,
-        &quot;definition&quot;: &quot;The main (and possibly only) identifier for the coverage - often referred to as a Member Id, Subscriber Id, Certificate number or Personal Health Number or Case ID.&quot;,
+        &quot;definition&quot;: &quot;The main (and possibly only) identifier for the coverage - often referred to as a Member Id, Certificate number, Personal Health Number or Case ID. May be constructed as the concatination of the Coverage.SubscriberID and the Coverage.dependant.&quot;,
         &quot;requirements&quot;: &quot;This value may uniquely identify the coverage or it may be used in conjunction with the additional identifiers below.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;*&quot;,
@@ -515,7 +519,7 @@
           &quot;strength&quot;: &quot;required&quot;,
           &quot;description&quot;: &quot;A code specifying the state of the resource instance.&quot;,
           &quot;valueSetReference&quot;: {
-            &quot;reference&quot;: &quot;http://hl7.org/fhir/ValueSet/coverage-status&quot;
+            &quot;reference&quot;: &quot;http://hl7.org/fhir/ValueSet/fm-status&quot;
           }
         },
         &quot;mapping&quot;: [
@@ -526,105 +530,24 @@
         ]
       },
       {
-        &quot;id&quot;: &quot;Coverage.issuer&quot;,
-        &quot;path&quot;: &quot;Coverage.issuer&quot;,
-        &quot;short&quot;: &quot;Identifier for the plan or agreement issuer&quot;,
-        &quot;definition&quot;: &quot;The program or plan underwriter or payor including both insurance and non-insurance agreements, such as patient-pay agreements.&quot;,
-        &quot;requirements&quot;: &quot;Need to identify the issuer to target for processing and for coordination of benefit processing.&quot;,
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;Reference&quot;,
-            &quot;targetProfile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/Organization&quot;
-          },
-          {
-            &quot;code&quot;: &quot;Reference&quot;,
-            &quot;targetProfile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/Patient&quot;
-          },
-          {
-            &quot;code&quot;: &quot;Reference&quot;,
-            &quot;targetProfile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/RelatedPerson&quot;
-          }
-        ],
-        &quot;isSummary&quot;: true,
-        &quot;mapping&quot;: [
-          {
-            &quot;identity&quot;: &quot;cdanetv4&quot;,
-            &quot;map&quot;: &quot;A05&quot;
-          },
-          {
-            &quot;identity&quot;: &quot;v2&quot;,
-            &quot;map&quot;: &quot;IN1-3&quot;
-          },
-          {
-            &quot;identity&quot;: &quot;cpha3pharm&quot;,
-            &quot;map&quot;: &quot;C.30&quot;
-          },
-          {
-            &quot;identity&quot;: &quot;w5&quot;,
-            &quot;map&quot;: &quot;who.author&quot;
-          }
-        ]
-      },
-      {
-        &quot;id&quot;: &quot;Coverage.isAgreement&quot;,
-        &quot;path&quot;: &quot;Coverage.isAgreement&quot;,
-        &quot;short&quot;: &quot;Is a Payment Agreement&quot;,
-        &quot;definition&quot;: &quot;A self, or other, payment agreement not an insurance policy.&quot;,
-        &quot;requirements&quot;: &quot;Only insurance policies receive Claims, agreements receive bills.&quot;,
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;boolean&quot;
-          }
-        ],
-        &quot;isSummary&quot;: true
-      },
-      {
-        &quot;id&quot;: &quot;Coverage.period&quot;,
-        &quot;path&quot;: &quot;Coverage.period&quot;,
-        &quot;short&quot;: &quot;Coverage start and end dates&quot;,
-        &quot;definition&quot;: &quot;Time period during which the coverage is in force. A missing start date indicates the start date isn't known, a missing end date means the coverage is continuing to be in force.&quot;,
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;Period&quot;
-          }
-        ],
-        &quot;isSummary&quot;: true,
-        &quot;mapping&quot;: [
-          {
-            &quot;identity&quot;: &quot;v2&quot;,
-            &quot;map&quot;: &quot;IN1-12 / IN1-13&quot;
-          },
-          {
-            &quot;identity&quot;: &quot;w5&quot;,
-            &quot;map&quot;: &quot;when.done&quot;
-          }
-        ]
-      },
-      {
         &quot;id&quot;: &quot;Coverage.type&quot;,
         &quot;path&quot;: &quot;Coverage.type&quot;,
         &quot;short&quot;: &quot;Type of coverage&quot;,
-        &quot;definition&quot;: &quot;The type of coverage: social program, medical plan, accident coverage (workers compensation, auto), group health.&quot;,
+        &quot;definition&quot;: &quot;The type of coverage: social program, medical plan, accident coverage (workers compensation, auto), group health or payment by an individual or organization.&quot;,
         &quot;requirements&quot;: &quot;The order of application of coverages is dependent on the types of coverage.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;isSummary&quot;: true,
         &quot;binding&quot;: {
-          &quot;strength&quot;: &quot;example&quot;,
-          &quot;description&quot;: &quot;The type of insurance: public health, worker compensation; private accident, auto, private health, etc.).&quot;,
+          &quot;strength&quot;: &quot;preferred&quot;,
+          &quot;description&quot;: &quot;The type of insurance: public health, worker compensation; private accident, auto, private health, etc.) or a direct payment by an individual or organization.&quot;,
           &quot;valueSetReference&quot;: {
-            &quot;reference&quot;: &quot;http://hl7.org/fhir/ValueSet/v3-ActCoverageTypeCode&quot;
+            &quot;reference&quot;: &quot;http://hl7.org/fhir/ValueSet/coverage-type&quot;
           }
         },
         &quot;mapping&quot;: [
@@ -639,10 +562,10 @@
         ]
       },
       {
-        &quot;id&quot;: &quot;Coverage.planholder&quot;,
-        &quot;path&quot;: &quot;Coverage.planholder&quot;,
-        &quot;short&quot;: &quot;Plan holder&quot;,
-        &quot;definition&quot;: &quot;The party who 'owns' the insurance contractual relationship to the policy or to whom the benefit of the policy is due.&quot;,
+        &quot;id&quot;: &quot;Coverage.policyHolder&quot;,
+        &quot;path&quot;: &quot;Coverage.policyHolder&quot;,
+        &quot;short&quot;: &quot;Owner of the policy&quot;,
+        &quot;definition&quot;: &quot;The party who 'owns' the insurance policy,  may be an individual, corporation or the subscriber's employer.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
@@ -680,10 +603,79 @@
         ]
       },
       {
+        &quot;id&quot;: &quot;Coverage.subscriber&quot;,
+        &quot;path&quot;: &quot;Coverage.subscriber&quot;,
+        &quot;short&quot;: &quot;Subscriber to the policy&quot;,
+        &quot;definition&quot;: &quot;The party who has signed-up for or 'owns' the contractual relationship to the policy or to whom the benefit of the policy for services rendered to them or their family is due.&quot;,
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;1&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;Reference&quot;,
+            &quot;targetProfile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/Patient&quot;
+          },
+          {
+            &quot;code&quot;: &quot;Reference&quot;,
+            &quot;targetProfile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/RelatedPerson&quot;
+          }
+        ],
+        &quot;isSummary&quot;: true,
+        &quot;mapping&quot;: [
+          {
+            &quot;identity&quot;: &quot;cdanetv4&quot;,
+            &quot;map&quot;: &quot;D01 through D09&quot;
+          },
+          {
+            &quot;identity&quot;: &quot;v2&quot;,
+            &quot;map&quot;: &quot;IN1-16, 18,  19-name of insured, address, date of birth&quot;
+          },
+          {
+            &quot;identity&quot;: &quot;cpha3pharm&quot;,
+            &quot;map&quot;: &quot;C.35&quot;
+          },
+          {
+            &quot;identity&quot;: &quot;w5&quot;,
+            &quot;map&quot;: &quot;who.focus&quot;
+          }
+        ]
+      },
+      {
+        &quot;id&quot;: &quot;Coverage.subscriberId&quot;,
+        &quot;path&quot;: &quot;Coverage.subscriberId&quot;,
+        &quot;short&quot;: &quot;ID assigned to the Subscriber&quot;,
+        &quot;definition&quot;: &quot;The insurer assigned ID for the Subscriber.&quot;,
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;1&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;string&quot;
+          }
+        ],
+        &quot;isSummary&quot;: true,
+        &quot;mapping&quot;: [
+          {
+            &quot;identity&quot;: &quot;cdanetv4&quot;,
+            &quot;map&quot;: &quot;D01 through D09&quot;
+          },
+          {
+            &quot;identity&quot;: &quot;v2&quot;,
+            &quot;map&quot;: &quot;IN1-16, 18,  19-name of insured, address, date of birth&quot;
+          },
+          {
+            &quot;identity&quot;: &quot;cpha3pharm&quot;,
+            &quot;map&quot;: &quot;C.35&quot;
+          },
+          {
+            &quot;identity&quot;: &quot;w5&quot;,
+            &quot;map&quot;: &quot;who.focus&quot;
+          }
+        ]
+      },
+      {
         &quot;id&quot;: &quot;Coverage.beneficiary&quot;,
         &quot;path&quot;: &quot;Coverage.beneficiary&quot;,
         &quot;short&quot;: &quot;Plan Beneficiary&quot;,
-        &quot;definition&quot;: &quot;The party who benefits from the insurance coverage.&quot;,
+        &quot;definition&quot;: &quot;The party who benefits from the insurance coverage., the patient when services are provided.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
@@ -715,14 +707,14 @@
       {
         &quot;id&quot;: &quot;Coverage.relationship&quot;,
         &quot;path&quot;: &quot;Coverage.relationship&quot;,
-        &quot;short&quot;: &quot;Beneficiary relationship to Planholder&quot;,
-        &quot;definition&quot;: &quot;The relationship of beneficiary (patient) (subscriber) to the the planholder.&quot;,
+        &quot;short&quot;: &quot;Beneficiary relationship to the Subscriber&quot;,
+        &quot;definition&quot;: &quot;The relationship of beneficiary (patient) to the subscriber.&quot;,
         &quot;requirements&quot;: &quot;To determine relationship between the patient and the subscriber.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;Coding&quot;
+            &quot;code&quot;: &quot;CodeableConcept&quot;
           }
         ],
         &quot;binding&quot;: {
@@ -736,6 +728,72 @@
           {
             &quot;identity&quot;: &quot;cdanetv4&quot;,
             &quot;map&quot;: &quot;C03&quot;
+          }
+        ]
+      },
+      {
+        &quot;id&quot;: &quot;Coverage.period&quot;,
+        &quot;path&quot;: &quot;Coverage.period&quot;,
+        &quot;short&quot;: &quot;Coverage start and end dates&quot;,
+        &quot;definition&quot;: &quot;Time period during which the coverage is in force. A missing start date indicates the start date isn't known, a missing end date means the coverage is continuing to be in force.&quot;,
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;1&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;Period&quot;
+          }
+        ],
+        &quot;isSummary&quot;: true,
+        &quot;mapping&quot;: [
+          {
+            &quot;identity&quot;: &quot;v2&quot;,
+            &quot;map&quot;: &quot;IN1-12 / IN1-13&quot;
+          },
+          {
+            &quot;identity&quot;: &quot;w5&quot;,
+            &quot;map&quot;: &quot;when.done&quot;
+          }
+        ]
+      },
+      {
+        &quot;id&quot;: &quot;Coverage.payor&quot;,
+        &quot;path&quot;: &quot;Coverage.payor&quot;,
+        &quot;short&quot;: &quot;Identifier for the plan or agreement issuer&quot;,
+        &quot;definition&quot;: &quot;The program or plan underwriter or payor including both insurance and non-insurance agreements, such as patient-pay agreements. May provide multiple identifiers such as insurance company identifier or business identifier (BIN number).&quot;,
+        &quot;requirements&quot;: &quot;Need to identify the issuer to target for processing and for coordination of benefit processing.&quot;,
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;*&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;Reference&quot;,
+            &quot;targetProfile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/Organization&quot;
+          },
+          {
+            &quot;code&quot;: &quot;Reference&quot;,
+            &quot;targetProfile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/Patient&quot;
+          },
+          {
+            &quot;code&quot;: &quot;Reference&quot;,
+            &quot;targetProfile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/RelatedPerson&quot;
+          }
+        ],
+        &quot;isSummary&quot;: true,
+        &quot;mapping&quot;: [
+          {
+            &quot;identity&quot;: &quot;cdanetv4&quot;,
+            &quot;map&quot;: &quot;A05&quot;
+          },
+          {
+            &quot;identity&quot;: &quot;v2&quot;,
+            &quot;map&quot;: &quot;IN1-3&quot;
+          },
+          {
+            &quot;identity&quot;: &quot;cpha3pharm&quot;,
+            &quot;map&quot;: &quot;C.30&quot;
+          },
+          {
+            &quot;identity&quot;: &quot;w5&quot;,
+            &quot;map&quot;: &quot;who.author&quot;
           }
         ]
       },
@@ -860,7 +918,7 @@
         &quot;id&quot;: &quot;Coverage.group.group&quot;,
         &quot;path&quot;: &quot;Coverage.group.group&quot;,
         &quot;short&quot;: &quot;An identifier for the group&quot;,
-        &quot;definition&quot;: &quot;Identifies a style or collective of coverage issues by the underwriter, for example may be used to identify a class of coverage or employer group. May also be referred to as a Policy or Group ID.&quot;,
+        &quot;definition&quot;: &quot;Identifies a style or collective of coverage issued by the underwriter, for example may be used to identify an employer group. May also be referred to as a Policy or Group ID.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
@@ -916,7 +974,7 @@
         &quot;id&quot;: &quot;Coverage.group.subGroup&quot;,
         &quot;path&quot;: &quot;Coverage.group.subGroup&quot;,
         &quot;short&quot;: &quot;An identifier for the subsection of the group&quot;,
-        &quot;definition&quot;: &quot;Identifies a style or collective of coverage issues by the underwriter, for example may be used to identify a class of coverage or employer group. May also be referred to as a Policy or Group ID.&quot;,
+        &quot;definition&quot;: &quot;Identifies a style or collective of coverage issued by the underwriter, for example may be used to identify a subset of an employer group.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
@@ -956,7 +1014,7 @@
         &quot;id&quot;: &quot;Coverage.group.plan&quot;,
         &quot;path&quot;: &quot;Coverage.group.plan&quot;,
         &quot;short&quot;: &quot;An identifier for the plan&quot;,
-        &quot;definition&quot;: &quot;Identifies a style or collective of coverage issues by the underwriter, for example may be used to identify a class of coverage or employer group. May also be referred to as a Policy or Group ID.&quot;,
+        &quot;definition&quot;: &quot;Identifies a style or collective of coverage issued by the underwriter, for example may be used to identify a collection of benefits provided to employees. May be referred to as a Section or Division ID.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
@@ -1004,7 +1062,7 @@
         &quot;id&quot;: &quot;Coverage.group.subPlan&quot;,
         &quot;path&quot;: &quot;Coverage.group.subPlan&quot;,
         &quot;short&quot;: &quot;An identifier for the subsection of the plan&quot;,
-        &quot;definition&quot;: &quot;Identifies a sub-style or sub-collective of coverage issues by the underwriter, for example may be used to identify a specific employer group within a class of employers. May be referred to as a Section or Division ID.&quot;,
+        &quot;definition&quot;: &quot;Identifies a sub-style or sub-collective of coverage issued by the underwriter, for example may be used to identify a subset of a collection of benefits provided to employees.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
@@ -1141,12 +1199,12 @@
         &quot;path&quot;: &quot;Coverage.dependent&quot;,
         &quot;short&quot;: &quot;Dependent number&quot;,
         &quot;definition&quot;: &quot;A unique identifier for a dependent under the coverage.&quot;,
-        &quot;requirements&quot;: &quot;For some coverage a single identifier is issued to the PolicyHolder and a dependent number issued to each beneficiary.&quot;,
+        &quot;requirements&quot;: &quot;For some coverage a single identifier is issued to the Subscriber and a dependent number issued to each beneficiary.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;positiveInt&quot;
+            &quot;code&quot;: &quot;string&quot;
           }
         ],
         &quot;isSummary&quot;: true,
@@ -1171,7 +1229,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;positiveInt&quot;
+            &quot;code&quot;: &quot;string&quot;
           }
         ],
         &quot;isSummary&quot;: true,
@@ -1187,10 +1245,30 @@
         ]
       },
       {
+        &quot;id&quot;: &quot;Coverage.order&quot;,
+        &quot;path&quot;: &quot;Coverage.order&quot;,
+        &quot;short&quot;: &quot;Relative order of the coverage&quot;,
+        &quot;definition&quot;: &quot;The order of applicability of this coverage relative to other coverages which are currently inforce. Note, there may be gaps in the numbering and this does not imply primary, secondard etc. as the specific positioning of coverages depends upon the episode of care.&quot;,
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;1&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;positiveInt&quot;
+          }
+        ],
+        &quot;isSummary&quot;: true,
+        &quot;mapping&quot;: [
+          {
+            &quot;identity&quot;: &quot;v2&quot;,
+            &quot;map&quot;: &quot;- No exact HL7 v2 equivalent concept seems to exist;&quot;
+          }
+        ]
+      },
+      {
         &quot;id&quot;: &quot;Coverage.network&quot;,
         &quot;path&quot;: &quot;Coverage.network&quot;,
         &quot;short&quot;: &quot;Insurer network&quot;,
-        &quot;definition&quot;: &quot;The identifier for a community of providers.&quot;,
+        &quot;definition&quot;: &quot;The insurer-specific identifier for the insurer-defined network of providers to which the beneficiary may seek treatment which will be covered at the 'in-network' rate, otherwise 'out of network' terms and conditions apply.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
@@ -1260,7 +1338,7 @@
         &quot;id&quot;: &quot;Coverage.identifier&quot;,
         &quot;path&quot;: &quot;Coverage.identifier&quot;,
         &quot;short&quot;: &quot;The primary coverage ID&quot;,
-        &quot;definition&quot;: &quot;The main (and possibly only) identifier for the coverage - often referred to as a Member Id, Subscriber Id, Certificate number or Personal Health Number or Case ID.&quot;,
+        &quot;definition&quot;: &quot;The main (and possibly only) identifier for the coverage - often referred to as a Member Id, Certificate number, Personal Health Number or Case ID. May be constructed as the concatination of the Coverage.SubscriberID and the Coverage.dependant.&quot;,
         &quot;requirements&quot;: &quot;This value may uniquely identify the coverage or it may be used in conjunction with the additional identifiers below.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;*&quot;,
@@ -1307,7 +1385,7 @@
           &quot;strength&quot;: &quot;required&quot;,
           &quot;description&quot;: &quot;A code specifying the state of the resource instance.&quot;,
           &quot;valueSetReference&quot;: {
-            &quot;reference&quot;: &quot;http://hl7.org/fhir/ValueSet/coverage-status&quot;
+            &quot;reference&quot;: &quot;http://hl7.org/fhir/ValueSet/fm-status&quot;
           }
         },
         &quot;mapping&quot;: [
@@ -1318,13 +1396,239 @@
         ]
       },
       {
-        &quot;id&quot;: &quot;Coverage.issuer&quot;,
-        &quot;path&quot;: &quot;Coverage.issuer&quot;,
-        &quot;short&quot;: &quot;Identifier for the plan or agreement issuer&quot;,
-        &quot;definition&quot;: &quot;The program or plan underwriter or payor including both insurance and non-insurance agreements, such as patient-pay agreements.&quot;,
-        &quot;requirements&quot;: &quot;Need to identify the issuer to target for processing and for coordination of benefit processing.&quot;,
+        &quot;id&quot;: &quot;Coverage.type&quot;,
+        &quot;path&quot;: &quot;Coverage.type&quot;,
+        &quot;short&quot;: &quot;Type of coverage&quot;,
+        &quot;definition&quot;: &quot;The type of coverage: social program, medical plan, accident coverage (workers compensation, auto), group health or payment by an individual or organization.&quot;,
+        &quot;requirements&quot;: &quot;The order of application of coverages is dependent on the types of coverage.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;CodeableConcept&quot;
+          }
+        ],
+        &quot;isSummary&quot;: true,
+        &quot;binding&quot;: {
+          &quot;strength&quot;: &quot;preferred&quot;,
+          &quot;description&quot;: &quot;The type of insurance: public health, worker compensation; private accident, auto, private health, etc.) or a direct payment by an individual or organization.&quot;,
+          &quot;valueSetReference&quot;: {
+            &quot;reference&quot;: &quot;http://hl7.org/fhir/ValueSet/coverage-type&quot;
+          }
+        },
+        &quot;mapping&quot;: [
+          {
+            &quot;identity&quot;: &quot;v2&quot;,
+            &quot;map&quot;: &quot;IN1-15&quot;
+          },
+          {
+            &quot;identity&quot;: &quot;w5&quot;,
+            &quot;map&quot;: &quot;class&quot;
+          }
+        ]
+      },
+      {
+        &quot;id&quot;: &quot;Coverage.policyHolder&quot;,
+        &quot;path&quot;: &quot;Coverage.policyHolder&quot;,
+        &quot;short&quot;: &quot;Owner of the policy&quot;,
+        &quot;definition&quot;: &quot;The party who 'owns' the insurance policy,  may be an individual, corporation or the subscriber's employer.&quot;,
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;1&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;Reference&quot;,
+            &quot;targetProfile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/Patient&quot;
+          },
+          {
+            &quot;code&quot;: &quot;Reference&quot;,
+            &quot;targetProfile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/RelatedPerson&quot;
+          },
+          {
+            &quot;code&quot;: &quot;Reference&quot;,
+            &quot;targetProfile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/Organization&quot;
+          }
+        ],
+        &quot;isSummary&quot;: true,
+        &quot;mapping&quot;: [
+          {
+            &quot;identity&quot;: &quot;cdanetv4&quot;,
+            &quot;map&quot;: &quot;D01 through D09&quot;
+          },
+          {
+            &quot;identity&quot;: &quot;v2&quot;,
+            &quot;map&quot;: &quot;IN1-16, 18,  19-name of insured, address, date of birth&quot;
+          },
+          {
+            &quot;identity&quot;: &quot;cpha3pharm&quot;,
+            &quot;map&quot;: &quot;C.35&quot;
+          },
+          {
+            &quot;identity&quot;: &quot;w5&quot;,
+            &quot;map&quot;: &quot;who.focus&quot;
+          }
+        ]
+      },
+      {
+        &quot;id&quot;: &quot;Coverage.subscriber&quot;,
+        &quot;path&quot;: &quot;Coverage.subscriber&quot;,
+        &quot;short&quot;: &quot;Subscriber to the policy&quot;,
+        &quot;definition&quot;: &quot;The party who has signed-up for or 'owns' the contractual relationship to the policy or to whom the benefit of the policy for services rendered to them or their family is due.&quot;,
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;1&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;Reference&quot;,
+            &quot;targetProfile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/Patient&quot;
+          },
+          {
+            &quot;code&quot;: &quot;Reference&quot;,
+            &quot;targetProfile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/RelatedPerson&quot;
+          }
+        ],
+        &quot;isSummary&quot;: true,
+        &quot;mapping&quot;: [
+          {
+            &quot;identity&quot;: &quot;cdanetv4&quot;,
+            &quot;map&quot;: &quot;D01 through D09&quot;
+          },
+          {
+            &quot;identity&quot;: &quot;v2&quot;,
+            &quot;map&quot;: &quot;IN1-16, 18,  19-name of insured, address, date of birth&quot;
+          },
+          {
+            &quot;identity&quot;: &quot;cpha3pharm&quot;,
+            &quot;map&quot;: &quot;C.35&quot;
+          },
+          {
+            &quot;identity&quot;: &quot;w5&quot;,
+            &quot;map&quot;: &quot;who.focus&quot;
+          }
+        ]
+      },
+      {
+        &quot;id&quot;: &quot;Coverage.subscriberId&quot;,
+        &quot;path&quot;: &quot;Coverage.subscriberId&quot;,
+        &quot;short&quot;: &quot;ID assigned to the Subscriber&quot;,
+        &quot;definition&quot;: &quot;The insurer assigned ID for the Subscriber.&quot;,
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;1&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;string&quot;
+          }
+        ],
+        &quot;isSummary&quot;: true,
+        &quot;mapping&quot;: [
+          {
+            &quot;identity&quot;: &quot;cdanetv4&quot;,
+            &quot;map&quot;: &quot;D01 through D09&quot;
+          },
+          {
+            &quot;identity&quot;: &quot;v2&quot;,
+            &quot;map&quot;: &quot;IN1-16, 18,  19-name of insured, address, date of birth&quot;
+          },
+          {
+            &quot;identity&quot;: &quot;cpha3pharm&quot;,
+            &quot;map&quot;: &quot;C.35&quot;
+          },
+          {
+            &quot;identity&quot;: &quot;w5&quot;,
+            &quot;map&quot;: &quot;who.focus&quot;
+          }
+        ]
+      },
+      {
+        &quot;id&quot;: &quot;Coverage.beneficiary&quot;,
+        &quot;path&quot;: &quot;Coverage.beneficiary&quot;,
+        &quot;short&quot;: &quot;Plan Beneficiary&quot;,
+        &quot;definition&quot;: &quot;The party who benefits from the insurance coverage., the patient when services are provided.&quot;,
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;1&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;Reference&quot;,
+            &quot;targetProfile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/Patient&quot;
+          }
+        ],
+        &quot;isSummary&quot;: true,
+        &quot;mapping&quot;: [
+          {
+            &quot;identity&quot;: &quot;cdanetv4&quot;,
+            &quot;map&quot;: &quot;D01 through D09&quot;
+          },
+          {
+            &quot;identity&quot;: &quot;v2&quot;,
+            &quot;map&quot;: &quot;IN1-16, 18,  19-name of insured, address, date of birth&quot;
+          },
+          {
+            &quot;identity&quot;: &quot;cpha3pharm&quot;,
+            &quot;map&quot;: &quot;C.35&quot;
+          },
+          {
+            &quot;identity&quot;: &quot;w5&quot;,
+            &quot;map&quot;: &quot;who.focus&quot;
+          }
+        ]
+      },
+      {
+        &quot;id&quot;: &quot;Coverage.relationship&quot;,
+        &quot;path&quot;: &quot;Coverage.relationship&quot;,
+        &quot;short&quot;: &quot;Beneficiary relationship to the Subscriber&quot;,
+        &quot;definition&quot;: &quot;The relationship of beneficiary (patient) to the subscriber.&quot;,
+        &quot;requirements&quot;: &quot;To determine relationship between the patient and the subscriber.&quot;,
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;1&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;CodeableConcept&quot;
+          }
+        ],
+        &quot;binding&quot;: {
+          &quot;strength&quot;: &quot;example&quot;,
+          &quot;description&quot;: &quot;The relationship between the Policyholder and the Beneficiary (insured/covered party/patient).&quot;,
+          &quot;valueSetReference&quot;: {
+            &quot;reference&quot;: &quot;http://hl7.org/fhir/ValueSet/policyholder-relationship&quot;
+          }
+        },
+        &quot;mapping&quot;: [
+          {
+            &quot;identity&quot;: &quot;cdanetv4&quot;,
+            &quot;map&quot;: &quot;C03&quot;
+          }
+        ]
+      },
+      {
+        &quot;id&quot;: &quot;Coverage.period&quot;,
+        &quot;path&quot;: &quot;Coverage.period&quot;,
+        &quot;short&quot;: &quot;Coverage start and end dates&quot;,
+        &quot;definition&quot;: &quot;Time period during which the coverage is in force. A missing start date indicates the start date isn't known, a missing end date means the coverage is continuing to be in force.&quot;,
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;1&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;Period&quot;
+          }
+        ],
+        &quot;isSummary&quot;: true,
+        &quot;mapping&quot;: [
+          {
+            &quot;identity&quot;: &quot;v2&quot;,
+            &quot;map&quot;: &quot;IN1-12 / IN1-13&quot;
+          },
+          {
+            &quot;identity&quot;: &quot;w5&quot;,
+            &quot;map&quot;: &quot;when.done&quot;
+          }
+        ]
+      },
+      {
+        &quot;id&quot;: &quot;Coverage.payor&quot;,
+        &quot;path&quot;: &quot;Coverage.payor&quot;,
+        &quot;short&quot;: &quot;Identifier for the plan or agreement issuer&quot;,
+        &quot;definition&quot;: &quot;The program or plan underwriter or payor including both insurance and non-insurance agreements, such as patient-pay agreements. May provide multiple identifiers such as insurance company identifier or business identifier (BIN number).&quot;,
+        &quot;requirements&quot;: &quot;Need to identify the issuer to target for processing and for coordination of benefit processing.&quot;,
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;*&quot;,
         &quot;type&quot;: [
           {
             &quot;code&quot;: &quot;Reference&quot;,
@@ -1360,178 +1664,6 @@
         ]
       },
       {
-        &quot;id&quot;: &quot;Coverage.isAgreement&quot;,
-        &quot;path&quot;: &quot;Coverage.isAgreement&quot;,
-        &quot;short&quot;: &quot;Is a Payment Agreement&quot;,
-        &quot;definition&quot;: &quot;A self, or other, payment agreement not an insurance policy.&quot;,
-        &quot;requirements&quot;: &quot;Only insurance policies receive Claims, agreements receive bills.&quot;,
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;boolean&quot;
-          }
-        ],
-        &quot;isSummary&quot;: true
-      },
-      {
-        &quot;id&quot;: &quot;Coverage.period&quot;,
-        &quot;path&quot;: &quot;Coverage.period&quot;,
-        &quot;short&quot;: &quot;Coverage start and end dates&quot;,
-        &quot;definition&quot;: &quot;Time period during which the coverage is in force. A missing start date indicates the start date isn't known, a missing end date means the coverage is continuing to be in force.&quot;,
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;Period&quot;
-          }
-        ],
-        &quot;isSummary&quot;: true,
-        &quot;mapping&quot;: [
-          {
-            &quot;identity&quot;: &quot;v2&quot;,
-            &quot;map&quot;: &quot;IN1-12 / IN1-13&quot;
-          },
-          {
-            &quot;identity&quot;: &quot;w5&quot;,
-            &quot;map&quot;: &quot;when.done&quot;
-          }
-        ]
-      },
-      {
-        &quot;id&quot;: &quot;Coverage.type&quot;,
-        &quot;path&quot;: &quot;Coverage.type&quot;,
-        &quot;short&quot;: &quot;Type of coverage&quot;,
-        &quot;definition&quot;: &quot;The type of coverage: social program, medical plan, accident coverage (workers compensation, auto), group health.&quot;,
-        &quot;requirements&quot;: &quot;The order of application of coverages is dependent on the types of coverage.&quot;,
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;Coding&quot;
-          }
-        ],
-        &quot;isSummary&quot;: true,
-        &quot;binding&quot;: {
-          &quot;strength&quot;: &quot;example&quot;,
-          &quot;description&quot;: &quot;The type of insurance: public health, worker compensation; private accident, auto, private health, etc.).&quot;,
-          &quot;valueSetReference&quot;: {
-            &quot;reference&quot;: &quot;http://hl7.org/fhir/ValueSet/v3-ActCoverageTypeCode&quot;
-          }
-        },
-        &quot;mapping&quot;: [
-          {
-            &quot;identity&quot;: &quot;v2&quot;,
-            &quot;map&quot;: &quot;IN1-15&quot;
-          },
-          {
-            &quot;identity&quot;: &quot;w5&quot;,
-            &quot;map&quot;: &quot;class&quot;
-          }
-        ]
-      },
-      {
-        &quot;id&quot;: &quot;Coverage.planholder&quot;,
-        &quot;path&quot;: &quot;Coverage.planholder&quot;,
-        &quot;short&quot;: &quot;Plan holder&quot;,
-        &quot;definition&quot;: &quot;The party who 'owns' the insurance contractual relationship to the policy or to whom the benefit of the policy is due.&quot;,
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;Reference&quot;,
-            &quot;targetProfile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/Patient&quot;
-          },
-          {
-            &quot;code&quot;: &quot;Reference&quot;,
-            &quot;targetProfile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/RelatedPerson&quot;
-          },
-          {
-            &quot;code&quot;: &quot;Reference&quot;,
-            &quot;targetProfile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/Organization&quot;
-          }
-        ],
-        &quot;isSummary&quot;: true,
-        &quot;mapping&quot;: [
-          {
-            &quot;identity&quot;: &quot;cdanetv4&quot;,
-            &quot;map&quot;: &quot;D01 through D09&quot;
-          },
-          {
-            &quot;identity&quot;: &quot;v2&quot;,
-            &quot;map&quot;: &quot;IN1-16, 18,  19-name of insured, address, date of birth&quot;
-          },
-          {
-            &quot;identity&quot;: &quot;cpha3pharm&quot;,
-            &quot;map&quot;: &quot;C.35&quot;
-          },
-          {
-            &quot;identity&quot;: &quot;w5&quot;,
-            &quot;map&quot;: &quot;who.focus&quot;
-          }
-        ]
-      },
-      {
-        &quot;id&quot;: &quot;Coverage.beneficiary&quot;,
-        &quot;path&quot;: &quot;Coverage.beneficiary&quot;,
-        &quot;short&quot;: &quot;Plan Beneficiary&quot;,
-        &quot;definition&quot;: &quot;The party who benefits from the insurance coverage.&quot;,
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;Reference&quot;,
-            &quot;targetProfile&quot;: &quot;http://hl7.org/fhir/StructureDefinition/Patient&quot;
-          }
-        ],
-        &quot;isSummary&quot;: true,
-        &quot;mapping&quot;: [
-          {
-            &quot;identity&quot;: &quot;cdanetv4&quot;,
-            &quot;map&quot;: &quot;D01 through D09&quot;
-          },
-          {
-            &quot;identity&quot;: &quot;v2&quot;,
-            &quot;map&quot;: &quot;IN1-16, 18,  19-name of insured, address, date of birth&quot;
-          },
-          {
-            &quot;identity&quot;: &quot;cpha3pharm&quot;,
-            &quot;map&quot;: &quot;C.35&quot;
-          },
-          {
-            &quot;identity&quot;: &quot;w5&quot;,
-            &quot;map&quot;: &quot;who.focus&quot;
-          }
-        ]
-      },
-      {
-        &quot;id&quot;: &quot;Coverage.relationship&quot;,
-        &quot;path&quot;: &quot;Coverage.relationship&quot;,
-        &quot;short&quot;: &quot;Beneficiary relationship to Planholder&quot;,
-        &quot;definition&quot;: &quot;The relationship of beneficiary (patient) (subscriber) to the the planholder.&quot;,
-        &quot;requirements&quot;: &quot;To determine relationship between the patient and the subscriber.&quot;,
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;Coding&quot;
-          }
-        ],
-        &quot;binding&quot;: {
-          &quot;strength&quot;: &quot;example&quot;,
-          &quot;description&quot;: &quot;The relationship between the Policyholder and the Beneficiary (insured/covered party/patient).&quot;,
-          &quot;valueSetReference&quot;: {
-            &quot;reference&quot;: &quot;http://hl7.org/fhir/ValueSet/policyholder-relationship&quot;
-          }
-        },
-        &quot;mapping&quot;: [
-          {
-            &quot;identity&quot;: &quot;cdanetv4&quot;,
-            &quot;map&quot;: &quot;C03&quot;
-          }
-        ]
-      },
-      {
         &quot;id&quot;: &quot;Coverage.group&quot;,
         &quot;extension&quot;: [
           {
@@ -1554,7 +1686,7 @@
         &quot;id&quot;: &quot;Coverage.group.group&quot;,
         &quot;path&quot;: &quot;Coverage.group.group&quot;,
         &quot;short&quot;: &quot;An identifier for the group&quot;,
-        &quot;definition&quot;: &quot;Identifies a style or collective of coverage issues by the underwriter, for example may be used to identify a class of coverage or employer group. May also be referred to as a Policy or Group ID.&quot;,
+        &quot;definition&quot;: &quot;Identifies a style or collective of coverage issued by the underwriter, for example may be used to identify an employer group. May also be referred to as a Policy or Group ID.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
@@ -1610,7 +1742,7 @@
         &quot;id&quot;: &quot;Coverage.group.subGroup&quot;,
         &quot;path&quot;: &quot;Coverage.group.subGroup&quot;,
         &quot;short&quot;: &quot;An identifier for the subsection of the group&quot;,
-        &quot;definition&quot;: &quot;Identifies a style or collective of coverage issues by the underwriter, for example may be used to identify a class of coverage or employer group. May also be referred to as a Policy or Group ID.&quot;,
+        &quot;definition&quot;: &quot;Identifies a style or collective of coverage issued by the underwriter, for example may be used to identify a subset of an employer group.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
@@ -1650,7 +1782,7 @@
         &quot;id&quot;: &quot;Coverage.group.plan&quot;,
         &quot;path&quot;: &quot;Coverage.group.plan&quot;,
         &quot;short&quot;: &quot;An identifier for the plan&quot;,
-        &quot;definition&quot;: &quot;Identifies a style or collective of coverage issues by the underwriter, for example may be used to identify a class of coverage or employer group. May also be referred to as a Policy or Group ID.&quot;,
+        &quot;definition&quot;: &quot;Identifies a style or collective of coverage issued by the underwriter, for example may be used to identify a collection of benefits provided to employees. May be referred to as a Section or Division ID.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
@@ -1698,7 +1830,7 @@
         &quot;id&quot;: &quot;Coverage.group.subPlan&quot;,
         &quot;path&quot;: &quot;Coverage.group.subPlan&quot;,
         &quot;short&quot;: &quot;An identifier for the subsection of the plan&quot;,
-        &quot;definition&quot;: &quot;Identifies a sub-style or sub-collective of coverage issues by the underwriter, for example may be used to identify a specific employer group within a class of employers. May be referred to as a Section or Division ID.&quot;,
+        &quot;definition&quot;: &quot;Identifies a sub-style or sub-collective of coverage issued by the underwriter, for example may be used to identify a subset of a collection of benefits provided to employees.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
@@ -1835,12 +1967,12 @@
         &quot;path&quot;: &quot;Coverage.dependent&quot;,
         &quot;short&quot;: &quot;Dependent number&quot;,
         &quot;definition&quot;: &quot;A unique identifier for a dependent under the coverage.&quot;,
-        &quot;requirements&quot;: &quot;For some coverage a single identifier is issued to the PolicyHolder and a dependent number issued to each beneficiary.&quot;,
+        &quot;requirements&quot;: &quot;For some coverage a single identifier is issued to the Subscriber and a dependent number issued to each beneficiary.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;positiveInt&quot;
+            &quot;code&quot;: &quot;string&quot;
           }
         ],
         &quot;isSummary&quot;: true,
@@ -1865,7 +1997,7 @@
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
-            &quot;code&quot;: &quot;positiveInt&quot;
+            &quot;code&quot;: &quot;string&quot;
           }
         ],
         &quot;isSummary&quot;: true,
@@ -1881,10 +2013,30 @@
         ]
       },
       {
+        &quot;id&quot;: &quot;Coverage.order&quot;,
+        &quot;path&quot;: &quot;Coverage.order&quot;,
+        &quot;short&quot;: &quot;Relative order of the coverage&quot;,
+        &quot;definition&quot;: &quot;The order of applicability of this coverage relative to other coverages which are currently inforce. Note, there may be gaps in the numbering and this does not imply primary, secondard etc. as the specific positioning of coverages depends upon the episode of care.&quot;,
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;1&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;positiveInt&quot;
+          }
+        ],
+        &quot;isSummary&quot;: true,
+        &quot;mapping&quot;: [
+          {
+            &quot;identity&quot;: &quot;v2&quot;,
+            &quot;map&quot;: &quot;- No exact HL7 v2 equivalent concept seems to exist;&quot;
+          }
+        ]
+      },
+      {
         &quot;id&quot;: &quot;Coverage.network&quot;,
         &quot;path&quot;: &quot;Coverage.network&quot;,
         &quot;short&quot;: &quot;Insurer network&quot;,
-        &quot;definition&quot;: &quot;The identifier for a community of providers.&quot;,
+        &quot;definition&quot;: &quot;The insurer-specific identifier for the insurer-defined network of providers to which the beneficiary may seek treatment which will be covered at the 'in-network' rate, otherwise 'out of network' terms and conditions apply.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
@@ -1955,7 +2107,7 @@ of the specification.
 		<div class="container"><!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:32-0500. <a href="qa.html">QA Page</a>
+        © HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:21-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search</a> | 

@@ -25,14 +25,14 @@
   "VisionPrescription.status": {
     "code.value": "active"
   },
-  "VisionPrescription.dateWritten": {
-    "dateTime.value": "2014-06-15"
-  },
   "VisionPrescription.patient": {
     "Reference.reference": {
       "string.value": "Patient/example"
     },
     "Resource.reference": "http://hl7.org/fhir//Patient/example"
+  },
+  "VisionPrescription.dateWritten": {
+    "dateTime.value": "2014-06-15"
   },
   "VisionPrescription.prescriber": {
     "Reference.reference": {
@@ -43,15 +43,25 @@
   "VisionPrescription.dispense": [
     {
       "VisionPrescription.dispense.product": {
-        "Coding.system": {
-          "uri.value": "http://hl7.org/fhir/ex-visionprescriptionproduct"
-        },
-        "Coding.code": {
-          "code.value": "contact"
-        }
+        "CodeableConcept.coding": [
+          {
+            "Coding.system": {
+              "uri.value": "http://hl7.org/fhir/ex-visionprescriptionproduct"
+            },
+            "Coding.code": {
+              "code.value": "contact"
+            }
+          }
+        ]
       },
       "VisionPrescription.dispense.eye": {
-        "code.value": "right"
+        "CodeableConcept.coding": [
+          {
+            "Coding.code": {
+              "code.value": "right"
+            }
+          }
+        ]
       },
       "VisionPrescription.dispense.cylinder": {
         "decimal.value": -2.25
@@ -94,15 +104,25 @@
     },
     {
       "VisionPrescription.dispense.product": {
-        "Coding.system": {
-          "uri.value": "http://hl7.org/fhir/ex-visionprescriptionproduct"
-        },
-        "Coding.code": {
-          "code.value": "contact"
-        }
+        "CodeableConcept.coding": [
+          {
+            "Coding.system": {
+              "uri.value": "http://hl7.org/fhir/ex-visionprescriptionproduct"
+            },
+            "Coding.code": {
+              "code.value": "contact"
+            }
+          }
+        ]
       },
       "VisionPrescription.dispense.eye": {
-        "code.value": "left"
+        "CodeableConcept.coding": [
+          {
+            "Coding.code": {
+              "code.value": "left"
+            }
+          }
+        ]
       },
       "VisionPrescription.dispense.cylinder": {
         "decimal.value": -3.50

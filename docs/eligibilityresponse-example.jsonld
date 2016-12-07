@@ -25,6 +25,9 @@
   "EligibilityResponse.status": {
     "code.value": "active"
   },
+  "EligibilityResponse.created": {
+    "dateTime.value": "2014-08-16"
+  },
   "EligibilityResponse.request": {
     "Reference.reference": {
       "string.value": "http://www.BenefitsInc.com/fhir/eligibility/225476332402"
@@ -32,25 +35,25 @@
     "Resource.reference": "http://www.BenefitsInc.com/fhir/eligibility/225476332402"
   },
   "EligibilityResponse.outcome": {
-    "code.value": "complete"
+    "CodeableConcept.coding": [
+      {
+        "Coding.system": {
+          "uri.value": "http://hl7.org/fhir/remittance-outcome"
+        },
+        "Coding.code": {
+          "code.value": "complete"
+        }
+      }
+    ]
   },
   "EligibilityResponse.disposition": {
     "string.value": "Policy is currently in-force."
   },
-  "EligibilityResponse.created": {
-    "dateTime.value": "2014-08-16"
-  },
-  "EligibilityResponse.organization": {
+  "EligibilityResponse.insurer": {
     "Reference.reference": {
       "string.value": "Organization/2"
     },
     "Resource.reference": "http://hl7.org/fhir//Organization/2"
-  },
-  "EligibilityResponse.requestOrganization": {
-    "Reference.reference": {
-      "string.value": "Organization/1"
-    },
-    "Resource.reference": "http://hl7.org/fhir//Organization/1"
   },
   "EligibilityResponse.inforce": {
     "boolean.value": true

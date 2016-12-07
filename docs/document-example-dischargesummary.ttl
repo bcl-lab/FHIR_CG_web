@@ -14,6 +14,10 @@
      fhir:Meta.lastUpdated [ fhir:value "2013-05-28T22:12:21Z"^^xsd:dateTime ]
   ];
   fhir:Bundle.type [ fhir:value "document"];
+  fhir:Bundle.identifier [
+     fhir:Identifier.system [ fhir:value "urn:ietf:rfc:3986" ];
+     fhir:Identifier.value [ fhir:value "urn:uuid:0c3151bd-1cbf-4d64-b04d-cd9187a4c6e0" ]
+  ];
   fhir:Bundle.entry [
      fhir:index 0;
      fhir:Bundle.entry.fullUrl [ fhir:value "http://fhir.healthintersections.com.au/open/Composition/180f219f-97a8-486d-99d9-ed631fe4fc57" ];
@@ -186,10 +190,7 @@
   ];
   fhir:Practitioner.name [
      fhir:index 0;
-     fhir:HumanName.family [
-       fhir:value "Careful";
-       fhir:index 0
-     ];
+     fhir:HumanName.family [ fhir:value "Careful" ];
      fhir:HumanName.given [
        fhir:value "Adam";
        fhir:index 0
@@ -231,10 +232,7 @@
   fhir:Patient.name [
      fhir:index 0;
      fhir:HumanName.text [ fhir:value "Eve Everywoman" ];
-     fhir:HumanName.family [
-       fhir:value "Everywoman1";
-       fhir:index 0
-     ];
+     fhir:HumanName.family [ fhir:value "Everywoman1" ];
      fhir:HumanName.given [
        fhir:value "Eve";
        fhir:index 0
@@ -347,7 +345,7 @@
      fhir:Reference.reference [ fhir:value "http://fhir.healthintersections.com.au/open/Patient/d1" ];
      fhir:Reference.display [ fhir:value "Peter Patient" ]
   ];
-  fhir:MedicationRequest.prescriber [
+  fhir:MedicationRequest.requester [
      fhir:link <http://hl7.org/fhir/Practitioner/example>;
      fhir:Reference.reference [ fhir:value "Practitioner/example" ];
      fhir:Reference.display [ fhir:value "Peter Practitioner" ]
@@ -396,7 +394,7 @@
   fhir:MedicationStatement.medicationCodeableConcept [
      fhir:CodeableConcept.text [ fhir:value "Ventolin Inhaler" ]
   ];
-  fhir:MedicationStatement.patient [
+  fhir:MedicationStatement.subject [
      fhir:link <http://fhir.healthintersections.com.au/open/Patient/d1>;
      fhir:Reference.reference [ fhir:value "http://fhir.healthintersections.com.au/open/Patient/d1" ];
      fhir:Reference.display [ fhir:value "Peter Patient" ]

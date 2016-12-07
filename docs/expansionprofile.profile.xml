@@ -3,7 +3,7 @@
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="ExpansionProfile"/>
   <meta>
-    <lastUpdated value="2016-11-28T17:29:55.664-05:00"/>
+    <lastUpdated value="2016-12-07T14:18:58.982-05:00"/>
   </meta>
   <text>
     <status value="generated"/>
@@ -191,7 +191,7 @@
           </td>
           <td style="vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">0..*</td>
           <td style="vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">
-            <a href="contactdetail.html#ContactDetail">ContactDetail</a>
+            <a href="metadatatypes.html#ContactDetail">ContactDetail</a>
           </td>
           <td style="vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">Contact details for the publisher</td>
         </tr>
@@ -243,7 +243,7 @@
           </td>
           <td style="vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">0..*</td>
           <td style="vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">
-            <a href="usagecontext.html#UsageContext">UsageContext</a>
+            <a href="metadatatypes.html#UsageContext">UsageContext</a>
           </td>
           <td style="vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">Content intends to support these contexts</td>
         </tr>
@@ -670,7 +670,7 @@
             <img src="data: image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAWCAYAAAABxvaqAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3wYeFzIs1vtcMQAAAB1pVFh0Q29tbWVudAAAAAAAQ3JlYXRlZCB3aXRoIEdJTVBkLmUHAAAAE0lEQVQI12P4//8/AxMDAwNdCABMPwMo2ctnoQAAAABJRU5ErkJggg==" alt="." style="background-color: inherit" class="hierarchy"/>
             <img src="data: image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAWCAYAAADJqhx8AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3wYeFzI3XJ6V3QAAAB1pVFh0Q29tbWVudAAAAAAAQ3JlYXRlZCB3aXRoIEdJTVBkLmUHAAAANklEQVQ4y+2RsQ0AIAzDav7/2VzQwoCY4iWbZSmo1QGoUgNMghvWaIejPQW/CrrNCylIwcOCDYfLNRcNer4SAAAAAElFTkSuQmCC" alt="." style="background-color: inherit" class="hierarchy"/>
             <img src="data: image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3gYBFzI0BrFQCwAAAERJREFUOMtj/P//PwMlgImBQjDwBrCcOnWKokBgYWBgYDCU+06W5i8MUggvnH/EOVJjAW4AuQHJ+O75LYqikXE0LzAAALePEntTkEoSAAAAAElFTkSuQmCC" alt="." style="background-color: white; background-color: inherit" title="Primitive Data Type" class="hierarchy"/> 
-            <span title="ExpansionProfile.excludeNested : Controls whether or not the value set expansion includes nested codes (i.e. ValueSet.expansion.contains.contains).">excludeNested</span>
+            <span title="ExpansionProfile.excludeNested : Controls whether or not the value set expansion nests codes or not (i.e. ValueSet.expansion.contains.contains).">excludeNested</span>
             <a name="ExpansionProfile.excludeNested"> </a>
           </td>
           <td style="vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">
@@ -680,7 +680,7 @@
           <td style="vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">
             <a href="datatypes.html#boolean">boolean</a>
           </td>
-          <td style="vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">Include or exclude nested codes in the value set expansion</td>
+          <td style="vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">Nested codes in the expansion or not</td>
         </tr>
 
         <tr style="border: 0px #F0F0F0 solid; padding:0px; vertical-align: top; background-color: white;">
@@ -774,25 +774,28 @@
   <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm">
     <valueInteger value="0"/>
   </extension>
+  <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-wg">
+    <valueCode value="vocab"/>
+  </extension>
   <url value="http://hl7.org/fhir/StructureDefinition/ExpansionProfile"/>
   <name value="ExpansionProfile"/>
   <status value="draft"/>
   <publisher value="Health Level Seven International (Vocabulary)"/>
   <contact>
     <telecom>
-      <system value="other"/>
+      <system value="url"/>
       <value value="http://hl7.org/fhir"/>
     </telecom>
   </contact>
   <contact>
     <telecom>
-      <system value="other"/>
+      <system value="url"/>
       <value value="http://www.hl7.org/Special/committees/Vocab/index.cfm"/>
     </telecom>
   </contact>
-  <date value="2016-11-28T17:29:55-05:00"/>
+  <date value="2016-12-07T14:18:58-05:00"/>
   <description value="Base StructureDefinition for ExpansionProfile Resource"/>
-  <fhirVersion value="1.7.0"/>
+  <fhirVersion value="1.8.0"/>
   <mapping>
     <identity value="w5"/>
     <uri value="http://hl7.org/fhir/w5"/>
@@ -2057,9 +2060,10 @@
     </element>
     <element id="ExpansionProfile.excludeNested">
       <path value="ExpansionProfile.excludeNested"/>
-      <short value="Include or exclude nested codes in the value set expansion"/>
-      <definition value="Controls whether or not the value set expansion includes nested codes (i.e. ValueSet.expansion.contains.contains)."/>
+      <short value="Nested codes in the expansion or not"/>
+      <definition value="Controls whether or not the value set expansion nests codes or not (i.e. ValueSet.expansion.contains.contains)."/>
       <comments value="Nested codes excluded if excludeNested is present and has a value of &quot;true&quot;."/>
+      <requirements value="Heirahical contains are useful for UI use, but not when validating. Code Generation etc. may depend on context."/>
       <min value="0"/>
       <max value="1"/>
       <type>
@@ -2634,9 +2638,10 @@
     </element>
     <element id="ExpansionProfile.excludeNested">
       <path value="ExpansionProfile.excludeNested"/>
-      <short value="Include or exclude nested codes in the value set expansion"/>
-      <definition value="Controls whether or not the value set expansion includes nested codes (i.e. ValueSet.expansion.contains.contains)."/>
+      <short value="Nested codes in the expansion or not"/>
+      <definition value="Controls whether or not the value set expansion nests codes or not (i.e. ValueSet.expansion.contains.contains)."/>
       <comments value="Nested codes excluded if excludeNested is present and has a value of &quot;true&quot;."/>
+      <requirements value="Heirahical contains are useful for UI use, but not when validating. Code Generation etc. may depend on context."/>
       <min value="0"/>
       <max value="1"/>
       <type>

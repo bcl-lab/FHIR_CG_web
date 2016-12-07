@@ -3,7 +3,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>Paymentreconciliation.shex - FHIR v1.7.0</title>
+  <title>Paymentreconciliation.shex - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -140,23 +140,21 @@ start=@&lt;PaymentReconciliation&gt; AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:modifierExtension @&lt;Extension&gt;*;   # Extensions that cannot be ignored
     fhir:PaymentReconciliation.identifier @&lt;Identifier&gt;*;  # Business Identifier
     fhir:PaymentReconciliation.status @&lt;code&gt; AND
-    	{fhir:value @fhirvs:paymentreconciliation-status};  # active | cancelled | draft | 
+    	{fhir:value @fhirvs:fm-status}?;  # active | cancelled | draft | 
                                             # entered-in-error 
+    fhir:PaymentReconciliation.period @&lt;Period&gt;?;  # Period covered
+    fhir:PaymentReconciliation.created @&lt;dateTime&gt;?;  # Creation date
+    fhir:PaymentReconciliation.organization @&lt;Reference&gt;?;  # Insurer
     fhir:PaymentReconciliation.request @&lt;Reference&gt;?;  # Claim reference
-    fhir:PaymentReconciliation.outcome @&lt;code&gt; AND
+    fhir:PaymentReconciliation.outcome @&lt;CodeableConcept&gt; AND
     	{fhir:value @fhirvs:remittance-outcome}?;  # complete | error | partial
     fhir:PaymentReconciliation.disposition @&lt;string&gt;?;  # Disposition Message
-    fhir:PaymentReconciliation.ruleset @&lt;Coding&gt;?;  # Resource version
-    fhir:PaymentReconciliation.originalRuleset @&lt;Coding&gt;?;  # Original version
-    fhir:PaymentReconciliation.created @&lt;dateTime&gt;?;  # Creation date
-    fhir:PaymentReconciliation.period @&lt;Period&gt;?;  # Period covered
-    fhir:PaymentReconciliation.organization @&lt;Reference&gt;?;  # Insurer
     fhir:PaymentReconciliation.requestProvider @&lt;Reference&gt;?;  # Responsible practitioner
     fhir:PaymentReconciliation.requestOrganization @&lt;Reference&gt;?;  # Responsible organization
     fhir:PaymentReconciliation.detail @&lt;PaymentReconciliation.detail&gt;*;  # Details
-    fhir:PaymentReconciliation.form @&lt;Coding&gt; AND
+    fhir:PaymentReconciliation.form @&lt;CodeableConcept&gt; AND
     	{fhir:value @fhirvs:forms}?;  # Printed Form Identifier
-    fhir:PaymentReconciliation.total @&lt;Money&gt;;  # Total amount of Payment
+    fhir:PaymentReconciliation.total @&lt;Money&gt;?;  # Total amount of Payment
     fhir:PaymentReconciliation.note @&lt;PaymentReconciliation.note&gt;*;  # Note text
     fhir:index xsd:integer?                 # Relative position in a list
 }
@@ -167,7 +165,7 @@ start=@&lt;PaymentReconciliation&gt; AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
                                             # implementations 
     fhir:modifierExtension @&lt;Extension&gt;*;   # Extensions that cannot be ignored
-    fhir:PaymentReconciliation.detail.type @&lt;Coding&gt;;  # Type code
+    fhir:PaymentReconciliation.detail.type @&lt;CodeableConcept&gt;;  # Type code
     fhir:PaymentReconciliation.detail.request @&lt;Reference&gt;?;  # Claim
     fhir:PaymentReconciliation.detail.response @&lt;Reference&gt;?;  # Claim Response
     fhir:PaymentReconciliation.detail.submitter @&lt;Reference&gt;?;  # Submitter
@@ -183,7 +181,7 @@ start=@&lt;PaymentReconciliation&gt; AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
                                             # implementations 
     fhir:modifierExtension @&lt;Extension&gt;*;   # Extensions that cannot be ignored
-    fhir:PaymentReconciliation.note.type @&lt;Coding&gt; AND
+    fhir:PaymentReconciliation.note.type @&lt;CodeableConcept&gt; AND
     	{fhir:value @fhirvs:note-type}?;  # display | print | printoper
     fhir:PaymentReconciliation.note.text @&lt;string&gt;?;  # Notes text
     fhir:index xsd:integer?                 # Relative position in a list
@@ -337,6 +335,36 @@ start=@&lt;PaymentReconciliation&gt; AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
+# Primitive Type id
+&lt;id&gt; CLOSED {
+    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:value xsd:string?;                 # Primitive value for id
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
+# Concept - reference to a terminology or just  text
+&lt;CodeableConcept&gt; CLOSED {
+    fhir:concept IRI*;
+    fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
+    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:CodeableConcept.coding @&lt;Coding&gt;*;  # Code defined by a terminology 
+                                            # system 
+    fhir:CodeableConcept.text @&lt;string&gt;?;   # Plain text representation of the 
+                                            # concept 
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
+# Primitive Type instant
+&lt;instant&gt; CLOSED {
+    fhir:Element.id @&lt;id&gt;?;                 # xml:id (or equivalent in JSON)
+    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:value xsd:dateTime?;               # Primitive value for instant
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
 # A reference to a code defined by a terminology system
 &lt;Coding&gt; CLOSED {
     fhir:concept IRI?;
@@ -354,20 +382,12 @@ start=@&lt;PaymentReconciliation&gt; AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
-# Primitive Type id
-&lt;id&gt; CLOSED {
-    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:value xsd:string?;                 # Primitive value for id
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
-# Primitive Type instant
-&lt;instant&gt; CLOSED {
+# Primitive Type decimal
+&lt;decimal&gt; CLOSED {
     fhir:Element.id @&lt;id&gt;?;                 # xml:id (or equivalent in JSON)
     fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
                                             # implementations 
-    fhir:value xsd:dateTime?;               # Primitive value for instant
+    fhir:value xsd:decimal?;                # Primitive value for decimal
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -380,49 +400,27 @@ start=@&lt;PaymentReconciliation&gt; AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
-# Primitive Type decimal
-&lt;decimal&gt; CLOSED {
-    fhir:Element.id @&lt;id&gt;?;                 # xml:id (or equivalent in JSON)
-    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:value xsd:decimal?;                # Primitive value for decimal
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
-# Concept - reference to a terminology or just  text
-&lt;CodeableConcept&gt; CLOSED {
-    fhir:concept IRI*;
-    fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
-    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:CodeableConcept.coding @&lt;Coding&gt;*;  # Code defined by a terminology 
-                                            # system 
-    fhir:CodeableConcept.text @&lt;string&gt;?;   # Plain text representation of the 
-                                            # concept 
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
 #---------------------- Reference Types -------------------
 
 #---------------------- Value Sets ------------------------
 
-# A code specifying the state of the resource instance.
-fhirvs:paymentreconciliation-status [&quot;active&quot; &quot;cancelled&quot; &quot;draft&quot; &quot;entered-in-error&quot;]
-
-# The presentation types of notes.
-fhirvs:note-type [&quot;display&quot; &quot;print&quot; &quot;printoper&quot;]
-
 # This value set includes a Claim Processing Outcome codes.
 fhirvs:remittance-outcome [&quot;complete&quot; &quot;error&quot; &quot;partial&quot;]
-
-# This value set includes a sample set of Forms codes.
-fhirvs:forms [&quot;1&quot; &quot;2&quot;]
 
 # How the Quantity should be understood and represented.
 fhirvs:quantity-comparator [&quot;&lt;&quot; &quot;&lt;=&quot; &quot;&gt;=&quot; &quot;&gt;&quot;]
 
+# This value set includes STatus codes.
+fhirvs:fm-status [&quot;active&quot; &quot;cancelled&quot; &quot;draft&quot; &quot;entered-in-error&quot;]
+
+# The presentation types of notes.
+fhirvs:note-type [&quot;display&quot; &quot;print&quot; &quot;printoper&quot;]
+
 # Identifies the purpose for this identifier, if known .
 fhirvs:identifier-use [&quot;usual&quot; &quot;official&quot; &quot;temp&quot; &quot;secondary&quot;]
+
+# This value set includes a sample set of Forms codes.
+fhirvs:forms [&quot;1&quot; &quot;2&quot;]
 
 # The status of a resource narrative
 fhirvs:narrative-status [&quot;generated&quot; &quot;extensions&quot; &quot;additional&quot; &quot;empty&quot;]
@@ -451,7 +449,7 @@ of the specification.
 		<div class="container"><!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:33-0500. <a href="qa.html">QA Page</a>
+        © HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:28-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search</a> | 

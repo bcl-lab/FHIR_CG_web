@@ -1,6 +1,6 @@
 ﻿<!DOCTYPE HTML>
   <!-- However 
-applications may need to replace Service Root URLs. This may be needed 
+applications may need to replace Service Base URLs. This may be needed 
 as application URLs may change or in uses of FHIR within internal 
 eco-systems, local configuration may dictate that the provider of 
 a resource is different to that claimed by any particular provider 
@@ -8,7 +8,7 @@ or consumer. -->  <!-- A person or animal receiving care at multiple organizatio
  
  What are the explicit mechanisms that should be used to synchronize them? This dynamic behavior,  is not covered at any depth (that I can see), except to suggest that a message that emulates a HL7 v2 or V3 event be employed. The entire notion of dynamic behavior of a model employing resources is not covered well. If one happens to employ RESTful services (not required AFAICS) then, yes, we have CRUD verb mappings on resources, but no real discussion of the dynamic behavior of multiple resources involved in transactions/events, except to fall back on HL7 v2 and V3. Am I missing something? --><html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>Managing - FHIR v1.7.0</title>
+  <title>Managing - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -112,7 +112,7 @@ or consumer. -->  <!-- A person or animal receiving care at multiple organizatio
 
 <div class="col-9">
 
-<a name="identity"/>
+<a name="identity"> </a>
 <h2 class="self-link-parent"><span class="sectioncount">7.9<a name="7.9"> </a></span> Managing Resource Identity <a href="managing.html#7.9" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h2>
 <table class="cols"><tr><td id="wg"><a href="http://www.hl7.org/Special/committees/fiwg/index.cfm" _target="blank">FHIR Infrastructure <img src="external.png" style="text-align: baseline"/></a> Work Group</td><td id="fmm"><a href="resource.html#maturity">Maturity Level</a>: N/A</td><td id="ballot"><a href="help.html#status">Ballot Status</a>: <a href="history.html#pubs">STU 3</a></td></tr></table>
 
@@ -182,7 +182,7 @@ Another scenario is for a client to retrieve a resource from a server, and make 
 copy. If the local resource has a life-cycle of its own (i.e. it is not just a cached resource), then it 
 needs to have its own identity; i.e. the resource must be re-identified. The simplest case is that the
 client only is keeping local copies of resources from a single server. In these cases, the client can 
-simply replace the root URL and keep the logical id of the resource the same. In fact, if the server
+simply replace the Base URL and keep the logical id of the resource the same. In fact, if the server
 is using relative references, then this change doesn't involve any actual changes to the resources, it only
 means a re-interpretation of the references. 
 </p>
@@ -203,7 +203,7 @@ resource references as resources pass across the gateway.
 <blockquote class="dstu-note">
 <a name="dstu"> </a>
 <p>
-<b>DSTU Note:</b>  In its current form, FHIR allows various convenient implementer practices around 
+<b>STU Note:</b>  In its current form, FHIR allows various convenient implementer practices around 
 resource identification that make integration across eco-system boundaries more difficult. 
 In particular, either only allowing UUIDs for logical IDs or only allowing absolute references 
 would make the boundary management problem easier but remove useful and convenient flexibility for 
@@ -230,7 +230,7 @@ Feedback is welcome <a href="http://wiki.hl7.org/index.php?title=FHIR_Specificat
 		<div class="container">  <!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:33-0500. <a href="qa.html">QA Page</a>
+        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:28-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search <img src="external.png" style="text-align: baseline"/></a> | 

@@ -16,13 +16,13 @@
   <publisher value="Health Level Seven International (Orders and Observations Workgroup)"/>
   <contact>
     <telecom>
-      <system value="other"/>
+      <system value="url"/>
       <value value="http://www.hl7.org/Special/committees/orders/index.cfm Orders and Observations"/>
     </telecom>
   </contact>
   <date value="2016-03-25"/>
   <description value="FHIR Head Circumference Profile"/>
-  <fhirVersion value="1.7.0"/>
+  <fhirVersion value="1.8.0"/>
   <mapping>
     <identity value="v2"/>
     <uri value="http://hl7.org/v2"/>
@@ -113,7 +113,7 @@
         <key value="vs-2"/>
         <severity value="error"/>
         <human value="If there is no component or related element then either a value[x] or a data absent reason must be present"/>
-        <expression value="component.value.exists() or dataAbsentReason.exists()"/>
+        <expression value="component.exists() or value.exists() or dataAbsentReason.exists() or related.exists()"/>
         <xpath value="exists(f:component) or exists(f:related) or exists(f:*[starts-with(local-name(.), &#39;value)]) or exists(f:dataAbsentReason)"/>
         <source value="Observation:vitalsigns"/>
       </constraint>
@@ -378,7 +378,7 @@
       <path value="Observation.category"/>
       <short value="Classification of  type of observation"/>
       <definition value="A code that classifies the general type of observation being made."/>
-      <comments value="There may be multiple axis of categoriization depending on the context or use case for retrieving or displaying the resource.  The level of granularity is defined by the category concepts in the value set.   More fine-grained filtering can be performed using the metadata and/or terminology hierarchy in Observation.code."/>
+      <comments value="There may be multiple axis of categoriization depending on the context or use case for retrieving or displaying the resource.  The level of granularity is defined by the category concepts in the value set."/>
       <requirements value="Used for filtering what observations are retreived and displayed."/>
       <min value="1"/>
       <max value="1"/>
@@ -1760,7 +1760,7 @@
     <element id="Observation:headcircum.related.target">
       <path value="Observation.related.target"/>
       <short value="Resource that is related to this one"/>
-      <definition value="A reference to the observation or [[[QuestionnaireResponse]]] resource that is related to this observation."/>
+      <definition value="A reference to the observation or [QuestionnaireResponse](questionnaireresponse.html#) resource that is related to this observation."/>
       <min value="1"/>
       <max value="1"/>
       <base>

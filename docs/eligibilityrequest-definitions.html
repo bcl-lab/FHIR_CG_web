@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>EligibilityRequest - FHIR v1.7.0</title>
+  <title>EligibilityRequest - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -112,7 +112,7 @@
 
 <table class="dict">
   <tr><td colspan="2" class="structure"><a name="EligibilityRequest"> </a><b>EligibilityRequest</b></td></tr>
-  <tr><td>Definition</td><td><p>This resource provides the insurance eligibility details from the insurer regarding a specified coverage and optionally some class of service.</p>
+  <tr><td>Definition</td><td><p>This resource provides the details  from the insurer to identify a specified coverage and optionally some class of service.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>1..1</td></tr>
   <tr><td colspan="2" class="structure"><a name="EligibilityRequest.identifier"> </a><b>EligibilityRequest.identifier</b></td></tr>
@@ -124,35 +124,40 @@
   <tr><td colspan="2" class="structure"><a name="EligibilityRequest.status"> </a><b>EligibilityRequest.status</b></td></tr>
   <tr><td>Definition</td><td><p>The status of the resource instance.</p>
 </td></tr>
-  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>1..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>EligibilityRequestStatus: <a href="valueset-eligibilityrequest-status.html">A code specifying the state of the resource instance.</a> (<a href="terminologies.html#required">Required</a>)</td></tr>
+  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-fm-status.html">Financial Resource Status Codes</a> (<a href="terminologies.html#required">Required</a>)</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#code">code</a></td></tr>
   <tr><td><a href="conformance-rules.html#ismodifier">Is Modifier</a></td><td>true</td></tr>
   <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
-  <tr><td colspan="2" class="structure"><a name="EligibilityRequest.ruleset"> </a><b>EligibilityRequest.ruleset</b></td></tr>
-  <tr><td>Definition</td><td><p>The version of the style of resource contents. This should be mapped to the allowable profiles for this and supporting resources.</p>
+  <tr><td colspan="2" class="structure"><a name="EligibilityRequest.priority"> </a><b>EligibilityRequest.priority</b></td></tr>
+  <tr><td>Definition</td><td><p>Immediate (STAT), best effort (NORMAL), deferred (DEFER).</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>Ruleset Codes: <a href="valueset-ruleset.html">The static and dynamic model to which contents conform, which may be business version or standard/version.</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
-  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#Coding">Coding</a></td></tr>
-  <tr><td colspan="2" class="structure"><a name="EligibilityRequest.originalRuleset"> </a><b>EligibilityRequest.originalRuleset</b></td></tr>
-  <tr><td>Definition</td><td><p>The style (standard) and version of the original material which was converted into this resource.</p>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-process-priority.html">Priority Codes</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
+  <tr><td colspan="2" class="structure"><a name="EligibilityRequest.patient"> </a><b>EligibilityRequest.patient</b></td></tr>
+  <tr><td>Definition</td><td><p>Patient Resource.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>Ruleset Codes: <a href="valueset-ruleset.html">The static and dynamic model to which contents conform, which may be business version or standard/version.</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
-  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#Coding">Coding</a></td></tr>
-  <tr><td>Requirements</td><td><p>Knowledge of the original version can inform the processing of this instance so that information which is processable by the originating system may be generated.</p>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="references.html#Reference">Reference</a>(<a href="patient.html">Patient</a>)</td></tr>
+  <tr><td>Comments</td><td><p>1..1.</p>
 </td></tr>
+  <tr><td colspan="2" class="structure"><a name="EligibilityRequest.serviced_x_"> </a><b>EligibilityRequest.serviced[x]</b></td></tr>
+  <tr><td>Definition</td><td><p>The date or dates when the enclosed suite of services were performed or completed.</p>
+</td></tr>
+  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#date">date</a>|<a href="datatypes.html#Period">Period</a></td></tr>
+  <tr><td>[x] Note</td><td>See <a href="formats.html#choice">Choice of Data Types</a> for further information about how to use [x]</td></tr>
   <tr><td colspan="2" class="structure"><a name="EligibilityRequest.created"> </a><b>EligibilityRequest.created</b></td></tr>
   <tr><td>Definition</td><td><p>The date when this resource was created.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#dateTime">dateTime</a></td></tr>
-  <tr><td colspan="2" class="structure"><a name="EligibilityRequest.insurer"> </a><b>EligibilityRequest.insurer</b></td></tr>
-  <tr><td>Definition</td><td><p>The Insurer who is target  of the request.</p>
+  <tr><td colspan="2" class="structure"><a name="EligibilityRequest.enterer"> </a><b>EligibilityRequest.enterer</b></td></tr>
+  <tr><td>Definition</td><td><p>Person who created the invoice/claim/pre-determination or pre-authorization.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="datatypes.html">Type</a></td><td><a href="references.html#Reference">Reference</a>(<a href="organization.html">Organization</a>)</td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="references.html#Reference">Reference</a>(<a href="practitioner.html">Practitioner</a>)</td></tr>
   <tr><td colspan="2" class="structure"><a name="EligibilityRequest.provider"> </a><b>EligibilityRequest.provider</b></td></tr>
   <tr><td>Definition</td><td><p>The practitioner who is responsible for the services rendered to the patient.</p>
 </td></tr>
@@ -163,29 +168,16 @@
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="references.html#Reference">Reference</a>(<a href="organization.html">Organization</a>)</td></tr>
-  <tr><td colspan="2" class="structure"><a name="EligibilityRequest.priority"> </a><b>EligibilityRequest.priority</b></td></tr>
-  <tr><td>Definition</td><td><p>Immediate (STAT), best effort (NORMAL), deferred (DEFER).</p>
+  <tr><td colspan="2" class="structure"><a name="EligibilityRequest.insurer"> </a><b>EligibilityRequest.insurer</b></td></tr>
+  <tr><td>Definition</td><td><p>The Insurer who is target  of the request.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>Priority Codes: <a href="valueset-process-priority.html">The timeliness with which processing is required: STAT, normal, Deferred</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
-  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#Coding">Coding</a></td></tr>
-  <tr><td colspan="2" class="structure"><a name="EligibilityRequest.enterer"> </a><b>EligibilityRequest.enterer</b></td></tr>
-  <tr><td>Definition</td><td><p>Person who created the invoice/claim/pre-determination or pre-authorization.</p>
-</td></tr>
-  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="datatypes.html">Type</a></td><td><a href="references.html#Reference">Reference</a>(<a href="practitioner.html">Practitioner</a>)</td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="references.html#Reference">Reference</a>(<a href="organization.html">Organization</a>)</td></tr>
   <tr><td colspan="2" class="structure"><a name="EligibilityRequest.facility"> </a><b>EligibilityRequest.facility</b></td></tr>
   <tr><td>Definition</td><td><p>Facility where the services were provided.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="references.html#Reference">Reference</a>(<a href="location.html">Location</a>)</td></tr>
-  <tr><td colspan="2" class="structure"><a name="EligibilityRequest.patient"> </a><b>EligibilityRequest.patient</b></td></tr>
-  <tr><td>Definition</td><td><p>Patient Resource.</p>
-</td></tr>
-  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="datatypes.html">Type</a></td><td><a href="references.html#Reference">Reference</a>(<a href="patient.html">Patient</a>)</td></tr>
-  <tr><td>Comments</td><td><p>1..1.</p>
-</td></tr>
   <tr><td colspan="2" class="structure"><a name="EligibilityRequest.coverage"> </a><b>EligibilityRequest.coverage</b></td></tr>
   <tr><td>Definition</td><td><p>Financial instrument by which payment information for health care.</p>
 </td></tr>
@@ -200,24 +192,18 @@
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#string">string</a></td></tr>
-  <tr><td colspan="2" class="structure"><a name="EligibilityRequest.serviced_x_"> </a><b>EligibilityRequest.serviced[x]</b></td></tr>
-  <tr><td>Definition</td><td><p>The date or dates when the enclosed suite of services were performed or completed.</p>
-</td></tr>
-  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#date">date</a>|<a href="datatypes.html#Period">Period</a></td></tr>
-  <tr><td>[x] Note</td><td>See <a href="formats.html#choice">Choice of Data Types</a> for further information about how to use [x]</td></tr>
   <tr><td colspan="2" class="structure"><a name="EligibilityRequest.benefitCategory"> </a><b>EligibilityRequest.benefitCategory</b></td></tr>
   <tr><td>Definition</td><td><p>Dental, Vision, Medical, Pharmacy, Rehab etc.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>Benefit Category Codes: <a href="valueset-benefit-category.html">Benefit categories such as: oral, medical, vision etc.</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
-  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#Coding">Coding</a></td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-benefit-category.html">Benefit Category Codes</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
   <tr><td colspan="2" class="structure"><a name="EligibilityRequest.benefitSubCategory"> </a><b>EligibilityRequest.benefitSubCategory</b></td></tr>
   <tr><td>Definition</td><td><p>Dental: basic, major, ortho; Vision exam, glasses, contacts; etc.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>Benefit SubCategory Codes: <a href="valueset-benefit-subcategory.html">Benefit subcategories such as: oral-basic, major, glasses</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
-  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#Coding">Coding</a></td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-benefit-subcategory.html">Benefit SubCategory Codes</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#CodeableConcept">CodeableConcept</a></td></tr>
 </table>
 
 
@@ -236,7 +222,7 @@
 		<div class="container">  <!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:32-0500. <a href="qa.html">QA Page</a>
+        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:21-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search <img src="external.png" style="text-align: baseline"/></a> | 

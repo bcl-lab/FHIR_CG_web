@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>ProcessRequest - FHIR v1.7.0</title>
+  <title>ProcessRequest - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -124,41 +124,27 @@
   <tr><td colspan="2" class="structure"><a name="ProcessRequest.status"> </a><b>ProcessRequest.status</b></td></tr>
   <tr><td>Definition</td><td><p>The status of the resource instance.</p>
 </td></tr>
-  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>1..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>ProcessRequestStatus: <a href="valueset-processrequest-status.html">A code specifying the state of the resource instance.</a> (<a href="terminologies.html#required">Required</a>)</td></tr>
+  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-fm-status.html">Financial Resource Status Codes</a> (<a href="terminologies.html#required">Required</a>)</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#code">code</a></td></tr>
   <tr><td><a href="conformance-rules.html#ismodifier">Is Modifier</a></td><td>true</td></tr>
   <tr><td><a href="search.html#summary">Summary</a></td><td>true</td></tr>
-  <tr><td colspan="2" class="structure"><a name="ProcessRequest.ruleset"> </a><b>ProcessRequest.ruleset</b></td></tr>
-  <tr><td>Definition</td><td><p>The version of the style of resource contents. This should be mapped to the allowable profiles for this and supporting resources.</p>
-</td></tr>
-  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>Ruleset Codes: <a href="valueset-ruleset.html">The static and dynamic model to which contents conform, which may be business version or standard/version.</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
-  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#Coding">Coding</a></td></tr>
-  <tr><td colspan="2" class="structure"><a name="ProcessRequest.originalRuleset"> </a><b>ProcessRequest.originalRuleset</b></td></tr>
-  <tr><td>Definition</td><td><p>The style (standard) and version of the original material which was converted into this resource.</p>
-</td></tr>
-  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>Ruleset Codes: <a href="valueset-ruleset.html">The static and dynamic model to which contents conform, which may be business version or standard/version.</a> (<a href="terminologies.html#example">Example</a>)</td></tr>
-  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#Coding">Coding</a></td></tr>
-  <tr><td>Requirements</td><td><p>Knowledge of the original version can inform the processing of this instance so that information which is processable by the originating system may be generated.</p>
-</td></tr>
   <tr><td colspan="2" class="structure"><a name="ProcessRequest.action"> </a><b>ProcessRequest.action</b></td></tr>
   <tr><td>Definition</td><td><p>The type of processing action being requested, for example Reversal, Readjudication, StatusRequest,PendedRequest.</p>
 </td></tr>
-  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>1..1</td></tr>
-  <tr><td><a href="terminologies.html">Binding</a></td><td>ActionList: <a href="valueset-actionlist.html">List of allowable action which this resource can request.</a> (<a href="terminologies.html#required">Required</a>)</td></tr>
-  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#code">code</a></td></tr>
-  <tr><td colspan="2" class="structure"><a name="ProcessRequest.created"> </a><b>ProcessRequest.created</b></td></tr>
-  <tr><td>Definition</td><td><p>The date when this resource was created.</p>
-</td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
-  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#dateTime">dateTime</a></td></tr>
+  <tr><td><a href="terminologies.html">Terminology Binding</a></td><td><a href="valueset-actionlist.html">ActionList</a> (<a href="terminologies.html#required">Required</a>)</td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#code">code</a></td></tr>
   <tr><td colspan="2" class="structure"><a name="ProcessRequest.target"> </a><b>ProcessRequest.target</b></td></tr>
   <tr><td>Definition</td><td><p>The organization which is the target of the request.</p>
 </td></tr>
   <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
   <tr><td><a href="datatypes.html">Type</a></td><td><a href="references.html#Reference">Reference</a>(<a href="organization.html">Organization</a>)</td></tr>
+  <tr><td colspan="2" class="structure"><a name="ProcessRequest.created"> </a><b>ProcessRequest.created</b></td></tr>
+  <tr><td>Definition</td><td><p>The date when this resource was created.</p>
+</td></tr>
+  <tr><td><a href="conformance-rules.html#conformance">Control</a></td><td>0..1</td></tr>
+  <tr><td><a href="datatypes.html">Type</a></td><td><a href="datatypes.html#dateTime">dateTime</a></td></tr>
   <tr><td colspan="2" class="structure"><a name="ProcessRequest.provider"> </a><b>ProcessRequest.provider</b></td></tr>
   <tr><td>Definition</td><td><p>The practitioner who is responsible for the action specified in this request.</p>
 </td></tr>
@@ -233,7 +219,7 @@
 		<div class="container">  <!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:33-0500. <a href="qa.html">QA Page</a>
+        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:28-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search <img src="external.png" style="text-align: baseline"/></a> | 

@@ -3,7 +3,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>Timing.profile.json - FHIR v1.7.0</title>
+  <title>Timing.profile.json - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -119,7 +119,7 @@
   &quot;resourceType&quot;: &quot;StructureDefinition&quot;,
   &quot;id&quot;: &quot;Timing&quot;,
   &quot;meta&quot;: {
-    &quot;lastUpdated&quot;: &quot;2016-11-28T17:29:55.664-05:00&quot;
+    &quot;lastUpdated&quot;: &quot;2016-12-07T14:18:58.982-05:00&quot;
   },
   &quot;text&quot;: {
     &quot;status&quot;: &quot;generated&quot;,
@@ -133,16 +133,16 @@
     {
       &quot;telecom&quot;: [
         {
-          &quot;system&quot;: &quot;other&quot;,
+          &quot;system&quot;: &quot;url&quot;,
           &quot;value&quot;: &quot;http://hl7.org/fhir&quot;
         }
       ]
     }
   ],
-  &quot;date&quot;: &quot;2016-11-28T17:29:55-05:00&quot;,
+  &quot;date&quot;: &quot;2016-12-07T14:18:58-05:00&quot;,
   &quot;description&quot;: &quot;Base StructureDefinition for Timing Type&quot;,
   &quot;purpose&quot;: &quot;Need to able to track proposed timing schedules. There are several different ways to do this: one or more specified times, a simple rules like three times a day, or  before/after meals.&quot;,
-  &quot;fhirVersion&quot;: &quot;1.7.0&quot;,
+  &quot;fhirVersion&quot;: &quot;1.8.0&quot;,
   &quot;mapping&quot;: [
     {
       &quot;identity&quot;: &quot;v2&quot;,
@@ -338,6 +338,20 @@
             &quot;human&quot;: &quot;if there's a duration, there needs to be duration units&quot;,
             &quot;expression&quot;: &quot;duration.empty() or durationUnit.exists()&quot;,
             &quot;xpath&quot;: &quot;not(exists(f:duration)) or exists(f:durationUnit)&quot;
+          },
+          {
+            &quot;key&quot;: &quot;tim-10&quot;,
+            &quot;severity&quot;: &quot;error&quot;,
+            &quot;human&quot;: &quot;If there's a timeOfDay, there cannot be be a when, a frequency, or a period&quot;,
+            &quot;expression&quot;: &quot;timeOfDay.exists() implies (when.empty() and frequency.empty() and period.empty())&quot;,
+            &quot;xpath&quot;: &quot;not(exists(f:timeofDay)) or (not(exists(f:when)) and not(exists(f:frequency)) and not (exists(f:period)))&quot;
+          },
+          {
+            &quot;key&quot;: &quot;tim-11&quot;,
+            &quot;severity&quot;: &quot;error&quot;,
+            &quot;human&quot;: &quot;If there's a dayOfWeek, there cannot be be a frequency, or a period&quot;,
+            &quot;expression&quot;: &quot;dayOfWeek.exists() implies (frequency.empty() and period.empty())&quot;,
+            &quot;xpath&quot;: &quot;not(exists(f:timeofDay)) or (not(exists(f:frequency)) and not (exists(f:period)))&quot;
           },
           {
             &quot;key&quot;: &quot;tim-2&quot;,
@@ -673,6 +687,54 @@
         ]
       },
       {
+        &quot;id&quot;: &quot;Timing.repeat.dayOfWeek&quot;,
+        &quot;path&quot;: &quot;Timing.repeat.dayOfWeek&quot;,
+        &quot;short&quot;: &quot;mon | tue | wed | thu | fri | sat | sun&quot;,
+        &quot;definition&quot;: &quot;If one or more days of week is provided, then the action happens only on the specified day(s).&quot;,
+        &quot;comments&quot;: &quot;If no days are specified, the action is assumed to happen every day as otherwise specified. The elements frequency and period cannot be used as well as dayOfWeek.&quot;,
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;*&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;code&quot;
+          }
+        ],
+        &quot;isSummary&quot;: true,
+        &quot;binding&quot;: {
+          &quot;strength&quot;: &quot;required&quot;,
+          &quot;valueSetReference&quot;: {
+            &quot;reference&quot;: &quot;http://hl7.org/fhir/ValueSet/days-of-week&quot;
+          }
+        },
+        &quot;mapping&quot;: [
+          {
+            &quot;identity&quot;: &quot;rim&quot;,
+            &quot;map&quot;: &quot;n/a&quot;
+          }
+        ]
+      },
+      {
+        &quot;id&quot;: &quot;Timing.repeat.timeOfDay&quot;,
+        &quot;path&quot;: &quot;Timing.repeat.timeOfDay&quot;,
+        &quot;short&quot;: &quot;Time of day for action&quot;,
+        &quot;definition&quot;: &quot;Specified time of day for action to take place.&quot;,
+        &quot;comments&quot;: &quot;When time of day is speciifed, it is inferred that the action happens every day (as filtered by dayofWeek) on the specified times. The elements when, frequency and period cannot be used as well as timeOfDay.&quot;,
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;*&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;time&quot;
+          }
+        ],
+        &quot;isSummary&quot;: true,
+        &quot;mapping&quot;: [
+          {
+            &quot;identity&quot;: &quot;rim&quot;,
+            &quot;map&quot;: &quot;n/a&quot;
+          }
+        ]
+      },
+      {
         &quot;id&quot;: &quot;Timing.repeat.when&quot;,
         &quot;path&quot;: &quot;Timing.repeat.when&quot;,
         &quot;short&quot;: &quot;Regular life events the event is tied to&quot;,
@@ -841,6 +903,20 @@
             &quot;human&quot;: &quot;if there's a duration, there needs to be duration units&quot;,
             &quot;expression&quot;: &quot;duration.empty() or durationUnit.exists()&quot;,
             &quot;xpath&quot;: &quot;not(exists(f:duration)) or exists(f:durationUnit)&quot;
+          },
+          {
+            &quot;key&quot;: &quot;tim-10&quot;,
+            &quot;severity&quot;: &quot;error&quot;,
+            &quot;human&quot;: &quot;If there's a timeOfDay, there cannot be be a when, a frequency, or a period&quot;,
+            &quot;expression&quot;: &quot;timeOfDay.exists() implies (when.empty() and frequency.empty() and period.empty())&quot;,
+            &quot;xpath&quot;: &quot;not(exists(f:timeofDay)) or (not(exists(f:when)) and not(exists(f:frequency)) and not (exists(f:period)))&quot;
+          },
+          {
+            &quot;key&quot;: &quot;tim-11&quot;,
+            &quot;severity&quot;: &quot;error&quot;,
+            &quot;human&quot;: &quot;If there's a dayOfWeek, there cannot be be a frequency, or a period&quot;,
+            &quot;expression&quot;: &quot;dayOfWeek.exists() implies (frequency.empty() and period.empty())&quot;,
+            &quot;xpath&quot;: &quot;not(exists(f:timeofDay)) or (not(exists(f:frequency)) and not (exists(f:period)))&quot;
           },
           {
             &quot;key&quot;: &quot;tim-2&quot;,
@@ -1120,6 +1196,54 @@
         ]
       },
       {
+        &quot;id&quot;: &quot;Timing.repeat.dayOfWeek&quot;,
+        &quot;path&quot;: &quot;Timing.repeat.dayOfWeek&quot;,
+        &quot;short&quot;: &quot;mon | tue | wed | thu | fri | sat | sun&quot;,
+        &quot;definition&quot;: &quot;If one or more days of week is provided, then the action happens only on the specified day(s).&quot;,
+        &quot;comments&quot;: &quot;If no days are specified, the action is assumed to happen every day as otherwise specified. The elements frequency and period cannot be used as well as dayOfWeek.&quot;,
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;*&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;code&quot;
+          }
+        ],
+        &quot;isSummary&quot;: true,
+        &quot;binding&quot;: {
+          &quot;strength&quot;: &quot;required&quot;,
+          &quot;valueSetReference&quot;: {
+            &quot;reference&quot;: &quot;http://hl7.org/fhir/ValueSet/days-of-week&quot;
+          }
+        },
+        &quot;mapping&quot;: [
+          {
+            &quot;identity&quot;: &quot;rim&quot;,
+            &quot;map&quot;: &quot;n/a&quot;
+          }
+        ]
+      },
+      {
+        &quot;id&quot;: &quot;Timing.repeat.timeOfDay&quot;,
+        &quot;path&quot;: &quot;Timing.repeat.timeOfDay&quot;,
+        &quot;short&quot;: &quot;Time of day for action&quot;,
+        &quot;definition&quot;: &quot;Specified time of day for action to take place.&quot;,
+        &quot;comments&quot;: &quot;When time of day is speciifed, it is inferred that the action happens every day (as filtered by dayofWeek) on the specified times. The elements when, frequency and period cannot be used as well as timeOfDay.&quot;,
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;*&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;time&quot;
+          }
+        ],
+        &quot;isSummary&quot;: true,
+        &quot;mapping&quot;: [
+          {
+            &quot;identity&quot;: &quot;rim&quot;,
+            &quot;map&quot;: &quot;n/a&quot;
+          }
+        ]
+      },
+      {
         &quot;id&quot;: &quot;Timing.repeat.when&quot;,
         &quot;path&quot;: &quot;Timing.repeat.when&quot;,
         &quot;short&quot;: &quot;Regular life events the event is tied to&quot;,
@@ -1216,7 +1340,7 @@ of the specification.
 		<div class="container"><!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:32-0500. <a href="qa.html">QA Page</a>
+        © HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:21-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search</a> | 

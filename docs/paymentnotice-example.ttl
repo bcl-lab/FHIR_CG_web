@@ -18,18 +18,21 @@
      fhir:Identifier.value [ fhir:value "776543" ]
   ];
   fhir:PaymentNotice.status [ fhir:value "active"];
+  fhir:PaymentNotice.request [
+     fhir:link <http://benefitsinc.com/fhir/claim/12345>;
+     fhir:Reference.reference [ fhir:value "http://benefitsinc.com/fhir/claim/12345" ]
+  ];
   fhir:PaymentNotice.created [ fhir:value "2014-08-16"^^xsd:date];
   fhir:PaymentNotice.organization [
      fhir:link <http://hl7.org/fhir/Organization/1>;
      fhir:Reference.reference [ fhir:value "Organization/1" ]
   ];
-  fhir:PaymentNotice.request [
-     fhir:link <http://benefitsinc.com/fhir/claim/12345>;
-     fhir:Reference.reference [ fhir:value "http://benefitsinc.com/fhir/claim/12345" ]
-  ];
   fhir:PaymentNotice.paymentStatus [
-     fhir:Coding.system [ fhir:value "http://hl7.org/fhir/paymentstatus" ];
-     fhir:Coding.code [ fhir:value "paid" ]
+     fhir:CodeableConcept.coding [
+       fhir:index 0;
+       fhir:Coding.system [ fhir:value "http://hl7.org/fhir/paymentstatus" ];
+       fhir:Coding.code [ fhir:value "paid" ]
+     ]
   ] .
 
 <http://hl7.org/fhir/Organization/1> a fhir:Organization .

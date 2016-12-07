@@ -3,7 +3,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>Coverage-questionnaire.json - FHIR v1.7.0</title>
+  <title>Coverage-questionnaire.json - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -122,18 +122,41 @@
     {
       &quot;resourceType&quot;: &quot;ValueSet&quot;,
       &quot;id&quot;: &quot;vs2&quot;,
-      &quot;name&quot;: &quot;Type options for Coverage.issuer&quot;,
+      &quot;name&quot;: &quot;Type options for Coverage.policyHolder&quot;,
       &quot;status&quot;: &quot;active&quot;,
-      &quot;description&quot;: &quot;Type options for Coverage.issuer&quot;,
+      &quot;description&quot;: &quot;Type options for Coverage.policyHolder&quot;,
       &quot;expansion&quot;: {
-        &quot;identifier&quot;: &quot;urn:uuid:061e3af8-6554-4761-b4fa-7dbb1a5831f4&quot;,
-        &quot;timestamp&quot;: &quot;2016-11-28T17:32:30-05:00&quot;,
+        &quot;identifier&quot;: &quot;urn:uuid:6ccb22fc-ffe3-4d39-8c8d-41644ebcd1f1&quot;,
+        &quot;timestamp&quot;: &quot;2016-12-07T14:21:38-05:00&quot;,
         &quot;contains&quot;: [
+          {
+            &quot;system&quot;: &quot;http://hl7.org/fhir/resource-types&quot;,
+            &quot;code&quot;: &quot;Patient&quot;,
+            &quot;display&quot;: &quot;Patient&quot;
+          },
+          {
+            &quot;system&quot;: &quot;http://hl7.org/fhir/resource-types&quot;,
+            &quot;code&quot;: &quot;RelatedPerson&quot;,
+            &quot;display&quot;: &quot;RelatedPerson&quot;
+          },
           {
             &quot;system&quot;: &quot;http://hl7.org/fhir/resource-types&quot;,
             &quot;code&quot;: &quot;Organization&quot;,
             &quot;display&quot;: &quot;Organization&quot;
-          },
+          }
+        ]
+      }
+    },
+    {
+      &quot;resourceType&quot;: &quot;ValueSet&quot;,
+      &quot;id&quot;: &quot;vs3&quot;,
+      &quot;name&quot;: &quot;Type options for Coverage.subscriber&quot;,
+      &quot;status&quot;: &quot;active&quot;,
+      &quot;description&quot;: &quot;Type options for Coverage.subscriber&quot;,
+      &quot;expansion&quot;: {
+        &quot;identifier&quot;: &quot;urn:uuid:2e31d770-b6c7-437d-a992-12cdf8cf7ebf&quot;,
+        &quot;timestamp&quot;: &quot;2016-12-07T14:21:38-05:00&quot;,
+        &quot;contains&quot;: [
           {
             &quot;system&quot;: &quot;http://hl7.org/fhir/resource-types&quot;,
             &quot;code&quot;: &quot;Patient&quot;,
@@ -149,14 +172,19 @@
     },
     {
       &quot;resourceType&quot;: &quot;ValueSet&quot;,
-      &quot;id&quot;: &quot;vs3&quot;,
-      &quot;name&quot;: &quot;Type options for Coverage.planholder&quot;,
+      &quot;id&quot;: &quot;vs4&quot;,
+      &quot;name&quot;: &quot;Type options for Coverage.payor&quot;,
       &quot;status&quot;: &quot;active&quot;,
-      &quot;description&quot;: &quot;Type options for Coverage.planholder&quot;,
+      &quot;description&quot;: &quot;Type options for Coverage.payor&quot;,
       &quot;expansion&quot;: {
-        &quot;identifier&quot;: &quot;urn:uuid:7f221082-f044-442f-8c2d-05521fb28b6c&quot;,
-        &quot;timestamp&quot;: &quot;2016-11-28T17:32:30-05:00&quot;,
+        &quot;identifier&quot;: &quot;urn:uuid:0c8a5d1f-f8df-4384-b3c2-599f4aa8f83e&quot;,
+        &quot;timestamp&quot;: &quot;2016-12-07T14:21:38-05:00&quot;,
         &quot;contains&quot;: [
+          {
+            &quot;system&quot;: &quot;http://hl7.org/fhir/resource-types&quot;,
+            &quot;code&quot;: &quot;Organization&quot;,
+            &quot;display&quot;: &quot;Organization&quot;
+          },
           {
             &quot;system&quot;: &quot;http://hl7.org/fhir/resource-types&quot;,
             &quot;code&quot;: &quot;Patient&quot;,
@@ -166,11 +194,6 @@
             &quot;system&quot;: &quot;http://hl7.org/fhir/resource-types&quot;,
             &quot;code&quot;: &quot;RelatedPerson&quot;,
             &quot;display&quot;: &quot;RelatedPerson&quot;
-          },
-          {
-            &quot;system&quot;: &quot;http://hl7.org/fhir/resource-types&quot;,
-            &quot;code&quot;: &quot;Organization&quot;,
-            &quot;display&quot;: &quot;Organization&quot;
           }
         ]
       }
@@ -182,7 +205,7 @@
     }
   ],
   &quot;status&quot;: &quot;draft&quot;,
-  &quot;date&quot;: &quot;2016-11-28T17:29:55-05:00&quot;,
+  &quot;date&quot;: &quot;2016-12-07T14:18:58-05:00&quot;,
   &quot;publisher&quot;: &quot;Health Level Seven International (Financial Management)&quot;,
   &quot;item&quot;: [
     {
@@ -514,7 +537,7 @@
                   }
                 }
               ],
-              &quot;text&quot;: &quot;The main (and possibly only) identifier for the coverage - often referred to as a Member Id, Subscriber Id, Certificate number or Personal Health Number or Case ID.&quot;,
+              &quot;text&quot;: &quot;The main (and possibly only) identifier for the coverage - often referred to as a Member Id, Certificate number, Personal Health Number or Case ID. May be constructed as the concatination of the Coverage.SubscriberID and the Coverage.dependant.&quot;,
               &quot;type&quot;: &quot;display&quot;
             },
             {
@@ -588,10 +611,14 @@
             {
               &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs&quot;,
               &quot;valueInteger&quot;: 1
+            },
+            {
+              &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType&quot;,
+              &quot;valueString&quot;: &quot;CodeableConcept&quot;
             }
           ],
-          &quot;linkId&quot;: &quot;Coverage.issuer&quot;,
-          &quot;text&quot;: &quot;Identifier for the plan or agreement issuer&quot;,
+          &quot;linkId&quot;: &quot;Coverage.type&quot;,
+          &quot;text&quot;: &quot;Type of coverage&quot;,
           &quot;type&quot;: &quot;group&quot;,
           &quot;required&quot;: false,
           &quot;repeats&quot;: true,
@@ -611,11 +638,58 @@
                   }
                 }
               ],
-              &quot;text&quot;: &quot;The program or plan underwriter or payor including both insurance and non-insurance agreements, such as patient-pay agreements.&quot;,
+              &quot;text&quot;: &quot;The type of coverage: social program, medical plan, accident coverage (workers compensation, auto), group health or payment by an individual or organization.&quot;,
               &quot;type&quot;: &quot;display&quot;
             },
             {
-              &quot;linkId&quot;: &quot;Coverage.issuer._type&quot;,
+              &quot;linkId&quot;: &quot;Coverage.type.coding&quot;,
+              &quot;text&quot;: &quot;code:&quot;,
+              &quot;type&quot;: &quot;open-choice&quot;,
+              &quot;required&quot;: false,
+              &quot;repeats&quot;: false
+            },
+            {
+              &quot;linkId&quot;: &quot;Coverage.type.text&quot;,
+              &quot;text&quot;: &quot;text:&quot;,
+              &quot;type&quot;: &quot;string&quot;,
+              &quot;required&quot;: false,
+              &quot;repeats&quot;: false
+            }
+          ]
+        },
+        {
+          &quot;extension&quot;: [
+            {
+              &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs&quot;,
+              &quot;valueInteger&quot;: 1
+            }
+          ],
+          &quot;linkId&quot;: &quot;Coverage.policyHolder&quot;,
+          &quot;text&quot;: &quot;Owner of the policy&quot;,
+          &quot;type&quot;: &quot;group&quot;,
+          &quot;required&quot;: false,
+          &quot;repeats&quot;: true,
+          &quot;item&quot;: [
+            {
+              &quot;extension&quot;: [
+                {
+                  &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl&quot;,
+                  &quot;valueCodeableConcept&quot;: {
+                    &quot;coding&quot;: [
+                      {
+                        &quot;system&quot;: &quot;http://hl7.org/fhir/questionnaire-item-control&quot;,
+                        &quot;code&quot;: &quot;flyover&quot;,
+                        &quot;display&quot;: &quot;Fly-over&quot;
+                      }
+                    ]
+                  }
+                }
+              ],
+              &quot;text&quot;: &quot;The party who 'owns' the insurance policy,  may be an individual, corporation or the subscriber's employer.&quot;,
+              &quot;type&quot;: &quot;display&quot;
+            },
+            {
+              &quot;linkId&quot;: &quot;Coverage.policyHolder._type&quot;,
               &quot;text&quot;: &quot;type&quot;,
               &quot;type&quot;: &quot;choice&quot;,
               &quot;required&quot;: false,
@@ -631,36 +705,7 @@
                       &quot;valueString&quot;: &quot;Reference&quot;
                     }
                   ],
-                  &quot;linkId&quot;: &quot;Coverage.issuer._Organization&quot;,
-                  &quot;type&quot;: &quot;group&quot;,
-                  &quot;item&quot;: [
-                    {
-                      &quot;extension&quot;: [
-                        {
-                          &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-allowedResource&quot;,
-                          &quot;valueCode&quot;: &quot;Organization&quot;
-                        },
-                        {
-                          &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-referenceFilter&quot;,
-                          &quot;valueString&quot;: &quot;subject=$subj&amp;patient=$subj&amp;encounter=$encounter&quot;
-                        }
-                      ],
-                      &quot;linkId&quot;: &quot;Coverage.issuer._Organization.value&quot;,
-                      &quot;text&quot;: &quot;Organization&quot;,
-                      &quot;type&quot;: &quot;reference&quot;,
-                      &quot;required&quot;: false,
-                      &quot;repeats&quot;: false
-                    }
-                  ]
-                },
-                {
-                  &quot;extension&quot;: [
-                    {
-                      &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType&quot;,
-                      &quot;valueString&quot;: &quot;Reference&quot;
-                    }
-                  ],
-                  &quot;linkId&quot;: &quot;Coverage.issuer._Patient&quot;,
+                  &quot;linkId&quot;: &quot;Coverage.policyHolder._Patient&quot;,
                   &quot;type&quot;: &quot;group&quot;,
                   &quot;item&quot;: [
                     {
@@ -674,7 +719,7 @@
                           &quot;valueString&quot;: &quot;subject=$subj&amp;patient=$subj&amp;encounter=$encounter&quot;
                         }
                       ],
-                      &quot;linkId&quot;: &quot;Coverage.issuer._Patient.value&quot;,
+                      &quot;linkId&quot;: &quot;Coverage.policyHolder._Patient.value&quot;,
                       &quot;text&quot;: &quot;Patient&quot;,
                       &quot;type&quot;: &quot;reference&quot;,
                       &quot;required&quot;: false,
@@ -689,7 +734,7 @@
                       &quot;valueString&quot;: &quot;Reference&quot;
                     }
                   ],
-                  &quot;linkId&quot;: &quot;Coverage.issuer._RelatedPerson&quot;,
+                  &quot;linkId&quot;: &quot;Coverage.policyHolder._RelatedPerson&quot;,
                   &quot;type&quot;: &quot;group&quot;,
                   &quot;item&quot;: [
                     {
@@ -703,7 +748,139 @@
                           &quot;valueString&quot;: &quot;subject=$subj&amp;patient=$subj&amp;encounter=$encounter&quot;
                         }
                       ],
-                      &quot;linkId&quot;: &quot;Coverage.issuer._RelatedPerson.value&quot;,
+                      &quot;linkId&quot;: &quot;Coverage.policyHolder._RelatedPerson.value&quot;,
+                      &quot;text&quot;: &quot;RelatedPerson&quot;,
+                      &quot;type&quot;: &quot;reference&quot;,
+                      &quot;required&quot;: false,
+                      &quot;repeats&quot;: false
+                    }
+                  ]
+                },
+                {
+                  &quot;extension&quot;: [
+                    {
+                      &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType&quot;,
+                      &quot;valueString&quot;: &quot;Reference&quot;
+                    }
+                  ],
+                  &quot;linkId&quot;: &quot;Coverage.policyHolder._Organization&quot;,
+                  &quot;type&quot;: &quot;group&quot;,
+                  &quot;item&quot;: [
+                    {
+                      &quot;extension&quot;: [
+                        {
+                          &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-allowedResource&quot;,
+                          &quot;valueCode&quot;: &quot;Organization&quot;
+                        },
+                        {
+                          &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-referenceFilter&quot;,
+                          &quot;valueString&quot;: &quot;subject=$subj&amp;patient=$subj&amp;encounter=$encounter&quot;
+                        }
+                      ],
+                      &quot;linkId&quot;: &quot;Coverage.policyHolder._Organization.value&quot;,
+                      &quot;text&quot;: &quot;Organization&quot;,
+                      &quot;type&quot;: &quot;reference&quot;,
+                      &quot;required&quot;: false,
+                      &quot;repeats&quot;: false
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          &quot;extension&quot;: [
+            {
+              &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs&quot;,
+              &quot;valueInteger&quot;: 1
+            }
+          ],
+          &quot;linkId&quot;: &quot;Coverage.subscriber&quot;,
+          &quot;text&quot;: &quot;Subscriber to the policy&quot;,
+          &quot;type&quot;: &quot;group&quot;,
+          &quot;required&quot;: false,
+          &quot;repeats&quot;: true,
+          &quot;item&quot;: [
+            {
+              &quot;extension&quot;: [
+                {
+                  &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl&quot;,
+                  &quot;valueCodeableConcept&quot;: {
+                    &quot;coding&quot;: [
+                      {
+                        &quot;system&quot;: &quot;http://hl7.org/fhir/questionnaire-item-control&quot;,
+                        &quot;code&quot;: &quot;flyover&quot;,
+                        &quot;display&quot;: &quot;Fly-over&quot;
+                      }
+                    ]
+                  }
+                }
+              ],
+              &quot;text&quot;: &quot;The party who has signed-up for or 'owns' the contractual relationship to the policy or to whom the benefit of the policy for services rendered to them or their family is due.&quot;,
+              &quot;type&quot;: &quot;display&quot;
+            },
+            {
+              &quot;linkId&quot;: &quot;Coverage.subscriber._type&quot;,
+              &quot;text&quot;: &quot;type&quot;,
+              &quot;type&quot;: &quot;choice&quot;,
+              &quot;required&quot;: false,
+              &quot;repeats&quot;: false,
+              &quot;options&quot;: {
+                &quot;reference&quot;: &quot;#vs3&quot;
+              },
+              &quot;item&quot;: [
+                {
+                  &quot;extension&quot;: [
+                    {
+                      &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType&quot;,
+                      &quot;valueString&quot;: &quot;Reference&quot;
+                    }
+                  ],
+                  &quot;linkId&quot;: &quot;Coverage.subscriber._Patient&quot;,
+                  &quot;type&quot;: &quot;group&quot;,
+                  &quot;item&quot;: [
+                    {
+                      &quot;extension&quot;: [
+                        {
+                          &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-allowedResource&quot;,
+                          &quot;valueCode&quot;: &quot;Patient&quot;
+                        },
+                        {
+                          &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-referenceFilter&quot;,
+                          &quot;valueString&quot;: &quot;subject=$subj&amp;patient=$subj&amp;encounter=$encounter&quot;
+                        }
+                      ],
+                      &quot;linkId&quot;: &quot;Coverage.subscriber._Patient.value&quot;,
+                      &quot;text&quot;: &quot;Patient&quot;,
+                      &quot;type&quot;: &quot;reference&quot;,
+                      &quot;required&quot;: false,
+                      &quot;repeats&quot;: false
+                    }
+                  ]
+                },
+                {
+                  &quot;extension&quot;: [
+                    {
+                      &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType&quot;,
+                      &quot;valueString&quot;: &quot;Reference&quot;
+                    }
+                  ],
+                  &quot;linkId&quot;: &quot;Coverage.subscriber._RelatedPerson&quot;,
+                  &quot;type&quot;: &quot;group&quot;,
+                  &quot;item&quot;: [
+                    {
+                      &quot;extension&quot;: [
+                        {
+                          &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-allowedResource&quot;,
+                          &quot;valueCode&quot;: &quot;RelatedPerson&quot;
+                        },
+                        {
+                          &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-referenceFilter&quot;,
+                          &quot;valueString&quot;: &quot;subject=$subj&amp;patient=$subj&amp;encounter=$encounter&quot;
+                        }
+                      ],
+                      &quot;linkId&quot;: &quot;Coverage.subscriber._RelatedPerson.value&quot;,
                       &quot;text&quot;: &quot;RelatedPerson&quot;,
                       &quot;type&quot;: &quot;reference&quot;,
                       &quot;required&quot;: false,
@@ -723,10 +900,10 @@
             },
             {
               &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType&quot;,
-              &quot;valueString&quot;: &quot;boolean&quot;
+              &quot;valueString&quot;: &quot;string&quot;
             }
           ],
-          &quot;linkId&quot;: &quot;Coverage.isAgreement&quot;,
+          &quot;linkId&quot;: &quot;Coverage.subscriberId&quot;,
           &quot;type&quot;: &quot;group&quot;,
           &quot;required&quot;: false,
           &quot;repeats&quot;: true,
@@ -746,13 +923,117 @@
                   }
                 }
               ],
-              &quot;text&quot;: &quot;A self, or other, payment agreement not an insurance policy.&quot;,
+              &quot;text&quot;: &quot;The insurer assigned ID for the Subscriber.&quot;,
               &quot;type&quot;: &quot;display&quot;
             },
             {
-              &quot;linkId&quot;: &quot;Coverage.isAgreement.value&quot;,
-              &quot;text&quot;: &quot;Is a Payment Agreement&quot;,
-              &quot;type&quot;: &quot;boolean&quot;,
+              &quot;linkId&quot;: &quot;Coverage.subscriberId.value&quot;,
+              &quot;text&quot;: &quot;ID assigned to the Subscriber&quot;,
+              &quot;type&quot;: &quot;string&quot;,
+              &quot;required&quot;: false,
+              &quot;repeats&quot;: false
+            }
+          ]
+        },
+        {
+          &quot;extension&quot;: [
+            {
+              &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs&quot;,
+              &quot;valueInteger&quot;: 1
+            },
+            {
+              &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType&quot;,
+              &quot;valueString&quot;: &quot;Reference&quot;
+            }
+          ],
+          &quot;linkId&quot;: &quot;Coverage.beneficiary&quot;,
+          &quot;type&quot;: &quot;group&quot;,
+          &quot;required&quot;: false,
+          &quot;repeats&quot;: true,
+          &quot;item&quot;: [
+            {
+              &quot;extension&quot;: [
+                {
+                  &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl&quot;,
+                  &quot;valueCodeableConcept&quot;: {
+                    &quot;coding&quot;: [
+                      {
+                        &quot;system&quot;: &quot;http://hl7.org/fhir/questionnaire-item-control&quot;,
+                        &quot;code&quot;: &quot;flyover&quot;,
+                        &quot;display&quot;: &quot;Fly-over&quot;
+                      }
+                    ]
+                  }
+                }
+              ],
+              &quot;text&quot;: &quot;The party who benefits from the insurance coverage., the patient when services are provided.&quot;,
+              &quot;type&quot;: &quot;display&quot;
+            },
+            {
+              &quot;extension&quot;: [
+                {
+                  &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-allowedResource&quot;,
+                  &quot;valueCode&quot;: &quot;Patient&quot;
+                },
+                {
+                  &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-referenceFilter&quot;,
+                  &quot;valueString&quot;: &quot;subject=$subj&amp;patient=$subj&amp;encounter=$encounter&quot;
+                }
+              ],
+              &quot;linkId&quot;: &quot;Coverage.beneficiary.value&quot;,
+              &quot;text&quot;: &quot;Plan Beneficiary&quot;,
+              &quot;type&quot;: &quot;reference&quot;,
+              &quot;required&quot;: false,
+              &quot;repeats&quot;: false
+            }
+          ]
+        },
+        {
+          &quot;extension&quot;: [
+            {
+              &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs&quot;,
+              &quot;valueInteger&quot;: 1
+            },
+            {
+              &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType&quot;,
+              &quot;valueString&quot;: &quot;CodeableConcept&quot;
+            }
+          ],
+          &quot;linkId&quot;: &quot;Coverage.relationship&quot;,
+          &quot;text&quot;: &quot;Beneficiary relationship to the Subscriber&quot;,
+          &quot;type&quot;: &quot;group&quot;,
+          &quot;required&quot;: false,
+          &quot;repeats&quot;: true,
+          &quot;item&quot;: [
+            {
+              &quot;extension&quot;: [
+                {
+                  &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl&quot;,
+                  &quot;valueCodeableConcept&quot;: {
+                    &quot;coding&quot;: [
+                      {
+                        &quot;system&quot;: &quot;http://hl7.org/fhir/questionnaire-item-control&quot;,
+                        &quot;code&quot;: &quot;flyover&quot;,
+                        &quot;display&quot;: &quot;Fly-over&quot;
+                      }
+                    ]
+                  }
+                }
+              ],
+              &quot;text&quot;: &quot;The relationship of beneficiary (patient) to the subscriber.&quot;,
+              &quot;type&quot;: &quot;display&quot;
+            },
+            {
+              &quot;linkId&quot;: &quot;Coverage.relationship.coding&quot;,
+              &quot;text&quot;: &quot;code:&quot;,
+              &quot;type&quot;: &quot;open-choice&quot;,
+              &quot;required&quot;: false,
+              &quot;repeats&quot;: false
+            },
+            {
+              &quot;linkId&quot;: &quot;Coverage.relationship.text&quot;,
+              &quot;text&quot;: &quot;text:&quot;,
+              &quot;type&quot;: &quot;string&quot;,
               &quot;required&quot;: false,
               &quot;repeats&quot;: false
             }
@@ -810,17 +1091,8 @@
           ]
         },
         {
-          &quot;extension&quot;: [
-            {
-              &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs&quot;,
-              &quot;valueInteger&quot;: 1
-            },
-            {
-              &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType&quot;,
-              &quot;valueString&quot;: &quot;Coding&quot;
-            }
-          ],
-          &quot;linkId&quot;: &quot;Coverage.type&quot;,
+          &quot;linkId&quot;: &quot;Coverage.payor&quot;,
+          &quot;text&quot;: &quot;Identifier for the plan or agreement issuer&quot;,
           &quot;type&quot;: &quot;group&quot;,
           &quot;required&quot;: false,
           &quot;repeats&quot;: true,
@@ -840,57 +1112,17 @@
                   }
                 }
               ],
-              &quot;text&quot;: &quot;The type of coverage: social program, medical plan, accident coverage (workers compensation, auto), group health.&quot;,
+              &quot;text&quot;: &quot;The program or plan underwriter or payor including both insurance and non-insurance agreements, such as patient-pay agreements. May provide multiple identifiers such as insurance company identifier or business identifier (BIN number).&quot;,
               &quot;type&quot;: &quot;display&quot;
             },
             {
-              &quot;linkId&quot;: &quot;Coverage.type.value&quot;,
-              &quot;text&quot;: &quot;Type of coverage&quot;,
-              &quot;type&quot;: &quot;open-choice&quot;,
-              &quot;required&quot;: false,
-              &quot;repeats&quot;: false
-            }
-          ]
-        },
-        {
-          &quot;extension&quot;: [
-            {
-              &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs&quot;,
-              &quot;valueInteger&quot;: 1
-            }
-          ],
-          &quot;linkId&quot;: &quot;Coverage.planholder&quot;,
-          &quot;text&quot;: &quot;Plan holder&quot;,
-          &quot;type&quot;: &quot;group&quot;,
-          &quot;required&quot;: false,
-          &quot;repeats&quot;: true,
-          &quot;item&quot;: [
-            {
-              &quot;extension&quot;: [
-                {
-                  &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl&quot;,
-                  &quot;valueCodeableConcept&quot;: {
-                    &quot;coding&quot;: [
-                      {
-                        &quot;system&quot;: &quot;http://hl7.org/fhir/questionnaire-item-control&quot;,
-                        &quot;code&quot;: &quot;flyover&quot;,
-                        &quot;display&quot;: &quot;Fly-over&quot;
-                      }
-                    ]
-                  }
-                }
-              ],
-              &quot;text&quot;: &quot;The party who 'owns' the insurance contractual relationship to the policy or to whom the benefit of the policy is due.&quot;,
-              &quot;type&quot;: &quot;display&quot;
-            },
-            {
-              &quot;linkId&quot;: &quot;Coverage.planholder._type&quot;,
+              &quot;linkId&quot;: &quot;Coverage.payor._type&quot;,
               &quot;text&quot;: &quot;type&quot;,
               &quot;type&quot;: &quot;choice&quot;,
               &quot;required&quot;: false,
               &quot;repeats&quot;: false,
               &quot;options&quot;: {
-                &quot;reference&quot;: &quot;#vs3&quot;
+                &quot;reference&quot;: &quot;#vs4&quot;
               },
               &quot;item&quot;: [
                 {
@@ -900,7 +1132,36 @@
                       &quot;valueString&quot;: &quot;Reference&quot;
                     }
                   ],
-                  &quot;linkId&quot;: &quot;Coverage.planholder._Patient&quot;,
+                  &quot;linkId&quot;: &quot;Coverage.payor._Organization&quot;,
+                  &quot;type&quot;: &quot;group&quot;,
+                  &quot;item&quot;: [
+                    {
+                      &quot;extension&quot;: [
+                        {
+                          &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-allowedResource&quot;,
+                          &quot;valueCode&quot;: &quot;Organization&quot;
+                        },
+                        {
+                          &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-referenceFilter&quot;,
+                          &quot;valueString&quot;: &quot;subject=$subj&amp;patient=$subj&amp;encounter=$encounter&quot;
+                        }
+                      ],
+                      &quot;linkId&quot;: &quot;Coverage.payor._Organization.value&quot;,
+                      &quot;text&quot;: &quot;Organization&quot;,
+                      &quot;type&quot;: &quot;reference&quot;,
+                      &quot;required&quot;: false,
+                      &quot;repeats&quot;: false
+                    }
+                  ]
+                },
+                {
+                  &quot;extension&quot;: [
+                    {
+                      &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType&quot;,
+                      &quot;valueString&quot;: &quot;Reference&quot;
+                    }
+                  ],
+                  &quot;linkId&quot;: &quot;Coverage.payor._Patient&quot;,
                   &quot;type&quot;: &quot;group&quot;,
                   &quot;item&quot;: [
                     {
@@ -914,7 +1175,7 @@
                           &quot;valueString&quot;: &quot;subject=$subj&amp;patient=$subj&amp;encounter=$encounter&quot;
                         }
                       ],
-                      &quot;linkId&quot;: &quot;Coverage.planholder._Patient.value&quot;,
+                      &quot;linkId&quot;: &quot;Coverage.payor._Patient.value&quot;,
                       &quot;text&quot;: &quot;Patient&quot;,
                       &quot;type&quot;: &quot;reference&quot;,
                       &quot;required&quot;: false,
@@ -929,7 +1190,7 @@
                       &quot;valueString&quot;: &quot;Reference&quot;
                     }
                   ],
-                  &quot;linkId&quot;: &quot;Coverage.planholder._RelatedPerson&quot;,
+                  &quot;linkId&quot;: &quot;Coverage.payor._RelatedPerson&quot;,
                   &quot;type&quot;: &quot;group&quot;,
                   &quot;item&quot;: [
                     {
@@ -943,37 +1204,8 @@
                           &quot;valueString&quot;: &quot;subject=$subj&amp;patient=$subj&amp;encounter=$encounter&quot;
                         }
                       ],
-                      &quot;linkId&quot;: &quot;Coverage.planholder._RelatedPerson.value&quot;,
+                      &quot;linkId&quot;: &quot;Coverage.payor._RelatedPerson.value&quot;,
                       &quot;text&quot;: &quot;RelatedPerson&quot;,
-                      &quot;type&quot;: &quot;reference&quot;,
-                      &quot;required&quot;: false,
-                      &quot;repeats&quot;: false
-                    }
-                  ]
-                },
-                {
-                  &quot;extension&quot;: [
-                    {
-                      &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType&quot;,
-                      &quot;valueString&quot;: &quot;Reference&quot;
-                    }
-                  ],
-                  &quot;linkId&quot;: &quot;Coverage.planholder._Organization&quot;,
-                  &quot;type&quot;: &quot;group&quot;,
-                  &quot;item&quot;: [
-                    {
-                      &quot;extension&quot;: [
-                        {
-                          &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-allowedResource&quot;,
-                          &quot;valueCode&quot;: &quot;Organization&quot;
-                        },
-                        {
-                          &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-referenceFilter&quot;,
-                          &quot;valueString&quot;: &quot;subject=$subj&amp;patient=$subj&amp;encounter=$encounter&quot;
-                        }
-                      ],
-                      &quot;linkId&quot;: &quot;Coverage.planholder._Organization.value&quot;,
-                      &quot;text&quot;: &quot;Organization&quot;,
                       &quot;type&quot;: &quot;reference&quot;,
                       &quot;required&quot;: false,
                       &quot;repeats&quot;: false
@@ -981,102 +1213,6 @@
                   ]
                 }
               ]
-            }
-          ]
-        },
-        {
-          &quot;extension&quot;: [
-            {
-              &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs&quot;,
-              &quot;valueInteger&quot;: 1
-            },
-            {
-              &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType&quot;,
-              &quot;valueString&quot;: &quot;Reference&quot;
-            }
-          ],
-          &quot;linkId&quot;: &quot;Coverage.beneficiary&quot;,
-          &quot;type&quot;: &quot;group&quot;,
-          &quot;required&quot;: false,
-          &quot;repeats&quot;: true,
-          &quot;item&quot;: [
-            {
-              &quot;extension&quot;: [
-                {
-                  &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl&quot;,
-                  &quot;valueCodeableConcept&quot;: {
-                    &quot;coding&quot;: [
-                      {
-                        &quot;system&quot;: &quot;http://hl7.org/fhir/questionnaire-item-control&quot;,
-                        &quot;code&quot;: &quot;flyover&quot;,
-                        &quot;display&quot;: &quot;Fly-over&quot;
-                      }
-                    ]
-                  }
-                }
-              ],
-              &quot;text&quot;: &quot;The party who benefits from the insurance coverage.&quot;,
-              &quot;type&quot;: &quot;display&quot;
-            },
-            {
-              &quot;extension&quot;: [
-                {
-                  &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-allowedResource&quot;,
-                  &quot;valueCode&quot;: &quot;Patient&quot;
-                },
-                {
-                  &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-referenceFilter&quot;,
-                  &quot;valueString&quot;: &quot;subject=$subj&amp;patient=$subj&amp;encounter=$encounter&quot;
-                }
-              ],
-              &quot;linkId&quot;: &quot;Coverage.beneficiary.value&quot;,
-              &quot;text&quot;: &quot;Plan Beneficiary&quot;,
-              &quot;type&quot;: &quot;reference&quot;,
-              &quot;required&quot;: false,
-              &quot;repeats&quot;: false
-            }
-          ]
-        },
-        {
-          &quot;extension&quot;: [
-            {
-              &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs&quot;,
-              &quot;valueInteger&quot;: 1
-            },
-            {
-              &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType&quot;,
-              &quot;valueString&quot;: &quot;Coding&quot;
-            }
-          ],
-          &quot;linkId&quot;: &quot;Coverage.relationship&quot;,
-          &quot;type&quot;: &quot;group&quot;,
-          &quot;required&quot;: false,
-          &quot;repeats&quot;: true,
-          &quot;item&quot;: [
-            {
-              &quot;extension&quot;: [
-                {
-                  &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl&quot;,
-                  &quot;valueCodeableConcept&quot;: {
-                    &quot;coding&quot;: [
-                      {
-                        &quot;system&quot;: &quot;http://hl7.org/fhir/questionnaire-item-control&quot;,
-                        &quot;code&quot;: &quot;flyover&quot;,
-                        &quot;display&quot;: &quot;Fly-over&quot;
-                      }
-                    ]
-                  }
-                }
-              ],
-              &quot;text&quot;: &quot;The relationship of beneficiary (patient) (subscriber) to the the planholder.&quot;,
-              &quot;type&quot;: &quot;display&quot;
-            },
-            {
-              &quot;linkId&quot;: &quot;Coverage.relationship.value&quot;,
-              &quot;text&quot;: &quot;Beneficiary relationship to Planholder&quot;,
-              &quot;type&quot;: &quot;open-choice&quot;,
-              &quot;required&quot;: false,
-              &quot;repeats&quot;: false
             }
           ]
         },
@@ -1239,7 +1375,7 @@
                       }
                     }
                   ],
-                  &quot;text&quot;: &quot;Identifies a style or collective of coverage issues by the underwriter, for example may be used to identify a class of coverage or employer group. May also be referred to as a Policy or Group ID.&quot;,
+                  &quot;text&quot;: &quot;Identifies a style or collective of coverage issued by the underwriter, for example may be used to identify an employer group. May also be referred to as a Policy or Group ID.&quot;,
                   &quot;type&quot;: &quot;display&quot;
                 },
                 {
@@ -1325,7 +1461,7 @@
                       }
                     }
                   ],
-                  &quot;text&quot;: &quot;Identifies a style or collective of coverage issues by the underwriter, for example may be used to identify a class of coverage or employer group. May also be referred to as a Policy or Group ID.&quot;,
+                  &quot;text&quot;: &quot;Identifies a style or collective of coverage issued by the underwriter, for example may be used to identify a subset of an employer group.&quot;,
                   &quot;type&quot;: &quot;display&quot;
                 },
                 {
@@ -1411,7 +1547,7 @@
                       }
                     }
                   ],
-                  &quot;text&quot;: &quot;Identifies a style or collective of coverage issues by the underwriter, for example may be used to identify a class of coverage or employer group. May also be referred to as a Policy or Group ID.&quot;,
+                  &quot;text&quot;: &quot;Identifies a style or collective of coverage issued by the underwriter, for example may be used to identify a collection of benefits provided to employees. May be referred to as a Section or Division ID.&quot;,
                   &quot;type&quot;: &quot;display&quot;
                 },
                 {
@@ -1497,7 +1633,7 @@
                       }
                     }
                   ],
-                  &quot;text&quot;: &quot;Identifies a sub-style or sub-collective of coverage issues by the underwriter, for example may be used to identify a specific employer group within a class of employers. May be referred to as a Section or Division ID.&quot;,
+                  &quot;text&quot;: &quot;Identifies a sub-style or sub-collective of coverage issued by the underwriter, for example may be used to identify a subset of a collection of benefits provided to employees.&quot;,
                   &quot;type&quot;: &quot;display&quot;
                 },
                 {
@@ -1734,7 +1870,7 @@
             },
             {
               &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType&quot;,
-              &quot;valueString&quot;: &quot;integer&quot;
+              &quot;valueString&quot;: &quot;string&quot;
             }
           ],
           &quot;linkId&quot;: &quot;Coverage.dependent&quot;,
@@ -1763,7 +1899,7 @@
             {
               &quot;linkId&quot;: &quot;Coverage.dependent.value&quot;,
               &quot;text&quot;: &quot;Dependent number&quot;,
-              &quot;type&quot;: &quot;integer&quot;,
+              &quot;type&quot;: &quot;string&quot;,
               &quot;required&quot;: false,
               &quot;repeats&quot;: false
             }
@@ -1777,7 +1913,7 @@
             },
             {
               &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType&quot;,
-              &quot;valueString&quot;: &quot;integer&quot;
+              &quot;valueString&quot;: &quot;string&quot;
             }
           ],
           &quot;linkId&quot;: &quot;Coverage.sequence&quot;,
@@ -1806,6 +1942,49 @@
             {
               &quot;linkId&quot;: &quot;Coverage.sequence.value&quot;,
               &quot;text&quot;: &quot;The plan instance or sequence counter&quot;,
+              &quot;type&quot;: &quot;string&quot;,
+              &quot;required&quot;: false,
+              &quot;repeats&quot;: false
+            }
+          ]
+        },
+        {
+          &quot;extension&quot;: [
+            {
+              &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs&quot;,
+              &quot;valueInteger&quot;: 1
+            },
+            {
+              &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType&quot;,
+              &quot;valueString&quot;: &quot;integer&quot;
+            }
+          ],
+          &quot;linkId&quot;: &quot;Coverage.order&quot;,
+          &quot;type&quot;: &quot;group&quot;,
+          &quot;required&quot;: false,
+          &quot;repeats&quot;: true,
+          &quot;item&quot;: [
+            {
+              &quot;extension&quot;: [
+                {
+                  &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl&quot;,
+                  &quot;valueCodeableConcept&quot;: {
+                    &quot;coding&quot;: [
+                      {
+                        &quot;system&quot;: &quot;http://hl7.org/fhir/questionnaire-item-control&quot;,
+                        &quot;code&quot;: &quot;flyover&quot;,
+                        &quot;display&quot;: &quot;Fly-over&quot;
+                      }
+                    ]
+                  }
+                }
+              ],
+              &quot;text&quot;: &quot;The order of applicability of this coverage relative to other coverages which are currently inforce. Note, there may be gaps in the numbering and this does not imply primary, secondard etc. as the specific positioning of coverages depends upon the episode of care.&quot;,
+              &quot;type&quot;: &quot;display&quot;
+            },
+            {
+              &quot;linkId&quot;: &quot;Coverage.order.value&quot;,
+              &quot;text&quot;: &quot;Relative order of the coverage&quot;,
               &quot;type&quot;: &quot;integer&quot;,
               &quot;required&quot;: false,
               &quot;repeats&quot;: false
@@ -1843,7 +2022,7 @@
                   }
                 }
               ],
-              &quot;text&quot;: &quot;The identifier for a community of providers.&quot;,
+              &quot;text&quot;: &quot;The insurer-specific identifier for the insurer-defined network of providers to which the beneficiary may seek treatment which will be covered at the 'in-network' rate, otherwise 'out of network' terms and conditions apply.&quot;,
               &quot;type&quot;: &quot;display&quot;
             },
             {
@@ -1932,7 +2111,7 @@ of the specification.
 		<div class="container"><!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:32-0500. <a href="qa.html">QA Page</a>
+        © HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:21-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search</a> | 

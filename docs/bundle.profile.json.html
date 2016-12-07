@@ -3,7 +3,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>Bundle.profile.json - FHIR v1.7.0</title>
+  <title>Bundle.profile.json - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -119,7 +119,7 @@
   &quot;resourceType&quot;: &quot;StructureDefinition&quot;,
   &quot;id&quot;: &quot;Bundle&quot;,
   &quot;meta&quot;: {
-    &quot;lastUpdated&quot;: &quot;2016-11-28T17:29:55.664-05:00&quot;
+    &quot;lastUpdated&quot;: &quot;2016-12-07T14:18:58.982-05:00&quot;
   },
   &quot;text&quot;: {
     &quot;status&quot;: &quot;generated&quot;,
@@ -129,6 +129,10 @@
     {
       &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm&quot;,
       &quot;valueInteger&quot;: 2
+    },
+    {
+      &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/structuredefinition-wg&quot;,
+      &quot;valueCode&quot;: &quot;fhir&quot;
     }
   ],
   &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/Bundle&quot;,
@@ -139,7 +143,7 @@
     {
       &quot;telecom&quot;: [
         {
-          &quot;system&quot;: &quot;other&quot;,
+          &quot;system&quot;: &quot;url&quot;,
           &quot;value&quot;: &quot;http://hl7.org/fhir&quot;
         }
       ]
@@ -147,15 +151,15 @@
     {
       &quot;telecom&quot;: [
         {
-          &quot;system&quot;: &quot;other&quot;,
+          &quot;system&quot;: &quot;url&quot;,
           &quot;value&quot;: &quot;http://www.hl7.org/Special/committees/fiwg/index.cfm&quot;
         }
       ]
     }
   ],
-  &quot;date&quot;: &quot;2016-11-28T17:29:55-05:00&quot;,
+  &quot;date&quot;: &quot;2016-12-07T14:18:58-05:00&quot;,
   &quot;description&quot;: &quot;Base StructureDefinition for Bundle Resource&quot;,
-  &quot;fhirVersion&quot;: &quot;1.7.0&quot;,
+  &quot;fhirVersion&quot;: &quot;1.8.0&quot;,
   &quot;mapping&quot;: [
     {
       &quot;identity&quot;: &quot;v2&quot;,
@@ -194,6 +198,13 @@
             &quot;human&quot;: &quot;FullUrl must be unique in a bundle, or else entries with the same fullUrl must have different meta.versionId&quot;,
             &quot;expression&quot;: &quot;entry.where(fullUrl).select(fullUrl&amp;resource.meta.versionId).isDistinct()&quot;,
             &quot;xpath&quot;: &quot;count(for $entry in f:entry[f:resource] return $entry[count(parent::f:Bundle/f:entry[f:fullUrl/@value=$entry/f:fullUrl/@value and ((not(f:resource/*/f:meta/f:versionId/@value) and not($entry/f:resource/*/f:meta/f:versionId/@value)) or f:resource/*/f:meta/f:versionId/@value=$entry/f:resource/*/f:meta/f:versionId/@value)])!=1])=0&quot;
+          },
+          {
+            &quot;key&quot;: &quot;bdl-9&quot;,
+            &quot;severity&quot;: &quot;error&quot;,
+            &quot;human&quot;: &quot;A document must have an identifier with a system and a value&quot;,
+            &quot;expression&quot;: &quot;type = 'document' implies (identifier.system.exists() and identifier.value.exists())&quot;,
+            &quot;xpath&quot;: &quot;not(f:type/@value = 'document') or exists(f:identifier/f:system) or exists(f:identifier/f:value)&quot;
           },
           {
             &quot;key&quot;: &quot;bdl-3&quot;,
@@ -366,6 +377,27 @@
         ]
       },
       {
+        &quot;id&quot;: &quot;Bundle.identifier&quot;,
+        &quot;path&quot;: &quot;Bundle.identifier&quot;,
+        &quot;short&quot;: &quot;Persistent identifier for the bundle&quot;,
+        &quot;definition&quot;: &quot;A persistent identifier for the batch that won't change as a batch is copied from server to server.&quot;,
+        &quot;comments&quot;: &quot;Persistent identity generally only matters for batches of type Document, Message, and Collection. It would not normally be populated for search and history results, and servers ignore Bundle.identifier when processing batches and transactions. For Documents, the .identifier SHALL be populated such that the .identifier is globally unique.&quot;,
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;1&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;Identifier&quot;
+          }
+        ],
+        &quot;isSummary&quot;: true,
+        &quot;mapping&quot;: [
+          {
+            &quot;identity&quot;: &quot;w5&quot;,
+            &quot;map&quot;: &quot;id&quot;
+          }
+        ]
+      },
+      {
         &quot;id&quot;: &quot;Bundle.total&quot;,
         &quot;path&quot;: &quot;Bundle.total&quot;,
         &quot;short&quot;: &quot;If search, the total number of matches&quot;,
@@ -498,8 +530,8 @@
       {
         &quot;id&quot;: &quot;Bundle.link.relation&quot;,
         &quot;path&quot;: &quot;Bundle.link.relation&quot;,
-        &quot;short&quot;: &quot;http://www.iana.org/assignments/link-relations/link-relations.xhtml&quot;,
-        &quot;definition&quot;: &quot;A name which details the functional use for this link - see [[http://www.iana.org/assignments/link-relations/link-relations.xhtml]].&quot;,
+        &quot;short&quot;: &quot;See http://www.iana.org/assignments/link-relations/link-relations.xhtml#link-relations-1&quot;,
+        &quot;definition&quot;: &quot;A name which details the functional use for this link - see [http://www.iana.org/assignments/link-relations/link-relations.xhtml#link-relations-1](http://www.iana.org/assignments/link-relations/link-relations.xhtml#link-relations-1).&quot;,
         &quot;min&quot;: 1,
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
@@ -557,13 +589,6 @@
             &quot;human&quot;: &quot;must be a resource unless there's a request or response&quot;,
             &quot;expression&quot;: &quot;resource.exists() or request.exists() or response.exists()&quot;,
             &quot;xpath&quot;: &quot;exists(f:resource) or exists(f:request) or exists(f:response)&quot;
-          },
-          {
-            &quot;key&quot;: &quot;bdl-6&quot;,
-            &quot;severity&quot;: &quot;error&quot;,
-            &quot;human&quot;: &quot;The fullUrl element must be present when a resource is present, and not present otherwise&quot;,
-            &quot;expression&quot;: &quot;fullUrl.empty() xor resource.exists()&quot;,
-            &quot;xpath&quot;: &quot;(not(exists(f:fullUrl)) and not(exists(f:resource))) or (exists(f:fullUrl) and exists(f:resource))&quot;
           }
         ],
         &quot;isSummary&quot;: true
@@ -1201,8 +1226,8 @@
         &quot;id&quot;: &quot;Bundle.entry.response.etag&quot;,
         &quot;path&quot;: &quot;Bundle.entry.response.etag&quot;,
         &quot;short&quot;: &quot;The etag for the resource (if relevant)&quot;,
-        &quot;definition&quot;: &quot;The etag for the resource, it the operation for the entry produced a versioned resource.&quot;,
-        &quot;comments&quot;: &quot;This has to match the version id in the header if a resource is included.&quot;,
+        &quot;definition&quot;: &quot;The etag for the resource, it the operation for the entry produced a versioned resource (see [Resource Metadata and Versioning](http.html#versioning) and [Managing Resource Contention](http.html#concurrency)).&quot;,
+        &quot;comments&quot;: &quot;Etags match the Resource.meta.versionId. The ETag has to match the version id in the header if a resource is included.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
@@ -1278,6 +1303,13 @@
             &quot;xpath&quot;: &quot;count(for $entry in f:entry[f:resource] return $entry[count(parent::f:Bundle/f:entry[f:fullUrl/@value=$entry/f:fullUrl/@value and ((not(f:resource/*/f:meta/f:versionId/@value) and not($entry/f:resource/*/f:meta/f:versionId/@value)) or f:resource/*/f:meta/f:versionId/@value=$entry/f:resource/*/f:meta/f:versionId/@value)])!=1])=0&quot;
           },
           {
+            &quot;key&quot;: &quot;bdl-9&quot;,
+            &quot;severity&quot;: &quot;error&quot;,
+            &quot;human&quot;: &quot;A document must have an identifier with a system and a value&quot;,
+            &quot;expression&quot;: &quot;type = 'document' implies (identifier.system.exists() and identifier.value.exists())&quot;,
+            &quot;xpath&quot;: &quot;not(f:type/@value = 'document') or exists(f:identifier/f:system) or exists(f:identifier/f:value)&quot;
+          },
+          {
             &quot;key&quot;: &quot;bdl-3&quot;,
             &quot;severity&quot;: &quot;error&quot;,
             &quot;human&quot;: &quot;entry.request only for some types of bundles&quot;,
@@ -1350,6 +1382,27 @@
         ]
       },
       {
+        &quot;id&quot;: &quot;Bundle.identifier&quot;,
+        &quot;path&quot;: &quot;Bundle.identifier&quot;,
+        &quot;short&quot;: &quot;Persistent identifier for the bundle&quot;,
+        &quot;definition&quot;: &quot;A persistent identifier for the batch that won't change as a batch is copied from server to server.&quot;,
+        &quot;comments&quot;: &quot;Persistent identity generally only matters for batches of type Document, Message, and Collection. It would not normally be populated for search and history results, and servers ignore Bundle.identifier when processing batches and transactions. For Documents, the .identifier SHALL be populated such that the .identifier is globally unique.&quot;,
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;1&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;Identifier&quot;
+          }
+        ],
+        &quot;isSummary&quot;: true,
+        &quot;mapping&quot;: [
+          {
+            &quot;identity&quot;: &quot;w5&quot;,
+            &quot;map&quot;: &quot;id&quot;
+          }
+        ]
+      },
+      {
         &quot;id&quot;: &quot;Bundle.total&quot;,
         &quot;path&quot;: &quot;Bundle.total&quot;,
         &quot;short&quot;: &quot;If search, the total number of matches&quot;,
@@ -1384,8 +1437,8 @@
       {
         &quot;id&quot;: &quot;Bundle.link.relation&quot;,
         &quot;path&quot;: &quot;Bundle.link.relation&quot;,
-        &quot;short&quot;: &quot;http://www.iana.org/assignments/link-relations/link-relations.xhtml&quot;,
-        &quot;definition&quot;: &quot;A name which details the functional use for this link - see [[http://www.iana.org/assignments/link-relations/link-relations.xhtml]].&quot;,
+        &quot;short&quot;: &quot;See http://www.iana.org/assignments/link-relations/link-relations.xhtml#link-relations-1&quot;,
+        &quot;definition&quot;: &quot;A name which details the functional use for this link - see [http://www.iana.org/assignments/link-relations/link-relations.xhtml#link-relations-1](http://www.iana.org/assignments/link-relations/link-relations.xhtml#link-relations-1).&quot;,
         &quot;min&quot;: 1,
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
@@ -1435,13 +1488,6 @@
             &quot;human&quot;: &quot;must be a resource unless there's a request or response&quot;,
             &quot;expression&quot;: &quot;resource.exists() or request.exists() or response.exists()&quot;,
             &quot;xpath&quot;: &quot;exists(f:resource) or exists(f:request) or exists(f:response)&quot;
-          },
-          {
-            &quot;key&quot;: &quot;bdl-6&quot;,
-            &quot;severity&quot;: &quot;error&quot;,
-            &quot;human&quot;: &quot;The fullUrl element must be present when a resource is present, and not present otherwise&quot;,
-            &quot;expression&quot;: &quot;fullUrl.empty() xor resource.exists()&quot;,
-            &quot;xpath&quot;: &quot;(not(exists(f:fullUrl)) and not(exists(f:resource))) or (exists(f:fullUrl) and exists(f:resource))&quot;
           }
         ],
         &quot;isSummary&quot;: true
@@ -1697,8 +1743,8 @@
         &quot;id&quot;: &quot;Bundle.entry.response.etag&quot;,
         &quot;path&quot;: &quot;Bundle.entry.response.etag&quot;,
         &quot;short&quot;: &quot;The etag for the resource (if relevant)&quot;,
-        &quot;definition&quot;: &quot;The etag for the resource, it the operation for the entry produced a versioned resource.&quot;,
-        &quot;comments&quot;: &quot;This has to match the version id in the header if a resource is included.&quot;,
+        &quot;definition&quot;: &quot;The etag for the resource, it the operation for the entry produced a versioned resource (see [Resource Metadata and Versioning](http.html#versioning) and [Managing Resource Contention](http.html#concurrency)).&quot;,
+        &quot;comments&quot;: &quot;Etags match the Resource.meta.versionId. The ETag has to match the version id in the header if a resource is included.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
@@ -1781,7 +1827,7 @@ of the specification.
 		<div class="container"><!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:32-0500. <a href="qa.html">QA Page</a>
+        © HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:21-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search</a> | 

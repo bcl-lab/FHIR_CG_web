@@ -4,7 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>Iso-21090 - FHIR v1.7.0</title>
+  <title>Iso-21090 - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -157,6 +157,14 @@ This approach is preferred over referencing the full null flavor specification. 
 <ul>
   <li><a href="extension-iso21090-en-qualifier.html"><b>name-qualifier</b></a> - This extension to <code><a href="datatypes.html#humanname">HumanName</a>.part</code> allows distinguishing initials, middle names, call-me names and other types of names</li>
 </ul>
+<p>
+Note, however, that implementer experience has led to a new set of extensions being defined for 
+most of the human name issues (see <a href="extension-humanname-own-name.html">own-name</a>, 
+<a href="extension-humanname-own-prefix.html">own-prefix</a>, 
+<a href="extension-humanname-partner-name.html">partner-name</a>, 
+<a href="extension-humanname-partner-prefix.html">partner-prefix</a>, 
+<a href="extension-humanname-fathers-family.html">fathers-family</a> and
+<a href="extension-humanname-mothers-family.html">mothers-family</a>), and these should be used in preference to the ISO 21090 extensions.</p>
 </div>
 
 <div>
@@ -206,15 +214,6 @@ These additional elements of Address will be ignored by applications that do not
 </p>
 </div>
 
-<div>
-<a name="string"> </a>
-<h3>String (ST)</h3>
-<p>These extensions provide support for the probability distributions for the <a href="datatypes.html#string">string</a> data type.  There are two properties:</p>
-<ul>
-  <li><a href="extension-iso21090-st-translation.html"><b>string-translation</b></a> - Provides an alternate expression of the string in a different language.  (May have more than one occurrence)</li>
-  <li><a href="extension-iso21090-st-language.html"><b>language</b></a> - Indicates the language of the extended string.  (May also appear on the string-translation extension)</li>
-</ul>
-</div>
 
 </div>
 
@@ -222,41 +221,39 @@ These additional elements of Address will be ignored by applications that do not
 <a name="content"> </a>
 <h3>Content</h3>
 
-<table class="lines"><tr><td colspan="2"><b>Extensions</b>: </td></tr><tr><td><a name="extension-iso21090-nullFlavor"/><a href="extension-iso21090-nullflavor.html">iso21090-nullFlavor</a></td><td><b>NI | OTH | NINF | PINF | UNK | ASKU | NAV | NASK | TRC | MSK | NA | QS</b> : <p>If the value is not a proper value, indicates the reason.</p>
-</td></tr><tr><td><a name="extension-iso21090-EN-qualifier"/><a href="extension-iso21090-en-qualifier.html">iso21090-EN-qualifier</a></td><td><b>LS | AC | NB | PR | HON | BR | AD | SP | MID | CL | IN | VV</b> : <p>A set of codes each of which specifies a certain subcategory of the name part in addition to the main name part type.</p>
-</td></tr><tr><td><a name="extension-iso21090-EN-representation"/><a href="extension-iso21090-en-representation.html">iso21090-EN-representation</a></td><td><b>ABC | IDE | SYL</b> : <p>Name Representation.</p>
-</td></tr><tr><td><a name="extension-iso21090-uncertainty"/><a href="extension-iso21090-uncertainty.html">iso21090-uncertainty</a></td><td><b>Standard Deviation (same units as the quantity)</b> : <p>The primary measure of variance/uncertainty of the value (the square root of the sum of the squares of the differences between all data points and the mean).</p>
-</td></tr><tr><td><a name="extension-iso21090-uncertaintyType"/><a href="extension-iso21090-uncertaintytype.html">iso21090-uncertaintyType</a></td><td><b>Probability Distribution Type for uncertainty</b> : <p>A code specifying the type of probability distribution for the uncertainty.</p>
-</td></tr><tr><td><a name="extension-iso21090-AD-use"/><a href="extension-iso21090-ad-use.html">iso21090-AD-use</a></td><td><b>BAD | CONF | HP | HV | DIR | PUB | PHYS | PST</b> : <p>Uses of Addresses - codes not defined as part of Address.use.</p>
-</td></tr><tr><td><a name="extension-iso21090-ADXP-additionalLocator"/><a href="extension-iso21090-adxp-additionallocator.html">iso21090-ADXP-additionalLocator</a></td><td><b>additionalLocator</b> : <p>This can be a unit designator, such as apartment number, suite number, or floor. There may be several unit designators in an address (e.g., &quot;3rd floor, Appt. 342&quot;). This can also be a designator pointing away from the location, rather than specifying a smaller location within some larger one (e.g., Dutch &quot;t.o.&quot; means &quot;opposite to&quot; for house boats located across the street facing houses).</p>
-</td></tr><tr><td><a name="extension-iso21090-ADXP-unitID"/><a href="extension-iso21090-adxp-unitid.html">iso21090-ADXP-unitID</a></td><td><b>unitID</b> : <p>The number or name of a specific unit contained within a building or complex, as assigned by that building or complex.</p>
-</td></tr><tr><td><a name="extension-iso21090-ADXP-unitType"/><a href="extension-iso21090-adxp-unittype.html">iso21090-ADXP-unitType</a></td><td><b>unitType</b> : <p>Indicates the type of specific unit contained within a building or complex. E.g. Appartment, Floor.</p>
-</td></tr><tr><td><a name="extension-iso21090-ADXP-deliveryAddressLine"/><a href="extension-iso21090-adxp-deliveryaddressline.html">iso21090-ADXP-deliveryAddressLine</a></td><td><b>deliveryAddressLine</b> : <p>A delivery address line is frequently used instead of breaking out delivery mode, delivery installation, etc. An address generally has only a delivery address line or a street address line, but not both.</p>
-</td></tr><tr><td><a name="extension-iso21090-ADXP-deliveryInstallationType"/><a href="extension-iso21090-adxp-deliveryinstallationtype.html">iso21090-ADXP-deliveryInstallationType</a></td><td><b>deliveryInstallationType</b> : <p>Indicates the type of delivery installation (the facility to which the mail will be delivered prior to final shipping via the delivery mode.) Example: post office, letter carrier depot, community mail center, station, etc.</p>
-</td></tr><tr><td><a name="extension-iso21090-ADXP-deliveryInstallationArea"/><a href="extension-iso21090-adxp-deliveryinstallationarea.html">iso21090-ADXP-deliveryInstallationArea</a></td><td><b>deliveryInstallationArea</b> : <p>The location of the delivery installation, usually a town or city, and is only required if the area is different from the municipality. Area to which mail delivery service is provided from any postal facility or service such as an individual letter carrier, rural route, or postal route.</p>
-</td></tr><tr><td><a name="extension-iso21090-ADXP-deliveryInstallationQualifier"/><a href="extension-iso21090-adxp-deliveryinstallationqualifier.html">iso21090-ADXP-deliveryInstallationQualifier</a></td><td><b>deliveryInstallationQualifier</b> : <p>A number, letter or name identifying a delivery installation. E.g., for Station A, the delivery installation qualifier would be 'A'.</p>
-</td></tr><tr><td><a name="extension-iso21090-ADXP-deliveryMode"/><a href="extension-iso21090-adxp-deliverymode.html">iso21090-ADXP-deliveryMode</a></td><td><b>deliveryMode</b> : <p>Indicates the type of service offered, method of delivery. For example: post office box, rural route, general delivery, etc.</p>
-</td></tr><tr><td><a name="extension-iso21090-ADXP-deliveryModeIdentifier"/><a href="extension-iso21090-adxp-deliverymodeidentifier.html">iso21090-ADXP-deliveryModeIdentifier</a></td><td><b>deliveryModeIdentifier</b> : <p>Represents the routing information such as a letter carrier route number. It is the identifying number of the designator (the box number or rural route number).</p>
-</td></tr><tr><td><a name="extension-iso21090-ADXP-streetAddressLine"/><a href="extension-iso21090-adxp-streetaddressline.html">iso21090-ADXP-streetAddressLine</a></td><td><b>streetAddressLine</b> : <p>Description: A street address line is frequently used instead of breaking out build number, street name, street type, etc. An address generally has only a delivery address line or a street address line, but not both.</p>
-</td></tr><tr><td><a name="extension-iso21090-ADXP-houseNumber"/><a href="extension-iso21090-adxp-housenumber.html">iso21090-ADXP-houseNumber</a></td><td><b>houseNumber</b> : <p>The number of a building, house or lot alongside the street. Also known as &quot;primary street number&quot;. This does not number the street but rather the building.</p>
-</td></tr><tr><td><a name="extension-iso21090-ADXP-buildingNumberSuffix"/><a href="extension-iso21090-adxp-buildingnumbersuffix.html">iso21090-ADXP-buildingNumberSuffix</a></td><td><b>buildingNumberSuffix</b> : <p>Any alphabetic character, fraction or other text that may appear after the numeric portion of a building number.</p>
-</td></tr><tr><td><a name="extension-iso21090-ADXP-postBox"/><a href="extension-iso21090-adxp-postbox.html">iso21090-ADXP-postBox</a></td><td><b>postBox</b> : <p>A numbered box located in a post station.</p>
-</td></tr><tr><td><a name="extension-iso21090-ADXP-houseNumberNumeric"/><a href="extension-iso21090-adxp-housenumbernumeric.html">iso21090-ADXP-houseNumberNumeric</a></td><td><b>houseNumberNumeric</b> : <p>The numeric portion of a building number.</p>
-</td></tr><tr><td><a name="extension-iso21090-ADXP-streetName"/><a href="extension-iso21090-adxp-streetname.html">iso21090-ADXP-streetName</a></td><td><b>streetName</b> : <p>streetName.</p>
-</td></tr><tr><td><a name="extension-iso21090-ADXP-streetNameBase"/><a href="extension-iso21090-adxp-streetnamebase.html">iso21090-ADXP-streetNameBase</a></td><td><b>streetNameBase</b> : <p>The base name of a roadway or artery recognized by a municipality (excluding street type and direction).</p>
-</td></tr><tr><td><a name="extension-iso21090-ADXP-streetNameType"/><a href="extension-iso21090-adxp-streetnametype.html">iso21090-ADXP-streetNameType</a></td><td><b>streetNameType</b> : <p>The designation given to the street. (e.g. Street, Avenue, Crescent, etc.).</p>
-</td></tr><tr><td><a name="extension-iso21090-ADXP-direction"/><a href="extension-iso21090-adxp-direction.html">iso21090-ADXP-direction</a></td><td><b>direction</b> : <p>Direction (e.g., N, S, W, E).</p>
-</td></tr><tr><td><a name="extension-iso21090-ADXP-careOf"/><a href="extension-iso21090-adxp-careof.html">iso21090-ADXP-careOf</a></td><td><b>careOf</b> : <p>The name of the party who will take receipt at the specified address, and will take on responsibility for ensuring delivery to the target recipient.</p>
-</td></tr><tr><td><a name="extension-iso21090-ADXP-censusTract"/><a href="extension-iso21090-adxp-censustract.html">iso21090-ADXP-censusTract</a></td><td><b>censusTract</b> : <p>A geographic sub-unit delineated for demographic purposes.</p>
-</td></tr><tr><td><a name="extension-iso21090-ADXP-delimiter"/><a href="extension-iso21090-adxp-delimiter.html">iso21090-ADXP-delimiter</a></td><td><b>delimiter</b> : <p>Delimiters are printed without framing white space. If no value component is provided, the delimiter appears as a line break.</p>
-</td></tr><tr><td><a name="extension-iso21090-ADXP-precinct"/><a href="extension-iso21090-adxp-precinct.html">iso21090-ADXP-precinct</a></td><td><b>precinct</b> : <p>A subsection of a municipality.</p>
-</td></tr><tr><td><a name="extension-iso21090-ST-translation"/><a href="extension-iso21090-st-translation.html">iso21090-ST-translation</a></td><td><b>translation</b> : <p>An expression of the original string in an alternate language.</p>
-</td></tr><tr><td><a name="extension-iso21090-ST-language"/><a href="extension-iso21090-st-language.html">iso21090-ST-language</a></td><td><b>language</b> : <p>The language in which the string is expressed.</p>
-</td></tr><tr><td><a name="extension-iso21090-SC-coding"/><a href="extension-iso21090-sc-coding.html">iso21090-SC-coding</a></td><td><b>code for string</b> : <p>Provides a coded expression for the content represented in a string.</p>
-</td></tr><tr><td><a name="extension-iso21090-preferred"/><a href="extension-iso21090-preferred.html">iso21090-preferred</a></td><td><b>preferred</b> : <p>Flag denoting whether parent item is preferred - e.g., a preferred address or telephone number.</p>
-</td></tr><tr><td><a name="extension-iso21090-verification"/><a href="extension-iso21090-verification.html">iso21090-verification</a></td><td><b>verification</b> : <p>Method value was verified.</p>
-</td></tr><tr><td><a name="extension-iso21090-TEL-address"/><a href="extension-iso21090-tel-address.html">iso21090-TEL-address</a></td><td><b>RFC 3966 compliant telephone of fax number</b> : <p>A V3 compliant, RFC 3966 conformant URI version of the telephone or fax number.</p>
-</td></tr><tr><td><a name="extension-iso21090-CO-value"/><a href="extension-iso21090-co-value.html">iso21090-CO-value</a></td><td><b>Numerical value associated with the code</b> : <p>A numerical value associated with the coded ordinal value.</p>
+<table class="lines"><tr><td colspan="2"><b>Extensions</b>: </td></tr><tr><td><a name="extension-iso21090-nullFlavor"> </a><a href="extension-iso21090-nullflavor.html">iso21090-nullFlavor</a></td><td><b>NI | OTH | NINF | PINF | UNK | ASKU | NAV | NASK | TRC | MSK | NA | QS</b> : <p>If the value is not a proper value, indicates the reason.</p>
+</td></tr><tr><td><a name="extension-iso21090-EN-qualifier"> </a><a href="extension-iso21090-en-qualifier.html">iso21090-EN-qualifier</a></td><td><b>LS | AC | NB | PR | HON | BR | AD | SP | MID | CL | IN | VV</b> : <p>A set of codes each of which specifies a certain subcategory of the name part in addition to the main name part type.</p>
+</td></tr><tr><td><a name="extension-iso21090-EN-representation"> </a><a href="extension-iso21090-en-representation.html">iso21090-EN-representation</a></td><td><b>ABC | IDE | SYL</b> : <p>Name Representation.</p>
+</td></tr><tr><td><a name="extension-iso21090-uncertainty"> </a><a href="extension-iso21090-uncertainty.html">iso21090-uncertainty</a></td><td><b>Standard Deviation (same units as the quantity)</b> : <p>The primary measure of variance/uncertainty of the value (the square root of the sum of the squares of the differences between all data points and the mean).</p>
+</td></tr><tr><td><a name="extension-iso21090-uncertaintyType"> </a><a href="extension-iso21090-uncertaintytype.html">iso21090-uncertaintyType</a></td><td><b>Probability Distribution Type for uncertainty</b> : <p>A code specifying the type of probability distribution for the uncertainty.</p>
+</td></tr><tr><td><a name="extension-iso21090-AD-use"> </a><a href="extension-iso21090-ad-use.html">iso21090-AD-use</a></td><td><b>BAD | CONF | HP | HV | DIR | PUB | PHYS | PST</b> : <p>Uses of Addresses - codes not defined as part of Address.use.</p>
+</td></tr><tr><td><a name="extension-iso21090-ADXP-additionalLocator"> </a><a href="extension-iso21090-adxp-additionallocator.html">iso21090-ADXP-additionalLocator</a></td><td><b>additionalLocator</b> : <p>This can be a unit designator, such as apartment number, suite number, or floor. There may be several unit designators in an address (e.g., &quot;3rd floor, Appt. 342&quot;). This can also be a designator pointing away from the location, rather than specifying a smaller location within some larger one (e.g., Dutch &quot;t.o.&quot; means &quot;opposite to&quot; for house boats located across the street facing houses).</p>
+</td></tr><tr><td><a name="extension-iso21090-ADXP-unitID"> </a><a href="extension-iso21090-adxp-unitid.html">iso21090-ADXP-unitID</a></td><td><b>unitID</b> : <p>The number or name of a specific unit contained within a building or complex, as assigned by that building or complex.</p>
+</td></tr><tr><td><a name="extension-iso21090-ADXP-unitType"> </a><a href="extension-iso21090-adxp-unittype.html">iso21090-ADXP-unitType</a></td><td><b>unitType</b> : <p>Indicates the type of specific unit contained within a building or complex. E.g. Appartment, Floor.</p>
+</td></tr><tr><td><a name="extension-iso21090-ADXP-deliveryAddressLine"> </a><a href="extension-iso21090-adxp-deliveryaddressline.html">iso21090-ADXP-deliveryAddressLine</a></td><td><b>deliveryAddressLine</b> : <p>A delivery address line is frequently used instead of breaking out delivery mode, delivery installation, etc. An address generally has only a delivery address line or a street address line, but not both.</p>
+</td></tr><tr><td><a name="extension-iso21090-ADXP-deliveryInstallationType"> </a><a href="extension-iso21090-adxp-deliveryinstallationtype.html">iso21090-ADXP-deliveryInstallationType</a></td><td><b>deliveryInstallationType</b> : <p>Indicates the type of delivery installation (the facility to which the mail will be delivered prior to final shipping via the delivery mode.) Example: post office, letter carrier depot, community mail center, station, etc.</p>
+</td></tr><tr><td><a name="extension-iso21090-ADXP-deliveryInstallationArea"> </a><a href="extension-iso21090-adxp-deliveryinstallationarea.html">iso21090-ADXP-deliveryInstallationArea</a></td><td><b>deliveryInstallationArea</b> : <p>The location of the delivery installation, usually a town or city, and is only required if the area is different from the municipality. Area to which mail delivery service is provided from any postal facility or service such as an individual letter carrier, rural route, or postal route.</p>
+</td></tr><tr><td><a name="extension-iso21090-ADXP-deliveryInstallationQualifier"> </a><a href="extension-iso21090-adxp-deliveryinstallationqualifier.html">iso21090-ADXP-deliveryInstallationQualifier</a></td><td><b>deliveryInstallationQualifier</b> : <p>A number, letter or name identifying a delivery installation. E.g., for Station A, the delivery installation qualifier would be 'A'.</p>
+</td></tr><tr><td><a name="extension-iso21090-ADXP-deliveryMode"> </a><a href="extension-iso21090-adxp-deliverymode.html">iso21090-ADXP-deliveryMode</a></td><td><b>deliveryMode</b> : <p>Indicates the type of service offered, method of delivery. For example: post office box, rural route, general delivery, etc.</p>
+</td></tr><tr><td><a name="extension-iso21090-ADXP-deliveryModeIdentifier"> </a><a href="extension-iso21090-adxp-deliverymodeidentifier.html">iso21090-ADXP-deliveryModeIdentifier</a></td><td><b>deliveryModeIdentifier</b> : <p>Represents the routing information such as a letter carrier route number. It is the identifying number of the designator (the box number or rural route number).</p>
+</td></tr><tr><td><a name="extension-iso21090-ADXP-streetAddressLine"> </a><a href="extension-iso21090-adxp-streetaddressline.html">iso21090-ADXP-streetAddressLine</a></td><td><b>streetAddressLine</b> : <p>Description: A street address line is frequently used instead of breaking out build number, street name, street type, etc. An address generally has only a delivery address line or a street address line, but not both.</p>
+</td></tr><tr><td><a name="extension-iso21090-ADXP-houseNumber"> </a><a href="extension-iso21090-adxp-housenumber.html">iso21090-ADXP-houseNumber</a></td><td><b>houseNumber</b> : <p>The number of a building, house or lot alongside the street. Also known as &quot;primary street number&quot;. This does not number the street but rather the building.</p>
+</td></tr><tr><td><a name="extension-iso21090-ADXP-buildingNumberSuffix"> </a><a href="extension-iso21090-adxp-buildingnumbersuffix.html">iso21090-ADXP-buildingNumberSuffix</a></td><td><b>buildingNumberSuffix</b> : <p>Any alphabetic character, fraction or other text that may appear after the numeric portion of a building number.</p>
+</td></tr><tr><td><a name="extension-iso21090-ADXP-postBox"> </a><a href="extension-iso21090-adxp-postbox.html">iso21090-ADXP-postBox</a></td><td><b>postBox</b> : <p>A numbered box located in a post station.</p>
+</td></tr><tr><td><a name="extension-iso21090-ADXP-houseNumberNumeric"> </a><a href="extension-iso21090-adxp-housenumbernumeric.html">iso21090-ADXP-houseNumberNumeric</a></td><td><b>houseNumberNumeric</b> : <p>The numeric portion of a building number.</p>
+</td></tr><tr><td><a name="extension-iso21090-ADXP-streetName"> </a><a href="extension-iso21090-adxp-streetname.html">iso21090-ADXP-streetName</a></td><td><b>streetName</b> : <p>streetName.</p>
+</td></tr><tr><td><a name="extension-iso21090-ADXP-streetNameBase"> </a><a href="extension-iso21090-adxp-streetnamebase.html">iso21090-ADXP-streetNameBase</a></td><td><b>streetNameBase</b> : <p>The base name of a roadway or artery recognized by a municipality (excluding street type and direction).</p>
+</td></tr><tr><td><a name="extension-iso21090-ADXP-streetNameType"> </a><a href="extension-iso21090-adxp-streetnametype.html">iso21090-ADXP-streetNameType</a></td><td><b>streetNameType</b> : <p>The designation given to the street. (e.g. Street, Avenue, Crescent, etc.).</p>
+</td></tr><tr><td><a name="extension-iso21090-ADXP-direction"> </a><a href="extension-iso21090-adxp-direction.html">iso21090-ADXP-direction</a></td><td><b>direction</b> : <p>Direction (e.g., N, S, W, E).</p>
+</td></tr><tr><td><a name="extension-iso21090-ADXP-careOf"> </a><a href="extension-iso21090-adxp-careof.html">iso21090-ADXP-careOf</a></td><td><b>careOf</b> : <p>The name of the party who will take receipt at the specified address, and will take on responsibility for ensuring delivery to the target recipient.</p>
+</td></tr><tr><td><a name="extension-iso21090-ADXP-censusTract"> </a><a href="extension-iso21090-adxp-censustract.html">iso21090-ADXP-censusTract</a></td><td><b>censusTract</b> : <p>A geographic sub-unit delineated for demographic purposes.</p>
+</td></tr><tr><td><a name="extension-iso21090-ADXP-delimiter"> </a><a href="extension-iso21090-adxp-delimiter.html">iso21090-ADXP-delimiter</a></td><td><b>delimiter</b> : <p>Delimiters are printed without framing white space. If no value component is provided, the delimiter appears as a line break.</p>
+</td></tr><tr><td><a name="extension-iso21090-ADXP-precinct"> </a><a href="extension-iso21090-adxp-precinct.html">iso21090-ADXP-precinct</a></td><td><b>precinct</b> : <p>A subsection of a municipality.</p>
+</td></tr><tr><td><a name="extension-iso21090-SC-coding"> </a><a href="extension-iso21090-sc-coding.html">iso21090-SC-coding</a></td><td><b>code for string</b> : <p>Provides a coded expression for the content represented in a string.</p>
+</td></tr><tr><td><a name="extension-iso21090-preferred"> </a><a href="extension-iso21090-preferred.html">iso21090-preferred</a></td><td><b>preferred</b> : <p>Flag denoting whether parent item is preferred - e.g., a preferred address or telephone number.</p>
+</td></tr><tr><td><a name="extension-iso21090-verification"> </a><a href="extension-iso21090-verification.html">iso21090-verification</a></td><td><b>verification</b> : <p>Method value was verified.</p>
+</td></tr><tr><td><a name="extension-iso21090-TEL-address"> </a><a href="extension-iso21090-tel-address.html">iso21090-TEL-address</a></td><td><b>RFC 3966 compliant telephone of fax number</b> : <p>A V3 compliant, RFC 3966 conformant URI version of the telephone or fax number.</p>
+</td></tr><tr><td><a name="extension-iso21090-CO-value"> </a><a href="extension-iso21090-co-value.html">iso21090-CO-value</a></td><td><b>Numerical value associated with the code</b> : <p>A numerical value associated with the coded ordinal value.</p>
 </td></tr></table>
 
 
@@ -275,7 +272,7 @@ These additional elements of Address will be ignored by applications that do not
 		<div class="container"><!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:33-0500. <a href="qa.html">QA Page</a>
+        © HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:28-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search</a> | 

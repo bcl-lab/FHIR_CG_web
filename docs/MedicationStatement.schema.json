@@ -50,8 +50,8 @@
               "description": "Identifies the medication being administered. This is either a link to a resource representing the details of the medication or a simple attribute carrying a code that identifies the medication from a known list of medications.",
               "$ref": "Reference.schema.json#/definitions/Reference"
             },
-            "patient": {
-              "description": "The person or animal who is/was taking the medication.",
+            "subject": {
+              "description": "The person, animal or group who is/was taking the medication.",
               "$ref": "Reference.schema.json#/definitions/Reference"
             },
             "effectiveDateTime": {
@@ -107,7 +107,7 @@
                 "$ref": "CodeableConcept.schema.json#/definitions/CodeableConcept"
               }
             },
-            "reasonForUseCode": {
+            "reasonForUseCodeableConcept": {
               "description": "A reason for why the medication is being/was taken.",
               "type": "array",
               "items": {
@@ -115,7 +115,7 @@
               }
             },
             "reasonForUseReference": {
-              "description": "Condition that supports why the medication is being/was taken.",
+              "description": "Condition or observation that supports why the medication is being/was taken.",
               "type": "array",
               "items": {
                 "$ref": "Reference.schema.json#/definitions/Reference"
@@ -151,7 +151,7 @@
             }
           },
           "required": [
-            "patient",
+            "subject",
             "resourceType"
           ]
         }

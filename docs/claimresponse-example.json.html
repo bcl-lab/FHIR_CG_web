@@ -3,7 +3,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>Claimresponse-example.json - FHIR v1.7.0</title>
+  <title>Claimresponse-example.json - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -129,24 +129,35 @@
     }
   ],
   &quot;status&quot;: &quot;active&quot;,
-  &quot;request&quot;: {
-    &quot;reference&quot;: &quot;http://www.BenefitsInc.com/fhir/oralhealthclaim/15476332402&quot;
-  },
   &quot;created&quot;: &quot;2014-08-16&quot;,
-  &quot;organization&quot;: {
+  &quot;insurer&quot;: {
     &quot;identifier&quot;: {
       &quot;system&quot;: &quot;http://www.jurisdiction.org/insurers&quot;,
       &quot;value&quot;: &quot;555123&quot;
     }
   },
+  &quot;requestOrganization&quot;: {
+    &quot;reference&quot;: &quot;Organization/1&quot;
+  },
+  &quot;request&quot;: {
+    &quot;reference&quot;: &quot;http://www.BenefitsInc.com/fhir/oralhealthclaim/15476332402&quot;
+  },
   &quot;outcome&quot;: {
-    &quot;system&quot;: &quot;http://hl7.org/fhir/remittance-outcome&quot;,
-    &quot;code&quot;: &quot;complete&quot;
+    &quot;coding&quot;: [
+      {
+        &quot;system&quot;: &quot;http://hl7.org/fhir/remittance-outcome&quot;,
+        &quot;code&quot;: &quot;complete&quot;
+      }
+    ]
   },
   &quot;disposition&quot;: &quot;Claim settled as per contract.&quot;,
   &quot;payeeType&quot;: {
-    &quot;system&quot;: &quot;http://hl7.org/fhir/payeetype&quot;,
-    &quot;code&quot;: &quot;provider&quot;
+    &quot;coding&quot;: [
+      {
+        &quot;system&quot;: &quot;http://hl7.org/fhir/payeetype&quot;,
+        &quot;code&quot;: &quot;provider&quot;
+      }
+    ]
   },
   &quot;item&quot;: [
     {
@@ -154,7 +165,11 @@
       &quot;adjudication&quot;: [
         {
           &quot;category&quot;: {
-            &quot;code&quot;: &quot;eligible&quot;
+            &quot;coding&quot;: [
+              {
+                &quot;code&quot;: &quot;eligible&quot;
+              }
+            ]
           },
           &quot;amount&quot;: {
             &quot;value&quot;: 135.57,
@@ -164,7 +179,11 @@
         },
         {
           &quot;category&quot;: {
-            &quot;code&quot;: &quot;copay&quot;
+            &quot;coding&quot;: [
+              {
+                &quot;code&quot;: &quot;copay&quot;
+              }
+            ]
           },
           &quot;amount&quot;: {
             &quot;value&quot;: 10.00,
@@ -174,13 +193,21 @@
         },
         {
           &quot;category&quot;: {
-            &quot;code&quot;: &quot;eligpercent&quot;
+            &quot;coding&quot;: [
+              {
+                &quot;code&quot;: &quot;eligpercent&quot;
+              }
+            ]
           },
           &quot;value&quot;: 80.00
         },
         {
           &quot;category&quot;: {
-            &quot;code&quot;: &quot;benefit&quot;
+            &quot;coding&quot;: [
+              {
+                &quot;code&quot;: &quot;benefit&quot;
+              }
+            ]
           },
           &quot;amount&quot;: {
             &quot;value&quot;: 100.47,
@@ -203,8 +230,12 @@
   },
   &quot;payment&quot;: {
     &quot;type&quot;: {
-      &quot;system&quot;: &quot;http://hl7.org/fhir/ValueSet/ex-paymenttype&quot;,
-      &quot;code&quot;: &quot;complete&quot;
+      &quot;coding&quot;: [
+        {
+          &quot;system&quot;: &quot;http://hl7.org/fhir/ValueSet/ex-paymenttype&quot;,
+          &quot;code&quot;: &quot;complete&quot;
+        }
+      ]
     },
     &quot;date&quot;: &quot;2014-08-31&quot;,
     &quot;amount&quot;: {
@@ -242,7 +273,7 @@ of the specification.
 		<div class="container"><!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:32-0500. <a href="qa.html">QA Page</a>
+        © HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:21-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search</a> | 

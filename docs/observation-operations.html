@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>Observation - FHIR v1.7.0</title>
+  <title>Observation - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -120,274 +120,240 @@ For more information about operations, including how they are invoked, see <a hr
 </p>
 
 <h3 class="self-link-parent"><span class="sectioncount">10.1.18.1<a name="10.1.18.1"> </a></span> Observation Statistics<a name="stats"> </a> <a href="observation-operations.html#10.1.18.1" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h3>
-<p>The Statistics operation performs a set of statistical calculations on a set of clinical measurements such as a blood pressure.  This operation is limited to <a href="observation.html">Observation</a> resources with valueQuantity elements.</p>
-<p>The set of Observations is defined by a the input parameters <code>patient</code>,<code>code</code> and <code>duration</code> and <code>params</code>. The set of statistical calculation depends upon the value of the <code>params</code> parameter:</p>
+<p>The Statistics operation performs a set of statistical calculations on a set of clinical measurements such as a blood pressure as stored on the server.  This operation is focused on <a href="observation.html">Observation</a> resources with valueQuantity elements that have UCUM unit codes.</p>
+<p>The set of Observations is defined by 4 parameters:</p>
 <ul>
-<li><strong>average</strong> - for example if code = 55284-4 the mean of 55284-4 over the stated period from an operation</li>
-<li><strong>max</strong> - for example if code = 55284-4 the max of 55284-4 over the stated period from an operation</li>
-<li><strong>min</strong> - for example if code = 55284-4 the min of 55284-4 over the stated period from an operation</li>
-<li><strong>count</strong> - for example if code = 55284-4 the number of occurances of value x of 55284-4 over the stated period from an operation</li>
+<li>the subject of the observations for which the statistics are being generated (<code>subject</code>)</li>
+<li>which observations to generate statistics for (<code>code</code> and 'system', or 'coding')</li>
+<li>the time period over which to generate statistics ('duration' or 'period')</li>
+<li>the set of statistical analyses to return (<code>statistic</code>).</li>
 </ul>
-<p>If successful, the operation returns an Observation resource with the results of the statistical calculations as component value pairs where the component code = the params code. The Observation also contains the the input parameters <code>patient</code>,<code>code</code> and <code>duration</code> parameters. If unsuccessful, an <a href="operationoutcome.html">OperationOutcome</a> with an error message will be returned.</p>
+<p>Possible statistical analyses (see <a href="valueset-observation-statistics.html">StatisticsCode</a>):</p>
+<ul>
+<li><strong>average</strong> (&quot;Average&quot;): The <a href="https://en.wikipedia.org/wiki/Arithmetic_mean">mean <img src="external.png" style="text-align: baseline"/></a> of N measurements over the stated period</li>
+<li><strong>maximum</strong> (&quot;Maximum&quot;): The <a href="https://en.wikipedia.org/wiki/Maximal_element">maximum <img src="external.png" style="text-align: baseline"/></a> value of N measurements over the stated period</li>
+<li><strong>minimum</strong> (&quot;Minimum&quot;): The <a href="https://en.wikipedia.org/wiki/Minimal_element">minimum <img src="external.png" style="text-align: baseline"/></a> value of N measurements over the stated period</li>
+<li><strong>count</strong> (&quot;Count&quot;): The [number] of valid measurements over the stated period that contributed to the other statistical outputs</li>
+<li><strong>totalcount</strong> (&quot;Total Count&quot;): The total [number] of valid measurements over the stated period, including observations that were ignored because they did not contain valid result values</li>
+<li><strong>median</strong> (&quot;Median&quot;): The <a href="https://en.wikipedia.org/wiki/Median">median <img src="external.png" style="text-align: baseline"/></a> of N measurements over the stated period</li>
+<li><strong>std-dev</strong> (&quot;standard deviation&quot;): The <a href="https://en.wikipedia.org/wiki/Standard_deviation">standard deviation <img src="external.png" style="text-align: baseline"/></a> of N measurements over the stated period</li>
+<li><strong>sum</strong> (&quot;sum&quot;): The <a href="https://en.wikipedia.org/wiki/Summation">sum <img src="external.png" style="text-align: baseline"/></a> of N measurements over the stated period</li>
+<li><strong>variance</strong> (&quot;variance&quot;): The <a href="https://en.wikipedia.org/wiki/Variance">variance <img src="external.png" style="text-align: baseline"/></a> of N measurements over the stated period</li>
+<li><strong>%20</strong> (&quot;20th percentile&quot;): The 20th <a href="https://en.wikipedia.org/wiki/Percentile">Percentile <img src="external.png" style="text-align: baseline"/></a> of N measurements over the stated period</li>
+<li><strong>%80</strong> (&quot;80th percentile&quot;): The 80th <a href="https://en.wikipedia.org/wiki/Percentile">Percentile <img src="external.png" style="text-align: baseline"/></a> of N measurements over the stated period</li>
+<li><strong>4-lower</strong> (&quot;lower quartile&quot;): The lower <a href="https://en.wikipedia.org/wiki/Quartile">Quartile <img src="external.png" style="text-align: baseline"/></a> Boundary of N measurements over the stated period</li>
+<li><strong>4-upper</strong> (&quot;upper quartile&quot;): The upper <a href="https://en.wikipedia.org/wiki/Quartile">Quartile <img src="external.png" style="text-align: baseline"/></a> Boundary of N measurements over the stated period</li>
+<li><strong>4-dev</strong> (&quot;quartile deviation&quot;): The difference between the upper and lower <a href="https://en.wikipedia.org/wiki/Quartile">Quartiles <img src="external.png" style="text-align: baseline"/></a> is called the Interquartile range. (IQR = Q3-Q1) Quartile deviation or Semi-interquartile range is one-half the difference between the first and the third quartiles.</li>
+<li><strong>5-1</strong> (&quot;1st quintile&quot;): The lowest of four values that divide the N measurementsinto a frequency distribution of five classes with each containing one fifth of the total population</li>
+<li><strong>5-2</strong> (&quot;2nd quintile&quot;): The second of four values that divide the N measurementsinto a frequency distribution of five classes with each containing one fifth of the total population</li>
+<li><strong>5-3</strong> (&quot;3rd quintile&quot;): The third of four values that divide the N measurementsinto a frequency distribution of five classes with each containing one fifth of the total population</li>
+<li><strong>5-4</strong> (&quot;4th quintile&quot;): The fourth of four values that divide the N measurementsinto a frequency distribution of five classes with each containing one fifth of the total population</li>
+</ul>
+<p>If successful, the operation returns an Observation resource for each code with the results of the statistical calculations as component value pairs where the component code = the statistical code. The Observation also contains the the input parameters <code>patient</code>,<code>code</code> and <code>duration</code> parameters. If unsuccessful, an <a href="operationoutcome.html">OperationOutcome</a> with an error message will be returned.</p>
+<p>The client can request that all the observations on which the statistics are based be returned as well, using the include parameter. If an include parameter is specified, a limit may also be specified; the sources observations are subsetted at the server's discretion if count &gt; limit. This functionality is included with the intent of supporting graphical presentation</p>
 
 <p><a href="operation-observation-stats.html">Formal Definition</a> (as a <a href="operationdefinition.html">OperationDefinition</a>).</p>
 <p>URL: [base]/Observation/$stats</p>
-<p>URL: [base]/Observation/[id]/$stats</p>
 <table class="grid">
 <tr><td colspan="6"><b>In Parameters:</b></td></tr>
-<tr><td><b>Name</b></td><td><b>Cardinality</b></td><td><b>Type</b></td><td><b>Binding</b></td><td><b>Profile</b></td><td><b>Documentation</b></td></tr><tr><td>patient</td><td>1..1</td><td><a href="datatypes.html#id">id</a></td><td/><td/><td><p>The FHIR Patient resource id of the relevant Observations. For example  The patient id  = &quot;123&quot;  in Observation.subject.reference = Patient/123.</p>
-</td></tr><tr><td>code</td><td>1..1</td><td><a href="datatypes.html#string">string</a></td><td/><td/><td><p>The test code upon which the statistics are being performed.   For example, the code  = &quot;45667-2&quot;  will evaluate all relevant Observations with this code in Observation.code.</p>
-</td></tr><tr><td>duration</td><td>1..1</td><td><a href="datatypes.html#decimal">decimal</a></td><td/><td/><td><p>The time period of interest given as hours.  For example, the duration = &quot;1&quot; is the last hour</p>
-</td></tr><tr><td>params</td><td>1..4</td><td><a href="datatypes.html#code">code</a></td><td/><td/><td><p>average|max|min|count  The statistical operations to be performed on the relevant operations.   These codes are defined <a href="todo.html">here</a></p>
+<tr><td><b>Name</b></td><td><b>Cardinality</b></td><td><b>Type</b></td><td><b>Binding</b></td><td><b>Profile</b></td><td><b>Documentation</b></td></tr><tr><td>subject</td><td>1..1</td><td><a href="datatypes.html#uri">uri</a></td><td/><td/><td><p>The subject of the relevant Observations, which has the value of the Observation.subject.reference. E.g. 'Patient/123'. Reference can be to an absolute URL, but servers only perform stats on their own observations</p>
+</td></tr><tr><td>code</td><td>0..*</td><td><a href="datatypes.html#string">string</a></td><td/><td/><td><p>The test code(s) upon which the statistics are being performed. Provide along with a system, or as a coding. For example, the code  = &quot;45667-2&quot;  will evaluate all relevant Observations with this code in Observation.code. For LOINC codes that are panels, (e.g. 55284-4) this means to include all the individual codes that are part of a panel</p>
+</td></tr><tr><td>system</td><td>0..1</td><td><a href="datatypes.html#uri">uri</a></td><td/><td/><td><p>The system for the code(s). Or provide a coding instead</p>
+</td></tr><tr><td>coding</td><td>0..*</td><td><a href="datatypes.html#Coding">Coding</a></td><td/><td/><td><p>The test code upon which the statistics are being performed, as a Coding</p>
+</td></tr><tr><td>duration</td><td>0..1</td><td><a href="datatypes.html#decimal">decimal</a></td><td/><td/><td><p>The time period of interest given as hours.  For example, the duration = &quot;1&quot; represents the last hour - the time period from on hour ago to now</p>
+</td></tr><tr><td>period</td><td>0..1</td><td><a href="datatypes.html#Period">Period</a></td><td/><td/><td><p>The time period over which the calculations to be performed, if a duration is not provided</p>
+</td></tr><tr><td>params</td><td>1..*</td><td><a href="datatypes.html#code">code</a></td><td/><td/><td><p>average|max|min|count  The statistical operations to be performed on the relevant operations. Multiple statistics operations can be specified. These codes are defined <a href="valueset-observation-statistics.html">here</a></p>
 </td></tr><tr><td colspan="6"><b>Out Parameters:</b></td></tr>
-<tr><td><b>Name</b></td><td><b>Cardinality</b></td><td><b>Type</b></td><td><b>Binding</b></td><td><b>Profile</b></td><td><b>Documentation</b></td></tr><tr><td>obs</td><td>1..2</td><td><a href="observation.html">Observation</a></td><td/><td/><td><p>The Observation.component.code is relative to the Observation.code and cannot be interpreted independently.  The code input parameter is returned as the code element. The 'patient' parameter is returned as the patient element.  The <code>period</code> input parameter is returned as the appliesPeriod element.  The status is fixed to <code>final</code>.</p>
+<tr><td><b>Name</b></td><td><b>Cardinality</b></td><td><b>Type</b></td><td><b>Binding</b></td><td><b>Profile</b></td><td><b>Documentation</b></td></tr><tr><td>return</td><td>1..*</td><td><a href="observation.html">Observation</a></td><td/><td/><td><p>A set of observations, one observation for each code, each containing one component for each statistic. The Observation.component.code contains the statistic, and is relative to the Observation.code and cannot be interpreted independently.  The Observation will also contain a subject, effectivePeriod, and code reflecting the input parameters.  The status is fixed to <code>final</code>.</p>
+</td></tr><tr><td>source</td><td>0..*</td><td><a href="observation.html">Observation</a></td><td/><td/><td><p>Source observations on which the statistics are based</p>
 </td></tr></table>
 
 <h4 class="self-link-parent"><span class="sectioncount">10.1.18.1.1<a name="10.1.18.1.1"> </a></span> Examples <a href="observation-operations.html#10.1.18.1.1" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h4>
 <p>Get the average, min, max and count of a series of BP measurements for a patient (Request):</p>
 <pre>
-GET [base]/Observation/$stats?patient=13&amp;code=55284-4&amp;duration=1&amp;params=average,min,max,count
+GET [base]/Observation/$stats?subject=Patient/123&amp;code=55284-4&amp;duration=1&amp;statistic=average&amp;statistic=min&amp;statistic=max&amp;statistic=count
 </pre>
-<p>Will produce this Bundle containing 2 Observation resources: (Response):</p>
+<p>Response:</p>
 <pre>
-
 &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
-&lt;!--The outcome for this particular operation results in a bundle consisting of 2 Observation resources - one for the diastolic and one for the systolic components--&gt;
-&lt;Bundle xmlns=&quot;http://hl7.org/fhir&quot;&gt;
-   &lt;type value=&quot;searchset&quot;/&gt;
-   &lt;total value=&quot;2&quot;/&gt;
-   &lt;entry&gt;
-      &lt;fullUrl value=&quot;https://example.com/base/Observation/????&quot;/&gt;
-      &lt;!--    the matching resource    --&gt;
-      &lt;resource&gt;
-         &lt;Observation&gt;
-            &lt;id value=&quot;stats-diastolic&quot;/&gt;
-            &lt;identifier&gt;
-               &lt;system value=&quot;urn:ietf:rfc:3986&quot;/&gt;
-               &lt;value value=&quot;urn:uuid:187e0c12-8dd2-67e2-99b2-bf273c878281&quot;/&gt;
-            &lt;/identifier&gt;
-            &lt;status value=&quot;final&quot;/&gt;
-            &lt;category&gt;
-               &lt;coding&gt;
-                  &lt;system value=&quot;http://hl7.org/fhir/observation-category&quot;/&gt;
-                  &lt;code value=&quot;vital-signs&quot;/&gt;
-                  &lt;display value=&quot;Vital Signs&quot;/&gt;
-               &lt;/coding&gt;
-            &lt;/category&gt;
-            &lt;code&gt;
-               &lt;!--    LOINC -code    --&gt;
-               &lt;coding&gt;
-                  &lt;system value=&quot;http://loinc.org&quot;/&gt;
-                  &lt;code value=&quot;8462-4&quot;/&gt;
-                  &lt;display value=&quot;Diastolic blood pressure&quot;/&gt;
-               &lt;/coding&gt;
-            &lt;/code&gt;
-            &lt;subject&gt;
-               &lt;reference value=&quot;Patient/123&quot;/&gt;
-            &lt;/subject&gt;
-            &lt;effectivePeriod&gt;
-               &lt;start value=&quot;2016-05-25T19:26:16Z&quot;/&gt;
-               &lt;end value=&quot;2016-05-25T20:26:16Z&quot;/&gt;
-            &lt;/effectivePeriod&gt;
-            &lt;!--The Observation.component.code is relative to the Observation.code and cannot be interpreted independently.--&gt;
-            &lt;component&gt;
-               &lt;code&gt;
-                  &lt;!--   the average parameter code --&gt;
-                  &lt;coding&gt;
-                     &lt;system value=&quot;http://hl7.org/fhir/observation-paramcode&quot;/&gt;
-                     &lt;code value=&quot;average&quot;/&gt;
-                     &lt;display value=&quot;Average&quot;/&gt;
-                  &lt;/coding&gt;
-               &lt;/code&gt;
-               &lt;valueQuantity&gt;
-                  &lt;value value=&quot;79.7&quot;/&gt;
-                  &lt;unit value=&quot;mmHg&quot;/&gt;
-                  &lt;system value=&quot;http://unitsofmeasure.org&quot;/&gt;
-                  &lt;code value=&quot;mm[Hg]&quot;/&gt;
-               &lt;/valueQuantity&gt;
-            &lt;/component&gt;
-            &lt;component&gt;
-               &lt;!--  the max parameter code --&gt;
-               &lt;code&gt;
-                  &lt;coding&gt;
-                     &lt;system value=&quot;http://hl7.org/fhir/observation-paramcode&quot;/&gt;
-                     &lt;code value=&quot;max&quot;/&gt;
-                     &lt;display value=&quot;Maximum&quot;/&gt;
-                  &lt;/coding&gt;
-               &lt;/code&gt;
-               &lt;valueQuantity&gt;
-                  &lt;value value=&quot;110&quot;/&gt;
-                  &lt;unit value=&quot;mmHg&quot;/&gt;
-                  &lt;system value=&quot;http://unitsofmeasure.org&quot;/&gt;
-                  &lt;code value=&quot;mm[Hg]&quot;/&gt;
-               &lt;/valueQuantity&gt;
-            &lt;/component&gt;
-            &lt;component&gt;
-               &lt;!--  the min parameter code --&gt;
-               &lt;code&gt;
-                  &lt;coding&gt;
-                     &lt;system value=&quot;http://hl7.org/fhir/observation-paramcode&quot;/&gt;
-                     &lt;code value=&quot;min&quot;/&gt;
-                     &lt;display value=&quot;Minimum&quot;/&gt;
-                  &lt;/coding&gt;
-               &lt;/code&gt;
-               &lt;valueQuantity&gt;
-                  &lt;value value=&quot;56&quot;/&gt;
-                  &lt;unit value=&quot;mmHg&quot;/&gt;
-                  &lt;system value=&quot;http://unitsofmeasure.org&quot;/&gt;
-                  &lt;code value=&quot;mm[Hg]&quot;/&gt;
-               &lt;/valueQuantity&gt;
-            &lt;/component&gt;
-            &lt;component&gt;
-               &lt;!--  the count parameter code --&gt;
-               &lt;code&gt;
-                  &lt;coding&gt;
-                     &lt;system value=&quot;http://hl7.org/fhir/observation-paramcode&quot;/&gt;
-                     &lt;code value=&quot;min&quot;/&gt;
-                     &lt;display value=&quot;Minimum&quot;/&gt;
-                  &lt;/coding&gt;
-               &lt;/code&gt;
-               &lt;valueQuantity&gt;
-                  &lt;value value=&quot;7&quot;/&gt;
-                  &lt;system value=&quot;http://unitsofmeasure.org&quot;/&gt;
-                  &lt;code value=&quot;{observations}&quot;/&gt;
-               &lt;/valueQuantity&gt;
-            &lt;/component&gt;
-         &lt;/Observation&gt;
-      &lt;/resource&gt;
-      &lt;search&gt;
-         &lt;mode value=&quot;match&quot;/&gt;
-      &lt;/search&gt;
-   &lt;/entry&gt;
-   &lt;entry&gt;
-      &lt;resource&gt;
-         &lt;Observation&gt;
-            &lt;id value=&quot;stats-diastolic&quot;/&gt;
-            &lt;identifier&gt;
-               &lt;system value=&quot;urn:ietf:rfc:3986&quot;/&gt;
-               &lt;value value=&quot;urn:uuid:187e0c12-8dd2-67e2-99b2-bf273c878281&quot;/&gt;
-            &lt;/identifier&gt;
-            &lt;status value=&quot;final&quot;/&gt;
-            &lt;category&gt;
-               &lt;coding&gt;
-                  &lt;system value=&quot;http://hl7.org/fhir/observation-category&quot;/&gt;
-                  &lt;code value=&quot;vital-signs&quot;/&gt;
-                  &lt;display value=&quot;Vital Signs&quot;/&gt;
-               &lt;/coding&gt;
-            &lt;/category&gt;
-            &lt;code&gt;
-               &lt;!--    LOINC -code    --&gt;
-               &lt;coding&gt;
-                  &lt;system value=&quot;http://loinc.org&quot;/&gt;
-                  &lt;code value=&quot;8462-4&quot;/&gt;
-                  &lt;display value=&quot;Diastolic blood pressure&quot;/&gt;
-               &lt;/coding&gt;
-            &lt;/code&gt;
-            &lt;subject&gt;
-               &lt;reference value=&quot;Patient/123&quot;/&gt;
-            &lt;/subject&gt;
-            &lt;effectivePeriod&gt;
-               &lt;start value=&quot;2016-05-25T19:26:16Z&quot;/&gt;
-               &lt;end value=&quot;2016-05-25T20:26:16Z&quot;/&gt;
-            &lt;/effectivePeriod&gt;
-            &lt;!--The Observation.component.code is relative to the Observation.code and cannot be interpreted independently.--&gt;
-            &lt;component&gt;
-               &lt;code&gt;
-                  &lt;!--   the average parameter code --&gt;
-                  &lt;coding&gt;
-                     &lt;system value=&quot;http://hl7.org/fhir/observation-paramcode&quot;/&gt;
-                     &lt;code value=&quot;average&quot;/&gt;
-                     &lt;display value=&quot;Average&quot;/&gt;
-                  &lt;/coding&gt;
-               &lt;/code&gt;
-               &lt;valueQuantity&gt;
-                  &lt;value value=&quot;79.7&quot;/&gt;
-                  &lt;unit value=&quot;mmHg&quot;/&gt;
-                  &lt;system value=&quot;http://unitsofmeasure.org&quot;/&gt;
-                  &lt;code value=&quot;mm[Hg]&quot;/&gt;
-               &lt;/valueQuantity&gt;
-            &lt;/component&gt;
-            &lt;component&gt;
-               &lt;!--  the max parameter code --&gt;
-               &lt;code&gt;
-                  &lt;coding&gt;
-                     &lt;system value=&quot;http://hl7.org/fhir/observation-paramcode&quot;/&gt;
-                     &lt;code value=&quot;max&quot;/&gt;
-                     &lt;display value=&quot;Maximum&quot;/&gt;
-                  &lt;/coding&gt;
-               &lt;/code&gt;
-               &lt;valueQuantity&gt;
-                  &lt;value value=&quot;110&quot;/&gt;
-                  &lt;unit value=&quot;mmHg&quot;/&gt;
-                  &lt;system value=&quot;http://unitsofmeasure.org&quot;/&gt;
-                  &lt;code value=&quot;mm[Hg]&quot;/&gt;
-               &lt;/valueQuantity&gt;
-            &lt;/component&gt;
-            &lt;component&gt;
-               &lt;!--  the min parameter code --&gt;
-               &lt;code&gt;
-                  &lt;coding&gt;
-                     &lt;system value=&quot;http://hl7.org/fhir/observation-paramcode&quot;/&gt;
-                     &lt;code value=&quot;min&quot;/&gt;
-                     &lt;display value=&quot;Minimum&quot;/&gt;
-                  &lt;/coding&gt;
-               &lt;/code&gt;
-               &lt;valueQuantity&gt;
-                  &lt;value value=&quot;56&quot;/&gt;
-                  &lt;unit value=&quot;mmHg&quot;/&gt;
-                  &lt;system value=&quot;http://unitsofmeasure.org&quot;/&gt;
-                  &lt;code value=&quot;mm[Hg]&quot;/&gt;
-               &lt;/valueQuantity&gt;
-            &lt;/component&gt;
-            &lt;component&gt;
-               &lt;!--  the count parameter code --&gt;
-               &lt;code&gt;
-                  &lt;coding&gt;
-                     &lt;system value=&quot;http://hl7.org/fhir/observation-paramcode&quot;/&gt;
-                     &lt;code value=&quot;count&quot;/&gt;
-                     &lt;display value=&quot;Count&quot;/&gt;
-                  &lt;/coding&gt;
-               &lt;/code&gt;
-               &lt;valueQuantity&gt;
-                  &lt;value value=&quot;7&quot;/&gt;
-                  &lt;system value=&quot;http://unitsofmeasure.org&quot;/&gt;
-                  &lt;code value=&quot;{observations}&quot;/&gt;
-               &lt;/valueQuantity&gt;
-            &lt;/component&gt;
-         &lt;/Observation&gt;
-      &lt;/resource&gt;
-      &lt;search&gt;
-         &lt;mode value=&quot;match&quot;/&gt;
-      &lt;/search&gt;
-   &lt;/entry&gt;
-&lt;/Bundle&gt;
-
-              &lt;/component&gt;
-                &lt;component&gt;
-                   &lt;!--  the count parameter code --&gt;
-                   &lt;code&gt;
-                      &lt;coding&gt;
-                         &lt;system value=&quot;http://hl7.org/fhir/observation-paramcode&quot;/&gt;
-                         &lt;code value=&quot;count&quot;/&gt;
-                         &lt;display value=&quot;Count&quot;/&gt;
-                      &lt;/coding&gt;
-                   &lt;/code&gt;
-                   &lt;valueQuantity&gt;
-                      &lt;value value=&quot;7&quot;/&gt;
-                      &lt;system value=&quot;http://unitsofmeasure.org&quot;/&gt;
-                      &lt;code value=&quot;{observations}&quot;/&gt;
-                   &lt;/valueQuantity&gt;
-                &lt;/component&gt;
-             &lt;/Observation&gt;
-          &lt;/resource&gt;
-          &lt;search&gt;
-             &lt;mode value=&quot;match&quot;/&gt;
-          &lt;/search&gt;
-       &lt;/entry&gt;
-    &lt;/Bundle&gt;
-
-
-&quot;
+&lt;!--
+  The outcome for this particular operation is 2 Observation resources - one for the diastolic 
+  and one for the systolic components, because the requested LOINC code is a panel code 
+--&gt;
+&lt;Parameters xmlns=&quot;http://hl7.org/fhir&quot;&gt;
+  &lt;parameter&gt;
+    &lt;name value=&quot;return&quot;/&gt;
+    &lt;resource&gt;
+      &lt;Observation&gt;
+        &lt;status value=&quot;final&quot;/&gt;
+        &lt;code&gt;
+          &lt;coding&gt;
+            &lt;system value=&quot;http://loinc.org&quot;/&gt;
+            &lt;code value=&quot;8462-4&quot;/&gt;
+            &lt;display value=&quot;Diastolic blood pressure&quot;/&gt;
+          &lt;/coding&gt;
+        &lt;/code&gt;
+        &lt;subject&gt;
+           &lt;reference value=&quot;Patient/123&quot;/&gt;
+        &lt;/subject&gt;
+        &lt;effectivePeriod&gt;
+           &lt;start value=&quot;2016-05-25T19:26:16Z&quot;/&gt;
+           &lt;end value=&quot;2016-05-25T20:26:16Z&quot;/&gt;
+        &lt;/effectivePeriod&gt;
+        &lt;!--The Observation.component.code is relative to the Observation.code and cannot be interpreted independently.--&gt;
+        &lt;component&gt;
+           &lt;code&gt;
+              &lt;!--   the average parameter code --&gt;
+              &lt;coding&gt;
+                 &lt;system value=&quot;http://hl7.org/fhir/observation-paramcode&quot;/&gt;
+                 &lt;code value=&quot;average&quot;/&gt;
+                 &lt;display value=&quot;Average&quot;/&gt;
+              &lt;/coding&gt;
+           &lt;/code&gt;
+           &lt;valueQuantity&gt;
+              &lt;value value=&quot;79.7&quot;/&gt;
+              &lt;unit value=&quot;mmHg&quot;/&gt;
+              &lt;system value=&quot;http://unitsofmeasure.org&quot;/&gt;
+              &lt;code value=&quot;mm[Hg]&quot;/&gt;
+           &lt;/valueQuantity&gt;
+        &lt;/component&gt;
+        &lt;component&gt;
+           &lt;!--  the max parameter code --&gt;
+           &lt;code&gt;
+              &lt;coding&gt;
+                 &lt;system value=&quot;http://hl7.org/fhir/observation-paramcode&quot;/&gt;
+                 &lt;code value=&quot;max&quot;/&gt;
+                 &lt;display value=&quot;Maximum&quot;/&gt;
+              &lt;/coding&gt;
+           &lt;/code&gt;
+           &lt;valueQuantity&gt;
+              &lt;value value=&quot;110&quot;/&gt;
+              &lt;unit value=&quot;mmHg&quot;/&gt;
+              &lt;system value=&quot;http://unitsofmeasure.org&quot;/&gt;
+              &lt;code value=&quot;mm[Hg]&quot;/&gt;
+           &lt;/valueQuantity&gt;
+        &lt;/component&gt;
+        &lt;component&gt;
+           &lt;!--  the min parameter code --&gt;
+           &lt;code&gt;
+              &lt;coding&gt;
+                 &lt;system value=&quot;http://hl7.org/fhir/observation-paramcode&quot;/&gt;
+                 &lt;code value=&quot;min&quot;/&gt;
+                 &lt;display value=&quot;Minimum&quot;/&gt;
+              &lt;/coding&gt;
+           &lt;/code&gt;
+           &lt;valueQuantity&gt;
+              &lt;value value=&quot;56&quot;/&gt;
+              &lt;unit value=&quot;mmHg&quot;/&gt;
+              &lt;system value=&quot;http://unitsofmeasure.org&quot;/&gt;
+              &lt;code value=&quot;mm[Hg]&quot;/&gt;
+           &lt;/valueQuantity&gt;
+        &lt;/component&gt;
+        &lt;component&gt;
+           &lt;!--  the count parameter code --&gt;
+           &lt;code&gt;
+              &lt;coding&gt;
+                 &lt;system value=&quot;http://hl7.org/fhir/observation-paramcode&quot;/&gt;
+                 &lt;code value=&quot;min&quot;/&gt;
+                 &lt;display value=&quot;Minimum&quot;/&gt;
+              &lt;/coding&gt;
+           &lt;/code&gt;
+           &lt;valueQuantity&gt;
+              &lt;value value=&quot;7&quot;/&gt;
+              &lt;system value=&quot;http://unitsofmeasure.org&quot;/&gt;
+              &lt;code value=&quot;{observations}&quot;/&gt;
+           &lt;/valueQuantity&gt;
+        &lt;/component&gt;
+     &lt;/Observation&gt;
+    &lt;/resource&gt;
+  &lt;/parameter&gt;
+  &lt;parameter&gt;
+    &lt;name value=&quot;return&quot;/&gt;
+    &lt;resource&gt;
+      &lt;Observation&gt;
+        &lt;status value=&quot;final&quot;/&gt;
+        &lt;code&gt;
+           &lt;coding&gt;
+              &lt;system value=&quot;http://loinc.org&quot;/&gt;
+              &lt;code value=&quot;8462-4&quot;/&gt;
+              &lt;display value=&quot;Diastolic blood pressure&quot;/&gt;
+           &lt;/coding&gt;
+        &lt;/code&gt;
+        &lt;subject&gt;
+           &lt;reference value=&quot;Patient/123&quot;/&gt;
+        &lt;/subject&gt;
+        &lt;effectivePeriod&gt;
+           &lt;start value=&quot;2016-05-25T19:26:16Z&quot;/&gt;
+           &lt;end value=&quot;2016-05-25T20:26:16Z&quot;/&gt;
+        &lt;/effectivePeriod&gt;
+        &lt;!--The Observation.component.code is relative to the Observation.code and cannot be interpreted independently.--&gt;
+        &lt;component&gt;
+           &lt;code&gt;
+              &lt;!--   the average parameter code --&gt;
+              &lt;coding&gt;
+                 &lt;system value=&quot;http://hl7.org/fhir/observation-paramcode&quot;/&gt;
+                 &lt;code value=&quot;average&quot;/&gt;
+                 &lt;display value=&quot;Average&quot;/&gt;
+              &lt;/coding&gt;
+           &lt;/code&gt;
+           &lt;valueQuantity&gt;
+              &lt;value value=&quot;79.7&quot;/&gt;
+              &lt;unit value=&quot;mmHg&quot;/&gt;
+              &lt;system value=&quot;http://unitsofmeasure.org&quot;/&gt;
+              &lt;code value=&quot;mm[Hg]&quot;/&gt;
+           &lt;/valueQuantity&gt;
+        &lt;/component&gt;
+        &lt;component&gt;
+           &lt;!--  the max parameter code --&gt;
+           &lt;code&gt;
+              &lt;coding&gt;
+                 &lt;system value=&quot;http://hl7.org/fhir/observation-paramcode&quot;/&gt;
+                 &lt;code value=&quot;max&quot;/&gt;
+                 &lt;display value=&quot;Maximum&quot;/&gt;
+              &lt;/coding&gt;
+           &lt;/code&gt;
+           &lt;valueQuantity&gt;
+              &lt;value value=&quot;110&quot;/&gt;
+              &lt;unit value=&quot;mmHg&quot;/&gt;
+              &lt;system value=&quot;http://unitsofmeasure.org&quot;/&gt;
+              &lt;code value=&quot;mm[Hg]&quot;/&gt;
+           &lt;/valueQuantity&gt;
+        &lt;/component&gt;
+        &lt;component&gt;
+           &lt;!--  the min parameter code --&gt;
+           &lt;code&gt;
+              &lt;coding&gt;
+                 &lt;system value=&quot;http://hl7.org/fhir/observation-paramcode&quot;/&gt;
+                 &lt;code value=&quot;min&quot;/&gt;
+                 &lt;display value=&quot;Minimum&quot;/&gt;
+              &lt;/coding&gt;
+           &lt;/code&gt;
+           &lt;valueQuantity&gt;
+              &lt;value value=&quot;56&quot;/&gt;
+              &lt;unit value=&quot;mmHg&quot;/&gt;
+              &lt;system value=&quot;http://unitsofmeasure.org&quot;/&gt;
+              &lt;code value=&quot;mm[Hg]&quot;/&gt;
+           &lt;/valueQuantity&gt;
+        &lt;/component&gt;
+        &lt;component&gt;
+           &lt;!--  the count parameter code --&gt;
+           &lt;code&gt;
+              &lt;coding&gt;
+                 &lt;system value=&quot;http://hl7.org/fhir/observation-paramcode&quot;/&gt;
+                 &lt;code value=&quot;count&quot;/&gt;
+                 &lt;display value=&quot;Count&quot;/&gt;
+              &lt;/coding&gt;
+           &lt;/code&gt;
+           &lt;valueQuantity&gt;
+              &lt;value value=&quot;7&quot;/&gt;
+              &lt;system value=&quot;http://unitsofmeasure.org&quot;/&gt;
+              &lt;code value=&quot;{observations}&quot;/&gt;
+           &lt;/valueQuantity&gt;
+        &lt;/component&gt;
+      &lt;/Observation&gt;
+    &lt;/resource&gt;
+  &lt;/parameter&gt;  
+&lt;/Parameters&gt;
 </pre>
 <p>&nbsp;</p>
 
@@ -405,7 +371,7 @@ GET [base]/Observation/$stats?patient=13&amp;code=55284-4&amp;duration=1&amp;par
 		<div class="container">  <!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:32-0500. <a href="qa.html">QA Page</a>
+        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:28-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search <img src="external.png" style="text-align: baseline"/></a> | 

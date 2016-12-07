@@ -20,7 +20,7 @@
               ]
             },
             "identifier": {
-              "description": "The main (and possibly only) identifier for the coverage - often referred to as a Member Id, Subscriber Id, Certificate number or Personal Health Number or Case ID.",
+              "description": "The main (and possibly only) identifier for the coverage - often referred to as a Member Id, Certificate number, Personal Health Number or Case ID. May be constructed as the concatination of the Coverage.SubscriberID and the Coverage.dependant.",
               "type": "array",
               "items": {
                 "$ref": "Identifier.schema.json#/definitions/Identifier"
@@ -28,49 +28,51 @@
             },
             "status": {
               "description": "The status of the resource instance.",
-              "enum": [
-                "active",
-                "cancelled",
-                "draft",
-                "entered-in-error"
-              ],
-              "type": "string"
+              "type": "string",
+              "pattern": "[^\\s]+([\\s]?[^\\s]+)*"
             },
             "_status": {
               "description": "Extensions for status",
               "$ref": "Element.schema.json#/definitions/Element"
             },
-            "issuer": {
-              "description": "The program or plan underwriter or payor including both insurance and non-insurance agreements, such as patient-pay agreements.",
+            "type": {
+              "description": "The type of coverage: social program, medical plan, accident coverage (workers compensation, auto), group health or payment by an individual or organization.",
+              "$ref": "CodeableConcept.schema.json#/definitions/CodeableConcept"
+            },
+            "policyHolder": {
+              "description": "The party who \u0027owns\u0027 the insurance policy,  may be an individual, corporation or the subscriber\u0027s employer.",
               "$ref": "Reference.schema.json#/definitions/Reference"
             },
-            "isAgreement": {
-              "description": "A self, or other, payment agreement not an insurance policy.",
-              "type": "boolean"
+            "subscriber": {
+              "description": "The party who has signed-up for or \u0027owns\u0027 the contractual relationship to the policy or to whom the benefit of the policy for services rendered to them or their family is due.",
+              "$ref": "Reference.schema.json#/definitions/Reference"
             },
-            "_isAgreement": {
-              "description": "Extensions for isAgreement",
+            "subscriberId": {
+              "description": "The insurer assigned ID for the Subscriber.",
+              "type": "string"
+            },
+            "_subscriberId": {
+              "description": "Extensions for subscriberId",
               "$ref": "Element.schema.json#/definitions/Element"
+            },
+            "beneficiary": {
+              "description": "The party who benefits from the insurance coverage., the patient when services are provided.",
+              "$ref": "Reference.schema.json#/definitions/Reference"
+            },
+            "relationship": {
+              "description": "The relationship of beneficiary (patient) to the subscriber.",
+              "$ref": "CodeableConcept.schema.json#/definitions/CodeableConcept"
             },
             "period": {
               "description": "Time period during which the coverage is in force. A missing start date indicates the start date isn\u0027t known, a missing end date means the coverage is continuing to be in force.",
               "$ref": "Period.schema.json#/definitions/Period"
             },
-            "type": {
-              "description": "The type of coverage: social program, medical plan, accident coverage (workers compensation, auto), group health.",
-              "$ref": "Coding.schema.json#/definitions/Coding"
-            },
-            "planholder": {
-              "description": "The party who \u0027owns\u0027 the insurance contractual relationship to the policy or to whom the benefit of the policy is due.",
-              "$ref": "Reference.schema.json#/definitions/Reference"
-            },
-            "beneficiary": {
-              "description": "The party who benefits from the insurance coverage.",
-              "$ref": "Reference.schema.json#/definitions/Reference"
-            },
-            "relationship": {
-              "description": "The relationship of beneficiary (patient) (subscriber) to the the planholder.",
-              "$ref": "Coding.schema.json#/definitions/Coding"
+            "payor": {
+              "description": "The program or plan underwriter or payor including both insurance and non-insurance agreements, such as patient-pay agreements. May provide multiple identifiers such as insurance company identifier or business identifier (BIN number).",
+              "type": "array",
+              "items": {
+                "$ref": "Reference.schema.json#/definitions/Reference"
+              }
             },
             "group": {
               "description": "A suite of underwrite specific classifiers, for example may be used to identify a class of coverage or employer group, Policy, Plan.",
@@ -78,8 +80,7 @@
             },
             "dependent": {
               "description": "A unique identifier for a dependent under the coverage.",
-              "type": "number",
-              "pattern": "[1-9][0-9]*"
+              "type": "string"
             },
             "_dependent": {
               "description": "Extensions for dependent",
@@ -87,15 +88,23 @@
             },
             "sequence": {
               "description": "An optional counter for a particular instance of the identified coverage which increments upon each renewal.",
-              "type": "number",
-              "pattern": "[1-9][0-9]*"
+              "type": "string"
             },
             "_sequence": {
               "description": "Extensions for sequence",
               "$ref": "Element.schema.json#/definitions/Element"
             },
+            "order": {
+              "description": "The order of applicability of this coverage relative to other coverages which are currently inforce. Note, there may be gaps in the numbering and this does not imply primary, secondard etc. as the specific positioning of coverages depends upon the episode of care.",
+              "type": "number",
+              "pattern": "[1-9][0-9]*"
+            },
+            "_order": {
+              "description": "Extensions for order",
+              "$ref": "Element.schema.json#/definitions/Element"
+            },
             "network": {
-              "description": "The identifier for a community of providers.",
+              "description": "The insurer-specific identifier for the insurer-defined network of providers to which the beneficiary may seek treatment which will be covered at the \u0027in-network\u0027 rate, otherwise \u0027out of network\u0027 terms and conditions apply.",
               "type": "string"
             },
             "_network": {
@@ -125,7 +134,7 @@
           "description": "Financial instrument which may be used to pay for or reimburse health care products and services.",
           "properties": {
             "group": {
-              "description": "Identifies a style or collective of coverage issues by the underwriter, for example may be used to identify a class of coverage or employer group. May also be referred to as a Policy or Group ID.",
+              "description": "Identifies a style or collective of coverage issued by the underwriter, for example may be used to identify an employer group. May also be referred to as a Policy or Group ID.",
               "type": "string"
             },
             "_group": {
@@ -141,7 +150,7 @@
               "$ref": "Element.schema.json#/definitions/Element"
             },
             "subGroup": {
-              "description": "Identifies a style or collective of coverage issues by the underwriter, for example may be used to identify a class of coverage or employer group. May also be referred to as a Policy or Group ID.",
+              "description": "Identifies a style or collective of coverage issued by the underwriter, for example may be used to identify a subset of an employer group.",
               "type": "string"
             },
             "_subGroup": {
@@ -157,7 +166,7 @@
               "$ref": "Element.schema.json#/definitions/Element"
             },
             "plan": {
-              "description": "Identifies a style or collective of coverage issues by the underwriter, for example may be used to identify a class of coverage or employer group. May also be referred to as a Policy or Group ID.",
+              "description": "Identifies a style or collective of coverage issued by the underwriter, for example may be used to identify a collection of benefits provided to employees. May be referred to as a Section or Division ID.",
               "type": "string"
             },
             "_plan": {
@@ -173,7 +182,7 @@
               "$ref": "Element.schema.json#/definitions/Element"
             },
             "subPlan": {
-              "description": "Identifies a sub-style or sub-collective of coverage issues by the underwriter, for example may be used to identify a specific employer group within a class of employers. May be referred to as a Section or Division ID.",
+              "description": "Identifies a sub-style or sub-collective of coverage issued by the underwriter, for example may be used to identify a subset of a collection of benefits provided to employees.",
               "type": "string"
             },
             "_subPlan": {

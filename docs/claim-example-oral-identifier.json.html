@@ -3,7 +3,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>Claim-example-oral-identifier.json - FHIR v1.7.0</title>
+  <title>Claim-example-oral-identifier.json - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -130,8 +130,19 @@
   ],
   &quot;status&quot;: &quot;active&quot;,
   &quot;type&quot;: {
-    &quot;system&quot;: &quot;http://hl7.org/fhir/ex-claimtype&quot;,
-    &quot;code&quot;: &quot;oral&quot;
+    &quot;coding&quot;: [
+      {
+        &quot;system&quot;: &quot;http://hl7.org/fhir/ex-claimtype&quot;,
+        &quot;code&quot;: &quot;oral&quot;
+      }
+    ]
+  },
+  &quot;use&quot;: &quot;complete&quot;,
+  &quot;patient&quot;: {
+    &quot;identifier&quot;: {
+      &quot;system&quot;: &quot;http://www.jurisdiction.com/nationalId&quot;,
+      &quot;value&quot;: &quot;123AB345&quot;
+    }
   },
   &quot;created&quot;: &quot;2014-08-16&quot;,
   &quot;insurer&quot;: {
@@ -146,30 +157,46 @@
       &quot;value&quot;: &quot;HOSP12345&quot;
     }
   },
-  &quot;use&quot;: &quot;complete&quot;,
   &quot;priority&quot;: {
-    &quot;code&quot;: &quot;normal&quot;
+    &quot;coding&quot;: [
+      {
+        &quot;code&quot;: &quot;normal&quot;
+      }
+    ]
   },
   &quot;payee&quot;: {
     &quot;type&quot;: {
-      &quot;code&quot;: &quot;provider&quot;
+      &quot;coding&quot;: [
+        {
+          &quot;code&quot;: &quot;provider&quot;
+        }
+      ]
     }
   },
-  &quot;diagnosis&quot;: [
+  &quot;careTeam&quot;: [
     {
       &quot;sequence&quot;: 1,
-      &quot;diagnosis&quot;: {
-        &quot;code&quot;: &quot;123456&quot;
+      &quot;provider&quot;: {
+        &quot;identifier&quot;: {
+          &quot;system&quot;: &quot;http://www.jurisdiction.com/providerId&quot;,
+          &quot;value&quot;: &quot;MD98765&quot;
+        }
       }
     }
   ],
-  &quot;patient&quot;: {
-    &quot;identifier&quot;: {
-      &quot;system&quot;: &quot;http://www.jurisdiction.com/nationalId&quot;,
-      &quot;value&quot;: &quot;123AB345&quot;
+  &quot;diagnosis&quot;: [
+    {
+      &quot;sequence&quot;: 1,
+      &quot;diagnosisCodeableConcept&quot;: {
+        &quot;coding&quot;: [
+          {
+            &quot;code&quot;: &quot;123456&quot;
+          }
+        ]
+      }
     }
-  },
-  &quot;coverage&quot;: [
+  ],
+  &quot;insurance&quot;: [
     {
       &quot;sequence&quot;: 1,
       &quot;focal&quot;: true,
@@ -184,18 +211,15 @@
   &quot;item&quot;: [
     {
       &quot;sequence&quot;: 1,
-      &quot;careTeam&quot;: [
-        {
-          &quot;provider&quot;: {
-            &quot;identifier&quot;: {
-              &quot;system&quot;: &quot;http://www.jurisdiction.com/providerId&quot;,
-              &quot;value&quot;: &quot;MD98765&quot;
-            }
-          }
-        }
+      &quot;careTeamLinkId&quot;: [
+        1
       ],
       &quot;service&quot;: {
-        &quot;code&quot;: &quot;1200&quot;
+        &quot;coding&quot;: [
+          {
+            &quot;code&quot;: &quot;1200&quot;
+          }
+        ]
       },
       &quot;servicedDate&quot;: &quot;2014-08-16&quot;,
       &quot;unitPrice&quot;: {
@@ -235,7 +259,7 @@ of the specification.
 		<div class="container"><!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:32-0500. <a href="qa.html">QA Page</a>
+        © HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:21-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search</a> | 

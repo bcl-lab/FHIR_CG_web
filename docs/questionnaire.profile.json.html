@@ -3,7 +3,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>Questionnaire.profile.json - FHIR v1.7.0</title>
+  <title>Questionnaire.profile.json - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -119,7 +119,7 @@
   &quot;resourceType&quot;: &quot;StructureDefinition&quot;,
   &quot;id&quot;: &quot;Questionnaire&quot;,
   &quot;meta&quot;: {
-    &quot;lastUpdated&quot;: &quot;2016-11-28T17:29:55.664-05:00&quot;
+    &quot;lastUpdated&quot;: &quot;2016-12-07T14:18:58.982-05:00&quot;
   },
   &quot;text&quot;: {
     &quot;status&quot;: &quot;generated&quot;,
@@ -129,6 +129,10 @@
     {
       &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm&quot;,
       &quot;valueInteger&quot;: 0
+    },
+    {
+      &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/structuredefinition-wg&quot;,
+      &quot;valueCode&quot;: &quot;pc&quot;
     }
   ],
   &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/Questionnaire&quot;,
@@ -139,7 +143,7 @@
     {
       &quot;telecom&quot;: [
         {
-          &quot;system&quot;: &quot;other&quot;,
+          &quot;system&quot;: &quot;url&quot;,
           &quot;value&quot;: &quot;http://hl7.org/fhir&quot;
         }
       ]
@@ -147,16 +151,16 @@
     {
       &quot;telecom&quot;: [
         {
-          &quot;system&quot;: &quot;other&quot;,
+          &quot;system&quot;: &quot;url&quot;,
           &quot;value&quot;: &quot;http://www.hl7.org/Special/committees/patientcare/index.cfm&quot;
         }
       ]
     }
   ],
-  &quot;date&quot;: &quot;2016-11-28T17:29:55-05:00&quot;,
+  &quot;date&quot;: &quot;2016-12-07T14:18:58-05:00&quot;,
   &quot;description&quot;: &quot;Base StructureDefinition for Questionnaire Resource&quot;,
   &quot;purpose&quot;: &quot;To support structured, hierarchical registration of data gathered using digital forms and other questionnaires.&quot;,
-  &quot;fhirVersion&quot;: &quot;1.7.0&quot;,
+  &quot;fhirVersion&quot;: &quot;1.8.0&quot;,
   &quot;mapping&quot;: [
     {
       &quot;identity&quot;: &quot;rim&quot;,
@@ -697,7 +701,7 @@
         &quot;id&quot;: &quot;Questionnaire.concept&quot;,
         &quot;path&quot;: &quot;Questionnaire.concept&quot;,
         &quot;short&quot;: &quot;Concept that represents the overall questionnaire&quot;,
-        &quot;definition&quot;: &quot;Identifies a how this question or group of questions is known in a particular terminology such as LOINC.&quot;,
+        &quot;definition&quot;: &quot;Identifies how this question or group of questions is known in a particular terminology such as LOINC.&quot;,
         &quot;requirements&quot;: &quot;Allows linking of the complete Questionnaire resources to formal terminologies.  It's common for \&quot;pannels\&quot; of questions to be identified by a code.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;*&quot;,
@@ -828,6 +832,13 @@
             &quot;human&quot;: &quot;Group items must have nested items, display items cannot have nested items&quot;,
             &quot;expression&quot;: &quot;(type='group' implies item.empty().not()) and (type.trace('type')='display' implies item.trace('item').empty())&quot;,
             &quot;xpath&quot;: &quot;not((f:type/@value='group' and not(f:item)) or (f:type/@value='display' and f:item))&quot;
+          },
+          {
+            &quot;key&quot;: &quot;que-11&quot;,
+            &quot;severity&quot;: &quot;error&quot;,
+            &quot;human&quot;: &quot;Type is required if a definition is not provided&quot;,
+            &quot;expression&quot;: &quot;definition.empty() implies type.exists()&quot;,
+            &quot;xpath&quot;: &quot;not(exists(f:type)) or exists(f:definition)&quot;
           }
         ],
         &quot;mapping&quot;: [
@@ -928,11 +939,11 @@
       {
         &quot;id&quot;: &quot;Questionnaire.item.linkId&quot;,
         &quot;path&quot;: &quot;Questionnaire.item.linkId&quot;,
-        &quot;short&quot;: &quot;To link questionnaire with questionnaire response&quot;,
+        &quot;short&quot;: &quot;Unique id for item in questionnaire&quot;,
         &quot;definition&quot;: &quot;An identifier that is unique within the Questionnaire allowing linkage to the equivalent item in a QuestionnaireResponse resource.&quot;,
-        &quot;comments&quot;: &quot;May be omitted if there is no expectation to link answers back to a Questionnaire.  This ''can'' be a meaningful identifier (e.g. a LOINC code) but is not intended to have any meaning.  GUIDs or sequential numbers are appropriate here.&quot;,
-        &quot;requirements&quot;: &quot;[[[QuestionnaireResponse]]] does not require omitted items to be included and may have some items that repeat, so linkage based on position alone is not sufficient.&quot;,
-        &quot;min&quot;: 0,
+        &quot;comments&quot;: &quot;This ''can'' be a meaningful identifier (e.g. a LOINC code) but is not intended to have any meaning.  GUIDs or sequential numbers are appropriate here.&quot;,
+        &quot;requirements&quot;: &quot;[QuestionnaireResponse](questionnaireresponse.html#) does not require omitted items to be included and may have some items that repeat, so linkage based on position alone is not sufficient.&quot;,
+        &quot;min&quot;: 1,
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
@@ -947,11 +958,35 @@
         ]
       },
       {
+        &quot;id&quot;: &quot;Questionnaire.item.definition&quot;,
+        &quot;path&quot;: &quot;Questionnaire.item.definition&quot;,
+        &quot;short&quot;: &quot;ElementDefinition - details for the item&quot;,
+        &quot;definition&quot;: &quot;A reference to an [ElementDefinition](elementdefinition.html) that provides the details for the item. If a definition is provided, then the following element values can be inferred from the definition: \n\n* concept (ElementDefinition.code)\n* type (ElementDefinition.type)\n* required (ElementDefinition.min)\n* repeats (ElementDefinition.max)\n* maxLength (ElementDefinition.maxLength)\n* options (ElementDefinition.binding)\n\nAny information provided in these elements overrides the information from the definition.&quot;,
+        &quot;comments&quot;: &quot;The ElementDefinition must be in a [StructureDefinition](structuredefinition.html#) or a [DataElement](dataelement.html#), and must have a fragment identifier that identifies the specific data element by it\\'s id (Element.id). E.g. http://hl7.org/fhir/StructureDefinition/Observation#Observation.value[x].&quot;,
+        &quot;requirements&quot;: &quot;A common pattern is to define a set of data elements, and then build multiple different questionnaires for different circumstances to gather the data. This element provides traceability to the common definition, and allows the content for the question to come from the underlying definition.&quot;,
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;1&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;uri&quot;
+          }
+        ],
+        &quot;condition&quot;: [
+          &quot;que-11&quot;
+        ],
+        &quot;mapping&quot;: [
+          {
+            &quot;identity&quot;: &quot;rim&quot;,
+            &quot;map&quot;: &quot;Not supported&quot;
+          }
+        ]
+      },
+      {
         &quot;id&quot;: &quot;Questionnaire.item.concept&quot;,
         &quot;path&quot;: &quot;Questionnaire.item.concept&quot;,
         &quot;short&quot;: &quot;Concept that represents this item within in a questionnaire&quot;,
-        &quot;definition&quot;: &quot;Identifies a how this group of questions is known in a particular terminology such as LOINC.&quot;,
-        &quot;comments&quot;: &quot;The code(s) for the \&quot;root\&quot; group apply to the questionnaire as a whole.&quot;,
+        &quot;definition&quot;: &quot;Terminology code that corresponds to this group or question (e.g. LOINC).&quot;,
+        &quot;comments&quot;: &quot;The code(s) for the \&quot;root\&quot; group apply to the questionnaire as a whole. Value may come from the ElementDefinition referred to by .definition.&quot;,
         &quot;requirements&quot;: &quot;Allows linking of groups of questions (and complete Questionnaire resources) to formal terminologies.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;*&quot;,
@@ -1025,16 +1060,19 @@
       {
         &quot;id&quot;: &quot;Questionnaire.item.type&quot;,
         &quot;path&quot;: &quot;Questionnaire.item.type&quot;,
-        &quot;short&quot;: &quot;group | display | question | boolean | decimal | integer | date | dateTime +&quot;,
+        &quot;short&quot;: &quot;group | display | boolean | decimal | integer | date | dateTime +&quot;,
         &quot;definition&quot;: &quot;Identifies the type of questionnaire item this is - whether text for display, a grouping of other items or a particular type of data to be captured (string, integer, coded choice, etc.).&quot;,
-        &quot;comments&quot;: &quot;Additional constraints on the type of answer can be conveyed by extensions.&quot;,
+        &quot;comments&quot;: &quot;Additional constraints on the type of answer can be conveyed by extensions. Value may come from the ElementDefinition referred to by .definition.&quot;,
         &quot;requirements&quot;: &quot;Defines the format in which the user is to be prompted for the answer.&quot;,
-        &quot;min&quot;: 1,
+        &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
             &quot;code&quot;: &quot;code&quot;
           }
+        ],
+        &quot;condition&quot;: [
+          &quot;que-11&quot;
         ],
         &quot;binding&quot;: {
           &quot;strength&quot;: &quot;required&quot;,
@@ -1286,7 +1324,7 @@
         &quot;path&quot;: &quot;Questionnaire.item.required&quot;,
         &quot;short&quot;: &quot;Whether the item must be included in data results&quot;,
         &quot;definition&quot;: &quot;If true, indicates that the item must be present in a \&quot;completed\&quot; QuestionnaireResponse.  If false, the item may be skipped when answering the questionnaire.&quot;,
-        &quot;comments&quot;: &quot;If an item that contains other items is marked as required, that does not automatically make the contained elements required (though required groups must contain at least one child element).&quot;,
+        &quot;comments&quot;: &quot;Questionnaire.item.required only has meaning for elements that are conditionally enabled with enableWhen if the condition evaluates to true.  If an item that contains other items is marked as required, that does not automatically make the contained elements required (though required groups must contain at least one child element). Value may come from the ElementDefinition referred to by .definition.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
@@ -1310,6 +1348,7 @@
         &quot;path&quot;: &quot;Questionnaire.item.repeats&quot;,
         &quot;short&quot;: &quot;Whether the item may repeat&quot;,
         &quot;definition&quot;: &quot;Whether the item may occur multiple times in the instance, containing multiple sets of answers.&quot;,
+        &quot;comments&quot;: &quot;If a question is marked as repeats=true, then multiple answers can be provided for the question in the corresponding QuestionnaireResponse.  When rendering the questionnaire, it is up to the rendering software whether to render the question text for each answer repetition or to simply list each of the answers beneath the question.  (Which is most appropriate visually may depend on the type of answer as well as whether there are nested items.). Value may come from the ElementDefinition referred to by .definition.&quot;,
         &quot;requirements&quot;: &quot;Items may be used to create set of (related) questions that can be repeated to give multiple answers to such a set.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
@@ -1358,7 +1397,7 @@
         &quot;path&quot;: &quot;Questionnaire.item.maxLength&quot;,
         &quot;short&quot;: &quot;No more than this many characters&quot;,
         &quot;definition&quot;: &quot;The maximum number of characters that are permitted in the answer to be considered a \&quot;valid\&quot; QuestionnaireResponse.&quot;,
-        &quot;comments&quot;: &quot;For base64binary, reflects the number of characters representing the encoded data, not the number of bytes of the binary data.&quot;,
+        &quot;comments&quot;: &quot;For base64binary, reflects the number of characters representing the encoded data, not the number of bytes of the binary data. Value may come from the ElementDefinition referred to by .definition.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
@@ -1385,7 +1424,7 @@
         &quot;path&quot;: &quot;Questionnaire.item.options&quot;,
         &quot;short&quot;: &quot;Valueset containing permitted answers&quot;,
         &quot;definition&quot;: &quot;Reference to a value set containing a list of codes representing permitted answers for the question.&quot;,
-        &quot;comments&quot;: &quot;LOINC defines many useful value sets for questionnaire response. See [LOINC Answer Lists](loinc.html#alist).&quot;,
+        &quot;comments&quot;: &quot;LOINC defines many useful value sets for questionnaire response. See [LOINC Answer Lists](loinc.html#alist). Value may come from the ElementDefinition referred to by .definition.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
@@ -1567,8 +1606,9 @@
       {
         &quot;id&quot;: &quot;Questionnaire.item.initial[x]&quot;,
         &quot;path&quot;: &quot;Questionnaire.item.initial[x]&quot;,
-        &quot;short&quot;: &quot;Initial presumed answer for question&quot;,
-        &quot;definition&quot;: &quot;The value that should be pre-populated when rendering the questionnaire for user input.&quot;,
+        &quot;short&quot;: &quot;Default value when item is first rendered&quot;,
+        &quot;definition&quot;: &quot;The value that should be defaulted when rendering the questionnaire for user input.&quot;,
+        &quot;comments&quot;: &quot;The user is allowed to change the value and override the default (unless marked as read-only). If the user doesn't change the value, then this initial value will be persisted when the QuestionnaireResponse is initially created.&quot;,
         &quot;requirements&quot;: &quot;In some workflows, having defaults saves time.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
@@ -1910,7 +1950,7 @@
         &quot;id&quot;: &quot;Questionnaire.concept&quot;,
         &quot;path&quot;: &quot;Questionnaire.concept&quot;,
         &quot;short&quot;: &quot;Concept that represents the overall questionnaire&quot;,
-        &quot;definition&quot;: &quot;Identifies a how this question or group of questions is known in a particular terminology such as LOINC.&quot;,
+        &quot;definition&quot;: &quot;Identifies how this question or group of questions is known in a particular terminology such as LOINC.&quot;,
         &quot;requirements&quot;: &quot;Allows linking of the complete Questionnaire resources to formal terminologies.  It's common for \&quot;pannels\&quot; of questions to be identified by a code.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;*&quot;,
@@ -2033,6 +2073,13 @@
             &quot;human&quot;: &quot;Group items must have nested items, display items cannot have nested items&quot;,
             &quot;expression&quot;: &quot;(type='group' implies item.empty().not()) and (type.trace('type')='display' implies item.trace('item').empty())&quot;,
             &quot;xpath&quot;: &quot;not((f:type/@value='group' and not(f:item)) or (f:type/@value='display' and f:item))&quot;
+          },
+          {
+            &quot;key&quot;: &quot;que-11&quot;,
+            &quot;severity&quot;: &quot;error&quot;,
+            &quot;human&quot;: &quot;Type is required if a definition is not provided&quot;,
+            &quot;expression&quot;: &quot;definition.empty() implies type.exists()&quot;,
+            &quot;xpath&quot;: &quot;not(exists(f:type)) or exists(f:definition)&quot;
           }
         ],
         &quot;mapping&quot;: [
@@ -2045,11 +2092,11 @@
       {
         &quot;id&quot;: &quot;Questionnaire.item.linkId&quot;,
         &quot;path&quot;: &quot;Questionnaire.item.linkId&quot;,
-        &quot;short&quot;: &quot;To link questionnaire with questionnaire response&quot;,
+        &quot;short&quot;: &quot;Unique id for item in questionnaire&quot;,
         &quot;definition&quot;: &quot;An identifier that is unique within the Questionnaire allowing linkage to the equivalent item in a QuestionnaireResponse resource.&quot;,
-        &quot;comments&quot;: &quot;May be omitted if there is no expectation to link answers back to a Questionnaire.  This ''can'' be a meaningful identifier (e.g. a LOINC code) but is not intended to have any meaning.  GUIDs or sequential numbers are appropriate here.&quot;,
-        &quot;requirements&quot;: &quot;[[[QuestionnaireResponse]]] does not require omitted items to be included and may have some items that repeat, so linkage based on position alone is not sufficient.&quot;,
-        &quot;min&quot;: 0,
+        &quot;comments&quot;: &quot;This ''can'' be a meaningful identifier (e.g. a LOINC code) but is not intended to have any meaning.  GUIDs or sequential numbers are appropriate here.&quot;,
+        &quot;requirements&quot;: &quot;[QuestionnaireResponse](questionnaireresponse.html#) does not require omitted items to be included and may have some items that repeat, so linkage based on position alone is not sufficient.&quot;,
+        &quot;min&quot;: 1,
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
@@ -2064,11 +2111,35 @@
         ]
       },
       {
+        &quot;id&quot;: &quot;Questionnaire.item.definition&quot;,
+        &quot;path&quot;: &quot;Questionnaire.item.definition&quot;,
+        &quot;short&quot;: &quot;ElementDefinition - details for the item&quot;,
+        &quot;definition&quot;: &quot;A reference to an [ElementDefinition](elementdefinition.html) that provides the details for the item. If a definition is provided, then the following element values can be inferred from the definition: \n\n* concept (ElementDefinition.code)\n* type (ElementDefinition.type)\n* required (ElementDefinition.min)\n* repeats (ElementDefinition.max)\n* maxLength (ElementDefinition.maxLength)\n* options (ElementDefinition.binding)\n\nAny information provided in these elements overrides the information from the definition.&quot;,
+        &quot;comments&quot;: &quot;The ElementDefinition must be in a [StructureDefinition](structuredefinition.html#) or a [DataElement](dataelement.html#), and must have a fragment identifier that identifies the specific data element by it\\'s id (Element.id). E.g. http://hl7.org/fhir/StructureDefinition/Observation#Observation.value[x].&quot;,
+        &quot;requirements&quot;: &quot;A common pattern is to define a set of data elements, and then build multiple different questionnaires for different circumstances to gather the data. This element provides traceability to the common definition, and allows the content for the question to come from the underlying definition.&quot;,
+        &quot;min&quot;: 0,
+        &quot;max&quot;: &quot;1&quot;,
+        &quot;type&quot;: [
+          {
+            &quot;code&quot;: &quot;uri&quot;
+          }
+        ],
+        &quot;condition&quot;: [
+          &quot;que-11&quot;
+        ],
+        &quot;mapping&quot;: [
+          {
+            &quot;identity&quot;: &quot;rim&quot;,
+            &quot;map&quot;: &quot;Not supported&quot;
+          }
+        ]
+      },
+      {
         &quot;id&quot;: &quot;Questionnaire.item.concept&quot;,
         &quot;path&quot;: &quot;Questionnaire.item.concept&quot;,
         &quot;short&quot;: &quot;Concept that represents this item within in a questionnaire&quot;,
-        &quot;definition&quot;: &quot;Identifies a how this group of questions is known in a particular terminology such as LOINC.&quot;,
-        &quot;comments&quot;: &quot;The code(s) for the \&quot;root\&quot; group apply to the questionnaire as a whole.&quot;,
+        &quot;definition&quot;: &quot;Terminology code that corresponds to this group or question (e.g. LOINC).&quot;,
+        &quot;comments&quot;: &quot;The code(s) for the \&quot;root\&quot; group apply to the questionnaire as a whole. Value may come from the ElementDefinition referred to by .definition.&quot;,
         &quot;requirements&quot;: &quot;Allows linking of groups of questions (and complete Questionnaire resources) to formal terminologies.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;*&quot;,
@@ -2142,16 +2213,19 @@
       {
         &quot;id&quot;: &quot;Questionnaire.item.type&quot;,
         &quot;path&quot;: &quot;Questionnaire.item.type&quot;,
-        &quot;short&quot;: &quot;group | display | question | boolean | decimal | integer | date | dateTime +&quot;,
+        &quot;short&quot;: &quot;group | display | boolean | decimal | integer | date | dateTime +&quot;,
         &quot;definition&quot;: &quot;Identifies the type of questionnaire item this is - whether text for display, a grouping of other items or a particular type of data to be captured (string, integer, coded choice, etc.).&quot;,
-        &quot;comments&quot;: &quot;Additional constraints on the type of answer can be conveyed by extensions.&quot;,
+        &quot;comments&quot;: &quot;Additional constraints on the type of answer can be conveyed by extensions. Value may come from the ElementDefinition referred to by .definition.&quot;,
         &quot;requirements&quot;: &quot;Defines the format in which the user is to be prompted for the answer.&quot;,
-        &quot;min&quot;: 1,
+        &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
             &quot;code&quot;: &quot;code&quot;
           }
+        ],
+        &quot;condition&quot;: [
+          &quot;que-11&quot;
         ],
         &quot;binding&quot;: {
           &quot;strength&quot;: &quot;required&quot;,
@@ -2307,7 +2381,7 @@
         &quot;path&quot;: &quot;Questionnaire.item.required&quot;,
         &quot;short&quot;: &quot;Whether the item must be included in data results&quot;,
         &quot;definition&quot;: &quot;If true, indicates that the item must be present in a \&quot;completed\&quot; QuestionnaireResponse.  If false, the item may be skipped when answering the questionnaire.&quot;,
-        &quot;comments&quot;: &quot;If an item that contains other items is marked as required, that does not automatically make the contained elements required (though required groups must contain at least one child element).&quot;,
+        &quot;comments&quot;: &quot;Questionnaire.item.required only has meaning for elements that are conditionally enabled with enableWhen if the condition evaluates to true.  If an item that contains other items is marked as required, that does not automatically make the contained elements required (though required groups must contain at least one child element). Value may come from the ElementDefinition referred to by .definition.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
@@ -2331,6 +2405,7 @@
         &quot;path&quot;: &quot;Questionnaire.item.repeats&quot;,
         &quot;short&quot;: &quot;Whether the item may repeat&quot;,
         &quot;definition&quot;: &quot;Whether the item may occur multiple times in the instance, containing multiple sets of answers.&quot;,
+        &quot;comments&quot;: &quot;If a question is marked as repeats=true, then multiple answers can be provided for the question in the corresponding QuestionnaireResponse.  When rendering the questionnaire, it is up to the rendering software whether to render the question text for each answer repetition or to simply list each of the answers beneath the question.  (Which is most appropriate visually may depend on the type of answer as well as whether there are nested items.). Value may come from the ElementDefinition referred to by .definition.&quot;,
         &quot;requirements&quot;: &quot;Items may be used to create set of (related) questions that can be repeated to give multiple answers to such a set.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
@@ -2379,7 +2454,7 @@
         &quot;path&quot;: &quot;Questionnaire.item.maxLength&quot;,
         &quot;short&quot;: &quot;No more than this many characters&quot;,
         &quot;definition&quot;: &quot;The maximum number of characters that are permitted in the answer to be considered a \&quot;valid\&quot; QuestionnaireResponse.&quot;,
-        &quot;comments&quot;: &quot;For base64binary, reflects the number of characters representing the encoded data, not the number of bytes of the binary data.&quot;,
+        &quot;comments&quot;: &quot;For base64binary, reflects the number of characters representing the encoded data, not the number of bytes of the binary data. Value may come from the ElementDefinition referred to by .definition.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
@@ -2406,7 +2481,7 @@
         &quot;path&quot;: &quot;Questionnaire.item.options&quot;,
         &quot;short&quot;: &quot;Valueset containing permitted answers&quot;,
         &quot;definition&quot;: &quot;Reference to a value set containing a list of codes representing permitted answers for the question.&quot;,
-        &quot;comments&quot;: &quot;LOINC defines many useful value sets for questionnaire response. See [LOINC Answer Lists](loinc.html#alist).&quot;,
+        &quot;comments&quot;: &quot;LOINC defines many useful value sets for questionnaire response. See [LOINC Answer Lists](loinc.html#alist). Value may come from the ElementDefinition referred to by .definition.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
@@ -2490,8 +2565,9 @@
       {
         &quot;id&quot;: &quot;Questionnaire.item.initial[x]&quot;,
         &quot;path&quot;: &quot;Questionnaire.item.initial[x]&quot;,
-        &quot;short&quot;: &quot;Initial presumed answer for question&quot;,
-        &quot;definition&quot;: &quot;The value that should be pre-populated when rendering the questionnaire for user input.&quot;,
+        &quot;short&quot;: &quot;Default value when item is first rendered&quot;,
+        &quot;definition&quot;: &quot;The value that should be defaulted when rendering the questionnaire for user input.&quot;,
+        &quot;comments&quot;: &quot;The user is allowed to change the value and override the default (unless marked as read-only). If the user doesn't change the value, then this initial value will be persisted when the QuestionnaireResponse is initially created.&quot;,
         &quot;requirements&quot;: &quot;In some workflows, having defaults saves time.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
@@ -2593,7 +2669,7 @@ of the specification.
 		<div class="container"><!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:33-0500. <a href="qa.html">QA Page</a>
+        © HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:28-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search</a> | 

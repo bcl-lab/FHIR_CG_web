@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>DomainResource - FHIR v1.7.0</title>
+  <title>DomainResource - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -106,13 +106,13 @@
 
 <ul class="nav nav-tabs"><li class="active"><a href="#">Content</a></li><li><a href="domainresource-definitions.html">Detailed Descriptions</a></li></ul>
 
-<h1 class="self-link-parent"><span class="sectioncount">2.28<a name="2.28"> </a></span> DomainResource Resource <a href="domainresource.html#2.28" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h1>
+<h1 class="self-link-parent"><span class="sectioncount">2.29<a name="2.29"> </a></span> DomainResource Resource <a href="domainresource.html#2.29" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h1>
 
 
 
 <div>
 <a name="scope"> </a>
-<h2 class="self-link-parent"><span class="sectioncount">2.28.1</span> Scope and Usage <a href="domainresource.html#scope" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h2>
+<h2 class="self-link-parent"><span class="sectioncount">2.29.1</span> Scope and Usage <a href="domainresource.html#scope" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h2>
 <p>
 A domain resource is an resource that:
 </p>
@@ -130,7 +130,7 @@ As an abstract resource, this resource is never created directly; instead, one o
 
 <div>
 <a name="bnr"> </a>
-<h2 class="self-link-parent"><span class="sectioncount">2.28.2</span> Boundaries and Relationships <a href="domainresource.html#bnr" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h2>
+<h2 class="self-link-parent"><span class="sectioncount">2.29.2</span> Boundaries and Relationships <a href="domainresource.html#bnr" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h2>
 
 <p>
 This resource extends the base <a href="resource.html">resource</a>. All of the listed <a href="resourcelist.html">Resources</a>
@@ -143,8 +143,8 @@ this resource.
 
 
 
-<a name="resource"/>
-<h2 class="self-link-parent"><span class="sectioncount">2.28.3</span> 
+<a name="resource"> </a>
+<h2 class="self-link-parent"><span class="sectioncount">2.29.3</span> 
 Resource Content
  <a href="domainresource.html#resource" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h2>
 <a name="def"> </a>
@@ -337,12 +337,11 @@ Resource Content
 
 
 <a name="invs"> </a>
-<h3 class="self-link-parent"><span class="sectioncount">2.28.3.1</span> Constraints <a href="domainresource.html#invs" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h3><ul><li><b title="Formal Invariant Identifier">dom-1</b>: If the resource is contained in another resource, it SHALL NOT contain any narrative (<a href="http://hl7.org/fluentpath">expression <img src="external.png" style="text-align: baseline"/></a>: <span style="font-family: Courier New, monospace">contained.text.empty()</span>)</li><li><b title="Formal Invariant Identifier">dom-2</b>: If the resource is contained in another resource, it SHALL NOT contain nested Resources (<a href="http://hl7.org/fluentpath">expression <img src="external.png" style="text-align: baseline"/></a>: <span style="font-family: Courier New, monospace">contained.contained.empty()</span>)</li><li><b title="Formal Invariant Identifier">dom-3</b>: If the resource is contained in another resource, it SHALL be referred to from elsewhere in the resource (<a href="http://hl7.org/fluentpath">expression <img src="external.png" style="text-align: baseline"/></a>: <span style="font-family: Courier New, monospace">contained.where(('#'+id in %resource.descendants().reference).not()).empty()</span>)</li><li><b title="Formal Invariant Identifier">dom-4</b>: If a resource is contained in another resource, it SHALL NOT have a meta.versionId or a meta.lastUpdated (<a href="http://hl7.org/fluentpath">expression <img src="external.png" style="text-align: baseline"/></a>: <span style="font-family: Courier New, monospace">contained.meta.versionId.empty() and contained.meta.lastUpdated.empty()</span>)</li></ul>
+<h3 class="self-link-parent"><span class="sectioncount">2.29.3.1</span> Constraints <a href="domainresource.html#invs" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h3><ul><li><b title="Formal Invariant Identifier">dom-1</b>: If the resource is contained in another resource, it SHALL NOT contain any narrative (<a href="http://hl7.org/fluentpath">expression <img src="external.png" style="text-align: baseline"/></a>: <span style="font-family: Courier New, monospace">contained.text.empty()</span>)</li><li><b title="Formal Invariant Identifier">dom-2</b>: If the resource is contained in another resource, it SHALL NOT contain nested Resources (<a href="http://hl7.org/fluentpath">expression <img src="external.png" style="text-align: baseline"/></a>: <span style="font-family: Courier New, monospace">contained.contained.empty()</span>)</li><li><b title="Formal Invariant Identifier">dom-3</b>: If the resource is contained in another resource, it SHALL be referred to from elsewhere in the resource (<a href="http://hl7.org/fluentpath">expression <img src="external.png" style="text-align: baseline"/></a>: <span style="font-family: Courier New, monospace">contained.where(('#'+id in %resource.descendants().reference).not()).empty()</span>)</li><li><b title="Formal Invariant Identifier">dom-4</b>: If a resource is contained in another resource, it SHALL NOT have a meta.versionId or a meta.lastUpdated (<a href="http://hl7.org/fluentpath">expression <img src="external.png" style="text-align: baseline"/></a>: <span style="font-family: Courier New, monospace">contained.meta.versionId.empty() and contained.meta.lastUpdated.empty()</span>)</li></ul>
 
 
 <a name="search"> </a>
-<h2 class="self-link-parent"><span class="sectioncount">2.28.4</span> Search Parameters <a href="domainresource.html#search" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h2>
-<p>This resource doesn't define any common <a href="search.html">Search parameters</a></p>
+<h2 class="self-link-parent"><span class="sectioncount">2.29.4</span> Searching Extensions <a href="domainresource.html#search" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h2>
 <p>
 To search for extensions, define a search parameter for the extension. 
 All other search parameters are named aliases for existing content in
@@ -355,7 +354,7 @@ the value of the extension.
 
 
 <a name="search"> </a>
-<h2 class="self-link-parent"><span class="sectioncount">2.28.5</span> Search Parameters <a href="domainresource.html#search" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h2>
+<h2 class="self-link-parent"><span class="sectioncount">2.29.5</span> Search Parameters <a href="domainresource.html#search" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h2>
 <p>Common search parameters defined by this resource. See <a href="search.html">Searching</a> for more information about searching in REST, messaging, and services.</p>
 <table class="list">
 <tr><td><b>Name</b></td><td><b>Type</b></td><td><b>Description</b></td><td><b>Paths</b></td></tr>
@@ -378,7 +377,7 @@ the value of the extension.
 		<div class="container">  <!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:32-0500. <a href="qa.html">QA Page</a>
+        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:21-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search <img src="external.png" style="text-align: baseline"/></a> | 

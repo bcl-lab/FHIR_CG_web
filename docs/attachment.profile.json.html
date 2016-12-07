@@ -3,7 +3,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>Attachment.profile.json - FHIR v1.7.0</title>
+  <title>Attachment.profile.json - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -119,7 +119,7 @@
   &quot;resourceType&quot;: &quot;StructureDefinition&quot;,
   &quot;id&quot;: &quot;Attachment&quot;,
   &quot;meta&quot;: {
-    &quot;lastUpdated&quot;: &quot;2016-11-28T17:29:55.664-05:00&quot;
+    &quot;lastUpdated&quot;: &quot;2016-12-07T14:18:58.982-05:00&quot;
   },
   &quot;text&quot;: {
     &quot;status&quot;: &quot;generated&quot;,
@@ -133,16 +133,16 @@
     {
       &quot;telecom&quot;: [
         {
-          &quot;system&quot;: &quot;other&quot;,
+          &quot;system&quot;: &quot;url&quot;,
           &quot;value&quot;: &quot;http://hl7.org/fhir&quot;
         }
       ]
     }
   ],
-  &quot;date&quot;: &quot;2016-11-28T17:29:55-05:00&quot;,
+  &quot;date&quot;: &quot;2016-12-07T14:18:58-05:00&quot;,
   &quot;description&quot;: &quot;Base StructureDefinition for Attachment Type&quot;,
   &quot;purpose&quot;: &quot;Many models need to include data defined in other specifications that is complex and opaque to the healthcare model. This includes documents, media recordings, structured data, etc.&quot;,
-  &quot;fhirVersion&quot;: &quot;1.7.0&quot;,
+  &quot;fhirVersion&quot;: &quot;1.8.0&quot;,
   &quot;mapping&quot;: [
     {
       &quot;identity&quot;: &quot;v2&quot;,
@@ -274,7 +274,12 @@
             &quot;code&quot;: &quot;code&quot;
           }
         ],
-        &quot;exampleCode&quot;: &quot;text/plain; charset=UTF-8, image/png&quot;,
+        &quot;example&quot;: [
+          {
+            &quot;label&quot;: &quot;General&quot;,
+            &quot;valueCode&quot;: &quot;text/plain; charset=UTF-8, image/png&quot;
+          }
+        ],
         &quot;isSummary&quot;: true,
         &quot;binding&quot;: {
           &quot;strength&quot;: &quot;required&quot;,
@@ -305,7 +310,12 @@
             &quot;code&quot;: &quot;code&quot;
           }
         ],
-        &quot;exampleCode&quot;: &quot;en-AU&quot;,
+        &quot;example&quot;: [
+          {
+            &quot;label&quot;: &quot;General&quot;,
+            &quot;valueCode&quot;: &quot;en-AU&quot;
+          }
+        ],
         &quot;isSummary&quot;: true,
         &quot;binding&quot;: {
           &quot;extension&quot;: [
@@ -368,7 +378,12 @@
             &quot;code&quot;: &quot;uri&quot;
           }
         ],
-        &quot;exampleUri&quot;: &quot;http://www.acme.com/logo-small.png&quot;,
+        &quot;example&quot;: [
+          {
+            &quot;label&quot;: &quot;General&quot;,
+            &quot;valueUri&quot;: &quot;http://www.acme.com/logo-small.png&quot;
+          }
+        ],
         &quot;isSummary&quot;: true,
         &quot;mapping&quot;: [
           {
@@ -385,7 +400,7 @@
         &quot;id&quot;: &quot;Attachment.size&quot;,
         &quot;path&quot;: &quot;Attachment.size&quot;,
         &quot;short&quot;: &quot;Number of bytes of content (if url provided)&quot;,
-        &quot;definition&quot;: &quot;The number of bytes of data that make up this attachment.&quot;,
+        &quot;definition&quot;: &quot;The number of bytes of data that make up this attachment (before base64 encoding, if that is done).&quot;,
         &quot;comments&quot;: &quot;The number of bytes is redundant if the data is provided as a base64binary, but is useful if the data is provided as a url reference.&quot;,
         &quot;requirements&quot;: &quot;Representing the size allows applications to determine whether they should fetch the content automatically in advance, or refuse to fetch it at all.&quot;,
         &quot;min&quot;: 0,
@@ -408,6 +423,7 @@
         &quot;path&quot;: &quot;Attachment.hash&quot;,
         &quot;short&quot;: &quot;Hash of the data (sha-1, base64ed)&quot;,
         &quot;definition&quot;: &quot;The calculated hash of the data using SHA-1. Represented using base64.&quot;,
+        &quot;comments&quot;: &quot;The hash is calculated on the data prior to base64 encoding, if the data is based64 encoded.&quot;,
         &quot;requirements&quot;: &quot;Included so that applications can verify that the contents of a location have not changed and so that a signature of the content can implicitly sign the content of an image without having to include the data in the instance or reference the url in the signature.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
@@ -437,7 +453,12 @@
             &quot;code&quot;: &quot;string&quot;
           }
         ],
-        &quot;exampleString&quot;: &quot;Official Corporate Logo&quot;,
+        &quot;example&quot;: [
+          {
+            &quot;label&quot;: &quot;General&quot;,
+            &quot;valueString&quot;: &quot;Official Corporate Logo&quot;
+          }
+        ],
         &quot;isSummary&quot;: true,
         &quot;mapping&quot;: [
           {
@@ -512,7 +533,12 @@
             &quot;code&quot;: &quot;code&quot;
           }
         ],
-        &quot;exampleCode&quot;: &quot;text/plain; charset=UTF-8, image/png&quot;,
+        &quot;example&quot;: [
+          {
+            &quot;label&quot;: &quot;General&quot;,
+            &quot;valueCode&quot;: &quot;text/plain; charset=UTF-8, image/png&quot;
+          }
+        ],
         &quot;isSummary&quot;: true,
         &quot;binding&quot;: {
           &quot;strength&quot;: &quot;required&quot;,
@@ -543,7 +569,12 @@
             &quot;code&quot;: &quot;code&quot;
           }
         ],
-        &quot;exampleCode&quot;: &quot;en-AU&quot;,
+        &quot;example&quot;: [
+          {
+            &quot;label&quot;: &quot;General&quot;,
+            &quot;valueCode&quot;: &quot;en-AU&quot;
+          }
+        ],
         &quot;isSummary&quot;: true,
         &quot;binding&quot;: {
           &quot;extension&quot;: [
@@ -606,7 +637,12 @@
             &quot;code&quot;: &quot;uri&quot;
           }
         ],
-        &quot;exampleUri&quot;: &quot;http://www.acme.com/logo-small.png&quot;,
+        &quot;example&quot;: [
+          {
+            &quot;label&quot;: &quot;General&quot;,
+            &quot;valueUri&quot;: &quot;http://www.acme.com/logo-small.png&quot;
+          }
+        ],
         &quot;isSummary&quot;: true,
         &quot;mapping&quot;: [
           {
@@ -623,7 +659,7 @@
         &quot;id&quot;: &quot;Attachment.size&quot;,
         &quot;path&quot;: &quot;Attachment.size&quot;,
         &quot;short&quot;: &quot;Number of bytes of content (if url provided)&quot;,
-        &quot;definition&quot;: &quot;The number of bytes of data that make up this attachment.&quot;,
+        &quot;definition&quot;: &quot;The number of bytes of data that make up this attachment (before base64 encoding, if that is done).&quot;,
         &quot;comments&quot;: &quot;The number of bytes is redundant if the data is provided as a base64binary, but is useful if the data is provided as a url reference.&quot;,
         &quot;requirements&quot;: &quot;Representing the size allows applications to determine whether they should fetch the content automatically in advance, or refuse to fetch it at all.&quot;,
         &quot;min&quot;: 0,
@@ -646,6 +682,7 @@
         &quot;path&quot;: &quot;Attachment.hash&quot;,
         &quot;short&quot;: &quot;Hash of the data (sha-1, base64ed)&quot;,
         &quot;definition&quot;: &quot;The calculated hash of the data using SHA-1. Represented using base64.&quot;,
+        &quot;comments&quot;: &quot;The hash is calculated on the data prior to base64 encoding, if the data is based64 encoded.&quot;,
         &quot;requirements&quot;: &quot;Included so that applications can verify that the contents of a location have not changed and so that a signature of the content can implicitly sign the content of an image without having to include the data in the instance or reference the url in the signature.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
@@ -675,7 +712,12 @@
             &quot;code&quot;: &quot;string&quot;
           }
         ],
-        &quot;exampleString&quot;: &quot;Official Corporate Logo&quot;,
+        &quot;example&quot;: [
+          {
+            &quot;label&quot;: &quot;General&quot;,
+            &quot;valueString&quot;: &quot;Official Corporate Logo&quot;
+          }
+        ],
         &quot;isSummary&quot;: true,
         &quot;mapping&quot;: [
           {
@@ -732,7 +774,7 @@ of the specification.
 		<div class="container"><!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:32-0500. <a href="qa.html">QA Page</a>
+        © HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:21-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search</a> | 

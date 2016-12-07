@@ -12,13 +12,13 @@
   <publisher value="Health Level Seven International (Clinical Genomics)"/>
   <contact>
     <telecom>
-      <system value="other"/>
+      <system value="url"/>
       <value value="http://www.hl7.org/Special/committees/clingenomics"/>
     </telecom>
   </contact>
   <date value="2015-10-20"/>
   <description value="Describes how the DiagnosticRequest resource is used to for genetics"/>
-  <fhirVersion value="1.7.0"/>
+  <fhirVersion value="1.8.0"/>
   <mapping>
     <identity value="rim"/>
     <uri value="http://hl7.org/v3"/>
@@ -359,8 +359,12 @@
     </element>
     <element id="DiagnosticRequest:diagnosticrequest-genetics.requisition">
       <path value="DiagnosticRequest.requisition"/>
-      <short value="Identifier of composite request"/>
-      <definition value="Composite request this is part of."/>
+      <short value="Composite Request ID"/>
+      <definition value="A shared identifier common to all diagnostic requests that were authorized more or less simultaneously by a single author, representing the composite or group identifier."/>
+      <comments value="Requests are linked either by a &quot;basedOn&quot; relationship (i.e. one request is fulfilling another) or by having a common requisition. Requests that are part of the same requisition are generally treated independently from the perspective of changing their state or maintaining them after initial creation."/>
+      <requirements value="Some business processes need to know if multiple items were ordered as part of the same &quot;requisition&quot; for billing or other purposes."/>
+      <alias value="grouperId"/>
+      <alias value="groupIdentifier"/>
       <min value="0"/>
       <max value="1"/>
       <base>
@@ -377,12 +381,12 @@
       <path value="DiagnosticRequest.status"/>
       <short value="draft | active | suspended | completed | entered-in-error | cancelled"/>
       <definition value="The status of the order."/>
-      <comments value="Typically the system placing the order sets the status to &quot;requested&quot;. Thereafter, the order is maintained by the receiver that updates the status as the request is handled."/>
-      <min value="0"/>
+      <comments value="The status is generally fully in the control of the requester - they determine whether the order is draft or active and, after it has been activated, competed, cancelled or suspended. States relating to the activities of the performer are reflected on either the corresponding event (see [Event Pattern](event.html) for general discussion) or using the [Task](task.html) resource."/>
+      <min value="1"/>
       <max value="1"/>
       <base>
         <path value="DiagnosticRequest.status"/>
-        <min value="0"/>
+        <min value="1"/>
         <max value="1"/>
       </base>
       <type>
@@ -406,27 +410,55 @@
         <map value="status"/>
       </mapping>
     </element>
-    <element id="DiagnosticRequest:diagnosticrequest-genetics.stage">
-      <path value="DiagnosticRequest.stage"/>
+    <element id="DiagnosticRequest:diagnosticrequest-genetics.intent">
+      <path value="DiagnosticRequest.intent"/>
       <short value="proposal | plan | original-order | reflex-order"/>
       <definition value="Whether the request is a proposal, plan, an original order or a reflex order."/>
       <min value="1"/>
       <max value="1"/>
       <base>
-        <path value="DiagnosticRequest.stage"/>
+        <path value="DiagnosticRequest.intent"/>
         <min value="1"/>
         <max value="1"/>
       </base>
       <type>
-        <code value="CodeableConcept"/>
+        <code value="code"/>
       </type>
       <isModifier value="true"/>
       <isSummary value="true"/>
       <binding>
-        <strength value="extensible"/>
+        <strength value="required"/>
         <description value="The kind of diagnostic request"/>
         <valueSetReference>
-          <reference value="http://hl7.org/fhir/ValueSet/diagnostic-request-stage"/>
+          <reference value="http://hl7.org/fhir/ValueSet/request-intent"/>
+        </valueSetReference>
+      </binding>
+      <mapping>
+        <identity value="w5"/>
+        <map value="class"/>
+      </mapping>
+    </element>
+    <element id="DiagnosticRequest:diagnosticrequest-genetics.priority">
+      <path value="DiagnosticRequest.priority"/>
+      <short value="routine | urgent | asap | stat"/>
+      <definition value="Indicates how quickly the {{title}} should be addressed with respect to other requests."/>
+      <min value="0"/>
+      <max value="1"/>
+      <base>
+        <path value="DiagnosticRequest.priority"/>
+        <min value="0"/>
+        <max value="1"/>
+      </base>
+      <type>
+        <code value="code"/>
+      </type>
+      <meaningWhenMissing value="If missing, this task should be performed with normal priority"/>
+      <isSummary value="true"/>
+      <binding>
+        <strength value="required"/>
+        <description value="Identifies the level of importance to be assigned to actioning the request"/>
+        <valueSetReference>
+          <reference value="http://hl7.org/fhir/ValueSet/request-priority"/>
         </valueSetReference>
       </binding>
       <mapping>
@@ -566,14 +598,14 @@
         <map value="when.planned"/>
       </mapping>
     </element>
-    <element id="DiagnosticRequest:diagnosticrequest-genetics.authored">
-      <path value="DiagnosticRequest.authored"/>
+    <element id="DiagnosticRequest:diagnosticrequest-genetics.authoredOn">
+      <path value="DiagnosticRequest.authoredOn"/>
       <short value="Date request signed"/>
       <definition value="When the request transitioned to being actionable."/>
       <min value="0"/>
       <max value="1"/>
       <base>
-        <path value="DiagnosticRequest.authored"/>
+        <path value="DiagnosticRequest.authoredOn"/>
         <min value="0"/>
         <max value="1"/>
       </base>
@@ -690,15 +722,15 @@
         <map value="who.actor"/>
       </mapping>
     </element>
-    <element id="DiagnosticRequest:diagnosticrequest-genetics.reason">
-      <path value="DiagnosticRequest.reason"/>
+    <element id="DiagnosticRequest:diagnosticrequest-genetics.reasonCode">
+      <path value="DiagnosticRequest.reasonCode"/>
       <short value="Explanation/Justification for test"/>
-      <definition value="An explanation or justification for why this diagnostic investigation is being requested.   This is often for billing purposes.  May relate to the resources referred to in supportingInformation."/>
+      <definition value="An explanation or justification for why this diagnostic investigation is being requested in coded or textual form.   This is often for billing purposes.  May relate to the resources referred to in supportingInformation."/>
       <comments value="This may be used to decide how the diagnostic investigation will be performed, or even if it will be performed at all.   Use CodeableConcept text element if the data is free (uncoded) text as shown in the [CT Scan example](diagnosticrequest-example-di.html)."/>
       <min value="0"/>
       <max value="*"/>
       <base>
-        <path value="DiagnosticRequest.reason"/>
+        <path value="DiagnosticRequest.reasonCode"/>
         <min value="0"/>
         <max value="*"/>
       </base>
@@ -713,6 +745,36 @@
           <reference value="http://hl7.org/fhir/ValueSet/condition-code"/>
         </valueSetReference>
       </binding>
+      <mapping>
+        <identity value="rim"/>
+        <map value=".reasonCode"/>
+      </mapping>
+      <mapping>
+        <identity value="w5"/>
+        <map value="why"/>
+      </mapping>
+    </element>
+    <element id="DiagnosticRequest:diagnosticrequest-genetics.reasonReference">
+      <path value="DiagnosticRequest.reasonReference"/>
+      <short value="Explanation/Justification for test"/>
+      <definition value="Indicates another resource that provides a justification for why this diagnostic investigation is being requested.   May relate to the resources referred to in supportingInformation."/>
+      <comments value="This may be used to decide how the diagnostic investigation will be performed, or even if it will be performed at all.   Use CodeableConcept text element if the data is free (uncoded) text as shown in the [CT Scan example](diagnosticrequest-example-di.html)."/>
+      <min value="0"/>
+      <max value="*"/>
+      <base>
+        <path value="DiagnosticRequest.reasonReference"/>
+        <min value="0"/>
+        <max value="*"/>
+      </base>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Condition"/>
+      </type>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Observation"/>
+      </type>
+      <isSummary value="true"/>
       <mapping>
         <identity value="rim"/>
         <map value=".reasonCode"/>

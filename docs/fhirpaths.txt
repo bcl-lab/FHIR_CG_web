@@ -2,7 +2,6 @@
 DomainResource (Extension): extension.exists() != value.exists()
 DomainResource (Narrative.div): htmlchecks()
 DomainResource (Narrative.div): htmlchecks()
-DomainResource (Narrative.div): htmlchecks()
 DomainResource (Attachment): data.empty() or contentType.exists()
 DomainResource (Quantity): code.empty() or system.exists()
 DomainResource (Duration): (code or value.empty()) and (system.empty() or system = %ucum)
@@ -15,6 +14,7 @@ DomainResource (Period): start.empty() or end.empty() or (start <= end)
 DomainResource (Ratio): (numerator.empty() xor denominator.exists()) and (numerator.exists() or extension.exists())
 DomainResource (Reference): reference.startsWith('#').not() or (reference.substring(1).trace('url') in %resource.contained.id.trace('ids'))
 DomainResource (ContactPoint): value.empty() or system.exists()
+DomainResource (Timing.repeat): dayOfWeek.exists() implies (frequency.empty() and period.empty())
 DomainResource (Timing.repeat): duration.empty() or durationUnit.exists()
 DomainResource (Timing.repeat): period.empty() or periodUnit.exists()
 DomainResource (Timing.repeat): ((period or frequency) and when).not()
@@ -24,6 +24,7 @@ DomainResource (Timing.repeat): periodMax.empty() or period.exists()
 DomainResource (Timing.repeat): durationMax.empty() or duration.exists()
 DomainResource (Timing.repeat): countMax.empty() or count.exists()
 DomainResource (Timing.repeat): offset.empty() or when.exists()
+DomainResource (Timing.repeat): timeOfDay.exists() implies (when.empty() and frequency.empty() and period.empty())
 DomainResource (ElementDefinition): binding.empty() or type.code.empty() or type.select((code = 'code') or (code = 'Coding') or (code='CodeableConcept') or (code = 'Quantity') or (code = 'Extension') or (code = 'string') or (code = 'uri')).exists()
 DomainResource (ElementDefinition.binding): valueSet.is(uri).not() or valueSet.as(uri).startsWith('http:') or valueSet.as(uri).startsWith('https') or valueSet.as(uri).startsWith('urn:')
 DomainResource (ElementDefinition): type.select(code&profile&targetProfile).isDistinct()
@@ -49,16 +50,21 @@ AllergyIntolerance (AllergyIntolerance): verificationStatus!='entered-in-error' 
 CarePlan (CarePlan.activity): detail.empty() or reference.empty()
 Condition (Condition.stage): summary.exists() or assessment.exists()
 Condition (Condition.evidence): code.exists() or detail.exists()
+Condition (Condition): verificationStatus='entered-in-error' or clinicalStatus.exists()
+Condition (Condition): abatement.empty() or (abatement as boolean).not()  or clinicalStatus='resolved' or clinicalStatus='remission' or clinicalStatus='inactive'
 CapabilityStatement (CapabilityStatement): rest.exists() or messaging.exists() or document.exists()
 CapabilityStatement (CapabilityStatement.rest.resource): searchParam.select(name).isDistinct()
 CapabilityStatement (CapabilityStatement): (description.count() + software.count() + implementation.count()) > 0
-CapabilityStatement (CapabilityStatement.rest.resource.searchParam): chain.empty() or type = 'reference'
 CapabilityStatement (CapabilityStatement): messaging.endpoint.empty() or kind = 'instance'
 CapabilityStatement (CapabilityStatement): (software.empty() and implementation.empty()) or kind != 'requirements'
 CapabilityStatement (CapabilityStatement): implementation.empty() or kind != 'capability'
 CapabilityStatement (CapabilityStatement): document.select(profile.reference&mode).isDistinct()
 CapabilityStatement (CapabilityStatement): rest.select(mode).isDistinct()
 CapabilityStatement (CapabilityStatement.rest): resource.select(type).isDistinct()
+Sequence (Sequence): coordinateSystem = 1 or coordinateSystem = 0
+Sequence (Sequence.referenceSeq): strand.empty() or strand = 1 or strand = -1
+Sequence (Sequence.referenceSeq): (chromosome.empty() and genomeBuild.empty()) or (chromosome.exists() and genomeBuild.exists())
+Sequence (Sequence.referenceSeq): (genomeBuild.count()+referenceSeqId.count()+ referenceSeqPointer.count()+ referenceSeqString.count()) = 1
 Composition (Composition.section): text.exists() or entry.exists() or section.exists()
 Composition (Composition.section): emptyReason.empty() or entry.empty()
 ExpansionProfile (ExpansionProfile.designation.include.designation): language.exists() or use.exists()
@@ -90,6 +96,7 @@ Patient (Patient.contact): name.exists() or telecom.exists() or address.exists()
 Procedure (Procedure): reasonNotPerformed.empty() or notPerformed = true
 DataElement (DataElement.element): base.empty()
 DataElement (DataElement.element): slicing.empty()
+Questionnaire (Questionnaire.item): definition.empty() implies type.exists()
 Questionnaire (Questionnaire.item): (type='group' implies item.empty().not()) and (type.trace('type')='display' implies item.trace('item').empty())
 Questionnaire (Questionnaire): descendants().linkId.isDistinct()
 Questionnaire (Questionnaire.item): type!='display' or concept.empty()
@@ -100,6 +107,7 @@ Questionnaire (Questionnaire.item.enableWhen): hasAnswer.exists() xor answer.exi
 Questionnaire (Questionnaire.item): (type!='group' and type!='display') or initial.empty()
 Questionnaire (Questionnaire.item): type!='display' or readOnly.empty()
 Questionnaire (Questionnaire.item): (type in ('boolean' | 'decimal' | 'integer' | 'string' | 'text' | 'url')) or maxLength.empty()
+QuestionnaireResponse (QuestionnaireResponse.item): (answer.exists() and item.exists()).not()
 RiskAssessment (RiskAssessment.prediction.probabilityRange): (low.empty() or ((low.code = '%') and (low.system = %ucum))) and (high.empty() or ((high.code = '%') and (high.system = %ucum)))
 RiskAssessment (RiskAssessment.prediction): probability is decimal implies probability.as(decimal) <= 100
 AuditEvent (AuditEvent.entity): name.empty() or query.empty()
@@ -125,10 +133,11 @@ Bundle (Bundle): entry.search.empty() or (type = 'searchset')
 Bundle (Bundle): entry.request.empty() or type = 'batch' or type = 'transaction' or type = 'history'
 Bundle (Bundle): entry.response.empty() or type = 'batch-response' or type = 'transaction-response'
 Bundle (Bundle.entry): resource.exists() or request.exists() or response.exists()
-Bundle (Bundle.entry): fullUrl.empty() xor resource.exists()
 Bundle (Bundle): entry.where(fullUrl).select(fullUrl&resource.meta.versionId).isDistinct()
 Bundle (Bundle.entry): fullUrl.contains('/_history/').not()
+Bundle (Bundle): type = 'document' implies (identifier.system.exists() and identifier.value.exists())
 SearchParameter (SearchParameter): xpath.empty() or xpathUsage.exists()
+SearchParameter (SearchParameter): chain.empty() or type = 'reference'
 StructureDefinition (StructureDefinition): snapshot.empty() or snapshot.element.first().path = type
 StructureDefinition (StructureDefinition): snapshot.exists() implies (snapshot.element.base.exists() = baseDefinition.exists())
 StructureDefinition (StructureDefinition): snapshot.element.all(id.exists()) and differential.element.all(id.exists())
@@ -148,6 +157,7 @@ StructureDefinition (StructureDefinition): (derivation = 'constraint') or (kind 
 StructureDefinition (StructureDefinition.snapshot): element.first().path = %resource.type and element.tail().all(path.startsWith(%resource.type&'.'))
 StructureDefinition (StructureDefinition): children().element.first().label.empty() and children().element.first().code.empty() and children().element.first().requirements.empty()
 StructureDefinition (StructureDefinition.differential): element.first().path.contains('.').not() implies element.first().type.empty()
+StructureDefinition (StructureDefinition.differential): element.first().slicing.empty()
 StructureMap (StructureMap.group.rule.target): element.exists() implies context.exists()
 StructureMap (StructureMap.group.rule.target): context.exists() implies contextType.exists()
 TestScript (TestScript.test.action.assert): compareToSourceId.empty() xor (compareToSourceExpression.exists() or compareToSourcePath.exists())
@@ -166,7 +176,8 @@ TestScript (TestScript.setup.action.assert): compareToSourceId.empty() xor (comp
 TestReport (TestReport.setup.action): operation.exists() xor assert.exists()
 TestReport (TestReport.test.action): operation.exists() xor assert.exists()
 CodeSystem (CodeSystem): (concept.code | descendants().concept.code).isDistinct()
-Task (Task): lastModified >= created
+Task (Task): lastModified >= authoredOn or lastModified.exists().not() or authoredOn.exists().not()
+RequestGroup (RequestGroup.action): resource.exists() != action.exists()
 MessageDefinition (MessageDefinition.focus): max='*' or (max.toInteger() > 0)
 Account (Account): Account.owner
 Account (Account): Account.identifier
@@ -251,6 +262,7 @@ Binary (Binary): Binary.contentType
 BodySite (BodySite): BodySite.identifier
 BodySite (BodySite): BodySite.code
 BodySite (BodySite): BodySite.patient
+Bundle (Bundle): Bundle.identifier
 Bundle (Bundle): Bundle.entry[0].resource
 Bundle (Bundle): Bundle.type
 Bundle (Bundle): Bundle.entry[0].resource
@@ -271,6 +283,7 @@ CapabilityStatement (CapabilityStatement): CapabilityStatement.rest.resource.pro
 CapabilityStatement (CapabilityStatement): CapabilityStatement.name
 CapabilityStatement (CapabilityStatement): CapabilityStatement.publisher
 CapabilityStatement (CapabilityStatement): CapabilityStatement.messaging.event.code
+CapabilityStatement (CapabilityStatement): CapabilityStatement.implementationGuide
 CapabilityStatement (CapabilityStatement): CapabilityStatement.status
 CarePlan (CarePlan): CarePlan.period
 CarePlan (CarePlan): CarePlan.activity.detail.code
@@ -284,6 +297,7 @@ CarePlan (CarePlan): CarePlan.relatedPlan.code
 CarePlan (CarePlan): CarePlan.careTeam
 CarePlan (CarePlan): CarePlan.relatedPlan.plan
 CarePlan (CarePlan): CarePlan.addresses
+CarePlan (CarePlan): CarePlan.relatedPlan
 CarePlan (CarePlan): CarePlan.subject
 CarePlan (CarePlan): CarePlan.category
 CareTeam (CareTeam): CareTeam.period
@@ -305,9 +319,9 @@ Claim (Claim): Claim.facility
 ClaimResponse (ClaimResponse): ClaimResponse.identifier
 ClaimResponse (ClaimResponse): ClaimResponse.request
 ClaimResponse (ClaimResponse): ClaimResponse.disposition
-ClaimResponse (ClaimResponse): ClaimResponse.payment.date
+ClaimResponse (ClaimResponse): ClaimResponse.insurer
 ClaimResponse (ClaimResponse): ClaimResponse.created
-ClaimResponse (ClaimResponse): ClaimResponse.organization
+ClaimResponse (ClaimResponse): ClaimResponse.payment.date
 ClaimResponse (ClaimResponse): ClaimResponse.outcome
 ClinicalImpression (ClinicalImpression): ClinicalImpression.date
 ClinicalImpression (ClinicalImpression): ClinicalImpression.problem
@@ -452,12 +466,13 @@ Contract (Contract): Contract.topic
 Contract (Contract): Contract.issued
 Contract (Contract): Contract.signer.party
 Coverage (Coverage): Coverage.identifier
+Coverage (Coverage): Coverage.policyHolder
 Coverage (Coverage): Coverage.group.subGroup
+Coverage (Coverage): Coverage.subscriber
 Coverage (Coverage): Coverage.group.subPlan
 Coverage (Coverage): Coverage.type
-Coverage (Coverage): Coverage.issuer
 Coverage (Coverage): Coverage.sequence
-Coverage (Coverage): Coverage.planholder
+Coverage (Coverage): Coverage.payor
 Coverage (Coverage): Coverage.beneficiary
 Coverage (Coverage): Coverage.group.subClass
 Coverage (Coverage): Coverage.group.plan
@@ -540,10 +555,11 @@ DiagnosticRequest (DiagnosticRequest): DiagnosticRequest.occurrence.as(DateTime)
 DiagnosticRequest (DiagnosticRequest): DiagnosticRequest.requisition
 DiagnosticRequest (DiagnosticRequest): DiagnosticRequest.replaces
 DiagnosticRequest (DiagnosticRequest): DiagnosticRequest.subject
-DiagnosticRequest (DiagnosticRequest): DiagnosticRequest.authored
+DiagnosticRequest (DiagnosticRequest): DiagnosticRequest.authoredOn
 DiagnosticRequest (DiagnosticRequest): DiagnosticRequest.context
+DiagnosticRequest (DiagnosticRequest): DiagnosticRequest.priority
+DiagnosticRequest (DiagnosticRequest): DiagnosticRequest.intent
 DiagnosticRequest (DiagnosticRequest): DiagnosticRequest.basedOn
-DiagnosticRequest (DiagnosticRequest): DiagnosticRequest.stage
 DiagnosticRequest (DiagnosticRequest): DiagnosticRequest.subject
 DiagnosticRequest (DiagnosticRequest): DiagnosticRequest.performer
 DiagnosticRequest (DiagnosticRequest): DiagnosticRequest.definition
@@ -569,6 +585,7 @@ DocumentReference (DocumentReference): DocumentReference.type
 DocumentReference (DocumentReference): DocumentReference.relatesTo.code
 DocumentReference (DocumentReference): DocumentReference.context.practiceSetting
 DocumentReference (DocumentReference): DocumentReference.subject
+DocumentReference (DocumentReference): DocumentReference.relatesTo
 DocumentReference (DocumentReference): DocumentReference.context.event
 DocumentReference (DocumentReference): DocumentReference.class
 DocumentReference (DocumentReference): DocumentReference.authenticator
@@ -595,8 +612,8 @@ EligibilityRequest (EligibilityRequest): EligibilityRequest.facility
 EligibilityResponse (EligibilityResponse): EligibilityResponse.identifier
 EligibilityResponse (EligibilityResponse): EligibilityResponse.request
 EligibilityResponse (EligibilityResponse): EligibilityResponse.disposition
+EligibilityResponse (EligibilityResponse): EligibilityResponse.insurer
 EligibilityResponse (EligibilityResponse): EligibilityResponse.created
-EligibilityResponse (EligibilityResponse): EligibilityResponse.organization
 EligibilityResponse (EligibilityResponse): EligibilityResponse.requestOrganization
 EligibilityResponse (EligibilityResponse): EligibilityResponse.requestProvider
 EligibilityResponse (EligibilityResponse): EligibilityResponse.outcome
@@ -617,6 +634,7 @@ Encounter (Encounter): Encounter.indication
 Encounter (Encounter): Encounter.patient
 Encounter (Encounter): Encounter.location.period
 Encounter (Encounter): Encounter.location.location
+Encounter (Encounter): Encounter.serviceProvider
 Encounter (Encounter): Encounter.indication
 Encounter (Encounter): Encounter.hospitalization.specialArrangement
 Encounter (Encounter): Encounter.class
@@ -628,11 +646,12 @@ Endpoint (Endpoint): Endpoint.connectionType
 Endpoint (Endpoint): Endpoint.name
 Endpoint (Endpoint): Endpoint.status
 EnrollmentRequest (EnrollmentRequest): EnrollmentRequest.identifier
-EnrollmentRequest (EnrollmentRequest): EnrollmentRequest.subject.as(reference)
-EnrollmentRequest (EnrollmentRequest): EnrollmentRequest.subject.as(identifier)
-EnrollmentRequest (EnrollmentRequest): EnrollmentRequest.subject.as(reference)
-EnrollmentRequest (EnrollmentRequest): EnrollmentRequest.subject.as(identifier)
+EnrollmentRequest (EnrollmentRequest): EnrollmentRequest.subject
+EnrollmentRequest (EnrollmentRequest): EnrollmentRequest.subject
+EnrollmentRequest (EnrollmentRequest): EnrollmentRequest.organization
 EnrollmentResponse (EnrollmentResponse): EnrollmentResponse.identifier
+EnrollmentResponse (EnrollmentResponse): EnrollmentResponse.request
+EnrollmentResponse (EnrollmentResponse): EnrollmentResponse.organization
 EpisodeOfCare (EpisodeOfCare): EpisodeOfCare.period
 EpisodeOfCare (EpisodeOfCare): EpisodeOfCare.identifier
 EpisodeOfCare (EpisodeOfCare): EpisodeOfCare.condition
@@ -651,6 +670,7 @@ ExpansionProfile (ExpansionProfile): ExpansionProfile.publisher
 ExpansionProfile (ExpansionProfile): ExpansionProfile.version
 ExpansionProfile (ExpansionProfile): ExpansionProfile.url
 ExpansionProfile (ExpansionProfile): ExpansionProfile.status
+ExplanationOfBenefit (ExplanationOfBenefit): ExplanationOfBenefit.insurance.coverage
 ExplanationOfBenefit (ExplanationOfBenefit): ExplanationOfBenefit.identifier
 ExplanationOfBenefit (ExplanationOfBenefit): ExplanationOfBenefit.disposition
 ExplanationOfBenefit (ExplanationOfBenefit): ExplanationOfBenefit.provider
@@ -678,6 +698,7 @@ Goal (Goal): Goal.category
 Goal (Goal): Goal.status
 Group (Group): Group.actual
 Group (Group): Group.identifier
+Group (Group): Group.characteristic
 Group (Group): Group.code
 Group (Group): Group.member.entity
 Group (Group): Group.characteristic.exclude
@@ -689,6 +710,7 @@ GuidanceResponse (GuidanceResponse): GuidanceResponse.subject
 HealthcareService (HealthcareService): HealthcareService.identifier
 HealthcareService (HealthcareService): HealthcareService.serviceCategory
 HealthcareService (HealthcareService): HealthcareService.serviceType
+HealthcareService (HealthcareService): HealthcareService.endpoint
 HealthcareService (HealthcareService): HealthcareService.providedBy
 HealthcareService (HealthcareService): HealthcareService.serviceName
 HealthcareService (HealthcareService): HealthcareService.programName
@@ -785,6 +807,7 @@ Location (Location): Location.address.state
 Location (Location): Location.type
 Location (Location): Location.address.postalCode
 Location (Location): Location.address.country
+Location (Location): Location.endpoint
 Location (Location): Location.managingOrganization
 Location (Location): Location.name or Location.alias
 Location (Location): Location.address.use
@@ -829,7 +852,7 @@ MedicationAdministration (MedicationAdministration): MedicationAdministration.re
 MedicationAdministration (MedicationAdministration): MedicationAdministration.encounter
 MedicationAdministration (MedicationAdministration): MedicationAdministration.prescription
 MedicationAdministration (MedicationAdministration): MedicationAdministration.patient
-MedicationAdministration (MedicationAdministration): MedicationAdministration.effectiveTime
+MedicationAdministration (MedicationAdministration): MedicationAdministration.effective
 MedicationAdministration (MedicationAdministration): MedicationAdministration.reasonNotGiven
 MedicationAdministration (MedicationAdministration): MedicationAdministration.device
 MedicationAdministration (MedicationAdministration): MedicationAdministration.status
@@ -846,7 +869,7 @@ MedicationDispense (MedicationDispense): MedicationDispense.dispenser
 MedicationDispense (MedicationDispense): MedicationDispense.authorizingPrescription
 MedicationDispense (MedicationDispense): MedicationDispense.patient
 MedicationDispense (MedicationDispense): MedicationDispense.status
-MedicationRequest (MedicationRequest): MedicationRequest.prescriber
+MedicationRequest (MedicationRequest): MedicationRequest.requester
 MedicationRequest (MedicationRequest): MedicationRequest.identifier
 MedicationRequest (MedicationRequest): MedicationRequest.dispenseRequest.performer
 MedicationRequest (MedicationRequest): MedicationRequest.medication.as(CodeableConcept)
@@ -859,7 +882,7 @@ MedicationRequest (MedicationRequest): MedicationRequest.status
 MedicationStatement (MedicationStatement): MedicationStatement.identifier
 MedicationStatement (MedicationStatement): MedicationStatement.effective
 MedicationStatement (MedicationStatement): MedicationStatement.medication.as(CodeableConcept)
-MedicationStatement (MedicationStatement): MedicationStatement.patient
+MedicationStatement (MedicationStatement): MedicationStatement.subject
 MedicationStatement (MedicationStatement): MedicationStatement.medication.as(Reference)
 MedicationStatement (MedicationStatement): MedicationStatement.informationSource
 MedicationStatement (MedicationStatement): MedicationStatement.category
@@ -928,8 +951,13 @@ Observation (Observation): Observation.dataAbsentReason | Observation.component.
 Observation (Observation): Observation.encounter
 Observation (Observation): Observation.related.type
 Observation (Observation): Observation.related.target
+Observation (Observation): Observation | Observation.component
+Observation (Observation): Observation | Observation.component
+Observation (Observation): Observation.related
+Observation (Observation): Observation | Observation.component
 Observation (Observation): Observation.subject
 Observation (Observation): Observation.specimen
+Observation (Observation): Observation | Observation.component
 Observation (Observation): Observation.category
 Observation (Observation): Observation.value.as(String) | Observation.component.value.as(String)
 Observation (Observation): Observation.device
@@ -951,16 +979,17 @@ OperationDefinition (OperationDefinition): OperationDefinition.status
 OperationDefinition (OperationDefinition): OperationDefinition.base
 Organization (Organization): Organization.identifier
 Organization (Organization): Organization.partOf
-Organization (Organization): Organization.name
 Organization (Organization): Organization.address
 Organization (Organization): Organization.address.state
-Organization (Organization): Organization.name or Organization.alias
-Organization (Organization): Organization.address.use
 Organization (Organization): Organization.active
 Organization (Organization): Organization.type
-Organization (Organization): Organization.address.city
 Organization (Organization): Organization.address.postalCode
 Organization (Organization): Organization.address.country
+Organization (Organization): Organization.endpoint
+Organization (Organization): Organization.name
+Organization (Organization): Organization.name or Organization.alias
+Organization (Organization): Organization.address.use
+Organization (Organization): Organization.address.city
 Patient (Patient): Patient.birthDate
 Patient (Patient): Patient.deceased.exists()
 Patient (Patient): Patient.address.state
@@ -1043,6 +1072,7 @@ Practitioner (Practitioner): Practitioner.gender
 Practitioner (Practitioner): Practitioner.active
 Practitioner (Practitioner): Practitioner.address.postalCode
 Practitioner (Practitioner): Practitioner.address.country
+Practitioner (Practitioner): Practitioner.role.endpoint
 Practitioner (Practitioner): Practitioner.name
 Practitioner (Practitioner): Practitioner.telecom.where(system='phone') or Practitioner.role.telecom.where(system='phone')
 Practitioner (Practitioner): Practitioner.role.organization
@@ -1056,6 +1086,7 @@ Practitioner (Practitioner): Practitioner.communication
 Practitioner (Practitioner): Practitioner.telecom.where(system='email') or Practitioner.role.telecom.where(system='email')
 PractitionerRole (PractitionerRole): PractitionerRole.identifier
 PractitionerRole (PractitionerRole): PractitionerRole.specialty
+PractitionerRole (PractitionerRole): PractitionerRole.endpoint
 PractitionerRole (PractitionerRole): PractitionerRole.code
 PractitionerRole (PractitionerRole): PractitionerRole.practitioner
 PractitionerRole (PractitionerRole): PractitionerRole.telecom.where(system='phone')
@@ -1157,7 +1188,7 @@ ResearchStudy (ResearchStudy): ResearchStudy.partOf
 ResearchStudy (ResearchStudy): ResearchStudy.sponsor
 ResearchStudy (ResearchStudy): ResearchStudy.jurisdiction
 ResearchStudy (ResearchStudy): ResearchStudy.focus
-ResearchStudy (ResearchStudy): ResearchStudy.principleInvestigator
+ResearchStudy (ResearchStudy): ResearchStudy.principalInvestigator
 ResearchStudy (ResearchStudy): ResearchStudy.title
 ResearchStudy (ResearchStudy): ResearchStudy.protocol
 ResearchStudy (ResearchStudy): ResearchStudy.site
@@ -1186,20 +1217,22 @@ SearchParameter (SearchParameter): SearchParameter.date
 SearchParameter (SearchParameter): SearchParameter.code
 SearchParameter (SearchParameter): SearchParameter.jurisdiction
 SearchParameter (SearchParameter): SearchParameter.description
+SearchParameter (SearchParameter): SearchParameter.derivedFrom
 SearchParameter (SearchParameter): SearchParameter.type
 SearchParameter (SearchParameter): SearchParameter.version
 SearchParameter (SearchParameter): SearchParameter.url
 SearchParameter (SearchParameter): SearchParameter.target
-SearchParameter (SearchParameter): SearchParameter.component
+SearchParameter (SearchParameter): SearchParameter.component.definition
 SearchParameter (SearchParameter): SearchParameter.name
 SearchParameter (SearchParameter): SearchParameter.publisher
 SearchParameter (SearchParameter): SearchParameter.status
 SearchParameter (SearchParameter): SearchParameter.base
 Sequence (Sequence): Sequence.identifier
+Sequence (Sequence): Sequence.variant
 Sequence (Sequence): Sequence.patient
 Sequence (Sequence): Sequence.referenceSeq.chromosome
-Sequence (Sequence): Sequence.variant.start
-Sequence (Sequence): Sequence.variant.end
+Sequence (Sequence): Sequence.referenceSeq.windowStart
+Sequence (Sequence): Sequence.referenceSeq.windowEnd
 Sequence (Sequence): Sequence.type
 ServiceDefinition (ServiceDefinition): ServiceDefinition.date
 ServiceDefinition (ServiceDefinition): ServiceDefinition.identifier
@@ -1288,19 +1321,26 @@ SupplyRequest (SupplyRequest): SupplyRequest.supplier
 SupplyRequest (SupplyRequest): SupplyRequest.source
 SupplyRequest (SupplyRequest): SupplyRequest.status
 Task (Task): Task.owner
-Task (Task): Task.requester
+Task (Task): Task.requester.agent
 Task (Task): Task.identifier
-Task (Task): Task.parent
+Task (Task): Task.businessStatus
+Task (Task): Task.executionPeriod
 Task (Task): Task.code
 Task (Task): Task.performerType
-Task (Task): Task.created
-Task (Task): Task.focus
-Task (Task): Task.priority
-Task (Task): Task.stage
-Task (Task): Task.statusReason
 Task (Task): Task.for
+Task (Task): Task.focus
+Task (Task): Task.partOf
+Task (Task): Task.priority
+Task (Task): Task.authoredOn
+Task (Task): Task.intent
+Task (Task): Task.groupIdentifier
+Task (Task): Task.basedOn
+Task (Task): Task.for
+Task (Task): Task.statusReason
+Task (Task): Task.definition.as(Reference)
+Task (Task): Task.requester.onBehalfOf
+Task (Task): Task.context
 Task (Task): Task.lastModified
-Task (Task): Task.definition
 Task (Task): Task.status
 TestReport (TestReport): TestReport.identifier
 TestReport (TestReport): TestReport.name

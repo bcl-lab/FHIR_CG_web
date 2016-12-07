@@ -46,6 +46,7 @@
       <sch:assert test="not(f:type/@value='display' and f:concept)">Display items cannot have a &quot;concept&quot; asserted (inherited)</sch:assert>
       <sch:assert test="f:type/@value=('boolean', 'decimal', 'integer', 'open-choice', 'string', 'text', 'url') or not(f:maxLength)">Maximum length can only be declared for simple question types (inherited)</sch:assert>
       <sch:assert test="not((f:type/@value='group' and not(f:item)) or (f:type/@value='display' and f:item))">Group items must have nested items, display items cannot have nested items (inherited)</sch:assert>
+      <sch:assert test="not(exists(f:type)) or exists(f:definition)">Type is required if a definition is not provided (inherited)</sch:assert>
     </sch:rule>
   </sch:pattern>
   <sch:pattern>

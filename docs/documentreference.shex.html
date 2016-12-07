@@ -3,7 +3,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>Documentreference.shex - FHIR v1.7.0</title>
+  <title>Documentreference.shex - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -181,6 +181,18 @@ start=@&lt;DocumentReference&gt; AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
+# Document referenced
+&lt;DocumentReference.content&gt; CLOSED {
+    fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
+    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @&lt;Extension&gt;*;   # Extensions that cannot be ignored
+    fhir:DocumentReference.content.attachment @&lt;Attachment&gt;;  # Where to access the document
+    fhir:DocumentReference.content.format @&lt;Coding&gt;*;  # Format/content rules for the 
+                                            # document 
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
 # Relationships to other documents
 &lt;DocumentReference.relatesTo&gt; CLOSED {
     fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
@@ -191,18 +203,6 @@ start=@&lt;DocumentReference&gt; AND {fhir:nodeRole [fhir:treeRoot]}
     	{fhir:value @fhirvs:document-relationship-type};  # replaces | transforms | signs | 
                                             # appends 
     fhir:DocumentReference.relatesTo.target @&lt;Reference&gt;;  # Target of the relationship
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
-# Document referenced
-&lt;DocumentReference.content&gt; CLOSED {
-    fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
-    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @&lt;Extension&gt;*;   # Extensions that cannot be ignored
-    fhir:DocumentReference.content.attachment @&lt;Attachment&gt;;  # Where to access the document
-    fhir:DocumentReference.content.format @&lt;Coding&gt;*;  # Format/content rules for the 
-                                            # document 
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -542,11 +542,11 @@ start=@&lt;DocumentReference&gt; AND {fhir:nodeRole [fhir:treeRoot]}
 
 #---------------------- Value Sets ------------------------
 
-# The workflow/clinical status of the composition.
-fhirvs:composition-status [&quot;preliminary&quot; &quot;final&quot; &quot;amended&quot; &quot;entered-in-error&quot;]
-
 # The status of the document reference.
 fhirvs:document-reference-status [&quot;current&quot; &quot;superseded&quot; &quot;entered-in-error&quot;]
+
+# The workflow/clinical status of the composition.
+fhirvs:composition-status [&quot;preliminary&quot; &quot;final&quot; &quot;amended&quot; &quot;entered-in-error&quot;]
 
 # The type of relationship between documents.
 fhirvs:document-relationship-type [&quot;replaces&quot; &quot;transforms&quot; &quot;signs&quot; &quot;appends&quot;]
@@ -581,7 +581,7 @@ of the specification.
 		<div class="container"><!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:32-0500. <a href="qa.html">QA Page</a>
+        © HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:21-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search</a> | 

@@ -3,7 +3,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>Paymentreconciliation-questionnaire.json - FHIR v1.7.0</title>
+  <title>Paymentreconciliation-questionnaire.json - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -124,7 +124,7 @@
     }
   ],
   &quot;status&quot;: &quot;draft&quot;,
-  &quot;date&quot;: &quot;2016-11-28T17:29:55-05:00&quot;,
+  &quot;date&quot;: &quot;2016-12-07T14:18:58-05:00&quot;,
   &quot;publisher&quot;: &quot;Health Level Seven International (Financial Management)&quot;,
   &quot;item&quot;: [
     {
@@ -485,10 +485,6 @@
         {
           &quot;extension&quot;: [
             {
-              &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-minOccurs&quot;,
-              &quot;valueInteger&quot;: 1
-            },
-            {
               &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs&quot;,
               &quot;valueInteger&quot;: 1
             },
@@ -499,7 +495,7 @@
           ],
           &quot;linkId&quot;: &quot;PaymentReconciliation.status&quot;,
           &quot;type&quot;: &quot;group&quot;,
-          &quot;required&quot;: true,
+          &quot;required&quot;: false,
           &quot;repeats&quot;: true,
           &quot;item&quot;: [
             {
@@ -524,6 +520,153 @@
               &quot;linkId&quot;: &quot;PaymentReconciliation.status.value&quot;,
               &quot;text&quot;: &quot;status&quot;,
               &quot;type&quot;: &quot;choice&quot;,
+              &quot;required&quot;: false,
+              &quot;repeats&quot;: false
+            }
+          ]
+        },
+        {
+          &quot;extension&quot;: [
+            {
+              &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs&quot;,
+              &quot;valueInteger&quot;: 1
+            },
+            {
+              &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType&quot;,
+              &quot;valueString&quot;: &quot;Period&quot;
+            }
+          ],
+          &quot;linkId&quot;: &quot;PaymentReconciliation.period&quot;,
+          &quot;text&quot;: &quot;Period covered&quot;,
+          &quot;type&quot;: &quot;group&quot;,
+          &quot;required&quot;: false,
+          &quot;repeats&quot;: true,
+          &quot;item&quot;: [
+            {
+              &quot;extension&quot;: [
+                {
+                  &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl&quot;,
+                  &quot;valueCodeableConcept&quot;: {
+                    &quot;coding&quot;: [
+                      {
+                        &quot;system&quot;: &quot;http://hl7.org/fhir/questionnaire-item-control&quot;,
+                        &quot;code&quot;: &quot;flyover&quot;,
+                        &quot;display&quot;: &quot;Fly-over&quot;
+                      }
+                    ]
+                  }
+                }
+              ],
+              &quot;text&quot;: &quot;The period of time for which payments have been gathered into this bulk payment for settlement.&quot;,
+              &quot;type&quot;: &quot;display&quot;
+            },
+            {
+              &quot;linkId&quot;: &quot;PaymentReconciliation.period.low&quot;,
+              &quot;text&quot;: &quot;start:&quot;,
+              &quot;type&quot;: &quot;dateTime&quot;,
+              &quot;required&quot;: false,
+              &quot;repeats&quot;: false
+            },
+            {
+              &quot;linkId&quot;: &quot;PaymentReconciliation.period.end&quot;,
+              &quot;text&quot;: &quot;end:&quot;,
+              &quot;type&quot;: &quot;dateTime&quot;,
+              &quot;required&quot;: false,
+              &quot;repeats&quot;: false
+            }
+          ]
+        },
+        {
+          &quot;extension&quot;: [
+            {
+              &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs&quot;,
+              &quot;valueInteger&quot;: 1
+            },
+            {
+              &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType&quot;,
+              &quot;valueString&quot;: &quot;datetime&quot;
+            }
+          ],
+          &quot;linkId&quot;: &quot;PaymentReconciliation.created&quot;,
+          &quot;type&quot;: &quot;group&quot;,
+          &quot;required&quot;: false,
+          &quot;repeats&quot;: true,
+          &quot;item&quot;: [
+            {
+              &quot;extension&quot;: [
+                {
+                  &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl&quot;,
+                  &quot;valueCodeableConcept&quot;: {
+                    &quot;coding&quot;: [
+                      {
+                        &quot;system&quot;: &quot;http://hl7.org/fhir/questionnaire-item-control&quot;,
+                        &quot;code&quot;: &quot;flyover&quot;,
+                        &quot;display&quot;: &quot;Fly-over&quot;
+                      }
+                    ]
+                  }
+                }
+              ],
+              &quot;text&quot;: &quot;The date when the enclosed suite of services were performed or completed.&quot;,
+              &quot;type&quot;: &quot;display&quot;
+            },
+            {
+              &quot;linkId&quot;: &quot;PaymentReconciliation.created.value&quot;,
+              &quot;text&quot;: &quot;Creation date&quot;,
+              &quot;type&quot;: &quot;dateTime&quot;,
+              &quot;required&quot;: false,
+              &quot;repeats&quot;: false
+            }
+          ]
+        },
+        {
+          &quot;extension&quot;: [
+            {
+              &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs&quot;,
+              &quot;valueInteger&quot;: 1
+            },
+            {
+              &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType&quot;,
+              &quot;valueString&quot;: &quot;Reference&quot;
+            }
+          ],
+          &quot;linkId&quot;: &quot;PaymentReconciliation.organization&quot;,
+          &quot;type&quot;: &quot;group&quot;,
+          &quot;required&quot;: false,
+          &quot;repeats&quot;: true,
+          &quot;item&quot;: [
+            {
+              &quot;extension&quot;: [
+                {
+                  &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl&quot;,
+                  &quot;valueCodeableConcept&quot;: {
+                    &quot;coding&quot;: [
+                      {
+                        &quot;system&quot;: &quot;http://hl7.org/fhir/questionnaire-item-control&quot;,
+                        &quot;code&quot;: &quot;flyover&quot;,
+                        &quot;display&quot;: &quot;Fly-over&quot;
+                      }
+                    ]
+                  }
+                }
+              ],
+              &quot;text&quot;: &quot;The Insurer who produced this adjudicated response.&quot;,
+              &quot;type&quot;: &quot;display&quot;
+            },
+            {
+              &quot;extension&quot;: [
+                {
+                  &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-allowedResource&quot;,
+                  &quot;valueCode&quot;: &quot;Organization&quot;
+                },
+                {
+                  &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-referenceFilter&quot;,
+                  &quot;valueString&quot;: &quot;subject=$subj&amp;patient=$subj&amp;encounter=$encounter&quot;
+                }
+              ],
+              &quot;linkId&quot;: &quot;PaymentReconciliation.organization.value&quot;,
+              &quot;text&quot;: &quot;Insurer&quot;,
+              &quot;type&quot;: &quot;reference&quot;,
               &quot;required&quot;: false,
               &quot;repeats&quot;: false
             }
@@ -590,10 +733,11 @@
             },
             {
               &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType&quot;,
-              &quot;valueString&quot;: &quot;code&quot;
+              &quot;valueString&quot;: &quot;CodeableConcept&quot;
             }
           ],
           &quot;linkId&quot;: &quot;PaymentReconciliation.outcome&quot;,
+          &quot;text&quot;: &quot;complete | error | partial&quot;,
           &quot;type&quot;: &quot;group&quot;,
           &quot;required&quot;: false,
           &quot;repeats&quot;: true,
@@ -617,9 +761,16 @@
               &quot;type&quot;: &quot;display&quot;
             },
             {
-              &quot;linkId&quot;: &quot;PaymentReconciliation.outcome.value&quot;,
-              &quot;text&quot;: &quot;outcome&quot;,
+              &quot;linkId&quot;: &quot;PaymentReconciliation.outcome.coding&quot;,
+              &quot;text&quot;: &quot;code:&quot;,
               &quot;type&quot;: &quot;choice&quot;,
+              &quot;required&quot;: false,
+              &quot;repeats&quot;: false
+            },
+            {
+              &quot;linkId&quot;: &quot;PaymentReconciliation.outcome.text&quot;,
+              &quot;text&quot;: &quot;text:&quot;,
+              &quot;type&quot;: &quot;string&quot;,
               &quot;required&quot;: false,
               &quot;repeats&quot;: false
             }
@@ -663,239 +814,6 @@
               &quot;linkId&quot;: &quot;PaymentReconciliation.disposition.value&quot;,
               &quot;text&quot;: &quot;Disposition Message&quot;,
               &quot;type&quot;: &quot;string&quot;,
-              &quot;required&quot;: false,
-              &quot;repeats&quot;: false
-            }
-          ]
-        },
-        {
-          &quot;extension&quot;: [
-            {
-              &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs&quot;,
-              &quot;valueInteger&quot;: 1
-            },
-            {
-              &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType&quot;,
-              &quot;valueString&quot;: &quot;Coding&quot;
-            }
-          ],
-          &quot;linkId&quot;: &quot;PaymentReconciliation.ruleset&quot;,
-          &quot;type&quot;: &quot;group&quot;,
-          &quot;required&quot;: false,
-          &quot;repeats&quot;: true,
-          &quot;item&quot;: [
-            {
-              &quot;extension&quot;: [
-                {
-                  &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl&quot;,
-                  &quot;valueCodeableConcept&quot;: {
-                    &quot;coding&quot;: [
-                      {
-                        &quot;system&quot;: &quot;http://hl7.org/fhir/questionnaire-item-control&quot;,
-                        &quot;code&quot;: &quot;flyover&quot;,
-                        &quot;display&quot;: &quot;Fly-over&quot;
-                      }
-                    ]
-                  }
-                }
-              ],
-              &quot;text&quot;: &quot;The version of the style of resource contents. This should be mapped to the allowable profiles for this and supporting resources.&quot;,
-              &quot;type&quot;: &quot;display&quot;
-            },
-            {
-              &quot;linkId&quot;: &quot;PaymentReconciliation.ruleset.value&quot;,
-              &quot;text&quot;: &quot;Resource version&quot;,
-              &quot;type&quot;: &quot;open-choice&quot;,
-              &quot;required&quot;: false,
-              &quot;repeats&quot;: false
-            }
-          ]
-        },
-        {
-          &quot;extension&quot;: [
-            {
-              &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs&quot;,
-              &quot;valueInteger&quot;: 1
-            },
-            {
-              &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType&quot;,
-              &quot;valueString&quot;: &quot;Coding&quot;
-            }
-          ],
-          &quot;linkId&quot;: &quot;PaymentReconciliation.originalRuleset&quot;,
-          &quot;type&quot;: &quot;group&quot;,
-          &quot;required&quot;: false,
-          &quot;repeats&quot;: true,
-          &quot;item&quot;: [
-            {
-              &quot;extension&quot;: [
-                {
-                  &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl&quot;,
-                  &quot;valueCodeableConcept&quot;: {
-                    &quot;coding&quot;: [
-                      {
-                        &quot;system&quot;: &quot;http://hl7.org/fhir/questionnaire-item-control&quot;,
-                        &quot;code&quot;: &quot;flyover&quot;,
-                        &quot;display&quot;: &quot;Fly-over&quot;
-                      }
-                    ]
-                  }
-                }
-              ],
-              &quot;text&quot;: &quot;The style (standard) and version of the original material which was converted into this resource.&quot;,
-              &quot;type&quot;: &quot;display&quot;
-            },
-            {
-              &quot;linkId&quot;: &quot;PaymentReconciliation.originalRuleset.value&quot;,
-              &quot;text&quot;: &quot;Original version&quot;,
-              &quot;type&quot;: &quot;open-choice&quot;,
-              &quot;required&quot;: false,
-              &quot;repeats&quot;: false
-            }
-          ]
-        },
-        {
-          &quot;extension&quot;: [
-            {
-              &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs&quot;,
-              &quot;valueInteger&quot;: 1
-            },
-            {
-              &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType&quot;,
-              &quot;valueString&quot;: &quot;datetime&quot;
-            }
-          ],
-          &quot;linkId&quot;: &quot;PaymentReconciliation.created&quot;,
-          &quot;type&quot;: &quot;group&quot;,
-          &quot;required&quot;: false,
-          &quot;repeats&quot;: true,
-          &quot;item&quot;: [
-            {
-              &quot;extension&quot;: [
-                {
-                  &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl&quot;,
-                  &quot;valueCodeableConcept&quot;: {
-                    &quot;coding&quot;: [
-                      {
-                        &quot;system&quot;: &quot;http://hl7.org/fhir/questionnaire-item-control&quot;,
-                        &quot;code&quot;: &quot;flyover&quot;,
-                        &quot;display&quot;: &quot;Fly-over&quot;
-                      }
-                    ]
-                  }
-                }
-              ],
-              &quot;text&quot;: &quot;The date when the enclosed suite of services were performed or completed.&quot;,
-              &quot;type&quot;: &quot;display&quot;
-            },
-            {
-              &quot;linkId&quot;: &quot;PaymentReconciliation.created.value&quot;,
-              &quot;text&quot;: &quot;Creation date&quot;,
-              &quot;type&quot;: &quot;dateTime&quot;,
-              &quot;required&quot;: false,
-              &quot;repeats&quot;: false
-            }
-          ]
-        },
-        {
-          &quot;extension&quot;: [
-            {
-              &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs&quot;,
-              &quot;valueInteger&quot;: 1
-            },
-            {
-              &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType&quot;,
-              &quot;valueString&quot;: &quot;Period&quot;
-            }
-          ],
-          &quot;linkId&quot;: &quot;PaymentReconciliation.period&quot;,
-          &quot;text&quot;: &quot;Period covered&quot;,
-          &quot;type&quot;: &quot;group&quot;,
-          &quot;required&quot;: false,
-          &quot;repeats&quot;: true,
-          &quot;item&quot;: [
-            {
-              &quot;extension&quot;: [
-                {
-                  &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl&quot;,
-                  &quot;valueCodeableConcept&quot;: {
-                    &quot;coding&quot;: [
-                      {
-                        &quot;system&quot;: &quot;http://hl7.org/fhir/questionnaire-item-control&quot;,
-                        &quot;code&quot;: &quot;flyover&quot;,
-                        &quot;display&quot;: &quot;Fly-over&quot;
-                      }
-                    ]
-                  }
-                }
-              ],
-              &quot;text&quot;: &quot;The period of time for which payments have been gathered into this bulk payment for settlement.&quot;,
-              &quot;type&quot;: &quot;display&quot;
-            },
-            {
-              &quot;linkId&quot;: &quot;PaymentReconciliation.period.low&quot;,
-              &quot;text&quot;: &quot;start:&quot;,
-              &quot;type&quot;: &quot;dateTime&quot;,
-              &quot;required&quot;: false,
-              &quot;repeats&quot;: false
-            },
-            {
-              &quot;linkId&quot;: &quot;PaymentReconciliation.period.end&quot;,
-              &quot;text&quot;: &quot;end:&quot;,
-              &quot;type&quot;: &quot;dateTime&quot;,
-              &quot;required&quot;: false,
-              &quot;repeats&quot;: false
-            }
-          ]
-        },
-        {
-          &quot;extension&quot;: [
-            {
-              &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs&quot;,
-              &quot;valueInteger&quot;: 1
-            },
-            {
-              &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType&quot;,
-              &quot;valueString&quot;: &quot;Reference&quot;
-            }
-          ],
-          &quot;linkId&quot;: &quot;PaymentReconciliation.organization&quot;,
-          &quot;type&quot;: &quot;group&quot;,
-          &quot;required&quot;: false,
-          &quot;repeats&quot;: true,
-          &quot;item&quot;: [
-            {
-              &quot;extension&quot;: [
-                {
-                  &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl&quot;,
-                  &quot;valueCodeableConcept&quot;: {
-                    &quot;coding&quot;: [
-                      {
-                        &quot;system&quot;: &quot;http://hl7.org/fhir/questionnaire-item-control&quot;,
-                        &quot;code&quot;: &quot;flyover&quot;,
-                        &quot;display&quot;: &quot;Fly-over&quot;
-                      }
-                    ]
-                  }
-                }
-              ],
-              &quot;text&quot;: &quot;The Insurer who produced this adjudicated response.&quot;,
-              &quot;type&quot;: &quot;display&quot;
-            },
-            {
-              &quot;extension&quot;: [
-                {
-                  &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-allowedResource&quot;,
-                  &quot;valueCode&quot;: &quot;Organization&quot;
-                },
-                {
-                  &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-referenceFilter&quot;,
-                  &quot;valueString&quot;: &quot;subject=$subj&amp;patient=$subj&amp;encounter=$encounter&quot;
-                }
-              ],
-              &quot;linkId&quot;: &quot;PaymentReconciliation.organization.value&quot;,
-              &quot;text&quot;: &quot;Insurer&quot;,
-              &quot;type&quot;: &quot;reference&quot;,
               &quot;required&quot;: false,
               &quot;repeats&quot;: false
             }
@@ -1141,10 +1059,11 @@
                 },
                 {
                   &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType&quot;,
-                  &quot;valueString&quot;: &quot;Coding&quot;
+                  &quot;valueString&quot;: &quot;CodeableConcept&quot;
                 }
               ],
               &quot;linkId&quot;: &quot;PaymentReconciliation.detail.type&quot;,
+              &quot;text&quot;: &quot;Type code&quot;,
               &quot;type&quot;: &quot;group&quot;,
               &quot;required&quot;: true,
               &quot;repeats&quot;: true,
@@ -1168,9 +1087,16 @@
                   &quot;type&quot;: &quot;display&quot;
                 },
                 {
-                  &quot;linkId&quot;: &quot;PaymentReconciliation.detail.type.value&quot;,
-                  &quot;text&quot;: &quot;Type code&quot;,
+                  &quot;linkId&quot;: &quot;PaymentReconciliation.detail.type.coding&quot;,
+                  &quot;text&quot;: &quot;code:&quot;,
                   &quot;type&quot;: &quot;open-choice&quot;,
+                  &quot;required&quot;: false,
+                  &quot;repeats&quot;: false
+                },
+                {
+                  &quot;linkId&quot;: &quot;PaymentReconciliation.detail.type.text&quot;,
+                  &quot;text&quot;: &quot;text:&quot;,
+                  &quot;type&quot;: &quot;string&quot;,
                   &quot;required&quot;: false,
                   &quot;repeats&quot;: false
                 }
@@ -1513,10 +1439,11 @@
             },
             {
               &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType&quot;,
-              &quot;valueString&quot;: &quot;Coding&quot;
+              &quot;valueString&quot;: &quot;CodeableConcept&quot;
             }
           ],
           &quot;linkId&quot;: &quot;PaymentReconciliation.form&quot;,
+          &quot;text&quot;: &quot;Printed Form Identifier&quot;,
           &quot;type&quot;: &quot;group&quot;,
           &quot;required&quot;: false,
           &quot;repeats&quot;: true,
@@ -1540,9 +1467,16 @@
               &quot;type&quot;: &quot;display&quot;
             },
             {
-              &quot;linkId&quot;: &quot;PaymentReconciliation.form.value&quot;,
-              &quot;text&quot;: &quot;Printed Form Identifier&quot;,
+              &quot;linkId&quot;: &quot;PaymentReconciliation.form.coding&quot;,
+              &quot;text&quot;: &quot;code:&quot;,
               &quot;type&quot;: &quot;choice&quot;,
+              &quot;required&quot;: false,
+              &quot;repeats&quot;: false
+            },
+            {
+              &quot;linkId&quot;: &quot;PaymentReconciliation.form.text&quot;,
+              &quot;text&quot;: &quot;text:&quot;,
+              &quot;type&quot;: &quot;string&quot;,
               &quot;required&quot;: false,
               &quot;repeats&quot;: false
             }
@@ -1550,10 +1484,6 @@
         },
         {
           &quot;extension&quot;: [
-            {
-              &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-minOccurs&quot;,
-              &quot;valueInteger&quot;: 1
-            },
             {
               &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs&quot;,
               &quot;valueInteger&quot;: 1
@@ -1566,7 +1496,7 @@
           &quot;linkId&quot;: &quot;PaymentReconciliation.total&quot;,
           &quot;text&quot;: &quot;Total amount of Payment&quot;,
           &quot;type&quot;: &quot;group&quot;,
-          &quot;required&quot;: true,
+          &quot;required&quot;: false,
           &quot;repeats&quot;: true,
           &quot;item&quot;: [
             {
@@ -1754,10 +1684,11 @@
                 },
                 {
                   &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType&quot;,
-                  &quot;valueString&quot;: &quot;Coding&quot;
+                  &quot;valueString&quot;: &quot;CodeableConcept&quot;
                 }
               ],
               &quot;linkId&quot;: &quot;PaymentReconciliation.note.type&quot;,
+              &quot;text&quot;: &quot;display | print | printoper&quot;,
               &quot;type&quot;: &quot;group&quot;,
               &quot;required&quot;: false,
               &quot;repeats&quot;: true,
@@ -1781,9 +1712,16 @@
                   &quot;type&quot;: &quot;display&quot;
                 },
                 {
-                  &quot;linkId&quot;: &quot;PaymentReconciliation.note.type.value&quot;,
-                  &quot;text&quot;: &quot;display | print | printoper&quot;,
+                  &quot;linkId&quot;: &quot;PaymentReconciliation.note.type.coding&quot;,
+                  &quot;text&quot;: &quot;code:&quot;,
                   &quot;type&quot;: &quot;choice&quot;,
+                  &quot;required&quot;: false,
+                  &quot;repeats&quot;: false
+                },
+                {
+                  &quot;linkId&quot;: &quot;PaymentReconciliation.note.type.text&quot;,
+                  &quot;text&quot;: &quot;text:&quot;,
+                  &quot;type&quot;: &quot;string&quot;,
                   &quot;required&quot;: false,
                   &quot;repeats&quot;: false
                 }
@@ -1862,7 +1800,7 @@ of the specification.
 		<div class="container"><!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:33-0500. <a href="qa.html">QA Page</a>
+        © HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:28-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search</a> | 

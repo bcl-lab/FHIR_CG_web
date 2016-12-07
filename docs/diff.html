@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>Diff - FHIR v1.7.0</title>
+  <title>Diff - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -168,16 +168,19 @@ No Changes
   </tr>
   <tr class="diff-new-item">
     <td class="diff-left">ContactDetail</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-item">
     <td class="diff-left">ContactPoint</td>
     <td class="diff-right"/>
-No Changes
+  </tr>
+  <tr class="diff-entry">
+    <td class="diff-left">ContactPoint.system</td>
+    <td class="diff-right">Change codes from {phone|fax|email|pager|other} to {phone|fax|email|pager|url|other}</td>
   </tr>
   <tr class="diff-new-item">
     <td class="diff-left">Contributor</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-item">
     <td class="diff-left">Count</td>
@@ -185,7 +188,7 @@ No Changes
   </tr>
   <tr class="diff-new-item">
     <td class="diff-left">DataRequirement</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-item">
     <td class="diff-left">Distance</td>
@@ -193,7 +196,7 @@ No Changes
   </tr>
   <tr class="diff-new-item">
     <td class="diff-left">DosageInstruction</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-item">
     <td class="diff-left">Duration</td>
@@ -217,7 +220,7 @@ No Changes
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ElementDefinition.sliceName</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">ElementDefinition.contentReference</td>
@@ -239,11 +242,11 @@ Change binding strength from required to extensible
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ElementDefinition.type.targetProfile</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ElementDefinition.type.versioning</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">ElementDefinition.defaultValue[x]</td>
@@ -258,8 +261,20 @@ Change binding strength from required to extensible
     <td class="diff-right">Add Age, Add Count, Add Distance, Add Duration, Add Money</td>
   </tr>
   <tr class="diff-entry">
-    <td class="diff-left">ElementDefinition.example[x]</td>
-    <td class="diff-right">Add Age, Add Count, Add Distance, Add Duration, Add Money</td>
+    <td class="diff-left">ElementDefinition.example</td>
+    <td class="diff-right">
+Renamed from example[x] to example      <br/>
+Max Cardinality changed from 1 to *      <br/>
+Remove boolean, Remove integer, Remove decimal, Remove base64Binary, Remove instant, Remove string, Remove uri, Remove date, Remove dateTime, Remove time, Remove code, Remove oid, Remove id, Remove unsignedInt, Remove positiveInt, Remove markdown, Remove Annotation, Remove Attachment, Remove Identifier, Remove CodeableConcept, Remove Coding, Remove Quantity, Remove Range, Remove Period, Remove Ratio, Remove SampledData, Remove Signature, Remove HumanName, Remove Address, Remove ContactPoint, Remove Timing, Remove Reference, Remove Meta
+    </td>
+  </tr>
+  <tr class="diff-new">
+    <td class="diff-left">ElementDefinition.example.label</td>
+    <td class="diff-right">added Element</td>
+  </tr>
+  <tr class="diff-new">
+    <td class="diff-left">ElementDefinition.example.value[x]</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">ElementDefinition.minValue[x]</td>
@@ -271,7 +286,7 @@ Change binding strength from required to extensible
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ElementDefinition.constraint.expression</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">ElementDefinition.constraint.xpath</td>
@@ -279,7 +294,7 @@ Change binding strength from required to extensible
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ElementDefinition.constraint.source</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-del">
     <td class="diff-left">ElementDefinition.name</td>
@@ -296,7 +311,10 @@ Change binding strength from required to extensible
   <tr class="diff-item">
     <td class="diff-left">HumanName</td>
     <td class="diff-right"/>
-No Changes
+  </tr>
+  <tr class="diff-entry">
+    <td class="diff-left">HumanName.family</td>
+    <td class="diff-right">Max Cardinality changed from * to 1</td>
   </tr>
   <tr class="diff-item">
     <td class="diff-left">Identifier</td>
@@ -319,7 +337,7 @@ No Changes
   </tr>
   <tr class="diff-new-item">
     <td class="diff-left">ParameterDefinition</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-item">
     <td class="diff-left">Period</td>
@@ -347,11 +365,11 @@ No Changes
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Reference.identifier</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new-item">
     <td class="diff-left">RelatedArtifact</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-item">
     <td class="diff-left">SampledData</td>
@@ -364,7 +382,7 @@ No Changes
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Signature.onBehalfOf[x]</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">Signature.contentType</td>
@@ -389,19 +407,31 @@ No Changes
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Timing.repeat.countMax</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Timing.repeat.durationUnit</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Timing.repeat.periodUnit</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
+  </tr>
+  <tr class="diff-new">
+    <td class="diff-left">Timing.repeat.dayOfWeek</td>
+    <td class="diff-right">added Element</td>
+  </tr>
+  <tr class="diff-new">
+    <td class="diff-left">Timing.repeat.timeOfDay</td>
+    <td class="diff-right">added Element</td>
+  </tr>
+  <tr class="diff-entry">
+    <td class="diff-left">Timing.repeat.when</td>
+    <td class="diff-right">Change codes from {HS|WAKE|C|CM|CD|CV|AC|ACM|ACD|ACV|PC|PCM|PCD|PCV} to {MORN|AFT|EVE|NIGHT|HS|WAKE|C|CM|CD|CV|AC|ACM|ACD|ACV|PC|PCM|PCD|PCV}</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Timing.repeat.offset</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-del">
     <td class="diff-left">Timing.repeat.durationUnits</td>
@@ -413,11 +443,11 @@ No Changes
   </tr>
   <tr class="diff-new-item">
     <td class="diff-left">TriggerDefinition</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new-item">
     <td class="diff-left">UsageContext</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-item">
     <td class="diff-left">base64Binary</td>
@@ -489,7 +519,7 @@ No Changes
   </tr>
   <tr class="diff-new-item">
     <td class="diff-left">xhtml</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-title">
     <td colspan="2">Resources</td>
@@ -512,11 +542,27 @@ No Changes
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Account.coverage</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
+  </tr>
+  <tr class="diff-new">
+    <td class="diff-left">Account.guarantor</td>
+    <td class="diff-right">added Element</td>
+  </tr>
+  <tr class="diff-new">
+    <td class="diff-left">Account.guarantor.party</td>
+    <td class="diff-right">added Element</td>
+  </tr>
+  <tr class="diff-new">
+    <td class="diff-left">Account.guarantor.onHold</td>
+    <td class="diff-right">added Element</td>
+  </tr>
+  <tr class="diff-new">
+    <td class="diff-left">Account.guarantor.period</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new-item">
     <td class="diff-left">ActivityDefinition</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Resource</td>
   </tr>
   <tr class="diff-item">
     <td class="diff-left">AllergyIntolerance</td>
@@ -524,11 +570,11 @@ No Changes
   </tr>
   <tr class="diff-new">
     <td class="diff-left">AllergyIntolerance.clinicalStatus</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">AllergyIntolerance.verificationStatus</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">AllergyIntolerance.category</td>
@@ -543,7 +589,7 @@ Change codes from {food|medication|environment|other} to {food|medication|biolog
   </tr>
   <tr class="diff-new">
     <td class="diff-left">AllergyIntolerance.code</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">AllergyIntolerance.onset[x]</td>
@@ -554,11 +600,11 @@ Add Age, Add Period, Add Range, Add string
   </tr>
   <tr class="diff-new">
     <td class="diff-left">AllergyIntolerance.assertedDate</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">AllergyIntolerance.asserter</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">AllergyIntolerance.lastOccurrence</td>
@@ -602,15 +648,15 @@ Add Age, Add Period, Add Range, Add string
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Appointment.serviceCategory</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Appointment.serviceType</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Appointment.specialty</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">Appointment.appointmentType</td>
@@ -622,7 +668,7 @@ Add Age, Add Period, Add Range, Add string
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Appointment.created</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">Appointment.participant.type</td>
@@ -630,7 +676,7 @@ Add Age, Add Period, Add Range, Add string
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Appointment.requestedPeriod</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-item">
     <td class="diff-left">AppointmentResponse</td>
@@ -650,31 +696,31 @@ Add Age, Add Period, Add Range, Add string
   </tr>
   <tr class="diff-new">
     <td class="diff-left">AuditEvent.type</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">AuditEvent.subtype</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">AuditEvent.action</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">AuditEvent.recorded</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">AuditEvent.outcome</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">AuditEvent.outcomeDesc</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">AuditEvent.purposeOfEvent</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">AuditEvent.agent</td>
@@ -700,7 +746,10 @@ No Changes
   <tr class="diff-item">
     <td class="diff-left">Binary</td>
     <td class="diff-right"/>
-No Changes
+  </tr>
+  <tr class="diff-new">
+    <td class="diff-left">Binary.securityContext</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-item">
     <td class="diff-left">BodySite</td>
@@ -712,12 +761,16 @@ No Changes
     <td class="diff-right"/>
   </tr>
   <tr class="diff-new">
+    <td class="diff-left">Bundle.identifier</td>
+    <td class="diff-right">added Element</td>
+  </tr>
+  <tr class="diff-new">
     <td class="diff-left">Bundle.entry.response.outcome</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new-item">
     <td class="diff-left">CapabilityStatement</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Resource</td>
   </tr>
   <tr class="diff-item">
     <td class="diff-left">CarePlan</td>
@@ -727,17 +780,21 @@ No Changes
     <td class="diff-left">CarePlan.status</td>
     <td class="diff-right">Change codes from {proposed|draft|active|completed|cancelled} to {proposed|draft|active|suspended|completed|entered-in-error|cancelled|unknown}</td>
   </tr>
+  <tr class="diff-entry">
+    <td class="diff-left">CarePlan.subject</td>
+    <td class="diff-right">Min Cardinality changed from 0 to 1</td>
+  </tr>
   <tr class="diff-new">
     <td class="diff-left">CarePlan.careTeam</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">CarePlan.definition</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">CarePlan.activity.outcome</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">CarePlan.activity.reference</td>
@@ -745,7 +802,7 @@ No Changes
   </tr>
   <tr class="diff-new">
     <td class="diff-left">CarePlan.activity.detail.definition</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">CarePlan.activity.detail.status</td>
@@ -767,7 +824,7 @@ Default Value &quot;false&quot; added
   </tr>
   <tr class="diff-new-item">
     <td class="diff-left">CareTeam</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Resource</td>
   </tr>
   <tr class="diff-item">
     <td class="diff-left">Claim</td>
@@ -775,46 +832,59 @@ Default Value &quot;false&quot; added
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Claim.status</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">Claim.type</td>
     <td class="diff-right">
-Type changed from code to Coding      <br/>
+Min Cardinality changed from 1 to 0      <br/>
+Type changed from code to CodeableConcept      <br/>
 Change value set from http://hl7.org/fhir/ValueSet/claim-type-link to http://hl7.org/fhir/ValueSet/claim-type
     </td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Claim.subType</td>
-    <td class="diff-right">added</td>
-  </tr>
-  <tr class="diff-new">
-    <td class="diff-left">Claim.billablePeriod</td>
-    <td class="diff-right">added</td>
-  </tr>
-  <tr class="diff-new">
-    <td class="diff-left">Claim.insurer</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">Claim.use</td>
     <td class="diff-right">Change value set from http://hl7.org/fhir/ValueSet/claim-use-link to http://hl7.org/fhir/ValueSet/claim-use</td>
   </tr>
+  <tr class="diff-entry">
+    <td class="diff-left">Claim.patient</td>
+    <td class="diff-right">Min Cardinality changed from 1 to 0</td>
+  </tr>
+  <tr class="diff-new">
+    <td class="diff-left">Claim.billablePeriod</td>
+    <td class="diff-right">added Element</td>
+  </tr>
+  <tr class="diff-new">
+    <td class="diff-left">Claim.insurer</td>
+    <td class="diff-right">added Element</td>
+  </tr>
+  <tr class="diff-entry">
+    <td class="diff-left">Claim.priority</td>
+    <td class="diff-right">Type changed from Coding to CodeableConcept</td>
+  </tr>
+  <tr class="diff-entry">
+    <td class="diff-left">Claim.fundsReserve</td>
+    <td class="diff-right">Type changed from Coding to CodeableConcept</td>
+  </tr>
   <tr class="diff-new">
     <td class="diff-left">Claim.related</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Claim.related.claim</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Claim.related.relationship</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Claim.related.reference</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">Claim.prescription</td>
@@ -826,59 +896,125 @@ Change value set from http://hl7.org/fhir/ValueSet/claim-type-link to http://hl7
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">Claim.payee.type</td>
-    <td class="diff-right">Min Cardinality changed from 0 to 1</td>
+    <td class="diff-right">
+Min Cardinality changed from 0 to 1      <br/>
+Type changed from Coding to CodeableConcept
+    </td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Claim.payee.resourceType</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Claim.payee.party</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
+  </tr>
+  <tr class="diff-new">
+    <td class="diff-left">Claim.careTeam</td>
+    <td class="diff-right">added Element</td>
+  </tr>
+  <tr class="diff-new">
+    <td class="diff-left">Claim.careTeam.sequence</td>
+    <td class="diff-right">added Element</td>
+  </tr>
+  <tr class="diff-new">
+    <td class="diff-left">Claim.careTeam.provider</td>
+    <td class="diff-right">added Element</td>
+  </tr>
+  <tr class="diff-new">
+    <td class="diff-left">Claim.careTeam.responsible</td>
+    <td class="diff-right">added Element</td>
+  </tr>
+  <tr class="diff-new">
+    <td class="diff-left">Claim.careTeam.role</td>
+    <td class="diff-right">added Element</td>
+  </tr>
+  <tr class="diff-new">
+    <td class="diff-left">Claim.careTeam.qualification</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Claim.information</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Claim.information.category</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Claim.information.code</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Claim.information.timing[x]</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Claim.information.value[x]</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
+  </tr>
+  <tr class="diff-new">
+    <td class="diff-left">Claim.information.reason</td>
+    <td class="diff-right">added Element</td>
+  </tr>
+  <tr class="diff-entry">
+    <td class="diff-left">Claim.diagnosis.diagnosis[x]</td>
+    <td class="diff-right">
+Renamed from diagnosis to diagnosis[x]      <br/>
+Remove Coding, Add CodeableConcept, Add Reference(Condition)
+    </td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Claim.diagnosis.type</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
-    <td class="diff-left">Claim.diagnosis.drg</td>
-    <td class="diff-right">added</td>
+    <td class="diff-left">Claim.diagnosis.packageCode</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Claim.procedure</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Claim.procedure.sequence</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Claim.procedure.date</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Claim.procedure.procedure[x]</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
+  </tr>
+  <tr class="diff-new">
+    <td class="diff-left">Claim.insurance</td>
+    <td class="diff-right">added Element</td>
+  </tr>
+  <tr class="diff-new">
+    <td class="diff-left">Claim.insurance.sequence</td>
+    <td class="diff-right">added Element</td>
+  </tr>
+  <tr class="diff-new">
+    <td class="diff-left">Claim.insurance.focal</td>
+    <td class="diff-right">added Element</td>
+  </tr>
+  <tr class="diff-new">
+    <td class="diff-left">Claim.insurance.coverage</td>
+    <td class="diff-right">added Element</td>
+  </tr>
+  <tr class="diff-new">
+    <td class="diff-left">Claim.insurance.businessArrangement</td>
+    <td class="diff-right">added Element</td>
+  </tr>
+  <tr class="diff-new">
+    <td class="diff-left">Claim.insurance.preAuthRef</td>
+    <td class="diff-right">added Element</td>
+  </tr>
+  <tr class="diff-new">
+    <td class="diff-left">Claim.insurance.claimResponse</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">Claim.accident</td>
@@ -886,67 +1022,66 @@ Change value set from http://hl7.org/fhir/ValueSet/claim-type-link to http://hl7
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Claim.accident.date</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Claim.accident.type</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Claim.accident.location[x]</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Claim.employmentImpacted</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Claim.hospitalization</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
-    <td class="diff-left">Claim.item.careTeam</td>
-    <td class="diff-right">added</td>
+    <td class="diff-left">Claim.item.careTeamLinkId</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
-    <td class="diff-left">Claim.item.careTeam.provider</td>
-    <td class="diff-right">added</td>
+    <td class="diff-left">Claim.item.procedureLinkId</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
-    <td class="diff-left">Claim.item.careTeam.responsible</td>
-    <td class="diff-right">added</td>
-  </tr>
-  <tr class="diff-new">
-    <td class="diff-left">Claim.item.careTeam.role</td>
-    <td class="diff-right">added</td>
-  </tr>
-  <tr class="diff-new">
-    <td class="diff-left">Claim.item.careTeam.qualification</td>
-    <td class="diff-right">added</td>
+    <td class="diff-left">Claim.item.informationLinkId</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Claim.item.revenue</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Claim.item.category</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">Claim.item.service</td>
-    <td class="diff-right">Min Cardinality changed from 1 to 0</td>
+    <td class="diff-right">
+Min Cardinality changed from 1 to 0      <br/>
+Type changed from Coding to CodeableConcept
+    </td>
+  </tr>
+  <tr class="diff-entry">
+    <td class="diff-left">Claim.item.modifier</td>
+    <td class="diff-right">Type changed from Coding to CodeableConcept</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Claim.item.programCode</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Claim.item.serviced[x]</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Claim.item.location[x]</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">Claim.item.unitPrice</td>
@@ -963,25 +1098,36 @@ Max Cardinality changed from 1 to *      <br/>
 Type changed from Coding to Reference(Device)
     </td>
   </tr>
+  <tr class="diff-entry">
+    <td class="diff-left">Claim.item.bodySite</td>
+    <td class="diff-right">Type changed from Coding to CodeableConcept</td>
+  </tr>
+  <tr class="diff-entry">
+    <td class="diff-left">Claim.item.subSite</td>
+    <td class="diff-right">Type changed from Coding to CodeableConcept</td>
+  </tr>
   <tr class="diff-new">
     <td class="diff-left">Claim.item.detail.revenue</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Claim.item.detail.category</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">Claim.item.detail.service</td>
-    <td class="diff-right">Min Cardinality changed from 1 to 0</td>
+    <td class="diff-right">
+Min Cardinality changed from 1 to 0      <br/>
+Type changed from Coding to CodeableConcept
+    </td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Claim.item.detail.modifier</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Claim.item.detail.programCode</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">Claim.item.detail.unitPrice</td>
@@ -1000,23 +1146,26 @@ Type changed from Coding to Reference(Device)
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Claim.item.detail.subDetail.revenue</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Claim.item.detail.subDetail.category</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">Claim.item.detail.subDetail.service</td>
-    <td class="diff-right">Min Cardinality changed from 1 to 0</td>
+    <td class="diff-right">
+Min Cardinality changed from 1 to 0      <br/>
+Type changed from Coding to CodeableConcept
+    </td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Claim.item.detail.subDetail.modifier</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Claim.item.detail.subDetail.programCode</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">Claim.item.detail.subDetail.unitPrice</td>
@@ -1033,9 +1182,21 @@ Max Cardinality changed from 1 to *      <br/>
 Type changed from Coding to Reference(Device)
     </td>
   </tr>
+  <tr class="diff-entry">
+    <td class="diff-left">Claim.item.prosthesis.priorMaterial</td>
+    <td class="diff-right">Type changed from Coding to CodeableConcept</td>
+  </tr>
   <tr class="diff-new">
     <td class="diff-left">Claim.total</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
+  </tr>
+  <tr class="diff-del">
+    <td class="diff-left">Claim.ruleset</td>
+    <td class="diff-right">deleted</td>
+  </tr>
+  <tr class="diff-del">
+    <td class="diff-left">Claim.originalRuleset</td>
+    <td class="diff-right">deleted</td>
   </tr>
   <tr class="diff-del">
     <td class="diff-left">Claim.target</td>
@@ -1058,7 +1219,7 @@ Type changed from Coding to Reference(Device)
     <td class="diff-right">deleted</td>
   </tr>
   <tr class="diff-del">
-    <td class="diff-left">Claim.coverage.relationship</td>
+    <td class="diff-left">Claim.coverage</td>
     <td class="diff-right">deleted</td>
   </tr>
   <tr class="diff-del">
@@ -1090,7 +1251,15 @@ Type changed from Coding to Reference(Device)
     <td class="diff-right">deleted</td>
   </tr>
   <tr class="diff-del">
+    <td class="diff-left">Claim.item.points</td>
+    <td class="diff-right">deleted</td>
+  </tr>
+  <tr class="diff-del">
     <td class="diff-left">Claim.item.detail.type</td>
+    <td class="diff-right">deleted</td>
+  </tr>
+  <tr class="diff-del">
+    <td class="diff-left">Claim.item.detail.points</td>
     <td class="diff-right">deleted</td>
   </tr>
   <tr class="diff-del">
@@ -1098,7 +1267,15 @@ Type changed from Coding to Reference(Device)
     <td class="diff-right">deleted</td>
   </tr>
   <tr class="diff-del">
+    <td class="diff-left">Claim.item.detail.subDetail.points</td>
+    <td class="diff-right">deleted</td>
+  </tr>
+  <tr class="diff-del">
     <td class="diff-left">Claim.additionalMaterials</td>
+    <td class="diff-right">deleted</td>
+  </tr>
+  <tr class="diff-del">
+    <td class="diff-left">Claim.missingTeeth</td>
     <td class="diff-right">deleted</td>
   </tr>
   <tr class="diff-item">
@@ -1107,22 +1284,30 @@ Type changed from Coding to Reference(Device)
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ClaimResponse.status</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
+  </tr>
+  <tr class="diff-new">
+    <td class="diff-left">ClaimResponse.insurer</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">ClaimResponse.outcome</td>
     <td class="diff-right">
-Type changed from code to Coding      <br/>
+Type changed from code to CodeableConcept      <br/>
 Remove Binding http://hl7.org/fhir/ValueSet/remittance-outcome (required)
     </td>
   </tr>
+  <tr class="diff-entry">
+    <td class="diff-left">ClaimResponse.payeeType</td>
+    <td class="diff-right">Type changed from Coding to CodeableConcept</td>
+  </tr>
   <tr class="diff-new">
     <td class="diff-left">ClaimResponse.item.adjudication.category</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ClaimResponse.item.adjudication.reason</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">ClaimResponse.item.adjudication.amount</td>
@@ -1130,7 +1315,7 @@ Remove Binding http://hl7.org/fhir/ValueSet/remittance-outcome (required)
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ClaimResponse.item.detail.noteNumber</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">ClaimResponse.item.detail.adjudication</td>
@@ -1138,7 +1323,7 @@ Remove Binding http://hl7.org/fhir/ValueSet/remittance-outcome (required)
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ClaimResponse.item.detail.subDetail.noteNumber</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">ClaimResponse.item.detail.subDetail.adjudication</td>
@@ -1146,19 +1331,22 @@ Remove Binding http://hl7.org/fhir/ValueSet/remittance-outcome (required)
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ClaimResponse.addItem.revenue</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ClaimResponse.addItem.category</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">ClaimResponse.addItem.service</td>
-    <td class="diff-right">Min Cardinality changed from 1 to 0</td>
+    <td class="diff-right">
+Min Cardinality changed from 1 to 0      <br/>
+Type changed from Coding to CodeableConcept
+    </td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ClaimResponse.addItem.modifier</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">ClaimResponse.addItem.fee</td>
@@ -1166,7 +1354,7 @@ Remove Binding http://hl7.org/fhir/ValueSet/remittance-outcome (required)
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ClaimResponse.addItem.noteNumber</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">ClaimResponse.addItem.adjudication</td>
@@ -1174,19 +1362,22 @@ Remove Binding http://hl7.org/fhir/ValueSet/remittance-outcome (required)
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ClaimResponse.addItem.detail.revenue</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ClaimResponse.addItem.detail.category</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">ClaimResponse.addItem.detail.service</td>
-    <td class="diff-right">Min Cardinality changed from 1 to 0</td>
+    <td class="diff-right">
+Min Cardinality changed from 1 to 0      <br/>
+Type changed from Coding to CodeableConcept
+    </td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ClaimResponse.addItem.detail.modifier</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">ClaimResponse.addItem.detail.fee</td>
@@ -1194,7 +1385,7 @@ Remove Binding http://hl7.org/fhir/ValueSet/remittance-outcome (required)
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ClaimResponse.addItem.detail.noteNumber</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">ClaimResponse.addItem.detail.adjudication</td>
@@ -1202,7 +1393,10 @@ Remove Binding http://hl7.org/fhir/ValueSet/remittance-outcome (required)
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">ClaimResponse.error.code</td>
-    <td class="diff-right">Change binding strength from required to extensible</td>
+    <td class="diff-right">
+Type changed from Coding to CodeableConcept      <br/>
+Change binding strength from required to extensible
+    </td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">ClaimResponse.totalCost</td>
@@ -1218,35 +1412,87 @@ Remove Binding http://hl7.org/fhir/ValueSet/remittance-outcome (required)
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ClaimResponse.payment</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ClaimResponse.payment.type</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ClaimResponse.payment.adjustment</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ClaimResponse.payment.adjustmentReason</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ClaimResponse.payment.date</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ClaimResponse.payment.amount</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ClaimResponse.payment.identifier</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
+  </tr>
+  <tr class="diff-entry">
+    <td class="diff-left">ClaimResponse.form</td>
+    <td class="diff-right">Type changed from Coding to CodeableConcept</td>
+  </tr>
+  <tr class="diff-entry">
+    <td class="diff-left">ClaimResponse.note.type</td>
+    <td class="diff-right">Type changed from Coding to CodeableConcept</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ClaimResponse.note.language</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
+  </tr>
+  <tr class="diff-new">
+    <td class="diff-left">ClaimResponse.communicationRequest</td>
+    <td class="diff-right">added Element</td>
+  </tr>
+  <tr class="diff-new">
+    <td class="diff-left">ClaimResponse.insurance</td>
+    <td class="diff-right">added Element</td>
+  </tr>
+  <tr class="diff-new">
+    <td class="diff-left">ClaimResponse.insurance.sequence</td>
+    <td class="diff-right">added Element</td>
+  </tr>
+  <tr class="diff-new">
+    <td class="diff-left">ClaimResponse.insurance.focal</td>
+    <td class="diff-right">added Element</td>
+  </tr>
+  <tr class="diff-new">
+    <td class="diff-left">ClaimResponse.insurance.coverage</td>
+    <td class="diff-right">added Element</td>
+  </tr>
+  <tr class="diff-new">
+    <td class="diff-left">ClaimResponse.insurance.businessArrangement</td>
+    <td class="diff-right">added Element</td>
+  </tr>
+  <tr class="diff-new">
+    <td class="diff-left">ClaimResponse.insurance.preAuthRef</td>
+    <td class="diff-right">added Element</td>
+  </tr>
+  <tr class="diff-new">
+    <td class="diff-left">ClaimResponse.insurance.claimResponse</td>
+    <td class="diff-right">added Element</td>
+  </tr>
+  <tr class="diff-del">
+    <td class="diff-left">ClaimResponse.ruleset</td>
+    <td class="diff-right">deleted</td>
+  </tr>
+  <tr class="diff-del">
+    <td class="diff-left">ClaimResponse.originalRuleset</td>
+    <td class="diff-right">deleted</td>
+  </tr>
+  <tr class="diff-del">
+    <td class="diff-left">ClaimResponse.organization</td>
+    <td class="diff-right">deleted</td>
   </tr>
   <tr class="diff-del">
     <td class="diff-left">ClaimResponse.item.adjudication.code</td>
@@ -1325,11 +1571,7 @@ Remove Binding http://hl7.org/fhir/ValueSet/remittance-outcome (required)
     <td class="diff-right">deleted</td>
   </tr>
   <tr class="diff-del">
-    <td class="diff-left">ClaimResponse.coverage.relationship</td>
-    <td class="diff-right">deleted</td>
-  </tr>
-  <tr class="diff-del">
-    <td class="diff-left">ClaimResponse.coverage.originalRuleset</td>
+    <td class="diff-left">ClaimResponse.coverage</td>
     <td class="diff-right">deleted</td>
   </tr>
   <tr class="diff-item">
@@ -1338,7 +1580,7 @@ Remove Binding http://hl7.org/fhir/ValueSet/remittance-outcome (required)
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ClinicalImpression.identifier</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">ClinicalImpression.status</td>
@@ -1346,7 +1588,7 @@ Remove Binding http://hl7.org/fhir/ValueSet/remittance-outcome (required)
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ClinicalImpression.code</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">ClinicalImpression.subject</td>
@@ -1357,23 +1599,23 @@ Add Reference(Group)
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ClinicalImpression.effective[x]</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ClinicalImpression.context</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ClinicalImpression.investigation</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ClinicalImpression.investigation.code</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ClinicalImpression.investigation.item</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">ClinicalImpression.protocol</td>
@@ -1388,23 +1630,23 @@ Add Reference(Condition), Add Reference(Observation)
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ClinicalImpression.finding.basis</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ClinicalImpression.prognosisCodeableConcept</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ClinicalImpression.prognosisReference</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">ClinicalImpression.action</td>
-    <td class="diff-right">Remove Reference(MedicationOrder), Remove Reference(DiagnosticOrder), Remove Reference(NutritionOrder), Remove Reference(SupplyRequest), Add Reference(MedicationRequest), Add Reference(DiagnosticRequest), Add Reference(NutritionRequest), Add Reference(DeviceUseRequest)</td>
+    <td class="diff-right">Remove Reference(MedicationOrder), Remove Reference(DiagnosticOrder), Remove Reference(NutritionOrder), Remove Reference(SupplyRequest), Add Reference(MedicationRequest), Add Reference(DiagnosticRequest)</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ClinicalImpression.note</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-del">
     <td class="diff-left">ClinicalImpression.trigger[x]</td>
@@ -1436,7 +1678,7 @@ Add Reference(Condition), Add Reference(Observation)
   </tr>
   <tr class="diff-new-item">
     <td class="diff-left">CodeSystem</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Resource</td>
   </tr>
   <tr class="diff-item">
     <td class="diff-left">Communication</td>
@@ -1444,11 +1686,11 @@ Add Reference(Condition), Add Reference(Observation)
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Communication.basedOn</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Communication.parent</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">Communication.subject</td>
@@ -1456,7 +1698,7 @@ Add Reference(Condition), Add Reference(Observation)
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Communication.topic</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">Communication.context</td>
@@ -1467,7 +1709,7 @@ Add Reference(EpisodeOfCare)
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Communication.note</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-del">
     <td class="diff-left">Communication.requestDetail</td>
@@ -1483,11 +1725,11 @@ Add Reference(EpisodeOfCare)
   </tr>
   <tr class="diff-new">
     <td class="diff-left">CommunicationRequest.topic</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">CommunicationRequest.context</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-del">
     <td class="diff-left">CommunicationRequest.encounter</td>
@@ -1495,7 +1737,7 @@ Add Reference(EpisodeOfCare)
   </tr>
   <tr class="diff-new-item">
     <td class="diff-left">CompartmentDefinition</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Resource</td>
   </tr>
   <tr class="diff-item">
     <td class="diff-left">Composition</td>
@@ -1511,7 +1753,7 @@ Add Reference(EpisodeOfCare)
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ConceptMap.title</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">ConceptMap.status</td>
@@ -1538,11 +1780,11 @@ Remove Binding http://hl7.org/fhir/ValueSet/use-context (extensible)
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ConceptMap.jurisdiction</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ConceptMap.purpose</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">ConceptMap.copyright</td>
@@ -1564,23 +1806,23 @@ Remove Reference(StructureDefinition)
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ConceptMap.group</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ConceptMap.group.source</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ConceptMap.group.sourceVersion</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ConceptMap.group.target</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ConceptMap.group.targetVersion</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">ConceptMap.group.element</td>
@@ -1596,11 +1838,11 @@ Default Value &quot;equivalent&quot; added
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ConceptMap.group.element.target.dependsOn.property</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ConceptMap.group.element.target.dependsOn.system</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-del">
     <td class="diff-left">ConceptMap.contact.name</td>
@@ -1639,6 +1881,13 @@ Default Value &quot;equivalent&quot; added
     <td class="diff-right">Add Binding http://hl7.org/fhir/ValueSet/condition-clinical (required)</td>
   </tr>
   <tr class="diff-entry">
+    <td class="diff-left">Condition.verificationStatus</td>
+    <td class="diff-right">
+Min Cardinality changed from 1 to 0      <br/>
+Default Value &quot;unknown&quot; added
+    </td>
+  </tr>
+  <tr class="diff-entry">
     <td class="diff-left">Condition.category</td>
     <td class="diff-right">Max Cardinality changed from 1 to *</td>
   </tr>
@@ -1666,7 +1915,7 @@ Add Reference(EpisodeOfCare)
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Condition.assertedDate</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">Condition.asserter</td>
@@ -1686,27 +1935,31 @@ Type changed from string to Annotation
   </tr>
   <tr class="diff-new-item">
     <td class="diff-left">Consent</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Resource</td>
   </tr>
   <tr class="diff-item">
     <td class="diff-left">Contract</td>
     <td class="diff-right"/>
   </tr>
   <tr class="diff-new">
+    <td class="diff-left">Contract.status</td>
+    <td class="diff-right">added Element</td>
+  </tr>
+  <tr class="diff-new">
     <td class="diff-left">Contract.topic</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Contract.agent</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Contract.agent.actor</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Contract.agent.role</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">Contract.signer.signature</td>
@@ -1725,19 +1978,19 @@ Type changed from string to Signature
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Contract.term.topic</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Contract.term.agent</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Contract.term.agent.actor</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Contract.term.agent.role</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">Contract.term.valuedItem.unitPrice</td>
@@ -1765,27 +2018,38 @@ Type changed from string to Signature
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Coverage.status</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
-    <td class="diff-left">Coverage.issuer</td>
-    <td class="diff-right">Add Reference(Patient), Add Reference(RelatedPerson)</td>
+    <td class="diff-left">Coverage.type</td>
+    <td class="diff-right">Type changed from Coding to CodeableConcept</td>
   </tr>
   <tr class="diff-new">
-    <td class="diff-left">Coverage.isAgreement</td>
-    <td class="diff-right">added</td>
+    <td class="diff-left">Coverage.policyHolder</td>
+    <td class="diff-right">added Element</td>
   </tr>
-  <tr class="diff-new">
-    <td class="diff-left">Coverage.planholder</td>
-    <td class="diff-right">added</td>
+  <tr class="diff-entry">
+    <td class="diff-left">Coverage.subscriber</td>
+    <td class="diff-right">
+Add Reference(RelatedPerson)      <br/>
+No longer marked as Modifier
+    </td>
+  </tr>
+  <tr class="diff-entry">
+    <td class="diff-left">Coverage.subscriberId</td>
+    <td class="diff-right">Type changed from Identifier to string</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Coverage.beneficiary</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Coverage.relationship</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
+  </tr>
+  <tr class="diff-new">
+    <td class="diff-left">Coverage.payor</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">Coverage.group</td>
@@ -1793,62 +2057,74 @@ Type changed from string to Signature
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Coverage.group.group</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Coverage.group.groupDisplay</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Coverage.group.subGroup</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Coverage.group.subGroupDisplay</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Coverage.group.plan</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Coverage.group.planDisplay</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Coverage.group.subPlan</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Coverage.group.subPlanDisplay</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Coverage.group.class</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Coverage.group.classDisplay</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Coverage.group.subClass</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Coverage.group.subClassDisplay</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
+  </tr>
+  <tr class="diff-entry">
+    <td class="diff-left">Coverage.dependent</td>
+    <td class="diff-right">Type changed from positiveInt to string</td>
+  </tr>
+  <tr class="diff-entry">
+    <td class="diff-left">Coverage.sequence</td>
+    <td class="diff-right">Type changed from positiveInt to string</td>
+  </tr>
+  <tr class="diff-new">
+    <td class="diff-left">Coverage.order</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">Coverage.network</td>
     <td class="diff-right">Type changed from Identifier to string</td>
   </tr>
   <tr class="diff-del">
-    <td class="diff-left">Coverage.bin</td>
+    <td class="diff-left">Coverage.issuer</td>
     <td class="diff-right">deleted</td>
   </tr>
   <tr class="diff-del">
-    <td class="diff-left">Coverage.subscriberId</td>
+    <td class="diff-left">Coverage.bin</td>
     <td class="diff-right">deleted</td>
   </tr>
   <tr class="diff-del">
@@ -1857,10 +2133,6 @@ Type changed from string to Signature
   </tr>
   <tr class="diff-del">
     <td class="diff-left">Coverage.subPlan</td>
-    <td class="diff-right">deleted</td>
-  </tr>
-  <tr class="diff-del">
-    <td class="diff-left">Coverage.subscriber</td>
     <td class="diff-right">deleted</td>
   </tr>
   <tr class="diff-item">
@@ -1877,7 +2149,7 @@ Type changed from string to Signature
   </tr>
   <tr class="diff-new">
     <td class="diff-left">DataElement.title</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">DataElement.contact</td>
@@ -1892,7 +2164,7 @@ Remove Binding http://hl7.org/fhir/ValueSet/use-context (extensible)
   </tr>
   <tr class="diff-new">
     <td class="diff-left">DataElement.jurisdiction</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">DataElement.copyright</td>
@@ -1927,6 +2199,10 @@ Type changed from string to Identifier
     </td>
   </tr>
   <tr class="diff-entry">
+    <td class="diff-left">Device.type</td>
+    <td class="diff-right">Min Cardinality changed from 1 to 0</td>
+  </tr>
+  <tr class="diff-entry">
     <td class="diff-left">Device.expirationDate</td>
     <td class="diff-right">Renamed from expiry to expirationDate</td>
   </tr>
@@ -1949,19 +2225,19 @@ No Changes
   </tr>
   <tr class="diff-new">
     <td class="diff-left">DeviceUseRequest.definition</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">DeviceUseRequest.basedOn</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">DeviceUseRequest.replaces</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">DeviceUseRequest.requisition</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">DeviceUseRequest.status</td>
@@ -1969,7 +2245,7 @@ No Changes
   </tr>
   <tr class="diff-new">
     <td class="diff-left">DeviceUseRequest.stage</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">DeviceUseRequest.device[x]</td>
@@ -1991,7 +2267,7 @@ Add Reference(EpisodeOfCare)
   </tr>
   <tr class="diff-new">
     <td class="diff-left">DeviceUseRequest.occurrence[x]</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">DeviceUseRequest.authored</td>
@@ -1999,15 +2275,15 @@ Add Reference(EpisodeOfCare)
   </tr>
   <tr class="diff-new">
     <td class="diff-left">DeviceUseRequest.requester</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">DeviceUseRequest.performerType</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">DeviceUseRequest.performer</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">DeviceUseRequest.reasonCode</td>
@@ -2015,11 +2291,11 @@ Add Reference(EpisodeOfCare)
   </tr>
   <tr class="diff-new">
     <td class="diff-left">DeviceUseRequest.reasonReference</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">DeviceUseRequest.supportingInfo</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">DeviceUseRequest.note</td>
@@ -2030,7 +2306,7 @@ Type changed from string to Annotation
   </tr>
   <tr class="diff-new">
     <td class="diff-left">DeviceUseRequest.relevantHistory</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-del">
     <td class="diff-left">DeviceUseRequest.bodySite[x]</td>
@@ -2055,15 +2331,36 @@ Type changed from string to Annotation
   <tr class="diff-item">
     <td class="diff-left">DeviceUseStatement</td>
     <td class="diff-right"/>
-No Changes
+  </tr>
+  <tr class="diff-entry">
+    <td class="diff-left">DeviceUseStatement.bodySite</td>
+    <td class="diff-right">
+Renamed from bodySite[x] to bodySite      <br/>
+Remove Reference(BodySite)
+    </td>
   </tr>
   <tr class="diff-item">
     <td class="diff-left">DiagnosticReport</td>
     <td class="diff-right"/>
   </tr>
   <tr class="diff-entry">
+    <td class="diff-left">DiagnosticReport.subject</td>
+    <td class="diff-right">Min Cardinality changed from 1 to 0</td>
+  </tr>
+  <tr class="diff-entry">
+    <td class="diff-left">DiagnosticReport.effective[x]</td>
+    <td class="diff-right">Min Cardinality changed from 1 to 0</td>
+  </tr>
+  <tr class="diff-entry">
+    <td class="diff-left">DiagnosticReport.issued</td>
+    <td class="diff-right">Min Cardinality changed from 1 to 0</td>
+  </tr>
+  <tr class="diff-entry">
     <td class="diff-left">DiagnosticReport.performer</td>
-    <td class="diff-right">Max Cardinality changed from 1 to *</td>
+    <td class="diff-right">
+Min Cardinality changed from 1 to 0      <br/>
+Max Cardinality changed from 1 to *
+    </td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">DiagnosticReport.request</td>
@@ -2079,31 +2376,38 @@ No Changes
   </tr>
   <tr class="diff-new">
     <td class="diff-left">DiagnosticRequest.definition</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">DiagnosticRequest.basedOn</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">DiagnosticRequest.replaces</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">DiagnosticRequest.requisition</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">DiagnosticRequest.status</td>
-    <td class="diff-right">Change value set from http://hl7.org/fhir/ValueSet/diagnostic-order-status to http://hl7.org/fhir/ValueSet/request-status</td>
+    <td class="diff-right">
+Min Cardinality changed from 0 to 1      <br/>
+Change value set from http://hl7.org/fhir/ValueSet/diagnostic-order-status to http://hl7.org/fhir/ValueSet/request-status
+    </td>
   </tr>
   <tr class="diff-new">
-    <td class="diff-left">DiagnosticRequest.stage</td>
-    <td class="diff-right">added</td>
+    <td class="diff-left">DiagnosticRequest.intent</td>
+    <td class="diff-right">added Element</td>
+  </tr>
+  <tr class="diff-entry">
+    <td class="diff-left">DiagnosticRequest.priority</td>
+    <td class="diff-right">Change value set from http://hl7.org/fhir/ValueSet/diagnostic-order-priority to http://hl7.org/fhir/ValueSet/request-priority</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">DiagnosticRequest.code</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">DiagnosticRequest.context</td>
@@ -2114,11 +2418,11 @@ Add Reference(EpisodeOfCare)
   </tr>
   <tr class="diff-new">
     <td class="diff-left">DiagnosticRequest.occurrence[x]</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
-    <td class="diff-left">DiagnosticRequest.authored</td>
-    <td class="diff-right">added</td>
+    <td class="diff-left">DiagnosticRequest.authoredOn</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">DiagnosticRequest.requester</td>
@@ -2129,11 +2433,19 @@ Add Reference(Device), Add Reference(Organization)
   </tr>
   <tr class="diff-new">
     <td class="diff-left">DiagnosticRequest.performerType</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">DiagnosticRequest.performer</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
+  </tr>
+  <tr class="diff-new">
+    <td class="diff-left">DiagnosticRequest.reasonCode</td>
+    <td class="diff-right">added Element</td>
+  </tr>
+  <tr class="diff-new">
+    <td class="diff-left">DiagnosticRequest.reasonReference</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">DiagnosticRequest.supportingInformation</td>
@@ -2141,14 +2453,14 @@ Add Reference(Device), Add Reference(Organization)
   </tr>
   <tr class="diff-new">
     <td class="diff-left">DiagnosticRequest.relevantHistory</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-del">
-    <td class="diff-left">DiagnosticOrder.specimen</td>
+    <td class="diff-left">DiagnosticOrder.reason</td>
     <td class="diff-right">deleted</td>
   </tr>
   <tr class="diff-del">
-    <td class="diff-left">DiagnosticOrder.priority</td>
+    <td class="diff-left">DiagnosticOrder.specimen</td>
     <td class="diff-right">deleted</td>
   </tr>
   <tr class="diff-del">
@@ -2180,47 +2492,55 @@ No Changes
   </tr>
   <tr class="diff-new">
     <td class="diff-left">EligibilityRequest.status</td>
-    <td class="diff-right">added</td>
-  </tr>
-  <tr class="diff-new">
-    <td class="diff-left">EligibilityRequest.insurer</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">EligibilityRequest.priority</td>
-    <td class="diff-right">added</td>
-  </tr>
-  <tr class="diff-new">
-    <td class="diff-left">EligibilityRequest.enterer</td>
-    <td class="diff-right">added</td>
-  </tr>
-  <tr class="diff-new">
-    <td class="diff-left">EligibilityRequest.facility</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">EligibilityRequest.patient</td>
-    <td class="diff-right">added</td>
-  </tr>
-  <tr class="diff-new">
-    <td class="diff-left">EligibilityRequest.coverage</td>
-    <td class="diff-right">added</td>
-  </tr>
-  <tr class="diff-new">
-    <td class="diff-left">EligibilityRequest.businessArrangement</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">EligibilityRequest.serviced[x]</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
+  </tr>
+  <tr class="diff-new">
+    <td class="diff-left">EligibilityRequest.enterer</td>
+    <td class="diff-right">added Element</td>
+  </tr>
+  <tr class="diff-new">
+    <td class="diff-left">EligibilityRequest.insurer</td>
+    <td class="diff-right">added Element</td>
+  </tr>
+  <tr class="diff-new">
+    <td class="diff-left">EligibilityRequest.facility</td>
+    <td class="diff-right">added Element</td>
+  </tr>
+  <tr class="diff-new">
+    <td class="diff-left">EligibilityRequest.coverage</td>
+    <td class="diff-right">added Element</td>
+  </tr>
+  <tr class="diff-new">
+    <td class="diff-left">EligibilityRequest.businessArrangement</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">EligibilityRequest.benefitCategory</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">EligibilityRequest.benefitSubCategory</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
+  </tr>
+  <tr class="diff-del">
+    <td class="diff-left">EligibilityRequest.ruleset</td>
+    <td class="diff-right">deleted</td>
+  </tr>
+  <tr class="diff-del">
+    <td class="diff-left">EligibilityRequest.originalRuleset</td>
+    <td class="diff-right">deleted</td>
   </tr>
   <tr class="diff-del">
     <td class="diff-left">EligibilityRequest.target</td>
@@ -2232,79 +2552,110 @@ No Changes
   </tr>
   <tr class="diff-new">
     <td class="diff-left">EligibilityResponse.status</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">EligibilityResponse.outcome</td>
-    <td class="diff-right">Change codes from {complete|error} to {complete|error|partial}</td>
+    <td class="diff-right">
+Type changed from code to CodeableConcept      <br/>
+Change codes from {complete|error} to {complete|error|partial}
+    </td>
+  </tr>
+  <tr class="diff-new">
+    <td class="diff-left">EligibilityResponse.insurer</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">EligibilityResponse.inforce</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
-    <td class="diff-left">EligibilityResponse.contract</td>
-    <td class="diff-right">added</td>
+    <td class="diff-left">EligibilityResponse.insurance</td>
+    <td class="diff-right">added Element</td>
+  </tr>
+  <tr class="diff-new">
+    <td class="diff-left">EligibilityResponse.insurance.coverage</td>
+    <td class="diff-right">added Element</td>
+  </tr>
+  <tr class="diff-new">
+    <td class="diff-left">EligibilityResponse.insurance.contract</td>
+    <td class="diff-right">added Element</td>
+  </tr>
+  <tr class="diff-new">
+    <td class="diff-left">EligibilityResponse.insurance.benefitBalance</td>
+    <td class="diff-right">added Element</td>
+  </tr>
+  <tr class="diff-new">
+    <td class="diff-left">EligibilityResponse.insurance.benefitBalance.category</td>
+    <td class="diff-right">added Element</td>
+  </tr>
+  <tr class="diff-new">
+    <td class="diff-left">EligibilityResponse.insurance.benefitBalance.subCategory</td>
+    <td class="diff-right">added Element</td>
+  </tr>
+  <tr class="diff-new">
+    <td class="diff-left">EligibilityResponse.insurance.benefitBalance.excluded</td>
+    <td class="diff-right">added Element</td>
+  </tr>
+  <tr class="diff-new">
+    <td class="diff-left">EligibilityResponse.insurance.benefitBalance.name</td>
+    <td class="diff-right">added Element</td>
+  </tr>
+  <tr class="diff-new">
+    <td class="diff-left">EligibilityResponse.insurance.benefitBalance.description</td>
+    <td class="diff-right">added Element</td>
+  </tr>
+  <tr class="diff-new">
+    <td class="diff-left">EligibilityResponse.insurance.benefitBalance.network</td>
+    <td class="diff-right">added Element</td>
+  </tr>
+  <tr class="diff-new">
+    <td class="diff-left">EligibilityResponse.insurance.benefitBalance.unit</td>
+    <td class="diff-right">added Element</td>
+  </tr>
+  <tr class="diff-new">
+    <td class="diff-left">EligibilityResponse.insurance.benefitBalance.term</td>
+    <td class="diff-right">added Element</td>
+  </tr>
+  <tr class="diff-new">
+    <td class="diff-left">EligibilityResponse.insurance.benefitBalance.financial</td>
+    <td class="diff-right">added Element</td>
+  </tr>
+  <tr class="diff-new">
+    <td class="diff-left">EligibilityResponse.insurance.benefitBalance.financial.type</td>
+    <td class="diff-right">added Element</td>
+  </tr>
+  <tr class="diff-new">
+    <td class="diff-left">EligibilityResponse.insurance.benefitBalance.financial.benefit[x]</td>
+    <td class="diff-right">added Element</td>
+  </tr>
+  <tr class="diff-new">
+    <td class="diff-left">EligibilityResponse.insurance.benefitBalance.financial.benefitUsed[x]</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">EligibilityResponse.form</td>
-    <td class="diff-right">added</td>
-  </tr>
-  <tr class="diff-new">
-    <td class="diff-left">EligibilityResponse.benefitBalance</td>
-    <td class="diff-right">added</td>
-  </tr>
-  <tr class="diff-new">
-    <td class="diff-left">EligibilityResponse.benefitBalance.category</td>
-    <td class="diff-right">added</td>
-  </tr>
-  <tr class="diff-new">
-    <td class="diff-left">EligibilityResponse.benefitBalance.subCategory</td>
-    <td class="diff-right">added</td>
-  </tr>
-  <tr class="diff-new">
-    <td class="diff-left">EligibilityResponse.benefitBalance.name</td>
-    <td class="diff-right">added</td>
-  </tr>
-  <tr class="diff-new">
-    <td class="diff-left">EligibilityResponse.benefitBalance.description</td>
-    <td class="diff-right">added</td>
-  </tr>
-  <tr class="diff-new">
-    <td class="diff-left">EligibilityResponse.benefitBalance.network</td>
-    <td class="diff-right">added</td>
-  </tr>
-  <tr class="diff-new">
-    <td class="diff-left">EligibilityResponse.benefitBalance.unit</td>
-    <td class="diff-right">added</td>
-  </tr>
-  <tr class="diff-new">
-    <td class="diff-left">EligibilityResponse.benefitBalance.term</td>
-    <td class="diff-right">added</td>
-  </tr>
-  <tr class="diff-new">
-    <td class="diff-left">EligibilityResponse.benefitBalance.financial</td>
-    <td class="diff-right">added</td>
-  </tr>
-  <tr class="diff-new">
-    <td class="diff-left">EligibilityResponse.benefitBalance.financial.type</td>
-    <td class="diff-right">added</td>
-  </tr>
-  <tr class="diff-new">
-    <td class="diff-left">EligibilityResponse.benefitBalance.financial.benefit[x]</td>
-    <td class="diff-right">added</td>
-  </tr>
-  <tr class="diff-new">
-    <td class="diff-left">EligibilityResponse.benefitBalance.financial.benefitUsed[x]</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">EligibilityResponse.error</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">EligibilityResponse.error.code</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
+  </tr>
+  <tr class="diff-del">
+    <td class="diff-left">EligibilityResponse.ruleset</td>
+    <td class="diff-right">deleted</td>
+  </tr>
+  <tr class="diff-del">
+    <td class="diff-left">EligibilityResponse.originalRuleset</td>
+    <td class="diff-right">deleted</td>
+  </tr>
+  <tr class="diff-del">
+    <td class="diff-left">EligibilityResponse.organization</td>
+    <td class="diff-right">deleted</td>
   </tr>
   <tr class="diff-item">
     <td class="diff-left">Encounter</td>
@@ -2331,11 +2682,11 @@ Change binding strength from required to extensible, Change value set from http:
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Encounter.account</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new-item">
     <td class="diff-left">Endpoint</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Resource</td>
   </tr>
   <tr class="diff-item">
     <td class="diff-left">EnrollmentRequest</td>
@@ -2343,32 +2694,27 @@ Change binding strength from required to extensible, Change value set from http:
   </tr>
   <tr class="diff-new">
     <td class="diff-left">EnrollmentRequest.status</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
-    <td class="diff-left">EnrollmentRequest.insurer[x]</td>
-    <td class="diff-right">added</td>
+    <td class="diff-left">EnrollmentRequest.insurer</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
-    <td class="diff-left">EnrollmentRequest.provider[x]</td>
-    <td class="diff-right">
-Renamed from provider to provider[x]      <br/>
-Add Identifier
-    </td>
+    <td class="diff-left">EnrollmentRequest.subject</td>
+    <td class="diff-right">Min Cardinality changed from 1 to 0</td>
   </tr>
   <tr class="diff-entry">
-    <td class="diff-left">EnrollmentRequest.organization[x]</td>
-    <td class="diff-right">
-Renamed from organization to organization[x]      <br/>
-Add Identifier
-    </td>
+    <td class="diff-left">EnrollmentRequest.coverage</td>
+    <td class="diff-right">Min Cardinality changed from 1 to 0</td>
   </tr>
-  <tr class="diff-entry">
-    <td class="diff-left">EnrollmentRequest.subject[x]</td>
-    <td class="diff-right">
-Renamed from subject to subject[x]      <br/>
-Add Identifier
-    </td>
+  <tr class="diff-del">
+    <td class="diff-left">EnrollmentRequest.ruleset</td>
+    <td class="diff-right">deleted</td>
+  </tr>
+  <tr class="diff-del">
+    <td class="diff-left">EnrollmentRequest.originalRuleset</td>
+    <td class="diff-right">deleted</td>
   </tr>
   <tr class="diff-del">
     <td class="diff-left">EnrollmentRequest.target</td>
@@ -2384,39 +2730,22 @@ Add Identifier
   </tr>
   <tr class="diff-new">
     <td class="diff-left">EnrollmentResponse.status</td>
-    <td class="diff-right">added</td>
-  </tr>
-  <tr class="diff-entry">
-    <td class="diff-left">EnrollmentResponse.request[x]</td>
-    <td class="diff-right">
-Renamed from request to request[x]      <br/>
-Add Identifier
-    </td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">EnrollmentResponse.outcome</td>
-    <td class="diff-right">Change codes from {complete|error} to {complete|error|partial}</td>
-  </tr>
-  <tr class="diff-entry">
-    <td class="diff-left">EnrollmentResponse.organization[x]</td>
     <td class="diff-right">
-Renamed from organization to organization[x]      <br/>
-Add Identifier
+Type changed from code to CodeableConcept      <br/>
+Change codes from {complete|error} to {complete|error|partial}
     </td>
   </tr>
-  <tr class="diff-entry">
-    <td class="diff-left">EnrollmentResponse.requestProvider[x]</td>
-    <td class="diff-right">
-Renamed from requestProvider to requestProvider[x]      <br/>
-Add Identifier
-    </td>
+  <tr class="diff-del">
+    <td class="diff-left">EnrollmentResponse.ruleset</td>
+    <td class="diff-right">deleted</td>
   </tr>
-  <tr class="diff-entry">
-    <td class="diff-left">EnrollmentResponse.requestOrganization[x]</td>
-    <td class="diff-right">
-Renamed from requestOrganization to requestOrganization[x]      <br/>
-Add Identifier
-    </td>
+  <tr class="diff-del">
+    <td class="diff-left">EnrollmentResponse.originalRuleset</td>
+    <td class="diff-right">deleted</td>
   </tr>
   <tr class="diff-item">
     <td class="diff-left">EpisodeOfCare</td>
@@ -2439,7 +2768,7 @@ Type changed from BackboneElement to Reference(CareTeam)
   </tr>
   <tr class="diff-new">
     <td class="diff-left">EpisodeOfCare.account</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-del">
     <td class="diff-left">EpisodeOfCare.careTeam.role</td>
@@ -2455,7 +2784,7 @@ Type changed from BackboneElement to Reference(CareTeam)
   </tr>
   <tr class="diff-new-item">
     <td class="diff-left">ExpansionProfile</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Resource</td>
   </tr>
   <tr class="diff-item">
     <td class="diff-left">ExplanationOfBenefit</td>
@@ -2463,649 +2792,657 @@ Type changed from BackboneElement to Reference(CareTeam)
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.status</td>
-    <td class="diff-right">added</td>
-  </tr>
-  <tr class="diff-new">
-    <td class="diff-left">ExplanationOfBenefit.author</td>
-    <td class="diff-right">added</td>
-  </tr>
-  <tr class="diff-new">
-    <td class="diff-left">ExplanationOfBenefit.claim</td>
-    <td class="diff-right">added</td>
-  </tr>
-  <tr class="diff-new">
-    <td class="diff-left">ExplanationOfBenefit.claimResponse</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.type</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.subType</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
+  </tr>
+  <tr class="diff-new">
+    <td class="diff-left">ExplanationOfBenefit.patient</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.billablePeriod</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
+  </tr>
+  <tr class="diff-new">
+    <td class="diff-left">ExplanationOfBenefit.enterer</td>
+    <td class="diff-right">added Element</td>
+  </tr>
+  <tr class="diff-new">
+    <td class="diff-left">ExplanationOfBenefit.insurer</td>
+    <td class="diff-right">added Element</td>
+  </tr>
+  <tr class="diff-new">
+    <td class="diff-left">ExplanationOfBenefit.provider</td>
+    <td class="diff-right">added Element</td>
+  </tr>
+  <tr class="diff-new">
+    <td class="diff-left">ExplanationOfBenefit.referral</td>
+    <td class="diff-right">added Element</td>
+  </tr>
+  <tr class="diff-new">
+    <td class="diff-left">ExplanationOfBenefit.facility</td>
+    <td class="diff-right">added Element</td>
+  </tr>
+  <tr class="diff-new">
+    <td class="diff-left">ExplanationOfBenefit.claim</td>
+    <td class="diff-right">added Element</td>
+  </tr>
+  <tr class="diff-new">
+    <td class="diff-left">ExplanationOfBenefit.claimResponse</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">ExplanationOfBenefit.outcome</td>
     <td class="diff-right">
-Type changed from code to Coding      <br/>
+Type changed from code to CodeableConcept      <br/>
 Remove Binding http://hl7.org/fhir/ValueSet/remittance-outcome (required)
     </td>
   </tr>
   <tr class="diff-new">
-    <td class="diff-left">ExplanationOfBenefit.provider</td>
-    <td class="diff-right">added</td>
-  </tr>
-  <tr class="diff-new">
-    <td class="diff-left">ExplanationOfBenefit.facility</td>
-    <td class="diff-right">added</td>
-  </tr>
-  <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.related</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.related.claim</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.related.relationship</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.related.reference</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.prescription</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.originalPrescription</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.payee</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.payee.type</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.payee.resourceType</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.payee.party[x]</td>
-    <td class="diff-right">added</td>
-  </tr>
-  <tr class="diff-new">
-    <td class="diff-left">ExplanationOfBenefit.referral</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.information</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.information.category</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.information.code</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.information.timing[x]</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.information.value[x]</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
+  </tr>
+  <tr class="diff-new">
+    <td class="diff-left">ExplanationOfBenefit.information.reason</td>
+    <td class="diff-right">added Element</td>
+  </tr>
+  <tr class="diff-new">
+    <td class="diff-left">ExplanationOfBenefit.careTeam</td>
+    <td class="diff-right">added Element</td>
+  </tr>
+  <tr class="diff-new">
+    <td class="diff-left">ExplanationOfBenefit.careTeam.sequence</td>
+    <td class="diff-right">added Element</td>
+  </tr>
+  <tr class="diff-new">
+    <td class="diff-left">ExplanationOfBenefit.careTeam.provider</td>
+    <td class="diff-right">added Element</td>
+  </tr>
+  <tr class="diff-new">
+    <td class="diff-left">ExplanationOfBenefit.careTeam.responsible</td>
+    <td class="diff-right">added Element</td>
+  </tr>
+  <tr class="diff-new">
+    <td class="diff-left">ExplanationOfBenefit.careTeam.role</td>
+    <td class="diff-right">added Element</td>
+  </tr>
+  <tr class="diff-new">
+    <td class="diff-left">ExplanationOfBenefit.careTeam.qualification</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.diagnosis</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.diagnosis.sequence</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
-    <td class="diff-left">ExplanationOfBenefit.diagnosis.diagnosis</td>
-    <td class="diff-right">added</td>
+    <td class="diff-left">ExplanationOfBenefit.diagnosis.diagnosis[x]</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.diagnosis.type</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
-    <td class="diff-left">ExplanationOfBenefit.diagnosis.drg</td>
-    <td class="diff-right">added</td>
+    <td class="diff-left">ExplanationOfBenefit.diagnosis.packageCode</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.procedure</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.procedure.sequence</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.procedure.date</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.procedure.procedure[x]</td>
-    <td class="diff-right">added</td>
-  </tr>
-  <tr class="diff-new">
-    <td class="diff-left">ExplanationOfBenefit.patient</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.precedence</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
-    <td class="diff-left">ExplanationOfBenefit.coverage</td>
-    <td class="diff-right">added</td>
+    <td class="diff-left">ExplanationOfBenefit.insurance</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
-    <td class="diff-left">ExplanationOfBenefit.coverage.coverage</td>
-    <td class="diff-right">added</td>
+    <td class="diff-left">ExplanationOfBenefit.insurance.coverage</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
-    <td class="diff-left">ExplanationOfBenefit.coverage.preAuthRef</td>
-    <td class="diff-right">added</td>
+    <td class="diff-left">ExplanationOfBenefit.insurance.preAuthRef</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.accident</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.accident.date</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.accident.type</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.accident.location[x]</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.employmentImpacted</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.hospitalization</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.item</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.item.sequence</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
-    <td class="diff-left">ExplanationOfBenefit.item.careTeam</td>
-    <td class="diff-right">added</td>
-  </tr>
-  <tr class="diff-new">
-    <td class="diff-left">ExplanationOfBenefit.item.careTeam.provider</td>
-    <td class="diff-right">added</td>
-  </tr>
-  <tr class="diff-new">
-    <td class="diff-left">ExplanationOfBenefit.item.careTeam.responsible</td>
-    <td class="diff-right">added</td>
-  </tr>
-  <tr class="diff-new">
-    <td class="diff-left">ExplanationOfBenefit.item.careTeam.role</td>
-    <td class="diff-right">added</td>
-  </tr>
-  <tr class="diff-new">
-    <td class="diff-left">ExplanationOfBenefit.item.careTeam.qualification</td>
-    <td class="diff-right">added</td>
+    <td class="diff-left">ExplanationOfBenefit.item.careTeamLinkId</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.item.diagnosisLinkId</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
+  </tr>
+  <tr class="diff-new">
+    <td class="diff-left">ExplanationOfBenefit.item.procedureLinkId</td>
+    <td class="diff-right">added Element</td>
+  </tr>
+  <tr class="diff-new">
+    <td class="diff-left">ExplanationOfBenefit.item.informationLinkId</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.item.revenue</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.item.category</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.item.service</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.item.modifier</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.item.programCode</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.item.serviced[x]</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.item.location[x]</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.item.quantity</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.item.unitPrice</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.item.factor</td>
-    <td class="diff-right">added</td>
-  </tr>
-  <tr class="diff-new">
-    <td class="diff-left">ExplanationOfBenefit.item.points</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.item.net</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.item.udi</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.item.bodySite</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.item.subSite</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.item.noteNumber</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.item.adjudication</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.item.adjudication.category</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.item.adjudication.reason</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.item.adjudication.amount</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.item.adjudication.value</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.item.detail</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.item.detail.sequence</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.item.detail.type</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.item.detail.revenue</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.item.detail.category</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.item.detail.service</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.item.detail.modifier</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.item.detail.programCode</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.item.detail.quantity</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.item.detail.unitPrice</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.item.detail.factor</td>
-    <td class="diff-right">added</td>
-  </tr>
-  <tr class="diff-new">
-    <td class="diff-left">ExplanationOfBenefit.item.detail.points</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.item.detail.net</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.item.detail.udi</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.item.detail.noteNumber</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.item.detail.adjudication</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.item.detail.subDetail</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.item.detail.subDetail.sequence</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.item.detail.subDetail.type</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.item.detail.subDetail.revenue</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.item.detail.subDetail.category</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.item.detail.subDetail.service</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.item.detail.subDetail.modifier</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.item.detail.subDetail.programCode</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.item.detail.subDetail.quantity</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.item.detail.subDetail.unitPrice</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.item.detail.subDetail.factor</td>
-    <td class="diff-right">added</td>
-  </tr>
-  <tr class="diff-new">
-    <td class="diff-left">ExplanationOfBenefit.item.detail.subDetail.points</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.item.detail.subDetail.net</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.item.detail.subDetail.udi</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.item.detail.subDetail.noteNumber</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.item.detail.subDetail.adjudication</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.item.prosthesis</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.item.prosthesis.initial</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.item.prosthesis.priorDate</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.item.prosthesis.priorMaterial</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.addItem</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.addItem.sequenceLinkId</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.addItem.revenue</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.addItem.category</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.addItem.service</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.addItem.modifier</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.addItem.fee</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.addItem.noteNumber</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.addItem.adjudication</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.addItem.detail</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.addItem.detail.revenue</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.addItem.detail.category</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.addItem.detail.service</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.addItem.detail.modifier</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.addItem.detail.fee</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.addItem.detail.noteNumber</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.addItem.detail.adjudication</td>
-    <td class="diff-right">added</td>
-  </tr>
-  <tr class="diff-new">
-    <td class="diff-left">ExplanationOfBenefit.missingTeeth</td>
-    <td class="diff-right">added</td>
-  </tr>
-  <tr class="diff-new">
-    <td class="diff-left">ExplanationOfBenefit.missingTeeth.tooth</td>
-    <td class="diff-right">added</td>
-  </tr>
-  <tr class="diff-new">
-    <td class="diff-left">ExplanationOfBenefit.missingTeeth.reason</td>
-    <td class="diff-right">added</td>
-  </tr>
-  <tr class="diff-new">
-    <td class="diff-left">ExplanationOfBenefit.missingTeeth.extractionDate</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.totalCost</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.unallocDeductable</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.totalBenefit</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.payment</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.payment.type</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.payment.adjustment</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.payment.adjustmentReason</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.payment.date</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.payment.amount</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.payment.identifier</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.form</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.note</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.note.number</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.note.type</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.note.text</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.note.language</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.benefitBalance</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.benefitBalance.category</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.benefitBalance.subCategory</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
+  </tr>
+  <tr class="diff-new">
+    <td class="diff-left">ExplanationOfBenefit.benefitBalance.excluded</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.benefitBalance.name</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.benefitBalance.description</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.benefitBalance.network</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.benefitBalance.unit</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.benefitBalance.term</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.benefitBalance.financial</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.benefitBalance.financial.type</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.benefitBalance.financial.benefit[x]</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ExplanationOfBenefit.benefitBalance.financial.benefitUsed[x]</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-del">
     <td class="diff-left">ExplanationOfBenefit.request</td>
+    <td class="diff-right">deleted</td>
+  </tr>
+  <tr class="diff-del">
+    <td class="diff-left">ExplanationOfBenefit.ruleset</td>
+    <td class="diff-right">deleted</td>
+  </tr>
+  <tr class="diff-del">
+    <td class="diff-left">ExplanationOfBenefit.originalRuleset</td>
     <td class="diff-right">deleted</td>
   </tr>
   <tr class="diff-del">
@@ -3126,7 +3463,7 @@ Remove Binding http://hl7.org/fhir/ValueSet/remittance-outcome (required)
   </tr>
   <tr class="diff-new">
     <td class="diff-left">FamilyMemberHistory.estimatedAge</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">FamilyMemberHistory.deceased[x]</td>
@@ -3166,7 +3503,7 @@ Remove Binding http://hl7.org/fhir/ValueSet/remittance-outcome (required)
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Goal.expressedBy</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">Goal.addresses</td>
@@ -3182,11 +3519,11 @@ Remove Binding http://hl7.org/fhir/ValueSet/remittance-outcome (required)
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Group.active</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new-item">
     <td class="diff-left">GuidanceResponse</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Resource</td>
   </tr>
   <tr class="diff-item">
     <td class="diff-left">HealthcareService</td>
@@ -3194,7 +3531,7 @@ Remove Binding http://hl7.org/fhir/ValueSet/remittance-outcome (required)
   </tr>
   <tr class="diff-new">
     <td class="diff-left">HealthcareService.active</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">HealthcareService.serviceType</td>
@@ -3202,7 +3539,7 @@ Remove Binding http://hl7.org/fhir/ValueSet/remittance-outcome (required)
   </tr>
   <tr class="diff-new">
     <td class="diff-left">HealthcareService.specialty</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">HealthcareService.location</td>
@@ -3210,6 +3547,10 @@ Remove Binding http://hl7.org/fhir/ValueSet/remittance-outcome (required)
 Min Cardinality changed from 1 to 0      <br/>
 Max Cardinality changed from 1 to *
     </td>
+  </tr>
+  <tr class="diff-new">
+    <td class="diff-left">HealthcareService.endpoint</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-del">
     <td class="diff-left">HealthcareService.serviceType.type</td>
@@ -3221,7 +3562,7 @@ Max Cardinality changed from 1 to *
   </tr>
   <tr class="diff-new-item">
     <td class="diff-left">ImagingManifest</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Resource</td>
   </tr>
   <tr class="diff-item">
     <td class="diff-left">ImagingStudy</td>
@@ -3237,7 +3578,7 @@ Remove Reference(DiagnosticOrder), Add Reference(Encounter), Add Reference(Episo
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ImagingStudy.basedOn</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">ImagingStudy.interpreter</td>
@@ -3253,15 +3594,15 @@ Type changed from uri to BackboneElement
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ImagingStudy.baseLocation.type</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ImagingStudy.baseLocation.url</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ImagingStudy.reason</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">ImagingStudy.series.baseLocation</td>
@@ -3273,11 +3614,11 @@ Type changed from uri to BackboneElement
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ImagingStudy.series.baseLocation.type</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ImagingStudy.series.baseLocation.url</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-del">
     <td class="diff-left">ImagingStudy.series.instance.type</td>
@@ -3295,9 +3636,21 @@ Type changed from uri to BackboneElement
     <td class="diff-left">Immunization.status</td>
     <td class="diff-right">Change value set from http://hl7.org/fhir/ValueSet/medication-admin-status to http://hl7.org/fhir/ValueSet/immunization-status</td>
   </tr>
+  <tr class="diff-new">
+    <td class="diff-left">Immunization.primarySource</td>
+    <td class="diff-right">added Element</td>
+  </tr>
+  <tr class="diff-new">
+    <td class="diff-left">Immunization.reportOrigin</td>
+    <td class="diff-right">added Element</td>
+  </tr>
   <tr class="diff-entry">
     <td class="diff-left">Immunization.vaccinationProtocol.doseSequence</td>
     <td class="diff-right">Min Cardinality changed from 1 to 0</td>
+  </tr>
+  <tr class="diff-del">
+    <td class="diff-left">Immunization.reported</td>
+    <td class="diff-right">deleted</td>
   </tr>
   <tr class="diff-item">
     <td class="diff-left">ImmunizationRecommendation</td>
@@ -3336,7 +3689,7 @@ Remove Binding http://hl7.org/fhir/ValueSet/use-context (extensible)
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ImplementationGuide.jurisdiction</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">ImplementationGuide.copyright</td>
@@ -3348,7 +3701,7 @@ Remove Binding http://hl7.org/fhir/ValueSet/use-context (extensible)
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ImplementationGuide.package.resource.example</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">ImplementationGuide.global.type</td>
@@ -3380,11 +3733,11 @@ Remove Binding http://hl7.org/fhir/ValueSet/use-context (extensible)
   </tr>
   <tr class="diff-new-item">
     <td class="diff-left">Library</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Resource</td>
   </tr>
   <tr class="diff-new-item">
     <td class="diff-left">Linkage</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Resource</td>
   </tr>
   <tr class="diff-item">
     <td class="diff-left">List</td>
@@ -3403,19 +3756,19 @@ Type changed from string to Annotation
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Location.alias</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Location.endpoint</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new-item">
     <td class="diff-left">Measure</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Resource</td>
   </tr>
   <tr class="diff-new-item">
     <td class="diff-left">MeasureReport</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Resource</td>
   </tr>
   <tr class="diff-item">
     <td class="diff-left">Media</td>
@@ -3446,7 +3799,11 @@ Add CodeableConcept
   </tr>
   <tr class="diff-new">
     <td class="diff-left">MedicationAdministration.supportingInformation</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
+  </tr>
+  <tr class="diff-new">
+    <td class="diff-left">MedicationAdministration.effective[x]</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">MedicationAdministration.performer</td>
@@ -3454,7 +3811,7 @@ Add CodeableConcept
   </tr>
   <tr class="diff-new">
     <td class="diff-left">MedicationAdministration.reasonReference</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">MedicationAdministration.prescription</td>
@@ -3462,13 +3819,20 @@ Add CodeableConcept
   </tr>
   <tr class="diff-new">
     <td class="diff-left">MedicationAdministration.notGiven</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">MedicationAdministration.note</td>
     <td class="diff-right">
 Max Cardinality changed from 1 to *      <br/>
 Type changed from string to Annotation
+    </td>
+  </tr>
+  <tr class="diff-entry">
+    <td class="diff-left">MedicationAdministration.dosage.site</td>
+    <td class="diff-right">
+Renamed from site[x] to site      <br/>
+Remove Reference(BodySite)
     </td>
   </tr>
   <tr class="diff-entry">
@@ -3481,10 +3845,14 @@ Type changed from string to Annotation
   </tr>
   <tr class="diff-new">
     <td class="diff-left">MedicationAdministration.eventHistory</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-del">
     <td class="diff-left">MedicationAdministration.wasNotGiven</td>
+    <td class="diff-right">deleted</td>
+  </tr>
+  <tr class="diff-del">
+    <td class="diff-left">MedicationAdministration.effectiveTime[x]</td>
     <td class="diff-right">deleted</td>
   </tr>
   <tr class="diff-item">
@@ -3493,11 +3861,11 @@ Type changed from string to Annotation
   </tr>
   <tr class="diff-new">
     <td class="diff-left">MedicationDispense.supportingInformation</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">MedicationDispense.dispensingOrganization</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">MedicationDispense.authorizingPrescription</td>
@@ -3516,7 +3884,7 @@ Type changed from string to Annotation
   </tr>
   <tr class="diff-new">
     <td class="diff-left">MedicationDispense.eventHistory</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-del">
     <td class="diff-left">MedicationDispense.dosageInstruction.text</td>
@@ -3564,15 +3932,15 @@ Type changed from string to Annotation
   </tr>
   <tr class="diff-new">
     <td class="diff-left">MedicationRequest.definition</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">MedicationRequest.basedOn</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">MedicationRequest.requisition</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">MedicationRequest.status</td>
@@ -3580,7 +3948,7 @@ Type changed from string to Annotation
   </tr>
   <tr class="diff-new">
     <td class="diff-left">MedicationRequest.stage</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">MedicationRequest.patient</td>
@@ -3588,19 +3956,23 @@ Type changed from string to Annotation
   </tr>
   <tr class="diff-new">
     <td class="diff-left">MedicationRequest.context</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">MedicationRequest.supportingInformation</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
+  </tr>
+  <tr class="diff-new">
+    <td class="diff-left">MedicationRequest.requester</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">MedicationRequest.reasonCode</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">MedicationRequest.reasonReference</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">MedicationRequest.note</td>
@@ -3611,7 +3983,7 @@ Type changed from string to Annotation
   </tr>
   <tr class="diff-new">
     <td class="diff-left">MedicationRequest.category</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">MedicationRequest.dosageInstruction</td>
@@ -3623,11 +3995,11 @@ Type changed from string to Annotation
   </tr>
   <tr class="diff-new">
     <td class="diff-left">MedicationRequest.dispenseRequest.performer</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">MedicationRequest.substitution.allowed</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">MedicationRequest.priorPrescription</td>
@@ -3635,7 +4007,7 @@ Type changed from string to Annotation
   </tr>
   <tr class="diff-new">
     <td class="diff-left">MedicationRequest.eventHistory</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-del">
     <td class="diff-left">MedicationOrder.dateEnded</td>
@@ -3643,6 +4015,10 @@ Type changed from string to Annotation
   </tr>
   <tr class="diff-del">
     <td class="diff-left">MedicationOrder.reasonEnded</td>
+    <td class="diff-right">deleted</td>
+  </tr>
+  <tr class="diff-del">
+    <td class="diff-left">MedicationOrder.prescriber</td>
     <td class="diff-right">deleted</td>
   </tr>
   <tr class="diff-del">
@@ -3709,13 +4085,17 @@ Type changed from string to Annotation
     <td class="diff-left">MedicationStatement.status</td>
     <td class="diff-right">Change codes from {active|completed|entered-in-error|intended} to {active|completed|entered-in-error|intended|stopped|on-hold}</td>
   </tr>
+  <tr class="diff-new">
+    <td class="diff-left">MedicationStatement.subject</td>
+    <td class="diff-right">added Element</td>
+  </tr>
   <tr class="diff-entry">
     <td class="diff-left">MedicationStatement.informationSource</td>
     <td class="diff-right">Add Reference(Organization)</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">MedicationStatement.derivedFrom</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">MedicationStatement.notTaken</td>
@@ -3726,12 +4106,12 @@ Add Binding http://hl7.org/fhir/ValueSet/medication-statement-nottaken (required
     </td>
   </tr>
   <tr class="diff-new">
-    <td class="diff-left">MedicationStatement.reasonForUseCode</td>
-    <td class="diff-right">added</td>
+    <td class="diff-left">MedicationStatement.reasonForUseCodeableConcept</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">MedicationStatement.reasonForUseReference</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">MedicationStatement.note</td>
@@ -3742,11 +4122,15 @@ Type changed from string to Annotation
   </tr>
   <tr class="diff-new">
     <td class="diff-left">MedicationStatement.category</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">MedicationStatement.dosage</td>
     <td class="diff-right">Type changed from BackboneElement to DosageInstruction</td>
+  </tr>
+  <tr class="diff-del">
+    <td class="diff-left">MedicationStatement.patient</td>
+    <td class="diff-right">deleted</td>
   </tr>
   <tr class="diff-del">
     <td class="diff-left">MedicationStatement.reasonForUse[x]</td>
@@ -3794,7 +4178,7 @@ Type changed from string to Annotation
   </tr>
   <tr class="diff-new-item">
     <td class="diff-left">MessageDefinition</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Resource</td>
   </tr>
   <tr class="diff-item">
     <td class="diff-left">MessageHeader</td>
@@ -3803,7 +4187,7 @@ No Changes
   </tr>
   <tr class="diff-new-item">
     <td class="diff-left">MetadataResource</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Resource</td>
   </tr>
   <tr class="diff-item">
     <td class="diff-left">NamingSystem</td>
@@ -3830,11 +4214,11 @@ Remove Binding http://hl7.org/fhir/ValueSet/use-context (extensible)
   </tr>
   <tr class="diff-new">
     <td class="diff-left">NamingSystem.jurisdiction</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">NamingSystem.uniqueId.comment</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-del">
     <td class="diff-left">NamingSystem.contact.name</td>
@@ -3874,7 +4258,7 @@ Remove Binding http://hl7.org/fhir/ValueSet/use-context (extensible)
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Observation.component.interpretation</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-item">
     <td class="diff-left">OperationDefinition</td>
@@ -3898,15 +4282,15 @@ Remove Binding http://hl7.org/fhir/ValueSet/use-context (extensible)
   </tr>
   <tr class="diff-new">
     <td class="diff-left">OperationDefinition.useContext</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">OperationDefinition.jurisdiction</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">OperationDefinition.purpose</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">OperationDefinition.comment</td>
@@ -3914,7 +4298,7 @@ Remove Binding http://hl7.org/fhir/ValueSet/use-context (extensible)
   </tr>
   <tr class="diff-new">
     <td class="diff-left">OperationDefinition.resource</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">OperationDefinition.type</td>
@@ -3931,19 +4315,19 @@ Remove Binding http://hl7.org/fhir/ValueSet/resource-types (required)
   </tr>
   <tr class="diff-new">
     <td class="diff-left">OperationDefinition.parameter.searchType</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">OperationDefinition.overload</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">OperationDefinition.overload.parameterName</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">OperationDefinition.overload.comment</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-del">
     <td class="diff-left">OperationDefinition.contact.name</td>
@@ -3963,7 +4347,7 @@ Remove Binding http://hl7.org/fhir/ValueSet/resource-types (required)
   </tr>
   <tr class="diff-new">
     <td class="diff-left">OperationOutcome.issue.expression</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-item">
     <td class="diff-left">Organization</td>
@@ -3971,11 +4355,11 @@ Remove Binding http://hl7.org/fhir/ValueSet/resource-types (required)
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Organization.alias</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Organization.endpoint</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-item">
     <td class="diff-left">Parameters</td>
@@ -3988,6 +4372,10 @@ Remove Binding http://hl7.org/fhir/ValueSet/resource-types (required)
   <tr class="diff-item">
     <td class="diff-left">Patient</td>
     <td class="diff-right"/>
+  </tr>
+  <tr class="diff-entry">
+    <td class="diff-left">Patient.maritalStatus</td>
+    <td class="diff-right">Change binding strength from required to extensible</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">Patient.contact.relationship</td>
@@ -4011,11 +4399,26 @@ Remove Binding http://hl7.org/fhir/ValueSet/resource-types (required)
   </tr>
   <tr class="diff-new">
     <td class="diff-left">PaymentNotice.status</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">PaymentNotice.statusDate</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
+  </tr>
+  <tr class="diff-entry">
+    <td class="diff-left">PaymentNotice.paymentStatus</td>
+    <td class="diff-right">
+Min Cardinality changed from 1 to 0      <br/>
+Type changed from Coding to CodeableConcept
+    </td>
+  </tr>
+  <tr class="diff-del">
+    <td class="diff-left">PaymentNotice.ruleset</td>
+    <td class="diff-right">deleted</td>
+  </tr>
+  <tr class="diff-del">
+    <td class="diff-left">PaymentNotice.originalRuleset</td>
+    <td class="diff-right">deleted</td>
   </tr>
   <tr class="diff-item">
     <td class="diff-left">PaymentReconciliation</td>
@@ -4023,23 +4426,49 @@ Remove Binding http://hl7.org/fhir/ValueSet/resource-types (required)
   </tr>
   <tr class="diff-new">
     <td class="diff-left">PaymentReconciliation.status</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">PaymentReconciliation.outcome</td>
-    <td class="diff-right">Change codes from {complete|error} to {complete|error|partial}</td>
+    <td class="diff-right">
+Type changed from code to CodeableConcept      <br/>
+Change codes from {complete|error} to {complete|error|partial}
+    </td>
+  </tr>
+  <tr class="diff-entry">
+    <td class="diff-left">PaymentReconciliation.detail.type</td>
+    <td class="diff-right">Type changed from Coding to CodeableConcept</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">PaymentReconciliation.detail.response</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">PaymentReconciliation.detail.amount</td>
     <td class="diff-right">Type changed from Quantity{http://hl7.org/fhir/StructureDefinition/Money} to Money</td>
   </tr>
   <tr class="diff-entry">
+    <td class="diff-left">PaymentReconciliation.form</td>
+    <td class="diff-right">Type changed from Coding to CodeableConcept</td>
+  </tr>
+  <tr class="diff-entry">
     <td class="diff-left">PaymentReconciliation.total</td>
-    <td class="diff-right">Type changed from Quantity{http://hl7.org/fhir/StructureDefinition/Money} to Money</td>
+    <td class="diff-right">
+Min Cardinality changed from 1 to 0      <br/>
+Type changed from Quantity{http://hl7.org/fhir/StructureDefinition/Money} to Money
+    </td>
+  </tr>
+  <tr class="diff-entry">
+    <td class="diff-left">PaymentReconciliation.note.type</td>
+    <td class="diff-right">Type changed from Coding to CodeableConcept</td>
+  </tr>
+  <tr class="diff-del">
+    <td class="diff-left">PaymentReconciliation.ruleset</td>
+    <td class="diff-right">deleted</td>
+  </tr>
+  <tr class="diff-del">
+    <td class="diff-left">PaymentReconciliation.originalRuleset</td>
+    <td class="diff-right">deleted</td>
   </tr>
   <tr class="diff-del">
     <td class="diff-left">PaymentReconciliation.detail.responce</td>
@@ -4052,7 +4481,7 @@ No Changes
   </tr>
   <tr class="diff-new-item">
     <td class="diff-left">PlanDefinition</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Resource</td>
   </tr>
   <tr class="diff-item">
     <td class="diff-left">Practitioner</td>
@@ -4076,15 +4505,15 @@ No Changes
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Practitioner.role.identifier</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Practitioner.role.telecom</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Practitioner.role.endpoint</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">Practitioner.communication</td>
@@ -4092,7 +4521,7 @@ No Changes
   </tr>
   <tr class="diff-new-item">
     <td class="diff-left">PractitionerRole</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Resource</td>
   </tr>
   <tr class="diff-item">
     <td class="diff-left">Procedure</td>
@@ -4104,11 +4533,11 @@ No Changes
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Procedure.reasonReference</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Procedure.reasonCode</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">Procedure.request</td>
@@ -4116,15 +4545,15 @@ No Changes
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Procedure.usedReference</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Procedure.usedCode</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Procedure.component</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-del">
     <td class="diff-left">Procedure.reason[x]</td>
@@ -4140,7 +4569,7 @@ No Changes
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ProcedureRequest.supportingInfo</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-item">
     <td class="diff-left">ProcessRequest</td>
@@ -4148,7 +4577,19 @@ No Changes
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ProcessRequest.status</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
+  </tr>
+  <tr class="diff-entry">
+    <td class="diff-left">ProcessRequest.action</td>
+    <td class="diff-right">Min Cardinality changed from 1 to 0</td>
+  </tr>
+  <tr class="diff-del">
+    <td class="diff-left">ProcessRequest.ruleset</td>
+    <td class="diff-right">deleted</td>
+  </tr>
+  <tr class="diff-del">
+    <td class="diff-left">ProcessRequest.originalRuleset</td>
+    <td class="diff-right">deleted</td>
   </tr>
   <tr class="diff-item">
     <td class="diff-left">ProcessResponse</td>
@@ -4156,7 +4597,47 @@ No Changes
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ProcessResponse.status</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
+  </tr>
+  <tr class="diff-entry">
+    <td class="diff-left">ProcessResponse.outcome</td>
+    <td class="diff-right">Type changed from Coding to CodeableConcept</td>
+  </tr>
+  <tr class="diff-entry">
+    <td class="diff-left">ProcessResponse.form</td>
+    <td class="diff-right">Type changed from Coding to CodeableConcept</td>
+  </tr>
+  <tr class="diff-new">
+    <td class="diff-left">ProcessResponse.note</td>
+    <td class="diff-right">added Element</td>
+  </tr>
+  <tr class="diff-new">
+    <td class="diff-left">ProcessResponse.note.type</td>
+    <td class="diff-right">added Element</td>
+  </tr>
+  <tr class="diff-new">
+    <td class="diff-left">ProcessResponse.note.text</td>
+    <td class="diff-right">added Element</td>
+  </tr>
+  <tr class="diff-entry">
+    <td class="diff-left">ProcessResponse.error</td>
+    <td class="diff-right">Type changed from Coding to CodeableConcept</td>
+  </tr>
+  <tr class="diff-new">
+    <td class="diff-left">ProcessResponse.communicationRequest</td>
+    <td class="diff-right">added Element</td>
+  </tr>
+  <tr class="diff-del">
+    <td class="diff-left">ProcessResponse.ruleset</td>
+    <td class="diff-right">deleted</td>
+  </tr>
+  <tr class="diff-del">
+    <td class="diff-left">ProcessResponse.originalRuleset</td>
+    <td class="diff-right">deleted</td>
+  </tr>
+  <tr class="diff-del">
+    <td class="diff-left">ProcessResponse.notes</td>
+    <td class="diff-right">deleted</td>
   </tr>
   <tr class="diff-item">
     <td class="diff-left">Provenance</td>
@@ -4176,15 +4657,15 @@ No Changes
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Provenance.agent.who[x]</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Provenance.agent.onBehalfOf[x]</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Provenance.agent.relatedAgentType</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">Provenance.entity.role</td>
@@ -4224,19 +4705,19 @@ No Changes
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Questionnaire.url</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Questionnaire.useContext</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Questionnaire.title</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Questionnaire.concept</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">Questionnaire.subjectType</td>
@@ -4250,57 +4731,65 @@ Min Cardinality changed from 1 to 0      <br/>
 Max Cardinality changed from 1 to *
     </td>
   </tr>
+  <tr class="diff-entry">
+    <td class="diff-left">Questionnaire.item.linkId</td>
+    <td class="diff-right">Min Cardinality changed from 0 to 1</td>
+  </tr>
+  <tr class="diff-new">
+    <td class="diff-left">Questionnaire.item.definition</td>
+    <td class="diff-right">added Element</td>
+  </tr>
   <tr class="diff-new">
     <td class="diff-left">Questionnaire.item.prefix</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Questionnaire.item.type</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Questionnaire.item.enableWhen</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Questionnaire.item.enableWhen.question</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Questionnaire.item.enableWhen.hasAnswer</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Questionnaire.item.enableWhen.answer[x]</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Questionnaire.item.readOnly</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Questionnaire.item.maxLength</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Questionnaire.item.options</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Questionnaire.item.option</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Questionnaire.item.option.value[x]</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Questionnaire.item.initial[x]</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Questionnaire.item.item</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-del">
     <td class="diff-left">Questionnaire.group.title</td>
@@ -4320,11 +4809,11 @@ Max Cardinality changed from 1 to *
   </tr>
   <tr class="diff-new">
     <td class="diff-left">QuestionnaireResponse.basedOn</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">QuestionnaireResponse.parent</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">QuestionnaireResponse.status</td>
@@ -4344,21 +4833,29 @@ Renamed from group to item      <br/>
 Max Cardinality changed from 1 to *
     </td>
   </tr>
+  <tr class="diff-entry">
+    <td class="diff-left">QuestionnaireResponse.item.linkId</td>
+    <td class="diff-right">Min Cardinality changed from 0 to 1</td>
+  </tr>
+  <tr class="diff-new">
+    <td class="diff-left">QuestionnaireResponse.item.definition</td>
+    <td class="diff-right">added Element</td>
+  </tr>
   <tr class="diff-new">
     <td class="diff-left">QuestionnaireResponse.item.answer</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">QuestionnaireResponse.item.answer.value[x]</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">QuestionnaireResponse.item.answer.item</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">QuestionnaireResponse.item.item</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-del">
     <td class="diff-left">QuestionnaireResponse.group.title</td>
@@ -4378,11 +4875,11 @@ Max Cardinality changed from 1 to *
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ReferralRequest.basedOn</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ReferralRequest.parent</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">ReferralRequest.status</td>
@@ -4390,7 +4887,7 @@ Max Cardinality changed from 1 to *
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ReferralRequest.category</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">ReferralRequest.context</td>
@@ -4413,7 +4910,7 @@ Add Reference(EpisodeOfCare)
   </tr>
   <tr class="diff-new">
     <td class="diff-left">RelatedPerson.active</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">RelatedPerson.relationship</td>
@@ -4425,15 +4922,15 @@ Add Reference(EpisodeOfCare)
   </tr>
   <tr class="diff-new-item">
     <td class="diff-left">RequestGroup</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Resource</td>
   </tr>
   <tr class="diff-new-item">
     <td class="diff-left">ResearchStudy</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Resource</td>
   </tr>
   <tr class="diff-new-item">
     <td class="diff-left">ResearchSubject</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Resource</td>
   </tr>
   <tr class="diff-item">
     <td class="diff-left">Resource</td>
@@ -4449,35 +4946,35 @@ Add Reference(EpisodeOfCare)
   </tr>
   <tr class="diff-new">
     <td class="diff-left">RiskAssessment.basedOn</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">RiskAssessment.parent</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">RiskAssessment.status</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">RiskAssessment.code</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">RiskAssessment.context</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">RiskAssessment.occurrence[x]</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">RiskAssessment.reason[x]</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">RiskAssessment.note</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-del">
     <td class="diff-left">RiskAssessment.date</td>
@@ -4493,11 +4990,11 @@ Add Reference(EpisodeOfCare)
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Schedule.active</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Schedule.serviceCategory</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">Schedule.serviceType</td>
@@ -4505,7 +5002,7 @@ Add Reference(EpisodeOfCare)
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Schedule.specialty</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-item">
     <td class="diff-left">SearchParameter</td>
@@ -4513,7 +5010,7 @@ Add Reference(EpisodeOfCare)
   </tr>
   <tr class="diff-new">
     <td class="diff-left">SearchParameter.version</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">SearchParameter.status</td>
@@ -4532,15 +5029,15 @@ Change value set from http://hl7.org/fhir/ValueSet/conformance-resource-status t
   </tr>
   <tr class="diff-new">
     <td class="diff-left">SearchParameter.useContext</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">SearchParameter.jurisdiction</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">SearchParameter.purpose</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">SearchParameter.base</td>
@@ -4549,21 +5046,45 @@ Max Cardinality changed from 1 to *      <br/>
 Change codes from {Account|AllergyIntolerance|Appointment|AppointmentResponse|AuditEvent|Basic|Binary|BodySite|Bundle|CarePlan|Claim|ClaimResponse|ClinicalImpression|Communication|CommunicationRequest|Composition|ConceptMap|Condition|Conformance|Contract|Coverage|DataElement|DetectedIssue|Device|DeviceComponent|DeviceMetric|DeviceUseRequest|DeviceUseStatement|DiagnosticOrder|DiagnosticReport|DocumentManifest|DocumentReference|DomainResource|EligibilityRequest|EligibilityResponse|Encounter|EnrollmentRequest|EnrollmentResponse|EpisodeOfCare|ExplanationOfBenefit|FamilyMemberHistory|Flag|Goal|Group|HealthcareService|ImagingObjectSelection|ImagingStudy|Immunization|ImmunizationRecommendation|ImplementationGuide|List|Location|Media|Medication|MedicationAdministration|MedicationDispense|MedicationOrder|MedicationStatement|MessageHeader|NamingSystem|NutritionOrder|Observation|OperationDefinition|OperationOutcome|Order|OrderResponse|Organization|Parameters|Patient|PaymentNotice|PaymentReconciliation|Person|Practitioner|Procedure|ProcedureRequest|ProcessRequest|ProcessResponse|Provenance|Questionnaire|QuestionnaireResponse|ReferralRequest|RelatedPerson|Resource|RiskAssessment|Schedule|SearchParameter|Slot|Specimen|StructureDefinition|Subscription|Substance|SupplyDelivery|SupplyRequest|TestScript|ValueSet|VisionPrescription} to {Account|ActivityDefinition|AllergyIntolerance|Appointment|AppointmentResponse|AuditEvent|Basic|Binary|BodySite|Bundle|CapabilityStatement|CarePlan|CareTeam|Claim|ClaimResponse|ClinicalImpression|CodeSystem|Communication|CommunicationRequest|CompartmentDefinition|Composition|ConceptMap|Condition|Consent|Contract|Coverage|DataElement|DetectedIssue|Device|DeviceComponent|DeviceMetric|DeviceUseRequest|DeviceUseStatement|DiagnosticReport|DiagnosticRequest|DocumentManifest|DocumentReference|DomainResource|EligibilityRequest|EligibilityResponse|Encounter|Endpoint|EnrollmentRequest|EnrollmentResponse|EpisodeOfCare|ExpansionProfile|ExplanationOfBenefit|FamilyMemberHistory|Flag|Goal|Group|GuidanceResponse|HealthcareService|ImagingManifest|ImagingStudy|Immunization|ImmunizationRecommendation|ImplementationGuide|Library|Linkage|List|Location|Measure|MeasureReport|Media|Medication|MedicationAdministration|MedicationDispense|MedicationRequest|MedicationStatement|MessageDefinition|MessageHeader|NamingSystem|NutritionRequest|Observation|OperationDefinition|OperationOutcome|Organization|Parameters|Patient|PaymentNotice|PaymentReconciliation|Person|PlanDefinition|Practitioner|PractitionerRole|Procedure|ProcedureRequest|ProcessRequest|ProcessResponse|Provenance|Questionnaire|QuestionnaireResponse|ReferralRequest|RelatedPerson|RequestGroup|ResearchStudy|ResearchSubject|Resource|RiskAssessment|Schedule|SearchParameter|Sequence|ServiceDefinition|Slot|Specimen|StructureDefinition|StructureMap|Subscription|Substance|SupplyDelivery|SupplyRequest|Task|TestReport|TestScript|ValueSet|VisionPrescription}
     </td>
   </tr>
+  <tr class="diff-new">
+    <td class="diff-left">SearchParameter.derivedFrom</td>
+    <td class="diff-right">added Element</td>
+  </tr>
   <tr class="diff-entry">
     <td class="diff-left">SearchParameter.description</td>
     <td class="diff-right">Type changed from string to markdown</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">SearchParameter.expression</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">SearchParameter.target</td>
     <td class="diff-right">Change codes from {Account|AllergyIntolerance|Appointment|AppointmentResponse|AuditEvent|Basic|Binary|BodySite|Bundle|CarePlan|Claim|ClaimResponse|ClinicalImpression|Communication|CommunicationRequest|Composition|ConceptMap|Condition|Conformance|Contract|Coverage|DataElement|DetectedIssue|Device|DeviceComponent|DeviceMetric|DeviceUseRequest|DeviceUseStatement|DiagnosticOrder|DiagnosticReport|DocumentManifest|DocumentReference|DomainResource|EligibilityRequest|EligibilityResponse|Encounter|EnrollmentRequest|EnrollmentResponse|EpisodeOfCare|ExplanationOfBenefit|FamilyMemberHistory|Flag|Goal|Group|HealthcareService|ImagingObjectSelection|ImagingStudy|Immunization|ImmunizationRecommendation|ImplementationGuide|List|Location|Media|Medication|MedicationAdministration|MedicationDispense|MedicationOrder|MedicationStatement|MessageHeader|NamingSystem|NutritionOrder|Observation|OperationDefinition|OperationOutcome|Order|OrderResponse|Organization|Parameters|Patient|PaymentNotice|PaymentReconciliation|Person|Practitioner|Procedure|ProcedureRequest|ProcessRequest|ProcessResponse|Provenance|Questionnaire|QuestionnaireResponse|ReferralRequest|RelatedPerson|Resource|RiskAssessment|Schedule|SearchParameter|Slot|Specimen|StructureDefinition|Subscription|Substance|SupplyDelivery|SupplyRequest|TestScript|ValueSet|VisionPrescription} to {Account|ActivityDefinition|AllergyIntolerance|Appointment|AppointmentResponse|AuditEvent|Basic|Binary|BodySite|Bundle|CapabilityStatement|CarePlan|CareTeam|Claim|ClaimResponse|ClinicalImpression|CodeSystem|Communication|CommunicationRequest|CompartmentDefinition|Composition|ConceptMap|Condition|Consent|Contract|Coverage|DataElement|DetectedIssue|Device|DeviceComponent|DeviceMetric|DeviceUseRequest|DeviceUseStatement|DiagnosticReport|DiagnosticRequest|DocumentManifest|DocumentReference|DomainResource|EligibilityRequest|EligibilityResponse|Encounter|Endpoint|EnrollmentRequest|EnrollmentResponse|EpisodeOfCare|ExpansionProfile|ExplanationOfBenefit|FamilyMemberHistory|Flag|Goal|Group|GuidanceResponse|HealthcareService|ImagingManifest|ImagingStudy|Immunization|ImmunizationRecommendation|ImplementationGuide|Library|Linkage|List|Location|Measure|MeasureReport|Media|Medication|MedicationAdministration|MedicationDispense|MedicationRequest|MedicationStatement|MessageDefinition|MessageHeader|NamingSystem|NutritionRequest|Observation|OperationDefinition|OperationOutcome|Organization|Parameters|Patient|PaymentNotice|PaymentReconciliation|Person|PlanDefinition|Practitioner|PractitionerRole|Procedure|ProcedureRequest|ProcessRequest|ProcessResponse|Provenance|Questionnaire|QuestionnaireResponse|ReferralRequest|RelatedPerson|RequestGroup|ResearchStudy|ResearchSubject|Resource|RiskAssessment|Schedule|SearchParameter|Sequence|ServiceDefinition|Slot|Specimen|StructureDefinition|StructureMap|Subscription|Substance|SupplyDelivery|SupplyRequest|Task|TestReport|TestScript|ValueSet|VisionPrescription}</td>
   </tr>
   <tr class="diff-new">
+    <td class="diff-left">SearchParameter.comparator</td>
+    <td class="diff-right">added Element</td>
+  </tr>
+  <tr class="diff-new">
+    <td class="diff-left">SearchParameter.modifier</td>
+    <td class="diff-right">added Element</td>
+  </tr>
+  <tr class="diff-new">
+    <td class="diff-left">SearchParameter.chain</td>
+    <td class="diff-right">added Element</td>
+  </tr>
+  <tr class="diff-new">
     <td class="diff-left">SearchParameter.component</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
+  </tr>
+  <tr class="diff-new">
+    <td class="diff-left">SearchParameter.component.definition</td>
+    <td class="diff-right">added Element</td>
+  </tr>
+  <tr class="diff-new">
+    <td class="diff-left">SearchParameter.component.expression</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-del">
     <td class="diff-left">SearchParameter.contact.name</td>
@@ -4579,11 +5100,11 @@ Change codes from {Account|AllergyIntolerance|Appointment|AppointmentResponse|Au
   </tr>
   <tr class="diff-new-item">
     <td class="diff-left">Sequence</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Resource</td>
   </tr>
   <tr class="diff-new-item">
     <td class="diff-left">ServiceDefinition</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Resource</td>
   </tr>
   <tr class="diff-item">
     <td class="diff-left">Slot</td>
@@ -4591,7 +5112,7 @@ Change codes from {Account|AllergyIntolerance|Appointment|AppointmentResponse|Au
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Slot.serviceCategory</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">Slot.serviceType</td>
@@ -4602,11 +5123,11 @@ Max Cardinality changed from 1 to *
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Slot.specialty</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Slot.appointmentType</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">Slot.status</td>
@@ -4621,11 +5142,11 @@ Change codes from {busy|free|busy-unavailable|busy-tentative} to {busy|free|busy
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Specimen.request</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">Specimen.treatment.time[x]</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">Specimen.note</td>
@@ -4647,7 +5168,7 @@ Max Cardinality changed from 1 to *
   </tr>
   <tr class="diff-new">
     <td class="diff-left">StructureDefinition.title</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">StructureDefinition.status</td>
@@ -4674,11 +5195,11 @@ Remove Binding http://hl7.org/fhir/ValueSet/use-context (extensible)
   </tr>
   <tr class="diff-new">
     <td class="diff-left">StructureDefinition.jurisdiction</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">StructureDefinition.purpose</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">StructureDefinition.copyright</td>
@@ -4686,7 +5207,7 @@ Remove Binding http://hl7.org/fhir/ValueSet/use-context (extensible)
   </tr>
   <tr class="diff-new">
     <td class="diff-left">StructureDefinition.keyword</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">StructureDefinition.kind</td>
@@ -4698,7 +5219,7 @@ Remove Binding http://hl7.org/fhir/ValueSet/use-context (extensible)
   </tr>
   <tr class="diff-new">
     <td class="diff-left">StructureDefinition.contextInvariant</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">StructureDefinition.type</td>
@@ -4714,7 +5235,7 @@ Change binding strength from required to extensible
   </tr>
   <tr class="diff-new">
     <td class="diff-left">StructureDefinition.derivation</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-del">
     <td class="diff-left">StructureDefinition.display</td>
@@ -4738,7 +5259,7 @@ Change binding strength from required to extensible
   </tr>
   <tr class="diff-new-item">
     <td class="diff-left">StructureMap</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Resource</td>
   </tr>
   <tr class="diff-item">
     <td class="diff-left">Subscription</td>
@@ -4783,11 +5304,11 @@ Add CodeableConcept
   </tr>
   <tr class="diff-new-item">
     <td class="diff-left">Task</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Resource</td>
   </tr>
   <tr class="diff-new-item">
     <td class="diff-left">TestReport</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Resource</td>
   </tr>
   <tr class="diff-item">
     <td class="diff-left">TestScript</td>
@@ -4795,7 +5316,7 @@ Add CodeableConcept
   </tr>
   <tr class="diff-new">
     <td class="diff-left">TestScript.title</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">TestScript.status</td>
@@ -4822,11 +5343,11 @@ Remove Binding http://hl7.org/fhir/ValueSet/use-context (extensible)
   </tr>
   <tr class="diff-new">
     <td class="diff-left">TestScript.jurisdiction</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">TestScript.purpose</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">TestScript.copyright</td>
@@ -4834,35 +5355,35 @@ Remove Binding http://hl7.org/fhir/ValueSet/use-context (extensible)
   </tr>
   <tr class="diff-new">
     <td class="diff-left">TestScript.origin</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">TestScript.origin.index</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">TestScript.origin.profile</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">TestScript.destination</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">TestScript.destination.index</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">TestScript.destination.profile</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">TestScript.metadata.capability.origin</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">TestScript.metadata.capability.capabilities</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">TestScript.fixture.autocreate</td>
@@ -4874,67 +5395,67 @@ Remove Binding http://hl7.org/fhir/ValueSet/use-context (extensible)
   </tr>
   <tr class="diff-new">
     <td class="diff-left">TestScript.variable.defaultValue</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">TestScript.variable.description</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">TestScript.variable.expression</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">TestScript.variable.hint</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">TestScript.rule</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">TestScript.rule.resource</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">TestScript.rule.param</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">TestScript.rule.param.name</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">TestScript.rule.param.value</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">TestScript.ruleset</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">TestScript.ruleset.resource</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">TestScript.ruleset.rule</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">TestScript.ruleset.rule.ruleId</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">TestScript.ruleset.rule.param</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">TestScript.ruleset.rule.param.name</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">TestScript.ruleset.rule.param.value</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">TestScript.setup.action.operation.resource</td>
@@ -4954,15 +5475,15 @@ Remove Binding http://hl7.org/fhir/ValueSet/use-context (extensible)
   </tr>
   <tr class="diff-new">
     <td class="diff-left">TestScript.setup.action.operation.origin</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">TestScript.setup.action.operation.requestId</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">TestScript.setup.action.assert.compareToSourceExpression</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">TestScript.setup.action.assert.contentType</td>
@@ -4970,7 +5491,7 @@ Remove Binding http://hl7.org/fhir/ValueSet/use-context (extensible)
   </tr>
   <tr class="diff-new">
     <td class="diff-left">TestScript.setup.action.assert.expression</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">TestScript.setup.action.assert.operator</td>
@@ -4978,7 +5499,7 @@ Remove Binding http://hl7.org/fhir/ValueSet/use-context (extensible)
   </tr>
   <tr class="diff-new">
     <td class="diff-left">TestScript.setup.action.assert.requestURL</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">TestScript.setup.action.assert.resource</td>
@@ -4986,51 +5507,51 @@ Remove Binding http://hl7.org/fhir/ValueSet/use-context (extensible)
   </tr>
   <tr class="diff-new">
     <td class="diff-left">TestScript.setup.action.assert.rule</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">TestScript.setup.action.assert.rule.ruleId</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">TestScript.setup.action.assert.rule.param</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">TestScript.setup.action.assert.rule.param.name</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">TestScript.setup.action.assert.rule.param.value</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">TestScript.setup.action.assert.ruleset</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">TestScript.setup.action.assert.ruleset.rulesetId</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">TestScript.setup.action.assert.ruleset.rule</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">TestScript.setup.action.assert.ruleset.rule.ruleId</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">TestScript.setup.action.assert.ruleset.rule.param</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">TestScript.setup.action.assert.ruleset.rule.param.name</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">TestScript.setup.action.assert.ruleset.rule.param.value</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">TestScript.teardown.action.operation</td>
@@ -5074,7 +5595,7 @@ Remove Binding http://hl7.org/fhir/ValueSet/use-context (extensible)
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ValueSet.title</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">ValueSet.status</td>
@@ -5101,11 +5622,11 @@ Remove Binding http://hl7.org/fhir/ValueSet/use-context (extensible)
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ValueSet.jurisdiction</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ValueSet.purpose</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">ValueSet.copyright</td>
@@ -5113,11 +5634,11 @@ Remove Binding http://hl7.org/fhir/ValueSet/use-context (extensible)
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ValueSet.compose.lockedDate</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ValueSet.compose.inactive</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">ValueSet.compose.include</td>
@@ -5129,23 +5650,26 @@ Remove Binding http://hl7.org/fhir/ValueSet/use-context (extensible)
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ValueSet.compose.include.concept.designation.language</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ValueSet.compose.include.concept.designation.use</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ValueSet.compose.include.concept.designation.value</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">ValueSet.compose.include.filter.op</td>
-    <td class="diff-right">Change codes from {=|is-a|is-not-a|regex|in|not-in} to {=|is-a|descendent-of|is-not-a|regex|in|not-in|generalizes}</td>
+    <td class="diff-right">
+Change codes from {=|is-a|is-not-a|regex|in|not-in} to {=|is-a|descendent-of|is-not-a|regex|in|not-in|generalizes|exists}      <br/>
+Now marked as Modifier
+    </td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ValueSet.compose.include.valueSet</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-entry">
     <td class="diff-left">ValueSet.expansion.contains.abstract</td>
@@ -5153,11 +5677,11 @@ Remove Binding http://hl7.org/fhir/ValueSet/use-context (extensible)
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ValueSet.expansion.contains.inactive</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-new">
     <td class="diff-left">ValueSet.expansion.contains.designation</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
   </tr>
   <tr class="diff-del">
     <td class="diff-left">ValueSet.contact.name</td>
@@ -5189,7 +5713,30 @@ Remove Binding http://hl7.org/fhir/ValueSet/use-context (extensible)
   </tr>
   <tr class="diff-new">
     <td class="diff-left">VisionPrescription.status</td>
-    <td class="diff-right">added</td>
+    <td class="diff-right">added Element</td>
+  </tr>
+  <tr class="diff-entry">
+    <td class="diff-left">VisionPrescription.dispense.product</td>
+    <td class="diff-right">
+Min Cardinality changed from 1 to 0      <br/>
+Type changed from Coding to CodeableConcept
+    </td>
+  </tr>
+  <tr class="diff-entry">
+    <td class="diff-left">VisionPrescription.dispense.eye</td>
+    <td class="diff-right">Type changed from code to CodeableConcept</td>
+  </tr>
+  <tr class="diff-entry">
+    <td class="diff-left">VisionPrescription.dispense.base</td>
+    <td class="diff-right">Type changed from code to CodeableConcept</td>
+  </tr>
+  <tr class="diff-new">
+    <td class="diff-left">VisionPrescription.dispense.note</td>
+    <td class="diff-right">added Element</td>
+  </tr>
+  <tr class="diff-del">
+    <td class="diff-left">VisionPrescription.dispense.notes</td>
+    <td class="diff-right">deleted</td>
   </tr>
   <tr class="diff-del-item">
     <td class="diff-left">Conformance</td>
@@ -5236,7 +5783,7 @@ Remove Binding http://hl7.org/fhir/ValueSet/use-context (extensible)
 		<div class="container">  <!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:33-0500. <a href="qa.html">QA Page</a>
+        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:28-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search <img src="external.png" style="text-align: baseline"/></a> | 

@@ -25,32 +25,28 @@
   "Coverage.status": {
     "code.value": "active"
   },
-  "Coverage.issuer": {
-    "Reference.reference": {
-      "string.value": "Organization/2"
-    },
-    "Resource.reference": "http://hl7.org/fhir//Organization/2"
-  },
-  "Coverage.period": {
-    "Period.start": {
-      "dateTime.value": "2011-05-23"
-    },
-    "Period.end": {
-      "dateTime.value": "2012-05-23"
-    }
-  },
   "Coverage.type": {
-    "Coding.system": {
-      "uri.value": "http://hl7.org/fhir/v3/ActCode"
-    },
-    "Coding.code": {
-      "code.value": "EHCPOL"
-    },
-    "Coding.display": {
-      "string.value": "extended healthcare"
-    }
+    "CodeableConcept.coding": [
+      {
+        "Coding.system": {
+          "uri.value": "http://hl7.org/fhir/v3/ActCode"
+        },
+        "Coding.code": {
+          "code.value": "EHCPOL"
+        },
+        "Coding.display": {
+          "string.value": "extended healthcare"
+        }
+      }
+    ]
   },
-  "Coverage.planholder": {
+  "Coverage.policyHolder": {
+    "Reference.reference": {
+      "string.value": "http://benefitsinc.com/FHIR/Organization/CBI35"
+    },
+    "Resource.reference": "http://benefitsinc.com/FHIR/Organization/CBI35"
+  },
+  "Coverage.subscriber": {
     "Reference.reference": {
       "string.value": "Patient/4"
     },
@@ -63,28 +59,71 @@
     "Resource.reference": "http://hl7.org/fhir//Patient/4"
   },
   "Coverage.relationship": {
-    "Coding.code": {
-      "code.value": "self"
+    "CodeableConcept.coding": [
+      {
+        "Coding.code": {
+          "code.value": "self"
+        }
+      }
+    ]
+  },
+  "Coverage.period": {
+    "Period.start": {
+      "dateTime.value": "2011-05-23"
+    },
+    "Period.end": {
+      "dateTime.value": "2012-05-23"
     }
   },
+  "Coverage.payor": [
+    {
+      "Reference.reference": {
+        "string.value": "Organization/2"
+      }
+    }
+  ],
   "Coverage.group": {
-    "Coverage.group.plan": {
+    "Coverage.group.group": {
       "string.value": "CBI35"
     },
-    "Coverage.group.planDisplay": {
-      "string.value": "Corporate Baker's Inc. Plan#35"
+    "Coverage.group.groupDisplay": {
+      "string.value": "Corporate Baker's Inc. Local #35"
     },
-    "Coverage.group.subPlan": {
+    "Coverage.group.subGroup": {
       "string.value": "123"
     },
-    "Coverage.group.subPlanDisplay": {
+    "Coverage.group.subGroupDisplay": {
       "string.value": "Trainee Part-time Benefits"
+    },
+    "Coverage.group.plan": {
+      "string.value": "B37FC"
+    },
+    "Coverage.group.planDisplay": {
+      "string.value": "Full Coverage: Medical, Dental, Pharmacy, Vision, EHC"
+    },
+    "Coverage.group.subPlan": {
+      "string.value": "P7"
+    },
+    "Coverage.group.subPlanDisplay": {
+      "string.value": "Includes afterlife benefits"
+    },
+    "Coverage.group.class": {
+      "string.value": "SILVER"
+    },
+    "Coverage.group.classDisplay": {
+      "string.value": "Silver: Family Plan spouse only"
+    },
+    "Coverage.group.subClass": {
+      "string.value": "Tier2"
+    },
+    "Coverage.group.subClassDisplay": {
+      "string.value": "Low deductable, max $20 copay"
     }
   },
   "Coverage.dependent": {
-    "positiveInt.value": 1
+    "string.value": "0"
   },
   "Coverage.sequence": {
-    "positiveInt.value": 1
+    "string.value": "9"
   }
 }

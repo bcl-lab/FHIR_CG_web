@@ -25,6 +25,12 @@
   "PaymentNotice.status": {
     "code.value": "active"
   },
+  "PaymentNotice.request": {
+    "Reference.reference": {
+      "string.value": "http://benefitsinc.com/fhir/claim/12345"
+    },
+    "Resource.reference": "http://benefitsinc.com/fhir/claim/12345"
+  },
   "PaymentNotice.created": {
     "dateTime.value": "2014-08-16"
   },
@@ -34,18 +40,16 @@
     },
     "Resource.reference": "http://hl7.org/fhir//Organization/1"
   },
-  "PaymentNotice.request": {
-    "Reference.reference": {
-      "string.value": "http://benefitsinc.com/fhir/claim/12345"
-    },
-    "Resource.reference": "http://benefitsinc.com/fhir/claim/12345"
-  },
   "PaymentNotice.paymentStatus": {
-    "Coding.system": {
-      "uri.value": "http://hl7.org/fhir/paymentstatus"
-    },
-    "Coding.code": {
-      "code.value": "paid"
-    }
+    "CodeableConcept.coding": [
+      {
+        "Coding.system": {
+          "uri.value": "http://hl7.org/fhir/paymentstatus"
+        },
+        "Coding.code": {
+          "code.value": "paid"
+        }
+      }
+    ]
   }
 }

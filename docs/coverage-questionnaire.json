@@ -5,18 +5,41 @@
     {
       "resourceType": "ValueSet",
       "id": "vs2",
-      "name": "Type options for Coverage.issuer",
+      "name": "Type options for Coverage.policyHolder",
       "status": "active",
-      "description": "Type options for Coverage.issuer",
+      "description": "Type options for Coverage.policyHolder",
       "expansion": {
-        "identifier": "urn:uuid:061e3af8-6554-4761-b4fa-7dbb1a5831f4",
-        "timestamp": "2016-11-28T17:32:30-05:00",
+        "identifier": "urn:uuid:6ccb22fc-ffe3-4d39-8c8d-41644ebcd1f1",
+        "timestamp": "2016-12-07T14:21:38-05:00",
         "contains": [
+          {
+            "system": "http://hl7.org/fhir/resource-types",
+            "code": "Patient",
+            "display": "Patient"
+          },
+          {
+            "system": "http://hl7.org/fhir/resource-types",
+            "code": "RelatedPerson",
+            "display": "RelatedPerson"
+          },
           {
             "system": "http://hl7.org/fhir/resource-types",
             "code": "Organization",
             "display": "Organization"
-          },
+          }
+        ]
+      }
+    },
+    {
+      "resourceType": "ValueSet",
+      "id": "vs3",
+      "name": "Type options for Coverage.subscriber",
+      "status": "active",
+      "description": "Type options for Coverage.subscriber",
+      "expansion": {
+        "identifier": "urn:uuid:2e31d770-b6c7-437d-a992-12cdf8cf7ebf",
+        "timestamp": "2016-12-07T14:21:38-05:00",
+        "contains": [
           {
             "system": "http://hl7.org/fhir/resource-types",
             "code": "Patient",
@@ -32,14 +55,19 @@
     },
     {
       "resourceType": "ValueSet",
-      "id": "vs3",
-      "name": "Type options for Coverage.planholder",
+      "id": "vs4",
+      "name": "Type options for Coverage.payor",
       "status": "active",
-      "description": "Type options for Coverage.planholder",
+      "description": "Type options for Coverage.payor",
       "expansion": {
-        "identifier": "urn:uuid:7f221082-f044-442f-8c2d-05521fb28b6c",
-        "timestamp": "2016-11-28T17:32:30-05:00",
+        "identifier": "urn:uuid:0c8a5d1f-f8df-4384-b3c2-599f4aa8f83e",
+        "timestamp": "2016-12-07T14:21:38-05:00",
         "contains": [
+          {
+            "system": "http://hl7.org/fhir/resource-types",
+            "code": "Organization",
+            "display": "Organization"
+          },
           {
             "system": "http://hl7.org/fhir/resource-types",
             "code": "Patient",
@@ -49,11 +77,6 @@
             "system": "http://hl7.org/fhir/resource-types",
             "code": "RelatedPerson",
             "display": "RelatedPerson"
-          },
-          {
-            "system": "http://hl7.org/fhir/resource-types",
-            "code": "Organization",
-            "display": "Organization"
           }
         ]
       }
@@ -65,7 +88,7 @@
     }
   ],
   "status": "draft",
-  "date": "2016-11-28T17:29:55-05:00",
+  "date": "2016-12-07T14:18:58-05:00",
   "publisher": "Health Level Seven International (Financial Management)",
   "item": [
     {
@@ -397,7 +420,7 @@
                   }
                 }
               ],
-              "text": "The main (and possibly only) identifier for the coverage - often referred to as a Member Id, Subscriber Id, Certificate number or Personal Health Number or Case ID.",
+              "text": "The main (and possibly only) identifier for the coverage - often referred to as a Member Id, Certificate number, Personal Health Number or Case ID. May be constructed as the concatination of the Coverage.SubscriberID and the Coverage.dependant.",
               "type": "display"
             },
             {
@@ -471,10 +494,14 @@
             {
               "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs",
               "valueInteger": 1
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType",
+              "valueString": "CodeableConcept"
             }
           ],
-          "linkId": "Coverage.issuer",
-          "text": "Identifier for the plan or agreement issuer",
+          "linkId": "Coverage.type",
+          "text": "Type of coverage",
           "type": "group",
           "required": false,
           "repeats": true,
@@ -494,11 +521,58 @@
                   }
                 }
               ],
-              "text": "The program or plan underwriter or payor including both insurance and non-insurance agreements, such as patient-pay agreements.",
+              "text": "The type of coverage: social program, medical plan, accident coverage (workers compensation, auto), group health or payment by an individual or organization.",
               "type": "display"
             },
             {
-              "linkId": "Coverage.issuer._type",
+              "linkId": "Coverage.type.coding",
+              "text": "code:",
+              "type": "open-choice",
+              "required": false,
+              "repeats": false
+            },
+            {
+              "linkId": "Coverage.type.text",
+              "text": "text:",
+              "type": "string",
+              "required": false,
+              "repeats": false
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs",
+              "valueInteger": 1
+            }
+          ],
+          "linkId": "Coverage.policyHolder",
+          "text": "Owner of the policy",
+          "type": "group",
+          "required": false,
+          "repeats": true,
+          "item": [
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://hl7.org/fhir/questionnaire-item-control",
+                        "code": "flyover",
+                        "display": "Fly-over"
+                      }
+                    ]
+                  }
+                }
+              ],
+              "text": "The party who 'owns' the insurance policy,  may be an individual, corporation or the subscriber's employer.",
+              "type": "display"
+            },
+            {
+              "linkId": "Coverage.policyHolder._type",
               "text": "type",
               "type": "choice",
               "required": false,
@@ -514,36 +588,7 @@
                       "valueString": "Reference"
                     }
                   ],
-                  "linkId": "Coverage.issuer._Organization",
-                  "type": "group",
-                  "item": [
-                    {
-                      "extension": [
-                        {
-                          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-allowedResource",
-                          "valueCode": "Organization"
-                        },
-                        {
-                          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-referenceFilter",
-                          "valueString": "subject=$subj&patient=$subj&encounter=$encounter"
-                        }
-                      ],
-                      "linkId": "Coverage.issuer._Organization.value",
-                      "text": "Organization",
-                      "type": "reference",
-                      "required": false,
-                      "repeats": false
-                    }
-                  ]
-                },
-                {
-                  "extension": [
-                    {
-                      "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType",
-                      "valueString": "Reference"
-                    }
-                  ],
-                  "linkId": "Coverage.issuer._Patient",
+                  "linkId": "Coverage.policyHolder._Patient",
                   "type": "group",
                   "item": [
                     {
@@ -557,7 +602,7 @@
                           "valueString": "subject=$subj&patient=$subj&encounter=$encounter"
                         }
                       ],
-                      "linkId": "Coverage.issuer._Patient.value",
+                      "linkId": "Coverage.policyHolder._Patient.value",
                       "text": "Patient",
                       "type": "reference",
                       "required": false,
@@ -572,7 +617,7 @@
                       "valueString": "Reference"
                     }
                   ],
-                  "linkId": "Coverage.issuer._RelatedPerson",
+                  "linkId": "Coverage.policyHolder._RelatedPerson",
                   "type": "group",
                   "item": [
                     {
@@ -586,7 +631,139 @@
                           "valueString": "subject=$subj&patient=$subj&encounter=$encounter"
                         }
                       ],
-                      "linkId": "Coverage.issuer._RelatedPerson.value",
+                      "linkId": "Coverage.policyHolder._RelatedPerson.value",
+                      "text": "RelatedPerson",
+                      "type": "reference",
+                      "required": false,
+                      "repeats": false
+                    }
+                  ]
+                },
+                {
+                  "extension": [
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType",
+                      "valueString": "Reference"
+                    }
+                  ],
+                  "linkId": "Coverage.policyHolder._Organization",
+                  "type": "group",
+                  "item": [
+                    {
+                      "extension": [
+                        {
+                          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-allowedResource",
+                          "valueCode": "Organization"
+                        },
+                        {
+                          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-referenceFilter",
+                          "valueString": "subject=$subj&patient=$subj&encounter=$encounter"
+                        }
+                      ],
+                      "linkId": "Coverage.policyHolder._Organization.value",
+                      "text": "Organization",
+                      "type": "reference",
+                      "required": false,
+                      "repeats": false
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs",
+              "valueInteger": 1
+            }
+          ],
+          "linkId": "Coverage.subscriber",
+          "text": "Subscriber to the policy",
+          "type": "group",
+          "required": false,
+          "repeats": true,
+          "item": [
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://hl7.org/fhir/questionnaire-item-control",
+                        "code": "flyover",
+                        "display": "Fly-over"
+                      }
+                    ]
+                  }
+                }
+              ],
+              "text": "The party who has signed-up for or 'owns' the contractual relationship to the policy or to whom the benefit of the policy for services rendered to them or their family is due.",
+              "type": "display"
+            },
+            {
+              "linkId": "Coverage.subscriber._type",
+              "text": "type",
+              "type": "choice",
+              "required": false,
+              "repeats": false,
+              "options": {
+                "reference": "#vs3"
+              },
+              "item": [
+                {
+                  "extension": [
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType",
+                      "valueString": "Reference"
+                    }
+                  ],
+                  "linkId": "Coverage.subscriber._Patient",
+                  "type": "group",
+                  "item": [
+                    {
+                      "extension": [
+                        {
+                          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-allowedResource",
+                          "valueCode": "Patient"
+                        },
+                        {
+                          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-referenceFilter",
+                          "valueString": "subject=$subj&patient=$subj&encounter=$encounter"
+                        }
+                      ],
+                      "linkId": "Coverage.subscriber._Patient.value",
+                      "text": "Patient",
+                      "type": "reference",
+                      "required": false,
+                      "repeats": false
+                    }
+                  ]
+                },
+                {
+                  "extension": [
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType",
+                      "valueString": "Reference"
+                    }
+                  ],
+                  "linkId": "Coverage.subscriber._RelatedPerson",
+                  "type": "group",
+                  "item": [
+                    {
+                      "extension": [
+                        {
+                          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-allowedResource",
+                          "valueCode": "RelatedPerson"
+                        },
+                        {
+                          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-referenceFilter",
+                          "valueString": "subject=$subj&patient=$subj&encounter=$encounter"
+                        }
+                      ],
+                      "linkId": "Coverage.subscriber._RelatedPerson.value",
                       "text": "RelatedPerson",
                       "type": "reference",
                       "required": false,
@@ -606,10 +783,10 @@
             },
             {
               "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType",
-              "valueString": "boolean"
+              "valueString": "string"
             }
           ],
-          "linkId": "Coverage.isAgreement",
+          "linkId": "Coverage.subscriberId",
           "type": "group",
           "required": false,
           "repeats": true,
@@ -629,13 +806,117 @@
                   }
                 }
               ],
-              "text": "A self, or other, payment agreement not an insurance policy.",
+              "text": "The insurer assigned ID for the Subscriber.",
               "type": "display"
             },
             {
-              "linkId": "Coverage.isAgreement.value",
-              "text": "Is a Payment Agreement",
-              "type": "boolean",
+              "linkId": "Coverage.subscriberId.value",
+              "text": "ID assigned to the Subscriber",
+              "type": "string",
+              "required": false,
+              "repeats": false
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs",
+              "valueInteger": 1
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType",
+              "valueString": "Reference"
+            }
+          ],
+          "linkId": "Coverage.beneficiary",
+          "type": "group",
+          "required": false,
+          "repeats": true,
+          "item": [
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://hl7.org/fhir/questionnaire-item-control",
+                        "code": "flyover",
+                        "display": "Fly-over"
+                      }
+                    ]
+                  }
+                }
+              ],
+              "text": "The party who benefits from the insurance coverage., the patient when services are provided.",
+              "type": "display"
+            },
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-allowedResource",
+                  "valueCode": "Patient"
+                },
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-referenceFilter",
+                  "valueString": "subject=$subj&patient=$subj&encounter=$encounter"
+                }
+              ],
+              "linkId": "Coverage.beneficiary.value",
+              "text": "Plan Beneficiary",
+              "type": "reference",
+              "required": false,
+              "repeats": false
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs",
+              "valueInteger": 1
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType",
+              "valueString": "CodeableConcept"
+            }
+          ],
+          "linkId": "Coverage.relationship",
+          "text": "Beneficiary relationship to the Subscriber",
+          "type": "group",
+          "required": false,
+          "repeats": true,
+          "item": [
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://hl7.org/fhir/questionnaire-item-control",
+                        "code": "flyover",
+                        "display": "Fly-over"
+                      }
+                    ]
+                  }
+                }
+              ],
+              "text": "The relationship of beneficiary (patient) to the subscriber.",
+              "type": "display"
+            },
+            {
+              "linkId": "Coverage.relationship.coding",
+              "text": "code:",
+              "type": "open-choice",
+              "required": false,
+              "repeats": false
+            },
+            {
+              "linkId": "Coverage.relationship.text",
+              "text": "text:",
+              "type": "string",
               "required": false,
               "repeats": false
             }
@@ -693,17 +974,8 @@
           ]
         },
         {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs",
-              "valueInteger": 1
-            },
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType",
-              "valueString": "Coding"
-            }
-          ],
-          "linkId": "Coverage.type",
+          "linkId": "Coverage.payor",
+          "text": "Identifier for the plan or agreement issuer",
           "type": "group",
           "required": false,
           "repeats": true,
@@ -723,57 +995,17 @@
                   }
                 }
               ],
-              "text": "The type of coverage: social program, medical plan, accident coverage (workers compensation, auto), group health.",
+              "text": "The program or plan underwriter or payor including both insurance and non-insurance agreements, such as patient-pay agreements. May provide multiple identifiers such as insurance company identifier or business identifier (BIN number).",
               "type": "display"
             },
             {
-              "linkId": "Coverage.type.value",
-              "text": "Type of coverage",
-              "type": "open-choice",
-              "required": false,
-              "repeats": false
-            }
-          ]
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs",
-              "valueInteger": 1
-            }
-          ],
-          "linkId": "Coverage.planholder",
-          "text": "Plan holder",
-          "type": "group",
-          "required": false,
-          "repeats": true,
-          "item": [
-            {
-              "extension": [
-                {
-                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
-                  "valueCodeableConcept": {
-                    "coding": [
-                      {
-                        "system": "http://hl7.org/fhir/questionnaire-item-control",
-                        "code": "flyover",
-                        "display": "Fly-over"
-                      }
-                    ]
-                  }
-                }
-              ],
-              "text": "The party who 'owns' the insurance contractual relationship to the policy or to whom the benefit of the policy is due.",
-              "type": "display"
-            },
-            {
-              "linkId": "Coverage.planholder._type",
+              "linkId": "Coverage.payor._type",
               "text": "type",
               "type": "choice",
               "required": false,
               "repeats": false,
               "options": {
-                "reference": "#vs3"
+                "reference": "#vs4"
               },
               "item": [
                 {
@@ -783,7 +1015,36 @@
                       "valueString": "Reference"
                     }
                   ],
-                  "linkId": "Coverage.planholder._Patient",
+                  "linkId": "Coverage.payor._Organization",
+                  "type": "group",
+                  "item": [
+                    {
+                      "extension": [
+                        {
+                          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-allowedResource",
+                          "valueCode": "Organization"
+                        },
+                        {
+                          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-referenceFilter",
+                          "valueString": "subject=$subj&patient=$subj&encounter=$encounter"
+                        }
+                      ],
+                      "linkId": "Coverage.payor._Organization.value",
+                      "text": "Organization",
+                      "type": "reference",
+                      "required": false,
+                      "repeats": false
+                    }
+                  ]
+                },
+                {
+                  "extension": [
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType",
+                      "valueString": "Reference"
+                    }
+                  ],
+                  "linkId": "Coverage.payor._Patient",
                   "type": "group",
                   "item": [
                     {
@@ -797,7 +1058,7 @@
                           "valueString": "subject=$subj&patient=$subj&encounter=$encounter"
                         }
                       ],
-                      "linkId": "Coverage.planholder._Patient.value",
+                      "linkId": "Coverage.payor._Patient.value",
                       "text": "Patient",
                       "type": "reference",
                       "required": false,
@@ -812,7 +1073,7 @@
                       "valueString": "Reference"
                     }
                   ],
-                  "linkId": "Coverage.planholder._RelatedPerson",
+                  "linkId": "Coverage.payor._RelatedPerson",
                   "type": "group",
                   "item": [
                     {
@@ -826,37 +1087,8 @@
                           "valueString": "subject=$subj&patient=$subj&encounter=$encounter"
                         }
                       ],
-                      "linkId": "Coverage.planholder._RelatedPerson.value",
+                      "linkId": "Coverage.payor._RelatedPerson.value",
                       "text": "RelatedPerson",
-                      "type": "reference",
-                      "required": false,
-                      "repeats": false
-                    }
-                  ]
-                },
-                {
-                  "extension": [
-                    {
-                      "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType",
-                      "valueString": "Reference"
-                    }
-                  ],
-                  "linkId": "Coverage.planholder._Organization",
-                  "type": "group",
-                  "item": [
-                    {
-                      "extension": [
-                        {
-                          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-allowedResource",
-                          "valueCode": "Organization"
-                        },
-                        {
-                          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-referenceFilter",
-                          "valueString": "subject=$subj&patient=$subj&encounter=$encounter"
-                        }
-                      ],
-                      "linkId": "Coverage.planholder._Organization.value",
-                      "text": "Organization",
                       "type": "reference",
                       "required": false,
                       "repeats": false
@@ -864,102 +1096,6 @@
                   ]
                 }
               ]
-            }
-          ]
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs",
-              "valueInteger": 1
-            },
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType",
-              "valueString": "Reference"
-            }
-          ],
-          "linkId": "Coverage.beneficiary",
-          "type": "group",
-          "required": false,
-          "repeats": true,
-          "item": [
-            {
-              "extension": [
-                {
-                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
-                  "valueCodeableConcept": {
-                    "coding": [
-                      {
-                        "system": "http://hl7.org/fhir/questionnaire-item-control",
-                        "code": "flyover",
-                        "display": "Fly-over"
-                      }
-                    ]
-                  }
-                }
-              ],
-              "text": "The party who benefits from the insurance coverage.",
-              "type": "display"
-            },
-            {
-              "extension": [
-                {
-                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-allowedResource",
-                  "valueCode": "Patient"
-                },
-                {
-                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-referenceFilter",
-                  "valueString": "subject=$subj&patient=$subj&encounter=$encounter"
-                }
-              ],
-              "linkId": "Coverage.beneficiary.value",
-              "text": "Plan Beneficiary",
-              "type": "reference",
-              "required": false,
-              "repeats": false
-            }
-          ]
-        },
-        {
-          "extension": [
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs",
-              "valueInteger": 1
-            },
-            {
-              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType",
-              "valueString": "Coding"
-            }
-          ],
-          "linkId": "Coverage.relationship",
-          "type": "group",
-          "required": false,
-          "repeats": true,
-          "item": [
-            {
-              "extension": [
-                {
-                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
-                  "valueCodeableConcept": {
-                    "coding": [
-                      {
-                        "system": "http://hl7.org/fhir/questionnaire-item-control",
-                        "code": "flyover",
-                        "display": "Fly-over"
-                      }
-                    ]
-                  }
-                }
-              ],
-              "text": "The relationship of beneficiary (patient) (subscriber) to the the planholder.",
-              "type": "display"
-            },
-            {
-              "linkId": "Coverage.relationship.value",
-              "text": "Beneficiary relationship to Planholder",
-              "type": "open-choice",
-              "required": false,
-              "repeats": false
             }
           ]
         },
@@ -1122,7 +1258,7 @@
                       }
                     }
                   ],
-                  "text": "Identifies a style or collective of coverage issues by the underwriter, for example may be used to identify a class of coverage or employer group. May also be referred to as a Policy or Group ID.",
+                  "text": "Identifies a style or collective of coverage issued by the underwriter, for example may be used to identify an employer group. May also be referred to as a Policy or Group ID.",
                   "type": "display"
                 },
                 {
@@ -1208,7 +1344,7 @@
                       }
                     }
                   ],
-                  "text": "Identifies a style or collective of coverage issues by the underwriter, for example may be used to identify a class of coverage or employer group. May also be referred to as a Policy or Group ID.",
+                  "text": "Identifies a style or collective of coverage issued by the underwriter, for example may be used to identify a subset of an employer group.",
                   "type": "display"
                 },
                 {
@@ -1294,7 +1430,7 @@
                       }
                     }
                   ],
-                  "text": "Identifies a style or collective of coverage issues by the underwriter, for example may be used to identify a class of coverage or employer group. May also be referred to as a Policy or Group ID.",
+                  "text": "Identifies a style or collective of coverage issued by the underwriter, for example may be used to identify a collection of benefits provided to employees. May be referred to as a Section or Division ID.",
                   "type": "display"
                 },
                 {
@@ -1380,7 +1516,7 @@
                       }
                     }
                   ],
-                  "text": "Identifies a sub-style or sub-collective of coverage issues by the underwriter, for example may be used to identify a specific employer group within a class of employers. May be referred to as a Section or Division ID.",
+                  "text": "Identifies a sub-style or sub-collective of coverage issued by the underwriter, for example may be used to identify a subset of a collection of benefits provided to employees.",
                   "type": "display"
                 },
                 {
@@ -1617,7 +1753,7 @@
             },
             {
               "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType",
-              "valueString": "integer"
+              "valueString": "string"
             }
           ],
           "linkId": "Coverage.dependent",
@@ -1646,7 +1782,7 @@
             {
               "linkId": "Coverage.dependent.value",
               "text": "Dependent number",
-              "type": "integer",
+              "type": "string",
               "required": false,
               "repeats": false
             }
@@ -1660,7 +1796,7 @@
             },
             {
               "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType",
-              "valueString": "integer"
+              "valueString": "string"
             }
           ],
           "linkId": "Coverage.sequence",
@@ -1689,6 +1825,49 @@
             {
               "linkId": "Coverage.sequence.value",
               "text": "The plan instance or sequence counter",
+              "type": "string",
+              "required": false,
+              "repeats": false
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs",
+              "valueInteger": 1
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType",
+              "valueString": "integer"
+            }
+          ],
+          "linkId": "Coverage.order",
+          "type": "group",
+          "required": false,
+          "repeats": true,
+          "item": [
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://hl7.org/fhir/questionnaire-item-control",
+                        "code": "flyover",
+                        "display": "Fly-over"
+                      }
+                    ]
+                  }
+                }
+              ],
+              "text": "The order of applicability of this coverage relative to other coverages which are currently inforce. Note, there may be gaps in the numbering and this does not imply primary, secondard etc. as the specific positioning of coverages depends upon the episode of care.",
+              "type": "display"
+            },
+            {
+              "linkId": "Coverage.order.value",
+              "text": "Relative order of the coverage",
               "type": "integer",
               "required": false,
               "repeats": false
@@ -1726,7 +1905,7 @@
                   }
                 }
               ],
-              "text": "The identifier for a community of providers.",
+              "text": "The insurer-specific identifier for the insurer-defined network of providers to which the beneficiary may seek treatment which will be covered at the 'in-network' rate, otherwise 'out of network' terms and conditions apply.",
               "type": "display"
             },
             {

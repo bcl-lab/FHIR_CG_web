@@ -3,7 +3,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>Diagnosticreport-hla-genetics-results-example.ttl - FHIR v1.7.0</title>
+  <title>Diagnosticreport-hla-genetics-results-example.ttl - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -127,49 +127,12 @@
 &lt;http://hl7.org/fhir/DiagnosticReport/hla-1&gt; a fhir:DiagnosticReport;
   fhir:nodeRole fhir:treeRoot;
   fhir:Resource.id [ fhir:value &quot;hla-1&quot;];
-  fhir:DomainResource.text [ fhir:Narrative.div &quot;&lt;div xmlns=\&quot;http://www.w3.org/1999/xhtml\&quot;&gt;\n        &lt;h3&gt;HLA-A,-B,-C Genotyping Report for Marry Chalmers (MRN: 12345) &lt;/h3&gt;\n        &lt;pre&gt;\n        Gene      Allele 1          Allele 2\n        HLA-A     HLA-A*01:01:01:01     HLA-A*01:02\n        HLA-B     HLA-B*15:01:01:01     HLA-B*57:01:01\n        HLA-C     HLA-C*01:02:01        HLA-C*03:04:01:01\n        &lt;/pre&gt;\n        &lt;p&gt;Allele assignments based on IMGT/HLA 3.23&lt;/p&gt;\n        &lt;p&gt;Issued: 2015-05-26T15:30:10+01:00&lt;/p&gt;\n        &lt;p&gt;Method: Next-Generation Sequencing of exons 2 and 3 of HLA Class I genes&lt;/p&gt;\n        &lt;p&gt;Lab: ACME labs, Inc&lt;/p&gt;\n        &lt;p&gt;Please refer the &lt;a href=\&quot;genomics.html#hla\&quot;&gt;implementation guide &lt;/a&gt; for this usage example.&lt;/p&gt;\n      &lt;/div&gt;&quot;];
-  fhir:DiagnosticReport.code [
-     fhir:CodeableConcept.coding [
-       fhir:index 0;
-       fhir:concept loinc:53767-0;
-       fhir:Coding.system [ fhir:value &quot;http://loinc.org&quot; ];
-       fhir:Coding.code [ fhir:value &quot;53767-0&quot; ];
-       fhir:Coding.display [ fhir:value &quot;HLA-A+B+C SBT [Interpretation] by High resolution&quot; ]
-     ]
+  fhir:DomainResource.text [
+     fhir:Narrative.status [ fhir:value &quot;extensions&quot; ];
+     fhir:Narrative.div &quot;&lt;div xmlns=\&quot;http://www.w3.org/1999/xhtml\&quot;&gt;\n        &lt;h3&gt;HLA-A,-B,-C Genotyping Report for Marry Chalmers (MRN: 12345) &lt;/h3&gt;\n        &lt;pre&gt;\n        Gene      Allele 1          Allele 2\n        HLA-A     HLA-A*01:01:01:01     HLA-A*01:02\n        HLA-B     HLA-B*15:01:01:01     HLA-B*57:01:01\n        HLA-C     HLA-C*01:02:01        HLA-C*03:04:01:01\n        &lt;/pre&gt;\n        &lt;p&gt;Allele assignments based on IMGT/HLA 3.23&lt;/p&gt;\n        &lt;p&gt;Issued: 2015-05-26T15:30:10+01:00&lt;/p&gt;\n        &lt;p&gt;Method: Next-Generation Sequencing of exons 2 and 3 of HLA Class I genes&lt;/p&gt;\n        &lt;p&gt;Lab: ACME labs, Inc&lt;/p&gt;\n        &lt;p&gt;Please refer the &lt;a href=\&quot;genomics.html#hla\&quot;&gt;implementation guide &lt;/a&gt; for this usage example.&lt;/p&gt;\n      &lt;/div&gt;&quot;
   ];
-  fhir:DiagnosticReport.category [
-     fhir:CodeableConcept.coding [
-       fhir:index 0;
-       fhir:Coding.system [ fhir:value &quot;http://hl7.org/fhir/ValueSet/diagnostic-service-sections&quot; ];
-       fhir:Coding.code [ fhir:value &quot;GE&quot; ];
-       fhir:Coding.display [ fhir:value &quot;Genetics&quot; ]
-     ]
-  ];
-  fhir:DiagnosticReport.subject [
-     fhir:link &lt;http://hl7.org/fhir/Patient/123&gt;;
-     fhir:Reference.reference [ fhir:value &quot;Patient/123&quot; ];
-     fhir:Reference.display [ fhir:value &quot;Mary Chalmers&quot; ]
-  ];
-  fhir:DiagnosticReport.specimen [
-     fhir:index 0;
-     fhir:link &lt;http://hl7.org/fhir/Specimen/456&gt;;
-     fhir:Reference.reference [ fhir:value &quot;Specimen/456&quot; ];
-     fhir:Reference.display [ fhir:value &quot;buccal swab&quot; ]
-  ];
-  fhir:DiagnosticReport.request [
-     fhir:index 0;
-     fhir:link &lt;http://hl7.org/fhir/DiagnosticRequest/789&gt;;
-     fhir:Reference.reference [ fhir:value &quot;DiagnosticRequest/789&quot; ];
-     fhir:Reference.display [ fhir:value &quot;Order for HLA-A,-B,-C genotyping&quot; ]
-  ];
-  fhir:DiagnosticReport.effectiveDateTime [ fhir:value &quot;2015-05-26T15:30:10+01:00&quot;^^xsd:dateTime];
-  fhir:DiagnosticReport.issued [ fhir:value &quot;2014-05-16T10:28:00+01:00&quot;^^xsd:dateTime];
   fhir:extension [
      fhir:index 0;
-     fhir:Extension.url [ fhir:value &quot;http://hl7.org/fhir/StructureDefinition/hla-genotyping-resultsAlleleAsignmentDate&quot; ];
-     fhir:Extension.valueDate [ fhir:value &quot;2014-05-16T10:28:00+01:00&quot;^^xsd:dateTime ]
-  ], [
-     fhir:index 1;
      fhir:Extension.url [ fhir:value &quot;http://hl7.org/fhir/StructureDefinition/hla-genotyping-resultsAlleleDatabase&quot; ];
      fhir:Extension.valueCodeableConcept [
        fhir:CodeableConcept.coding [
@@ -180,7 +143,7 @@
        fhir:CodeableConcept.text [ fhir:value &quot;IMGT/HLA 3.23&quot; ]
      ]
   ], [
-     fhir:index 2;
+     fhir:index 1;
      fhir:Extension.url [ fhir:value &quot;http://hl7.org/fhir/StructureDefinition/hla-genotyping-resultsGlstring&quot; ];
      fhir:extension [
        fhir:index 0;
@@ -192,7 +155,7 @@
        fhir:Extension.valueUri [ fhir:value &quot;https://gl.nmdp.org/imgt-hla/3.23.0/multilocus-unphased-genotype/i&quot; ]
      ]
   ], [
-     fhir:index 3;
+     fhir:index 2;
      fhir:Extension.url [ fhir:value &quot;http://hl7.org/fhir/StructureDefinition/hla-genotyping-resultsMethod&quot; ];
      fhir:Extension.valueCodeableConcept [
        fhir:CodeableConcept.coding [
@@ -202,6 +165,43 @@
        ];
        fhir:CodeableConcept.text [ fhir:value &quot;Next Generation Sequencing of exons 2 and 3 of HLA Class I genes&quot; ]
      ]
+  ];
+  fhir:DiagnosticReport.status [ fhir:value &quot;final&quot;];
+  fhir:DiagnosticReport.category [
+     fhir:CodeableConcept.coding [
+       fhir:index 0;
+       fhir:Coding.system [ fhir:value &quot;http://hl7.org/fhir/ValueSet/diagnostic-service-sections&quot; ];
+       fhir:Coding.code [ fhir:value &quot;GE&quot; ];
+       fhir:Coding.display [ fhir:value &quot;Genetics&quot; ]
+     ]
+  ];
+  fhir:DiagnosticReport.code [
+     fhir:CodeableConcept.coding [
+       fhir:index 0;
+       fhir:concept loinc:53767-0;
+       fhir:Coding.system [ fhir:value &quot;http://loinc.org&quot; ];
+       fhir:Coding.code [ fhir:value &quot;53767-0&quot; ];
+       fhir:Coding.display [ fhir:value &quot;HLA-A+B+C SBT [Interpretation] by High resolution&quot; ]
+     ]
+  ];
+  fhir:DiagnosticReport.subject [
+     fhir:link &lt;http://hl7.org/fhir/Patient/123&gt;;
+     fhir:Reference.reference [ fhir:value &quot;Patient/123&quot; ];
+     fhir:Reference.display [ fhir:value &quot;Mary Chalmers&quot; ]
+  ];
+  fhir:DiagnosticReport.effectiveDateTime [ fhir:value &quot;2015-05-26T15:30:10+01:00&quot;^^xsd:dateTime];
+  fhir:DiagnosticReport.issued [ fhir:value &quot;2014-05-16T10:28:00+01:00&quot;^^xsd:dateTime];
+  fhir:DiagnosticReport.request [
+     fhir:index 0;
+     fhir:link &lt;http://hl7.org/fhir/DiagnosticRequest/789&gt;;
+     fhir:Reference.reference [ fhir:value &quot;DiagnosticRequest/789&quot; ];
+     fhir:Reference.display [ fhir:value &quot;Order for HLA-A,-B,-C genotyping&quot; ]
+  ];
+  fhir:DiagnosticReport.specimen [
+     fhir:index 0;
+     fhir:link &lt;http://hl7.org/fhir/Specimen/456&gt;;
+     fhir:Reference.reference [ fhir:value &quot;Specimen/456&quot; ];
+     fhir:Reference.display [ fhir:value &quot;buccal swab&quot; ]
   ];
   fhir:DiagnosticReport.result [
      fhir:index 0;
@@ -222,9 +222,9 @@
 
 &lt;http://hl7.org/fhir/Patient/123&gt; a fhir:Patient .
 
-&lt;http://hl7.org/fhir/Specimen/456&gt; a fhir:Specimen .
-
 &lt;http://hl7.org/fhir/DiagnosticRequest/789&gt; a fhir:DiagnosticRequest .
+
+&lt;http://hl7.org/fhir/Specimen/456&gt; a fhir:Specimen .
 
 &lt;http://hl7.org/fhir/Observation/111&gt; a fhir:Observation .
 
@@ -259,7 +259,7 @@ of the specification.
 		<div class="container"><!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:32-0500. <a href="qa.html">QA Page</a>
+        © HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:21-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search</a> | 

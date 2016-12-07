@@ -5,35 +5,12 @@
     {
       "resourceType": "ValueSet",
       "id": "vs2",
-      "name": "Type options for DeviceUseStatement.bodySite[x]",
-      "status": "active",
-      "description": "Type options for DeviceUseStatement.bodySite[x]",
-      "expansion": {
-        "identifier": "urn:uuid:8daf6c55-9767-4793-8389-53458b82878e",
-        "timestamp": "2016-11-28T17:32:32-05:00",
-        "contains": [
-          {
-            "system": "http://hl7.org/fhir/data-types",
-            "code": "CodeableConcept",
-            "display": "CodeableConcept"
-          },
-          {
-            "system": "http://hl7.org/fhir/resource-types",
-            "code": "BodySite",
-            "display": "BodySite"
-          }
-        ]
-      }
-    },
-    {
-      "resourceType": "ValueSet",
-      "id": "vs3",
       "name": "Type options for DeviceUseStatement.timing[x]",
       "status": "active",
       "description": "Type options for DeviceUseStatement.timing[x]",
       "expansion": {
-        "identifier": "urn:uuid:38e3e21d-62eb-42b8-ab3f-18f833c4271c",
-        "timestamp": "2016-11-28T17:32:32-05:00",
+        "identifier": "urn:uuid:a507ff78-bdc8-4af9-9760-c38022381569",
+        "timestamp": "2016-12-07T14:21:40-05:00",
         "contains": [
           {
             "system": "http://hl7.org/fhir/data-types",
@@ -60,7 +37,7 @@
     }
   ],
   "status": "draft",
-  "date": "2016-11-28T17:29:55-05:00",
+  "date": "2016-12-07T14:18:58-05:00",
   "publisher": "Health Level Seven International (Orders and Observations)",
   "item": [
     {
@@ -369,9 +346,13 @@
             {
               "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs",
               "valueInteger": 1
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType",
+              "valueString": "CodeableConcept"
             }
           ],
-          "linkId": "DeviceUseStatement.bodySite[x]",
+          "linkId": "DeviceUseStatement.bodySite",
           "text": "Target body site",
           "type": "group",
           "required": false,
@@ -396,72 +377,18 @@
               "type": "display"
             },
             {
-              "linkId": "DeviceUseStatement.bodySite[x]._type",
-              "text": "type",
-              "type": "choice",
+              "linkId": "DeviceUseStatement.bodySite.coding",
+              "text": "code:",
+              "type": "open-choice",
               "required": false,
-              "repeats": false,
-              "options": {
-                "reference": "#vs2"
-              },
-              "item": [
-                {
-                  "extension": [
-                    {
-                      "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType",
-                      "valueString": "CodeableConcept"
-                    }
-                  ],
-                  "linkId": "DeviceUseStatement.bodySite[x]._CodeableConcept",
-                  "text": "CodeableConcept",
-                  "type": "group",
-                  "item": [
-                    {
-                      "linkId": "DeviceUseStatement.bodySite[x]._CodeableConcept.coding",
-                      "text": "code:",
-                      "type": "open-choice",
-                      "required": false,
-                      "repeats": false
-                    },
-                    {
-                      "linkId": "DeviceUseStatement.bodySite[x]._CodeableConcept.text",
-                      "text": "text:",
-                      "type": "string",
-                      "required": false,
-                      "repeats": false
-                    }
-                  ]
-                },
-                {
-                  "extension": [
-                    {
-                      "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType",
-                      "valueString": "Reference"
-                    }
-                  ],
-                  "linkId": "DeviceUseStatement.bodySite[x]._BodySite",
-                  "type": "group",
-                  "item": [
-                    {
-                      "extension": [
-                        {
-                          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-allowedResource",
-                          "valueCode": "BodySite"
-                        },
-                        {
-                          "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-referenceFilter",
-                          "valueString": "subject=$subj&patient=$subj&encounter=$encounter"
-                        }
-                      ],
-                      "linkId": "DeviceUseStatement.bodySite[x]._BodySite.value",
-                      "text": "BodySite",
-                      "type": "reference",
-                      "required": false,
-                      "repeats": false
-                    }
-                  ]
-                }
-              ]
+              "repeats": false
+            },
+            {
+              "linkId": "DeviceUseStatement.bodySite.text",
+              "text": "text:",
+              "type": "string",
+              "required": false,
+              "repeats": false
             }
           ]
         },
@@ -851,7 +778,7 @@
               "required": false,
               "repeats": false,
               "options": {
-                "reference": "#vs3"
+                "reference": "#vs2"
               },
               "item": [
                 {

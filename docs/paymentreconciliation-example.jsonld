@@ -25,18 +25,6 @@
   "PaymentReconciliation.status": {
     "code.value": "active"
   },
-  "PaymentReconciliation.request": {
-    "Reference.reference": {
-      "string.value": "http://www.BenefitsInc.com/fhir/eligibility/225476332402"
-    },
-    "Resource.reference": "http://www.BenefitsInc.com/fhir/eligibility/225476332402"
-  },
-  "PaymentReconciliation.outcome": {
-    "code.value": "complete"
-  },
-  "PaymentReconciliation.disposition": {
-    "string.value": "2014 August mid-month settlement."
-  },
   "PaymentReconciliation.created": {
     "dateTime.value": "2014-08-16"
   },
@@ -45,6 +33,27 @@
       "string.value": "Organization/2"
     },
     "Resource.reference": "http://hl7.org/fhir//Organization/2"
+  },
+  "PaymentReconciliation.request": {
+    "Reference.reference": {
+      "string.value": "http://www.BenefitsInc.com/fhir/eligibility/225476332402"
+    },
+    "Resource.reference": "http://www.BenefitsInc.com/fhir/eligibility/225476332402"
+  },
+  "PaymentReconciliation.outcome": {
+    "CodeableConcept.coding": [
+      {
+        "Coding.system": {
+          "uri.value": "http://hl7.org/fhir/remittance-outcome"
+        },
+        "Coding.code": {
+          "code.value": "complete"
+        }
+      }
+    ]
+  },
+  "PaymentReconciliation.disposition": {
+    "string.value": "2014 August mid-month settlement."
   },
   "PaymentReconciliation.requestOrganization": {
     "Reference.reference": {
@@ -55,12 +64,16 @@
   "PaymentReconciliation.detail": [
     {
       "PaymentReconciliation.detail.type": {
-        "Coding.system": {
-          "uri.value": "http://hl7.org/fhir/paymenttype"
-        },
-        "Coding.code": {
-          "code.value": "payment"
-        }
+        "CodeableConcept.coding": [
+          {
+            "Coding.system": {
+              "uri.value": "http://hl7.org/fhir/paymenttype"
+            },
+            "Coding.code": {
+              "code.value": "payment"
+            }
+          }
+        ]
       },
       "PaymentReconciliation.detail.request": {
         "Reference.reference": {
@@ -85,12 +98,16 @@
     },
     {
       "PaymentReconciliation.detail.type": {
-        "Coding.system": {
-          "uri.value": "http://hl7.org/fhir/paymenttype"
-        },
-        "Coding.code": {
-          "code.value": "payment"
-        }
+        "CodeableConcept.coding": [
+          {
+            "Coding.system": {
+              "uri.value": "http://hl7.org/fhir/paymenttype"
+            },
+            "Coding.code": {
+              "code.value": "payment"
+            }
+          }
+        ]
       },
       "PaymentReconciliation.detail.request": {
         "Reference.reference": {
@@ -115,12 +132,16 @@
     },
     {
       "PaymentReconciliation.detail.type": {
-        "Coding.system": {
-          "uri.value": "http://hl7.org/fhir/paymenttype"
-        },
-        "Coding.code": {
-          "code.value": "advance"
-        }
+        "CodeableConcept.coding": [
+          {
+            "Coding.system": {
+              "uri.value": "http://hl7.org/fhir/paymenttype"
+            },
+            "Coding.code": {
+              "code.value": "advance"
+            }
+          }
+        ]
       },
       "PaymentReconciliation.detail.date": {
         "date.value": "2014-08-16"

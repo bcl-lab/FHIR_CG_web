@@ -56,6 +56,21 @@ start=@<StructureMap> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
+# Structure Definition used by this map
+<StructureMap.structure> CLOSED {
+    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
+    fhir:extension @<Extension>*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
+    fhir:StructureMap.structure.url @<uri>;  # Canonical URL for structure 
+                                            # definition 
+    fhir:StructureMap.structure.mode @<code> AND
+    	{fhir:value @fhirvs:map-model-mode};  # source | queried | target | 
+                                            # produced 
+    fhir:StructureMap.structure.documentation @<string>?;  # Documentation on use of structure
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
 # Named sections for reader convenience
 <StructureMap.group> CLOSED {
     fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
@@ -70,21 +85,6 @@ start=@<StructureMap> AND {fhir:nodeRole [fhir:treeRoot]}
                                             # invoking the map 
     fhir:StructureMap.group.rule @<StructureMap.group.rule>+;  # Transform Rule from source to 
                                             # target 
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
-# Structure Definition used by this map
-<StructureMap.structure> CLOSED {
-    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
-    fhir:extension @<Extension>*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    fhir:StructureMap.structure.url @<uri>;  # Canonical URL for structure 
-                                            # definition 
-    fhir:StructureMap.structure.mode @<code> AND
-    	{fhir:value @fhirvs:map-model-mode};  # source | queried | target | 
-                                            # produced 
-    fhir:StructureMap.structure.documentation @<string>?;  # Documentation on use of structure
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -122,29 +122,6 @@ start=@<StructureMap> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
-# Content to create because of this mapping rule
-<StructureMap.group.rule.target> CLOSED {
-    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
-    fhir:extension @<Extension>*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    fhir:StructureMap.group.rule.target.context @<id>?;  # Type or variable this rule applies 
-                                            # to 
-    fhir:StructureMap.group.rule.target.contextType @<code> AND
-    	{fhir:value @fhirvs:map-context-type}?;  # type | variable
-    fhir:StructureMap.group.rule.target.element @<string>?;  # Field to create in the context
-    fhir:StructureMap.group.rule.target.variable @<id>?;  # Named context for field, if 
-                                            # desired, and a field is specified 
-    fhir:StructureMap.group.rule.target.listMode @<code> AND
-    	{fhir:value @fhirvs:map-list-mode}*;  # first | share | last
-    fhir:StructureMap.group.rule.target.listRuleId @<id>?;  # Internal rule reference for shared 
-                                            # list items 
-    fhir:StructureMap.group.rule.target.transform @<code> AND
-    	{fhir:value @fhirvs:map-transform}?;  # create | copy +
-    fhir:StructureMap.group.rule.target.parameter @<StructureMap.group.rule.target.parameter>*;  # Parameters to the transform
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
 # Which other rules to apply in the context of this rule
 <StructureMap.group.rule.dependent> CLOSED {
     fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
@@ -169,6 +146,10 @@ start=@<StructureMap> AND {fhir:nodeRole [fhir:treeRoot]}
                                             # to 
     fhir:StructureMap.group.rule.source.contextType @<code> AND
     	{fhir:value @fhirvs:map-context-type};  # type | variable
+    fhir:StructureMap.group.rule.source.min @<integer>?;  # Specified minimum cardinality
+    fhir:StructureMap.group.rule.source.max @<string>?;  # Specified maximum cardinality 
+                                            # (number or *) 
+    fhir:StructureMap.group.rule.source.type @<string>?;  # Type for this source
     fhir:StructureMap.group.rule.source.element @<string>?;  # Optional field for this source
     fhir:StructureMap.group.rule.source.listMode @<code> AND
     	{fhir:value @fhirvs:map-list-mode}?;  # first | share | last
@@ -179,6 +160,29 @@ start=@<StructureMap> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:StructureMap.group.rule.source.check @<string>?;  # FluentPath expression  - must be 
                                             # true or the mapping engine throws 
                                             # an error instead of completing 
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
+# Content to create because of this mapping rule
+<StructureMap.group.rule.target> CLOSED {
+    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
+    fhir:extension @<Extension>*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
+    fhir:StructureMap.group.rule.target.context @<id>?;  # Type or variable this rule applies 
+                                            # to 
+    fhir:StructureMap.group.rule.target.contextType @<code> AND
+    	{fhir:value @fhirvs:map-context-type}?;  # type | variable
+    fhir:StructureMap.group.rule.target.element @<string>?;  # Field to create in the context
+    fhir:StructureMap.group.rule.target.variable @<id>?;  # Named context for field, if 
+                                            # desired, and a field is specified 
+    fhir:StructureMap.group.rule.target.listMode @<code> AND
+    	{fhir:value @fhirvs:map-list-mode}*;  # first | share | last
+    fhir:StructureMap.group.rule.target.listRuleId @<id>?;  # Internal rule reference for shared 
+                                            # list items 
+    fhir:StructureMap.group.rule.target.transform @<code> AND
+    	{fhir:value @fhirvs:map-transform}?;  # create | copy +
+    fhir:StructureMap.group.rule.target.parameter @<StructureMap.group.rule.target.parameter>*;  # Parameters to the transform
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -392,7 +396,8 @@ start=@<StructureMap> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:extension @<Extension>*;           # Additional Content defined by 
                                             # implementations 
     fhir:ContactPoint.system @<code> AND
-    	{fhir:value @fhirvs:contact-point-system}?;  # phone | fax | email | pager | other
+    	{fhir:value @fhirvs:contact-point-system}?;  # phone | fax | email | pager | url 
+                                            # | other 
     fhir:ContactPoint.value @<string>?;     # The actual contact point details
     fhir:ContactPoint.use @<code> AND
     	{fhir:value @fhirvs:contact-point-use}?;  # home | work | temp | old | mobile 
@@ -501,8 +506,14 @@ start=@<StructureMap> AND {fhir:nodeRole [fhir:treeRoot]}
 # Mode for this instance of data
 fhirvs:map-input-mode ["source" "target"]
 
-# How data is copied / created
-fhirvs:map-transform ["create" "copy" "truncate" "escape" "cast" "append" "translate" "reference" "dateOp" "uuid" "pointer" "evaluate" "cc" "c" "qty" "id" "cp"]
+# Use of contact point
+fhirvs:contact-point-use ["home" "work" "temp" "old" "mobile"]
+
+# How the Quantity should be understood and represented.
+fhirvs:quantity-comparator ["<" "<=" ">=" ">"]
+
+# How to interpret the context
+fhirvs:map-context-type ["type" "variable"]
 
 # If field is a list, how to manage the list
 fhirvs:map-list-mode ["first" "share" "last"]
@@ -510,23 +521,17 @@ fhirvs:map-list-mode ["first" "share" "last"]
 # The lifecycle status of a Value Set or Concept Map.
 fhirvs:publication-status ["draft" "active" "retired"]
 
-# Telecommunications form for contact point
-fhirvs:contact-point-system ["phone" "fax" "email" "pager" "other"]
-
 # How the referenced structure is used in this mapping
 fhirvs:map-model-mode ["source" "queried" "target" "produced"]
 
-# How to interpret the context
-fhirvs:map-context-type ["type" "variable"]
+# Telecommunications form for contact point
+fhirvs:contact-point-system ["phone" "fax" "email" "pager" "url" "other"]
 
 # Identifies the purpose for this identifier, if known .
 fhirvs:identifier-use ["usual" "official" "temp" "secondary"]
 
+# How data is copied / created
+fhirvs:map-transform ["create" "copy" "truncate" "escape" "cast" "append" "translate" "reference" "dateOp" "uuid" "pointer" "evaluate" "cc" "c" "qty" "id" "cp"]
+
 # The status of a resource narrative
 fhirvs:narrative-status ["generated" "extensions" "additional" "empty"]
-
-# Use of contact point
-fhirvs:contact-point-use ["home" "work" "temp" "old" "mobile"]
-
-# How the Quantity should be understood and represented.
-fhirvs:quantity-comparator ["<" "<=" ">=" ">"]

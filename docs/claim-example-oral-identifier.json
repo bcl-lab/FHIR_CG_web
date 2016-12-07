@@ -13,8 +13,19 @@
   ],
   "status": "active",
   "type": {
-    "system": "http://hl7.org/fhir/ex-claimtype",
-    "code": "oral"
+    "coding": [
+      {
+        "system": "http://hl7.org/fhir/ex-claimtype",
+        "code": "oral"
+      }
+    ]
+  },
+  "use": "complete",
+  "patient": {
+    "identifier": {
+      "system": "http://www.jurisdiction.com/nationalId",
+      "value": "123AB345"
+    }
   },
   "created": "2014-08-16",
   "insurer": {
@@ -29,30 +40,46 @@
       "value": "HOSP12345"
     }
   },
-  "use": "complete",
   "priority": {
-    "code": "normal"
+    "coding": [
+      {
+        "code": "normal"
+      }
+    ]
   },
   "payee": {
     "type": {
-      "code": "provider"
+      "coding": [
+        {
+          "code": "provider"
+        }
+      ]
     }
   },
-  "diagnosis": [
+  "careTeam": [
     {
       "sequence": 1,
-      "diagnosis": {
-        "code": "123456"
+      "provider": {
+        "identifier": {
+          "system": "http://www.jurisdiction.com/providerId",
+          "value": "MD98765"
+        }
       }
     }
   ],
-  "patient": {
-    "identifier": {
-      "system": "http://www.jurisdiction.com/nationalId",
-      "value": "123AB345"
+  "diagnosis": [
+    {
+      "sequence": 1,
+      "diagnosisCodeableConcept": {
+        "coding": [
+          {
+            "code": "123456"
+          }
+        ]
+      }
     }
-  },
-  "coverage": [
+  ],
+  "insurance": [
     {
       "sequence": 1,
       "focal": true,
@@ -67,18 +94,15 @@
   "item": [
     {
       "sequence": 1,
-      "careTeam": [
-        {
-          "provider": {
-            "identifier": {
-              "system": "http://www.jurisdiction.com/providerId",
-              "value": "MD98765"
-            }
-          }
-        }
+      "careTeamLinkId": [
+        1
       ],
       "service": {
-        "code": "1200"
+        "coding": [
+          {
+            "code": "1200"
+          }
+        ]
       },
       "servicedDate": "2014-08-16",
       "unitPrice": {

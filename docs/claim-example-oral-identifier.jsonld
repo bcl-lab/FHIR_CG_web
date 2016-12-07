@@ -26,11 +26,28 @@
     "code.value": "active"
   },
   "Claim.type": {
-    "Coding.system": {
-      "uri.value": "http://hl7.org/fhir/ex-claimtype"
-    },
-    "Coding.code": {
-      "code.value": "oral"
+    "CodeableConcept.coding": [
+      {
+        "Coding.system": {
+          "uri.value": "http://hl7.org/fhir/ex-claimtype"
+        },
+        "Coding.code": {
+          "code.value": "oral"
+        }
+      }
+    ]
+  },
+  "Claim.use": {
+    "code.value": "complete"
+  },
+  "Claim.patient": {
+    "Reference.identifier": {
+      "Identifier.system": {
+        "uri.value": "http://www.jurisdiction.com/nationalId"
+      },
+      "Identifier.value": {
+        "string.value": "123AB345"
+      }
     }
   },
   "Claim.created": {
@@ -56,52 +73,68 @@
       }
     }
   },
-  "Claim.use": {
-    "code.value": "complete"
-  },
   "Claim.priority": {
-    "Coding.code": {
-      "code.value": "normal"
-    }
+    "CodeableConcept.coding": [
+      {
+        "Coding.code": {
+          "code.value": "normal"
+        }
+      }
+    ]
   },
   "Claim.payee": {
     "Claim.payee.type": {
-      "Coding.code": {
-        "code.value": "provider"
-      }
+      "CodeableConcept.coding": [
+        {
+          "Coding.code": {
+            "code.value": "provider"
+          }
+        }
+      ]
     }
   },
+  "Claim.careTeam": [
+    {
+      "Claim.careTeam.sequence": {
+        "positiveInt.value": 1
+      },
+      "Claim.careTeam.provider": {
+        "Reference.identifier": {
+          "Identifier.system": {
+            "uri.value": "http://www.jurisdiction.com/providerId"
+          },
+          "Identifier.value": {
+            "string.value": "MD98765"
+          }
+        }
+      }
+    }
+  ],
   "Claim.diagnosis": [
     {
       "Claim.diagnosis.sequence": {
         "positiveInt.value": 1
       },
-      "Claim.diagnosis.diagnosis": {
-        "Coding.code": {
-          "code.value": "123456"
-        }
+      "Claim.diagnosis.diagnosisCodeableConcept": {
+        "CodeableConcept.coding": [
+          {
+            "Coding.code": {
+              "code.value": "123456"
+            }
+          }
+        ]
       }
     }
   ],
-  "Claim.patient": {
-    "Reference.identifier": {
-      "Identifier.system": {
-        "uri.value": "http://www.jurisdiction.com/nationalId"
-      },
-      "Identifier.value": {
-        "string.value": "123AB345"
-      }
-    }
-  },
-  "Claim.coverage": [
+  "Claim.insurance": [
     {
-      "Claim.coverage.sequence": {
+      "Claim.insurance.sequence": {
         "positiveInt.value": 1
       },
-      "Claim.coverage.focal": {
+      "Claim.insurance.focal": {
         "boolean.value": true
       },
-      "Claim.coverage.coverage": {
+      "Claim.insurance.coverage": {
         "Reference.identifier": {
           "Identifier.system": {
             "uri.value": "http://www.jurisdiction.com/nationalplan"
@@ -118,24 +151,19 @@
       "Claim.item.sequence": {
         "positiveInt.value": 1
       },
-      "Claim.item.careTeam": [
+      "Claim.item.careTeamLinkId": [
         {
-          "Claim.item.careTeam.provider": {
-            "Reference.identifier": {
-              "Identifier.system": {
-                "uri.value": "http://www.jurisdiction.com/providerId"
-              },
-              "Identifier.value": {
-                "string.value": "MD98765"
-              }
-            }
-          }
+          "positiveInt.value": 1
         }
       ],
       "Claim.item.service": {
-        "Coding.code": {
-          "code.value": "1200"
-        }
+        "CodeableConcept.coding": [
+          {
+            "Coding.code": {
+              "code.value": "1200"
+            }
+          }
+        ]
       },
       "Claim.item.servicedDate": {
         "date.value": "2014-08-16"

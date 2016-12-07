@@ -3,7 +3,7 @@
 <StructureDefinition xmlns="http://hl7.org/fhir">
   <id value="Device"/>
   <meta>
-    <lastUpdated value="2016-11-28T17:29:55.664-05:00"/>
+    <lastUpdated value="2016-12-07T14:18:58.982-05:00"/>
   </meta>
   <text>
     <status value="generated"/>
@@ -110,7 +110,7 @@
             <a name="Device.type"> </a>
           </td>
           <td style="vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy"/>
-          <td style="vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">1..1</td>
+          <td style="vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">0..1</td>
           <td style="vertical-align: top; text-align : left; background-color: white; border: 0px #F0F0F0 solid; padding:0px 4px 0px 4px" class="hierarchy">
             <a href="datatypes.html#CodeableConcept">CodeableConcept</a>
           </td>
@@ -330,26 +330,29 @@
   <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm">
     <valueInteger value="1"/>
   </extension>
+  <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-wg">
+    <valueCode value="oo"/>
+  </extension>
   <url value="http://hl7.org/fhir/StructureDefinition/Device"/>
   <name value="Device"/>
   <status value="draft"/>
   <publisher value="Health Level Seven International (Orders and Observations)"/>
   <contact>
     <telecom>
-      <system value="other"/>
+      <system value="url"/>
       <value value="http://hl7.org/fhir"/>
     </telecom>
   </contact>
   <contact>
     <telecom>
-      <system value="other"/>
+      <system value="url"/>
       <value value="http://www.hl7.org/Special/committees/orders/index.cfm"/>
     </telecom>
   </contact>
-  <date value="2016-11-28T17:29:55-05:00"/>
+  <date value="2016-12-07T14:18:58-05:00"/>
   <description value="Base StructureDefinition for Device Resource"/>
   <purpose value="Allows institutions to track their devices."/>
-  <fhirVersion value="1.7.0"/>
+  <fhirVersion value="1.8.0"/>
   <mapping>
     <identity value="udi"/>
     <uri value="http://www.fda.gov/MedicalDevices/DeviceRegulationandGuidance/UniqueDeviceIdentification/default.htm"/>
@@ -683,7 +686,7 @@
       <short value="What kind of device this is"/>
       <definition value="Code or identifier to identify a kind of device."/>
       <comments value="There can be different code values thath may correspond to different granularities of the same concept.  These can be represented as translations using  the [codeableConcept](datatypes.html#codeableconcept) datatype.  For [UDI](device.html#5.11.3.2.2), this element corresponds to the UDI device identifier (DI) part. See [UDI mappings](device-mappings.html#udi) for a complete mapping of UDI parts to Device."/>
-      <min value="1"/>
+      <min value="0"/>
       <max value="1"/>
       <type>
         <code value="CodeableConcept"/>
@@ -949,7 +952,7 @@ ICCBA DIs for other devices:
       <path value="Device.url"/>
       <short value="Network address to contact device"/>
       <definition value="A network address on which the device may be contacted directly."/>
-      <comments value="If the device is running a FHIR server, the network address should  be the root URL from which a conformance statement may be retrieved."/>
+      <comments value="If the device is running a FHIR server, the network address should  be the Base URL from which a conformance statement may be retrieved."/>
       <min value="0"/>
       <max value="1"/>
       <type>
@@ -1092,7 +1095,7 @@ ICCBA DIs for other devices:
       <short value="What kind of device this is"/>
       <definition value="Code or identifier to identify a kind of device."/>
       <comments value="There can be different code values thath may correspond to different granularities of the same concept.  These can be represented as translations using  the [codeableConcept](datatypes.html#codeableconcept) datatype.  For [UDI](device.html#5.11.3.2.2), this element corresponds to the UDI device identifier (DI) part. See [UDI mappings](device-mappings.html#udi) for a complete mapping of UDI parts to Device."/>
-      <min value="1"/>
+      <min value="0"/>
       <max value="1"/>
       <type>
         <code value="CodeableConcept"/>
@@ -1358,7 +1361,7 @@ ICCBA DIs for other devices:
       <path value="Device.url"/>
       <short value="Network address to contact device"/>
       <definition value="A network address on which the device may be contacted directly."/>
-      <comments value="If the device is running a FHIR server, the network address should  be the root URL from which a conformance statement may be retrieved."/>
+      <comments value="If the device is running a FHIR server, the network address should  be the Base URL from which a conformance statement may be retrieved."/>
       <min value="0"/>
       <max value="1"/>
       <type>

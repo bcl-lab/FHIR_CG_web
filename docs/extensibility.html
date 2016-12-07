@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>Extensibility - FHIR v1.7.0</title>
+  <title>Extensibility - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -144,8 +144,8 @@ strict governance applied to the definition and use of extensions. Though
 any implementer is allowed to define and use extensions, there is a set of requirements
 that must be met as part of their use and definition.
 </p>
-<a name="Extension"/>
-<a name="extension"/>
+<a name="Extension"> </a>
+<a name="extension"> </a>
 <h2 class="self-link-parent"><span class="sectioncount">2.20.0.1</span> Extension Element <a href="extensibility.html#extension" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h2>
 <p>
 Every element in a resource or data type includes an optional &quot;extension&quot; child element that may 
@@ -482,9 +482,9 @@ Notes:
 </p>
 <ul>
  <li>The <code>url</code> is a mandatory attribute / property and identifies a retrievable <a href="structuredefinition.html">extension definition</a> that defines the content and meaning of the extension</li>
- <li>The <code>url</code> SHALL be a URL, not a URN (e.g. not an OID or a UUID), and it SHALL be the canonical URL of a StructureDefinition that defines the extension. Except for child extensions defined within a complex extensions, the URL SHALL be an absolute URL). The StructureDefinition the defines the extension SHOULD be available at the identified location so that resource processors can access the definition from the URL</li>
+ <li>The <code>url</code> SHALL be a URL, not a URN (e.g. not an OID or a UUID), and it SHALL be the canonical URL of a StructureDefinition that defines the extension. Except for child extensions defined within a complex extensions, the URL SHALL be an absolute URL). The StructureDefinition that defines the extension SHOULD be available at the identified location so that resource processors can access the definition from the URL</li>
  <li>An extension SHALL have either a value (i.e. a value[x] element) or sub-extensions, but not both. If present, the value[x] element SHALL have content (value attribute or other elements)</li>
- <li>If it is not safe for an application processing the content of the resource to ignore the extension it must be represented diffferently, using <a href="#isModifier">a Modifier Extension</a></li>
+ <li>If it is not safe for an application processing the content of the resource to ignore the extension it must be represented differently, using <a href="#isModifier">a Modifier Extension</a></li>
  <li>The <i>value[x]</i> element has an actual name of &quot;value&quot; and then the TitleCased name of one of these defined types, and its contents are those as defined for that type:
   <ul class="dense">
    <li>valueInteger : <a href="datatypes.html#integer">integer</a></li>
@@ -546,13 +546,13 @@ practice).
 In JSON, extensions are represented similarly:
 </p>
 <pre fragment="HumanName" class="json">
-  &quot;name&quot; : {
-    &quot;extension&quot; : [{
-      &quot;url&quot; : &quot;http://hl7.org/fhir/StructureDefinition/iso-21090-name-use&quot;,
-      &quot;valueCode&quot; : &quot;I&quot;
-    }],
-   &quot;text&quot; : &quot;Chief Red Cloud&quot;
-  }
+{
+  &quot;extension&quot; : [{
+    &quot;url&quot; : &quot;http://hl7.org/fhir/StructureDefinition/iso-21090-name-use&quot;,
+    &quot;valueCode&quot; : &quot;I&quot;
+  }],
+  &quot;text&quot; : &quot;Chief Red Cloud&quot;
+}   
 </pre>
 </div>
 <p>
@@ -621,14 +621,13 @@ Or in JSON:
     },  {
       &quot;url&quot; : &quot;reason&quot;,
       &quot;valueCodeableConcept&quot; : {
-          &quot;coding&quot; : {
+          &quot;coding&quot; : [{
              &quot;system&quot; : &quot;http://acme.org/codes/general&quot;,
-             &quot;code&quot; : &quot;tt14j&quot;,
-          }
+             &quot;code&quot; : &quot;tt14j&quot;
+          }]
        }
     }]
   }]
-  ... other data for patient ...
 }
 </pre>
 </div>
@@ -677,33 +676,35 @@ or in JSON:
 </p>
 <pre fragment="Patient" class="json">
 {
-  &quot;resourceType&quot; : &quot;Patient&quot;,
-  &quot;extension&quot; : [{
-    &quot;url&quot; : &quot;http://hl7.org/fhir/StructureDefinition/patient-clinicalTrial&quot;,
-    &quot;extension&quot; : [{
-      &quot;url&quot; : &quot;NCT&quot;,
-      &quot;valueString&quot; : &quot;123456789&quot;
-    }, {
-      &quot;url&quot; : &quot;period&quot;, 
-      &quot;valuePeriod&quot; : {
-         &quot;start&quot; : &quot;2009-03-14&quot; 
-      }   
-    },  {
-      &quot;url&quot; : &quot;reason&quot;,
-      &quot;valueCodeableConcept&quot; : {
-          &quot;coding&quot; : {
-             &quot;system&quot; : &quot;http://acme.org/codes/general&quot;,
-             &quot;code&quot; : &quot;tt14j&quot;,
-          }
-       }
-    },{
-      &quot;url&quot; : &quot;http://acme.org/fhir/StructureDefinition/registrar&quot;, 
-      &quot;valueReference&quot; : {
-         &quot;reference&quot; : &quot;Practitioner/example&quot; 
-      }   
-    }]
-  }]
-  ... other data for patient ...
+	&quot;resourceType&quot;: &quot;Patient&quot;,
+	&quot;extension&quot;: [{
+		&quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/patient-clinicalTrial&quot;,
+		&quot;extension&quot;: [{
+			&quot;url&quot;: &quot;NCT&quot;,
+			&quot;valueString&quot;: &quot;123456789&quot;
+		},
+		{
+			&quot;url&quot;: &quot;period&quot;,
+			&quot;valuePeriod&quot;: {
+				&quot;start&quot;: &quot;2009-03-14&quot;
+			}
+		},
+		{
+			&quot;url&quot;: &quot;reason&quot;,
+			&quot;valueCodeableConcept&quot;: {
+				&quot;coding&quot;: [{
+					&quot;system&quot;: &quot;http://acme.org/codes/general&quot;,
+					&quot;code&quot;: &quot;tt14j&quot;			
+				}]
+			}
+		},
+		{
+			&quot;url&quot;: &quot;http://acme.org/fhir/StructureDefinition/registrar&quot;,
+			&quot;valueReference&quot;: {
+				&quot;reference&quot;: &quot;Practitioner/example&quot;
+			}
+		}]
+	}]
 }
 </pre>
 </div>
@@ -747,7 +748,7 @@ defined outside an extension cannot be placed in another extension.
 <blockquote class="dstu-note">
 <a name="dstu"> </a>
 <p>
-<b>DSTU Note:</b> Is this a problem? Input from implementers identiying places where modifier 
+<b>STU Note:</b> Is this a problem? Input from implementers identiying places where modifier 
 extensions might be needed inside other extensions is welcome <a href="http://wiki.hl7.org/index.php?title=FHIR_Specification_Feedback_(DSTU_2)">here <img src="external.png" style="text-align: baseline"/></a>.
 </p>
 </blockquote>
@@ -986,7 +987,7 @@ Use the following rules as a guideline for handling resources:
 		<div class="container">  <!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:33-0500. <a href="qa.html">QA Page</a>
+        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:28-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search <img src="external.png" style="text-align: baseline"/></a> | 

@@ -8,13 +8,13 @@
   <publisher value="Health Level Seven International (Clinical Genomics)"/>
   <contact>
     <telecom>
-      <system value="other"/>
+      <system value="url"/>
       <value value="http://www.hl7.org/Special/committees/clingenomics"/>
     </telecom>
   </contact>
   <date value="2013-10-02"/>
-  <description value="Identifies a parent of the relative."/>
-  <fhirVersion value="1.7.0"/>
+  <description value="Identifies a sibling of the relative."/>
+  <fhirVersion value="1.8.0"/>
   <mapping>
     <identity value="rim"/>
     <uri value="http://hl7.org/v3"/>
@@ -31,8 +31,8 @@
     <element id="Extension:naturalbrothersnaturalsisters-geneticother">
       <path value="Extension"/>
       <short value="natural brother(s) &amp; natural sister(s) - genetic &amp; other"/>
-      <definition value="Identifies a parent of the relative."/>
-      <comments value="Some rare cases may have complex inner-pedigree-tree relationship. For instance, double cousin relationship need two extra link with In pedigree tree itself. This can&#39;t be revealed by relationship to subject."/>
+      <definition value="Identifies a sibling of the relative."/>
+      <comments value="Some cases may have complex inner-pedigree-tree relationship. For instance, double cousin relationship need two extra link with In pedigree tree itself. This can&#39;t be revealed by relationship to subject."/>
       <min value="0"/>
       <max value="*"/>
       <base>
@@ -81,7 +81,7 @@
     </element>
     <element id="Extension:naturalbrothersnaturalsisters-geneticother.extension">
       <path value="Extension.extension"/>
-      <slicing id="75">
+      <slicing id="71">
         <discriminator value="url"/>
         <ordered value="false"/>
         <rules value="open"/>
@@ -189,10 +189,10 @@
         <code value="CodeableConcept"/>
       </type>
       <binding>
-        <strength value="example"/>
-        <description value="The nature of the relationship between the patient and the related person being described in the family member history."/>
+        <strength value="required"/>
+        <description value="Sibling relationship types"/>
         <valueSetReference>
-          <reference value="http://hl7.org/fhir/ValueSet/v3-FamilyMember"/>
+          <reference value="http://hl7.org/fhir/ValueSet/sibling-relationship-codes"/>
         </valueSetReference>
       </binding>
       <mapping>
@@ -200,12 +200,12 @@
         <map value="N/A"/>
       </mapping>
     </element>
-    <element id="Extension:naturalbrothersnaturalsisters-geneticother.extension:identifier">
+    <element id="Extension:naturalbrothersnaturalsisters-geneticother.extension:reference">
       <path value="Extension.extension"/>
-      <sliceName value="identifier"/>
+      <sliceName value="reference"/>
       <short value="Link to sibling relative(s)"/>
-      <definition value="Identifies a sibling of the relative."/>
-      <min value="0"/>
+      <definition value="Points to the FamilyMemberHistory record of the relation who is the sibling of this relation."/>
+      <min value="1"/>
       <max value="1"/>
       <base>
         <path value="Element.extension"/>
@@ -217,7 +217,7 @@
       </type>
       <isModifier value="false"/>
     </element>
-    <element id="Extension:naturalbrothersnaturalsisters-geneticother.extension:identifier.id">
+    <element id="Extension:naturalbrothersnaturalsisters-geneticother.extension:reference.id">
       <path value="Extension.extension.id"/>
       <representation value="xmlAttr"/>
       <short value="xml:id (or equivalent in JSON)"/>
@@ -237,7 +237,7 @@
         <map value="n/a"/>
       </mapping>
     </element>
-    <element id="Extension:naturalbrothersnaturalsisters-geneticother.extension:identifier.extension:extension">
+    <element id="Extension:naturalbrothersnaturalsisters-geneticother.extension:reference.extension:extension">
       <path value="Extension.extension.extension"/>
       <sliceName value="extension"/>
       <short value="Extension"/>
@@ -253,7 +253,7 @@
         <code value="Extension"/>
       </type>
     </element>
-    <element id="Extension:naturalbrothersnaturalsisters-geneticother.extension:identifier.url">
+    <element id="Extension:naturalbrothersnaturalsisters-geneticother.extension:reference.url">
       <path value="Extension.extension.url"/>
       <representation value="xmlAttr"/>
       <short value="identifies the meaning of the extension"/>
@@ -269,13 +269,13 @@
       <type>
         <code value="uri"/>
       </type>
-      <fixedUri value="identifier"/>
+      <fixedUri value="reference"/>
       <mapping>
         <identity value="rim"/>
         <map value="N/A"/>
       </mapping>
     </element>
-    <element id="Extension:naturalbrothersnaturalsisters-geneticother.extension:identifier.valueReference">
+    <element id="Extension:naturalbrothersnaturalsisters-geneticother.extension:reference.valueReference">
       <path value="Extension.extension.valueReference"/>
       <short value="Value of extension"/>
       <definition value="Value of extension - may be a resource or one of a constrained set of the data types (see Extensibility in the spec for list)."/>
@@ -452,8 +452,8 @@
     <element id="Extension:naturalbrothersnaturalsisters-geneticother">
       <path value="Extension"/>
       <short value="natural brother(s) &amp; natural sister(s) - genetic &amp; other"/>
-      <definition value="Identifies a parent of the relative."/>
-      <comments value="Some rare cases may have complex inner-pedigree-tree relationship. For instance, double cousin relationship need two extra link with In pedigree tree itself. This can&#39;t be revealed by relationship to subject."/>
+      <definition value="Identifies a sibling of the relative."/>
+      <comments value="Some cases may have complex inner-pedigree-tree relationship. For instance, double cousin relationship need two extra link with In pedigree tree itself. This can&#39;t be revealed by relationship to subject."/>
       <min value="0"/>
       <max value="*"/>
       <isModifier value="false"/>
@@ -489,38 +489,38 @@
         <code value="CodeableConcept"/>
       </type>
       <binding>
-        <strength value="example"/>
-        <description value="The nature of the relationship between the patient and the related person being described in the family member history."/>
+        <strength value="required"/>
+        <description value="Sibling relationship types"/>
         <valueSetReference>
-          <reference value="http://hl7.org/fhir/ValueSet/v3-FamilyMember"/>
+          <reference value="http://hl7.org/fhir/ValueSet/sibling-relationship-codes"/>
         </valueSetReference>
       </binding>
     </element>
-    <element id="Extension:naturalbrothersnaturalsisters-geneticother.extension:identifier">
+    <element id="Extension:naturalbrothersnaturalsisters-geneticother.extension:reference">
       <path value="Extension.extension"/>
-      <sliceName value="identifier"/>
+      <sliceName value="reference"/>
       <short value="Link to sibling relative(s)"/>
-      <definition value="Identifies a sibling of the relative."/>
-      <min value="0"/>
+      <definition value="Points to the FamilyMemberHistory record of the relation who is the sibling of this relation."/>
+      <min value="1"/>
       <max value="1"/>
       <type>
         <code value="Extension"/>
       </type>
       <isModifier value="false"/>
     </element>
-    <element id="Extension:naturalbrothersnaturalsisters-geneticother.extension:identifier.extension:extension">
+    <element id="Extension:naturalbrothersnaturalsisters-geneticother.extension:reference.extension:extension">
       <path value="Extension.extension.extension"/>
       <sliceName value="extension"/>
       <max value="0"/>
     </element>
-    <element id="Extension:naturalbrothersnaturalsisters-geneticother.extension:identifier.url">
+    <element id="Extension:naturalbrothersnaturalsisters-geneticother.extension:reference.url">
       <path value="Extension.extension.url"/>
       <type>
         <code value="uri"/>
       </type>
-      <fixedUri value="identifier"/>
+      <fixedUri value="reference"/>
     </element>
-    <element id="Extension:naturalbrothersnaturalsisters-geneticother.extension:identifier.value[x]">
+    <element id="Extension:naturalbrothersnaturalsisters-geneticother.extension:reference.value[x]">
       <path value="Extension.extension.value[x]"/>
       <min value="1"/>
       <type>

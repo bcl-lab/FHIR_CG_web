@@ -9,8 +9,8 @@
       <status value="active"/>
       <description value="Type options for VisionPrescription.reason[x]"/>
       <expansion>
-        <identifier value="urn:uuid:40eed36f-905e-4bfc-aac9-8573f15991d8"/>
-        <timestamp value="2016-11-28T17:33:15-05:00"/>
+        <identifier value="urn:uuid:dec58e6f-2921-4902-bf3d-54a4375444b3"/>
+        <timestamp value="2016-12-07T14:28:18-05:00"/>
         <contains>
           <system value="http://hl7.org/fhir/data-types"/>
           <code value="CodeableConcept"/>
@@ -28,7 +28,7 @@
     <system value="urn:ietf:rfc:3986"/>
   </identifier>
   <status value="draft"/>
-  <date value="2016-11-28T17:29:55-05:00"/>
+  <date value="2016-12-07T14:18:58-05:00"/>
   <publisher value="Health Level Seven International (Financial Management)"/>
   <item>
     <linkId value="VisionPrescription"/>
@@ -296,9 +296,6 @@
       </item>
     </item>
     <item>
-      <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-minOccurs">
-        <valueInteger value="1"/>
-      </extension>
       <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs">
         <valueInteger value="1"/>
       </extension>
@@ -307,7 +304,7 @@
       </extension>
       <linkId value="VisionPrescription.status"/>
       <type value="group"/>
-      <required value="true"/>
+      <required value="false"/>
       <repeats value="true"/>
       <item>
         <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl">
@@ -326,38 +323,6 @@
         <linkId value="VisionPrescription.status.value"/>
         <text value="status"/>
         <type value="choice"/>
-        <required value="false"/>
-        <repeats value="false"/>
-      </item>
-    </item>
-    <item>
-      <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs">
-        <valueInteger value="1"/>
-      </extension>
-      <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
-        <valueString value="datetime"/>
-      </extension>
-      <linkId value="VisionPrescription.dateWritten"/>
-      <type value="group"/>
-      <required value="false"/>
-      <repeats value="true"/>
-      <item>
-        <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl">
-          <valueCodeableConcept>
-            <coding>
-              <system value="http://hl7.org/fhir/questionnaire-item-control"/>
-              <code value="flyover"/>
-              <display value="Fly-over"/>
-            </coding>
-          </valueCodeableConcept>
-        </extension>
-        <text value="The date (and perhaps time) when the prescription was written."/>
-        <type value="display"/>
-      </item>
-      <item>
-        <linkId value="VisionPrescription.dateWritten.value"/>
-        <text value="When prescription was authorized"/>
-        <type value="dateTime"/>
         <required value="false"/>
         <repeats value="false"/>
       </item>
@@ -407,44 +372,6 @@
       <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
         <valueString value="Reference"/>
       </extension>
-      <linkId value="VisionPrescription.prescriber"/>
-      <type value="group"/>
-      <required value="false"/>
-      <repeats value="true"/>
-      <item>
-        <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl">
-          <valueCodeableConcept>
-            <coding>
-              <system value="http://hl7.org/fhir/questionnaire-item-control"/>
-              <code value="flyover"/>
-              <display value="Fly-over"/>
-            </coding>
-          </valueCodeableConcept>
-        </extension>
-        <text value="The healthcare professional responsible for authorizing the prescription."/>
-        <type value="display"/>
-      </item>
-      <item>
-        <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-allowedResource">
-          <valueCode value="Practitioner"/>
-        </extension>
-        <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-referenceFilter">
-          <valueString value="subject=$subj&amp;patient=$subj&amp;encounter=$encounter"/>
-        </extension>
-        <linkId value="VisionPrescription.prescriber.value"/>
-        <text value="Who authorizes the vision product"/>
-        <type value="reference"/>
-        <required value="false"/>
-        <repeats value="false"/>
-      </item>
-    </item>
-    <item>
-      <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs">
-        <valueInteger value="1"/>
-      </extension>
-      <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
-        <valueString value="Reference"/>
-      </extension>
       <linkId value="VisionPrescription.encounter"/>
       <type value="group"/>
       <required value="false"/>
@@ -471,6 +398,76 @@
         </extension>
         <linkId value="VisionPrescription.encounter.value"/>
         <text value="Created during encounter / admission / stay"/>
+        <type value="reference"/>
+        <required value="false"/>
+        <repeats value="false"/>
+      </item>
+    </item>
+    <item>
+      <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs">
+        <valueInteger value="1"/>
+      </extension>
+      <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
+        <valueString value="datetime"/>
+      </extension>
+      <linkId value="VisionPrescription.dateWritten"/>
+      <type value="group"/>
+      <required value="false"/>
+      <repeats value="true"/>
+      <item>
+        <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl">
+          <valueCodeableConcept>
+            <coding>
+              <system value="http://hl7.org/fhir/questionnaire-item-control"/>
+              <code value="flyover"/>
+              <display value="Fly-over"/>
+            </coding>
+          </valueCodeableConcept>
+        </extension>
+        <text value="The date (and perhaps time) when the prescription was written."/>
+        <type value="display"/>
+      </item>
+      <item>
+        <linkId value="VisionPrescription.dateWritten.value"/>
+        <text value="When prescription was authorized"/>
+        <type value="dateTime"/>
+        <required value="false"/>
+        <repeats value="false"/>
+      </item>
+    </item>
+    <item>
+      <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs">
+        <valueInteger value="1"/>
+      </extension>
+      <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
+        <valueString value="Reference"/>
+      </extension>
+      <linkId value="VisionPrescription.prescriber"/>
+      <type value="group"/>
+      <required value="false"/>
+      <repeats value="true"/>
+      <item>
+        <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl">
+          <valueCodeableConcept>
+            <coding>
+              <system value="http://hl7.org/fhir/questionnaire-item-control"/>
+              <code value="flyover"/>
+              <display value="Fly-over"/>
+            </coding>
+          </valueCodeableConcept>
+        </extension>
+        <text value="The healthcare professional responsible for authorizing the prescription."/>
+        <type value="display"/>
+      </item>
+      <item>
+        <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-allowedResource">
+          <valueCode value="Practitioner"/>
+        </extension>
+        <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-referenceFilter">
+          <valueString value="subject=$subj&amp;patient=$subj&amp;encounter=$encounter"/>
+        </extension>
+        <linkId value="VisionPrescription.prescriber.value"/>
+        <text value="Who authorizes the vision product"/>
         <type value="reference"/>
         <required value="false"/>
         <repeats value="false"/>
@@ -643,18 +640,16 @@
         </item>
       </item>
       <item>
-        <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-minOccurs">
-          <valueInteger value="1"/>
-        </extension>
         <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs">
           <valueInteger value="1"/>
         </extension>
         <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
-          <valueString value="Coding"/>
+          <valueString value="CodeableConcept"/>
         </extension>
         <linkId value="VisionPrescription.dispense.product"/>
+        <text value="Product to be supplied"/>
         <type value="group"/>
-        <required value="true"/>
+        <required value="false"/>
         <repeats value="true"/>
         <item>
           <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl">
@@ -670,9 +665,16 @@
           <type value="display"/>
         </item>
         <item>
-          <linkId value="VisionPrescription.dispense.product.value"/>
-          <text value="Product to be supplied"/>
+          <linkId value="VisionPrescription.dispense.product.coding"/>
+          <text value="code:"/>
           <type value="open-choice"/>
+          <required value="false"/>
+          <repeats value="false"/>
+        </item>
+        <item>
+          <linkId value="VisionPrescription.dispense.product.text"/>
+          <text value="text:"/>
+          <type value="string"/>
           <required value="false"/>
           <repeats value="false"/>
         </item>
@@ -682,9 +684,10 @@
           <valueInteger value="1"/>
         </extension>
         <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
-          <valueString value="code"/>
+          <valueString value="CodeableConcept"/>
         </extension>
         <linkId value="VisionPrescription.dispense.eye"/>
+        <text value="right | left"/>
         <type value="group"/>
         <required value="false"/>
         <repeats value="true"/>
@@ -702,9 +705,16 @@
           <type value="display"/>
         </item>
         <item>
-          <linkId value="VisionPrescription.dispense.eye.value"/>
-          <text value="eye"/>
+          <linkId value="VisionPrescription.dispense.eye.coding"/>
+          <text value="code:"/>
           <type value="choice"/>
+          <required value="false"/>
+          <repeats value="false"/>
+        </item>
+        <item>
+          <linkId value="VisionPrescription.dispense.eye.text"/>
+          <text value="text:"/>
+          <type value="string"/>
           <required value="false"/>
           <repeats value="false"/>
         </item>
@@ -842,9 +852,10 @@
           <valueInteger value="1"/>
         </extension>
         <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
-          <valueString value="code"/>
+          <valueString value="CodeableConcept"/>
         </extension>
         <linkId value="VisionPrescription.dispense.base"/>
+        <text value="up | down | in | out"/>
         <type value="group"/>
         <required value="false"/>
         <repeats value="true"/>
@@ -862,9 +873,16 @@
           <type value="display"/>
         </item>
         <item>
-          <linkId value="VisionPrescription.dispense.base.value"/>
-          <text value="base"/>
+          <linkId value="VisionPrescription.dispense.base.coding"/>
+          <text value="code:"/>
           <type value="choice"/>
+          <required value="false"/>
+          <repeats value="false"/>
+        </item>
+        <item>
+          <linkId value="VisionPrescription.dispense.base.text"/>
+          <text value="text:"/>
+          <type value="string"/>
           <required value="false"/>
           <repeats value="false"/>
         </item>
@@ -1129,7 +1147,7 @@
         <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
           <valueString value="string"/>
         </extension>
-        <linkId value="VisionPrescription.dispense.notes"/>
+        <linkId value="VisionPrescription.dispense.note"/>
         <type value="group"/>
         <required value="false"/>
         <repeats value="true"/>
@@ -1147,7 +1165,7 @@
           <type value="display"/>
         </item>
         <item>
-          <linkId value="VisionPrescription.dispense.notes.value"/>
+          <linkId value="VisionPrescription.dispense.note.value"/>
           <text value="Notes for coatings"/>
           <type value="string"/>
           <required value="false"/>

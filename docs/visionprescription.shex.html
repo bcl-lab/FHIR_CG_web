@@ -3,7 +3,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>Visionprescription.shex - FHIR v1.7.0</title>
+  <title>Visionprescription.shex - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -140,13 +140,13 @@ start=@&lt;VisionPrescription&gt; AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:modifierExtension @&lt;Extension&gt;*;   # Extensions that cannot be ignored
     fhir:VisionPrescription.identifier @&lt;Identifier&gt;*;  # Business identifier
     fhir:VisionPrescription.status @&lt;code&gt; AND
-    	{fhir:value @fhirvs:vision-status};  # active | cancelled | draft | 
+    	{fhir:value @fhirvs:fm-status}?;  # active | cancelled | draft | 
                                             # entered-in-error 
-    fhir:VisionPrescription.dateWritten @&lt;dateTime&gt;?;  # When prescription was authorized
     fhir:VisionPrescription.patient @&lt;Reference&gt;?;  # Who prescription is for
-    fhir:VisionPrescription.prescriber @&lt;Reference&gt;?;  # Who authorizes the vision product
     fhir:VisionPrescription.encounter @&lt;Reference&gt;?;  # Created during encounter / 
                                             # admission / stay 
+    fhir:VisionPrescription.dateWritten @&lt;dateTime&gt;?;  # When prescription was authorized
+    fhir:VisionPrescription.prescriber @&lt;Reference&gt;?;  # Who authorizes the vision product
     (                                       # Reason or indication for writing 
                                             # the prescription 
         fhir:VisionPrescription.reasonCodeableConcept @&lt;CodeableConcept&gt;  |
@@ -162,14 +162,14 @@ start=@&lt;VisionPrescription&gt; AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
                                             # implementations 
     fhir:modifierExtension @&lt;Extension&gt;*;   # Extensions that cannot be ignored
-    fhir:VisionPrescription.dispense.product @&lt;Coding&gt;;  # Product to be supplied
-    fhir:VisionPrescription.dispense.eye @&lt;code&gt; AND
+    fhir:VisionPrescription.dispense.product @&lt;CodeableConcept&gt;?;  # Product to be supplied
+    fhir:VisionPrescription.dispense.eye @&lt;CodeableConcept&gt; AND
     	{fhir:value @fhirvs:vision-eye-codes}?;  # right | left
     fhir:VisionPrescription.dispense.sphere @&lt;decimal&gt;?;  # Lens sphere
     fhir:VisionPrescription.dispense.cylinder @&lt;decimal&gt;?;  # Lens cylinder
     fhir:VisionPrescription.dispense.axis @&lt;integer&gt;?;  # Lens axis
     fhir:VisionPrescription.dispense.prism @&lt;decimal&gt;?;  # Lens prism
-    fhir:VisionPrescription.dispense.base @&lt;code&gt; AND
+    fhir:VisionPrescription.dispense.base @&lt;CodeableConcept&gt; AND
     	{fhir:value @fhirvs:vision-base-codes}?;  # up | down | in | out
     fhir:VisionPrescription.dispense.add @&lt;decimal&gt;?;  # Lens add
     fhir:VisionPrescription.dispense.power @&lt;decimal&gt;?;  # Contact lens power
@@ -178,7 +178,7 @@ start=@&lt;VisionPrescription&gt; AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:VisionPrescription.dispense.duration @&lt;SimpleQuantity&gt;?;  # Lens wear duration
     fhir:VisionPrescription.dispense.color @&lt;string&gt;?;  # Color required
     fhir:VisionPrescription.dispense.brand @&lt;string&gt;?;  # Brand required
-    fhir:VisionPrescription.dispense.notes @&lt;string&gt;?;  # Notes for coatings
+    fhir:VisionPrescription.dispense.note @&lt;string&gt;?;  # Notes for coatings
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -315,23 +315,6 @@ start=@&lt;VisionPrescription&gt; AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
-# A reference to a code defined by a terminology system
-&lt;Coding&gt; CLOSED {
-    fhir:concept IRI?;
-    fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
-    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:Coding.system @&lt;uri&gt;?;             # Identity of the terminology system
-    fhir:Coding.version @&lt;string&gt;?;         # Version of the system - if relevant
-    fhir:Coding.code @&lt;code&gt;?;              # Symbol in syntax defined by the 
-                                            # system 
-    fhir:Coding.display @&lt;string&gt;?;         # Representation defined by the 
-                                            # system 
-    fhir:Coding.userSelected @&lt;boolean&gt;?;   # If this coding was chosen directly 
-                                            # by the user 
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
 # Primitive Type id
 &lt;id&gt; CLOSED {
     fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
@@ -383,6 +366,23 @@ start=@&lt;VisionPrescription&gt; AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
+# A reference to a code defined by a terminology system
+&lt;Coding&gt; CLOSED {
+    fhir:concept IRI?;
+    fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
+    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:Coding.system @&lt;uri&gt;?;             # Identity of the terminology system
+    fhir:Coding.version @&lt;string&gt;?;         # Version of the system - if relevant
+    fhir:Coding.code @&lt;code&gt;?;              # Symbol in syntax defined by the 
+                                            # system 
+    fhir:Coding.display @&lt;string&gt;?;         # Representation defined by the 
+                                            # system 
+    fhir:Coding.userSelected @&lt;boolean&gt;?;   # If this coding was chosen directly 
+                                            # by the user 
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
 # Primitive Type boolean
 &lt;boolean&gt; CLOSED {
     fhir:Element.id @&lt;id&gt;?;                 # xml:id (or equivalent in JSON)
@@ -396,17 +396,17 @@ start=@&lt;VisionPrescription&gt; AND {fhir:nodeRole [fhir:treeRoot]}
 
 #---------------------- Value Sets ------------------------
 
+# This value set includes STatus codes.
+fhirvs:fm-status [&quot;active&quot; &quot;cancelled&quot; &quot;draft&quot; &quot;entered-in-error&quot;]
+
 # A coded concept listing the base codes.
 fhirvs:vision-base-codes [&quot;up&quot; &quot;down&quot; &quot;in&quot; &quot;out&quot;]
 
-# A code specifying the state of the resource instance.
-fhirvs:vision-status [&quot;active&quot; &quot;cancelled&quot; &quot;draft&quot; &quot;entered-in-error&quot;]
+# Identifies the purpose for this identifier, if known .
+fhirvs:identifier-use [&quot;usual&quot; &quot;official&quot; &quot;temp&quot; &quot;secondary&quot;]
 
 # A coded concept listing the eye codes.
 fhirvs:vision-eye-codes [&quot;right&quot; &quot;left&quot;]
-
-# Identifies the purpose for this identifier, if known .
-fhirvs:identifier-use [&quot;usual&quot; &quot;official&quot; &quot;temp&quot; &quot;secondary&quot;]
 
 # The status of a resource narrative
 fhirvs:narrative-status [&quot;generated&quot; &quot;extensions&quot; &quot;additional&quot; &quot;empty&quot;]
@@ -435,7 +435,7 @@ of the specification.
 		<div class="container"><!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:33-0500. <a href="qa.html">QA Page</a>
+        © HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:28-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search</a> | 

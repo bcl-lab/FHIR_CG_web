@@ -3,7 +3,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>Sequence.profile.json - FHIR v1.7.0</title>
+  <title>Sequence.profile.json - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -119,7 +119,7 @@
   &quot;resourceType&quot;: &quot;StructureDefinition&quot;,
   &quot;id&quot;: &quot;Sequence&quot;,
   &quot;meta&quot;: {
-    &quot;lastUpdated&quot;: &quot;2016-11-28T17:29:55.664-05:00&quot;
+    &quot;lastUpdated&quot;: &quot;2016-12-07T14:18:58.982-05:00&quot;
   },
   &quot;text&quot;: {
     &quot;status&quot;: &quot;generated&quot;,
@@ -129,6 +129,10 @@
     {
       &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm&quot;,
       &quot;valueInteger&quot;: 0
+    },
+    {
+      &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/structuredefinition-wg&quot;,
+      &quot;valueCode&quot;: &quot;cg&quot;
     }
   ],
   &quot;url&quot;: &quot;http://hl7.org/fhir/StructureDefinition/Sequence&quot;,
@@ -139,7 +143,7 @@
     {
       &quot;telecom&quot;: [
         {
-          &quot;system&quot;: &quot;other&quot;,
+          &quot;system&quot;: &quot;url&quot;,
           &quot;value&quot;: &quot;http://hl7.org/fhir&quot;
         }
       ]
@@ -147,15 +151,15 @@
     {
       &quot;telecom&quot;: [
         {
-          &quot;system&quot;: &quot;other&quot;,
+          &quot;system&quot;: &quot;url&quot;,
           &quot;value&quot;: &quot;http://www.hl7.org/Special/committees/clingenomics/index.cfm&quot;
         }
       ]
     }
   ],
-  &quot;date&quot;: &quot;2016-11-28T17:29:55-05:00&quot;,
+  &quot;date&quot;: &quot;2016-12-07T14:18:58-05:00&quot;,
   &quot;description&quot;: &quot;Base StructureDefinition for Sequence Resource&quot;,
-  &quot;fhirVersion&quot;: &quot;1.7.0&quot;,
+  &quot;fhirVersion&quot;: &quot;1.8.0&quot;,
   &quot;mapping&quot;: [
     {
       &quot;identity&quot;: &quot;w5&quot;,
@@ -214,6 +218,13 @@
             &quot;expression&quot;: &quot;contained.where(('#'+id in %resource.descendants().reference).not()).empty()&quot;,
             &quot;xpath&quot;: &quot;not(exists(for $id in f:contained/*/@id return $id[not(ancestor::f:contained/parent::*/descendant::f:reference/@value=concat('#', $id))]))&quot;,
             &quot;source&quot;: &quot;DomainResource&quot;
+          },
+          {
+            &quot;key&quot;: &quot;seq-3&quot;,
+            &quot;severity&quot;: &quot;error&quot;,
+            &quot;human&quot;: &quot;Only 0 and 1 are valid for coordinateSystem&quot;,
+            &quot;expression&quot;: &quot;coordinateSystem = 1 or coordinateSystem = 0&quot;,
+            &quot;xpath&quot;: &quot;count(f:coordinateSystem[@value=0 and @value=1]) = 1&quot;
           }
         ],
         &quot;mapping&quot;: [
@@ -470,7 +481,7 @@
         &quot;path&quot;: &quot;Sequence.type&quot;,
         &quot;short&quot;: &quot;AA | DNA | RNA&quot;,
         &quot;definition&quot;: &quot;Amino Acid Sequence/ DNA Sequence / RNA Sequence.&quot;,
-        &quot;min&quot;: 1,
+        &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
@@ -546,8 +557,8 @@
         &quot;isSummary&quot;: true
       },
       {
-        &quot;id&quot;: &quot;Sequence.peformer&quot;,
-        &quot;path&quot;: &quot;Sequence.peformer&quot;,
+        &quot;id&quot;: &quot;Sequence.performer&quot;,
+        &quot;path&quot;: &quot;Sequence.performer&quot;,
         &quot;short&quot;: &quot;Who should be responsible for test result&quot;,
         &quot;definition&quot;: &quot;The organization or lab that should be responsible for this result.&quot;,
         &quot;min&quot;: 0,
@@ -578,7 +589,7 @@
         &quot;id&quot;: &quot;Sequence.referenceSeq&quot;,
         &quot;path&quot;: &quot;Sequence.referenceSeq&quot;,
         &quot;short&quot;: &quot;Reference sequence&quot;,
-        &quot;definition&quot;: &quot;A sequence file that is used as a reference to describe variants that are present in a sequence analyzed.&quot;,
+        &quot;definition&quot;: &quot;A sequence that is used as a reference to describe variants that are present in a sequence analyzed.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
@@ -594,6 +605,27 @@
             &quot;expression&quot;: &quot;children().count() &gt; id.count()&quot;,
             &quot;xpath&quot;: &quot;@value|f:*|h:div&quot;,
             &quot;source&quot;: &quot;Element&quot;
+          },
+          {
+            &quot;key&quot;: &quot;seq-4&quot;,
+            &quot;severity&quot;: &quot;error&quot;,
+            &quot;human&quot;: &quot;Only +1 and -1 are valid for strand&quot;,
+            &quot;expression&quot;: &quot;strand.empty() or strand = 1 or strand = -1&quot;,
+            &quot;xpath&quot;: &quot;not(exists(f:strand)) or count(f:strand[@value=-1 and @value=1]) = 1&quot;
+          },
+          {
+            &quot;key&quot;: &quot;seq-5&quot;,
+            &quot;severity&quot;: &quot;error&quot;,
+            &quot;human&quot;: &quot;GenomeBuild and chromosome must be both contained if either one of them is contained&quot;,
+            &quot;expression&quot;: &quot;(chromosome.empty() and genomeBuild.empty()) or (chromosome.exists() and genomeBuild.exists())&quot;,
+            &quot;xpath&quot;: &quot;(exists(f:chromosome) and exists(f:genomeBuild)) or (not(exists(f:chromosome)) and not(exists(f:genomeBuild)))&quot;
+          },
+          {
+            &quot;key&quot;: &quot;seq-6&quot;,
+            &quot;severity&quot;: &quot;error&quot;,
+            &quot;human&quot;: &quot;Have and only have one of the following elements in referenceSeq : 1. genomeBuild ; 2 referenceSeqId; 3. referenceSeqPointer;  4. referenceSeqString;&quot;,
+            &quot;expression&quot;: &quot;(genomeBuild.count()+referenceSeqId.count()+ referenceSeqPointer.count()+ referenceSeqString.count()) = 1&quot;,
+            &quot;xpath&quot;: &quot;count(f:genomeBuild)+count(f:referenceSeqId)+count(f:referenceSeqPointer)+count(f:referenceSeqString)=1&quot;
           }
         ],
         &quot;isSummary&quot;: true
@@ -745,8 +777,8 @@
       {
         &quot;id&quot;: &quot;Sequence.referenceSeq.referenceSeqPointer&quot;,
         &quot;path&quot;: &quot;Sequence.referenceSeq.referenceSeqPointer&quot;,
-        &quot;short&quot;: &quot;A Pointer to another Sequence entity as refence sequence&quot;,
-        &quot;definition&quot;: &quot;A Pointer to another Sequence entity as refence sequence.&quot;,
+        &quot;short&quot;: &quot;A Pointer to another Sequence entity as reference sequence&quot;,
+        &quot;definition&quot;: &quot;A Pointer to another Sequence entity as reference sequence.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
@@ -817,7 +849,7 @@
         &quot;id&quot;: &quot;Sequence.variant&quot;,
         &quot;path&quot;: &quot;Sequence.variant&quot;,
         &quot;short&quot;: &quot;Sequence variant&quot;,
-        &quot;definition&quot;: &quot;A' is a variant (mutation) of A = definition every instance of A' is either an immediate mutation of some instance of A, or there is a chain of immediate mutation processes linking A' to some instance of A ([variant_of](http://www.sequenceontology.org/browser/current_svn/term/variant_of)).&quot;,
+        &quot;definition&quot;: &quot;The definition of variant here originates from Sequence ontology ([variant_of](http://www.sequenceontology.org/browser/current_svn/term/variant_of)). This element can represent amino acid or nucleic sequence change(including insertion,deletion,SNP,etc.)  It can represent some complex mutation or segment variation with the assist of CIGAR string.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;*&quot;,
         &quot;type&quot;: [
@@ -957,7 +989,7 @@
         &quot;id&quot;: &quot;Sequence.variant.observedAllele&quot;,
         &quot;path&quot;: &quot;Sequence.variant.observedAllele&quot;,
         &quot;short&quot;: &quot;Allele that was observed&quot;,
-        &quot;definition&quot;: &quot;An allele is one of a set of coexisting sequence variants of a gene ([SO:0001023](http://www.sequenceontology.org/browser/current_svn/term/SO:0001023)). Nucleotide(s)/amino acids from start position of sequence to stop position of sequence on the positive (+) strand of the observed sequence. When the sequence  type is DNA, it should be the sequence on the positive (+) strand.&quot;,
+        &quot;definition&quot;: &quot;An allele is one of a set of coexisting sequence variants of a gene ([SO:0001023](http://www.sequenceontology.org/browser/current_svn/term/SO:0001023)).  Nucleotide(s)/amino acids from start position of sequence to stop position of sequence on the positive (+) strand of the observed  sequence. When the sequence  type is DNA, it should be the sequence on the positive (+) strand. This will lay in the range between variant.start and variant.end.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
@@ -971,7 +1003,7 @@
         &quot;id&quot;: &quot;Sequence.variant.referenceAllele&quot;,
         &quot;path&quot;: &quot;Sequence.variant.referenceAllele&quot;,
         &quot;short&quot;: &quot;Allele of reference sequence&quot;,
-        &quot;definition&quot;: &quot;An allele is one of a set of coexisting sequence variants of a gene ([SO:0001023](http://www.sequenceontology.org/browser/current_svn/term/SO:0001023)). Nucleotide(s)/amino acids from start position of sequence to stop position of sequence on the positive (+) strand of the reference sequence. When the sequence  type is DNA, it should be the sequence on the positive (+) strand.&quot;,
+        &quot;definition&quot;: &quot;An allele is one of a set of coexisting sequence variants of a gene ([SO:0001023](http://www.sequenceontology.org/browser/current_svn/term/SO:0001023)). Nucleotide(s)/amino acids from start position of sequence to stop position of sequence on the positive (+) strand of the reference sequence. When the sequence  type is DNA, it should be the sequence on the positive (+) strand. This will lay in the range between variant.start and variant.end.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
@@ -1014,7 +1046,7 @@
         &quot;id&quot;: &quot;Sequence.observedSeq&quot;,
         &quot;path&quot;: &quot;Sequence.observedSeq&quot;,
         &quot;short&quot;: &quot;Observed sequence&quot;,
-        &quot;definition&quot;: &quot;Sequence string that was observed.&quot;,
+        &quot;definition&quot;: &quot;Sequence that was observed. It is the result marked by referenceSeq along with variant records on referenceSeq. This shall starts from referenceSeq.windowStart and end by referenceSeq.windowEnd.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
@@ -1570,440 +1602,6 @@
           }
         ],
         &quot;isSummary&quot;: true
-      },
-      {
-        &quot;id&quot;: &quot;Sequence.structureVariant&quot;,
-        &quot;path&quot;: &quot;Sequence.structureVariant&quot;,
-        &quot;short&quot;: &quot;Sequence Structural Variant&quot;,
-        &quot;definition&quot;: &quot;Structural variant.&quot;,
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;*&quot;,
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;BackboneElement&quot;
-          }
-        ],
-        &quot;constraint&quot;: [
-          {
-            &quot;key&quot;: &quot;ele-1&quot;,
-            &quot;severity&quot;: &quot;error&quot;,
-            &quot;human&quot;: &quot;All FHIR elements must have a @value or children&quot;,
-            &quot;expression&quot;: &quot;children().count() &gt; id.count()&quot;,
-            &quot;xpath&quot;: &quot;@value|f:*|h:div&quot;,
-            &quot;source&quot;: &quot;Element&quot;
-          }
-        ],
-        &quot;isSummary&quot;: true
-      },
-      {
-        &quot;id&quot;: &quot;Sequence.structureVariant.id&quot;,
-        &quot;path&quot;: &quot;Sequence.structureVariant.id&quot;,
-        &quot;representation&quot;: [
-          &quot;xmlAttr&quot;
-        ],
-        &quot;short&quot;: &quot;xml:id (or equivalent in JSON)&quot;,
-        &quot;definition&quot;: &quot;unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.&quot;,
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;base&quot;: {
-          &quot;path&quot;: &quot;Element.id&quot;,
-          &quot;min&quot;: 0,
-          &quot;max&quot;: &quot;1&quot;
-        },
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;string&quot;
-          }
-        ],
-        &quot;mapping&quot;: [
-          {
-            &quot;identity&quot;: &quot;rim&quot;,
-            &quot;map&quot;: &quot;n/a&quot;
-          }
-        ]
-      },
-      {
-        &quot;id&quot;: &quot;Sequence.structureVariant.extension&quot;,
-        &quot;path&quot;: &quot;Sequence.structureVariant.extension&quot;,
-        &quot;short&quot;: &quot;Additional Content defined by implementations&quot;,
-        &quot;definition&quot;: &quot;May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.&quot;,
-        &quot;comments&quot;: &quot;There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone.&quot;,
-        &quot;alias&quot;: [
-          &quot;extensions&quot;,
-          &quot;user content&quot;
-        ],
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;*&quot;,
-        &quot;base&quot;: {
-          &quot;path&quot;: &quot;Element.extension&quot;,
-          &quot;min&quot;: 0,
-          &quot;max&quot;: &quot;*&quot;
-        },
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;Extension&quot;
-          }
-        ],
-        &quot;mapping&quot;: [
-          {
-            &quot;identity&quot;: &quot;rim&quot;,
-            &quot;map&quot;: &quot;n/a&quot;
-          }
-        ]
-      },
-      {
-        &quot;id&quot;: &quot;Sequence.structureVariant.modifierExtension&quot;,
-        &quot;path&quot;: &quot;Sequence.structureVariant.modifierExtension&quot;,
-        &quot;short&quot;: &quot;Extensions that cannot be ignored&quot;,
-        &quot;definition&quot;: &quot;May be used to represent additional information that is not part of the basic definition of the element, and that modifies the understanding of the element that contains it. Usually modifier elements provide negation or qualification. In order to make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.&quot;,
-        &quot;comments&quot;: &quot;There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone.&quot;,
-        &quot;alias&quot;: [
-          &quot;extensions&quot;,
-          &quot;user content&quot;,
-          &quot;modifiers&quot;
-        ],
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;*&quot;,
-        &quot;base&quot;: {
-          &quot;path&quot;: &quot;BackboneElement.modifierExtension&quot;,
-          &quot;min&quot;: 0,
-          &quot;max&quot;: &quot;*&quot;
-        },
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;Extension&quot;
-          }
-        ],
-        &quot;isModifier&quot;: true,
-        &quot;isSummary&quot;: true,
-        &quot;mapping&quot;: [
-          {
-            &quot;identity&quot;: &quot;rim&quot;,
-            &quot;map&quot;: &quot;N/A&quot;
-          }
-        ]
-      },
-      {
-        &quot;id&quot;: &quot;Sequence.structureVariant.precisionOfBoundaries&quot;,
-        &quot;path&quot;: &quot;Sequence.structureVariant.precisionOfBoundaries&quot;,
-        &quot;short&quot;: &quot;Precision of boundaries&quot;,
-        &quot;definition&quot;: &quot;Precision of boundaries.&quot;,
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;string&quot;
-          }
-        ],
-        &quot;isSummary&quot;: true
-      },
-      {
-        &quot;id&quot;: &quot;Sequence.structureVariant.reportedaCGHRatio&quot;,
-        &quot;path&quot;: &quot;Sequence.structureVariant.reportedaCGHRatio&quot;,
-        &quot;short&quot;: &quot;Structural Variant reported aCGH ratio&quot;,
-        &quot;definition&quot;: &quot;Structural Variant reported aCGH ratio.&quot;,
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;decimal&quot;
-          }
-        ],
-        &quot;isSummary&quot;: true
-      },
-      {
-        &quot;id&quot;: &quot;Sequence.structureVariant.length&quot;,
-        &quot;path&quot;: &quot;Sequence.structureVariant.length&quot;,
-        &quot;short&quot;: &quot;Structural Variant Length&quot;,
-        &quot;definition&quot;: &quot;Structural Variant Length.&quot;,
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;integer&quot;
-          }
-        ],
-        &quot;isSummary&quot;: true
-      },
-      {
-        &quot;id&quot;: &quot;Sequence.structureVariant.outer&quot;,
-        &quot;path&quot;: &quot;Sequence.structureVariant.outer&quot;,
-        &quot;short&quot;: &quot;Sequence Structural Variant Outer Position&quot;,
-        &quot;definition&quot;: &quot;Structural variant outer.&quot;,
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;BackboneElement&quot;
-          }
-        ],
-        &quot;constraint&quot;: [
-          {
-            &quot;key&quot;: &quot;ele-1&quot;,
-            &quot;severity&quot;: &quot;error&quot;,
-            &quot;human&quot;: &quot;All FHIR elements must have a @value or children&quot;,
-            &quot;expression&quot;: &quot;children().count() &gt; id.count()&quot;,
-            &quot;xpath&quot;: &quot;@value|f:*|h:div&quot;,
-            &quot;source&quot;: &quot;Element&quot;
-          }
-        ],
-        &quot;isSummary&quot;: true
-      },
-      {
-        &quot;id&quot;: &quot;Sequence.structureVariant.outer.id&quot;,
-        &quot;path&quot;: &quot;Sequence.structureVariant.outer.id&quot;,
-        &quot;representation&quot;: [
-          &quot;xmlAttr&quot;
-        ],
-        &quot;short&quot;: &quot;xml:id (or equivalent in JSON)&quot;,
-        &quot;definition&quot;: &quot;unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.&quot;,
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;base&quot;: {
-          &quot;path&quot;: &quot;Element.id&quot;,
-          &quot;min&quot;: 0,
-          &quot;max&quot;: &quot;1&quot;
-        },
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;string&quot;
-          }
-        ],
-        &quot;mapping&quot;: [
-          {
-            &quot;identity&quot;: &quot;rim&quot;,
-            &quot;map&quot;: &quot;n/a&quot;
-          }
-        ]
-      },
-      {
-        &quot;id&quot;: &quot;Sequence.structureVariant.outer.extension&quot;,
-        &quot;path&quot;: &quot;Sequence.structureVariant.outer.extension&quot;,
-        &quot;short&quot;: &quot;Additional Content defined by implementations&quot;,
-        &quot;definition&quot;: &quot;May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.&quot;,
-        &quot;comments&quot;: &quot;There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone.&quot;,
-        &quot;alias&quot;: [
-          &quot;extensions&quot;,
-          &quot;user content&quot;
-        ],
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;*&quot;,
-        &quot;base&quot;: {
-          &quot;path&quot;: &quot;Element.extension&quot;,
-          &quot;min&quot;: 0,
-          &quot;max&quot;: &quot;*&quot;
-        },
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;Extension&quot;
-          }
-        ],
-        &quot;mapping&quot;: [
-          {
-            &quot;identity&quot;: &quot;rim&quot;,
-            &quot;map&quot;: &quot;n/a&quot;
-          }
-        ]
-      },
-      {
-        &quot;id&quot;: &quot;Sequence.structureVariant.outer.modifierExtension&quot;,
-        &quot;path&quot;: &quot;Sequence.structureVariant.outer.modifierExtension&quot;,
-        &quot;short&quot;: &quot;Extensions that cannot be ignored&quot;,
-        &quot;definition&quot;: &quot;May be used to represent additional information that is not part of the basic definition of the element, and that modifies the understanding of the element that contains it. Usually modifier elements provide negation or qualification. In order to make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.&quot;,
-        &quot;comments&quot;: &quot;There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone.&quot;,
-        &quot;alias&quot;: [
-          &quot;extensions&quot;,
-          &quot;user content&quot;,
-          &quot;modifiers&quot;
-        ],
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;*&quot;,
-        &quot;base&quot;: {
-          &quot;path&quot;: &quot;BackboneElement.modifierExtension&quot;,
-          &quot;min&quot;: 0,
-          &quot;max&quot;: &quot;*&quot;
-        },
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;Extension&quot;
-          }
-        ],
-        &quot;isModifier&quot;: true,
-        &quot;isSummary&quot;: true,
-        &quot;mapping&quot;: [
-          {
-            &quot;identity&quot;: &quot;rim&quot;,
-            &quot;map&quot;: &quot;N/A&quot;
-          }
-        ]
-      },
-      {
-        &quot;id&quot;: &quot;Sequence.structureVariant.outer.start&quot;,
-        &quot;path&quot;: &quot;Sequence.structureVariant.outer.start&quot;,
-        &quot;short&quot;: &quot;Structural Variant Outer Start-End&quot;,
-        &quot;definition&quot;: &quot;Structural Variant Outer Start-End.&quot;,
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;integer&quot;
-          }
-        ],
-        &quot;isSummary&quot;: true
-      },
-      {
-        &quot;id&quot;: &quot;Sequence.structureVariant.outer.end&quot;,
-        &quot;path&quot;: &quot;Sequence.structureVariant.outer.end&quot;,
-        &quot;short&quot;: &quot;Structural Variant Outer Start-End&quot;,
-        &quot;definition&quot;: &quot;Structural Variant Outer Start-End.&quot;,
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;integer&quot;
-          }
-        ],
-        &quot;isSummary&quot;: true
-      },
-      {
-        &quot;id&quot;: &quot;Sequence.structureVariant.inner&quot;,
-        &quot;path&quot;: &quot;Sequence.structureVariant.inner&quot;,
-        &quot;short&quot;: &quot;Sequence Structural Variant Inner Position&quot;,
-        &quot;definition&quot;: &quot;Structural variant inner.&quot;,
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;BackboneElement&quot;
-          }
-        ],
-        &quot;constraint&quot;: [
-          {
-            &quot;key&quot;: &quot;ele-1&quot;,
-            &quot;severity&quot;: &quot;error&quot;,
-            &quot;human&quot;: &quot;All FHIR elements must have a @value or children&quot;,
-            &quot;expression&quot;: &quot;children().count() &gt; id.count()&quot;,
-            &quot;xpath&quot;: &quot;@value|f:*|h:div&quot;,
-            &quot;source&quot;: &quot;Element&quot;
-          }
-        ],
-        &quot;isSummary&quot;: true
-      },
-      {
-        &quot;id&quot;: &quot;Sequence.structureVariant.inner.id&quot;,
-        &quot;path&quot;: &quot;Sequence.structureVariant.inner.id&quot;,
-        &quot;representation&quot;: [
-          &quot;xmlAttr&quot;
-        ],
-        &quot;short&quot;: &quot;xml:id (or equivalent in JSON)&quot;,
-        &quot;definition&quot;: &quot;unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.&quot;,
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;base&quot;: {
-          &quot;path&quot;: &quot;Element.id&quot;,
-          &quot;min&quot;: 0,
-          &quot;max&quot;: &quot;1&quot;
-        },
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;string&quot;
-          }
-        ],
-        &quot;mapping&quot;: [
-          {
-            &quot;identity&quot;: &quot;rim&quot;,
-            &quot;map&quot;: &quot;n/a&quot;
-          }
-        ]
-      },
-      {
-        &quot;id&quot;: &quot;Sequence.structureVariant.inner.extension&quot;,
-        &quot;path&quot;: &quot;Sequence.structureVariant.inner.extension&quot;,
-        &quot;short&quot;: &quot;Additional Content defined by implementations&quot;,
-        &quot;definition&quot;: &quot;May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.&quot;,
-        &quot;comments&quot;: &quot;There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone.&quot;,
-        &quot;alias&quot;: [
-          &quot;extensions&quot;,
-          &quot;user content&quot;
-        ],
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;*&quot;,
-        &quot;base&quot;: {
-          &quot;path&quot;: &quot;Element.extension&quot;,
-          &quot;min&quot;: 0,
-          &quot;max&quot;: &quot;*&quot;
-        },
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;Extension&quot;
-          }
-        ],
-        &quot;mapping&quot;: [
-          {
-            &quot;identity&quot;: &quot;rim&quot;,
-            &quot;map&quot;: &quot;n/a&quot;
-          }
-        ]
-      },
-      {
-        &quot;id&quot;: &quot;Sequence.structureVariant.inner.modifierExtension&quot;,
-        &quot;path&quot;: &quot;Sequence.structureVariant.inner.modifierExtension&quot;,
-        &quot;short&quot;: &quot;Extensions that cannot be ignored&quot;,
-        &quot;definition&quot;: &quot;May be used to represent additional information that is not part of the basic definition of the element, and that modifies the understanding of the element that contains it. Usually modifier elements provide negation or qualification. In order to make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.&quot;,
-        &quot;comments&quot;: &quot;There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone.&quot;,
-        &quot;alias&quot;: [
-          &quot;extensions&quot;,
-          &quot;user content&quot;,
-          &quot;modifiers&quot;
-        ],
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;*&quot;,
-        &quot;base&quot;: {
-          &quot;path&quot;: &quot;BackboneElement.modifierExtension&quot;,
-          &quot;min&quot;: 0,
-          &quot;max&quot;: &quot;*&quot;
-        },
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;Extension&quot;
-          }
-        ],
-        &quot;isModifier&quot;: true,
-        &quot;isSummary&quot;: true,
-        &quot;mapping&quot;: [
-          {
-            &quot;identity&quot;: &quot;rim&quot;,
-            &quot;map&quot;: &quot;N/A&quot;
-          }
-        ]
-      },
-      {
-        &quot;id&quot;: &quot;Sequence.structureVariant.inner.start&quot;,
-        &quot;path&quot;: &quot;Sequence.structureVariant.inner.start&quot;,
-        &quot;short&quot;: &quot;Structural Variant Inner Start-End&quot;,
-        &quot;definition&quot;: &quot;Structural Variant Inner Start-End.&quot;,
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;integer&quot;
-          }
-        ],
-        &quot;isSummary&quot;: true
-      },
-      {
-        &quot;id&quot;: &quot;Sequence.structureVariant.inner.end&quot;,
-        &quot;path&quot;: &quot;Sequence.structureVariant.inner.end&quot;,
-        &quot;short&quot;: &quot;Structural Variant Inner Start-End&quot;,
-        &quot;definition&quot;: &quot;Structural Variant Inner Start-End.&quot;,
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;integer&quot;
-          }
-        ],
-        &quot;isSummary&quot;: true
       }
     ]
   },
@@ -2016,6 +1614,15 @@
         &quot;definition&quot;: &quot;Raw data describing a biological sequence.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;*&quot;,
+        &quot;constraint&quot;: [
+          {
+            &quot;key&quot;: &quot;seq-3&quot;,
+            &quot;severity&quot;: &quot;error&quot;,
+            &quot;human&quot;: &quot;Only 0 and 1 are valid for coordinateSystem&quot;,
+            &quot;expression&quot;: &quot;coordinateSystem = 1 or coordinateSystem = 0&quot;,
+            &quot;xpath&quot;: &quot;count(f:coordinateSystem[@value=0 and @value=1]) = 1&quot;
+          }
+        ],
         &quot;mapping&quot;: [
           {
             &quot;identity&quot;: &quot;w5&quot;,
@@ -2049,7 +1656,7 @@
         &quot;path&quot;: &quot;Sequence.type&quot;,
         &quot;short&quot;: &quot;AA | DNA | RNA&quot;,
         &quot;definition&quot;: &quot;Amino Acid Sequence/ DNA Sequence / RNA Sequence.&quot;,
-        &quot;min&quot;: 1,
+        &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
@@ -2125,8 +1732,8 @@
         &quot;isSummary&quot;: true
       },
       {
-        &quot;id&quot;: &quot;Sequence.peformer&quot;,
-        &quot;path&quot;: &quot;Sequence.peformer&quot;,
+        &quot;id&quot;: &quot;Sequence.performer&quot;,
+        &quot;path&quot;: &quot;Sequence.performer&quot;,
         &quot;short&quot;: &quot;Who should be responsible for test result&quot;,
         &quot;definition&quot;: &quot;The organization or lab that should be responsible for this result.&quot;,
         &quot;min&quot;: 0,
@@ -2157,12 +1764,35 @@
         &quot;id&quot;: &quot;Sequence.referenceSeq&quot;,
         &quot;path&quot;: &quot;Sequence.referenceSeq&quot;,
         &quot;short&quot;: &quot;Reference sequence&quot;,
-        &quot;definition&quot;: &quot;A sequence file that is used as a reference to describe variants that are present in a sequence analyzed.&quot;,
+        &quot;definition&quot;: &quot;A sequence that is used as a reference to describe variants that are present in a sequence analyzed.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
           {
             &quot;code&quot;: &quot;BackboneElement&quot;
+          }
+        ],
+        &quot;constraint&quot;: [
+          {
+            &quot;key&quot;: &quot;seq-4&quot;,
+            &quot;severity&quot;: &quot;error&quot;,
+            &quot;human&quot;: &quot;Only +1 and -1 are valid for strand&quot;,
+            &quot;expression&quot;: &quot;strand.empty() or strand = 1 or strand = -1&quot;,
+            &quot;xpath&quot;: &quot;not(exists(f:strand)) or count(f:strand[@value=-1 and @value=1]) = 1&quot;
+          },
+          {
+            &quot;key&quot;: &quot;seq-5&quot;,
+            &quot;severity&quot;: &quot;error&quot;,
+            &quot;human&quot;: &quot;GenomeBuild and chromosome must be both contained if either one of them is contained&quot;,
+            &quot;expression&quot;: &quot;(chromosome.empty() and genomeBuild.empty()) or (chromosome.exists() and genomeBuild.exists())&quot;,
+            &quot;xpath&quot;: &quot;(exists(f:chromosome) and exists(f:genomeBuild)) or (not(exists(f:chromosome)) and not(exists(f:genomeBuild)))&quot;
+          },
+          {
+            &quot;key&quot;: &quot;seq-6&quot;,
+            &quot;severity&quot;: &quot;error&quot;,
+            &quot;human&quot;: &quot;Have and only have one of the following elements in referenceSeq : 1. genomeBuild ; 2 referenceSeqId; 3. referenceSeqPointer;  4. referenceSeqString;&quot;,
+            &quot;expression&quot;: &quot;(genomeBuild.count()+referenceSeqId.count()+ referenceSeqPointer.count()+ referenceSeqString.count()) = 1&quot;,
+            &quot;xpath&quot;: &quot;count(f:genomeBuild)+count(f:referenceSeqId)+count(f:referenceSeqPointer)+count(f:referenceSeqString)=1&quot;
           }
         ],
         &quot;isSummary&quot;: true
@@ -2226,8 +1856,8 @@
       {
         &quot;id&quot;: &quot;Sequence.referenceSeq.referenceSeqPointer&quot;,
         &quot;path&quot;: &quot;Sequence.referenceSeq.referenceSeqPointer&quot;,
-        &quot;short&quot;: &quot;A Pointer to another Sequence entity as refence sequence&quot;,
-        &quot;definition&quot;: &quot;A Pointer to another Sequence entity as refence sequence.&quot;,
+        &quot;short&quot;: &quot;A Pointer to another Sequence entity as reference sequence&quot;,
+        &quot;definition&quot;: &quot;A Pointer to another Sequence entity as reference sequence.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
@@ -2298,7 +1928,7 @@
         &quot;id&quot;: &quot;Sequence.variant&quot;,
         &quot;path&quot;: &quot;Sequence.variant&quot;,
         &quot;short&quot;: &quot;Sequence variant&quot;,
-        &quot;definition&quot;: &quot;A' is a variant (mutation) of A = definition every instance of A' is either an immediate mutation of some instance of A, or there is a chain of immediate mutation processes linking A' to some instance of A ([variant_of](http://www.sequenceontology.org/browser/current_svn/term/variant_of)).&quot;,
+        &quot;definition&quot;: &quot;The definition of variant here originates from Sequence ontology ([variant_of](http://www.sequenceontology.org/browser/current_svn/term/variant_of)). This element can represent amino acid or nucleic sequence change(including insertion,deletion,SNP,etc.)  It can represent some complex mutation or segment variation with the assist of CIGAR string.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;*&quot;,
         &quot;type&quot;: [
@@ -2340,7 +1970,7 @@
         &quot;id&quot;: &quot;Sequence.variant.observedAllele&quot;,
         &quot;path&quot;: &quot;Sequence.variant.observedAllele&quot;,
         &quot;short&quot;: &quot;Allele that was observed&quot;,
-        &quot;definition&quot;: &quot;An allele is one of a set of coexisting sequence variants of a gene ([SO:0001023](http://www.sequenceontology.org/browser/current_svn/term/SO:0001023)). Nucleotide(s)/amino acids from start position of sequence to stop position of sequence on the positive (+) strand of the observed sequence. When the sequence  type is DNA, it should be the sequence on the positive (+) strand.&quot;,
+        &quot;definition&quot;: &quot;An allele is one of a set of coexisting sequence variants of a gene ([SO:0001023](http://www.sequenceontology.org/browser/current_svn/term/SO:0001023)).  Nucleotide(s)/amino acids from start position of sequence to stop position of sequence on the positive (+) strand of the observed  sequence. When the sequence  type is DNA, it should be the sequence on the positive (+) strand. This will lay in the range between variant.start and variant.end.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
@@ -2354,7 +1984,7 @@
         &quot;id&quot;: &quot;Sequence.variant.referenceAllele&quot;,
         &quot;path&quot;: &quot;Sequence.variant.referenceAllele&quot;,
         &quot;short&quot;: &quot;Allele of reference sequence&quot;,
-        &quot;definition&quot;: &quot;An allele is one of a set of coexisting sequence variants of a gene ([SO:0001023](http://www.sequenceontology.org/browser/current_svn/term/SO:0001023)). Nucleotide(s)/amino acids from start position of sequence to stop position of sequence on the positive (+) strand of the reference sequence. When the sequence  type is DNA, it should be the sequence on the positive (+) strand.&quot;,
+        &quot;definition&quot;: &quot;An allele is one of a set of coexisting sequence variants of a gene ([SO:0001023](http://www.sequenceontology.org/browser/current_svn/term/SO:0001023)). Nucleotide(s)/amino acids from start position of sequence to stop position of sequence on the positive (+) strand of the reference sequence. When the sequence  type is DNA, it should be the sequence on the positive (+) strand. This will lay in the range between variant.start and variant.end.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
@@ -2397,7 +2027,7 @@
         &quot;id&quot;: &quot;Sequence.observedSeq&quot;,
         &quot;path&quot;: &quot;Sequence.observedSeq&quot;,
         &quot;short&quot;: &quot;Observed sequence&quot;,
-        &quot;definition&quot;: &quot;Sequence string that was observed.&quot;,
+        &quot;definition&quot;: &quot;Sequence that was observed. It is the result marked by referenceSeq along with variant records on referenceSeq. This shall starts from referenceSeq.windowStart and end by referenceSeq.windowEnd.&quot;,
         &quot;min&quot;: 0,
         &quot;max&quot;: &quot;1&quot;,
         &quot;type&quot;: [
@@ -2757,146 +2387,6 @@
           }
         ],
         &quot;isSummary&quot;: true
-      },
-      {
-        &quot;id&quot;: &quot;Sequence.structureVariant&quot;,
-        &quot;path&quot;: &quot;Sequence.structureVariant&quot;,
-        &quot;short&quot;: &quot;Sequence Structural Variant&quot;,
-        &quot;definition&quot;: &quot;Structural variant.&quot;,
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;*&quot;,
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;BackboneElement&quot;
-          }
-        ],
-        &quot;isSummary&quot;: true
-      },
-      {
-        &quot;id&quot;: &quot;Sequence.structureVariant.precisionOfBoundaries&quot;,
-        &quot;path&quot;: &quot;Sequence.structureVariant.precisionOfBoundaries&quot;,
-        &quot;short&quot;: &quot;Precision of boundaries&quot;,
-        &quot;definition&quot;: &quot;Precision of boundaries.&quot;,
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;string&quot;
-          }
-        ],
-        &quot;isSummary&quot;: true
-      },
-      {
-        &quot;id&quot;: &quot;Sequence.structureVariant.reportedaCGHRatio&quot;,
-        &quot;path&quot;: &quot;Sequence.structureVariant.reportedaCGHRatio&quot;,
-        &quot;short&quot;: &quot;Structural Variant reported aCGH ratio&quot;,
-        &quot;definition&quot;: &quot;Structural Variant reported aCGH ratio.&quot;,
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;decimal&quot;
-          }
-        ],
-        &quot;isSummary&quot;: true
-      },
-      {
-        &quot;id&quot;: &quot;Sequence.structureVariant.length&quot;,
-        &quot;path&quot;: &quot;Sequence.structureVariant.length&quot;,
-        &quot;short&quot;: &quot;Structural Variant Length&quot;,
-        &quot;definition&quot;: &quot;Structural Variant Length.&quot;,
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;integer&quot;
-          }
-        ],
-        &quot;isSummary&quot;: true
-      },
-      {
-        &quot;id&quot;: &quot;Sequence.structureVariant.outer&quot;,
-        &quot;path&quot;: &quot;Sequence.structureVariant.outer&quot;,
-        &quot;short&quot;: &quot;Sequence Structural Variant Outer Position&quot;,
-        &quot;definition&quot;: &quot;Structural variant outer.&quot;,
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;BackboneElement&quot;
-          }
-        ],
-        &quot;isSummary&quot;: true
-      },
-      {
-        &quot;id&quot;: &quot;Sequence.structureVariant.outer.start&quot;,
-        &quot;path&quot;: &quot;Sequence.structureVariant.outer.start&quot;,
-        &quot;short&quot;: &quot;Structural Variant Outer Start-End&quot;,
-        &quot;definition&quot;: &quot;Structural Variant Outer Start-End.&quot;,
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;integer&quot;
-          }
-        ],
-        &quot;isSummary&quot;: true
-      },
-      {
-        &quot;id&quot;: &quot;Sequence.structureVariant.outer.end&quot;,
-        &quot;path&quot;: &quot;Sequence.structureVariant.outer.end&quot;,
-        &quot;short&quot;: &quot;Structural Variant Outer Start-End&quot;,
-        &quot;definition&quot;: &quot;Structural Variant Outer Start-End.&quot;,
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;integer&quot;
-          }
-        ],
-        &quot;isSummary&quot;: true
-      },
-      {
-        &quot;id&quot;: &quot;Sequence.structureVariant.inner&quot;,
-        &quot;path&quot;: &quot;Sequence.structureVariant.inner&quot;,
-        &quot;short&quot;: &quot;Sequence Structural Variant Inner Position&quot;,
-        &quot;definition&quot;: &quot;Structural variant inner.&quot;,
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;BackboneElement&quot;
-          }
-        ],
-        &quot;isSummary&quot;: true
-      },
-      {
-        &quot;id&quot;: &quot;Sequence.structureVariant.inner.start&quot;,
-        &quot;path&quot;: &quot;Sequence.structureVariant.inner.start&quot;,
-        &quot;short&quot;: &quot;Structural Variant Inner Start-End&quot;,
-        &quot;definition&quot;: &quot;Structural Variant Inner Start-End.&quot;,
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;integer&quot;
-          }
-        ],
-        &quot;isSummary&quot;: true
-      },
-      {
-        &quot;id&quot;: &quot;Sequence.structureVariant.inner.end&quot;,
-        &quot;path&quot;: &quot;Sequence.structureVariant.inner.end&quot;,
-        &quot;short&quot;: &quot;Structural Variant Inner Start-End&quot;,
-        &quot;definition&quot;: &quot;Structural Variant Inner Start-End.&quot;,
-        &quot;min&quot;: 0,
-        &quot;max&quot;: &quot;1&quot;,
-        &quot;type&quot;: [
-          {
-            &quot;code&quot;: &quot;integer&quot;
-          }
-        ],
-        &quot;isSummary&quot;: true
       }
     ]
   }
@@ -2925,7 +2415,7 @@ of the specification.
 		<div class="container"><!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:33-0500. <a href="qa.html">QA Page</a>
+        © HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:28-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search</a> | 

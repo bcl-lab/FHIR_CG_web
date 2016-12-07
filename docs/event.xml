@@ -13,13 +13,13 @@
   <publisher value="Health Level Seven International fhir"/>
   <contact>
     <telecom>
-      <system value="other"/>
+      <system value="url"/>
       <value value="http://hl7.org/fhir"/>
     </telecom>
   </contact>
-  <date value="2016-11-28T17:29:55-05:00"/>
-  <description value="Logical Model: A pattern to be followed by resources that represent the performance of some task, possibly in accordance with a request or service definition."/>
-  <fhirVersion value="1.7.0"/>
+  <date value="2016-12-07T14:18:58-05:00"/>
+  <description value="Logical Model: A pattern to be followed by resources that represent the performance of some activity, possibly in accordance with a request or service definition."/>
+  <fhirVersion value="1.8.0"/>
   <mapping>
     <identity value="rim"/>
     <uri value="http://hl7.org/v3"/>
@@ -36,9 +36,16 @@
     <element id="Event">
       <path value="Event"/>
       <short value="Event Pattern"/>
-      <definition value="A pattern to be followed by resources that represent the performance of some task, possibly in accordance with a request or service definition."/>
+      <definition value="A pattern to be followed by resources that represent the performance of some activity, possibly in accordance with a request or service definition."/>
       <min value="0"/>
       <max value="*"/>
+      <constraint>
+        <key value="inv-1"/>
+        <severity value="error"/>
+        <human value="Not Done Reason can only be specified if NotDone is &quot;true&quot;"/>
+        <expression value="notDone or notDoneReason.exists().not()"/>
+        <xpath value="f:notDone=&#39;true&#39; or not(exists(f:notDoneReason))"/>
+      </constraint>
       <mapping>
         <identity value="rim"/>
         <map value="Act[moodCode=EVN]"/>
@@ -125,6 +132,9 @@
       <path value="Event.status"/>
       <short value="preparation | in-progress | suspended | aborted | completed | entered-in-error"/>
       <definition value="The current state of the event."/>
+      <comments value="A nominal state-transition diagram can be found in the [[event.html#statemachine | Event pattern]] documentation
+
+Unknown does not represent &quot;other&quot; - one of the defined statuses must apply.  Unknown is used when the authoring system is not sure what the current status is."/>
       <min value="1"/>
       <max value="1"/>
       <type>
@@ -146,6 +156,41 @@
       <mapping>
         <identity value="w5"/>
         <map value="status"/>
+      </mapping>
+    </element>
+    <element id="Event.notDone">
+      <path value="Event.notDone"/>
+      <short value="{{title}} did not occur"/>
+      <definition value="If true, indicates that the described event (combination of code, timing, performer, etc.) did not actually occur."/>
+      <comments value="The more attributes are populated, the more constrained the negated statement is.  For example if timeframe and performer are specified, that means the event wasn&#39;t done by that performer in that time-period, but could well have been done by someone else or by that performer in a different time period."/>
+      <requirements value="Creating a {{title}} where notDone is true is intended for situations where there&#39;s a need for a specific statement in the record about something not being done.  If the need is merely to indicate that a request wasn&#39;t fulfilled, that should be handled using Task."/>
+      <min value="0"/>
+      <max value="1"/>
+      <type>
+        <code value="boolean"/>
+      </type>
+      <isModifier value="true"/>
+      <isSummary value="true"/>
+      <mapping>
+        <identity value="rim"/>
+        <map value=".actionNegationInd"/>
+      </mapping>
+    </element>
+    <element id="Event.notDoneReason">
+      <path value="Event.notDoneReason"/>
+      <short value="Why {{title}} did not occur"/>
+      <definition value="Describes why the event did not occur in coded and/or textual form."/>
+      <requirements value="This is a separate element to allow it to have a distinct binding from reasonCode."/>
+      <min value="0"/>
+      <max value="1"/>
+      <type>
+        <code value="CodeableConcept"/>
+      </type>
+      <condition value="inv-1"/>
+      <isSummary value="true"/>
+      <mapping>
+        <identity value="rim"/>
+        <map value=".reasonCode"/>
       </mapping>
     </element>
     <element id="Event.code">
@@ -250,14 +295,52 @@
       </mapping>
       <mapping>
         <identity value="w5"/>
-        <map value="when.planned"/>
+        <map value="when.done"/>
       </mapping>
     </element>
     <element id="Event.performer">
       <path value="Event.performer"/>
       <short value="Who performed event"/>
       <definition value="Indicates who or what performed the event."/>
+      <comments value="[Resources may choose to replace this with just a single performer or repeating where there&#39;s no need to distinguish role and/or responsible organization]."/>
       <min value="0"/>
+      <max value="*"/>
+      <type>
+        <code value="Element"/>
+      </type>
+      <isSummary value="true"/>
+      <mapping>
+        <identity value="rim"/>
+        <map value=".participation[typeCode=PRF].role[scoper.determinerCode=INSTANCE]"/>
+      </mapping>
+    </element>
+    <element id="Event.performer.role">
+      <path value="Event.performer.role"/>
+      <short value="What type of performance was done"/>
+      <definition value="Describes the type of performance (e.g. primary surgeon, anaesthesiologiest, etc.)."/>
+      <min value="0"/>
+      <max value="1"/>
+      <type>
+        <code value="CodeableConcept"/>
+      </type>
+      <isSummary value="true"/>
+      <binding>
+        <strength value="required"/>
+        <description value="Codes describing the types of functional roles performers can take on when performing events"/>
+        <valueSetReference>
+          <reference value="http://hl7.org/fhir/ValueSet/performer-role"/>
+        </valueSetReference>
+      </binding>
+      <mapping>
+        <identity value="rim"/>
+        <map value=".participation.functionCode"/>
+      </mapping>
+    </element>
+    <element id="Event.performer.actor">
+      <path value="Event.performer.actor"/>
+      <short value="Individual who was performing"/>
+      <definition value="The device, practitioner, etc. who performed the action."/>
+      <min value="1"/>
       <max value="1"/>
       <type>
         <code value="Reference"/>
@@ -282,15 +365,31 @@
       <isSummary value="true"/>
       <mapping>
         <identity value="rim"/>
-        <map value=".participation[typeCode=PRF].role[scoper.determinerCode=INSTANCE]"/>
+        <map value=".player"/>
       </mapping>
       <mapping>
         <identity value="w5"/>
         <map value="who.actor"/>
       </mapping>
     </element>
-    <element id="Event.reasonCode">
-      <path value="Event.reasonCode"/>
+    <element id="Event.performer.onBehalfOf">
+      <path value="Event.performer.onBehalfOf"/>
+      <short value="Organization organization was acting for"/>
+      <definition value="The organization the device or practitioner was acting on behalf of."/>
+      <requirements value="Practitioners and Devices can be associated with multiple organizations.  This element indicates which organization they were acting on behalf of when performing the action."/>
+      <min value="0"/>
+      <max value="1"/>
+      <type>
+        <code value="Reference"/>
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Organization"/>
+      </type>
+      <mapping>
+        <identity value="rim"/>
+        <map value=".scoper"/>
+      </mapping>
+    </element>
+    <element id="Event.reasonCodeableConcept">
+      <path value="Event.reasonCodeableConcept"/>
       <short value="Why was event performed?"/>
       <definition value="Describes why the event occurred in coded or textual form."/>
       <comments value="Textual reasons can be caprued using reasonCode.text."/>

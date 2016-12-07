@@ -60,7 +60,7 @@
               "description": "The method for sequencing, for example, chip information.",
               "$ref": "Reference.schema.json#/definitions/Reference"
             },
-            "peformer": {
+            "performer": {
               "description": "The organization or lab that should be responsible for this result.",
               "$ref": "Reference.schema.json#/definitions/Reference"
             },
@@ -69,18 +69,18 @@
               "$ref": "Quantity.schema.json#/definitions/Quantity"
             },
             "referenceSeq": {
-              "description": "A sequence file that is used as a reference to describe variants that are present in a sequence analyzed.",
+              "description": "A sequence that is used as a reference to describe variants that are present in a sequence analyzed.",
               "$ref": "#/definitions/Sequence_ReferenceSeq"
             },
             "variant": {
-              "description": "A\u0027 is a variant (mutation) of A \u003d definition every instance of A\u0027 is either an immediate mutation of some instance of A, or there is a chain of immediate mutation processes linking A\u0027 to some instance of A ([variant_of](http://www.sequenceontology.org/browser/current_svn/term/variant_of)).",
+              "description": "The definition of variant here originates from Sequence ontology ([variant_of](http://www.sequenceontology.org/browser/current_svn/term/variant_of)). This element can represent amino acid or nucleic sequence change(including insertion,deletion,SNP,etc.)  It can represent some complex mutation or segment variation with the assist of CIGAR string.",
               "type": "array",
               "items": {
                 "$ref": "#/definitions/Sequence_Variant"
               }
             },
             "observedSeq": {
-              "description": "Sequence string that was observed.",
+              "description": "Sequence that was observed. It is the result marked by referenceSeq along with variant records on referenceSeq. This shall starts from referenceSeq.windowStart and end by referenceSeq.windowEnd.",
               "type": "string"
             },
             "_observedSeq": {
@@ -116,13 +116,6 @@
               "items": {
                 "$ref": "Reference.schema.json#/definitions/Reference"
               }
-            },
-            "structureVariant": {
-              "description": "Structural variant.",
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/Sequence_StructureVariant"
-              }
             }
           },
           "required": [
@@ -156,7 +149,7 @@
               "$ref": "CodeableConcept.schema.json#/definitions/CodeableConcept"
             },
             "referenceSeqPointer": {
-              "description": "A Pointer to another Sequence entity as refence sequence.",
+              "description": "A Pointer to another Sequence entity as reference sequence.",
               "$ref": "Reference.schema.json#/definitions/Reference"
             },
             "referenceSeqString": {
@@ -225,7 +218,7 @@
               "$ref": "Element.schema.json#/definitions/Element"
             },
             "observedAllele": {
-              "description": "An allele is one of a set of coexisting sequence variants of a gene ([SO:0001023](http://www.sequenceontology.org/browser/current_svn/term/SO:0001023)). Nucleotide(s)/amino acids from start position of sequence to stop position of sequence on the positive (+) strand of the observed sequence. When the sequence  type is DNA, it should be the sequence on the positive (+) strand.",
+              "description": "An allele is one of a set of coexisting sequence variants of a gene ([SO:0001023](http://www.sequenceontology.org/browser/current_svn/term/SO:0001023)).  Nucleotide(s)/amino acids from start position of sequence to stop position of sequence on the positive (+) strand of the observed  sequence. When the sequence  type is DNA, it should be the sequence on the positive (+) strand. This will lay in the range between variant.start and variant.end.",
               "type": "string"
             },
             "_observedAllele": {
@@ -233,7 +226,7 @@
               "$ref": "Element.schema.json#/definitions/Element"
             },
             "referenceAllele": {
-              "description": "An allele is one of a set of coexisting sequence variants of a gene ([SO:0001023](http://www.sequenceontology.org/browser/current_svn/term/SO:0001023)). Nucleotide(s)/amino acids from start position of sequence to stop position of sequence on the positive (+) strand of the reference sequence. When the sequence  type is DNA, it should be the sequence on the positive (+) strand.",
+              "description": "An allele is one of a set of coexisting sequence variants of a gene ([SO:0001023](http://www.sequenceontology.org/browser/current_svn/term/SO:0001023)). Nucleotide(s)/amino acids from start position of sequence to stop position of sequence on the positive (+) strand of the reference sequence. When the sequence  type is DNA, it should be the sequence on the positive (+) strand. This will lay in the range between variant.start and variant.end.",
               "type": "string"
             },
             "_referenceAllele": {
@@ -444,112 +437,6 @@
             },
             "_readsetId": {
               "description": "Extensions for readsetId",
-              "$ref": "Element.schema.json#/definitions/Element"
-            }
-          }
-        }
-      ]
-    },
-    "Sequence_StructureVariant": {
-      "allOf": [
-        {
-          "$ref": "BackboneElement.schema.json#/definitions/BackboneElement"
-        },
-        {
-          "description": "Raw data describing a biological sequence.",
-          "properties": {
-            "precisionOfBoundaries": {
-              "description": "Precision of boundaries.",
-              "type": "string"
-            },
-            "_precisionOfBoundaries": {
-              "description": "Extensions for precisionOfBoundaries",
-              "$ref": "Element.schema.json#/definitions/Element"
-            },
-            "reportedaCGHRatio": {
-              "description": "Structural Variant reported aCGH ratio.",
-              "type": "number",
-              "pattern": "-?([0]|([1-9][0-9]*))(\\.[0-9]+)?"
-            },
-            "_reportedaCGHRatio": {
-              "description": "Extensions for reportedaCGHRatio",
-              "$ref": "Element.schema.json#/definitions/Element"
-            },
-            "length": {
-              "description": "Structural Variant Length.",
-              "type": "number",
-              "pattern": "-?([0]|([1-9][0-9]*))"
-            },
-            "_length": {
-              "description": "Extensions for length",
-              "$ref": "Element.schema.json#/definitions/Element"
-            },
-            "outer": {
-              "description": "Structural variant outer.",
-              "$ref": "#/definitions/Sequence_Outer"
-            },
-            "inner": {
-              "description": "Structural variant inner.",
-              "$ref": "#/definitions/Sequence_Inner"
-            }
-          }
-        }
-      ]
-    },
-    "Sequence_Outer": {
-      "allOf": [
-        {
-          "$ref": "BackboneElement.schema.json#/definitions/BackboneElement"
-        },
-        {
-          "description": "Raw data describing a biological sequence.",
-          "properties": {
-            "start": {
-              "description": "Structural Variant Outer Start-End.",
-              "type": "number",
-              "pattern": "-?([0]|([1-9][0-9]*))"
-            },
-            "_start": {
-              "description": "Extensions for start",
-              "$ref": "Element.schema.json#/definitions/Element"
-            },
-            "end": {
-              "description": "Structural Variant Outer Start-End.",
-              "type": "number",
-              "pattern": "-?([0]|([1-9][0-9]*))"
-            },
-            "_end": {
-              "description": "Extensions for end",
-              "$ref": "Element.schema.json#/definitions/Element"
-            }
-          }
-        }
-      ]
-    },
-    "Sequence_Inner": {
-      "allOf": [
-        {
-          "$ref": "BackboneElement.schema.json#/definitions/BackboneElement"
-        },
-        {
-          "description": "Raw data describing a biological sequence.",
-          "properties": {
-            "start": {
-              "description": "Structural Variant Inner Start-End.",
-              "type": "number",
-              "pattern": "-?([0]|([1-9][0-9]*))"
-            },
-            "_start": {
-              "description": "Extensions for start",
-              "$ref": "Element.schema.json#/definitions/Element"
-            },
-            "end": {
-              "description": "Structural Variant Inner Start-End.",
-              "type": "number",
-              "pattern": "-?([0]|([1-9][0-9]*))"
-            },
-            "_end": {
-              "description": "Extensions for end",
               "$ref": "Element.schema.json#/definitions/Element"
             }
           }

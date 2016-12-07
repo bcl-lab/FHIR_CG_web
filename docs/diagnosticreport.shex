@@ -37,18 +37,18 @@ start=@<DiagnosticReport> AND {fhir:nodeRole [fhir:treeRoot]}
         @<GroupReference> OR
         @<DeviceReference> OR
         @<LocationReference>
-    );
+    )?;
     fhir:DiagnosticReport.encounter @<Reference>?;  # Health care event when test ordered
     (                                       # Clinically Relevant 
                                             # time/time-period for report 
         fhir:DiagnosticReport.effectiveDateTime @<dateTime>  |
         fhir:DiagnosticReport.effectivePeriod @<Period> 
-    );
-    fhir:DiagnosticReport.issued @<instant>;  # DateTime this version was released
+    )?;
+    fhir:DiagnosticReport.issued @<instant>?;  # DateTime this version was released
     fhir:DiagnosticReport.performer         # Responsible Diagnostic Service
     (   @<PractitionerReference> OR
         @<OrganizationReference>
-    )+;
+    )*;
     fhir:DiagnosticReport.request           # What was requested
     (   @<DiagnosticRequestReference> OR
         @<ProcedureRequestReference> OR

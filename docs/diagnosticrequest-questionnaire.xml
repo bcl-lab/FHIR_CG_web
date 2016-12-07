@@ -9,8 +9,8 @@
       <status value="active"/>
       <description value="Type options for DiagnosticRequest.subject"/>
       <expansion>
-        <identifier value="urn:uuid:393d5e29-bdca-42a5-a2ed-c54c44e26dfb"/>
-        <timestamp value="2016-11-28T17:32:36-05:00"/>
+        <identifier value="urn:uuid:e7749e64-31c5-4661-8190-f3fb8f3ac3f8"/>
+        <timestamp value="2016-12-07T14:21:44-05:00"/>
         <contains>
           <system value="http://hl7.org/fhir/resource-types"/>
           <code value="Patient"/>
@@ -41,8 +41,8 @@
       <status value="active"/>
       <description value="Type options for DiagnosticRequest.context"/>
       <expansion>
-        <identifier value="urn:uuid:cbfbc12c-79fe-43f6-bff2-c764e725aee2"/>
-        <timestamp value="2016-11-28T17:32:36-05:00"/>
+        <identifier value="urn:uuid:f9a5c65c-4130-4172-9231-0a743c649740"/>
+        <timestamp value="2016-12-07T14:21:44-05:00"/>
         <contains>
           <system value="http://hl7.org/fhir/resource-types"/>
           <code value="Encounter"/>
@@ -63,8 +63,8 @@
       <status value="active"/>
       <description value="Type options for DiagnosticRequest.occurrence[x]"/>
       <expansion>
-        <identifier value="urn:uuid:039c1946-21e2-4d06-80ba-ab2728f20f17"/>
-        <timestamp value="2016-11-28T17:32:36-05:00"/>
+        <identifier value="urn:uuid:441ff7f4-00bf-424e-8687-8cfbc5b03516"/>
+        <timestamp value="2016-12-07T14:21:44-05:00"/>
         <contains>
           <system value="http://hl7.org/fhir/data-types"/>
           <code value="dateTime"/>
@@ -90,8 +90,8 @@
       <status value="active"/>
       <description value="Type options for DiagnosticRequest.requester"/>
       <expansion>
-        <identifier value="urn:uuid:ab868a76-35fe-4b2f-9a8c-43be5901fccf"/>
-        <timestamp value="2016-11-28T17:32:36-05:00"/>
+        <identifier value="urn:uuid:f4120ed7-5000-4ef0-89b3-81f2e46ea9f0"/>
+        <timestamp value="2016-12-07T14:21:44-05:00"/>
         <contains>
           <system value="http://hl7.org/fhir/resource-types"/>
           <code value="Device"/>
@@ -117,8 +117,8 @@
       <status value="active"/>
       <description value="Type options for DiagnosticRequest.performer"/>
       <expansion>
-        <identifier value="urn:uuid:983aed04-0237-4b1a-903a-0b3881413846"/>
-        <timestamp value="2016-11-28T17:32:36-05:00"/>
+        <identifier value="urn:uuid:15ce48d2-a7f9-4734-a49b-ed25c380eb59"/>
+        <timestamp value="2016-12-07T14:21:44-05:00"/>
         <contains>
           <system value="http://hl7.org/fhir/resource-types"/>
           <code value="Practitioner"/>
@@ -147,11 +147,33 @@
       </expansion>
     </ValueSet>
   </contained>
+  <contained>
+    <ValueSet>
+      <id value="vs7"/>
+      <name value="Type options for DiagnosticRequest.reasonReference"/>
+      <status value="active"/>
+      <description value="Type options for DiagnosticRequest.reasonReference"/>
+      <expansion>
+        <identifier value="urn:uuid:c0a77bf5-74e8-4f82-a7dc-bded763014e0"/>
+        <timestamp value="2016-12-07T14:21:44-05:00"/>
+        <contains>
+          <system value="http://hl7.org/fhir/resource-types"/>
+          <code value="Condition"/>
+          <display value="Condition"/>
+        </contains>
+        <contains>
+          <system value="http://hl7.org/fhir/resource-types"/>
+          <code value="Observation"/>
+          <display value="Observation"/>
+        </contains>
+      </expansion>
+    </ValueSet>
+  </contained>
   <identifier>
     <system value="urn:ietf:rfc:3986"/>
   </identifier>
   <status value="draft"/>
-  <date value="2016-11-28T17:29:55-05:00"/>
+  <date value="2016-12-07T14:18:58-05:00"/>
   <publisher value="Health Level Seven International (Orders and Observations)"/>
   <item>
     <linkId value="DiagnosticRequest"/>
@@ -531,7 +553,7 @@
         <valueString value="Identifier"/>
       </extension>
       <linkId value="DiagnosticRequest.requisition"/>
-      <text value="Identifier of composite request"/>
+      <text value="Composite Request ID"/>
       <type value="group"/>
       <required value="false"/>
       <repeats value="true"/>
@@ -545,7 +567,7 @@
             </coding>
           </valueCodeableConcept>
         </extension>
-        <text value="Composite request this is part of."/>
+        <text value="A shared identifier common to all diagnostic requests that were authorized more or less simultaneously by a single author, representing the composite or group identifier. Requests are linked either by a &quot;basedOn&quot; relationship (i.e. one request is fulfilling another) or by having a common requisition. Requests that are part of the same requisition are generally treated independently from the perspective of changing their state or maintaining them after initial creation."/>
         <type value="display"/>
       </item>
       <item>
@@ -571,6 +593,9 @@
       </item>
     </item>
     <item>
+      <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-minOccurs">
+        <valueInteger value="1"/>
+      </extension>
       <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs">
         <valueInteger value="1"/>
       </extension>
@@ -579,7 +604,7 @@
       </extension>
       <linkId value="DiagnosticRequest.status"/>
       <type value="group"/>
-      <required value="false"/>
+      <required value="true"/>
       <repeats value="true"/>
       <item>
         <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl">
@@ -591,7 +616,7 @@
             </coding>
           </valueCodeableConcept>
         </extension>
-        <text value="The status of the order. Typically the system placing the order sets the status to &quot;requested&quot;. Thereafter, the order is maintained by the receiver that updates the status as the request is handled."/>
+        <text value="The status of the order. The status is generally fully in the control of the requester - they determine whether the order is draft or active and, after it has been activated, competed, cancelled or suspended. States relating to the activities of the performer are reflected on either the corresponding event (see [Event Pattern](event.html) for general discussion) or using the [Task](task.html) resource."/>
         <type value="display"/>
       </item>
       <item>
@@ -610,10 +635,9 @@
         <valueInteger value="1"/>
       </extension>
       <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
-        <valueString value="CodeableConcept"/>
+        <valueString value="code"/>
       </extension>
-      <linkId value="DiagnosticRequest.stage"/>
-      <text value="proposal | plan | original-order | reflex-order"/>
+      <linkId value="DiagnosticRequest.intent"/>
       <type value="group"/>
       <required value="true"/>
       <repeats value="true"/>
@@ -631,16 +655,41 @@
         <type value="display"/>
       </item>
       <item>
-        <linkId value="DiagnosticRequest.stage.coding"/>
-        <text value="code:"/>
-        <type value="open-choice"/>
+        <linkId value="DiagnosticRequest.intent.value"/>
+        <text value="intent"/>
+        <type value="choice"/>
         <required value="false"/>
         <repeats value="false"/>
       </item>
+    </item>
+    <item>
+      <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs">
+        <valueInteger value="1"/>
+      </extension>
+      <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
+        <valueString value="code"/>
+      </extension>
+      <linkId value="DiagnosticRequest.priority"/>
+      <type value="group"/>
+      <required value="false"/>
+      <repeats value="true"/>
       <item>
-        <linkId value="DiagnosticRequest.stage.text"/>
-        <text value="text:"/>
-        <type value="string"/>
+        <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl">
+          <valueCodeableConcept>
+            <coding>
+              <system value="http://hl7.org/fhir/questionnaire-item-control"/>
+              <code value="flyover"/>
+              <display value="Fly-over"/>
+            </coding>
+          </valueCodeableConcept>
+        </extension>
+        <text value="Indicates how quickly the {{title}} should be addressed with respect to other requests."/>
+        <type value="display"/>
+      </item>
+      <item>
+        <linkId value="DiagnosticRequest.priority.value"/>
+        <text value="priority"/>
+        <type value="choice"/>
         <required value="false"/>
         <repeats value="false"/>
       </item>
@@ -991,7 +1040,7 @@
       <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
         <valueString value="datetime"/>
       </extension>
-      <linkId value="DiagnosticRequest.authored"/>
+      <linkId value="DiagnosticRequest.authoredOn"/>
       <type value="group"/>
       <required value="false"/>
       <repeats value="true"/>
@@ -1009,7 +1058,7 @@
         <type value="display"/>
       </item>
       <item>
-        <linkId value="DiagnosticRequest.authored.value"/>
+        <linkId value="DiagnosticRequest.authoredOn.value"/>
         <text value="Date request signed"/>
         <type value="dateTime"/>
         <required value="false"/>
@@ -1286,7 +1335,7 @@
       <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
         <valueString value="CodeableConcept"/>
       </extension>
-      <linkId value="DiagnosticRequest.reason"/>
+      <linkId value="DiagnosticRequest.reasonCode"/>
       <text value="Explanation/Justification for test"/>
       <type value="group"/>
       <required value="false"/>
@@ -1301,22 +1350,92 @@
             </coding>
           </valueCodeableConcept>
         </extension>
-        <text value="An explanation or justification for why this diagnostic investigation is being requested.   This is often for billing purposes.  May relate to the resources referred to in supportingInformation. This may be used to decide how the diagnostic investigation will be performed, or even if it will be performed at all.   Use CodeableConcept text element if the data is free (uncoded) text as shown in the [CT Scan example](diagnosticrequest-example-di.html)."/>
+        <text value="An explanation or justification for why this diagnostic investigation is being requested in coded or textual form.   This is often for billing purposes.  May relate to the resources referred to in supportingInformation. This may be used to decide how the diagnostic investigation will be performed, or even if it will be performed at all.   Use CodeableConcept text element if the data is free (uncoded) text as shown in the [CT Scan example](diagnosticrequest-example-di.html)."/>
         <type value="display"/>
       </item>
       <item>
-        <linkId value="DiagnosticRequest.reason.coding"/>
+        <linkId value="DiagnosticRequest.reasonCode.coding"/>
         <text value="code:"/>
         <type value="open-choice"/>
         <required value="false"/>
         <repeats value="false"/>
       </item>
       <item>
-        <linkId value="DiagnosticRequest.reason.text"/>
+        <linkId value="DiagnosticRequest.reasonCode.text"/>
         <text value="text:"/>
         <type value="string"/>
         <required value="false"/>
         <repeats value="false"/>
+      </item>
+    </item>
+    <item>
+      <linkId value="DiagnosticRequest.reasonReference"/>
+      <text value="Explanation/Justification for test"/>
+      <type value="group"/>
+      <required value="false"/>
+      <repeats value="true"/>
+      <item>
+        <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl">
+          <valueCodeableConcept>
+            <coding>
+              <system value="http://hl7.org/fhir/questionnaire-item-control"/>
+              <code value="flyover"/>
+              <display value="Fly-over"/>
+            </coding>
+          </valueCodeableConcept>
+        </extension>
+        <text value="Indicates another resource that provides a justification for why this diagnostic investigation is being requested.   May relate to the resources referred to in supportingInformation. This may be used to decide how the diagnostic investigation will be performed, or even if it will be performed at all.   Use CodeableConcept text element if the data is free (uncoded) text as shown in the [CT Scan example](diagnosticrequest-example-di.html)."/>
+        <type value="display"/>
+      </item>
+      <item>
+        <linkId value="DiagnosticRequest.reasonReference._type"/>
+        <text value="type"/>
+        <type value="choice"/>
+        <required value="false"/>
+        <repeats value="false"/>
+        <options>
+          <reference value="#vs7"/>
+        </options>
+        <item>
+          <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
+            <valueString value="Reference"/>
+          </extension>
+          <linkId value="DiagnosticRequest.reasonReference._Condition"/>
+          <type value="group"/>
+          <item>
+            <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-allowedResource">
+              <valueCode value="Condition"/>
+            </extension>
+            <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-referenceFilter">
+              <valueString value="subject=$subj&amp;patient=$subj&amp;encounter=$encounter"/>
+            </extension>
+            <linkId value="DiagnosticRequest.reasonReference._Condition.value"/>
+            <text value="Condition"/>
+            <type value="reference"/>
+            <required value="false"/>
+            <repeats value="false"/>
+          </item>
+        </item>
+        <item>
+          <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType">
+            <valueString value="Reference"/>
+          </extension>
+          <linkId value="DiagnosticRequest.reasonReference._Observation"/>
+          <type value="group"/>
+          <item>
+            <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-allowedResource">
+              <valueCode value="Observation"/>
+            </extension>
+            <extension url="http://hl7.org/fhir/StructureDefinition/questionnaire-referenceFilter">
+              <valueString value="subject=$subj&amp;patient=$subj&amp;encounter=$encounter"/>
+            </extension>
+            <linkId value="DiagnosticRequest.reasonReference._Observation.value"/>
+            <text value="Observation"/>
+            <type value="reference"/>
+            <required value="false"/>
+            <repeats value="false"/>
+          </item>
+        </item>
       </item>
     </item>
     <item>

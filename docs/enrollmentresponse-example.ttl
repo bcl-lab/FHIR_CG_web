@@ -18,14 +18,20 @@
      fhir:Identifier.value [ fhir:value "781234" ]
   ];
   fhir:EnrollmentResponse.status [ fhir:value "active"];
-  fhir:EnrollmentResponse.requestReference [
+  fhir:EnrollmentResponse.request [
      fhir:link <http://www.BenefitsInc.com/fhir/eligibility/225476332402>;
      fhir:Reference.reference [ fhir:value "http://www.BenefitsInc.com/fhir/eligibility/225476332402" ]
   ];
-  fhir:EnrollmentResponse.outcome [ fhir:value "complete"];
+  fhir:EnrollmentResponse.outcome [
+     fhir:CodeableConcept.coding [
+       fhir:index 0;
+       fhir:Coding.system [ fhir:value "http://hl7.org/fhir/remittance-outcome" ];
+       fhir:Coding.code [ fhir:value "complete" ]
+     ]
+  ];
   fhir:EnrollmentResponse.disposition [ fhir:value "Dependant added to policy."];
   fhir:EnrollmentResponse.created [ fhir:value "2014-08-16"^^xsd:date];
-  fhir:EnrollmentResponse.organizationReference [
+  fhir:EnrollmentResponse.organization [
      fhir:link <http://hl7.org/fhir/Organization/2>;
      fhir:Reference.reference [ fhir:value "Organization/2" ]
   ] .

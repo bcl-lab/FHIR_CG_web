@@ -3,7 +3,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>Expansionprofile.shex - FHIR v1.7.0</title>
+  <title>Expansionprofile.shex - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -172,8 +172,8 @@ start=@&lt;ExpansionProfile&gt; AND {fhir:nodeRole [fhir:treeRoot]}
                                             # definition in the expansion 
     fhir:ExpansionProfile.activeOnly @&lt;boolean&gt;?;  # Include or exclude inactive 
                                             # concepts in the expansion 
-    fhir:ExpansionProfile.excludeNested @&lt;boolean&gt;?;  # Include or exclude nested codes in 
-                                            # the value set expansion 
+    fhir:ExpansionProfile.excludeNested @&lt;boolean&gt;?;  # Nested codes in the expansion or 
+                                            # not 
     fhir:ExpansionProfile.excludeNotForUI @&lt;boolean&gt;?;  # Include or exclude codes which 
                                             # cannot be rendered in user 
                                             # interfaces in the value set 
@@ -188,6 +188,19 @@ start=@&lt;ExpansionProfile&gt; AND {fhir:nodeRole [fhir:treeRoot]}
                                             # set expand operation when value 
                                             # sets are too large to be 
                                             # completely expanded 
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
+# Systems/Versions to be exclude
+&lt;ExpansionProfile.excludedSystem&gt; CLOSED {
+    fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
+    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @&lt;Extension&gt;*;   # Extensions that cannot be ignored
+    fhir:ExpansionProfile.excludedSystem.system @&lt;uri&gt;;  # The specific code system to be 
+                                            # excluded 
+    fhir:ExpansionProfile.excludedSystem.version @&lt;string&gt;?;  # Specific version of the code 
+                                            # system referred to 
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -213,19 +226,6 @@ start=@&lt;ExpansionProfile&gt; AND {fhir:nodeRole [fhir:treeRoot]}
                                             # system referred to 
     fhir:ExpansionProfile.fixedVersion.mode @&lt;code&gt; AND
     	{fhir:value @fhirvs:system-version-processing-mode};  # default | check | override
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
-# Systems/Versions to be exclude
-&lt;ExpansionProfile.excludedSystem&gt; CLOSED {
-    fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
-    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @&lt;Extension&gt;*;   # Extensions that cannot be ignored
-    fhir:ExpansionProfile.excludedSystem.system @&lt;uri&gt;;  # The specific code system to be 
-                                            # excluded 
-    fhir:ExpansionProfile.excludedSystem.version @&lt;string&gt;?;  # Specific version of the code 
-                                            # system referred to 
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -519,7 +519,8 @@ start=@&lt;ExpansionProfile&gt; AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
                                             # implementations 
     fhir:ContactPoint.system @&lt;code&gt; AND
-    	{fhir:value @fhirvs:contact-point-system}?;  # phone | fax | email | pager | other
+    	{fhir:value @fhirvs:contact-point-system}?;  # phone | fax | email | pager | url 
+                                            # | other 
     fhir:ContactPoint.value @&lt;string&gt;?;     # The actual contact point details
     fhir:ContactPoint.use @&lt;code&gt; AND
     	{fhir:value @fhirvs:contact-point-use}?;  # home | work | temp | old | mobile 
@@ -565,14 +566,20 @@ start=@&lt;ExpansionProfile&gt; AND {fhir:nodeRole [fhir:treeRoot]}
 
 #---------------------- Value Sets ------------------------
 
+# How the Quantity should be understood and represented.
+fhirvs:quantity-comparator [&quot;&lt;&quot; &quot;&lt;=&quot; &quot;&gt;=&quot; &quot;&gt;&quot;]
+
+# Use of contact point
+fhirvs:contact-point-use [&quot;home&quot; &quot;work&quot; &quot;temp&quot; &quot;old&quot; &quot;mobile&quot;]
+
 # The lifecycle status of a Value Set or Concept Map.
 fhirvs:publication-status [&quot;draft&quot; &quot;active&quot; &quot;retired&quot;]
 
-# Details of how a designation would be used
-fhirvs:designation-use EXTERNAL
-
 # Telecommunications form for contact point
-fhirvs:contact-point-system [&quot;phone&quot; &quot;fax&quot; &quot;email&quot; &quot;pager&quot; &quot;other&quot;]
+fhirvs:contact-point-system [&quot;phone&quot; &quot;fax&quot; &quot;email&quot; &quot;pager&quot; &quot;url&quot; &quot;other&quot;]
+
+# How to manage the intersection between a fixed version in a value set, and a fixed version of the system in the expansion profile
+fhirvs:system-version-processing-mode [&quot;default&quot; &quot;check&quot; &quot;override&quot;]
 
 # Identifies the purpose for this identifier, if known .
 fhirvs:identifier-use [&quot;usual&quot; &quot;official&quot; &quot;temp&quot; &quot;secondary&quot;]
@@ -580,14 +587,8 @@ fhirvs:identifier-use [&quot;usual&quot; &quot;official&quot; &quot;temp&quot; &
 # The status of a resource narrative
 fhirvs:narrative-status [&quot;generated&quot; &quot;extensions&quot; &quot;additional&quot; &quot;empty&quot;]
 
-# How the Quantity should be understood and represented.
-fhirvs:quantity-comparator [&quot;&lt;&quot; &quot;&lt;=&quot; &quot;&gt;=&quot; &quot;&gt;&quot;]
-
-# Use of contact point
-fhirvs:contact-point-use [&quot;home&quot; &quot;work&quot; &quot;temp&quot; &quot;old&quot; &quot;mobile&quot;]
-
-# How to manage the intersection between a fixed version in a value set, and a fixed version of the system in the expansion profile
-fhirvs:system-version-processing-mode [&quot;default&quot; &quot;check&quot; &quot;override&quot;]
+# Details of how a designation would be used
+fhirvs:designation-use [&quot;900000000000003001&quot; &quot;900000000000013009&quot; &quot;900000000000550004&quot;]
 
 </pre>
 </div>
@@ -613,7 +614,7 @@ of the specification.
 		<div class="container"><!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:32-0500. <a href="qa.html">QA Page</a>
+        © HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:21-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search</a> | 

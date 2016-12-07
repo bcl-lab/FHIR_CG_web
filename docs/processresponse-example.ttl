@@ -18,20 +18,23 @@
      fhir:Identifier.value [ fhir:value "881234" ]
   ];
   fhir:ProcessResponse.status [ fhir:value "active"];
-  fhir:ProcessResponse.request [
-     fhir:link <http://happyvalley.com/fhir/claim/12345>;
-     fhir:Reference.reference [ fhir:value "http://happyvalley.com/fhir/claim/12345" ]
-  ];
-  fhir:ProcessResponse.outcome [
-     fhir:Coding.system [ fhir:value "http://hl7.org/fhir/processoutcomecodes" ];
-     fhir:Coding.code [ fhir:value "complete" ]
-  ];
-  fhir:ProcessResponse.disposition [ fhir:value "Adjudication processing completed, ClaimResponse and EOB ready for retrieval."];
   fhir:ProcessResponse.created [ fhir:value "2014-08-16"^^xsd:date];
   fhir:ProcessResponse.organization [
      fhir:link <http://hl7.org/fhir/Organization/2>;
      fhir:Reference.reference [ fhir:value "Organization/2" ]
   ];
+  fhir:ProcessResponse.request [
+     fhir:link <http://happyvalley.com/fhir/claim/12345>;
+     fhir:Reference.reference [ fhir:value "http://happyvalley.com/fhir/claim/12345" ]
+  ];
+  fhir:ProcessResponse.outcome [
+     fhir:CodeableConcept.coding [
+       fhir:index 0;
+       fhir:Coding.system [ fhir:value "http://hl7.org/fhir/processoutcomecodes" ];
+       fhir:Coding.code [ fhir:value "complete" ]
+     ]
+  ];
+  fhir:ProcessResponse.disposition [ fhir:value "Adjudication processing completed, ClaimResponse and EOB ready for retrieval."];
   fhir:ProcessResponse.requestOrganization [
      fhir:link <http://hl7.org/fhir/Organization/1>;
      fhir:Reference.reference [ fhir:value "Organization/1" ]

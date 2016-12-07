@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>Validation - FHIR v1.7.0</title>
+  <title>Validation - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -115,23 +115,132 @@ validation of resources.
 </p>
 
 <p>
-In principle, resources can be validated:
+Validating a resource means, checking that the the following aspects of the resource are valid:
 </p>
 <ul>
- <li>Against the original specification</li>
- <li>Against an implementation guide</li>
- <li>Against a specific profile</li>
+<li><b>Structure</b>: Check that all the content in the resource is described by the specification, and nothing extra is present</li>
+<li><b>Cardinality</b>: Check that the cardinality of all properties is correct (min &amp; max)</li>
+<li><b>Value Domains</b>: Check that the values of all properties conform to the rules for the specified types (including checking that enumerated codes are valid)</li>
+<li><b>Coding/CodeableConcept bindings</b>: Check that codes/displays provided in the <a href="datatypes.html#Coding">Coding</a>/<a href="datatypes.html#CodeableConcept">CodeableConcept</a> types are valid</li>
+<li><b>Invariants</b>: Check that the <a href="conformance-rules.html#constraints">invariants</a> (co-occurance rules, etc) have been followed correctly</li>
+<li><b>Profiles</b>: Check that any rules in <a href="profiling.html">profiles have been followed</a> (including those listed in the 
+  <a href="resource.html#Meta">Resource.meta.profile</a>, or in <a href="profiling.html#profile-uses">CapabilityStatement</a>, or 
+  in an <a href="implementationguide.html">ImplementationGuide</a>, or otherwise required by context)</li>
+<li><b>Questionnaires</b>: Check that a <a href="questionnaireresponse.html">QuestionnaireResponse</a> is valid against it's matching <a href="questionnaire.html">Questionnaire</a></li>
 </ul>
 
 <p>
-Resources can be tested for conformance by:
+There are multiple ways to validate resources. This table summarizes the options
+described in this specification, and which of the aspects above they can validate:
 </p>
-<ul>
- <li><a href="#schema">Using the XML Schema</a> - for XML instances only</li>
- <li><a href="#jar">Using the FHIR Validator</a> - a java jar provided as part of the specification</li>
- <li><a href="#op">Asking a FHIR Server</a> - using the $validate operation</li>
- <li><a href="#web">Via a web interface</a> - using a web form on a test server</li>
-</ul>
+
+<table class="grid">
+ <tr>
+  <td><b>Method</b></td>
+  <td><b>XML</b></td>
+  <td><b>JSON</b></td>
+  <td><b>RDF</b></td>
+  <td><b>Structure</b></td>
+  <td><b>Cardinality</b></td>
+  <td><b>Values</b></td>
+  <td><b>Bindings</b></td>
+  <td><b>Invariants</b></td>
+  <td><b>Profiles</b></td>
+  <td><b>Questionnaires</b></td>
+ </tr>
+
+ <tr>
+  <td><a href="#schema">XML Schema</a></td>
+  <td><img src="assets/images/tick.png"/></td>   <!-- XML -->
+  <td/>   <!-- JSON -->
+  <td/>   <!-- RDF -->
+  <td><img src="assets/images/tick.png"/></td>   <!-- Structure -->
+  <td><img src="assets/images/tick.png"/></td>   <!-- Cardinality -->
+  <td><img src="assets/images/tick.png"/></td>   <!-- Values -->
+  <td/>   <!-- Bindings -->
+  <td/>   <!-- Invariants -->
+  <td/>   <!-- Profiles -->
+  <td/>   <!-- Questionnaires -->
+ </tr>
+
+ <tr>
+  <td><a href="#schema">XML Schema + Schematron</a></td>
+  <td><img src="assets/images/tick.png"/></td>   <!-- XML -->
+  <td/>   <!-- JSON -->
+  <td/>   <!-- RDF -->
+  <td><img src="assets/images/tick.png"/></td>   <!-- Structure -->
+  <td><img src="assets/images/tick.png"/></td>   <!-- Cardinality -->
+  <td><img src="assets/images/tick.png"/></td>   <!-- Values -->
+  <td/>   <!-- Bindings -->
+  <td><img src="assets/images/tick.png"/></td>   <!-- Invariants -->
+  <td><img src="assets/images/tick.png"/><sup><b>1</b></sup></td>   <!-- Profiles -->
+  <td/>   <!-- Questionnaires -->
+ </tr>
+ 
+ <tr>
+  <td><a href="#json-schema">JSON Schema</a></td>
+  <td/>   <!-- XML -->
+  <td><img src="assets/images/tick.png"/></td>   <!-- JSON -->
+  <td/>   <!-- RDF -->
+  <td><img src="assets/images/tick.png"/></td>   <!-- Structure -->
+  <td><img src="assets/images/tick.png"/></td>   <!-- Cardinality -->
+  <td><img src="assets/images/tick.png"/></td>   <!-- Values -->
+  <td/>   <!-- Bindings -->
+  <td/>   <!-- Invariants -->
+  <td><img src="assets/images/tick.png"/><sup><b>2</b></sup></td>   <!-- Profiles -->
+  <td/>   <!-- Questionnaires -->
+ </tr>
+
+ <tr>
+  <td><a href="rdf.html#schema">ShEx</a></td>
+  <td/>   <!-- XML -->
+  <td/>   <!-- JSON -->
+  <td><img src="assets/images/tick.png"/></td>   <!-- RDF -->
+  <td><img src="assets/images/tick.png"/></td>   <!-- Structure -->
+  <td><img src="assets/images/tick.png"/></td>   <!-- Cardinality -->
+  <td><img src="assets/images/tick.png"/></td>   <!-- Values -->
+  <td><img src="assets/images/tick.png"/><sup><b>3</b></sup></td>   <!-- Bindings -->
+  <td/>   <!-- Invariants -->
+  <td/>   <!-- Profiles -->
+  <td/>   <!-- Questionnaires -->
+ </tr>
+ <tr>
+  <td><a href="#jar">Validator</a></td>
+  <td><img src="assets/images/tick.png"/></td>   <!-- XML -->
+  <td><img src="assets/images/tick.png"/></td>   <!-- JSON -->
+  <td><img src="assets/images/tick.png"/></td>   <!-- RDF -->
+  <td><img src="assets/images/tick.png"/></td>   <!-- Structure -->
+  <td><img src="assets/images/tick.png"/></td>   <!-- Cardinality -->
+  <td><img src="assets/images/tick.png"/></td>   <!-- Values -->
+  <td><img src="assets/images/tick.png"/></td>   <!-- Bindings -->
+  <td><img src="assets/images/tick.png"/></td>   <!-- Invariants -->
+  <td><img src="assets/images/tick.png"/></td>   <!-- Profiles -->
+  <td><img src="assets/images/tick.png"/></td>   <!-- Questionnaires -->
+ </tr>
+ <tr>
+  <td><a href="#op">Validation Operation</a><sup><b>4</b></sup></td>
+  <td><img src="assets/images/tick.png"/></td>   <!-- XML -->
+  <td><img src="assets/images/tick.png"/></td>   <!-- JSON -->
+  <td><img src="assets/images/tick.png"/></td>   <!-- RDF -->
+  <td><img src="assets/images/tick.png"/></td>   <!-- Structure -->
+  <td><img src="assets/images/tick.png"/></td>   <!-- Cardinality -->
+  <td><img src="assets/images/tick.png"/></td>   <!-- Values -->
+  <td><img src="assets/images/tick.png"/></td>   <!-- Bindings -->
+  <td><img src="assets/images/tick.png"/></td>   <!-- Invariants -->
+  <td><img src="assets/images/tick.png"/></td>   <!-- Profiles -->
+  <td><img src="assets/images/tick.png"/></td>   <!-- Questionnaires -->
+ </tr>
+</table>
+<p>
+Notes:
+</p>
+<ol>
+ <li>Schematron generated for a profile can test cardinality and invariants, but not bindings, and slicing is not really supported well</li>
+ <li>JSON schema generated for a profile can test cardinality, and slicing is partially supported</li>
+ <li>ShEx can enforce some bindings for well understood terminologies, but this is an ongoing area of development</li>
+ <li>It is at the discretion of the server how much validation to perform, but most servers use the validation jar, 
+   or code derived from it, and offer the same services. Some servers also offer <a href="#web">a web interface</a></li>
+</ol>
 
 <p>
 Note that all these validation methods are incomplete; they 
@@ -161,7 +270,7 @@ prove conformance to the specification. For further information, see
 <h3 class="self-link-parent"><span class="sectioncount">7.7.1</span> Using the XML schema <a href="validation.html#schema" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h3>
 
 <p>
-The XML schema can be used to validate XML represenations of the resources. 
+The XML schema can be used to validate XML representations of the resources. 
 When validating a resource, you can nominate one of the following schema: 
 </p>
 <ul>
@@ -181,8 +290,20 @@ resource are provided to allow implementers to build their own smaller
 combined file that covers the relevant resource types for them.
 </p>
 
+<a name="json-schema"> </a>
+<h3 class="self-link-parent"><span class="sectioncount">7.7.2</span> Using the JSON schema <a href="validation.html#json-schema" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h3>
+<p>
+The JSON schema can be used with JSON schema validation software. 
+Links:
+</p>
+<ul>
+ <li><a href="fhir.schema.json.zip">JSON Schema</a></li>
+ <li><a href="http://json-schema.org/implementations">JSON Validation Software <img src="external.png" style="text-align: baseline"/></a></li>
+</ul>
+
+
 <a name="jar"> </a>
-<h3 class="self-link-parent"><span class="sectioncount">7.7.2</span> Using the FHIR Validator <a href="validation.html#jar" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h3>
+<h3 class="self-link-parent"><span class="sectioncount">7.7.3</span> Using the FHIR Validator <a href="validation.html#jar" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h3>
 
 <p>
 The FHIR Validator is a Java jar that is provided as part of the specification, and that is used 
@@ -201,17 +322,17 @@ Here is an example windows batch file that demonstrates the process (using the c
  @ECHO OFF
 
  ECHO get the validator and unzip it 
- wget http://hl7.org/fhir/validator.zip
+ wget http://build.fhir.org/fhir/validator.zip
  7z.exe x validator.zip
 
  ECHO Get the validation source file (dictionary)
- wget http://hl7.org/fhir/validation-min.xml.zip
+ wget http://hl7.org/fhir/igpack.zip
 
  ECHO get an example to validate
  wget http://hl7.org/fhir/patient-example.xml -O pat-ex.xml
 
  ECHO validate it. The DAF profile will be loaded out of the definitions in validation-min.zip
- java -jar org.hl7.fhir.validator.jar pat-ex.xml -defn validation-min.xml.zip -profile http://hl7.org/fhir/StructureDefinition/daf-patient
+ java -jar org.hl7.fhir.validator.jar pat-ex.xml -defn igpack.zip -profile http://hl7.org/fhir/StructureDefinition/daf-patient
 
  pause
 </pre>
@@ -227,7 +348,7 @@ TODO: document this part. for now, hard coded to http://fhir-dev.healthintersect
 </p>
 
 <a name="op"> </a>
-<h3 class="self-link-parent"><span class="sectioncount">7.7.3</span> Asking a FHIR Server <a href="validation.html#op" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h3>
+<h3 class="self-link-parent"><span class="sectioncount">7.7.4</span> Asking a FHIR Server <a href="validation.html#op" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h3>
 
 <p>
 The <a href="operations.html">operation</a> <a href="resource-operations.html#validate">validate</a> can 
@@ -238,7 +359,7 @@ to post the resource to a server:
  POST [base]/Patient/$validate?profile=http://hl7.org/fhir/StructureDefinition/daf-patient
  [other HTTP headers]
  
- &lt;Patient&gt;.. resource to check as the body
+ &lt;Patient&gt;... resource to check as the body
 </pre>
 <p>
 The server will return an <a href="operationoutcome.html">OperationOutcome</a> resource listing issues found in the resource.
@@ -253,7 +374,7 @@ There are several things to consider when using this operation:
 </ul>
 
 <a name="web"> </a>
-<h3 class="self-link-parent"><span class="sectioncount">7.7.4</span> Via a web interface <a href="validation.html#web" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h3>
+<h3 class="self-link-parent"><span class="sectioncount">7.7.5</span> Via a web interface <a href="validation.html#web" title="link to here" class="self-link"><img src="assets/images/link.svg" width="20" class="self-link" height="20"/></a></h3>
 
 <p>
 Some servers expose the $validate functionality 
@@ -275,7 +396,7 @@ see the <a href="http://wiki.hl7.org/index.php?title=Public_FHIR_Validation_Serv
 		<div class="container">  <!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:33-0500. <a href="qa.html">QA Page</a>
+        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:28-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search <img src="external.png" style="text-align: baseline"/></a> | 

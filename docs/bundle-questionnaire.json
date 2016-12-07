@@ -7,7 +7,7 @@
     }
   ],
   "status": "draft",
-  "date": "2016-11-28T17:29:55-05:00",
+  "date": "2016-12-07T14:18:58-05:00",
   "publisher": "Health Level Seven International (FHIR Infrastructure)",
   "item": [
     {
@@ -252,6 +252,64 @@
             },
             {
               "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType",
+              "valueString": "Identifier"
+            }
+          ],
+          "linkId": "Bundle.identifier",
+          "text": "Persistent identifier for the bundle",
+          "type": "group",
+          "required": false,
+          "repeats": true,
+          "item": [
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://hl7.org/fhir/questionnaire-item-control",
+                        "code": "flyover",
+                        "display": "Fly-over"
+                      }
+                    ]
+                  }
+                }
+              ],
+              "text": "A persistent identifier for the batch that won't change as a batch is copied from server to server. Persistent identity generally only matters for batches of type Document, Message, and Collection. It would not normally be populated for search and history results, and servers ignore Bundle.identifier when processing batches and transactions. For Documents, the .identifier SHALL be populated such that the .identifier is globally unique.",
+              "type": "display"
+            },
+            {
+              "linkId": "Bundle.identifier.label",
+              "text": "label:",
+              "type": "string",
+              "required": false,
+              "repeats": false
+            },
+            {
+              "linkId": "Bundle.identifier.system",
+              "text": "system:",
+              "type": "string",
+              "required": false,
+              "repeats": false
+            },
+            {
+              "linkId": "Bundle.identifier.value",
+              "text": "value:",
+              "type": "string",
+              "required": false,
+              "repeats": false
+            }
+          ]
+        },
+        {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-maxOccurs",
+              "valueInteger": 1
+            },
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-fhirType",
               "valueString": "integer"
             }
           ],
@@ -444,12 +502,12 @@
                       }
                     }
                   ],
-                  "text": "A name which details the functional use for this link - see [[http://www.iana.org/assignments/link-relations/link-relations.xhtml]].",
+                  "text": "A name which details the functional use for this link - see [http://www.iana.org/assignments/link-relations/link-relations.xhtml#link-relations-1](http://www.iana.org/assignments/link-relations/link-relations.xhtml#link-relations-1).",
                   "type": "display"
                 },
                 {
                   "linkId": "Bundle.link.relation.value",
-                  "text": "http://www.iana.org/assignments/link-relations/link-relations.xhtml",
+                  "text": "See http://www.iana.org/assignments/link-relations/link-relations.xhtml#link-relations-1",
                   "type": "string",
                   "required": false,
                   "repeats": false
@@ -1591,7 +1649,7 @@
                           }
                         }
                       ],
-                      "text": "The etag for the resource, it the operation for the entry produced a versioned resource. This has to match the version id in the header if a resource is included.",
+                      "text": "The etag for the resource, it the operation for the entry produced a versioned resource (see [Resource Metadata and Versioning](http.html#versioning) and [Managing Resource Contention](http.html#concurrency)). Etags match the Resource.meta.versionId. The ETag has to match the version id in the header if a resource is included.",
                       "type": "display"
                     },
                     {

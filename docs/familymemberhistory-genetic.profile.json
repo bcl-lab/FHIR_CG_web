@@ -13,7 +13,7 @@
     {
       "telecom": [
         {
-          "system": "other",
+          "system": "url",
           "value": "http://www.hl7.org/Special/committees/clingenomics"
         }
       ]
@@ -21,7 +21,7 @@
   ],
   "date": "2013-10-02",
   "description": "Adds additional information to a family member history supporting both the capture of mother/father relationships as well as additional observations necessary to enable genetics-based risk analysis for patients",
-  "fhirVersion": "1.7.0",
+  "fhirVersion": "1.8.0",
   "mapping": [
     {
       "identity": "v2",
@@ -95,7 +95,7 @@
           {
             "key": "fhs-2",
             "severity": "error",
-            "human": "Can only have estimatedAge is age[x] is present",
+            "human": "Can only have estimatedAge if age[x] is present",
             "expression": "age.exists() or estimatedAge.empty()",
             "xpath": "exists(*[starts-with(local-name(.), 'age')]) or not(exists(f:estimatedAge))",
             "source": "FamilyMemberHistory"
@@ -290,7 +290,7 @@
         "id": "FamilyMemberHistory:familymemberhistory-genetic.extension",
         "path": "FamilyMemberHistory.extension",
         "slicing": {
-          "id": "97",
+          "id": "91",
           "discriminator": [
             "url"
           ],
@@ -352,7 +352,8 @@
             "source": "Extension"
           }
         ],
-        "mustSupport": true
+        "mustSupport": true,
+        "isModifier": false
       },
       {
         "id": "FamilyMemberHistory:familymemberhistory-genetic.extension:sibling",
@@ -394,7 +395,8 @@
             "source": "Extension"
           }
         ],
-        "mustSupport": true
+        "mustSupport": true,
+        "isModifier": false
       },
       {
         "id": "FamilyMemberHistory:familymemberhistory-genetic.extension:observation",
@@ -436,7 +438,8 @@
             "source": "Extension"
           }
         ],
-        "mustSupport": true
+        "mustSupport": true,
+        "isModifier": false
       },
       {
         "id": "FamilyMemberHistory:familymemberhistory-genetic.modifierExtension",

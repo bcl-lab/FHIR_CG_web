@@ -2,7 +2,7 @@
   "resourceType": "StructureDefinition",
   "id": "observation-geneticsDNASequenceVariant",
   "url": "http://hl7.org/fhir/StructureDefinition/observation-geneticsDNASequenceVariant",
-  "name": "Interpetation of DNA sequence variant",
+  "name": "HGVS nomenclature for observed DNA sequence variant",
   "status": "draft",
   "publisher": "Health Level Seven International (Clinical Genomics)",
   "contact": [
@@ -16,7 +16,7 @@
     }
   ],
   "date": "2016-03-14",
-  "description": "A' is a variant (mutation) of A = definition every instance of A' is either an immediate mutation of some instance of A, or there is a chain of immediate mutation processes linking A' to some instance of A ([variant_of](http://www.sequenceontology.org/browser/current_svn/term/variant_of)). This element is the Human Genome Variation Society (HGVS) nomenclature for a single or set of DNA sequence variant(s) identified in testing. Reference sequence ID used for HGVS naming must be anotated. LONIC Code: ([48004-6](http://loinc.org/48004-6)).",
+  "description": "Human Genome Variation Society (HGVS) nomenclature for a single or set of DNA Sequence Variation(s) identified in testing.  The use of the nomenclature is also used to describe non-variations (aka. wild types). LONIC Code: ([48004-6](http://loinc.org/48004-6)).",
   "fhirVersion": "1.7.0",
   "mapping": [
     {
@@ -37,10 +37,10 @@
   "snapshot": {
     "element": [
       {
-        "id": "Extension:interpetationofdnasequencevariant",
+        "id": "Extension:hgvsnomenclatureforobserveddnasequencevariant",
         "path": "Extension",
-        "short": "Interpetation of DNA sequence variant",
-        "definition": "A' is a variant (mutation) of A = definition every instance of A' is either an immediate mutation of some instance of A, or there is a chain of immediate mutation processes linking A' to some instance of A ([variant_of](http://www.sequenceontology.org/browser/current_svn/term/variant_of)). This element is the Human Genome Variation Society (HGVS) nomenclature for a single or set of DNA sequence variant(s) identified in testing. Reference sequence ID used for HGVS naming must be anotated. LONIC Code: ([48004-6](http://loinc.org/48004-6)).",
+        "short": "HGVS nomenclature for observed DNA sequence variant",
+        "definition": "Human Genome Variation Society (HGVS) nomenclature for a single or set of DNA Sequence Variation(s) identified in testing.  The use of the nomenclature is also used to describe non-variations (aka. wild types). LONIC Code: ([48004-6](http://loinc.org/48004-6)).",
         "min": 0,
         "max": "1",
         "base": {
@@ -71,7 +71,7 @@
         ]
       },
       {
-        "id": "Extension:interpetationofdnasequencevariant.id",
+        "id": "Extension:hgvsnomenclatureforobserveddnasequencevariant.id",
         "path": "Extension.id",
         "representation": [
           "xmlAttr"
@@ -98,7 +98,7 @@
         ]
       },
       {
-        "id": "Extension:interpetationofdnasequencevariant.extension:extension",
+        "id": "Extension:hgvsnomenclatureforobserveddnasequencevariant.extension:extension",
         "path": "Extension.extension",
         "sliceName": "extension",
         "short": "Extension",
@@ -117,7 +117,7 @@
         ]
       },
       {
-        "id": "Extension:interpetationofdnasequencevariant.url",
+        "id": "Extension:hgvsnomenclatureforobserveddnasequencevariant.url",
         "path": "Extension.url",
         "representation": [
           "xmlAttr"
@@ -146,8 +146,8 @@
         ]
       },
       {
-        "id": "Extension:interpetationofdnasequencevariant.valueString",
-        "path": "Extension.valueString",
+        "id": "Extension:hgvsnomenclatureforobserveddnasequencevariant.valueCodeableConcept",
+        "path": "Extension.valueCodeableConcept",
         "short": "Value of extension",
         "definition": "Value of extension - may be a resource or one of a constrained set of the data types (see Extensibility in the spec for list).",
         "min": 1,
@@ -159,7 +159,7 @@
         },
         "type": [
           {
-            "code": "string"
+            "code": "CodeableConcept"
           }
         ],
         "binding": {
@@ -179,21 +179,21 @@
   "differential": {
     "element": [
       {
-        "id": "Extension:interpetationofdnasequencevariant",
+        "id": "Extension:hgvsnomenclatureforobserveddnasequencevariant",
         "path": "Extension",
-        "short": "Interpetation of DNA sequence variant",
-        "definition": "A' is a variant (mutation) of A = definition every instance of A' is either an immediate mutation of some instance of A, or there is a chain of immediate mutation processes linking A' to some instance of A ([variant_of](http://www.sequenceontology.org/browser/current_svn/term/variant_of)). This element is the Human Genome Variation Society (HGVS) nomenclature for a single or set of DNA sequence variant(s) identified in testing. Reference sequence ID used for HGVS naming must be anotated. LONIC Code: ([48004-6](http://loinc.org/48004-6)).",
+        "short": "HGVS nomenclature for observed DNA sequence variant",
+        "definition": "Human Genome Variation Society (HGVS) nomenclature for a single or set of DNA Sequence Variation(s) identified in testing.  The use of the nomenclature is also used to describe non-variations (aka. wild types). LONIC Code: ([48004-6](http://loinc.org/48004-6)).",
         "min": 0,
         "max": "1"
       },
       {
-        "id": "Extension:interpetationofdnasequencevariant.extension:extension",
+        "id": "Extension:hgvsnomenclatureforobserveddnasequencevariant.extension:extension",
         "path": "Extension.extension",
         "sliceName": "extension",
         "max": "0"
       },
       {
-        "id": "Extension:interpetationofdnasequencevariant.url",
+        "id": "Extension:hgvsnomenclatureforobserveddnasequencevariant.url",
         "path": "Extension.url",
         "type": [
           {
@@ -203,12 +203,12 @@
         "fixedUri": "http://hl7.org/fhir/StructureDefinition/observation-geneticsDNASequenceVariant"
       },
       {
-        "id": "Extension:interpetationofdnasequencevariant.value[x]",
+        "id": "Extension:hgvsnomenclatureforobserveddnasequencevariant.value[x]",
         "path": "Extension.value[x]",
         "min": 1,
         "type": [
           {
-            "code": "string"
+            "code": "CodeableConcept"
           }
         ],
         "binding": {

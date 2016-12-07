@@ -3,7 +3,7 @@
 <CodeSystem xmlns="http://hl7.org/fhir">
   <id value="condition-clinical"/>
   <meta>
-    <lastUpdated value="2016-11-28T17:29:55.664-05:00"/>
+    <lastUpdated value="2016-12-07T14:18:58.982-05:00"/>
     <profile value="http://hl7.org/fhir/StructureDefinition/codesystem-shareable-definition"/>
   </meta>
   <text>
@@ -18,6 +18,9 @@
       <table class="codes">
         <tr>
           <td>
+            <b>Lvl</b>
+          </td>
+          <td>
             <b>Code</b>
           </td>
           <td>
@@ -28,32 +31,44 @@
           </td>
         </tr>
         <tr>
+          <td>1</td>
           <td>active
             <a name="condition-clinical-active"> </a>
           </td>
           <td>Active</td>
-          <td>The subject is currently experiencing the symptoms of the condition.</td>
+          <td>The subject is currently experiencing the symptoms of the condition or there is evidence of the condition.</td>
         </tr>
         <tr>
-          <td>relapse
-            <a name="condition-clinical-relapse"> </a>
+          <td>2</td>
+          <td>  recurrence
+            <a name="condition-clinical-recurrence"> </a>
           </td>
-          <td>Relapse</td>
-          <td>The subject is re-experiencing the symptoms of the condition after a period of remission or presumed resolution.</td>
+          <td>Recurrence</td>
+          <td>The subject is having a relapse or re-experiencing the condition after a period of remission or presumed resolution.</td>
         </tr>
         <tr>
-          <td>remission
+          <td>1</td>
+          <td>inactive
+            <a name="condition-clinical-inactive"> </a>
+          </td>
+          <td>Inactive</td>
+          <td>The subject is no longer experiencing the symptoms of the condition or there is no longer evidence of the condition.</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>  remission
             <a name="condition-clinical-remission"> </a>
           </td>
           <td>Remission</td>
           <td>The subject is no longer experiencing the symptoms of the condition, but there is a risk of the symptoms returning.</td>
         </tr>
         <tr>
-          <td>resolved
+          <td>2</td>
+          <td>  resolved
             <a name="condition-clinical-resolved"> </a>
           </td>
           <td>Resolved</td>
-          <td>The subject is no longer experiencing the symptoms of the condition and there is no perceived risk of the symptoms returning.</td>
+          <td>The subject is no longer experiencing the symptoms of the condition and there is a negligible perceived risk of the symptoms returning.</td>
         </tr>
       </table>
     </div>
@@ -63,14 +78,14 @@
     <system value="urn:ietf:rfc:3986"/>
     <value value="urn:oid:2.16.840.1.113883.4.642.1.74"/>
   </identifier>
-  <version value="1.7.0"/>
+  <version value="1.8.0"/>
   <name value="Condition Clinical Status Codes"/>
   <status value="draft"/>
   <experimental value="true"/>
   <publisher value="FHIR Project team"/>
   <contact>
     <telecom>
-      <system value="other"/>
+      <system value="url"/>
       <value value="http://hl7.org/fhir"/>
     </telecom>
   </contact>
@@ -81,21 +96,26 @@
   <concept>
     <code value="active"/>
     <display value="Active"/>
-    <definition value="The subject is currently experiencing the symptoms of the condition."/>
+    <definition value="The subject is currently experiencing the symptoms of the condition or there is evidence of the condition."/>
+    <concept>
+      <code value="recurrence"/>
+      <display value="Recurrence"/>
+      <definition value="The subject is having a relapse or re-experiencing the condition after a period of remission or presumed resolution."/>
+    </concept>
   </concept>
   <concept>
-    <code value="relapse"/>
-    <display value="Relapse"/>
-    <definition value="The subject is re-experiencing the symptoms of the condition after a period of remission or presumed resolution."/>
-  </concept>
-  <concept>
-    <code value="remission"/>
-    <display value="Remission"/>
-    <definition value="The subject is no longer experiencing the symptoms of the condition, but there is a risk of the symptoms returning."/>
-  </concept>
-  <concept>
-    <code value="resolved"/>
-    <display value="Resolved"/>
-    <definition value="The subject is no longer experiencing the symptoms of the condition and there is no perceived risk of the symptoms returning."/>
+    <code value="inactive"/>
+    <display value="Inactive"/>
+    <definition value="The subject is no longer experiencing the symptoms of the condition or there is no longer evidence of the condition."/>
+    <concept>
+      <code value="remission"/>
+      <display value="Remission"/>
+      <definition value="The subject is no longer experiencing the symptoms of the condition, but there is a risk of the symptoms returning."/>
+    </concept>
+    <concept>
+      <code value="resolved"/>
+      <display value="Resolved"/>
+      <definition value="The subject is no longer experiencing the symptoms of the condition and there is a negligible perceived risk of the symptoms returning."/>
+    </concept>
   </concept>
 </CodeSystem>

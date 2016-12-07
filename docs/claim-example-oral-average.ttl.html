@@ -3,7 +3,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>Claim-example-oral-average.ttl - FHIR v1.7.0</title>
+  <title>Claim-example-oral-average.ttl - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -137,8 +137,16 @@
   ];
   fhir:Claim.status [ fhir:value &quot;active&quot;];
   fhir:Claim.type [
-     fhir:Coding.system [ fhir:value &quot;http://hl7.org/fhir/ex-claimtype&quot; ];
-     fhir:Coding.code [ fhir:value &quot;oral&quot; ]
+     fhir:CodeableConcept.coding [
+       fhir:index 0;
+       fhir:Coding.system [ fhir:value &quot;http://hl7.org/fhir/ex-claimtype&quot; ];
+       fhir:Coding.code [ fhir:value &quot;oral&quot; ]
+     ]
+  ];
+  fhir:Claim.use [ fhir:value &quot;complete&quot;];
+  fhir:Claim.patient [
+     fhir:link &lt;http://hl7.org/fhir/Patient/1&gt;;
+     fhir:Reference.reference [ fhir:value &quot;Patient/1&quot; ]
   ];
   fhir:Claim.created [ fhir:value &quot;2014-08-16&quot;^^xsd:date];
   fhir:Claim.insurer [
@@ -149,31 +157,43 @@
      fhir:link &lt;http://hl7.org/fhir/Organization/1&gt;;
      fhir:Reference.reference [ fhir:value &quot;Organization/1&quot; ]
   ];
-  fhir:Claim.use [ fhir:value &quot;complete&quot;];
   fhir:Claim.priority [
-     fhir:Coding.code [ fhir:value &quot;normal&quot; ]
+     fhir:CodeableConcept.coding [
+       fhir:index 0;
+       fhir:Coding.code [ fhir:value &quot;normal&quot; ]
+     ]
   ];
   fhir:Claim.payee [
      fhir:Claim.payee.type [
-       fhir:Coding.code [ fhir:value &quot;provider&quot; ]
+       fhir:CodeableConcept.coding [
+         fhir:index 0;
+         fhir:Coding.code [ fhir:value &quot;provider&quot; ]
+       ]
+     ]
+  ];
+  fhir:Claim.careTeam [
+     fhir:index 0;
+     fhir:Claim.careTeam.sequence [ fhir:value &quot;1&quot;^^xsd:positiveInteger ];
+     fhir:Claim.careTeam.provider [
+       fhir:link &lt;http://hl7.org/fhir/Practitioner/example&gt;;
+       fhir:Reference.reference [ fhir:value &quot;Practitioner/example&quot; ]
      ]
   ];
   fhir:Claim.diagnosis [
      fhir:index 0;
      fhir:Claim.diagnosis.sequence [ fhir:value &quot;1&quot;^^xsd:positiveInteger ];
-     fhir:Claim.diagnosis.diagnosis [
-       fhir:Coding.code [ fhir:value &quot;123456&quot; ]
+     fhir:Claim.diagnosis.diagnosisCodeableConcept [
+       fhir:CodeableConcept.coding [
+         fhir:index 0;
+         fhir:Coding.code [ fhir:value &quot;123456&quot; ]
+       ]
      ]
   ];
-  fhir:Claim.patient [
-     fhir:link &lt;http://hl7.org/fhir/Patient/1&gt;;
-     fhir:Reference.reference [ fhir:value &quot;Patient/1&quot; ]
-  ];
-  fhir:Claim.coverage [
+  fhir:Claim.insurance [
      fhir:index 0;
-     fhir:Claim.coverage.sequence [ fhir:value &quot;1&quot;^^xsd:positiveInteger ];
-     fhir:Claim.coverage.focal [ fhir:value &quot;true&quot;^^xsd:boolean ];
-     fhir:Claim.coverage.coverage [
+     fhir:Claim.insurance.sequence [ fhir:value &quot;1&quot;^^xsd:positiveInteger ];
+     fhir:Claim.insurance.focal [ fhir:value &quot;true&quot;^^xsd:boolean ];
+     fhir:Claim.insurance.coverage [
        fhir:link &lt;http://hl7.org/fhir/Coverage/9876B1&gt;;
        fhir:Reference.reference [ fhir:value &quot;Coverage/9876B1&quot; ]
      ]
@@ -181,16 +201,16 @@
   fhir:Claim.item [
      fhir:index 0;
      fhir:Claim.item.sequence [ fhir:value &quot;1&quot;^^xsd:positiveInteger ];
-     fhir:Claim.item.careTeam [
-       fhir:index 0;
-       fhir:Claim.item.careTeam.provider [
-         fhir:link &lt;http://hl7.org/fhir/Practitioner/example&gt;;
-         fhir:Reference.reference [ fhir:value &quot;Practitioner/example&quot; ]
-       ]
+     fhir:Claim.item.careTeamLinkId [
+       fhir:value &quot;1&quot;^^xsd:positiveInteger;
+       fhir:index 0
      ];
      fhir:Claim.item.service [
-       fhir:Coding.system [ fhir:value &quot;http://hl7.org/fhir/oralservicecodes&quot; ];
-       fhir:Coding.code [ fhir:value &quot;1200&quot; ]
+       fhir:CodeableConcept.coding [
+         fhir:index 0;
+         fhir:Coding.system [ fhir:value &quot;http://hl7.org/fhir/oralservicecodes&quot; ];
+         fhir:Coding.code [ fhir:value &quot;1200&quot; ]
+       ]
      ];
      fhir:Claim.item.servicedDate [ fhir:value &quot;2014-08-16&quot;^^xsd:date ];
      fhir:Claim.item.unitPrice [
@@ -206,16 +226,16 @@
   ], [
      fhir:index 1;
      fhir:Claim.item.sequence [ fhir:value &quot;2&quot;^^xsd:positiveInteger ];
-     fhir:Claim.item.careTeam [
-       fhir:index 0;
-       fhir:Claim.item.careTeam.provider [
-         fhir:link &lt;http://hl7.org/fhir/Practitioner/example&gt;;
-         fhir:Reference.reference [ fhir:value &quot;Practitioner/example&quot; ]
-       ]
+     fhir:Claim.item.careTeamLinkId [
+       fhir:value &quot;1&quot;^^xsd:positiveInteger;
+       fhir:index 0
      ];
      fhir:Claim.item.service [
-       fhir:Coding.system [ fhir:value &quot;http://hl7.org/fhir/oralservicecodes&quot; ];
-       fhir:Coding.code [ fhir:value &quot;21211&quot; ]
+       fhir:CodeableConcept.coding [
+         fhir:index 0;
+         fhir:Coding.system [ fhir:value &quot;http://hl7.org/fhir/oralservicecodes&quot; ];
+         fhir:Coding.code [ fhir:value &quot;21211&quot; ]
+       ]
      ];
      fhir:Claim.item.servicedDate [ fhir:value &quot;2014-08-16&quot;^^xsd:date ];
      fhir:Claim.item.unitPrice [
@@ -229,27 +249,33 @@
        fhir:Quantity.code [ fhir:value &quot;USD&quot; ]
      ];
      fhir:Claim.item.bodySite [
-       fhir:Coding.system [ fhir:value &quot;http://fdi.org/fhir/oraltoothcodes&quot; ];
-       fhir:Coding.code [ fhir:value &quot;21&quot; ]
+       fhir:CodeableConcept.coding [
+         fhir:index 0;
+         fhir:Coding.system [ fhir:value &quot;http://fdi.org/fhir/oraltoothcodes&quot; ];
+         fhir:Coding.code [ fhir:value &quot;21&quot; ]
+       ]
      ];
      fhir:Claim.item.subSite [
        fhir:index 0;
-       fhir:Coding.system [ fhir:value &quot;http://fdi.org/fhir/oralsurfacecodes&quot; ];
-       fhir:Coding.code [ fhir:value &quot;L&quot; ]
+       fhir:CodeableConcept.coding [
+         fhir:index 0;
+         fhir:Coding.system [ fhir:value &quot;http://fdi.org/fhir/oralsurfacecodes&quot; ];
+         fhir:Coding.code [ fhir:value &quot;L&quot; ]
+       ]
      ]
   ], [
      fhir:index 2;
      fhir:Claim.item.sequence [ fhir:value &quot;3&quot;^^xsd:positiveInteger ];
-     fhir:Claim.item.careTeam [
-       fhir:index 0;
-       fhir:Claim.item.careTeam.provider [
-         fhir:link &lt;http://hl7.org/fhir/Practitioner/example&gt;;
-         fhir:Reference.reference [ fhir:value &quot;Practitioner/example&quot; ]
-       ]
+     fhir:Claim.item.careTeamLinkId [
+       fhir:value &quot;1&quot;^^xsd:positiveInteger;
+       fhir:index 0
      ];
      fhir:Claim.item.service [
-       fhir:Coding.system [ fhir:value &quot;http://hl7.org/fhir/oralservicecodes&quot; ];
-       fhir:Coding.code [ fhir:value &quot;27211&quot; ]
+       fhir:CodeableConcept.coding [
+         fhir:index 0;
+         fhir:Coding.system [ fhir:value &quot;http://hl7.org/fhir/oralservicecodes&quot; ];
+         fhir:Coding.code [ fhir:value &quot;27211&quot; ]
+       ]
      ];
      fhir:Claim.item.servicedDate [ fhir:value &quot;2014-08-16&quot;^^xsd:date ];
      fhir:Claim.item.unitPrice [
@@ -263,15 +289,21 @@
        fhir:Quantity.code [ fhir:value &quot;USD&quot; ]
      ];
      fhir:Claim.item.bodySite [
-       fhir:Coding.system [ fhir:value &quot;http://fdi.org/fhir/oraltoothcodes&quot; ];
-       fhir:Coding.code [ fhir:value &quot;36&quot; ]
+       fhir:CodeableConcept.coding [
+         fhir:index 0;
+         fhir:Coding.system [ fhir:value &quot;http://fdi.org/fhir/oraltoothcodes&quot; ];
+         fhir:Coding.code [ fhir:value &quot;36&quot; ]
+       ]
      ];
      fhir:Claim.item.detail [
        fhir:index 0;
        fhir:Claim.item.detail.sequence [ fhir:value &quot;1&quot;^^xsd:positiveInteger ];
        fhir:Claim.item.detail.service [
-         fhir:Coding.system [ fhir:value &quot;http://hl7.org/fhir/oralservicecodes&quot; ];
-         fhir:Coding.code [ fhir:value &quot;27211&quot; ]
+         fhir:CodeableConcept.coding [
+           fhir:index 0;
+           fhir:Coding.system [ fhir:value &quot;http://hl7.org/fhir/oralservicecodes&quot; ];
+           fhir:Coding.code [ fhir:value &quot;27211&quot; ]
+         ]
        ];
        fhir:Claim.item.detail.unitPrice [
          fhir:Quantity.value [ fhir:value &quot;750.00&quot;^^xsd:decimal ];
@@ -287,8 +319,11 @@
        fhir:index 1;
        fhir:Claim.item.detail.sequence [ fhir:value &quot;2&quot;^^xsd:positiveInteger ];
        fhir:Claim.item.detail.service [
-         fhir:Coding.system [ fhir:value &quot;http://hl7.org/fhir/oralservicecodes&quot; ];
-         fhir:Coding.code [ fhir:value &quot;lab&quot; ]
+         fhir:CodeableConcept.coding [
+           fhir:index 0;
+           fhir:Coding.system [ fhir:value &quot;http://hl7.org/fhir/oralservicecodes&quot; ];
+           fhir:Coding.code [ fhir:value &quot;lab&quot; ]
+         ]
        ];
        fhir:Claim.item.detail.unitPrice [
          fhir:Quantity.value [ fhir:value &quot;350.00&quot;^^xsd:decimal ];
@@ -303,15 +338,15 @@
      ]
   ] .
 
+&lt;http://hl7.org/fhir/Patient/1&gt; a fhir:Patient .
+
 &lt;http://hl7.org/fhir/Organization/2&gt; a fhir:Organization .
 
 &lt;http://hl7.org/fhir/Organization/1&gt; a fhir:Organization .
 
-&lt;http://hl7.org/fhir/Patient/1&gt; a fhir:Patient .
+&lt;http://hl7.org/fhir/Practitioner/example&gt; a fhir:Practitioner .
 
 &lt;http://hl7.org/fhir/Coverage/9876B1&gt; a fhir:Coverage .
-
-&lt;http://hl7.org/fhir/Practitioner/example&gt; a fhir:Practitioner, fhir:Practitioner, fhir:Practitioner .
 
 # -------------------------------------------------------------------------------------
 
@@ -340,7 +375,7 @@ of the specification.
 		<div class="container"><!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        © HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:32-0500. <a href="qa.html">QA Page</a>
+        © HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:21-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search</a> | 

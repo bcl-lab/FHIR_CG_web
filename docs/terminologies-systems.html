@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>Terminologies-systems - FHIR v1.7.0</title>
+  <title>Terminologies-systems - FHIR v1.8.0</title>
 
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -136,6 +136,7 @@ Additional identifier systems may be registered on the HL7 FHIR registry at <a h
 standards published by ISO, such as urn:iso:std:iso:11073:10101. Where ISO standards define codes with meanings, and there is no entry in the list above,
 and they are not registered in the HL7 OID registry, the default URN for the code system is that defined by the RFC 5141.</li>
 <li>For several of the code systems in this list, multiple systems are given. This means that the variants identified are different code systems, not just variants of the same code system</li>
+<li>Any URL in <code>http://example.org</code> is reserved for testing and documentation purposes.</li>
 </ul>
 
 <div id="tabs">
@@ -241,15 +242,15 @@ and they are not registered in the HL7 OID registry, the default URN for the cod
      http://hl7.org/fhir/sid/icd-10 <a name="http://hl7.org/fhir/sid/icd-10"> </a><br/>
      http://hl7.org/fhir/sid/icd-10-de <a name="http://hl7.org/fhir/sid/icd-10-de"> </a><br/>
      http://hl7.org/fhir/sid/icd-10-nl <a name="http://hl7.org/fhir/sid/icd-10-nl"> </a><br/>
-     http://hl7.org/fhir/sid/icd-10-us <a name="http://hl7.org/fhir/sid/icd-10-us"> </a>
+     http://hl7.org/fhir/sid/icd-10-cm <a name="http://hl7.org/fhir/sid/icd-10-cm"> </a>
    </td>
-   <td>ICD-10 International (<a href="http://www.who.int/classifications/icd/en/">WHO <img src="external.png" style="text-align: baseline"/></a>) &amp; Local Variants</td>
+   <td>ICD-10 International (<a href="http://www.who.int/classifications/icd/en/">WHO <img src="external.png" style="text-align: baseline"/></a>) &amp; Local Variants (CM = version published by US)</td>
    <td>Note that for dual coding (see section 2, <a href="http://www.who.int/entity/classifications/icd/ICD-10_2nd_ed_volume2.pdf">ICD-10 Manual <img src="external.png" style="text-align: baseline"/></a>), simply use the two ICD-10 codes separated by a space e.g. &quot;J21.8 B95.6&quot;</td>
    <td>
      2.16.840.1.113883.6.3 <br/>
      1.2.276.0.76.5.409 <br/>
      2.16.840.1.113883.6.3.2 <br/>
-     ?? <br/>
+     2.16.840.1.113883.6.90 <br/>
    </td>
  </tr>
   <tr>
@@ -754,11 +755,6 @@ and they are not registered in the HL7 OID registry, the default URN for the cod
     <td>.1.113883.4.642.1.889</td>
   </tr>
   <tr>
-    <td><a href="codesystem-claim-status.html">claim-status</a></td>
-    <td>ClaimStatus: A code specifying the state of the resource instance.</td>
-    <td>.1.113883.4.642.1.961</td>
-  </tr>
-  <tr>
     <td><a href="codesystem-claim-use.html">claim-use</a></td>
     <td>Use: Complete, proposed, exploratory, other</td>
     <td>.1.113883.4.642.1.315</td>
@@ -772,11 +768,6 @@ and they are not registered in the HL7 OID registry, the default URN for the cod
     <td><a href="codesystem-claim-informationcategory.html">claiminformationcategory</a></td>
     <td>Claim Information Category Codes: This value set includes sample Information Category codes.</td>
     <td>.1.113883.4.642.1.890</td>
-  </tr>
-  <tr>
-    <td><a href="codesystem-claimresponse-status.html">claimresponse-status</a></td>
-    <td>ClaimResponseStatus: A code specifying the state of the resource instance.</td>
-    <td>.1.113883.4.642.1.963</td>
   </tr>
   <tr>
     <td><a href="codesystem-classification-or-context.html">classification-or-context</a></td>
@@ -974,9 +965,9 @@ and they are not registered in the HL7 OID registry, the default URN for the cod
     <td>.1.113883.4.642.1.0</td>
   </tr>
   <tr>
-    <td><a href="codesystem-coverage-status.html">coverage-status</a></td>
-    <td>CoverageStatus: A code specifying the state of the resource instance.</td>
-    <td>.1.113883.4.642.1.960</td>
+    <td><a href="codesystem-coverage-selfpay.html">coverage-selfpay</a></td>
+    <td>Coverage SelfPay Codes: This value set includes Coverage SelfPay codes.</td>
+    <td>.1.113883.4.642.1.0</td>
   </tr>
   <tr>
     <td><a href="codesystem-dWebType.html">dWebType</a></td>
@@ -1059,16 +1050,6 @@ and they are not registered in the HL7 OID registry, the default URN for the cod
     <td>.1.113883.4.642.1.133</td>
   </tr>
   <tr>
-    <td><a href="codesystem-eligibilityrequest-status.html">eligibilityrequest-status</a></td>
-    <td>EligibilityRequestStatus: A code specifying the state of the resource instance.</td>
-    <td>.1.113883.4.642.1.965</td>
-  </tr>
-  <tr>
-    <td><a href="codesystem-eligibilityresponse-status.html">eligibilityresponse-status</a></td>
-    <td>EligibilityResponseStatus: A code specifying the state of the resource instance.</td>
-    <td>.1.113883.4.642.1.966</td>
-  </tr>
-  <tr>
     <td><a href="codesystem-encounter-location-status.html">encounter-location-status</a></td>
     <td>EncounterLocationStatus: The status of the location.</td>
     <td>.1.113883.4.642.1.147</td>
@@ -1095,18 +1076,8 @@ and they are not registered in the HL7 OID registry, the default URN for the cod
   </tr>
   <tr>
     <td><a href="codesystem-endpoint-status.html">endpoint-status</a></td>
-    <td>EndpointStatus: The status of the encounter.</td>
+    <td>EndpointStatus: The status of the endpoint</td>
     <td>.1.113883.4.642.1.883</td>
-  </tr>
-  <tr>
-    <td><a href="codesystem-enrollmentrequest-status.html">enrollmentrequest-status</a></td>
-    <td>EnrollmentRequestStatus: A code specifying the state of the resource instance.</td>
-    <td>.1.113883.4.642.1.967</td>
-  </tr>
-  <tr>
-    <td><a href="codesystem-enrollmentresponse-status.html">enrollmentresponse-status</a></td>
-    <td>EnrollmentResponseStatus: A code specifying the state of the resource instance.</td>
-    <td>.1.113883.4.642.1.968</td>
   </tr>
   <tr>
     <td><a href="codesystem-entformula-additive.html">entformula-additive</a></td>
@@ -1129,6 +1100,11 @@ and they are not registered in the HL7 OID registry, the default URN for the cod
     <td>.1.113883.4.642.1.929</td>
   </tr>
   <tr>
+    <td><a href="codesystem-event-timing.html">event-timing</a></td>
+    <td>EventTiming: Real world event that the relating to the schedule.</td>
+    <td>.1.113883.4.642.1.41</td>
+  </tr>
+  <tr>
     <td><a href="codesystem-cqif-evidence-quality.html">evidence-quality</a></td>
     <td>QualityOfEvidenceRating: A rating system that describes the quality of evidence such as the GRADE, DynaMed, or Oxford CEBM systems</td>
     <td>.1.113883.4.642.1.1001</td>
@@ -1144,16 +1120,6 @@ and they are not registered in the HL7 OID registry, the default URN for the cod
     <td>.1.113883.4.642.1.317</td>
   </tr>
   <tr>
-    <td><a href="codesystem-occurrence-codes.html">ex-claimoccurrance</a></td>
-    <td>Example Occurrance Codes: This value set includes sample Occurrance codes.</td>
-    <td>.1.113883.4.642.1.528</td>
-  </tr>
-  <tr>
-    <td><a href="codesystem-occurrence-span-codes.html">ex-claimoccurrancespan</a></td>
-    <td>Example Occurrance Span Codes: This value set includes sample Occurrance Span codes.</td>
-    <td>.1.113883.4.642.1.529</td>
-  </tr>
-  <tr>
     <td><a href="codesystem-claim-subtype.html">ex-claimsubtype</a></td>
     <td>Example Claim SubType Codes: This value set includes sample Claim SubType codes.</td>
     <td>.1.113883.4.642.1.526</td>
@@ -1162,11 +1128,6 @@ and they are not registered in the HL7 OID registry, the default URN for the cod
     <td><a href="codesystem-claim-type.html">ex-claimtype</a></td>
     <td>Example Claim Type Codes: This value set includes sample Claim Type codes.</td>
     <td>.1.113883.4.642.1.322</td>
-  </tr>
-  <tr>
-    <td><a href="codesystem-value-codes.html">ex-claimvalue</a></td>
-    <td>Example Value Codes: This value set includes sample Value codes.</td>
-    <td>.1.113883.4.642.1.530</td>
   </tr>
   <tr>
     <td><a href="codesystem-ex-diagnosisrelatedgroup.html">ex-diagnosisrelatedgroup</a></td>
@@ -1294,6 +1255,11 @@ and they are not registered in the HL7 OID registry, the default URN for the cod
     <td>.1.113883.4.642.1.321</td>
   </tr>
   <tr>
+    <td><a href="codesystem-fm-status.html">fm-status</a></td>
+    <td>Financial Resource Status Codes: This value set includes STatus codes.</td>
+    <td>.1.113883.4.642.1.961</td>
+  </tr>
+  <tr>
     <td><a href="codesystem-forms.html">forms-codes</a></td>
     <td>Form Codes: This value set includes a sample set of Forms codes.</td>
     <td>.1.113883.4.642.1.forms</td>
@@ -1357,6 +1323,11 @@ and they are not registered in the HL7 OID registry, the default URN for the cod
     <td><a href="codesystem-history-status.html">history-status</a></td>
     <td>FamilyHistoryStatus: A code that identifies the status of the family history record.</td>
     <td>.1.113883.4.642.1.409</td>
+  </tr>
+  <tr>
+    <td><a href="codesystem-hl7-work-group.html">hl7-work-group</a></td>
+    <td>HL7Workgroup: An HL7 administrative unit that owns artifacts in the FHIR specification</td>
+    <td>.1.113883.4.642.1.0</td>
   </tr>
   <tr>
     <td><a href="codesystem-http-verb.html">http-verb</a></td>
@@ -1629,6 +1600,11 @@ and they are not registered in the HL7 OID registry, the default URN for the cod
     <td>.1.113883.4.642.1.311</td>
   </tr>
   <tr>
+    <td><a href="codesystem-name-assembly-order.html">name-assembly-order</a></td>
+    <td>HumanNameAssemblyOrder: A code that represents the preferred display order of the components of a human name</td>
+    <td>.1.113883.4.642.1.0</td>
+  </tr>
+  <tr>
     <td><a href="codesystem-name-use.html">name-use</a></td>
     <td>NameUse: The use of a human name</td>
     <td>.1.113883.4.642.1.36</td>
@@ -1684,14 +1660,14 @@ and they are not registered in the HL7 OID registry, the default URN for the cod
     <td>.1.113883.4.642.1.222</td>
   </tr>
   <tr>
-    <td><a href="codesystem-observation-paramcode.html">observation-paramcode</a></td>
-    <td>ParamCode: The statistical operation parameter -&quot;params&quot; -  codes</td>
-    <td>.1.113883.4.642.1.877</td>
-  </tr>
-  <tr>
     <td><a href="codesystem-observation-relationshiptypes.html">observation-relationshiptypes</a></td>
     <td>ObservationRelationshipType: Codes specifying how two observations are related.</td>
     <td>.1.113883.4.642.1.220</td>
+  </tr>
+  <tr>
+    <td><a href="codesystem-observation-statistics.html">observation-statistics</a></td>
+    <td>StatisticsCode: The statistical operation parameter -&quot;statistic&quot; -  codes</td>
+    <td>.1.113883.4.642.1.0</td>
   </tr>
   <tr>
     <td><a href="codesystem-observation-status.html">observation-status</a></td>
@@ -1754,16 +1730,6 @@ and they are not registered in the HL7 OID registry, the default URN for the cod
     <td>.1.113883.4.642.1.333</td>
   </tr>
   <tr>
-    <td><a href="codesystem-paymentnotice-status.html">paymentnotice-status</a></td>
-    <td>PaymentNoticeStatus: A code specifying the state of the resource instance.</td>
-    <td>.1.113883.4.642.1.970</td>
-  </tr>
-  <tr>
-    <td><a href="codesystem-paymentreconciliation-status.html">paymentreconciliation-status</a></td>
-    <td>PaymentReconciliationStatus: A code specifying the state of the resource instance.</td>
-    <td>.1.113883.4.642.1.969</td>
-  </tr>
-  <tr>
     <td><a href="codesystem-payment-status.html">paymentstatus</a></td>
     <td>Payment Status Codes: This value set includes a sample set of Payment Status codes.</td>
     <td>.1.113883.4.642.1.334</td>
@@ -1822,16 +1788,6 @@ and they are not registered in the HL7 OID registry, the default URN for the cod
     <td><a href="codesystem-process-priority.html">processpriority</a></td>
     <td>Priority Codes: This value set includes the financial processing priority codes.</td>
     <td>.1.113883.4.642.1.319</td>
-  </tr>
-  <tr>
-    <td><a href="codesystem-processrequest-status.html">processrequest-status</a></td>
-    <td>ProcessRequestStatus: A code specifying the state of the resource instance.</td>
-    <td>.1.113883.4.642.1.971</td>
-  </tr>
-  <tr>
-    <td><a href="codesystem-processresponse-status.html">processresponse-status</a></td>
-    <td>ProcessResponseStatus: A code specifying the state of the resource instance.</td>
-    <td>.1.113883.4.642.1.972</td>
   </tr>
   <tr>
     <td><a href="codesystem-property-representation.html">property-representation</a></td>
@@ -2000,8 +1956,8 @@ and they are not registered in the HL7 OID registry, the default URN for the cod
   </tr>
   <tr>
     <td><a href="codesystem-request-status.html">request-status</a></td>
-    <td>RequestStatus: The status of a request</td>
-    <td>.1.113883.4.642.1.944</td>
+    <td>RequestStatus: Codes identifying the stage lifecycle stage of a request</td>
+    <td>.1.113883.4.642.1.931</td>
   </tr>
   <tr>
     <td><a href="codesystem-research-study-status.html">research-study-status</a></td>
@@ -2064,9 +2020,9 @@ and they are not registered in the HL7 OID registry, the default URN for the cod
     <td>.1.113883.4.642.1.262</td>
   </tr>
   <tr>
-    <td><a href="codesystem-ruleset.html">ruleset</a></td>
-    <td>Ruleset Codes: This value set includes sample ruleset codes.</td>
-    <td>.1.113883.4.642.1.ruleset</td>
+    <td><a href="codesystem-search-comparator.html">search-comparator</a></td>
+    <td>SearchComparator: What Search Comparator Codes are supported in search</td>
+    <td>.1.113883.4.642.1.0</td>
   </tr>
   <tr>
     <td><a href="codesystem-search-entry-mode.html">search-entry-mode</a></td>
@@ -2199,16 +2155,6 @@ and they are not registered in the HL7 OID registry, the default URN for the cod
     <td>.1.113883.4.642.1.560</td>
   </tr>
   <tr>
-    <td><a href="codesystem-task-priority.html">task-priority</a></td>
-    <td>TaskPriority: The task's priority</td>
-    <td>.1.113883.4.642.1.561</td>
-  </tr>
-  <tr>
-    <td><a href="codesystem-task-stage.html">task-stage</a></td>
-    <td>Task Stage Codes: Task Stage codes.</td>
-    <td>.1.113883.4.642.1.908</td>
-  </tr>
-  <tr>
     <td><a href="codesystem-task-status.html">task-status</a></td>
     <td>TaskStatus: The current status of the task.</td>
     <td>.1.113883.4.642.1.562</td>
@@ -2282,16 +2228,6 @@ and they are not registered in the HL7 OID registry, the default URN for the cod
     <td><a href="codesystem-vision-eye-codes.html">vision-eye-codes</a></td>
     <td>VisionEyes: A coded concept listing the eye codes.</td>
     <td>.1.113883.4.642.1.344</td>
-  </tr>
-  <tr>
-    <td><a href="codesystem-vision-status.html">vision-status</a></td>
-    <td>VisionStatus: A code specifying the state of the resource instance.</td>
-    <td>.1.113883.4.642.1.0</td>
-  </tr>
-  <tr>
-    <td><a href="codesystem-xds-relationship-type.html">xds-relationship-type</a></td>
-    <td>XDSRelationshipType: The kind of relationship between two XDS documents.</td>
-    <td>.1.113883.4.642.1.383</td>
   </tr>
 
 
@@ -2930,7 +2866,7 @@ Missing description.</td><td>.1.113883.5.85</td></tr>
 		<div class="container">  <!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.7.0-10208) generated on Mon, Nov 28, 2016 17:33-0500. <a href="qa.html">QA Page</a>
+        &copy; HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:28-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search <img src="external.png" style="text-align: baseline"/></a> | 

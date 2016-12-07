@@ -23,34 +23,33 @@ start=@<ProcessResponse> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
     fhir:ProcessResponse.identifier @<Identifier>*;  # Business Identifier
     fhir:ProcessResponse.status @<code> AND
-    	{fhir:value @fhirvs:processresponse-status};  # active | cancelled | draft | 
+    	{fhir:value @fhirvs:fm-status}?;  # active | cancelled | draft | 
                                             # entered-in-error 
-    fhir:ProcessResponse.request @<Reference>?;  # Request reference
-    fhir:ProcessResponse.outcome @<Coding>?;  # Processing outcome
-    fhir:ProcessResponse.disposition @<string>?;  # Disposition Message
-    fhir:ProcessResponse.ruleset @<Coding>?;  # Resource version
-    fhir:ProcessResponse.originalRuleset @<Coding>?;  # Original version
     fhir:ProcessResponse.created @<dateTime>?;  # Creation date
     fhir:ProcessResponse.organization @<Reference>?;  # Authoring Organization
+    fhir:ProcessResponse.request @<Reference>?;  # Request reference
+    fhir:ProcessResponse.outcome @<CodeableConcept>?;  # Processing outcome
+    fhir:ProcessResponse.disposition @<string>?;  # Disposition Message
     fhir:ProcessResponse.requestProvider @<Reference>?;  # Responsible Practitioner
     fhir:ProcessResponse.requestOrganization @<Reference>?;  # Responsible organization
-    fhir:ProcessResponse.form @<Coding> AND
+    fhir:ProcessResponse.form @<CodeableConcept> AND
     	{fhir:value @fhirvs:forms}?;  # Printed Form Identifier
-    fhir:ProcessResponse.notes @<ProcessResponse.notes>*;  # Notes
-    fhir:ProcessResponse.error @<Coding> AND
+    fhir:ProcessResponse.note @<ProcessResponse.note>*;  # Notes
+    fhir:ProcessResponse.error @<CodeableConcept> AND
     	{fhir:value @fhirvs:adjudication-error}*;  # Error code
+    fhir:ProcessResponse.communicationRequest @<Reference>*;  # Request for additional information
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
 # Notes
-<ProcessResponse.notes> CLOSED {
+<ProcessResponse.note> CLOSED {
     fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
     fhir:extension @<Extension>*;           # Additional Content defined by 
                                             # implementations 
     fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    fhir:ProcessResponse.notes.type @<Coding> AND
+    fhir:ProcessResponse.note.type @<CodeableConcept> AND
     	{fhir:value @fhirvs:note-type}?;  # display | print | printoper
-    fhir:ProcessResponse.notes.text @<string>?;  # Notes text
+    fhir:ProcessResponse.note.text @<string>?;  # Notes text
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -165,28 +164,24 @@ start=@<ProcessResponse> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
-# A reference to a code defined by a terminology system
-<Coding> CLOSED {
-    fhir:concept IRI?;
-    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
-    fhir:extension @<Extension>*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:Coding.system @<uri>?;             # Identity of the terminology system
-    fhir:Coding.version @<string>?;         # Version of the system - if relevant
-    fhir:Coding.code @<code>?;              # Symbol in syntax defined by the 
-                                            # system 
-    fhir:Coding.display @<string>?;         # Representation defined by the 
-                                            # system 
-    fhir:Coding.userSelected @<boolean>?;   # If this coding was chosen directly 
-                                            # by the user 
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
 # Primitive Type id
 <id> CLOSED {
     fhir:extension @<Extension>*;           # Additional Content defined by 
                                             # implementations 
     fhir:value xsd:string?;                 # Primitive value for id
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
+# Concept - reference to a terminology or just  text
+<CodeableConcept> CLOSED {
+    fhir:concept IRI*;
+    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
+    fhir:extension @<Extension>*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:CodeableConcept.coding @<Coding>*;  # Code defined by a terminology 
+                                            # system 
+    fhir:CodeableConcept.text @<string>?;   # Plain text representation of the 
+                                            # concept 
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -211,6 +206,23 @@ start=@<ProcessResponse> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
+# A reference to a code defined by a terminology system
+<Coding> CLOSED {
+    fhir:concept IRI?;
+    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
+    fhir:extension @<Extension>*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:Coding.system @<uri>?;             # Identity of the terminology system
+    fhir:Coding.version @<string>?;         # Version of the system - if relevant
+    fhir:Coding.code @<code>?;              # Symbol in syntax defined by the 
+                                            # system 
+    fhir:Coding.display @<string>?;         # Representation defined by the 
+                                            # system 
+    fhir:Coding.userSelected @<boolean>?;   # If this coding was chosen directly 
+                                            # by the user 
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
 # Primitive Type boolean
 <boolean> CLOSED {
     fhir:Element.id @<id>?;                 # xml:id (or equivalent in JSON)
@@ -220,37 +232,24 @@ start=@<ProcessResponse> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
-# Concept - reference to a terminology or just  text
-<CodeableConcept> CLOSED {
-    fhir:concept IRI*;
-    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
-    fhir:extension @<Extension>*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:CodeableConcept.coding @<Coding>*;  # Code defined by a terminology 
-                                            # system 
-    fhir:CodeableConcept.text @<string>?;   # Plain text representation of the 
-                                            # concept 
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
 #---------------------- Reference Types -------------------
 
 #---------------------- Value Sets ------------------------
 
-# This value set includes a smattering of adjudication codes.
-fhirvs:adjudication-error ["a001" "a002"]
-
-# A code specifying the state of the resource instance.
-fhirvs:processresponse-status ["active" "cancelled" "draft" "entered-in-error"]
+# This value set includes STatus codes.
+fhirvs:fm-status ["active" "cancelled" "draft" "entered-in-error"]
 
 # The presentation types of notes.
 fhirvs:note-type ["display" "print" "printoper"]
 
-# This value set includes a sample set of Forms codes.
-fhirvs:forms ["1" "2"]
-
 # Identifies the purpose for this identifier, if known .
 fhirvs:identifier-use ["usual" "official" "temp" "secondary"]
 
+# This value set includes a sample set of Forms codes.
+fhirvs:forms ["1" "2"]
+
 # The status of a resource narrative
 fhirvs:narrative-status ["generated" "extensions" "additional" "empty"]
+
+# This value set includes a smattering of adjudication codes.
+fhirvs:adjudication-error ["a001" "a002"]

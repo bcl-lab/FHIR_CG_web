@@ -10,7 +10,7 @@
     {
       "telecom": [
         {
-          "system": "other",
+          "system": "url",
           "value": "http://www.hl7.org/Special/committees/fiwg"
         }
       ]
@@ -18,7 +18,7 @@
   ],
   "date": "2013-12-05",
   "description": "Language translation from base language of resource to another language.",
-  "fhirVersion": "1.7.0",
+  "fhirVersion": "1.8.0",
   "mapping": [
     {
       "identity": "rim",
@@ -70,6 +70,12 @@
             "xpath": "exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])",
             "source": "Extension"
           }
+        ],
+        "mapping": [
+          {
+            "identity": "rim",
+            "map": "ST.translation"
+          }
         ]
       },
       {
@@ -103,7 +109,7 @@
         "id": "Extension:langaugetranslation.extension",
         "path": "Extension.extension",
         "slicing": {
-          "id": "58",
+          "id": "55",
           "discriminator": [
             "url"
           ],
@@ -550,7 +556,13 @@
         "short": "Langauge Translation",
         "definition": "Language translation from base language of resource to another language.",
         "min": 0,
-        "max": "*"
+        "max": "*",
+        "mapping": [
+          {
+            "identity": "rim",
+            "map": "ST.translation"
+          }
+        ]
       },
       {
         "id": "Extension:langaugetranslation.extension:lang",

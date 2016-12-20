@@ -1665,11 +1665,11 @@
     </div>
   </text>
   <url value="http://hl7.org/fhir/CapabilityStatement/base"/>
-  <version value="1.8.0-10529"/>
+  <version value="1.8.0-10597"/>
   <name value="Base FHIR Capability Statement (Full)"/>
   <status value="draft"/>
   <experimental value="true"/>
-  <date value="2016-12-07T14:18:58-05:00"/>
+  <date value="2016-12-19T19:01:24-05:00"/>
   <publisher value="FHIR Project Team"/>
   <contact>
     <telecom>
@@ -1843,7 +1843,6 @@
       <conditionalDelete value="multiple"/>
       <referencePolicy value="literal"/>
       <referencePolicy value="logical"/>
-      <searchRevInclude value="Task.definition-ref"/>
       <searchParam>
         <name value="date"/>
         <definition value="http://hl7.org/fhir/SearchParameter/activitydefinition-date"/>
@@ -1962,8 +1961,6 @@
       <searchInclude value="AllergyIntolerance.recorder"/>
       <searchInclude value="AllergyIntolerance.asserter"/>
       <searchInclude value="AllergyIntolerance.patient"/>
-      <searchRevInclude value="ClinicalImpression.problem"/>
-      <searchRevInclude value="ImmunizationRecommendation.information"/>
       <searchParam>
         <name value="severity"/>
         <definition value="http://hl7.org/fhir/SearchParameter/allergyintolerance-severity"/>
@@ -2107,10 +2104,6 @@
       <searchInclude value="Appointment.practitioner"/>
       <searchInclude value="Appointment.patient"/>
       <searchInclude value="Appointment.location"/>
-      <searchRevInclude value="AppointmentResponse.appointment"/>
-      <searchRevInclude value="CarePlan.activityreference"/>
-      <searchRevInclude value="ClinicalImpression.action"/>
-      <searchRevInclude value="Encounter.appointment"/>
       <searchParam>
         <name value="date"/>
         <definition value="http://hl7.org/fhir/SearchParameter/appointment-date"/>
@@ -2893,10 +2886,6 @@
       <searchInclude value="CarePlan.relatedplan"/>
       <searchInclude value="CarePlan.condition"/>
       <searchInclude value="CarePlan.patient"/>
-      <searchRevInclude value="CarePlan.relatedplan"/>
-      <searchRevInclude value="ImagingStudy.basedon"/>
-      <searchRevInclude value="QuestionnaireResponse.based-on"/>
-      <searchRevInclude value="ReferralRequest.basedon"/>
       <searchParam>
         <name value="date"/>
         <definition value="http://hl7.org/fhir/SearchParameter/careplan-date"/>
@@ -3033,10 +3022,6 @@
       <searchInclude value="CareTeam.patient"/>
       <searchInclude value="CareTeam.subject"/>
       <searchInclude value="CareTeam.participant"/>
-      <searchRevInclude value="CarePlan.careteam"/>
-      <searchRevInclude value="CommunicationRequest.recipient"/>
-      <searchRevInclude value="Consent.actor"/>
-      <searchRevInclude value="Consent.recipient"/>
       <searchParam>
         <name value="date"/>
         <definition value="http://hl7.org/fhir/SearchParameter/careteam-date"/>
@@ -3127,8 +3112,6 @@
       <searchInclude value="Claim.insurer"/>
       <searchInclude value="Claim.organization"/>
       <searchInclude value="Claim.facility"/>
-      <searchRevInclude value="ClaimResponse.request"/>
-      <searchRevInclude value="ExplanationOfBenefit.claim"/>
       <searchParam>
         <name value="identifier"/>
         <definition value="http://hl7.org/fhir/SearchParameter/claim-identifier"/>
@@ -3322,7 +3305,6 @@
       <searchInclude value="ClinicalImpression.investigation"/>
       <searchInclude value="ClinicalImpression.action"/>
       <searchInclude value="ClinicalImpression.finding-ref"/>
-      <searchRevInclude value="ClinicalImpression.previous"/>
       <searchParam>
         <name value="date"/>
         <definition value="http://hl7.org/fhir/SearchParameter/clinicalimpression-date"/>
@@ -3692,7 +3674,6 @@
       <searchInclude value="CommunicationRequest.patient"/>
       <searchInclude value="CommunicationRequest.recipient"/>
       <searchInclude value="CommunicationRequest.context"/>
-      <searchRevInclude value="CarePlan.activityreference"/>
       <searchParam>
         <name value="requester"/>
         <definition value="http://hl7.org/fhir/SearchParameter/communicationrequest-requester"/>
@@ -4233,14 +4214,6 @@
       <searchInclude value="Condition.asserter"/>
       <searchInclude value="Condition.patient"/>
       <searchInclude value="Condition.context"/>
-      <searchRevInclude value="CarePlan.condition"/>
-      <searchRevInclude value="ClinicalImpression.problem"/>
-      <searchRevInclude value="ClinicalImpression.finding-ref"/>
-      <searchRevInclude value="Encounter.procedure"/>
-      <searchRevInclude value="Encounter.condition"/>
-      <searchRevInclude value="Encounter.indication"/>
-      <searchRevInclude value="EpisodeOfCare.condition"/>
-      <searchRevInclude value="RiskAssessment.condition"/>
       <searchParam>
         <name value="severity"/>
         <definition value="http://hl7.org/fhir/SearchParameter/condition-severity"/>
@@ -4411,7 +4384,6 @@
       <searchInclude value="Consent.organization"/>
       <searchInclude value="Consent.recipient"/>
       <searchInclude value="Consent.consentor"/>
-      <searchRevInclude value="Consent.source"/>
       <searchParam>
         <name value="date"/>
         <definition value="http://hl7.org/fhir/SearchParameter/consent-date"/>
@@ -4553,8 +4525,6 @@
       <searchInclude value="Contract.domain"/>
       <searchInclude value="Contract.topic"/>
       <searchInclude value="Contract.signer"/>
-      <searchRevInclude value="Consent.source"/>
-      <searchRevInclude value="Contract.agent"/>
       <searchParam>
         <name value="identifier"/>
         <definition value="http://hl7.org/fhir/SearchParameter/contract-identifier"/>
@@ -4662,7 +4632,6 @@
       <searchInclude value="Coverage.subscriber"/>
       <searchInclude value="Coverage.payor"/>
       <searchInclude value="Coverage.beneficiary"/>
-      <searchRevInclude value="ExplanationOfBenefit.coverage"/>
       <searchParam>
         <name value="identifier"/>
         <definition value="http://hl7.org/fhir/SearchParameter/coverage-identifier"/>
@@ -4990,70 +4959,6 @@
       <searchInclude value="Device.patient"/>
       <searchInclude value="Device.organization"/>
       <searchInclude value="Device.location"/>
-      <searchRevInclude value="Account.subject"/>
-      <searchRevInclude value="Account.patient"/>
-      <searchRevInclude value="Appointment.actor"/>
-      <searchRevInclude value="Appointment.practitioner"/>
-      <searchRevInclude value="Appointment.patient"/>
-      <searchRevInclude value="Appointment.location"/>
-      <searchRevInclude value="AppointmentResponse.actor"/>
-      <searchRevInclude value="AppointmentResponse.practitioner"/>
-      <searchRevInclude value="AppointmentResponse.patient"/>
-      <searchRevInclude value="AppointmentResponse.location"/>
-      <searchRevInclude value="AuditEvent.agent"/>
-      <searchRevInclude value="AuditEvent.patient"/>
-      <searchRevInclude value="Communication.sender"/>
-      <searchRevInclude value="Communication.recipient"/>
-      <searchRevInclude value="CommunicationRequest.sender"/>
-      <searchRevInclude value="CommunicationRequest.recipient"/>
-      <searchRevInclude value="Composition.author"/>
-      <searchRevInclude value="Consent.actor"/>
-      <searchRevInclude value="Consent.recipient"/>
-      <searchRevInclude value="Contract.agent"/>
-      <searchRevInclude value="DetectedIssue.author"/>
-      <searchRevInclude value="DeviceComponent.source"/>
-      <searchRevInclude value="DeviceMetric.source"/>
-      <searchRevInclude value="DeviceUseRequest.requester"/>
-      <searchRevInclude value="DeviceUseRequest.subject"/>
-      <searchRevInclude value="DeviceUseRequest.patient"/>
-      <searchRevInclude value="DeviceUseRequest.filler"/>
-      <searchRevInclude value="DeviceUseRequest.device"/>
-      <searchRevInclude value="DeviceUseStatement.device"/>
-      <searchRevInclude value="DiagnosticReport.subject"/>
-      <searchRevInclude value="DiagnosticReport.patient"/>
-      <searchRevInclude value="DiagnosticRequest.requester"/>
-      <searchRevInclude value="DiagnosticRequest.subject"/>
-      <searchRevInclude value="DiagnosticRequest.patient"/>
-      <searchRevInclude value="DiagnosticRequest.filler"/>
-      <searchRevInclude value="DocumentManifest.subject"/>
-      <searchRevInclude value="DocumentManifest.author"/>
-      <searchRevInclude value="DocumentManifest.patient"/>
-      <searchRevInclude value="DocumentReference.subject"/>
-      <searchRevInclude value="DocumentReference.patient"/>
-      <searchRevInclude value="DocumentReference.author"/>
-      <searchRevInclude value="Flag.author"/>
-      <searchRevInclude value="Group.member"/>
-      <searchRevInclude value="ImagingManifest.author"/>
-      <searchRevInclude value="List.subject"/>
-      <searchRevInclude value="List.patient"/>
-      <searchRevInclude value="List.source"/>
-      <searchRevInclude value="Media.subject"/>
-      <searchRevInclude value="Media.patient"/>
-      <searchRevInclude value="MedicationAdministration.device"/>
-      <searchRevInclude value="MedicationRequest.requester"/>
-      <searchRevInclude value="MessageHeader.target"/>
-      <searchRevInclude value="Observation.subject"/>
-      <searchRevInclude value="Observation.patient"/>
-      <searchRevInclude value="Observation.device"/>
-      <searchRevInclude value="ProcedureRequest.orderer"/>
-      <searchRevInclude value="QuestionnaireResponse.author"/>
-      <searchRevInclude value="RequestGroup.author"/>
-      <searchRevInclude value="RiskAssessment.performer"/>
-      <searchRevInclude value="Schedule.actor"/>
-      <searchRevInclude value="Specimen.subject"/>
-      <searchRevInclude value="Specimen.patient"/>
-      <searchRevInclude value="Task.owner"/>
-      <searchRevInclude value="Task.requester"/>
       <searchParam>
         <name value="identifier"/>
         <definition value="http://hl7.org/fhir/SearchParameter/device-identifier"/>
@@ -5153,8 +5058,6 @@
       <referencePolicy value="logical"/>
       <searchInclude value="DeviceComponent.parent"/>
       <searchInclude value="DeviceComponent.source"/>
-      <searchRevInclude value="DeviceComponent.parent"/>
-      <searchRevInclude value="DeviceMetric.parent"/>
       <searchParam>
         <name value="parent"/>
         <definition value="http://hl7.org/fhir/SearchParameter/devicecomponent-parent"/>
@@ -5218,7 +5121,6 @@
       <referencePolicy value="logical"/>
       <searchInclude value="DeviceMetric.parent"/>
       <searchInclude value="DeviceMetric.source"/>
-      <searchRevInclude value="Observation.device"/>
       <searchParam>
         <name value="parent"/>
         <definition value="http://hl7.org/fhir/SearchParameter/devicemetric-parent"/>
@@ -5301,7 +5203,6 @@
       <searchInclude value="DeviceUseRequest.filler"/>
       <searchInclude value="DeviceUseRequest.definition"/>
       <searchInclude value="DeviceUseRequest.device"/>
-      <searchRevInclude value="CarePlan.activityreference"/>
       <searchParam>
         <name value="requester"/>
         <definition value="http://hl7.org/fhir/SearchParameter/deviceuserequest-requester"/>
@@ -5513,7 +5414,6 @@
       <searchInclude value="DiagnosticReport.result"/>
       <searchInclude value="DiagnosticReport.patient"/>
       <searchInclude value="DiagnosticReport.specimen"/>
-      <searchRevInclude value="ClinicalImpression.investigation"/>
       <searchParam>
         <name value="date"/>
         <definition value="http://hl7.org/fhir/SearchParameter/diagnosticreport-date"/>
@@ -5655,12 +5555,6 @@
       <searchInclude value="DiagnosticRequest.patient"/>
       <searchInclude value="DiagnosticRequest.filler"/>
       <searchInclude value="DiagnosticRequest.definition"/>
-      <searchRevInclude value="CarePlan.activityreference"/>
-      <searchRevInclude value="ClinicalImpression.action"/>
-      <searchRevInclude value="DiagnosticReport.request"/>
-      <searchRevInclude value="ImagingStudy.basedon"/>
-      <searchRevInclude value="QuestionnaireResponse.based-on"/>
-      <searchRevInclude value="ReferralRequest.basedon"/>
       <searchParam>
         <name value="requester"/>
         <definition value="http://hl7.org/fhir/SearchParameter/diagnosticrequest-requester"/>
@@ -5935,8 +5829,6 @@
       <searchInclude value="DocumentReference.encounter"/>
       <searchInclude value="DocumentReference.related-ref"/>
       <searchInclude value="DocumentReference.relatesto"/>
-      <searchRevInclude value="Consent.source"/>
-      <searchRevInclude value="DocumentReference.relatesto"/>
       <searchParam>
         <name value="securitylabel"/>
         <definition value="http://hl7.org/fhir/SearchParameter/documentreference-securitylabel"/>
@@ -6140,7 +6032,6 @@
       <searchInclude value="EligibilityRequest.patient"/>
       <searchInclude value="EligibilityRequest.organization"/>
       <searchInclude value="EligibilityRequest.facility"/>
-      <searchRevInclude value="EligibilityResponse.request"/>
       <searchParam>
         <name value="identifier"/>
         <definition value="http://hl7.org/fhir/SearchParameter/eligibilityrequest-identifier"/>
@@ -6327,32 +6218,6 @@
       <searchInclude value="Encounter.location"/>
       <searchInclude value="Encounter.service-provider"/>
       <searchInclude value="Encounter.indication"/>
-      <searchRevInclude value="ClinicalImpression.context"/>
-      <searchRevInclude value="Communication.context"/>
-      <searchRevInclude value="CommunicationRequest.context"/>
-      <searchRevInclude value="Composition.encounter"/>
-      <searchRevInclude value="Condition.context"/>
-      <searchRevInclude value="DeviceUseRequest.encounter"/>
-      <searchRevInclude value="DiagnosticReport.encounter"/>
-      <searchRevInclude value="DiagnosticRequest.encounter"/>
-      <searchRevInclude value="DocumentReference.encounter"/>
-      <searchRevInclude value="Encounter.part-of"/>
-      <searchRevInclude value="Flag.encounter"/>
-      <searchRevInclude value="ImagingStudy.context"/>
-      <searchRevInclude value="List.encounter"/>
-      <searchRevInclude value="MedicationAdministration.encounter"/>
-      <searchRevInclude value="MedicationRequest.context"/>
-      <searchRevInclude value="NutritionRequest.encounter"/>
-      <searchRevInclude value="Observation.encounter"/>
-      <searchRevInclude value="Procedure.encounter"/>
-      <searchRevInclude value="ProcedureRequest.encounter"/>
-      <searchRevInclude value="QuestionnaireResponse.context"/>
-      <searchRevInclude value="ReferralRequest.context"/>
-      <searchRevInclude value="RequestGroup.context"/>
-      <searchRevInclude value="RequestGroup.encounter"/>
-      <searchRevInclude value="RiskAssessment.encounter"/>
-      <searchRevInclude value="Task.context"/>
-      <searchRevInclude value="VisionPrescription.encounter"/>
       <searchParam>
         <name value="date"/>
         <definition value="http://hl7.org/fhir/SearchParameter/encounter-date"/>
@@ -6529,11 +6394,6 @@
       <referencePolicy value="literal"/>
       <referencePolicy value="logical"/>
       <searchInclude value="Endpoint.organization"/>
-      <searchRevInclude value="HealthcareService.endpoint"/>
-      <searchRevInclude value="Location.endpoint"/>
-      <searchRevInclude value="Organization.endpoint"/>
-      <searchRevInclude value="Practitioner.endpoint"/>
-      <searchRevInclude value="PractitionerRole.endpoint"/>
       <searchParam>
         <name value="payload-type"/>
         <definition value="http://hl7.org/fhir/SearchParameter/endpoint-payload-type"/>
@@ -6616,7 +6476,6 @@
       <searchInclude value="EnrollmentRequest.subject"/>
       <searchInclude value="EnrollmentRequest.patient"/>
       <searchInclude value="EnrollmentRequest.organization"/>
-      <searchRevInclude value="EnrollmentResponse.request"/>
       <searchParam>
         <name value="identifier"/>
         <definition value="http://hl7.org/fhir/SearchParameter/enrollmentrequest-identifier"/>
@@ -6752,21 +6611,6 @@
       <searchInclude value="EpisodeOfCare.patient"/>
       <searchInclude value="EpisodeOfCare.organization"/>
       <searchInclude value="EpisodeOfCare.care-manager"/>
-      <searchRevInclude value="ClinicalImpression.context"/>
-      <searchRevInclude value="Communication.context"/>
-      <searchRevInclude value="CommunicationRequest.context"/>
-      <searchRevInclude value="Condition.context"/>
-      <searchRevInclude value="DeviceUseRequest.encounter"/>
-      <searchRevInclude value="DiagnosticRequest.encounter"/>
-      <searchRevInclude value="Encounter.episodeofcare"/>
-      <searchRevInclude value="ImagingStudy.context"/>
-      <searchRevInclude value="MedicationRequest.context"/>
-      <searchRevInclude value="QuestionnaireResponse.context"/>
-      <searchRevInclude value="ReferralRequest.context"/>
-      <searchRevInclude value="RequestGroup.context"/>
-      <searchRevInclude value="RequestGroup.encounter"/>
-      <searchRevInclude value="RiskAssessment.encounter"/>
-      <searchRevInclude value="Task.context"/>
       <searchParam>
         <name value="date"/>
         <definition value="http://hl7.org/fhir/SearchParameter/episodeofcare-date"/>
@@ -7065,7 +6909,6 @@
       <referencePolicy value="literal"/>
       <referencePolicy value="logical"/>
       <searchInclude value="FamilyMemberHistory.patient"/>
-      <searchRevInclude value="ClinicalImpression.investigation"/>
       <searchParam>
         <name value="date"/>
         <definition value="http://hl7.org/fhir/SearchParameter/familymemberhistory-date"/>
@@ -7224,7 +7067,6 @@
       <referencePolicy value="logical"/>
       <searchInclude value="Goal.patient"/>
       <searchInclude value="Goal.subject"/>
-      <searchRevInclude value="CarePlan.goal"/>
       <searchParam>
         <name value="identifier"/>
         <definition value="http://hl7.org/fhir/SearchParameter/goal-identifier"/>
@@ -7305,54 +7147,6 @@
       <referencePolicy value="literal"/>
       <referencePolicy value="logical"/>
       <searchInclude value="Group.member"/>
-      <searchRevInclude value="CarePlan.subject"/>
-      <searchRevInclude value="CarePlan.patient"/>
-      <searchRevInclude value="CareTeam.patient"/>
-      <searchRevInclude value="CareTeam.subject"/>
-      <searchRevInclude value="ClinicalImpression.patient"/>
-      <searchRevInclude value="ClinicalImpression.subject"/>
-      <searchRevInclude value="Communication.subject"/>
-      <searchRevInclude value="Communication.patient"/>
-      <searchRevInclude value="Communication.recipient"/>
-      <searchRevInclude value="CommunicationRequest.recipient"/>
-      <searchRevInclude value="Condition.subject"/>
-      <searchRevInclude value="Condition.patient"/>
-      <searchRevInclude value="Consent.actor"/>
-      <searchRevInclude value="Consent.recipient"/>
-      <searchRevInclude value="Contract.agent"/>
-      <searchRevInclude value="DeviceUseRequest.subject"/>
-      <searchRevInclude value="DeviceUseRequest.patient"/>
-      <searchRevInclude value="DiagnosticReport.subject"/>
-      <searchRevInclude value="DiagnosticReport.patient"/>
-      <searchRevInclude value="DiagnosticRequest.subject"/>
-      <searchRevInclude value="DiagnosticRequest.patient"/>
-      <searchRevInclude value="DocumentManifest.subject"/>
-      <searchRevInclude value="DocumentManifest.patient"/>
-      <searchRevInclude value="DocumentReference.subject"/>
-      <searchRevInclude value="DocumentReference.patient"/>
-      <searchRevInclude value="Flag.subject"/>
-      <searchRevInclude value="Flag.patient"/>
-      <searchRevInclude value="Goal.patient"/>
-      <searchRevInclude value="Goal.subject"/>
-      <searchRevInclude value="GuidanceResponse.patient"/>
-      <searchRevInclude value="GuidanceResponse.subject"/>
-      <searchRevInclude value="List.subject"/>
-      <searchRevInclude value="List.patient"/>
-      <searchRevInclude value="Media.subject"/>
-      <searchRevInclude value="Media.patient"/>
-      <searchRevInclude value="MedicationStatement.subject"/>
-      <searchRevInclude value="Observation.subject"/>
-      <searchRevInclude value="Observation.patient"/>
-      <searchRevInclude value="Procedure.subject"/>
-      <searchRevInclude value="Procedure.patient"/>
-      <searchRevInclude value="ProcedureRequest.subject"/>
-      <searchRevInclude value="ProcedureRequest.patient"/>
-      <searchRevInclude value="RequestGroup.patient"/>
-      <searchRevInclude value="RequestGroup.subject"/>
-      <searchRevInclude value="RiskAssessment.subject"/>
-      <searchRevInclude value="RiskAssessment.patient"/>
-      <searchRevInclude value="Specimen.subject"/>
-      <searchRevInclude value="Specimen.patient"/>
       <searchParam>
         <name value="actual"/>
         <definition value="http://hl7.org/fhir/SearchParameter/group-actual"/>
@@ -7510,17 +7304,6 @@
       <searchInclude value="HealthcareService.endpoint"/>
       <searchInclude value="HealthcareService.organization"/>
       <searchInclude value="HealthcareService.location"/>
-      <searchRevInclude value="Account.subject"/>
-      <searchRevInclude value="Account.patient"/>
-      <searchRevInclude value="Appointment.actor"/>
-      <searchRevInclude value="Appointment.practitioner"/>
-      <searchRevInclude value="Appointment.patient"/>
-      <searchRevInclude value="Appointment.location"/>
-      <searchRevInclude value="AppointmentResponse.actor"/>
-      <searchRevInclude value="AppointmentResponse.practitioner"/>
-      <searchRevInclude value="AppointmentResponse.patient"/>
-      <searchRevInclude value="AppointmentResponse.location"/>
-      <searchRevInclude value="Schedule.actor"/>
       <searchParam>
         <name value="identifier"/>
         <definition value="http://hl7.org/fhir/SearchParameter/healthcareservice-identifier"/>
@@ -7708,7 +7491,6 @@
       <searchInclude value="ImagingStudy.patient"/>
       <searchInclude value="ImagingStudy.context"/>
       <searchInclude value="ImagingStudy.basedon"/>
-      <searchRevInclude value="ClinicalImpression.investigation"/>
       <searchParam>
         <name value="identifier"/>
         <definition value="http://hl7.org/fhir/SearchParameter/imagingstudy-identifier"/>
@@ -7836,7 +7618,6 @@
       <searchInclude value="Immunization.manufacturer"/>
       <searchInclude value="Immunization.patient"/>
       <searchInclude value="Immunization.location"/>
-      <searchRevInclude value="ImmunizationRecommendation.support"/>
       <searchParam>
         <name value="date"/>
         <definition value="http://hl7.org/fhir/SearchParameter/immunization-date"/>
@@ -8488,45 +8269,6 @@
       <searchInclude value="Location.partof"/>
       <searchInclude value="Location.endpoint"/>
       <searchInclude value="Location.organization"/>
-      <searchRevInclude value="Account.subject"/>
-      <searchRevInclude value="Account.patient"/>
-      <searchRevInclude value="Appointment.actor"/>
-      <searchRevInclude value="Appointment.practitioner"/>
-      <searchRevInclude value="Appointment.patient"/>
-      <searchRevInclude value="Appointment.location"/>
-      <searchRevInclude value="AppointmentResponse.actor"/>
-      <searchRevInclude value="AppointmentResponse.practitioner"/>
-      <searchRevInclude value="AppointmentResponse.patient"/>
-      <searchRevInclude value="AppointmentResponse.location"/>
-      <searchRevInclude value="Claim.facility"/>
-      <searchRevInclude value="Contract.agent"/>
-      <searchRevInclude value="Contract.domain"/>
-      <searchRevInclude value="Device.location"/>
-      <searchRevInclude value="DeviceUseRequest.subject"/>
-      <searchRevInclude value="DeviceUseRequest.patient"/>
-      <searchRevInclude value="DiagnosticReport.subject"/>
-      <searchRevInclude value="DiagnosticReport.patient"/>
-      <searchRevInclude value="DiagnosticRequest.subject"/>
-      <searchRevInclude value="DiagnosticRequest.patient"/>
-      <searchRevInclude value="EligibilityRequest.facility"/>
-      <searchRevInclude value="Encounter.location"/>
-      <searchRevInclude value="ExplanationOfBenefit.facility"/>
-      <searchRevInclude value="Flag.subject"/>
-      <searchRevInclude value="Flag.patient"/>
-      <searchRevInclude value="HealthcareService.location"/>
-      <searchRevInclude value="Immunization.location"/>
-      <searchRevInclude value="List.subject"/>
-      <searchRevInclude value="List.patient"/>
-      <searchRevInclude value="Location.partof"/>
-      <searchRevInclude value="MedicationDispense.destination"/>
-      <searchRevInclude value="Observation.subject"/>
-      <searchRevInclude value="Observation.patient"/>
-      <searchRevInclude value="Practitioner.location"/>
-      <searchRevInclude value="PractitionerRole.location"/>
-      <searchRevInclude value="Procedure.location"/>
-      <searchRevInclude value="Provenance.location"/>
-      <searchRevInclude value="ResearchStudy.site"/>
-      <searchRevInclude value="Schedule.actor"/>
       <searchParam>
         <name value="identifier"/>
         <definition value="http://hl7.org/fhir/SearchParameter/location-identifier"/>
@@ -8832,7 +8574,6 @@ Requires the near-distance parameter to be provided also"/>
       <searchInclude value="Media.subject"/>
       <searchInclude value="Media.patient"/>
       <searchInclude value="Media.operator"/>
-      <searchRevInclude value="DiagnosticReport.image"/>
       <searchParam>
         <name value="identifier"/>
         <definition value="http://hl7.org/fhir/SearchParameter/media-identifier"/>
@@ -8927,15 +8668,6 @@ Requires the near-distance parameter to be provided also"/>
       <searchInclude value="Medication.package-item"/>
       <searchInclude value="Medication.ingredient"/>
       <searchInclude value="Medication.manufacturer"/>
-      <searchRevInclude value="Flag.subject"/>
-      <searchRevInclude value="Flag.patient"/>
-      <searchRevInclude value="Group.member"/>
-      <searchRevInclude value="Medication.package-item"/>
-      <searchRevInclude value="Medication.ingredient"/>
-      <searchRevInclude value="MedicationAdministration.medication"/>
-      <searchRevInclude value="MedicationDispense.medication"/>
-      <searchRevInclude value="MedicationRequest.medication"/>
-      <searchRevInclude value="MedicationStatement.medication"/>
       <searchParam>
         <name value="ingredient-code"/>
         <definition value="http://hl7.org/fhir/SearchParameter/medication-ingredient-code"/>
@@ -9287,10 +9019,6 @@ Requires the near-distance parameter to be provided also"/>
       <searchInclude value="MedicationRequest.patient"/>
       <searchInclude value="MedicationRequest.context"/>
       <searchInclude value="MedicationRequest.medication"/>
-      <searchRevInclude value="CarePlan.activityreference"/>
-      <searchRevInclude value="ClinicalImpression.action"/>
-      <searchRevInclude value="MedicationAdministration.prescription"/>
-      <searchRevInclude value="MedicationDispense.prescription"/>
       <searchParam>
         <name value="requester"/>
         <definition value="http://hl7.org/fhir/SearchParameter/medicationrequest-requester"/>
@@ -9737,7 +9465,6 @@ Requires the near-distance parameter to be provided also"/>
       <referencePolicy value="literal"/>
       <referencePolicy value="logical"/>
       <searchInclude value="NamingSystem.replaced-by"/>
-      <searchRevInclude value="NamingSystem.replaced-by"/>
       <searchParam>
         <name value="date"/>
         <definition value="http://hl7.org/fhir/SearchParameter/namingsystem-date"/>
@@ -9874,7 +9601,6 @@ Requires the near-distance parameter to be provided also"/>
       <searchInclude value="NutritionRequest.provider"/>
       <searchInclude value="NutritionRequest.patient"/>
       <searchInclude value="NutritionRequest.encounter"/>
-      <searchRevInclude value="CarePlan.activityreference"/>
       <searchParam>
         <name value="identifier"/>
         <definition value="http://hl7.org/fhir/SearchParameter/nutritionrequest-identifier"/>
@@ -9985,13 +9711,6 @@ Requires the near-distance parameter to be provided also"/>
       <searchInclude value="Observation.patient"/>
       <searchInclude value="Observation.specimen"/>
       <searchInclude value="Observation.device"/>
-      <searchRevInclude value="ClinicalImpression.investigation"/>
-      <searchRevInclude value="ClinicalImpression.finding-ref"/>
-      <searchRevInclude value="DiagnosticReport.result"/>
-      <searchRevInclude value="Immunization.reaction"/>
-      <searchRevInclude value="ImmunizationRecommendation.information"/>
-      <searchRevInclude value="Observation.related-target"/>
-      <searchRevInclude value="QuestionnaireResponse.parent"/>
       <searchParam>
         <name value="date"/>
         <definition value="http://hl7.org/fhir/SearchParameter/observation-date"/>
@@ -10181,7 +9900,6 @@ Requires the near-distance parameter to be provided also"/>
       <referencePolicy value="logical"/>
       <searchInclude value="OperationDefinition.paramprofile"/>
       <searchInclude value="OperationDefinition.base"/>
-      <searchRevInclude value="OperationDefinition.base"/>
       <searchParam>
         <name value="date"/>
         <definition value="http://hl7.org/fhir/SearchParameter/operationdefinition-date"/>
@@ -10360,89 +10078,6 @@ Requires the near-distance parameter to be provided also"/>
       <referencePolicy value="logical"/>
       <searchInclude value="Organization.partof"/>
       <searchInclude value="Organization.endpoint"/>
-      <searchRevInclude value="Account.owner"/>
-      <searchRevInclude value="Account.subject"/>
-      <searchRevInclude value="Account.patient"/>
-      <searchRevInclude value="AuditEvent.agent"/>
-      <searchRevInclude value="AuditEvent.patient"/>
-      <searchRevInclude value="CarePlan.performer"/>
-      <searchRevInclude value="CareTeam.participant"/>
-      <searchRevInclude value="Claim.insurer"/>
-      <searchRevInclude value="Claim.organization"/>
-      <searchRevInclude value="ClaimResponse.insurer"/>
-      <searchRevInclude value="Communication.sender"/>
-      <searchRevInclude value="Communication.recipient"/>
-      <searchRevInclude value="CommunicationRequest.sender"/>
-      <searchRevInclude value="CommunicationRequest.recipient"/>
-      <searchRevInclude value="Composition.attester"/>
-      <searchRevInclude value="Consent.actor"/>
-      <searchRevInclude value="Consent.organization"/>
-      <searchRevInclude value="Consent.recipient"/>
-      <searchRevInclude value="Consent.consentor"/>
-      <searchRevInclude value="Contract.agent"/>
-      <searchRevInclude value="Contract.authority"/>
-      <searchRevInclude value="Contract.signer"/>
-      <searchRevInclude value="Coverage.policyholder"/>
-      <searchRevInclude value="Coverage.payor"/>
-      <searchRevInclude value="Device.organization"/>
-      <searchRevInclude value="DeviceUseRequest.requester"/>
-      <searchRevInclude value="DeviceUseRequest.filler"/>
-      <searchRevInclude value="DiagnosticReport.performer"/>
-      <searchRevInclude value="DiagnosticRequest.requester"/>
-      <searchRevInclude value="DiagnosticRequest.filler"/>
-      <searchRevInclude value="DocumentManifest.author"/>
-      <searchRevInclude value="DocumentManifest.recipient"/>
-      <searchRevInclude value="DocumentReference.authenticator"/>
-      <searchRevInclude value="DocumentReference.custodian"/>
-      <searchRevInclude value="DocumentReference.author"/>
-      <searchRevInclude value="EligibilityRequest.organization"/>
-      <searchRevInclude value="EligibilityResponse.insurer"/>
-      <searchRevInclude value="EligibilityResponse.request-organization"/>
-      <searchRevInclude value="Encounter.service-provider"/>
-      <searchRevInclude value="Endpoint.organization"/>
-      <searchRevInclude value="EnrollmentRequest.organization"/>
-      <searchRevInclude value="EnrollmentResponse.organization"/>
-      <searchRevInclude value="EpisodeOfCare.organization"/>
-      <searchRevInclude value="ExplanationOfBenefit.organization"/>
-      <searchRevInclude value="Flag.subject"/>
-      <searchRevInclude value="Flag.patient"/>
-      <searchRevInclude value="Flag.author"/>
-      <searchRevInclude value="Goal.patient"/>
-      <searchRevInclude value="Goal.subject"/>
-      <searchRevInclude value="HealthcareService.organization"/>
-      <searchRevInclude value="ImagingManifest.author"/>
-      <searchRevInclude value="Immunization.manufacturer"/>
-      <searchRevInclude value="Linkage.author"/>
-      <searchRevInclude value="Location.organization"/>
-      <searchRevInclude value="Medication.manufacturer"/>
-      <searchRevInclude value="MedicationRequest.requester"/>
-      <searchRevInclude value="MedicationRequest.intended-dispenser"/>
-      <searchRevInclude value="MedicationStatement.source"/>
-      <searchRevInclude value="MessageHeader.receiver"/>
-      <searchRevInclude value="MessageHeader.responsible"/>
-      <searchRevInclude value="Observation.performer"/>
-      <searchRevInclude value="Organization.partof"/>
-      <searchRevInclude value="Patient.general-practitioner"/>
-      <searchRevInclude value="Patient.organization"/>
-      <searchRevInclude value="PaymentNotice.organization"/>
-      <searchRevInclude value="PaymentReconciliation.organization"/>
-      <searchRevInclude value="PaymentReconciliation.request-organization"/>
-      <searchRevInclude value="Person.organization"/>
-      <searchRevInclude value="Practitioner.organization"/>
-      <searchRevInclude value="PractitionerRole.organization"/>
-      <searchRevInclude value="Procedure.performer"/>
-      <searchRevInclude value="ProcedureRequest.performer"/>
-      <searchRevInclude value="ProcessRequest.organization"/>
-      <searchRevInclude value="ProcessResponse.organization"/>
-      <searchRevInclude value="ProcessResponse.request-organization"/>
-      <searchRevInclude value="ReferralRequest.requester"/>
-      <searchRevInclude value="ReferralRequest.recipient"/>
-      <searchRevInclude value="ResearchStudy.sponsor"/>
-      <searchRevInclude value="SupplyRequest.supplier"/>
-      <searchRevInclude value="SupplyRequest.source"/>
-      <searchRevInclude value="Task.owner"/>
-      <searchRevInclude value="Task.requester"/>
-      <searchRevInclude value="Task.organization"/>
       <searchParam>
         <name value="identifier"/>
         <definition value="http://hl7.org/fhir/SearchParameter/organization-identifier"/>
@@ -10567,147 +10202,6 @@ Requires the near-distance parameter to be provided also"/>
       <searchInclude value="Patient.link"/>
       <searchInclude value="Patient.general-practitioner"/>
       <searchInclude value="Patient.organization"/>
-      <searchRevInclude value="Account.subject"/>
-      <searchRevInclude value="Account.patient"/>
-      <searchRevInclude value="AllergyIntolerance.recorder"/>
-      <searchRevInclude value="AllergyIntolerance.asserter"/>
-      <searchRevInclude value="AllergyIntolerance.patient"/>
-      <searchRevInclude value="Appointment.actor"/>
-      <searchRevInclude value="Appointment.practitioner"/>
-      <searchRevInclude value="Appointment.patient"/>
-      <searchRevInclude value="Appointment.location"/>
-      <searchRevInclude value="AppointmentResponse.actor"/>
-      <searchRevInclude value="AppointmentResponse.practitioner"/>
-      <searchRevInclude value="AppointmentResponse.patient"/>
-      <searchRevInclude value="AppointmentResponse.location"/>
-      <searchRevInclude value="AuditEvent.agent"/>
-      <searchRevInclude value="AuditEvent.patient"/>
-      <searchRevInclude value="Basic.author"/>
-      <searchRevInclude value="BodySite.patient"/>
-      <searchRevInclude value="CarePlan.performer"/>
-      <searchRevInclude value="CarePlan.subject"/>
-      <searchRevInclude value="CarePlan.patient"/>
-      <searchRevInclude value="CareTeam.patient"/>
-      <searchRevInclude value="CareTeam.subject"/>
-      <searchRevInclude value="CareTeam.participant"/>
-      <searchRevInclude value="Claim.patient"/>
-      <searchRevInclude value="ClinicalImpression.patient"/>
-      <searchRevInclude value="ClinicalImpression.subject"/>
-      <searchRevInclude value="Communication.sender"/>
-      <searchRevInclude value="Communication.subject"/>
-      <searchRevInclude value="Communication.patient"/>
-      <searchRevInclude value="Communication.recipient"/>
-      <searchRevInclude value="CommunicationRequest.requester"/>
-      <searchRevInclude value="CommunicationRequest.subject"/>
-      <searchRevInclude value="CommunicationRequest.sender"/>
-      <searchRevInclude value="CommunicationRequest.patient"/>
-      <searchRevInclude value="CommunicationRequest.recipient"/>
-      <searchRevInclude value="Composition.author"/>
-      <searchRevInclude value="Composition.attester"/>
-      <searchRevInclude value="Condition.subject"/>
-      <searchRevInclude value="Condition.asserter"/>
-      <searchRevInclude value="Condition.patient"/>
-      <searchRevInclude value="Consent.actor"/>
-      <searchRevInclude value="Consent.patient"/>
-      <searchRevInclude value="Consent.recipient"/>
-      <searchRevInclude value="Consent.consentor"/>
-      <searchRevInclude value="Contract.agent"/>
-      <searchRevInclude value="Contract.signer"/>
-      <searchRevInclude value="Coverage.policyholder"/>
-      <searchRevInclude value="Coverage.subscriber"/>
-      <searchRevInclude value="Coverage.payor"/>
-      <searchRevInclude value="Coverage.beneficiary"/>
-      <searchRevInclude value="DetectedIssue.patient"/>
-      <searchRevInclude value="Device.patient"/>
-      <searchRevInclude value="DeviceUseRequest.subject"/>
-      <searchRevInclude value="DeviceUseRequest.patient"/>
-      <searchRevInclude value="DeviceUseRequest.filler"/>
-      <searchRevInclude value="DeviceUseStatement.subject"/>
-      <searchRevInclude value="DeviceUseStatement.patient"/>
-      <searchRevInclude value="DiagnosticReport.subject"/>
-      <searchRevInclude value="DiagnosticReport.patient"/>
-      <searchRevInclude value="DiagnosticRequest.subject"/>
-      <searchRevInclude value="DiagnosticRequest.patient"/>
-      <searchRevInclude value="DiagnosticRequest.filler"/>
-      <searchRevInclude value="DocumentManifest.subject"/>
-      <searchRevInclude value="DocumentManifest.author"/>
-      <searchRevInclude value="DocumentManifest.patient"/>
-      <searchRevInclude value="DocumentManifest.recipient"/>
-      <searchRevInclude value="DocumentReference.subject"/>
-      <searchRevInclude value="DocumentReference.patient"/>
-      <searchRevInclude value="DocumentReference.author"/>
-      <searchRevInclude value="EligibilityRequest.patient"/>
-      <searchRevInclude value="Encounter.patient"/>
-      <searchRevInclude value="EnrollmentRequest.subject"/>
-      <searchRevInclude value="EnrollmentRequest.patient"/>
-      <searchRevInclude value="EpisodeOfCare.patient"/>
-      <searchRevInclude value="ExplanationOfBenefit.patient"/>
-      <searchRevInclude value="FamilyMemberHistory.patient"/>
-      <searchRevInclude value="Flag.subject"/>
-      <searchRevInclude value="Flag.patient"/>
-      <searchRevInclude value="Flag.author"/>
-      <searchRevInclude value="Goal.patient"/>
-      <searchRevInclude value="Goal.subject"/>
-      <searchRevInclude value="Group.member"/>
-      <searchRevInclude value="GuidanceResponse.patient"/>
-      <searchRevInclude value="GuidanceResponse.subject"/>
-      <searchRevInclude value="ImagingManifest.author"/>
-      <searchRevInclude value="ImagingManifest.patient"/>
-      <searchRevInclude value="ImagingStudy.patient"/>
-      <searchRevInclude value="Immunization.patient"/>
-      <searchRevInclude value="ImmunizationRecommendation.patient"/>
-      <searchRevInclude value="List.subject"/>
-      <searchRevInclude value="List.patient"/>
-      <searchRevInclude value="List.source"/>
-      <searchRevInclude value="MeasureReport.patient"/>
-      <searchRevInclude value="Media.subject"/>
-      <searchRevInclude value="Media.patient"/>
-      <searchRevInclude value="MedicationAdministration.performer"/>
-      <searchRevInclude value="MedicationAdministration.patient"/>
-      <searchRevInclude value="MedicationDispense.receiver"/>
-      <searchRevInclude value="MedicationDispense.patient"/>
-      <searchRevInclude value="MedicationRequest.requester"/>
-      <searchRevInclude value="MedicationRequest.patient"/>
-      <searchRevInclude value="MedicationStatement.subject"/>
-      <searchRevInclude value="MedicationStatement.source"/>
-      <searchRevInclude value="NutritionRequest.patient"/>
-      <searchRevInclude value="Observation.performer"/>
-      <searchRevInclude value="Observation.subject"/>
-      <searchRevInclude value="Observation.patient"/>
-      <searchRevInclude value="Patient.link"/>
-      <searchRevInclude value="Person.practitioner"/>
-      <searchRevInclude value="Person.link"/>
-      <searchRevInclude value="Person.relatedperson"/>
-      <searchRevInclude value="Person.patient"/>
-      <searchRevInclude value="Procedure.performer"/>
-      <searchRevInclude value="Procedure.subject"/>
-      <searchRevInclude value="Procedure.patient"/>
-      <searchRevInclude value="ProcedureRequest.performer"/>
-      <searchRevInclude value="ProcedureRequest.subject"/>
-      <searchRevInclude value="ProcedureRequest.patient"/>
-      <searchRevInclude value="ProcedureRequest.orderer"/>
-      <searchRevInclude value="QuestionnaireResponse.author"/>
-      <searchRevInclude value="QuestionnaireResponse.source"/>
-      <searchRevInclude value="ReferralRequest.requester"/>
-      <searchRevInclude value="ReferralRequest.patient"/>
-      <searchRevInclude value="RelatedPerson.patient"/>
-      <searchRevInclude value="RequestGroup.patient"/>
-      <searchRevInclude value="RequestGroup.subject"/>
-      <searchRevInclude value="RequestGroup.participant"/>
-      <searchRevInclude value="ResearchSubject.individual"/>
-      <searchRevInclude value="ResearchSubject.patient"/>
-      <searchRevInclude value="RiskAssessment.subject"/>
-      <searchRevInclude value="RiskAssessment.patient"/>
-      <searchRevInclude value="Schedule.actor"/>
-      <searchRevInclude value="Sequence.patient"/>
-      <searchRevInclude value="Specimen.subject"/>
-      <searchRevInclude value="Specimen.patient"/>
-      <searchRevInclude value="SupplyDelivery.patient"/>
-      <searchRevInclude value="SupplyRequest.patient"/>
-      <searchRevInclude value="SupplyRequest.source"/>
-      <searchRevInclude value="Task.owner"/>
-      <searchRevInclude value="Task.requester"/>
-      <searchRevInclude value="VisionPrescription.patient"/>
       <searchParam>
         <name value="birthdate"/>
         <definition value="http://hl7.org/fhir/SearchParameter/patient-birthdate"/>
@@ -11096,11 +10590,6 @@ Requires the near-distance parameter to be provided also"/>
       <searchInclude value="Person.relatedperson"/>
       <searchInclude value="Person.patient"/>
       <searchInclude value="Person.organization"/>
-      <searchRevInclude value="Person.practitioner"/>
-      <searchRevInclude value="Person.link"/>
-      <searchRevInclude value="Person.relatedperson"/>
-      <searchRevInclude value="Person.patient"/>
-      <searchRevInclude value="RequestGroup.participant"/>
       <searchParam>
         <name value="identifier"/>
         <definition value="http://hl7.org/fhir/SearchParameter/person-identifier"/>
@@ -11258,9 +10747,6 @@ Requires the near-distance parameter to be provided also"/>
       <conditionalDelete value="multiple"/>
       <referencePolicy value="literal"/>
       <referencePolicy value="logical"/>
-      <searchRevInclude value="Flag.subject"/>
-      <searchRevInclude value="Flag.patient"/>
-      <searchRevInclude value="ResearchStudy.protocol"/>
       <searchParam>
         <name value="date"/>
         <definition value="http://hl7.org/fhir/SearchParameter/plandefinition-date"/>
@@ -11379,111 +10865,6 @@ Requires the near-distance parameter to be provided also"/>
       <searchInclude value="Practitioner.endpoint"/>
       <searchInclude value="Practitioner.organization"/>
       <searchInclude value="Practitioner.location"/>
-      <searchRevInclude value="Account.subject"/>
-      <searchRevInclude value="Account.patient"/>
-      <searchRevInclude value="AllergyIntolerance.recorder"/>
-      <searchRevInclude value="AllergyIntolerance.asserter"/>
-      <searchRevInclude value="Appointment.actor"/>
-      <searchRevInclude value="Appointment.practitioner"/>
-      <searchRevInclude value="Appointment.patient"/>
-      <searchRevInclude value="Appointment.location"/>
-      <searchRevInclude value="AppointmentResponse.actor"/>
-      <searchRevInclude value="AppointmentResponse.practitioner"/>
-      <searchRevInclude value="AppointmentResponse.patient"/>
-      <searchRevInclude value="AppointmentResponse.location"/>
-      <searchRevInclude value="AuditEvent.agent"/>
-      <searchRevInclude value="AuditEvent.patient"/>
-      <searchRevInclude value="Basic.author"/>
-      <searchRevInclude value="CarePlan.performer"/>
-      <searchRevInclude value="CareTeam.participant"/>
-      <searchRevInclude value="Claim.provider"/>
-      <searchRevInclude value="ClinicalImpression.assessor"/>
-      <searchRevInclude value="Communication.sender"/>
-      <searchRevInclude value="Communication.recipient"/>
-      <searchRevInclude value="CommunicationRequest.requester"/>
-      <searchRevInclude value="CommunicationRequest.sender"/>
-      <searchRevInclude value="CommunicationRequest.recipient"/>
-      <searchRevInclude value="Composition.author"/>
-      <searchRevInclude value="Composition.attester"/>
-      <searchRevInclude value="Condition.asserter"/>
-      <searchRevInclude value="Consent.actor"/>
-      <searchRevInclude value="Consent.recipient"/>
-      <searchRevInclude value="Consent.consentor"/>
-      <searchRevInclude value="Contract.agent"/>
-      <searchRevInclude value="Contract.signer"/>
-      <searchRevInclude value="DetectedIssue.author"/>
-      <searchRevInclude value="DeviceUseRequest.requester"/>
-      <searchRevInclude value="DeviceUseRequest.filler"/>
-      <searchRevInclude value="DiagnosticReport.performer"/>
-      <searchRevInclude value="DiagnosticRequest.requester"/>
-      <searchRevInclude value="DiagnosticRequest.filler"/>
-      <searchRevInclude value="DocumentManifest.subject"/>
-      <searchRevInclude value="DocumentManifest.author"/>
-      <searchRevInclude value="DocumentManifest.patient"/>
-      <searchRevInclude value="DocumentManifest.recipient"/>
-      <searchRevInclude value="DocumentReference.subject"/>
-      <searchRevInclude value="DocumentReference.patient"/>
-      <searchRevInclude value="DocumentReference.authenticator"/>
-      <searchRevInclude value="DocumentReference.author"/>
-      <searchRevInclude value="EligibilityRequest.provider"/>
-      <searchRevInclude value="EligibilityResponse.request-provider"/>
-      <searchRevInclude value="Encounter.practitioner"/>
-      <searchRevInclude value="Encounter.participant"/>
-      <searchRevInclude value="EpisodeOfCare.care-manager"/>
-      <searchRevInclude value="ExplanationOfBenefit.provider"/>
-      <searchRevInclude value="Flag.subject"/>
-      <searchRevInclude value="Flag.patient"/>
-      <searchRevInclude value="Flag.author"/>
-      <searchRevInclude value="Group.member"/>
-      <searchRevInclude value="ImagingManifest.author"/>
-      <searchRevInclude value="Immunization.requester"/>
-      <searchRevInclude value="Immunization.performer"/>
-      <searchRevInclude value="Linkage.author"/>
-      <searchRevInclude value="List.source"/>
-      <searchRevInclude value="Media.subject"/>
-      <searchRevInclude value="Media.patient"/>
-      <searchRevInclude value="Media.operator"/>
-      <searchRevInclude value="MedicationAdministration.performer"/>
-      <searchRevInclude value="MedicationDispense.receiver"/>
-      <searchRevInclude value="MedicationDispense.responsibleparty"/>
-      <searchRevInclude value="MedicationDispense.dispenser"/>
-      <searchRevInclude value="MedicationRequest.requester"/>
-      <searchRevInclude value="MedicationStatement.source"/>
-      <searchRevInclude value="MessageHeader.receiver"/>
-      <searchRevInclude value="MessageHeader.author"/>
-      <searchRevInclude value="MessageHeader.responsible"/>
-      <searchRevInclude value="MessageHeader.enterer"/>
-      <searchRevInclude value="NutritionRequest.provider"/>
-      <searchRevInclude value="Observation.performer"/>
-      <searchRevInclude value="Patient.general-practitioner"/>
-      <searchRevInclude value="PaymentNotice.provider"/>
-      <searchRevInclude value="PaymentReconciliation.request-provider"/>
-      <searchRevInclude value="Person.practitioner"/>
-      <searchRevInclude value="Person.link"/>
-      <searchRevInclude value="Person.relatedperson"/>
-      <searchRevInclude value="Person.patient"/>
-      <searchRevInclude value="PractitionerRole.practitioner"/>
-      <searchRevInclude value="Procedure.performer"/>
-      <searchRevInclude value="ProcedureRequest.performer"/>
-      <searchRevInclude value="ProcedureRequest.orderer"/>
-      <searchRevInclude value="ProcessRequest.provider"/>
-      <searchRevInclude value="ProcessResponse.request-provider"/>
-      <searchRevInclude value="QuestionnaireResponse.author"/>
-      <searchRevInclude value="QuestionnaireResponse.source"/>
-      <searchRevInclude value="ReferralRequest.requester"/>
-      <searchRevInclude value="ReferralRequest.recipient"/>
-      <searchRevInclude value="RequestGroup.author"/>
-      <searchRevInclude value="RequestGroup.participant"/>
-      <searchRevInclude value="ResearchStudy.principalinvestigator"/>
-      <searchRevInclude value="RiskAssessment.performer"/>
-      <searchRevInclude value="Schedule.actor"/>
-      <searchRevInclude value="Specimen.collector"/>
-      <searchRevInclude value="SupplyDelivery.receiver"/>
-      <searchRevInclude value="SupplyDelivery.supplier"/>
-      <searchRevInclude value="SupplyRequest.source"/>
-      <searchRevInclude value="Task.owner"/>
-      <searchRevInclude value="Task.requester"/>
-      <searchRevInclude value="VisionPrescription.prescriber"/>
       <searchParam>
         <name value="identifier"/>
         <definition value="http://hl7.org/fhir/SearchParameter/practitioner-identifier"/>
@@ -11771,13 +11152,6 @@ Requires the near-distance parameter to be provided also"/>
       <searchInclude value="Procedure.patient"/>
       <searchInclude value="Procedure.location"/>
       <searchInclude value="Procedure.encounter"/>
-      <searchRevInclude value="ClinicalImpression.action"/>
-      <searchRevInclude value="Encounter.procedure"/>
-      <searchRevInclude value="Encounter.condition"/>
-      <searchRevInclude value="Encounter.indication"/>
-      <searchRevInclude value="Flag.subject"/>
-      <searchRevInclude value="Flag.patient"/>
-      <searchRevInclude value="QuestionnaireResponse.parent"/>
       <searchParam>
         <name value="date"/>
         <definition value="http://hl7.org/fhir/SearchParameter/procedure-date"/>
@@ -11880,11 +11254,6 @@ Requires the near-distance parameter to be provided also"/>
       <searchInclude value="ProcedureRequest.patient"/>
       <searchInclude value="ProcedureRequest.orderer"/>
       <searchInclude value="ProcedureRequest.encounter"/>
-      <searchRevInclude value="CarePlan.activityreference"/>
-      <searchRevInclude value="ClinicalImpression.action"/>
-      <searchRevInclude value="DiagnosticReport.request"/>
-      <searchRevInclude value="ImagingStudy.basedon"/>
-      <searchRevInclude value="ReferralRequest.basedon"/>
       <searchParam>
         <name value="identifier"/>
         <definition value="http://hl7.org/fhir/SearchParameter/procedurerequest-identifier"/>
@@ -11984,8 +11353,6 @@ Requires the near-distance parameter to be provided also"/>
       <referencePolicy value="logical"/>
       <searchInclude value="ProcessRequest.provider"/>
       <searchInclude value="ProcessRequest.organization"/>
-      <searchRevInclude value="CarePlan.activityreference"/>
-      <searchRevInclude value="PaymentReconciliation.request"/>
       <searchParam>
         <name value="identifier"/>
         <definition value="http://hl7.org/fhir/SearchParameter/processrequest-identifier"/>
@@ -12225,7 +11592,6 @@ Requires the near-distance parameter to be provided also"/>
       <conditionalDelete value="multiple"/>
       <referencePolicy value="literal"/>
       <referencePolicy value="logical"/>
-      <searchRevInclude value="QuestionnaireResponse.questionnaire"/>
       <searchParam>
         <name value="date"/>
         <definition value="http://hl7.org/fhir/SearchParameter/questionnaire-date"/>
@@ -12325,9 +11691,6 @@ Requires the near-distance parameter to be provided also"/>
       <searchInclude value="QuestionnaireResponse.patient"/>
       <searchInclude value="QuestionnaireResponse.context"/>
       <searchInclude value="QuestionnaireResponse.source"/>
-      <searchRevInclude value="ClinicalImpression.investigation"/>
-      <searchRevInclude value="Consent.source"/>
-      <searchRevInclude value="Observation.related-target"/>
       <searchParam>
         <name value="authored"/>
         <definition value="http://hl7.org/fhir/SearchParameter/questionnaireresponse-authored"/>
@@ -12442,14 +11805,6 @@ Requires the near-distance parameter to be provided also"/>
       <searchInclude value="ReferralRequest.recipient"/>
       <searchInclude value="ReferralRequest.context"/>
       <searchInclude value="ReferralRequest.basedon"/>
-      <searchRevInclude value="CarePlan.activityreference"/>
-      <searchRevInclude value="ClinicalImpression.action"/>
-      <searchRevInclude value="DiagnosticReport.request"/>
-      <searchRevInclude value="Encounter.incomingreferral"/>
-      <searchRevInclude value="EpisodeOfCare.incomingreferral"/>
-      <searchRevInclude value="ImagingStudy.basedon"/>
-      <searchRevInclude value="QuestionnaireResponse.based-on"/>
-      <searchRevInclude value="ReferralRequest.basedon"/>
       <searchParam>
         <name value="date"/>
         <definition value="http://hl7.org/fhir/SearchParameter/referralrequest-date"/>
@@ -12566,61 +11921,6 @@ Requires the near-distance parameter to be provided also"/>
       <referencePolicy value="literal"/>
       <referencePolicy value="logical"/>
       <searchInclude value="RelatedPerson.patient"/>
-      <searchRevInclude value="AllergyIntolerance.asserter"/>
-      <searchRevInclude value="Appointment.actor"/>
-      <searchRevInclude value="Appointment.practitioner"/>
-      <searchRevInclude value="Appointment.patient"/>
-      <searchRevInclude value="Appointment.location"/>
-      <searchRevInclude value="AppointmentResponse.actor"/>
-      <searchRevInclude value="AppointmentResponse.practitioner"/>
-      <searchRevInclude value="AppointmentResponse.patient"/>
-      <searchRevInclude value="AppointmentResponse.location"/>
-      <searchRevInclude value="AuditEvent.agent"/>
-      <searchRevInclude value="AuditEvent.patient"/>
-      <searchRevInclude value="Basic.author"/>
-      <searchRevInclude value="CarePlan.performer"/>
-      <searchRevInclude value="CareTeam.participant"/>
-      <searchRevInclude value="Communication.sender"/>
-      <searchRevInclude value="Communication.recipient"/>
-      <searchRevInclude value="CommunicationRequest.requester"/>
-      <searchRevInclude value="CommunicationRequest.sender"/>
-      <searchRevInclude value="CommunicationRequest.recipient"/>
-      <searchRevInclude value="Composition.author"/>
-      <searchRevInclude value="Condition.asserter"/>
-      <searchRevInclude value="Consent.actor"/>
-      <searchRevInclude value="Consent.recipient"/>
-      <searchRevInclude value="Consent.consentor"/>
-      <searchRevInclude value="Contract.agent"/>
-      <searchRevInclude value="Contract.signer"/>
-      <searchRevInclude value="Coverage.policyholder"/>
-      <searchRevInclude value="Coverage.subscriber"/>
-      <searchRevInclude value="Coverage.payor"/>
-      <searchRevInclude value="DeviceUseRequest.filler"/>
-      <searchRevInclude value="DiagnosticRequest.filler"/>
-      <searchRevInclude value="DocumentManifest.author"/>
-      <searchRevInclude value="DocumentManifest.recipient"/>
-      <searchRevInclude value="DocumentReference.author"/>
-      <searchRevInclude value="Encounter.practitioner"/>
-      <searchRevInclude value="Encounter.participant"/>
-      <searchRevInclude value="ImagingManifest.author"/>
-      <searchRevInclude value="MedicationAdministration.performer"/>
-      <searchRevInclude value="MedicationRequest.requester"/>
-      <searchRevInclude value="MedicationStatement.source"/>
-      <searchRevInclude value="Observation.performer"/>
-      <searchRevInclude value="Patient.link"/>
-      <searchRevInclude value="Person.practitioner"/>
-      <searchRevInclude value="Person.link"/>
-      <searchRevInclude value="Person.relatedperson"/>
-      <searchRevInclude value="Person.patient"/>
-      <searchRevInclude value="Procedure.performer"/>
-      <searchRevInclude value="ProcedureRequest.performer"/>
-      <searchRevInclude value="ProcedureRequest.orderer"/>
-      <searchRevInclude value="QuestionnaireResponse.author"/>
-      <searchRevInclude value="QuestionnaireResponse.source"/>
-      <searchRevInclude value="RequestGroup.participant"/>
-      <searchRevInclude value="Schedule.actor"/>
-      <searchRevInclude value="Task.owner"/>
-      <searchRevInclude value="Task.requester"/>
       <searchParam>
         <name value="identifier"/>
         <definition value="http://hl7.org/fhir/SearchParameter/relatedperson-identifier"/>
@@ -12850,7 +12150,6 @@ Requires the near-distance parameter to be provided also"/>
       <searchInclude value="ResearchStudy.principalinvestigator"/>
       <searchInclude value="ResearchStudy.protocol"/>
       <searchInclude value="ResearchStudy.site"/>
-      <searchRevInclude value="ResearchStudy.partof"/>
       <searchParam>
         <name value="date"/>
         <definition value="http://hl7.org/fhir/SearchParameter/researchstudy-date"/>
@@ -13052,7 +12351,6 @@ Requires the near-distance parameter to be provided also"/>
       <searchInclude value="RiskAssessment.subject"/>
       <searchInclude value="RiskAssessment.patient"/>
       <searchInclude value="RiskAssessment.encounter"/>
-      <searchRevInclude value="ClinicalImpression.investigation"/>
       <searchParam>
         <name value="date"/>
         <definition value="http://hl7.org/fhir/SearchParameter/riskassessment-date"/>
@@ -13145,7 +12443,6 @@ Requires the near-distance parameter to be provided also"/>
       <referencePolicy value="literal"/>
       <referencePolicy value="logical"/>
       <searchInclude value="Schedule.actor"/>
-      <searchRevInclude value="Slot.schedule"/>
       <searchParam>
         <name value="actor"/>
         <definition value="http://hl7.org/fhir/SearchParameter/schedule-actor"/>
@@ -13220,7 +12517,6 @@ Requires the near-distance parameter to be provided also"/>
       <referencePolicy value="literal"/>
       <referencePolicy value="logical"/>
       <searchInclude value="SearchParameter.component"/>
-      <searchRevInclude value="SearchParameter.component"/>
       <searchParam>
         <name value="date"/>
         <definition value="http://hl7.org/fhir/SearchParameter/searchparameter-date"/>
@@ -13349,7 +12645,6 @@ Requires the near-distance parameter to be provided also"/>
       <referencePolicy value="literal"/>
       <referencePolicy value="logical"/>
       <searchInclude value="Sequence.patient"/>
-      <searchRevInclude value="Observation.related-target"/>
       <searchParam>
         <name value="identifier"/>
         <definition value="http://hl7.org/fhir/SearchParameter/sequence-identifier"/>
@@ -13628,11 +12923,6 @@ Requires the near-distance parameter to be provided also"/>
       <searchInclude value="Specimen.subject"/>
       <searchInclude value="Specimen.patient"/>
       <searchInclude value="Specimen.collector"/>
-      <searchRevInclude value="DiagnosticReport.specimen"/>
-      <searchRevInclude value="Media.subject"/>
-      <searchRevInclude value="Media.patient"/>
-      <searchRevInclude value="Observation.specimen"/>
-      <searchRevInclude value="Specimen.parent"/>
       <searchParam>
         <name value="container"/>
         <definition value="http://hl7.org/fhir/SearchParameter/specimen-container"/>
@@ -13743,9 +13033,6 @@ Requires the near-distance parameter to be provided also"/>
       <referencePolicy value="literal"/>
       <referencePolicy value="logical"/>
       <searchInclude value="StructureDefinition.valueset"/>
-      <searchRevInclude value="CapabilityStatement.supported-profile"/>
-      <searchRevInclude value="CapabilityStatement.resourceprofile"/>
-      <searchRevInclude value="OperationDefinition.paramprofile"/>
       <searchParam>
         <name value="date"/>
         <definition value="http://hl7.org/fhir/SearchParameter/structuredefinition-date"/>
@@ -14110,12 +13397,6 @@ Requires the near-distance parameter to be provided also"/>
       <referencePolicy value="literal"/>
       <referencePolicy value="logical"/>
       <searchInclude value="Substance.substance-reference"/>
-      <searchRevInclude value="Contract.agent"/>
-      <searchRevInclude value="Group.member"/>
-      <searchRevInclude value="Medication.ingredient"/>
-      <searchRevInclude value="Specimen.subject"/>
-      <searchRevInclude value="Specimen.patient"/>
-      <searchRevInclude value="Substance.substance-reference"/>
       <searchParam>
         <name value="identifier"/>
         <definition value="http://hl7.org/fhir/SearchParameter/substance-identifier"/>
@@ -14375,7 +13656,6 @@ Requires the near-distance parameter to be provided also"/>
       <searchInclude value="Task.definition-ref"/>
       <searchInclude value="Task.organization"/>
       <searchInclude value="Task.context"/>
-      <searchRevInclude value="Task.part-of"/>
       <searchParam>
         <name value="owner"/>
         <definition value="http://hl7.org/fhir/SearchParameter/task-owner"/>
@@ -14631,7 +13911,6 @@ Requires the near-distance parameter to be provided also"/>
       <conditionalDelete value="multiple"/>
       <referencePolicy value="literal"/>
       <referencePolicy value="logical"/>
-      <searchRevInclude value="TestReport.testscript"/>
       <searchParam>
         <name value="date"/>
         <definition value="http://hl7.org/fhir/SearchParameter/testscript-date"/>
@@ -14741,11 +14020,6 @@ Requires the near-distance parameter to be provided also"/>
       <conditionalDelete value="multiple"/>
       <referencePolicy value="literal"/>
       <referencePolicy value="logical"/>
-      <searchRevInclude value="ConceptMap.source"/>
-      <searchRevInclude value="ConceptMap.target"/>
-      <searchRevInclude value="ConceptMap.source-uri"/>
-      <searchRevInclude value="ConceptMap.target-uri"/>
-      <searchRevInclude value="StructureDefinition.valueset"/>
       <searchParam>
         <name value="date"/>
         <definition value="http://hl7.org/fhir/SearchParameter/valueset-date"/>
@@ -14864,7 +14138,6 @@ Requires the near-distance parameter to be provided also"/>
       <searchInclude value="VisionPrescription.prescriber"/>
       <searchInclude value="VisionPrescription.patient"/>
       <searchInclude value="VisionPrescription.encounter"/>
-      <searchRevInclude value="CarePlan.activityreference"/>
       <searchParam>
         <name value="prescriber"/>
         <definition value="http://hl7.org/fhir/SearchParameter/visionprescription-prescriber"/>

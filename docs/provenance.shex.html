@@ -155,6 +155,20 @@ start=@&lt;Provenance&gt; AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
+# An entity used in this activity
+&lt;Provenance.entity&gt; CLOSED {
+    fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
+    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @&lt;Extension&gt;*;   # Extensions that cannot be ignored
+    fhir:Provenance.entity.role @&lt;code&gt; AND
+    	{fhir:value @fhirvs:provenance-entity-role};  # derivation | revision | quotation 
+                                            # | source | removal 
+    fhir:Provenance.entity.reference @&lt;Reference&gt;;  # Identity of entity
+    fhir:Provenance.entity.agent @&lt;Provenance.agent&gt;*;  # Entity is attributed to this agent
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
 # Actor involved
 &lt;Provenance.agent&gt; CLOSED {
     fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
@@ -179,20 +193,6 @@ start=@&lt;Provenance&gt; AND {fhir:nodeRole [fhir:treeRoot]}
         fhir:Provenance.agent.onBehalfOfReference @&lt;Reference&gt; 
     )?;
     fhir:Provenance.agent.relatedAgentType @&lt;CodeableConcept&gt;?;  # Type of relationship between agents
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
-# An entity used in this activity
-&lt;Provenance.entity&gt; CLOSED {
-    fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
-    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @&lt;Extension&gt;*;   # Extensions that cannot be ignored
-    fhir:Provenance.entity.role @&lt;code&gt; AND
-    	{fhir:value @fhirvs:provenance-entity-role};  # derivation | revision | quotation 
-                                            # | source | removal 
-    fhir:Provenance.entity.reference @&lt;Reference&gt;;  # Identity of entity
-    fhir:Provenance.entity.agent @&lt;Provenance.agent&gt;*;  # Entity is attributed to this agent
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -419,11 +419,11 @@ start=@&lt;Provenance&gt; AND {fhir:nodeRole [fhir:treeRoot]}
 
 #---------------------- Value Sets ------------------------
 
-# How an entity was used in an activity.
-fhirvs:provenance-entity-role [&quot;derivation&quot; &quot;revision&quot; &quot;quotation&quot; &quot;source&quot; &quot;removal&quot;]
-
 # Identifies the purpose for this identifier, if known .
 fhirvs:identifier-use [&quot;usual&quot; &quot;official&quot; &quot;temp&quot; &quot;secondary&quot;]
+
+# How an entity was used in an activity.
+fhirvs:provenance-entity-role [&quot;derivation&quot; &quot;revision&quot; &quot;quotation&quot; &quot;source&quot; &quot;removal&quot;]
 
 # The status of a resource narrative
 fhirvs:narrative-status [&quot;generated&quot; &quot;extensions&quot; &quot;additional&quot; &quot;empty&quot;]
@@ -452,7 +452,7 @@ of the specification.
 		<div class="container"><!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        © HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:28-0500. <a href="qa.html">QA Page</a>
+        © HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10597) generated on Mon, Dec 19, 2016 19:02-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search</a> | 

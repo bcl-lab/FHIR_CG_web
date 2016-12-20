@@ -1,6 +1,6 @@
 {
   "@context": "http://build.fhir.org/Provenance.jsonld",
-  "@context": "http://hl7.org/fhir/Provenance/cwl-example",
+  "@id": "http://hl7.org/fhir/Provenance/cwl-example",
   "Resource.id": {
     "id.value": "cwl-example"
   },
@@ -9,13 +9,13 @@
       "code.value": "generated"
     },
     "Narrative.div": {
-      "xhtml.value": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative with Details</b></p><p><b>id</b>: cwl-example</p><p><b>target</b>: <a>Sequence/sequence-complex-variant</a></p><p><b>period</b>: 2016-11-30 --&gt; (ongoing)</p><p><b>recorded</b>: 2016-12-1 8:12:14</p><p><b>reason</b>: profiling Short Tandem Repeats (STRs) from high throughput sequencing data. (Details: [not stated] code null = 'null', stated as 'profiling Short Tandem Repeats (STRs) from high throughput sequencing data.')</p><h3>Agents</h3><table><tr><td>-</td><td><b>Role</b></td><td><b>Who[x]</b></td></tr><tr><td>*</td><td>Author (Details: http://hl7.org/fhir/provenance-participant-role code author = 'Author', stated as 'null')</td><td><a>Patient/72</a></td></tr></table><h3>Entities</h3><table><tr><td>-</td><td><b>Role</b></td><td><b>Reference</b></td></tr><tr><td>*</td><td>source</td><td><a>CWL example</a></td></tr></table></div>"
+      "xhtml.value": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative with Details</b></p><p><b>id</b>: cwl-example</p><p><b>target</b>: <a>Sequence/example-pgx-1</a></p><p><b>period</b>: 2016-11-30 --&gt; (ongoing)</p><p><b>recorded</b>: 2016-12-1 8:12:14</p><p><b>reason</b>: profiling Short Tandem Repeats (STRs) from high throughput sequencing data. (Details: [not stated] code null = 'null', stated as 'profiling Short Tandem Repeats (STRs) from high throughput sequencing data.')</p><p><b>policy</b>: <a>https://github.com/common-workflow-language/workflows/blob/master/workflows/lobSTR/lobSTR-workflow.cwl</a></p><h3>Agents</h3><table><tr><td>-</td><td><b>Role</b></td><td><b>Who[x]</b></td></tr><tr><td>*</td><td>Author (Details: http://hl7.org/fhir/provenance-participant-role code author = 'Author', stated as 'null')</td><td><a>Patient/example</a></td></tr></table></div>"
     }
   },
   "Provenance.target": [
     {
       "Reference.reference": {
-        "string.value": "Sequence/sequence-complex-variant"
+        "string.value": "Sequence/example-pgx-1"
       }
     }
   ],
@@ -34,6 +34,11 @@
       }
     }
   ],
+  "Provenance.policy": [
+    {
+      "uri.value": "https://github.com/common-workflow-language/workflows/blob/master/workflows/lobSTR/lobSTR-workflow.cwl"
+    }
+  ],
   "Provenance.agent": [
     {
       "Provenance.agent.role": {
@@ -46,42 +51,9 @@
       },
       "Provenance.agent.whoReference": {
         "Reference.reference": {
-          "string.value": "Patient/72"
+          "string.value": "Patient/example"
         },
-        "Resource.reference": "http://hl7.org/fhir//Patient/72"
-      }
-    }
-  ],
-  "Provenance.entity": [
-    {
-      "Provenance.entity.role": {
-        "code.value": "source"
-      },
-      "Provenance.entity.reference": {
-        "Reference.reference": {
-          "string.value": "https://github.com/common-workflow-language/workflows/blob/master/workflows/lobSTR/lobSTR-workflow.cwl"
-        },
-        "Reference.identifier": {
-          "Identifier.type": {
-            "CodeableConcept.coding": [
-              {
-                "Coding.code": {
-                  "code.value": "CWL"
-                }
-              }
-            ]
-          },
-          "Identifier.system": {
-            "uri.value": "https://github.com/common-workflow-language/workflows"
-          },
-          "Identifier.value": {
-            "string.value": "lobSTR"
-          }
-        },
-        "Reference.display": {
-          "string.value": "CWL example"
-        },
-        "Resource.reference": "https://github.com/common-workflow-language/workflows/blob/master/workflows/lobSTR/lobSTR-workflow.cwl"
+        "Resource.reference": "http://hl7.org/fhir//Patient/example"
       }
     }
   ]

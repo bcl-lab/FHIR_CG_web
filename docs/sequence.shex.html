@@ -166,53 +166,7 @@ start=@&lt;Sequence&gt; AND {fhir:nodeRole [fhir:treeRoot]}
                                             # detailed report related with 
                                             # observedSeq in this resource 
     fhir:Sequence.pointer @&lt;Reference&gt;*;    # Pointer to next atomic sequence
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
-# Sequence variant
-&lt;Sequence.variant&gt; CLOSED {
-    fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
-    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @&lt;Extension&gt;*;   # Extensions that cannot be ignored
-    fhir:Sequence.variant.start @&lt;integer&gt;?;  # Start position of the variant on 
-                                            # the  reference sequence 
-    fhir:Sequence.variant.end @&lt;integer&gt;?;  # End position of the variant on the 
-                                            # reference sequence 
-    fhir:Sequence.variant.observedAllele @&lt;string&gt;?;  # Allele that was observed
-    fhir:Sequence.variant.referenceAllele @&lt;string&gt;?;  # Allele of reference sequence
-    fhir:Sequence.variant.cigar @&lt;string&gt;?;  # Extended CIGAR string for aligning 
-                                            # the sequence with reference bases 
-    fhir:Sequence.variant.variantPointer @&lt;Reference&gt;?;  # Pointer to observed variant 
-                                            # information 
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
-# Sequence quality
-&lt;Sequence.quality&gt; CLOSED {
-    fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
-    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @&lt;Extension&gt;*;   # Extensions that cannot be ignored
-    fhir:Sequence.quality.type @&lt;code&gt; AND
-    	{fhir:value @fhirvs:quality-type};  # INDEL | SNP | UNKNOWN
-    fhir:Sequence.quality.standardSequence @&lt;CodeableConcept&gt;?;  # Standard sequence for comparison
-    fhir:Sequence.quality.start @&lt;integer&gt;?;  # Start position of the sequence
-    fhir:Sequence.quality.end @&lt;integer&gt;?;  # End position of the sequence
-    fhir:Sequence.quality.score @&lt;Quantity&gt;?;  # Quality score
-    fhir:Sequence.quality.method @&lt;CodeableConcept&gt;?;  # Method for quality
-    fhir:Sequence.quality.truthTP @&lt;decimal&gt;?;  # True positives from the 
-                                            # perspective of the truth data 
-    fhir:Sequence.quality.queryTP @&lt;decimal&gt;?;  # True positives from the 
-                                            # perspective of the query data 
-    fhir:Sequence.quality.truthFN @&lt;decimal&gt;?;  # False negatives
-    fhir:Sequence.quality.queryFP @&lt;decimal&gt;?;  # False positives
-    fhir:Sequence.quality.gtFP @&lt;decimal&gt;?;  # False positives where the non-REF 
-                                            # alleles in the Truth and Query 
-                                            # Call Sets match 
-    fhir:Sequence.quality.precision @&lt;decimal&gt;?;  # Precision
-    fhir:Sequence.quality.recall @&lt;decimal&gt;?;  # Recall
-    fhir:Sequence.quality.fScore @&lt;decimal&gt;?;  # F-score
+    fhir:Sequence.structureVariant @&lt;Sequence.structureVariant&gt;*;  # Structural variant
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -255,6 +209,90 @@ start=@&lt;Sequence&gt; AND {fhir:nodeRole [fhir:treeRoot]}
                                             # the  reference sequence 
     fhir:Sequence.referenceSeq.windowEnd @&lt;integer&gt;;  # End position of the window on the 
                                             # reference sequence 
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
+# Sequence quality
+&lt;Sequence.quality&gt; CLOSED {
+    fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
+    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @&lt;Extension&gt;*;   # Extensions that cannot be ignored
+    fhir:Sequence.quality.type @&lt;code&gt; AND
+    	{fhir:value @fhirvs:quality-type};  # INDEL | SNP | UNKNOWN
+    fhir:Sequence.quality.standardSequence @&lt;CodeableConcept&gt;?;  # Standard sequence for comparison
+    fhir:Sequence.quality.start @&lt;integer&gt;?;  # Start position of the sequence
+    fhir:Sequence.quality.end @&lt;integer&gt;?;  # End position of the sequence
+    fhir:Sequence.quality.score @&lt;Quantity&gt;?;  # Quality score
+    fhir:Sequence.quality.method @&lt;CodeableConcept&gt;?;  # Method for quality
+    fhir:Sequence.quality.truthTP @&lt;decimal&gt;?;  # True positives from the 
+                                            # perspective of the truth data 
+    fhir:Sequence.quality.queryTP @&lt;decimal&gt;?;  # True positives from the 
+                                            # perspective of the query data 
+    fhir:Sequence.quality.truthFN @&lt;decimal&gt;?;  # False negatives
+    fhir:Sequence.quality.queryFP @&lt;decimal&gt;?;  # False positives
+    fhir:Sequence.quality.gtFP @&lt;decimal&gt;?;  # False positives where the non-REF 
+                                            # alleles in the Truth and Query 
+                                            # Call Sets match 
+    fhir:Sequence.quality.precision @&lt;decimal&gt;?;  # Precision
+    fhir:Sequence.quality.recall @&lt;decimal&gt;?;  # Recall
+    fhir:Sequence.quality.fScore @&lt;decimal&gt;?;  # F-score
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
+# Structural variant
+&lt;Sequence.structureVariant&gt; CLOSED {
+    fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
+    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @&lt;Extension&gt;*;   # Extensions that cannot be ignored
+    fhir:Sequence.structureVariant.precisionOfBoundaries @&lt;string&gt;?;  # Precision of boundaries
+    fhir:Sequence.structureVariant.reportedaCGHRatio @&lt;decimal&gt;?;  # Structural Variant reported aCGH 
+                                            # ratio 
+    fhir:Sequence.structureVariant.length @&lt;integer&gt;?;  # Structural Variant Length
+    fhir:Sequence.structureVariant.outer @&lt;Sequence.structureVariant.outer&gt;?;  # Structural variant outer
+    fhir:Sequence.structureVariant.inner @&lt;Sequence.structureVariant.inner&gt;?;  # Structural variant inner
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
+# Sequence variant
+&lt;Sequence.variant&gt; CLOSED {
+    fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
+    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @&lt;Extension&gt;*;   # Extensions that cannot be ignored
+    fhir:Sequence.variant.start @&lt;integer&gt;?;  # Start position of the variant on 
+                                            # the  reference sequence 
+    fhir:Sequence.variant.end @&lt;integer&gt;?;  # End position of the variant on the 
+                                            # reference sequence 
+    fhir:Sequence.variant.observedAllele @&lt;string&gt;?;  # Allele that was observed
+    fhir:Sequence.variant.referenceAllele @&lt;string&gt;?;  # Allele of reference sequence
+    fhir:Sequence.variant.cigar @&lt;string&gt;?;  # Extended CIGAR string for aligning 
+                                            # the sequence with reference bases 
+    fhir:Sequence.variant.variantPointer @&lt;Reference&gt;?;  # Pointer to observed variant 
+                                            # information 
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
+# Structural variant inner
+&lt;Sequence.structureVariant.inner&gt; CLOSED {
+    fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
+    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @&lt;Extension&gt;*;   # Extensions that cannot be ignored
+    fhir:Sequence.structureVariant.inner.start @&lt;integer&gt;?;  # Structural Variant Inner Start
+    fhir:Sequence.structureVariant.inner.end @&lt;integer&gt;?;  # Structural Variant Inner End
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
+# Structural variant outer
+&lt;Sequence.structureVariant.outer&gt; CLOSED {
+    fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
+    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @&lt;Extension&gt;*;   # Extensions that cannot be ignored
+    fhir:Sequence.structureVariant.outer.start @&lt;integer&gt;?;  # Structural Variant Outer Start
+    fhir:Sequence.structureVariant.outer.end @&lt;integer&gt;?;  # Structural Variant Outer End
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -475,20 +513,20 @@ start=@&lt;Sequence&gt; AND {fhir:nodeRole [fhir:treeRoot]}
 
 #---------------------- Value Sets ------------------------
 
-# How the Quantity should be understood and represented.
-fhirvs:quantity-comparator [&quot;&lt;&quot; &quot;&lt;=&quot; &quot;&gt;=&quot; &quot;&gt;&quot;]
-
 # Type for quality report
 fhirvs:quality-type [&quot;INDEL&quot; &quot;SNP&quot; &quot;UNKNOWN&quot;]
-
-# Type for access of external uri
-fhirvs:repository-type [&quot;directlink&quot; &quot;openapi&quot; &quot;login&quot; &quot;oauth&quot; &quot;other&quot;]
 
 # Identifies the purpose for this identifier, if known .
 fhirvs:identifier-use [&quot;usual&quot; &quot;official&quot; &quot;temp&quot; &quot;secondary&quot;]
 
+# Type for access of external uri
+fhirvs:repository-type [&quot;directlink&quot; &quot;openapi&quot; &quot;login&quot; &quot;oauth&quot; &quot;other&quot;]
+
 # The status of a resource narrative
 fhirvs:narrative-status [&quot;generated&quot; &quot;extensions&quot; &quot;additional&quot; &quot;empty&quot;]
+
+# How the Quantity should be understood and represented.
+fhirvs:quantity-comparator [&quot;&lt;&quot; &quot;&lt;=&quot; &quot;&gt;=&quot; &quot;&gt;&quot;]
 
 </pre>
 </div>
@@ -514,7 +552,7 @@ of the specification.
 		<div class="container"><!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        © HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:28-0500. <a href="qa.html">QA Page</a>
+        © HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10597) generated on Mon, Dec 19, 2016 17:23-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search</a> | 

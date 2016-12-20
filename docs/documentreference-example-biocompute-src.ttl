@@ -1,0 +1,72 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix loinc: <http://loinc.org/owl#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+<http://hl7.org/fhir/DocumentReference/example-biocompute-src> a fhir:DocumentReference;
+  fhir:nodeRole fhir:treeRoot;
+  fhir:Resource.id [ fhir:value "example-biocompute-src"];
+  fhir:DomainResource.text [
+     fhir:Narrative.status [ fhir:value "generated" ];
+     fhir:Narrative.div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative with Details</b></p><p><b>id</b>: example-biocompute-src</p><p><b>subject</b>: <a>Patient/example</a></p><p><b>type</b>: Information source <span>(Details : {LOINC code '48766-0' = 'Information source', given as 'Information source'})</span></p><p><b>author</b>: <a>Practitioner/example</a></p><p><b>created</b>: 2016-6-6 13:25:21</p><p><b>indexed</b>: 2016-6-9 8:12:14</p><p><b>status</b>: current</p><p><b>docStatus</b>: preliminary <span>(Details : {http://hl7.org/fhir/composition-status code 'preliminary' = 'Preliminary', given as 'preliminary'})</span></p><p><b>description</b>: Biocompute object attached document for Provenance exmaple</p><h3>Contents</h3><table><tr><td>-</td><td><b>Attachment</b></td></tr><tr><td>*</td><td/></tr></table><blockquote><p><b>context</b></p><h3>Relateds</h3><table><tr><td>-</td><td><b>Ref</b></td></tr><tr><td>*</td><td><a>Practitioner/example-biocompute</a></td></tr></table></blockquote></div>"
+  ];
+  fhir:DocumentReference.subject [
+     fhir:link <http://hl7.org/fhir/Patient/example>;
+     fhir:Reference.reference [ fhir:value "Patient/example" ]
+  ];
+  fhir:DocumentReference.type [
+     fhir:CodeableConcept.coding [
+       fhir:index 0;
+       fhir:concept loinc:48766-0;
+       fhir:Coding.system [ fhir:value "http://loinc.org" ];
+       fhir:Coding.code [ fhir:value "48766-0" ];
+       fhir:Coding.display [ fhir:value "Information source" ]
+     ]
+  ];
+  fhir:DocumentReference.author [
+     fhir:index 0;
+     fhir:link <http://hl7.org/fhir/Practitioner/example>;
+     fhir:Reference.reference [ fhir:value "Practitioner/example" ]
+  ];
+  fhir:DocumentReference.created [ fhir:value "2016-06-06T13:25:21+11:00"^^xsd:dateTime];
+  fhir:DocumentReference.indexed [ fhir:value "2016-06-09T08:12:14+11:00"^^xsd:dateTime];
+  fhir:DocumentReference.status [ fhir:value "current"];
+  fhir:DocumentReference.docStatus [
+     fhir:CodeableConcept.coding [
+       fhir:index 0;
+       fhir:Coding.system [ fhir:value "http://hl7.org/fhir/composition-status" ];
+       fhir:Coding.code [ fhir:value "preliminary" ];
+       fhir:Coding.display [ fhir:value "preliminary" ]
+     ]
+  ];
+  fhir:DocumentReference.description [ fhir:value "Biocompute object attached document for Provenance exmaple"];
+  fhir:DocumentReference.content [
+     fhir:index 0;
+     fhir:DocumentReference.content.attachment [
+       fhir:Attachment.language [ fhir:value "en-US" ];
+       fhir:Attachment.url [ fhir:value "https://hive.biochemistry.gwu.edu/htscsrs/bcoexample_1" ];
+       fhir:Attachment.hash [ fhir:value "2dadw2d9kj0yVb/vlWAYkK/YBwk="^^xsd:base64Binary ];
+       fhir:Attachment.title [ fhir:value "Biocompute obj.0001" ]
+     ]
+  ];
+  fhir:DocumentReference.context [
+     fhir:DocumentReference.context.related [
+       fhir:index 0;
+       fhir:DocumentReference.context.related.ref [
+         fhir:link <http://hl7.org/fhir/Practitioner/example-biocompute>;
+         fhir:Reference.reference [ fhir:value "Practitioner/example-biocompute" ]
+       ]
+     ]
+  ] .
+
+<http://hl7.org/fhir/Patient/example> a fhir:Patient .
+
+<http://hl7.org/fhir/Practitioner/example> a fhir:Practitioner .
+
+<http://hl7.org/fhir/Practitioner/example-biocompute> a fhir:Practitioner .
+
+# -------------------------------------------------------------------------------------
+

@@ -1,9 +1,9 @@
 {
   "resourceType": "Provenance",
-  "id": "example-biocompute",
+  "id": "example-biocompute-object",
   "text": {
     "status": "generated",
-    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative with Details</b></p><p><b>id</b>: example-biocompute</p><p><b>target</b>: <a>Sequence/example</a></p><p><b>period</b>: 2017-6-6 --&gt; (ongoing)</p><p><b>recorded</b>: 2016-6-9 8:12:14</p><p><b>reason</b>: antiviral resistance detection (Details: [not stated] code null = 'null', stated as 'antiviral resistance detection')</p><p><b>policy</b>: <a>https://hive.biochemistry.gwu.edu/cgi-bin/prd/htscsrs/servlet.cgi?pageid=bcoexample_1</a></p><h3>Agents</h3><table><tr><td>-</td><td><b>Role</b></td><td><b>Who[x]</b></td></tr><tr><td>*</td><td>Author (Details: http://hl7.org/fhir/provenance-participant-role code author = 'Author', stated as 'null')</td><td><a>Practitioner/example</a></td></tr></table></div>"
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative with Details</b></p><p><b>id</b>: example-biocompute-object</p><p><b>target</b>: <a href=\"http://build.fhir.org/sequence-example.html\">Sequence/example</a></p><p><b>period</b>: 2017-6-6 --&gt; (ongoing)</p><p><b>recorded</b>: 2016-6-9 8:12:14</p><p><b>reason</b>: antiviral resistance detection (Details: [not stated] code null = 'null', stated as\n         'antiviral resistance detection')</p><h3>Agents</h3><table><tr><td>-</td><td><b>Role</b></td><td><b>Who[x]</b></td></tr><tr><td>*</td><td>Author (Details: http://hl7.org/fhir/provenance-participant-role code author = 'Author',\n             stated as 'null')</td><td><a href=\"http://build.fhir.org/practitioner-example.html\">Practitioner/example</a></td></tr></table><h3>Entities</h3><table><tr><td>-</td><td><b>Role</b></td><td><b>Reference</b></td></tr><tr><td>*</td><td>source</td><td><a href=\"https://hive.biochemistry.gwu.edu/cgi-bin/prd/htscsrs/servlet.cgi?pageid=bcoexample_1\">Biocompute example</a></td></tr></table></div>"
   },
   "target": [
     {
@@ -19,9 +19,6 @@
       "display": "antiviral resistance detection"
     }
   ],
-  "policy": [
-    "https://hive.biochemistry.gwu.edu/cgi-bin/prd/htscsrs/servlet.cgi?pageid=bcoexample_1"
-  ],
   "agent": [
     {
       "role": {
@@ -30,6 +27,27 @@
       },
       "whoReference": {
         "reference": "Practitioner/example"
+      }
+    }
+  ],
+  "entity": [
+    {
+      "role": "source",
+      "reference": {
+        "reference": "https://hive.biochemistry.gwu.edu/cgi-bin/prd/htscsrs/servlet.cgi?pageid=bcoexample_1",
+        "identifier": {
+          "type": {
+            "coding": [
+              {
+                "system": "https://hive.biochemistry.gwu.edu",
+                "code": "biocompute",
+                "display": "obj.1001"
+              }
+            ]
+          },
+          "value": "https://hive.biochemistry.gwu.edu/cgi-bin/prd/htscsrs/servlet.cgi?pageid=bcoexample_1"
+        },
+        "display": "Biocompute example"
       }
     }
   ]

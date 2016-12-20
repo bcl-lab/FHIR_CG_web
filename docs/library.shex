@@ -474,23 +474,6 @@ start=@<Library> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
-# Date filters for the data
-<DataRequirement.dateFilter> CLOSED {
-    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
-    fhir:extension @<Extension>*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:DataRequirement.dateFilter.path @<string>;  # The date-valued attribute of the 
-                                            # filter 
-    (                                       # The value of the filter, as a 
-                                            # Period, DateTime, or Duration 
-                                            # value 
-        fhir:DataRequirement.dateFilter.valueDateTime @<dateTime>  |
-        fhir:DataRequirement.dateFilter.valuePeriod @<Period>  |
-        fhir:DataRequirement.dateFilter.valueDuration @<Duration> 
-    )?;
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
 # Code filters for the data
 <DataRequirement.codeFilter> CLOSED {
     fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
@@ -505,6 +488,23 @@ start=@<Library> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:DataRequirement.codeFilter.valueCode @<code>*;  # Code value of the filter
     fhir:DataRequirement.codeFilter.valueCoding @<Coding>*;  # Coding value of the filter
     fhir:DataRequirement.codeFilter.valueCodeableConcept @<CodeableConcept>*;  # CodeableConcept value of the filter
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
+# Date filters for the data
+<DataRequirement.dateFilter> CLOSED {
+    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
+    fhir:extension @<Extension>*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:DataRequirement.dateFilter.path @<string>;  # The date-valued attribute of the 
+                                            # filter 
+    (                                       # The value of the filter, as a 
+                                            # Period, DateTime, or Duration 
+                                            # value 
+        fhir:DataRequirement.dateFilter.valueDateTime @<dateTime>  |
+        fhir:DataRequirement.dateFilter.valuePeriod @<Period>  |
+        fhir:DataRequirement.dateFilter.valueDuration @<Duration> 
+    )?;
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -528,14 +528,20 @@ start=@<Library> AND {fhir:nodeRole [fhir:treeRoot]}
 
 #---------------------- Value Sets ------------------------
 
+# Identifies the purpose for this identifier, if known .
+fhirvs:identifier-use ["usual" "official" "temp" "secondary"]
+
 # Use of contact point
 fhirvs:contact-point-use ["home" "work" "temp" "old" "mobile"]
 
-# How the Quantity should be understood and represented.
-fhirvs:quantity-comparator ["<" "<=" ">=" ">"]
+# Telecommunications form for contact point
+fhirvs:contact-point-system ["phone" "fax" "email" "pager" "url" "other"]
 
-# Whether an operation parameter is an input or an output parameter.
-fhirvs:operation-parameter-use ["in" "out"]
+# The type of relationship to the related artifact
+fhirvs:related-artifact-type ["documentation" "justification" "citation" "predecessor" "successor" "derived-from" "depends-on" "composed-of"]
+
+# The type of contributor
+fhirvs:contributor-type ["author" "editor" "reviewer" "endorser"]
 
 # Either an abstract type, a resource or a data type.
 fhirvs:all-types ["Address" "Age" "Annotation" "Attachment" "BackboneElement" "CodeableConcept" "Coding" "ContactDetail" "ContactPoint" "Contributor" "Count" "DataRequirement" "Distance" "DosageInstruction" "Duration" "Element" "ElementDefinition" "Extension" "HumanName" "Identifier" "Meta" "Money" "Narrative" "ParameterDefinition" "Period" "Quantity" "Range" "Ratio" "Reference" "RelatedArtifact" "SampledData" "Signature" "SimpleQuantity" "Timing" "TriggerDefinition" "UsageContext" "base64Binary" "boolean" "code" "date" "dateTime" "decimal" "id" "instant" "integer" "markdown" "oid" "positiveInt" "string" "time" "unsignedInt" "uri" "uuid" "xhtml" "Account" "ActivityDefinition" "AllergyIntolerance" "Appointment" "AppointmentResponse" "AuditEvent" "Basic" "Binary" "BodySite" "Bundle" "CapabilityStatement" "CarePlan" "CareTeam" "Claim" "ClaimResponse" "ClinicalImpression" "CodeSystem" "Communication" "CommunicationRequest" "CompartmentDefinition" "Composition" "ConceptMap" "Condition" "Consent" "Contract" "Coverage" "DataElement" "DetectedIssue" "Device" "DeviceComponent" "DeviceMetric" "DeviceUseRequest" "DeviceUseStatement" "DiagnosticReport" "DiagnosticRequest" "DocumentManifest" "DocumentReference" "DomainResource" "EligibilityRequest" "EligibilityResponse" "Encounter" "Endpoint" "EnrollmentRequest" "EnrollmentResponse" "EpisodeOfCare" "ExpansionProfile" "ExplanationOfBenefit" "FamilyMemberHistory" "Flag" "Goal" "Group" "GuidanceResponse" "HealthcareService" "ImagingManifest" "ImagingStudy" "Immunization" "ImmunizationRecommendation" "ImplementationGuide" "Library" "Linkage" "List" "Location" "Measure" "MeasureReport" "Media" "Medication" "MedicationAdministration" "MedicationDispense" "MedicationRequest" "MedicationStatement" "MessageDefinition" "MessageHeader" "NamingSystem" "NutritionRequest" "Observation" "OperationDefinition" "OperationOutcome" "Organization" "Parameters" "Patient" "PaymentNotice" "PaymentReconciliation" "Person" "PlanDefinition" "Practitioner" "PractitionerRole" "Procedure" "ProcedureRequest" "ProcessRequest" "ProcessResponse" "Provenance" "Questionnaire" "QuestionnaireResponse" "ReferralRequest" "RelatedPerson" "RequestGroup" "ResearchStudy" "ResearchSubject" "Resource" "RiskAssessment" "Schedule" "SearchParameter" "Sequence" "ServiceDefinition" "Slot" "Specimen" "StructureDefinition" "StructureMap" "Subscription" "Substance" "SupplyDelivery" "SupplyRequest" "Task" "TestReport" "TestScript" "ValueSet" "VisionPrescription" "Type" "Any"]
@@ -543,17 +549,11 @@ fhirvs:all-types ["Address" "Age" "Annotation" "Attachment" "BackboneElement" "C
 # The lifecycle status of a Value Set or Concept Map.
 fhirvs:publication-status ["draft" "active" "retired"]
 
-# The type of contributor
-fhirvs:contributor-type ["author" "editor" "reviewer" "endorser"]
-
-# Telecommunications form for contact point
-fhirvs:contact-point-system ["phone" "fax" "email" "pager" "url" "other"]
-
-# Identifies the purpose for this identifier, if known .
-fhirvs:identifier-use ["usual" "official" "temp" "secondary"]
-
-# The type of relationship to the related artifact
-fhirvs:related-artifact-type ["documentation" "justification" "citation" "predecessor" "successor" "derived-from" "depends-on" "composed-of"]
-
 # The status of a resource narrative
 fhirvs:narrative-status ["generated" "extensions" "additional" "empty"]
+
+# Whether an operation parameter is an input or an output parameter.
+fhirvs:operation-parameter-use ["in" "out"]
+
+# How the Quantity should be understood and represented.
+fhirvs:quantity-comparator ["<" "<=" ">=" ">"]

@@ -43,6 +43,19 @@ start=@<MessageHeader> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
+# Message Destination Application(s)
+<MessageHeader.destination> CLOSED {
+    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
+    fhir:extension @<Extension>*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
+    fhir:MessageHeader.destination.name @<string>?;  # Name of system
+    fhir:MessageHeader.destination.target @<Reference>?;  # Particular delivery destination 
+                                            # within the destination 
+    fhir:MessageHeader.destination.endpoint @<uri>;  # Actual destination address or id
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
 # If this is a reply to prior message
 <MessageHeader.response> CLOSED {
     fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
@@ -68,19 +81,6 @@ start=@<MessageHeader> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:MessageHeader.source.version @<string>?;  # Version of software running
     fhir:MessageHeader.source.contact @<ContactPoint>?;  # Human contact for problems
     fhir:MessageHeader.source.endpoint @<uri>;  # Actual message source address or id
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
-# Message Destination Application(s)
-<MessageHeader.destination> CLOSED {
-    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
-    fhir:extension @<Extension>*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    fhir:MessageHeader.destination.name @<string>?;  # Name of system
-    fhir:MessageHeader.destination.target @<Reference>?;  # Particular delivery destination 
-                                            # within the destination 
-    fhir:MessageHeader.destination.endpoint @<uri>;  # Actual destination address or id
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -322,17 +322,17 @@ start=@<MessageHeader> AND {fhir:nodeRole [fhir:treeRoot]}
 
 #---------------------- Value Sets ------------------------
 
-# Use of contact point
-fhirvs:contact-point-use ["home" "work" "temp" "old" "mobile"]
-
 # The kind of response to a message
 fhirvs:response-code ["ok" "transient-error" "fatal-error"]
 
-# Telecommunications form for contact point
-fhirvs:contact-point-system ["phone" "fax" "email" "pager" "url" "other"]
-
 # Identifies the purpose for this identifier, if known .
 fhirvs:identifier-use ["usual" "official" "temp" "secondary"]
+
+# Use of contact point
+fhirvs:contact-point-use ["home" "work" "temp" "old" "mobile"]
+
+# Telecommunications form for contact point
+fhirvs:contact-point-system ["phone" "fax" "email" "pager" "url" "other"]
 
 # The status of a resource narrative
 fhirvs:narrative-status ["generated" "extensions" "additional" "empty"]

@@ -53,6 +53,25 @@ start=@<Specimen> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
+# Treatment and processing step details
+<Specimen.treatment> CLOSED {
+    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
+    fhir:extension @<Extension>*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
+    fhir:Specimen.treatment.description @<string>?;  # Textual description of procedure
+    fhir:Specimen.treatment.procedure @<CodeableConcept>?;  # Indicates the treatment or 
+                                            # processing step  applied to the 
+                                            # specimen 
+    fhir:Specimen.treatment.additive @<Reference>*;  # Material used in the processing 
+                                            # step 
+    (                                       # Date and time of specimen treatment
+        fhir:Specimen.treatment.timeDateTime @<dateTime>  |
+        fhir:Specimen.treatment.timePeriod @<Period> 
+    )?;
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
 # Direct container of specimen (tube/slide, etc.)
 <Specimen.container> CLOSED {
     fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
@@ -89,25 +108,6 @@ start=@<Specimen> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:Specimen.collection.method @<CodeableConcept>?;  # Technique used to perform 
                                             # collection 
     fhir:Specimen.collection.bodySite @<CodeableConcept>?;  # Anatomical collection site
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
-# Treatment and processing step details
-<Specimen.treatment> CLOSED {
-    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
-    fhir:extension @<Extension>*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    fhir:Specimen.treatment.description @<string>?;  # Textual description of procedure
-    fhir:Specimen.treatment.procedure @<CodeableConcept>?;  # Indicates the treatment or 
-                                            # processing step  applied to the 
-                                            # specimen 
-    fhir:Specimen.treatment.additive @<Reference>*;  # Material used in the processing 
-                                            # step 
-    (                                       # Date and time of specimen treatment
-        fhir:Specimen.treatment.timeDateTime @<dateTime>  |
-        fhir:Specimen.treatment.timePeriod @<Period> 
-    )?;
     fhir:index xsd:integer?                 # Relative position in a list
 }
 

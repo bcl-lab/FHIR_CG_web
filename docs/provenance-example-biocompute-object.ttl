@@ -5,12 +5,12 @@
 
 # - resource -------------------------------------------------------------------
 
-<http://hl7.org/fhir/Provenance/example-biocompute> a fhir:Provenance;
+<http://hl7.org/fhir/Provenance/example-biocompute-object> a fhir:Provenance;
   fhir:nodeRole fhir:treeRoot;
-  fhir:Resource.id [ fhir:value "example-biocompute"];
+  fhir:Resource.id [ fhir:value "example-biocompute-object"];
   fhir:DomainResource.text [
      fhir:Narrative.status [ fhir:value "generated" ];
-     fhir:Narrative.div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative with Details</b></p><p><b>id</b>: example-biocompute</p><p><b>target</b>: <a>Sequence/example</a></p><p><b>period</b>: 2017-6-6 --&gt; (ongoing)</p><p><b>recorded</b>: 2016-6-9 8:12:14</p><p><b>reason</b>: antiviral resistance detection (Details: [not stated] code null = 'null', stated as 'antiviral resistance detection')</p><p><b>policy</b>: <a>https://hive.biochemistry.gwu.edu/cgi-bin/prd/htscsrs/servlet.cgi?pageid=bcoexample_1</a></p><h3>Agents</h3><table><tr><td>-</td><td><b>Role</b></td><td><b>Who[x]</b></td></tr><tr><td>*</td><td>Author (Details: http://hl7.org/fhir/provenance-participant-role code author = 'Author', stated as 'null')</td><td><a>Practitioner/example</a></td></tr></table></div>"
+     fhir:Narrative.div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative with Details</b></p><p><b>id</b>: example-biocompute-object</p><p><b>target</b>: <a href=\"http://build.fhir.org/sequence-example.html\">Sequence/example</a></p><p><b>period</b>: 2017-6-6 --&gt; (ongoing)</p><p><b>recorded</b>: 2016-6-9 8:12:14</p><p><b>reason</b>: antiviral resistance detection (Details: [not stated] code null = 'null', stated as\n         'antiviral resistance detection')</p><h3>Agents</h3><table><tr><td>-</td><td><b>Role</b></td><td><b>Who[x]</b></td></tr><tr><td>*</td><td>Author (Details: http://hl7.org/fhir/provenance-participant-role code author = 'Author',\n             stated as 'null')</td><td><a href=\"http://build.fhir.org/practitioner-example.html\">Practitioner/example</a></td></tr></table><h3>Entities</h3><table><tr><td>-</td><td><b>Role</b></td><td><b>Reference</b></td></tr><tr><td>*</td><td>source</td><td><a href=\"https://hive.biochemistry.gwu.edu/cgi-bin/prd/htscsrs/servlet.cgi?pageid=bcoexample_1\">Biocompute example</a></td></tr></table></div>"
   ];
   fhir:Provenance.target [
      fhir:index 0;
@@ -25,10 +25,6 @@
      fhir:index 0;
      fhir:Coding.display [ fhir:value "antiviral resistance detection" ]
   ];
-  fhir:Provenance.policy [
-     fhir:value "https://hive.biochemistry.gwu.edu/cgi-bin/prd/htscsrs/servlet.cgi?pageid=bcoexample_1";
-     fhir:index 0
-  ];
   fhir:Provenance.agent [
      fhir:index 0;
      fhir:Provenance.agent.role [
@@ -38,6 +34,26 @@
      fhir:Provenance.agent.whoReference [
        fhir:link <http://hl7.org/fhir/Practitioner/example>;
        fhir:Reference.reference [ fhir:value "Practitioner/example" ]
+     ]
+  ];
+  fhir:Provenance.entity [
+     fhir:index 0;
+     fhir:Provenance.entity.role [ fhir:value "source" ];
+     fhir:Provenance.entity.reference [
+       fhir:link <https://hive.biochemistry.gwu.edu/cgi-bin/prd/htscsrs/servlet.cgi?pageid=bcoexample_1>;
+       fhir:Reference.reference [ fhir:value "https://hive.biochemistry.gwu.edu/cgi-bin/prd/htscsrs/servlet.cgi?pageid=bcoexample_1" ];
+       fhir:Reference.identifier [
+         fhir:Identifier.type [
+           fhir:CodeableConcept.coding [
+             fhir:index 0;
+             fhir:Coding.system [ fhir:value "https://hive.biochemistry.gwu.edu" ];
+             fhir:Coding.code [ fhir:value "biocompute" ];
+             fhir:Coding.display [ fhir:value "obj.1001" ]
+           ]
+         ];
+         fhir:Identifier.value [ fhir:value "https://hive.biochemistry.gwu.edu/cgi-bin/prd/htscsrs/servlet.cgi?pageid=bcoexample_1" ]
+       ];
+       fhir:Reference.display [ fhir:value "Biocompute example" ]
      ]
   ] .
 

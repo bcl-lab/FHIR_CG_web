@@ -558,26 +558,26 @@ start=@<MedicationStatement> AND {fhir:nodeRole [fhir:treeRoot]}
 
 #---------------------- Value Sets ------------------------
 
-# How the Quantity should be understood and represented.
-fhirvs:quantity-comparator ["<" "<=" ">=" ">"]
-
-# Real world event that the relating to the schedule.
-fhirvs:event-timing ["MORN" "AFT" "EVE" "NIGHT" "HS" "WAKE" "C" "CM" "CD" "CV" "AC" "ACM" "ACD" "ACV" "PC" "PCM" "PCD" "PCV"]
+# Identifies the purpose for this identifier, if known .
+fhirvs:identifier-use ["usual" "official" "temp" "secondary"]
 
 # A unit of time (units from UCUM).
 fhirvs:units-of-time ["s" "min" "h" "d" "wk" "mo" "a"]
 
+# A coded concept indicating the current status of a MedicationStatement.
+fhirvs:medication-statement-status ["active" "completed" "entered-in-error" "intended" "stopped" "on-hold"]
+
 # The days of the week.
 fhirvs:days-of-week ["mon" "tue" "wed" "thu" "fri" "sat" "sun"]
-
-# Identifies the purpose for this identifier, if known .
-fhirvs:identifier-use ["usual" "official" "temp" "secondary"]
-
-# The status of a resource narrative
-fhirvs:narrative-status ["generated" "extensions" "additional" "empty"]
 
 # A coded concept identifying level of certainty if patient has taken or has not taken the medication
 fhirvs:medication-statement-nottaken ["y" "n" "unk"]
 
-# A coded concept indicating the current status of a MedicationStatement.
-fhirvs:medication-statement-status ["active" "completed" "entered-in-error" "intended" "stopped" "on-hold"]
+# The status of a resource narrative
+fhirvs:narrative-status ["generated" "extensions" "additional" "empty"]
+
+# Real world event that the relating to the schedule.
+fhirvs:event-timing ["MORN" "AFT" "EVE" "NIGHT" "HS" "WAKE" "C" "CM" "CD" "CV" "AC" "ACM" "ACD" "ACV" "PC" "PCM" "PCD" "PCV"]
+
+# How the Quantity should be understood and represented.
+fhirvs:quantity-comparator ["<" "<=" ">=" ">"]

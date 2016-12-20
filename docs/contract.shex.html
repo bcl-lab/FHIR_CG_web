@@ -170,6 +170,27 @@ start=@&lt;Contract&gt; AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
+# Contract Agent
+&lt;Contract.agent&gt; CLOSED {
+    fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
+    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @&lt;Extension&gt;*;   # Extensions that cannot be ignored
+    fhir:Contract.agent.actor               # Contract Agent Type
+    (   @&lt;ContractReference&gt; OR
+        @&lt;DeviceReference&gt; OR
+        @&lt;GroupReference&gt; OR
+        @&lt;LocationReference&gt; OR
+        @&lt;OrganizationReference&gt; OR
+        @&lt;PatientReference&gt; OR
+        @&lt;PractitionerReference&gt; OR
+        @&lt;RelatedPersonReference&gt; OR
+        @&lt;SubstanceReference&gt;
+    );
+    fhir:Contract.agent.role @&lt;CodeableConcept&gt;*;  # Contract  Agent Role
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
 # Contract Signer
 &lt;Contract.signer&gt; CLOSED {
     fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
@@ -184,6 +205,29 @@ start=@&lt;Contract&gt; AND {fhir:nodeRole [fhir:treeRoot]}
         @&lt;RelatedPersonReference&gt;
     );
     fhir:Contract.signer.signature @&lt;Signature&gt;+;  # Contract Documentation Signature
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
+# Contract Valued Item
+&lt;Contract.valuedItem&gt; CLOSED {
+    fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
+    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @&lt;Extension&gt;*;   # Extensions that cannot be ignored
+    (                                       # Contract Valued Item Type
+        fhir:Contract.valuedItem.entityCodeableConcept @&lt;CodeableConcept&gt;  |
+        fhir:Contract.valuedItem.entityReference @&lt;Reference&gt; 
+    )?;
+    fhir:Contract.valuedItem.identifier @&lt;Identifier&gt;?;  # Contract Valued Item Identifier
+    fhir:Contract.valuedItem.effectiveTime @&lt;dateTime&gt;?;  # Contract Valued Item Effective Tiem
+    fhir:Contract.valuedItem.quantity @&lt;SimpleQuantity&gt;?;  # Count of Contract Valued Items
+    fhir:Contract.valuedItem.unitPrice @&lt;Money&gt;?;  # Contract Valued Item fee, charge, 
+                                            # or cost 
+    fhir:Contract.valuedItem.factor @&lt;decimal&gt;?;  # Contract Valued Item Price Scaling 
+                                            # Factor 
+    fhir:Contract.valuedItem.points @&lt;decimal&gt;?;  # Contract Valued Item Difficulty 
+                                            # Scaling Factor 
+    fhir:Contract.valuedItem.net @&lt;Money&gt;?;  # Total Contract Valued Item Value
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -236,50 +280,6 @@ start=@&lt;Contract&gt; AND {fhir:nodeRole [fhir:treeRoot]}
         fhir:Contract.legal.contentReference @&lt;Reference&gt;  |
         fhir:Contract.legal.contentReference @&lt;Reference&gt; 
     );
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
-# Contract Valued Item
-&lt;Contract.valuedItem&gt; CLOSED {
-    fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
-    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @&lt;Extension&gt;*;   # Extensions that cannot be ignored
-    (                                       # Contract Valued Item Type
-        fhir:Contract.valuedItem.entityCodeableConcept @&lt;CodeableConcept&gt;  |
-        fhir:Contract.valuedItem.entityReference @&lt;Reference&gt; 
-    )?;
-    fhir:Contract.valuedItem.identifier @&lt;Identifier&gt;?;  # Contract Valued Item Identifier
-    fhir:Contract.valuedItem.effectiveTime @&lt;dateTime&gt;?;  # Contract Valued Item Effective Tiem
-    fhir:Contract.valuedItem.quantity @&lt;SimpleQuantity&gt;?;  # Count of Contract Valued Items
-    fhir:Contract.valuedItem.unitPrice @&lt;Money&gt;?;  # Contract Valued Item fee, charge, 
-                                            # or cost 
-    fhir:Contract.valuedItem.factor @&lt;decimal&gt;?;  # Contract Valued Item Price Scaling 
-                                            # Factor 
-    fhir:Contract.valuedItem.points @&lt;decimal&gt;?;  # Contract Valued Item Difficulty 
-                                            # Scaling Factor 
-    fhir:Contract.valuedItem.net @&lt;Money&gt;?;  # Total Contract Valued Item Value
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
-# Contract Agent
-&lt;Contract.agent&gt; CLOSED {
-    fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
-    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @&lt;Extension&gt;*;   # Extensions that cannot be ignored
-    fhir:Contract.agent.actor               # Contract Agent Type
-    (   @&lt;ContractReference&gt; OR
-        @&lt;DeviceReference&gt; OR
-        @&lt;GroupReference&gt; OR
-        @&lt;LocationReference&gt; OR
-        @&lt;OrganizationReference&gt; OR
-        @&lt;PatientReference&gt; OR
-        @&lt;PractitionerReference&gt; OR
-        @&lt;RelatedPersonReference&gt; OR
-        @&lt;SubstanceReference&gt;
-    );
-    fhir:Contract.agent.role @&lt;CodeableConcept&gt;*;  # Contract  Agent Role
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -758,17 +758,17 @@ start=@&lt;Contract&gt; AND {fhir:nodeRole [fhir:treeRoot]}
 
 #---------------------- Value Sets ------------------------
 
-# How the Quantity should be understood and represented.
-fhirvs:quantity-comparator [&quot;&lt;&quot; &quot;&lt;=&quot; &quot;&gt;=&quot; &quot;&gt;&quot;]
+# Identifies the purpose for this identifier, if known .
+fhirvs:identifier-use [&quot;usual&quot; &quot;official&quot; &quot;temp&quot; &quot;secondary&quot;]
 
 # This value set includes STatus codes.
 fhirvs:fm-status [&quot;active&quot; &quot;cancelled&quot; &quot;draft&quot; &quot;entered-in-error&quot;]
 
-# Identifies the purpose for this identifier, if known .
-fhirvs:identifier-use [&quot;usual&quot; &quot;official&quot; &quot;temp&quot; &quot;secondary&quot;]
-
 # The status of a resource narrative
 fhirvs:narrative-status [&quot;generated&quot; &quot;extensions&quot; &quot;additional&quot; &quot;empty&quot;]
+
+# How the Quantity should be understood and represented.
+fhirvs:quantity-comparator [&quot;&lt;&quot; &quot;&lt;=&quot; &quot;&gt;=&quot; &quot;&gt;&quot;]
 
 </pre>
 </div>
@@ -794,7 +794,7 @@ of the specification.
 		<div class="container"><!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        © HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:21-0500. <a href="qa.html">QA Page</a>
+        © HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10605) generated on Mon, Dec 19, 2016 23:20-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search</a> | 

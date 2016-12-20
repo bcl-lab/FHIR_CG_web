@@ -168,6 +168,17 @@ start=@&lt;ImmunizationRecommendation&gt; AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
+# Dates governing proposed immunization
+&lt;ImmunizationRecommendation.recommendation.dateCriterion&gt; CLOSED {
+    fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
+    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @&lt;Extension&gt;*;   # Extensions that cannot be ignored
+    fhir:ImmunizationRecommendation.recommendation.dateCriterion.code @&lt;CodeableConcept&gt;;  # Type of date
+    fhir:ImmunizationRecommendation.recommendation.dateCriterion.value @&lt;dateTime&gt;;  # Recommended date
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
 # Protocol used by recommendation
 &lt;ImmunizationRecommendation.recommendation.protocol&gt; CLOSED {
     fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
@@ -178,17 +189,6 @@ start=@&lt;ImmunizationRecommendation&gt; AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:ImmunizationRecommendation.recommendation.protocol.description @&lt;string&gt;?;  # Protocol details
     fhir:ImmunizationRecommendation.recommendation.protocol.authority @&lt;Reference&gt;?;  # Who is responsible for protocol
     fhir:ImmunizationRecommendation.recommendation.protocol.series @&lt;string&gt;?;  # Name of vaccination series
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
-# Dates governing proposed immunization
-&lt;ImmunizationRecommendation.recommendation.dateCriterion&gt; CLOSED {
-    fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
-    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @&lt;Extension&gt;*;   # Extensions that cannot be ignored
-    fhir:ImmunizationRecommendation.recommendation.dateCriterion.code @&lt;CodeableConcept&gt;;  # Type of date
-    fhir:ImmunizationRecommendation.recommendation.dateCriterion.value @&lt;dateTime&gt;;  # Recommended date
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -441,7 +441,7 @@ of the specification.
 		<div class="container"><!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        © HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:21-0500. <a href="qa.html">QA Page</a>
+        © HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10605) generated on Mon, Dec 19, 2016 23:20-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search</a> | 

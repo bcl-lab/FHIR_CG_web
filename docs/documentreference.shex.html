@@ -193,19 +193,6 @@ start=@&lt;DocumentReference&gt; AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
-# Relationships to other documents
-&lt;DocumentReference.relatesTo&gt; CLOSED {
-    fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
-    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @&lt;Extension&gt;*;   # Extensions that cannot be ignored
-    fhir:DocumentReference.relatesTo.code @&lt;code&gt; AND
-    	{fhir:value @fhirvs:document-relationship-type};  # replaces | transforms | signs | 
-                                            # appends 
-    fhir:DocumentReference.relatesTo.target @&lt;Reference&gt;;  # Target of the relationship
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
 # Clinical context of document
 &lt;DocumentReference.context&gt; CLOSED {
     fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
@@ -223,6 +210,19 @@ start=@&lt;DocumentReference&gt; AND {fhir:nodeRole [fhir:treeRoot]}
                                             # specialty) 
     fhir:DocumentReference.context.sourcePatientInfo @&lt;Reference&gt;?;  # Patient demographics from source
     fhir:DocumentReference.context.related @&lt;DocumentReference.context.related&gt;*;  # Related identifiers or resources
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
+# Relationships to other documents
+&lt;DocumentReference.relatesTo&gt; CLOSED {
+    fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
+    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @&lt;Extension&gt;*;   # Extensions that cannot be ignored
+    fhir:DocumentReference.relatesTo.code @&lt;code&gt; AND
+    	{fhir:value @fhirvs:document-relationship-type};  # replaces | transforms | signs | 
+                                            # appends 
+    fhir:DocumentReference.relatesTo.target @&lt;Reference&gt;;  # Target of the relationship
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -542,20 +542,20 @@ start=@&lt;DocumentReference&gt; AND {fhir:nodeRole [fhir:treeRoot]}
 
 #---------------------- Value Sets ------------------------
 
-# The status of the document reference.
-fhirvs:document-reference-status [&quot;current&quot; &quot;superseded&quot; &quot;entered-in-error&quot;]
-
 # The workflow/clinical status of the composition.
 fhirvs:composition-status [&quot;preliminary&quot; &quot;final&quot; &quot;amended&quot; &quot;entered-in-error&quot;]
-
-# The type of relationship between documents.
-fhirvs:document-relationship-type [&quot;replaces&quot; &quot;transforms&quot; &quot;signs&quot; &quot;appends&quot;]
 
 # Identifies the purpose for this identifier, if known .
 fhirvs:identifier-use [&quot;usual&quot; &quot;official&quot; &quot;temp&quot; &quot;secondary&quot;]
 
 # The status of a resource narrative
 fhirvs:narrative-status [&quot;generated&quot; &quot;extensions&quot; &quot;additional&quot; &quot;empty&quot;]
+
+# The status of the document reference.
+fhirvs:document-reference-status [&quot;current&quot; &quot;superseded&quot; &quot;entered-in-error&quot;]
+
+# The type of relationship between documents.
+fhirvs:document-relationship-type [&quot;replaces&quot; &quot;transforms&quot; &quot;signs&quot; &quot;appends&quot;]
 
 </pre>
 </div>
@@ -581,7 +581,7 @@ of the specification.
 		<div class="container"><!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        © HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:21-0500. <a href="qa.html">QA Page</a>
+        © HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10605) generated on Tue, Dec 20, 2016 00:35-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search</a> | 

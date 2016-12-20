@@ -58,6 +58,23 @@ start=@<ValueSet> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
+# Definition of the content of the value set (CLD)
+<ValueSet.compose> CLOSED {
+    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
+    fhir:extension @<Extension>*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
+    fhir:ValueSet.compose.lockedDate @<date>?;  # Fixed date for version-less 
+                                            # references (transitive) 
+    fhir:ValueSet.compose.inactive @<boolean>?;  # Whether inactive codes are in the 
+                                            # value set 
+    fhir:ValueSet.compose.include @<ValueSet.compose.include>+;  # Include one or more codes from a 
+                                            # code system or other value set(s) 
+    fhir:ValueSet.compose.exclude @<ValueSet.compose.include>*;  # Explicitly exclude codes from a 
+                                            # code system or other value sets 
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
 # Used when the value set is "expanded"
 <ValueSet.expansion> CLOSED {
     fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
@@ -76,20 +93,24 @@ start=@<ValueSet> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
-# Definition of the content of the value set (CLD)
-<ValueSet.compose> CLOSED {
+# Codes in the value set
+<ValueSet.expansion.contains> CLOSED {
     fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
     fhir:extension @<Extension>*;           # Additional Content defined by 
                                             # implementations 
     fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    fhir:ValueSet.compose.lockedDate @<date>?;  # Fixed date for version-less 
-                                            # references (transitive) 
-    fhir:ValueSet.compose.inactive @<boolean>?;  # Whether inactive codes are in the 
-                                            # value set 
-    fhir:ValueSet.compose.include @<ValueSet.compose.include>+;  # Include one or more codes from a 
-                                            # code system or other value set(s) 
-    fhir:ValueSet.compose.exclude @<ValueSet.compose.include>*;  # Explicitly exclude codes from a 
-                                            # code system or other value sets 
+    fhir:ValueSet.expansion.contains.system @<uri>?;  # System value for the code
+    fhir:ValueSet.expansion.contains.abstract @<boolean>?;  # If user cannot select this entry
+    fhir:ValueSet.expansion.contains.inactive @<boolean>?;  # If concept is inactive in the code 
+                                            # system 
+    fhir:ValueSet.expansion.contains.version @<string>?;  # Version in which this code/display 
+                                            # is defined 
+    fhir:ValueSet.expansion.contains.code @<code>?;  # Code - if blank, this is not a 
+                                            # selectable code 
+    fhir:ValueSet.expansion.contains.display @<string>?;  # User display for the concept
+    fhir:ValueSet.expansion.contains.designation @<ValueSet.compose.include.concept.designation>*;  # Additional representations for 
+                                            # this item 
+    fhir:ValueSet.expansion.contains.contains @<ValueSet.expansion.contains>*;  # Codes contained under this entry
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -126,27 +147,6 @@ start=@<ValueSet> AND {fhir:nodeRole [fhir:treeRoot]}
         fhir:ValueSet.expansion.parameter.valueUri @<uri>  |
         fhir:ValueSet.expansion.parameter.valueCode @<code> 
     )?;
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
-# Codes in the value set
-<ValueSet.expansion.contains> CLOSED {
-    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
-    fhir:extension @<Extension>*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    fhir:ValueSet.expansion.contains.system @<uri>?;  # System value for the code
-    fhir:ValueSet.expansion.contains.abstract @<boolean>?;  # If user cannot select this entry
-    fhir:ValueSet.expansion.contains.inactive @<boolean>?;  # If concept is inactive in the code 
-                                            # system 
-    fhir:ValueSet.expansion.contains.version @<string>?;  # Version in which this code/display 
-                                            # is defined 
-    fhir:ValueSet.expansion.contains.code @<code>?;  # Code - if blank, this is not a 
-                                            # selectable code 
-    fhir:ValueSet.expansion.contains.display @<string>?;  # User display for the concept
-    fhir:ValueSet.expansion.contains.designation @<ValueSet.compose.include.concept.designation>*;  # Additional representations for 
-                                            # this item 
-    fhir:ValueSet.expansion.contains.contains @<ValueSet.expansion.contains>*;  # Codes contained under this entry
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -503,23 +503,23 @@ start=@<ValueSet> AND {fhir:nodeRole [fhir:treeRoot]}
 
 #---------------------- Value Sets ------------------------
 
-# Use of contact point
-fhirvs:contact-point-use ["home" "work" "temp" "old" "mobile"]
-
-# How the Quantity should be understood and represented.
-fhirvs:quantity-comparator ["<" "<=" ">=" ">"]
-
-# The lifecycle status of a Value Set or Concept Map.
-fhirvs:publication-status ["draft" "active" "retired"]
-
-# Telecommunications form for contact point
-fhirvs:contact-point-system ["phone" "fax" "email" "pager" "url" "other"]
+# The kind of operation to perform as a part of a property based filter.
+fhirvs:filter-operator ["=" "is-a" "descendent-of" "is-not-a" "regex" "in" "not-in" "generalizes" "exists"]
 
 # Identifies the purpose for this identifier, if known .
 fhirvs:identifier-use ["usual" "official" "temp" "secondary"]
 
+# Use of contact point
+fhirvs:contact-point-use ["home" "work" "temp" "old" "mobile"]
+
+# Telecommunications form for contact point
+fhirvs:contact-point-system ["phone" "fax" "email" "pager" "url" "other"]
+
+# The lifecycle status of a Value Set or Concept Map.
+fhirvs:publication-status ["draft" "active" "retired"]
+
 # The status of a resource narrative
 fhirvs:narrative-status ["generated" "extensions" "additional" "empty"]
 
-# The kind of operation to perform as a part of a property based filter.
-fhirvs:filter-operator ["=" "is-a" "descendent-of" "is-not-a" "regex" "in" "not-in" "generalizes" "exists"]
+# How the Quantity should be understood and represented.
+fhirvs:quantity-comparator ["<" "<=" ">=" ">"]

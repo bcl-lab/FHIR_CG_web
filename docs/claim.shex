@@ -69,43 +69,21 @@ start=@<Claim> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
-# Exceptions, special considerations, the condition, situation, prior or concurrent issues
-<Claim.information> CLOSED {
+# Details about an accident
+<Claim.accident> CLOSED {
     fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
     fhir:extension @<Extension>*;           # Additional Content defined by 
                                             # implementations 
     fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    fhir:Claim.information.category @<CodeableConcept>;  # Category of information
-    fhir:Claim.information.code @<CodeableConcept>?;  # Type of information
-    (                                       # When it occurred
-        fhir:Claim.information.timingDate @<date>  |
-        fhir:Claim.information.timingPeriod @<Period> 
+    fhir:Claim.accident.date @<date>;       # When the accident occurred see 
+                                            # information codes see information 
+                                            # codes 
+    fhir:Claim.accident.type @<CodeableConcept> AND
+    	{fhir:value @fhirvs:v3-ActIncidentCode}?;  # The nature of the accident
+    (                                       # Accident Place
+        fhir:Claim.accident.locationAddress @<Address>  |
+        fhir:Claim.accident.locationReference @<Reference> 
     )?;
-    (                                       # Additional Data or supporting 
-                                            # information 
-        fhir:Claim.information.valueString @<string>  |
-        fhir:Claim.information.valueQuantity @<Quantity>  |
-        fhir:Claim.information.valueAttachment @<Attachment>  |
-        fhir:Claim.information.valueReference @<Reference> 
-    )?;
-    fhir:Claim.information.reason @<CodeableConcept>?;  # Reason associated with the 
-                                            # information 
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
-# Diagnosis
-<Claim.diagnosis> CLOSED {
-    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
-    fhir:extension @<Extension>*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    fhir:Claim.diagnosis.sequence @<positiveInt>;  # Number to covey order of diagnosis
-    (                                       # Patient's diagnosis
-        fhir:Claim.diagnosis.diagnosisCodeableConcept @<CodeableConcept>  |
-        fhir:Claim.diagnosis.diagnosisReference @<Reference> 
-    );
-    fhir:Claim.diagnosis.type @<CodeableConcept>*;  # Type of Diagnosis
-    fhir:Claim.diagnosis.packageCode @<CodeableConcept>?;  # Package billing code
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -148,20 +126,21 @@ start=@<Claim> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
-# Details about an accident
-<Claim.accident> CLOSED {
+# Party to be paid any benefits payable
+<Claim.payee> CLOSED {
     fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
     fhir:extension @<Extension>*;           # Additional Content defined by 
                                             # implementations 
     fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    fhir:Claim.accident.date @<date>;       # When the accident occurred see 
-                                            # information codes see information 
-                                            # codes 
-    fhir:Claim.accident.type @<CodeableConcept> AND
-    	{fhir:value @fhirvs:v3-ActIncidentCode}?;  # The nature of the accident
-    (                                       # Accident Place
-        fhir:Claim.accident.locationAddress @<Address>  |
-        fhir:Claim.accident.locationReference @<Reference> 
+    fhir:Claim.payee.type @<CodeableConcept>;  # Type of party: Subscriber, 
+                                            # Provider, other 
+    fhir:Claim.payee.resourceType @<Coding>?;  # organization | patient | 
+                                            # practitioner | relatedperson 
+    fhir:Claim.payee.party                  # Party to receive the payable
+    (   @<PractitionerReference> OR
+        @<OrganizationReference> OR
+        @<PatientReference> OR
+        @<RelatedPersonReference>
     )?;
     fhir:index xsd:integer?                 # Relative position in a list
 }
@@ -179,22 +158,6 @@ start=@<Claim> AND {fhir:nodeRole [fhir:treeRoot]}
         fhir:Claim.procedure.procedureCodeableConcept @<CodeableConcept>  |
         fhir:Claim.procedure.procedureReference @<Reference> 
     );
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
-# Insurance or medical plan
-<Claim.insurance> CLOSED {
-    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
-    fhir:extension @<Extension>*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    fhir:Claim.insurance.sequence @<positiveInt>;  # Service instance identifier
-    fhir:Claim.insurance.focal @<boolean>;  # Is the focal Coverage
-    fhir:Claim.insurance.coverage @<Reference>;  # Insurance information
-    fhir:Claim.insurance.businessArrangement @<string>?;  # Business agreement
-    fhir:Claim.insurance.preAuthRef @<string>*;  # Pre-Authorization/Determination 
-                                            # Reference 
-    fhir:Claim.insurance.claimResponse @<Reference>?;  # Adjudication results
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -216,6 +179,46 @@ start=@<Claim> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
+# Exceptions, special considerations, the condition, situation, prior or concurrent issues
+<Claim.information> CLOSED {
+    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
+    fhir:extension @<Extension>*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
+    fhir:Claim.information.category @<CodeableConcept>;  # Category of information
+    fhir:Claim.information.code @<CodeableConcept>?;  # Type of information
+    (                                       # When it occurred
+        fhir:Claim.information.timingDate @<date>  |
+        fhir:Claim.information.timingPeriod @<Period> 
+    )?;
+    (                                       # Additional Data or supporting 
+                                            # information 
+        fhir:Claim.information.valueString @<string>  |
+        fhir:Claim.information.valueQuantity @<Quantity>  |
+        fhir:Claim.information.valueAttachment @<Attachment>  |
+        fhir:Claim.information.valueReference @<Reference> 
+    )?;
+    fhir:Claim.information.reason @<CodeableConcept>?;  # Reason associated with the 
+                                            # information 
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
+# Diagnosis
+<Claim.diagnosis> CLOSED {
+    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
+    fhir:extension @<Extension>*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
+    fhir:Claim.diagnosis.sequence @<positiveInt>;  # Number to covey order of diagnosis
+    (                                       # Patient's diagnosis
+        fhir:Claim.diagnosis.diagnosisCodeableConcept @<CodeableConcept>  |
+        fhir:Claim.diagnosis.diagnosisReference @<Reference> 
+    );
+    fhir:Claim.diagnosis.type @<CodeableConcept>*;  # Type of Diagnosis
+    fhir:Claim.diagnosis.packageCode @<CodeableConcept>?;  # Package billing code
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
 # Related Claims which may be revelant to processing this claimn
 <Claim.related> CLOSED {
     fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
@@ -228,22 +231,31 @@ start=@<Claim> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
-# Party to be paid any benefits payable
-<Claim.payee> CLOSED {
+# Insurance or medical plan
+<Claim.insurance> CLOSED {
     fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
     fhir:extension @<Extension>*;           # Additional Content defined by 
                                             # implementations 
     fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    fhir:Claim.payee.type @<CodeableConcept>;  # Type of party: Subscriber, 
-                                            # Provider, other 
-    fhir:Claim.payee.resourceType @<Coding>?;  # organization | patient | 
-                                            # practitioner | relatedperson 
-    fhir:Claim.payee.party                  # Party to receive the payable
-    (   @<PractitionerReference> OR
-        @<OrganizationReference> OR
-        @<PatientReference> OR
-        @<RelatedPersonReference>
-    )?;
+    fhir:Claim.insurance.sequence @<positiveInt>;  # Service instance identifier
+    fhir:Claim.insurance.focal @<boolean>;  # Is the focal Coverage
+    fhir:Claim.insurance.coverage @<Reference>;  # Insurance information
+    fhir:Claim.insurance.businessArrangement @<string>?;  # Business agreement
+    fhir:Claim.insurance.preAuthRef @<string>*;  # Pre-Authorization/Determination 
+                                            # Reference 
+    fhir:Claim.insurance.claimResponse @<Reference>?;  # Adjudication results
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
+# Prosthetic details
+<Claim.item.prosthesis> CLOSED {
+    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
+    fhir:extension @<Extension>*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
+    fhir:Claim.item.prosthesis.initial @<boolean>?;  # Is this the initial service
+    fhir:Claim.item.prosthesis.priorDate @<date>?;  # Initial service Date
+    fhir:Claim.item.prosthesis.priorMaterial @<CodeableConcept>?;  # Prosthetic Material
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -266,18 +278,6 @@ start=@<Claim> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:Claim.item.detail.net @<Money>?;   # Total additional item cost
     fhir:Claim.item.detail.udi @<Reference>*;  # Unique Device Identifier
     fhir:Claim.item.detail.subDetail @<Claim.item.detail.subDetail>*;  # Additional items
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
-# Prosthetic details
-<Claim.item.prosthesis> CLOSED {
-    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
-    fhir:extension @<Extension>*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    fhir:Claim.item.prosthesis.initial @<boolean>?;  # Is this the initial service
-    fhir:Claim.item.prosthesis.priorDate @<date>?;  # Initial service Date
-    fhir:Claim.item.prosthesis.priorMaterial @<CodeableConcept>?;  # Prosthetic Material
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -702,29 +702,29 @@ start=@<Claim> AND {fhir:nodeRole [fhir:treeRoot]}
 
 #---------------------- Value Sets ------------------------
 
-# The use of an address
-fhirvs:address-use ["home" "work" "temp" "old"]
-
 # The type of an address (physical / postal)
 fhirvs:address-type ["postal" "physical" "both"]
-
-# How the Quantity should be understood and represented.
-fhirvs:quantity-comparator ["<" "<=" ">=" ">"]
-
-# Complete, proposed, exploratory, other
-fhirvs:claim-use ["complete" "proposed" "exploratory" "other"]
-
-# This value set includes STatus codes.
-fhirvs:fm-status ["active" "cancelled" "draft" "entered-in-error"]
 
 #  Set of codes indicating the type of incident or accident.
 fhirvs:v3-ActIncidentCode ["MVA" "SCHOOL" "SPT" "WPA"]
 
-# This value set includes sample Claim Type codes.
-fhirvs:claim-type ["institutional" "oral" "pharmacy" "professional" "vision"]
-
 # Identifies the purpose for this identifier, if known .
 fhirvs:identifier-use ["usual" "official" "temp" "secondary"]
 
+# Complete, proposed, exploratory, other
+fhirvs:claim-use ["complete" "proposed" "exploratory" "other"]
+
+# The use of an address
+fhirvs:address-use ["home" "work" "temp" "old"]
+
+# This value set includes STatus codes.
+fhirvs:fm-status ["active" "cancelled" "draft" "entered-in-error"]
+
 # The status of a resource narrative
 fhirvs:narrative-status ["generated" "extensions" "additional" "empty"]
+
+# This value set includes sample Claim Type codes.
+fhirvs:claim-type ["institutional" "oral" "pharmacy" "professional" "vision"]
+
+# How the Quantity should be understood and represented.
+fhirvs:quantity-comparator ["<" "<=" ">=" ">"]

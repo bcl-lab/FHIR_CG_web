@@ -191,6 +191,18 @@ start=@&lt;Condition&gt; AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
+# Supporting evidence
+&lt;Condition.evidence&gt; CLOSED {
+    fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
+    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @&lt;Extension&gt;*;   # Extensions that cannot be ignored
+    fhir:Condition.evidence.code @&lt;CodeableConcept&gt;?;  # Manifestation/symptom
+    fhir:Condition.evidence.detail @&lt;Reference&gt;*;  # Supporting information found 
+                                            # elsewhere 
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
 # Stage/grade, usually assessed formally
 &lt;Condition.stage&gt; CLOSED {
     fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
@@ -203,18 +215,6 @@ start=@&lt;Condition&gt; AND {fhir:nodeRole [fhir:treeRoot]}
         @&lt;DiagnosticReportReference&gt; OR
         @&lt;ObservationReference&gt;
     )*;
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
-# Supporting evidence
-&lt;Condition.evidence&gt; CLOSED {
-    fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
-    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @&lt;Extension&gt;*;   # Extensions that cannot be ignored
-    fhir:Condition.evidence.code @&lt;CodeableConcept&gt;?;  # Manifestation/symptom
-    fhir:Condition.evidence.detail @&lt;Reference&gt;*;  # Supporting information found 
-                                            # elsewhere 
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -601,20 +601,20 @@ start=@&lt;Condition&gt; AND {fhir:nodeRole [fhir:treeRoot]}
 
 #---------------------- Value Sets ------------------------
 
-# How the Quantity should be understood and represented.
-fhirvs:quantity-comparator [&quot;&lt;&quot; &quot;&lt;=&quot; &quot;&gt;=&quot; &quot;&gt;&quot;]
+# Identifies the purpose for this identifier, if known .
+fhirvs:identifier-use [&quot;usual&quot; &quot;official&quot; &quot;temp&quot; &quot;secondary&quot;]
+
+# The verification status to support or decline the clinical status of the condition or diagnosis.
+fhirvs:condition-ver-status [&quot;provisional&quot; &quot;differential&quot; &quot;confirmed&quot; &quot;refuted&quot; &quot;entered-in-error&quot; &quot;unknown&quot;]
 
 # Preferred value set for Condition Clinical Status.
 fhirvs:condition-clinical [&quot;active&quot; &quot;recurrence&quot; &quot;inactive&quot; &quot;remission&quot; &quot;resolved&quot;]
 
-# Identifies the purpose for this identifier, if known .
-fhirvs:identifier-use [&quot;usual&quot; &quot;official&quot; &quot;temp&quot; &quot;secondary&quot;]
-
 # The status of a resource narrative
 fhirvs:narrative-status [&quot;generated&quot; &quot;extensions&quot; &quot;additional&quot; &quot;empty&quot;]
 
-# The verification status to support or decline the clinical status of the condition or diagnosis.
-fhirvs:condition-ver-status [&quot;provisional&quot; &quot;differential&quot; &quot;confirmed&quot; &quot;refuted&quot; &quot;entered-in-error&quot; &quot;unknown&quot;]
+# How the Quantity should be understood and represented.
+fhirvs:quantity-comparator [&quot;&lt;&quot; &quot;&lt;=&quot; &quot;&gt;=&quot; &quot;&gt;&quot;]
 
 </pre>
 </div>
@@ -640,7 +640,7 @@ of the specification.
 		<div class="container"><!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        © HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:21-0500. <a href="qa.html">QA Page</a>
+        © HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10605) generated on Mon, Dec 19, 2016 23:20-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search</a> | 

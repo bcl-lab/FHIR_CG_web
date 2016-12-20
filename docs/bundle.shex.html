@@ -179,6 +179,24 @@ start=@&lt;Bundle&gt; AND {fhir:nodeRole [fhir:treeRoot]}
 }
 
 # Transaction Related Information
+&lt;Bundle.entry.response&gt; CLOSED {
+    fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
+    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @&lt;Extension&gt;*;   # Extensions that cannot be ignored
+    fhir:Bundle.entry.response.status @&lt;string&gt;;  # Status response code (text 
+                                            # optional) 
+    fhir:Bundle.entry.response.location @&lt;uri&gt;?;  # The location, if the operation 
+                                            # returns a location 
+    fhir:Bundle.entry.response.etag @&lt;string&gt;?;  # The etag for the resource (if 
+                                            # relevant) 
+    fhir:Bundle.entry.response.lastModified @&lt;instant&gt;?;  # Server's date time modified
+    fhir:Bundle.entry.response.outcome @&lt;Resource&gt;?;  # OperationOutcome with hints and 
+                                            # warnings (for batch/transaction) 
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
+# Transaction Related Information
 &lt;Bundle.entry.request&gt; CLOSED {
     fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
     fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
@@ -205,24 +223,6 @@ start=@&lt;Bundle&gt; AND {fhir:nodeRole [fhir:treeRoot]}
     	{fhir:value @fhirvs:search-entry-mode}?;  # match | include | outcome - why 
                                             # this is in the result set 
     fhir:Bundle.entry.search.score @&lt;decimal&gt;?;  # Search ranking (between 0 and 1)
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
-# Transaction Related Information
-&lt;Bundle.entry.response&gt; CLOSED {
-    fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
-    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @&lt;Extension&gt;*;   # Extensions that cannot be ignored
-    fhir:Bundle.entry.response.status @&lt;string&gt;;  # Status response code (text 
-                                            # optional) 
-    fhir:Bundle.entry.response.location @&lt;uri&gt;?;  # The location, if the operation 
-                                            # returns a location 
-    fhir:Bundle.entry.response.etag @&lt;string&gt;?;  # The etag for the resource (if 
-                                            # relevant) 
-    fhir:Bundle.entry.response.lastModified @&lt;instant&gt;?;  # Server's date time modified
-    fhir:Bundle.entry.response.outcome @&lt;Resource&gt;?;  # OperationOutcome with hints and 
-                                            # warnings (for batch/transaction) 
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -490,7 +490,7 @@ of the specification.
 		<div class="container"><!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        © HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10597) generated on Mon, Dec 19, 2016 17:12-0500. <a href="qa.html">QA Page</a>
+        © HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10605) generated on Mon, Dec 19, 2016 23:20-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search</a> | 

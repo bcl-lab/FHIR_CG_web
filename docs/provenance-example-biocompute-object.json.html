@@ -117,10 +117,10 @@
 <pre class="json">
 {
   &quot;resourceType&quot;: &quot;Provenance&quot;,
-  &quot;id&quot;: &quot;example-biocompute&quot;,
+  &quot;id&quot;: &quot;example-biocompute-object&quot;,
   &quot;text&quot;: {
     &quot;status&quot;: &quot;generated&quot;,
-    &quot;div&quot;: &quot;&lt;div xmlns=\&quot;http://www.w3.org/1999/xhtml\&quot;&gt;&lt;p&gt;&lt;b&gt;Generated Narrative with Details&lt;/b&gt;&lt;/p&gt;&lt;p&gt;&lt;b&gt;id&lt;/b&gt;: example-biocompute&lt;/p&gt;&lt;p&gt;&lt;b&gt;target&lt;/b&gt;: &lt;a&gt;Sequence/example&lt;/a&gt;&lt;/p&gt;&lt;p&gt;&lt;b&gt;period&lt;/b&gt;: 2017-6-6 --&amp;gt; (ongoing)&lt;/p&gt;&lt;p&gt;&lt;b&gt;recorded&lt;/b&gt;: 2016-6-9 8:12:14&lt;/p&gt;&lt;p&gt;&lt;b&gt;reason&lt;/b&gt;: antiviral resistance detection (Details: [not stated] code null = 'null', stated as 'antiviral resistance detection')&lt;/p&gt;&lt;p&gt;&lt;b&gt;policy&lt;/b&gt;: &lt;a&gt;https://hive.biochemistry.gwu.edu/cgi-bin/prd/htscsrs/servlet.cgi?pageid=bcoexample_1&lt;/a&gt;&lt;/p&gt;&lt;h3&gt;Agents&lt;/h3&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;-&lt;/td&gt;&lt;td&gt;&lt;b&gt;Role&lt;/b&gt;&lt;/td&gt;&lt;td&gt;&lt;b&gt;Who[x]&lt;/b&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;*&lt;/td&gt;&lt;td&gt;Author (Details: http://hl7.org/fhir/provenance-participant-role code author = 'Author', stated as 'null')&lt;/td&gt;&lt;td&gt;&lt;a&gt;Practitioner/example&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&quot;
+    &quot;div&quot;: &quot;&lt;div xmlns=\&quot;http://www.w3.org/1999/xhtml\&quot;&gt;&lt;p&gt;&lt;b&gt;Generated Narrative with Details&lt;/b&gt;&lt;/p&gt;&lt;p&gt;&lt;b&gt;id&lt;/b&gt;: example-biocompute-object&lt;/p&gt;&lt;p&gt;&lt;b&gt;target&lt;/b&gt;: &lt;a href=\&quot;http://build.fhir.org/sequence-example.html\&quot;&gt;Sequence/example&lt;/a&gt;&lt;/p&gt;&lt;p&gt;&lt;b&gt;period&lt;/b&gt;: 2017-6-6 --&amp;gt; (ongoing)&lt;/p&gt;&lt;p&gt;&lt;b&gt;recorded&lt;/b&gt;: 2016-6-9 8:12:14&lt;/p&gt;&lt;p&gt;&lt;b&gt;reason&lt;/b&gt;: antiviral resistance detection (Details: [not stated] code null = 'null', stated as\n         'antiviral resistance detection')&lt;/p&gt;&lt;h3&gt;Agents&lt;/h3&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;-&lt;/td&gt;&lt;td&gt;&lt;b&gt;Role&lt;/b&gt;&lt;/td&gt;&lt;td&gt;&lt;b&gt;Who[x]&lt;/b&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;*&lt;/td&gt;&lt;td&gt;Author (Details: http://hl7.org/fhir/provenance-participant-role code author = 'Author',\n             stated as 'null')&lt;/td&gt;&lt;td&gt;&lt;a href=\&quot;http://build.fhir.org/practitioner-example.html\&quot;&gt;Practitioner/example&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;h3&gt;Entities&lt;/h3&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;-&lt;/td&gt;&lt;td&gt;&lt;b&gt;Role&lt;/b&gt;&lt;/td&gt;&lt;td&gt;&lt;b&gt;Reference&lt;/b&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;*&lt;/td&gt;&lt;td&gt;source&lt;/td&gt;&lt;td&gt;&lt;a href=\&quot;https://hive.biochemistry.gwu.edu/cgi-bin/prd/htscsrs/servlet.cgi?pageid=bcoexample_1\&quot;&gt;Biocompute example&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&quot;
   },
   &quot;target&quot;: [
     {
@@ -136,9 +136,6 @@
       &quot;display&quot;: &quot;antiviral resistance detection&quot;
     }
   ],
-  &quot;policy&quot;: [
-    &quot;https://hive.biochemistry.gwu.edu/cgi-bin/prd/htscsrs/servlet.cgi?pageid=bcoexample_1&quot;
-  ],
   &quot;agent&quot;: [
     {
       &quot;role&quot;: {
@@ -147,6 +144,27 @@
       },
       &quot;whoReference&quot;: {
         &quot;reference&quot;: &quot;Practitioner/example&quot;
+      }
+    }
+  ],
+  &quot;entity&quot;: [
+    {
+      &quot;role&quot;: &quot;source&quot;,
+      &quot;reference&quot;: {
+        &quot;reference&quot;: &quot;https://hive.biochemistry.gwu.edu/cgi-bin/prd/htscsrs/servlet.cgi?pageid=bcoexample_1&quot;,
+        &quot;identifier&quot;: {
+          &quot;type&quot;: {
+            &quot;coding&quot;: [
+              {
+                &quot;system&quot;: &quot;https://hive.biochemistry.gwu.edu&quot;,
+                &quot;code&quot;: &quot;biocompute&quot;,
+                &quot;display&quot;: &quot;obj.1001&quot;
+              }
+            ]
+          },
+          &quot;value&quot;: &quot;https://hive.biochemistry.gwu.edu/cgi-bin/prd/htscsrs/servlet.cgi?pageid=bcoexample_1&quot;
+        },
+        &quot;display&quot;: &quot;Biocompute example&quot;
       }
     }
   ]
@@ -175,7 +193,7 @@ of the specification.
 		<div class="container"><!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        © HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10597) generated on Mon, Dec 19, 2016 19:02-0500. <a href="qa.html">QA Page</a>
+        © HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10605) generated on Tue, Dec 20, 2016 00:27-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search</a> | 

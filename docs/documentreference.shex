@@ -76,19 +76,6 @@ start=@<DocumentReference> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
-# Relationships to other documents
-<DocumentReference.relatesTo> CLOSED {
-    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
-    fhir:extension @<Extension>*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    fhir:DocumentReference.relatesTo.code @<code> AND
-    	{fhir:value @fhirvs:document-relationship-type};  # replaces | transforms | signs | 
-                                            # appends 
-    fhir:DocumentReference.relatesTo.target @<Reference>;  # Target of the relationship
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
 # Clinical context of document
 <DocumentReference.context> CLOSED {
     fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
@@ -106,6 +93,19 @@ start=@<DocumentReference> AND {fhir:nodeRole [fhir:treeRoot]}
                                             # specialty) 
     fhir:DocumentReference.context.sourcePatientInfo @<Reference>?;  # Patient demographics from source
     fhir:DocumentReference.context.related @<DocumentReference.context.related>*;  # Related identifiers or resources
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
+# Relationships to other documents
+<DocumentReference.relatesTo> CLOSED {
+    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
+    fhir:extension @<Extension>*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
+    fhir:DocumentReference.relatesTo.code @<code> AND
+    	{fhir:value @fhirvs:document-relationship-type};  # replaces | transforms | signs | 
+                                            # appends 
+    fhir:DocumentReference.relatesTo.target @<Reference>;  # Target of the relationship
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -425,17 +425,17 @@ start=@<DocumentReference> AND {fhir:nodeRole [fhir:treeRoot]}
 
 #---------------------- Value Sets ------------------------
 
-# The status of the document reference.
-fhirvs:document-reference-status ["current" "superseded" "entered-in-error"]
-
 # The workflow/clinical status of the composition.
 fhirvs:composition-status ["preliminary" "final" "amended" "entered-in-error"]
-
-# The type of relationship between documents.
-fhirvs:document-relationship-type ["replaces" "transforms" "signs" "appends"]
 
 # Identifies the purpose for this identifier, if known .
 fhirvs:identifier-use ["usual" "official" "temp" "secondary"]
 
 # The status of a resource narrative
 fhirvs:narrative-status ["generated" "extensions" "additional" "empty"]
+
+# The status of the document reference.
+fhirvs:document-reference-status ["current" "superseded" "entered-in-error"]
+
+# The type of relationship between documents.
+fhirvs:document-relationship-type ["replaces" "transforms" "signs" "appends"]

@@ -29,9 +29,9 @@
             "type": {
               "description": "Amino Acid Sequence/ DNA Sequence / RNA Sequence.",
               "enum": [
-                "AA",
-                "DNA",
-                "RNA"
+                "aa",
+                "dna",
+                "rna"
               ],
               "type": "string"
             },
@@ -115,13 +115,6 @@
               "type": "array",
               "items": {
                 "$ref": "Reference.schema.json#/definitions/Reference"
-              }
-            },
-            "structureVariant": {
-              "description": "Structural variant.",
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/Sequence_StructureVariant"
               }
             }
           },
@@ -267,9 +260,9 @@
             "type": {
               "description": "INDEL / SNP / Undefined variant.",
               "enum": [
-                "INDEL",
-                "SNP",
-                "UNKNOWN"
+                "indel",
+                "snp",
+                "unknown"
               ],
               "type": "string"
             },
@@ -444,112 +437,6 @@
             },
             "_readsetId": {
               "description": "Extensions for readsetId",
-              "$ref": "Element.schema.json#/definitions/Element"
-            }
-          }
-        }
-      ]
-    },
-    "Sequence_StructureVariant": {
-      "allOf": [
-        {
-          "$ref": "BackboneElement.schema.json#/definitions/BackboneElement"
-        },
-        {
-          "description": "Raw data describing a biological sequence.",
-          "properties": {
-            "precisionOfBoundaries": {
-              "description": "Precision of boundaries.",
-              "type": "string"
-            },
-            "_precisionOfBoundaries": {
-              "description": "Extensions for precisionOfBoundaries",
-              "$ref": "Element.schema.json#/definitions/Element"
-            },
-            "reportedaCGHRatio": {
-              "description": "Structural Variant reported aCGH ratio.",
-              "type": "number",
-              "pattern": "-?([0]|([1-9][0-9]*))(\\.[0-9]+)?"
-            },
-            "_reportedaCGHRatio": {
-              "description": "Extensions for reportedaCGHRatio",
-              "$ref": "Element.schema.json#/definitions/Element"
-            },
-            "length": {
-              "description": "Structural Variant Length.",
-              "type": "number",
-              "pattern": "-?([0]|([1-9][0-9]*))"
-            },
-            "_length": {
-              "description": "Extensions for length",
-              "$ref": "Element.schema.json#/definitions/Element"
-            },
-            "outer": {
-              "description": "Structural variant outer.",
-              "$ref": "#/definitions/Sequence_Outer"
-            },
-            "inner": {
-              "description": "Structural variant inner.",
-              "$ref": "#/definitions/Sequence_Inner"
-            }
-          }
-        }
-      ]
-    },
-    "Sequence_Outer": {
-      "allOf": [
-        {
-          "$ref": "BackboneElement.schema.json#/definitions/BackboneElement"
-        },
-        {
-          "description": "Raw data describing a biological sequence.",
-          "properties": {
-            "start": {
-              "description": "Structural Variant Outer Start.If the coordinate system is either 0-based or 1-based, then start position is inclusive.",
-              "type": "number",
-              "pattern": "-?([0]|([1-9][0-9]*))"
-            },
-            "_start": {
-              "description": "Extensions for start",
-              "$ref": "Element.schema.json#/definitions/Element"
-            },
-            "end": {
-              "description": "Structural Variant Outer End. If the coordinate system is 0-based then end is is exclusive and does not include the last position. If the coordinate system is 1-base, then end is inclusive and includes the last position.",
-              "type": "number",
-              "pattern": "-?([0]|([1-9][0-9]*))"
-            },
-            "_end": {
-              "description": "Extensions for end",
-              "$ref": "Element.schema.json#/definitions/Element"
-            }
-          }
-        }
-      ]
-    },
-    "Sequence_Inner": {
-      "allOf": [
-        {
-          "$ref": "BackboneElement.schema.json#/definitions/BackboneElement"
-        },
-        {
-          "description": "Raw data describing a biological sequence.",
-          "properties": {
-            "start": {
-              "description": "Structural Variant Inner Start.If the coordinate system is either 0-based or 1-based, then start position is inclusive.",
-              "type": "number",
-              "pattern": "-?([0]|([1-9][0-9]*))"
-            },
-            "_start": {
-              "description": "Extensions for start",
-              "$ref": "Element.schema.json#/definitions/Element"
-            },
-            "end": {
-              "description": "Structural Variant Inner End. If the coordinate system is 0-based then end is is exclusive and does not include the last position. If the coordinate system is 1-base, then end is inclusive and includes the last position.",
-              "type": "number",
-              "pattern": "-?([0]|([1-9][0-9]*))"
-            },
-            "_end": {
-              "description": "Extensions for end",
               "$ref": "Element.schema.json#/definitions/Element"
             }
           }

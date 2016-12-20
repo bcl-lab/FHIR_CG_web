@@ -169,6 +169,17 @@ start=@&lt;Immunization&gt; AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
+# Administration/non-administration reasons
+&lt;Immunization.explanation&gt; CLOSED {
+    fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
+    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @&lt;Extension&gt;*;   # Extensions that cannot be ignored
+    fhir:Immunization.explanation.reason @&lt;CodeableConcept&gt;*;  # Why immunization occurred
+    fhir:Immunization.explanation.reasonNotGiven @&lt;CodeableConcept&gt;*;  # Why immunization did not occur
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
 # Details of a reaction that follows immunization
 &lt;Immunization.reaction&gt; CLOSED {
     fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
@@ -178,17 +189,6 @@ start=@&lt;Immunization&gt; AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:Immunization.reaction.date @&lt;dateTime&gt;?;  # When reaction started
     fhir:Immunization.reaction.detail @&lt;Reference&gt;?;  # Additional information on reaction
     fhir:Immunization.reaction.reported @&lt;boolean&gt;?;  # Indicates self-reported reaction
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
-# Administration/non-administration reasons
-&lt;Immunization.explanation&gt; CLOSED {
-    fhir:Element.id @&lt;string&gt;?;             # xml:id (or equivalent in JSON)
-    fhir:extension @&lt;Extension&gt;*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @&lt;Extension&gt;*;   # Extensions that cannot be ignored
-    fhir:Immunization.explanation.reason @&lt;CodeableConcept&gt;*;  # Why immunization occurred
-    fhir:Immunization.explanation.reasonNotGiven @&lt;CodeableConcept&gt;*;  # Why immunization did not occur
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -450,11 +450,11 @@ start=@&lt;Immunization&gt; AND {fhir:nodeRole [fhir:treeRoot]}
 
 #---------------------- Value Sets ------------------------
 
-# The value set to instantiate this attribute should be drawn from a terminologically robust code system that consists of or contains concepts to support the immunization process.
-fhirvs:immunization-status [&quot;completed&quot; &quot;entered-in-error&quot;]
-
 # Identifies the purpose for this identifier, if known .
 fhirvs:identifier-use [&quot;usual&quot; &quot;official&quot; &quot;temp&quot; &quot;secondary&quot;]
+
+# The value set to instantiate this attribute should be drawn from a terminologically robust code system that consists of or contains concepts to support the immunization process.
+fhirvs:immunization-status [&quot;completed&quot; &quot;entered-in-error&quot;]
 
 # The status of a resource narrative
 fhirvs:narrative-status [&quot;generated&quot; &quot;extensions&quot; &quot;additional&quot; &quot;empty&quot;]
@@ -483,7 +483,7 @@ of the specification.
 		<div class="container"><!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        © HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:21-0500. <a href="qa.html">QA Page</a>
+        © HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10605) generated on Mon, Dec 19, 2016 23:20-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search</a> | 

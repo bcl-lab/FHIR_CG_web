@@ -62,6 +62,24 @@ start=@<Bundle> AND {fhir:nodeRole [fhir:treeRoot]}
 }
 
 # Transaction Related Information
+<Bundle.entry.response> CLOSED {
+    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
+    fhir:extension @<Extension>*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
+    fhir:Bundle.entry.response.status @<string>;  # Status response code (text 
+                                            # optional) 
+    fhir:Bundle.entry.response.location @<uri>?;  # The location, if the operation 
+                                            # returns a location 
+    fhir:Bundle.entry.response.etag @<string>?;  # The etag for the resource (if 
+                                            # relevant) 
+    fhir:Bundle.entry.response.lastModified @<instant>?;  # Server's date time modified
+    fhir:Bundle.entry.response.outcome @<Resource>?;  # OperationOutcome with hints and 
+                                            # warnings (for batch/transaction) 
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
+# Transaction Related Information
 <Bundle.entry.request> CLOSED {
     fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
     fhir:extension @<Extension>*;           # Additional Content defined by 
@@ -88,24 +106,6 @@ start=@<Bundle> AND {fhir:nodeRole [fhir:treeRoot]}
     	{fhir:value @fhirvs:search-entry-mode}?;  # match | include | outcome - why 
                                             # this is in the result set 
     fhir:Bundle.entry.search.score @<decimal>?;  # Search ranking (between 0 and 1)
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
-# Transaction Related Information
-<Bundle.entry.response> CLOSED {
-    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
-    fhir:extension @<Extension>*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    fhir:Bundle.entry.response.status @<string>;  # Status response code (text 
-                                            # optional) 
-    fhir:Bundle.entry.response.location @<uri>?;  # The location, if the operation 
-                                            # returns a location 
-    fhir:Bundle.entry.response.etag @<string>?;  # The etag for the resource (if 
-                                            # relevant) 
-    fhir:Bundle.entry.response.lastModified @<instant>?;  # Server's date time modified
-    fhir:Bundle.entry.response.outcome @<Resource>?;  # OperationOutcome with hints and 
-                                            # warnings (for batch/transaction) 
     fhir:index xsd:integer?                 # Relative position in a list
 }
 

@@ -730,29 +730,8 @@ start=@&lt;ActivityDefinition&gt; AND {fhir:nodeRole [fhir:treeRoot]}
 
 #---------------------- Value Sets ------------------------
 
-# Use of contact point
-fhirvs:contact-point-use [&quot;home&quot; &quot;work&quot; &quot;temp&quot; &quot;old&quot; &quot;mobile&quot;]
-
-# The type of contributor
-fhirvs:contributor-type [&quot;author&quot; &quot;editor&quot; &quot;reviewer&quot; &quot;endorser&quot;]
-
-# Telecommunications form for contact point
-fhirvs:contact-point-system [&quot;phone&quot; &quot;fax&quot; &quot;email&quot; &quot;pager&quot; &quot;url&quot; &quot;other&quot;]
-
-# The days of the week.
-fhirvs:days-of-week [&quot;mon&quot; &quot;tue&quot; &quot;wed&quot; &quot;thu&quot; &quot;fri&quot; &quot;sat&quot; &quot;sun&quot;]
-
-# Identifies the purpose for this identifier, if known .
-fhirvs:identifier-use [&quot;usual&quot; &quot;official&quot; &quot;temp&quot; &quot;secondary&quot;]
-
-# The type of relationship to the related artifact
-fhirvs:related-artifact-type [&quot;documentation&quot; &quot;justification&quot; &quot;citation&quot; &quot;predecessor&quot; &quot;successor&quot; &quot;derived-from&quot; &quot;depends-on&quot; &quot;composed-of&quot;]
-
-# How the Quantity should be understood and represented.
-fhirvs:quantity-comparator [&quot;&lt;&quot; &quot;&lt;=&quot; &quot;&gt;=&quot; &quot;&gt;&quot;]
-
-# Real world event that the relating to the schedule.
-fhirvs:event-timing [&quot;MORN&quot; &quot;AFT&quot; &quot;EVE&quot; &quot;NIGHT&quot; &quot;HS&quot; &quot;WAKE&quot; &quot;C&quot; &quot;CM&quot; &quot;CD&quot; &quot;CV&quot; &quot;AC&quot; &quot;ACM&quot; &quot;ACD&quot; &quot;ACV&quot; &quot;PC&quot; &quot;PCM&quot; &quot;PCD&quot; &quot;PCV&quot;]
+# High-level categorization of the type of activity in a protocol.
+fhirvs:activity-definition-category [&quot;communication&quot; &quot;device&quot; &quot;diagnostic&quot; &quot;diet&quot; &quot;drug&quot; &quot;encounter&quot; &quot;immunization&quot; &quot;observation&quot; &quot;procedure&quot; &quot;referral&quot; &quot;supply&quot; &quot;vision&quot; &quot;other&quot;]
 
 # A unit of time (units from UCUM).
 fhirvs:units-of-time [&quot;s&quot; &quot;min&quot; &quot;h&quot; &quot;d&quot; &quot;wk&quot; &quot;mo&quot; &quot;a&quot;]
@@ -760,14 +739,35 @@ fhirvs:units-of-time [&quot;s&quot; &quot;min&quot; &quot;h&quot; &quot;d&quot; 
 # The lifecycle status of a Value Set or Concept Map.
 fhirvs:publication-status [&quot;draft&quot; &quot;active&quot; &quot;retired&quot;]
 
+# The days of the week.
+fhirvs:days-of-week [&quot;mon&quot; &quot;tue&quot; &quot;wed&quot; &quot;thu&quot; &quot;fri&quot; &quot;sat&quot; &quot;sun&quot;]
+
+# How the Quantity should be understood and represented.
+fhirvs:quantity-comparator [&quot;&lt;&quot; &quot;&lt;=&quot; &quot;&gt;=&quot; &quot;&gt;&quot;]
+
+# Identifies the purpose for this identifier, if known .
+fhirvs:identifier-use [&quot;usual&quot; &quot;official&quot; &quot;temp&quot; &quot;secondary&quot;]
+
+# Use of contact point
+fhirvs:contact-point-use [&quot;home&quot; &quot;work&quot; &quot;temp&quot; &quot;old&quot; &quot;mobile&quot;]
+
+# Telecommunications form for contact point
+fhirvs:contact-point-system [&quot;phone&quot; &quot;fax&quot; &quot;email&quot; &quot;pager&quot; &quot;url&quot; &quot;other&quot;]
+
 # The type of participant for the action
 fhirvs:action-participant-type [&quot;patient&quot; &quot;practitioner&quot; &quot;related-person&quot;]
+
+# The type of relationship to the related artifact
+fhirvs:related-artifact-type [&quot;documentation&quot; &quot;justification&quot; &quot;citation&quot; &quot;predecessor&quot; &quot;successor&quot; &quot;derived-from&quot; &quot;depends-on&quot; &quot;composed-of&quot;]
+
+# The type of contributor
+fhirvs:contributor-type [&quot;author&quot; &quot;editor&quot; &quot;reviewer&quot; &quot;endorser&quot;]
 
 # The status of a resource narrative
 fhirvs:narrative-status [&quot;generated&quot; &quot;extensions&quot; &quot;additional&quot; &quot;empty&quot;]
 
-# High-level categorization of the type of activity in a protocol.
-fhirvs:activity-definition-category [&quot;communication&quot; &quot;device&quot; &quot;diagnostic&quot; &quot;diet&quot; &quot;drug&quot; &quot;encounter&quot; &quot;immunization&quot; &quot;observation&quot; &quot;procedure&quot; &quot;referral&quot; &quot;supply&quot; &quot;vision&quot; &quot;other&quot;]
+# Real world event that the relating to the schedule.
+fhirvs:event-timing [&quot;MORN&quot; &quot;AFT&quot; &quot;EVE&quot; &quot;NIGHT&quot; &quot;HS&quot; &quot;WAKE&quot; &quot;C&quot; &quot;CM&quot; &quot;CD&quot; &quot;CV&quot; &quot;AC&quot; &quot;ACM&quot; &quot;ACD&quot; &quot;ACV&quot; &quot;PC&quot; &quot;PCM&quot; &quot;PCD&quot; &quot;PCV&quot;]
 
 </pre>
 </div>
@@ -793,7 +793,7 @@ of the specification.
 		<div class="container"><!-- container -->
 			<div class="inner-wrapper">
 				<p>
-        © HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10529) generated on Wed, Dec 7, 2016 14:21-0500. <a href="qa.html">QA Page</a>
+        © HL7.org 2011+. FHIR STU3 Candidate (v1.8.0-10605) generated on Mon, Dec 19, 2016 23:20-0500. <a href="qa.html">QA Page</a>
         <br/>
         <span style="color: #FFFF77">
         Links: <a style="color: #81BEF7" href="http://hl7.org/fhir/search.cfm">Search</a> | 

@@ -29,6 +29,17 @@ start=@<Medication> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
+# Details about packaged medications
+<Medication.package> CLOSED {
+    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
+    fhir:extension @<Extension>*;           # Additional Content defined by 
+                                            # implementations 
+    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
+    fhir:Medication.package.container @<CodeableConcept>?;  # E.g. box, vial, blister-pack
+    fhir:Medication.package.content @<Medication.package.content>*;  # What is  in the package
+    fhir:index xsd:integer?                 # Relative position in a list
+}
+
 # Administrable medication details
 <Medication.product> CLOSED {
     fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
@@ -41,29 +52,14 @@ start=@<Medication> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
-# Details about packaged medications
-<Medication.package> CLOSED {
+# Identifies a single production run
+<Medication.product.batch> CLOSED {
     fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
     fhir:extension @<Extension>*;           # Additional Content defined by 
                                             # implementations 
     fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    fhir:Medication.package.container @<CodeableConcept>?;  # E.g. box, vial, blister-pack
-    fhir:Medication.package.content @<Medication.package.content>*;  # What is  in the package
-    fhir:index xsd:integer?                 # Relative position in a list
-}
-
-# Active or inactive ingredient
-<Medication.product.ingredient> CLOSED {
-    fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
-    fhir:extension @<Extension>*;           # Additional Content defined by 
-                                            # implementations 
-    fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    (                                       # The product contained
-        fhir:Medication.product.ingredient.itemCodeableConcept @<CodeableConcept>  |
-        fhir:Medication.product.ingredient.itemReference @<Reference>  |
-        fhir:Medication.product.ingredient.itemReference @<Reference> 
-    );
-    fhir:Medication.product.ingredient.amount @<Ratio>?;  # Quantity of ingredient present
+    fhir:Medication.product.batch.lotNumber @<string>?;  # Identifier assigned to batch
+    fhir:Medication.product.batch.expirationDate @<dateTime>?;  # When batch will expire
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -81,14 +77,18 @@ start=@<Medication> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
-# Identifies a single production run
-<Medication.product.batch> CLOSED {
+# Active or inactive ingredient
+<Medication.product.ingredient> CLOSED {
     fhir:Element.id @<string>?;             # xml:id (or equivalent in JSON)
     fhir:extension @<Extension>*;           # Additional Content defined by 
                                             # implementations 
     fhir:modifierExtension @<Extension>*;   # Extensions that cannot be ignored
-    fhir:Medication.product.batch.lotNumber @<string>?;  # Identifier assigned to batch
-    fhir:Medication.product.batch.expirationDate @<dateTime>?;  # When batch will expire
+    (                                       # The product contained
+        fhir:Medication.product.ingredient.itemCodeableConcept @<CodeableConcept>  |
+        fhir:Medication.product.ingredient.itemReference @<Reference>  |
+        fhir:Medication.product.ingredient.itemReference @<Reference> 
+    );
+    fhir:Medication.product.ingredient.amount @<Ratio>?;  # Quantity of ingredient present
     fhir:index xsd:integer?                 # Relative position in a list
 }
 
@@ -323,11 +323,11 @@ start=@<Medication> AND {fhir:nodeRole [fhir:treeRoot]}
 
 #---------------------- Value Sets ------------------------
 
-# How the Quantity should be understood and represented.
-fhirvs:quantity-comparator ["<" "<=" ">=" ">"]
-
 # Identifies the purpose for this identifier, if known .
 fhirvs:identifier-use ["usual" "official" "temp" "secondary"]
 
 # The status of a resource narrative
 fhirvs:narrative-status ["generated" "extensions" "additional" "empty"]
+
+# How the Quantity should be understood and represented.
+fhirvs:quantity-comparator ["<" "<=" ">=" ">"]
